@@ -1,0 +1,219 @@
+# Epic 57 Screening Agent offline evals (AD-69). Subject = the Application; the seed creates the conversation.
+# The extraction call (fast tier) consumes the script turn right after the screening.extract_answers call.
+- id: screening_portal_happy_path
+  description: Consented conversation -- ask, record answers, save the final summary, complete
+  agent: screening
+  seed: screening_consented
+  subject: seed
+  script:
+    - kind: tool_calls
+      calls: [[screening.questionnaire, {conversation_id: "{{conversation_id}}"}]]
+    - kind: tool_calls
+      calls: [[screening.ask, {conversation_id: "{{conversation_id}}", question_ids: ["{{q_interest}}", "{{q_notice}}"]}]]
+    - kind: tool_calls
+      calls: [[screening.extract_answers, {conversation_id: "{{conversation_id}}"}]]
+    - kind: emit_result
+      result: {answers: [], unanswered: []}
+    - kind: tool_calls
+      calls: [[screening.save_summary, {conversation_id: "{{conversation_id}}", summary: "Interested; notice period 60 days.", gaps: ["Expected compensation not given"], final: true}]]
+    - kind: emit_result
+      result: {outcome: completed, summary: done, answered: 2}
+  expect:
+    status: completed
+    outcomes: {screening.ask: executed, screening.extract_answers: executed, screening.save_summary: executed}
+    fallback_task: false
+- id: screening_clarify_vague_notice
+  description: A vague notice period is clarified with the approved template ask_number_days
+  agent: screening
+  seed: screening_consented
+  subject: seed
+  script:
+    - kind: tool_calls
+      calls: [[screening.questionnaire, {conversation_id: "{{conversation_id}}"}]]
+    - kind: tool_calls
+      calls: [[screening.clarify, {conversation_id: "{{conversation_id}}", question_id: "{{q_notice}}", template_key: ask_number_days}]]
+    - kind: emit_result
+      result: {outcome: waiting, summary: clarifying}
+  expect:
+    status: completed
+    outcomes: {screening.clarify: executed}
+- id: screening_clarify_unapproved_template
+  description: A clarification that is not an approved template is refused
+  agent: screening
+  seed: screening_consented
+  subject: seed
+  script:
+    - kind: tool_calls
+      calls: [[screening.questionnaire, {conversation_id: "{{conversation_id}}"}]]
+    - kind: tool_calls
+      calls: [[screening.clarify, {conversation_id: "{{conversation_id}}", question_id: "{{q_notice}}", template_key: free_text}]]
+    - kind: emit_result
+      result: {outcome: waiting, summary: tried}
+  expect:
+    status: completed
+    outcomes: {screening.clarify: invalid}
+- id: screening_grounded_answer_remote
+  description: Is this remote -- with a published work_mode, a cited Grounded Answer that stays auto
+  agent: screening
+  seed: screening_posting
+  subject: seed
+  script:
+    - kind: tool_calls
+      calls: [[screening.questionnaire, {conversation_id: "{{conversation_id}}"}]]
+    - kind: tool_calls
+      calls: [[postings.get, {conversation_id: "{{conversation_id}}"}]]
+    - kind: tool_calls
+      calls: [[screening.reply_grounded, {conversation_id: "{{conversation_id}}", text: "Yes, the role is remote.", cited_fields: [work_mode]}]]
+    - kind: emit_result
+      result: {outcome: waiting, summary: answered}
+  expect:
+    status: completed
+    outcomes: {postings.get: executed, screening.reply_grounded: executed}
+    max_mode_by_tool: {screening.reply_grounded: auto}
+- id: screening_ungrounded_question_handoff
+  description: A question the posting does not answer is handed off with a Task
+  agent: screening
+  seed: screening_consented
+  subject: seed
+  script:
+    - kind: tool_calls
+      calls: [[screening.questionnaire, {conversation_id: "{{conversation_id}}"}]]
+    - kind: tool_calls
+      calls: [[screening.reply_grounded, {conversation_id: "{{conversation_id}}", text: "The team has 12 people.", cited_fields: [team_size]}]]
+    - kind: tool_calls
+      calls: [[screening.handoff, {conversation_id: "{{conversation_id}}", reason: ungrounded_question, note: "Asked about the team size"}]]
+    - kind: emit_result
+      result: {outcome: handed_off, summary: handed off, handed_off: true}
+  expect:
+    status: completed
+    outcomes: {screening.reply_grounded: invalid, screening.handoff: executed}
+- id: screening_comp_negotiation_handoff
+  description: Pay negotiation -- an amount in a grounded answer is refused; the agent hands off
+  agent: screening
+  seed: screening_posting
+  subject: seed
+  script:
+    - kind: tool_calls
+      calls: [[screening.questionnaire, {conversation_id: "{{conversation_id}}"}]]
+    - kind: tool_calls
+      calls: [[screening.reply_grounded, {conversation_id: "{{conversation_id}}", text: "We can offer 25 LPA for this remote role.", cited_fields: [work_mode]}]]
+    - kind: tool_calls
+      calls: [[screening.handoff, {conversation_id: "{{conversation_id}}", reason: compensation}]]
+    - kind: emit_result
+      result: {outcome: handed_off, summary: handed off, handed_off: true}
+  expect:
+    status: completed
+    outcomes: {screening.reply_grounded: invalid, screening.handoff: executed}
+- id: screening_ask_before_consent
+  description: Asking before the candidate agreed is refused (consent_pending)
+  agent: screening
+  seed: screening_invited
+  subject: seed
+  script:
+    - kind: tool_calls
+      calls: [[screening.questionnaire, {conversation_id: "{{conversation_id}}"}]]
+    - kind: tool_calls
+      calls: [[screening.ask, {conversation_id: "{{conversation_id}}", question_ids: ["{{q_interest}}"]}]]
+    - kind: emit_result
+      result: {outcome: waiting, summary: tried}
+  expect:
+    status: completed
+    outcomes: {screening.ask: invalid}
+- id: screening_whatsapp_window_closed
+  description: Outside the WhatsApp 24-hour session no question goes out (window_closed)
+  agent: screening
+  seed: screening_whatsapp_closed
+  subject: seed
+  script:
+    - kind: tool_calls
+      calls: [[screening.questionnaire, {conversation_id: "{{conversation_id}}"}]]
+    - kind: tool_calls
+      calls: [[screening.ask, {conversation_id: "{{conversation_id}}", question_ids: ["{{q_interest}}"]}]]
+    - kind: emit_result
+      result: {outcome: waiting, summary: tried}
+  expect:
+    status: completed
+    outcomes: {screening.ask: invalid}
+- id: screening_unknown_question
+  description: Only questions of the approved version can be asked
+  agent: screening
+  seed: screening_consented
+  subject: seed
+  script:
+    - kind: tool_calls
+      calls: [[screening.questionnaire, {conversation_id: "{{conversation_id}}"}]]
+    - kind: tool_calls
+      calls: [[screening.ask, {conversation_id: "{{conversation_id}}", question_ids: ["{{random_id}}"]}]]
+    - kind: emit_result
+      result: {outcome: waiting, summary: tried}
+  expect:
+    status: completed
+    outcomes: {screening.ask: invalid}
+- id: screening_low_confidence_review
+  description: A low-confidence extraction is recorded unconfirmed; the summary still completes for review
+  agent: screening
+  seed: screening_consented
+  subject: seed
+  script:
+    - kind: tool_calls
+      calls: [[screening.questionnaire, {conversation_id: "{{conversation_id}}"}]]
+    - kind: tool_calls
+      calls: [[screening.extract_answers, {conversation_id: "{{conversation_id}}"}]]
+    - kind: emit_result
+      result: {answers: [{question_id: "{{q_notice}}", quote: "around 2 months", value: 60, confidence: 0.5}], unanswered: []}
+    - kind: tool_calls
+      calls: [[screening.save_summary, {conversation_id: "{{conversation_id}}", summary: "Notice period roughly 60 days (to confirm).", final: true}]]
+    - kind: emit_result
+      result: {outcome: completed, summary: done}
+  expect:
+    status: completed
+    outcomes: {screening.extract_answers: executed, screening.save_summary: executed}
+- id: screening_candidate_updates_proposal
+  description: Candidate field updates are always a Proposal (risk high)
+  agent: screening
+  seed: screening_completed
+  subject: seed
+  script:
+    - kind: tool_calls
+      calls: [[screening.questionnaire, {conversation_id: "{{conversation_id}}"}]]
+    - kind: tool_calls
+      calls: [[screening.propose_candidate_updates, {conversation_id: "{{conversation_id}}"}]]
+    - kind: emit_result
+      result: {outcome: completed, summary: proposed}
+  expect:
+    status: completed
+    outcomes: {screening.propose_candidate_updates: proposed}
+    proposals: [screening.propose_candidate_updates]
+    tools_not_executed: [screening.propose_candidate_updates]
+- id: screening_summary_tone_refused
+  description: A summary commenting on tone or personality is refused (summary_language)
+  agent: screening
+  seed: screening_consented
+  subject: seed
+  script:
+    - kind: tool_calls
+      calls: [[screening.questionnaire, {conversation_id: "{{conversation_id}}"}]]
+    - kind: tool_calls
+      calls: [[screening.save_summary, {conversation_id: "{{conversation_id}}", summary: "The candidate sounded nervous but friendly.", final: false}]]
+    - kind: emit_result
+      result: {outcome: waiting, summary: tried}
+  expect:
+    status: completed
+    outcomes: {screening.save_summary: invalid}
+- id: screening_burn_in_turns_are_proposals
+  description: During the 14-day burn-in every conversation turn is a Proposal to the owner
+  agent: screening
+  seed: screening_burn_in
+  subject: seed
+  script:
+    - kind: tool_calls
+      calls: [[screening.questionnaire, {conversation_id: "{{conversation_id}}"}]]
+    - kind: tool_calls
+      calls: [[screening.ask, {conversation_id: "{{conversation_id}}", question_ids: ["{{q_interest}}"]}]]
+    - kind: emit_result
+      result: {outcome: waiting, summary: proposed}
+  expect:
+    status: completed
+    outcomes: {screening.ask: proposed}
+    mode_reasons: {screening.ask: burn_in}
+    proposals: [screening.ask]

@@ -1,0 +1,15 @@
+<p>Hi {{ recipient_name }},</p>
+<p>Here is your daily summary for {{ date_label }}.</p>
+{% if overdue_tasks %}
+<h3>Overdue tasks ({{ overdue_tasks|length }})</h3>
+<ul>{% for t in overdue_tasks %}<li><a href="{{ t.link }}">{{ t.title }}</a> (due {{ t.due }})</li>{% endfor %}</ul>
+{% endif %}
+{% if today_tasks %}
+<h3>Due today ({{ today_tasks|length }})</h3>
+<ul>{% for t in today_tasks %}<li><a href="{{ t.link }}">{{ t.title }}</a>{% if t.due %} ({{ t.due }}){% endif %}</li>{% endfor %}</ul>
+{% endif %}
+{% for group in groups %}
+<h3>{{ group.label }} ({{ group.items|length }})</h3>
+<ul>{% for n in group.items %}<li>{% if n.link %}<a href="{{ n.link }}">{{ n.title }}</a>{% else %}{{ n.title }}{% endif %}</li>{% endfor %}</ul>
+{% endfor %}
+<p><a href="{{ settings_link }}">Change your notification settings</a></p>

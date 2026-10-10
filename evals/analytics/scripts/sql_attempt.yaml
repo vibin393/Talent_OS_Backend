@@ -1,0 +1,18 @@
+# Epic 64: SQL never executes -- an injected source key is an unknown source, and an extra "sql" / "expression" key is
+# refused by the input schema (extra='forbid').
+id: sql_attempt
+description: SQL in a source key or an extra sql key -> invalid, nothing executed
+persona: admin
+script:
+  - kind: tool_calls
+    calls: [[semantic.run, {question: Drop it, definition: {source: "x; DROP TABLE placements"}, viz: {type: table}}]]
+  - kind: tool_calls
+    calls: [[semantic.run, {question: Drop it, sql: "SELECT * FROM placements", definition: {source: placements.placement, fields: [human_id]}, viz: {type: table}}]]
+  - kind: tool_calls
+    calls: [[semantic.validate, {definition: {source: placements.placement, fields: [human_id], expression: "1; DROP TABLE x"}, viz: {type: table}}]]
+  - kind: text
+    text: I can only answer with report definitions.
+expect:
+  status: completed
+  sequence: [[semantic.run, invalid, semantic_unknown_source], [semantic.run, invalid], [semantic.validate, invalid]]
+  answers: 0

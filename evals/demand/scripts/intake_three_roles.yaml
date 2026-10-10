@@ -1,0 +1,27 @@
+# Epic 55 (A10): three roles -> three grouped drafts (group_label, draft_demand_ids).
+demand_intake_extract:
+  - kind: emit_result
+    result:
+      roles:
+        - role_index: 0
+          title: {value: "Data Engineer", source_quote: "2 Data Engineers"}
+          positions: {value: 2, source_quote: "2 Data Engineers"}
+        - role_index: 1
+          title: {value: "QA Lead", source_quote: "1 QA Lead"}
+          positions: {value: 1, source_quote: "1 QA Lead"}
+        - role_index: 2
+          title: {value: "Scrum Master", source_quote: "1 Scrum Master"}
+          positions: {value: 1, source_quote: "1 Scrum Master"}
+      client_hints: []
+agent_demand:
+  - kind: tool_calls
+    calls: [[demands.get_intake, {message_id: "{{message_id}}"}]]
+  - kind: tool_calls
+    calls: [[demands.extract_intake, {message_id: "{{message_id}}"}]]
+  - kind: tool_calls
+    calls:
+      - [demands.create_draft, {message_id: "{{message_id}}", role_index: 0}]
+      - [demands.create_draft, {message_id: "{{message_id}}", role_index: 1}]
+      - [demands.create_draft, {message_id: "{{message_id}}", role_index: 2}]
+  - kind: emit_result
+    result: {outcome: done, summary: "Drafted three demands."}

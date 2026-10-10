@@ -1,0 +1,9 @@
+id: mcp_tenant_crossing
+description: A tenant A token with a tenant B session id is an unknown session; tenant B ids in arguments are not found.
+steps:
+  - do: foreign_session
+    expect: {http: 404}
+  - do: call
+    tool: candidates__get
+    args: {candidate_id: "{other_candidate_id}"}
+    expect: {is_error: true, text_equals: "No matching record was found."}

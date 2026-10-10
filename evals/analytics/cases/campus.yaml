@@ -1,0 +1,76 @@
+# Epic 64 Analytics Evaluation Set -- campus (schema: id, persona, question, expected{definition+viz | clarify | unanswerable}, tolerance, tags).
+- id: cp_by_status
+  persona: admin
+  question: Campus registrations by status
+  expected:
+    definition:
+      source: campus.registration
+      group_by:
+      - field: status
+    viz:
+      type: bar
+      x: status
+  tags: []
+- id: cp_by_tier
+  persona: admin
+  question: Campus registrations by institution tier
+  expected:
+    definition:
+      source: campus.registration
+      group_by:
+      - field: institution.tier
+    viz:
+      type: pie
+      x: institution.tier
+  tags: []
+- id: cp_avg_cgpa_branch
+  persona: admin
+  question: Average CGPA by branch
+  expected:
+    definition:
+      source: campus.registration
+      group_by:
+      - field: branch
+      measures:
+      - key: cgpa
+        agg: avg
+        field: cgpa
+    viz:
+      type: bar
+      x: branch
+      value: cgpa
+  tags: []
+- id: cp_by_batch_year
+  persona: admin
+  question: Registrations by batch year and status
+  expected:
+    definition:
+      source: campus.registration
+      group_by:
+      - field: batch_year
+      - field: status
+    viz:
+      type: pivot
+      x: batch_year
+      series: status
+  tags:
+  - pivot
+- id: cp_this_month
+  persona: admin
+  question: Campus registrations this month
+  expected:
+    definition:
+      source: campus.registration
+      filters:
+        field: registered_at
+        op: between
+        value:
+        - '2026-10-01T00:00:00+05:30'
+        - '2026-10-31T23:59:59+05:30'
+      group_by:
+      - field: source
+    viz:
+      type: bar
+      x: source
+  tags:
+  - this_month

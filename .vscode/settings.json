@@ -1,0 +1,44 @@
+{
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "TODO",
+        "PROD_CHECK",
+        "NOTE",
+        "FUTURE_NOTE"
+    ],
+    "todo-tree.highlights.customHighlight": {
+        "PROD_CHECK": {
+            "foreground": "red",
+            "background": "white",
+            "icon": "star",
+            "fontWeight": "800"
+        },
+        "BUG": {
+            "foreground": "yellow",
+            "icon": "bug"
+        },
+        "NOTE": {
+            "icon": "file"
+        },
+        "FIXME": {
+            "foreground": "white",
+            "iconColour": "yellow"
+        }
+    },
+    "todo-tree.filtering.excludeGlobs": [
+        "**/node_modules/*/**",
+        "**/env/*/**",
+    ],
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/*.pyc": true,
+        "**/__pycache__": true,
+        "**/.mypy_cache": true
+    }
+}

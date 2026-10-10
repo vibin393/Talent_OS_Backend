@@ -1,0 +1,43 @@
+# --------Alembic----------
+alembic init -t async alembic    # To Init the Alembic Environment
+
+alembic revision --autogenerate -m "<migration descr>"    # For DB Migrations
+
+alembic upgrade head    # Run the migration script
+
+# --------MyPy----------
+mypy --install-types    # To Install missing types 
+
+# --------Celery Worker----------
+celery -A app worker --loglevel=info    # To run Celery worker
+
+celery -A app beat --loglevel=info    # To run Celery Beat
+
+# --------Redis----------
+redis-cli
+auth <redis-password>
+
+LLEN <queue-name>   # To check the tasks count in a queue
+del <queue-name>   # To clear the queue
+LRANGE <queue-name> 0 -1   # To get all the task names from a queue
+LRANGE <queue-name> 0 100   # To get first 100 task names from a queue
+
+
+# --------PyTest----------
+pytest .
+pytest test/unit/trade/
+pytest test/path/to/target/<file-name>.py
+pytest test/path/to/target/<file-name>.py::<test-method-name>
+
+# --------PyTest - Code Coverage----------
+pytest --cov=app --cov-report=term-missing
+
+
+
+# --------App Setup----------
+1. pip install -r requirements.txt
+2. docker compose up
+3. celery -A app worker --loglevel=info
+4. celery -A app beat --loglevel=info
+5. alembic upgrade head
+6. Slack.init_setup()

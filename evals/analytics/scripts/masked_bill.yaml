@@ -1,0 +1,25 @@
+# Epic 64: the same question for a Recruiter without compensation:view -- the sum is removed (P3 viewer adaptation),
+# masked_fields lists it, and only the recruiter's in-scope placements are counted.
+id: masked_bill
+description: Restricted user -- bill rate measure masked, in-scope rows only
+persona: recruiter
+script:
+  - kind: tool_calls
+    calls:
+      - - semantic.run
+        - question: Placements by client by FY month with total bill rate
+          definition:
+            source: placements.placement
+            filters: {field: planned_start_date, op: between, value: ["2026-04-01", "2027-03-31"]}
+            group_by: [{field: client.name}, {field: planned_start_date, bucket: month}]
+            measures: [{key: placements, agg: count}, {key: bill, agg: sum, field: bill_rate}]
+          viz: {type: bar, x: client.name, value: bill}
+  - kind: text
+    text: You had 1 placement this FY. Some values are hidden by your access.
+expect:
+  status: completed
+  sequence: [[semantic.run, executed]]
+  answers: 1
+  answer:
+    row_count: 1
+    masked_fields: [bill, bill_rate]

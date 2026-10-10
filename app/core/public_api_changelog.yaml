@@ -1,0 +1,15 @@
+# Public API v1 changelog (Epic 67, FR-347). Machine-readable; served by GET /public/v1/changelog and rendered by the
+# developer portal (Epic 74). Every path / field added to openapi-public-v1.json needs an entry here
+# (scripts/update_public_openapi.py --accept refuses otherwise). kind: added | deprecated | fixed.
+- date: "2026-10-10"
+  version: v1
+  kind: added
+  summary: "Public API v1: candidates, applications, demands, postings, notes, tasks, activities, clients, contacts, users, pools, skills, submissions, interviews, offers, placements, workers, timesheets, expense claims, invoices, credit notes, payments and bulk imports."
+  paths: ["*"]
+  fields: ["*"]
+- date: "2026-10-10"
+  version: v1
+  kind: added
+  summary: "Webhooks (Epic 68): an App's own webhook subscriptions (scope webhooks:manage), signed thin event deliveries with replay and test events, the event type catalogue and the 30-day event list for backfill."
+  paths: ["/api/public/v1/event_types", "/api/public/v1/events", "/api/public/v1/events/{event_id}", "/api/public/v1/webhooks", "/api/public/v1/webhooks/deliveries/{delivery_id}/replay", "/api/public/v1/webhooks/{subscription_id}", "/api/public/v1/webhooks/{subscription_id}/deliveries", "/api/public/v1/webhooks/{subscription_id}/rotate_secret", "/api/public/v1/webhooks/{subscription_id}/test"]
+  fields: ["*"]

@@ -1,0 +1,77 @@
+"""Generic approvals service (story 4.2; extended by Epic 13, AD-24). Public API: ``start``, ``decide``,
+``skip_current_step``, ``list_my_pending``, ``get_request``, ``history_for``, ``cancel_open``, chain CRUD, the
+registries (``register_approval_subject``, ``register_approver_resolver``, ``register_delegate_resolver``), named
+routes (``register_route_resolver`` / ``resolve_route``) and the Phase 1 ``register_subject``; ``conditions`` is
+pure."""
+
+from app.services.approvals import conditions, registry, routes, service
+from app.services.approvals.registry import (
+    ApproverResolver,
+    DelegateResolver,
+    EscalationSpec,
+    FinalDecision,
+    ResolvedApprover,
+    StepDecision,
+    StepSpec,
+    register_approval_subject,
+    register_approver_resolver,
+    register_delegate_resolver,
+    unregister_approval_subject,
+)
+from app.services.approvals.routes import register_route_resolver, resolve_route
+from app.services.approvals.service import (
+    SUBJECT_PERMISSIONS,
+    StartResult,
+    cancel_open,
+    create_chain,
+    decide,
+    delete_chain,
+    get_chain,
+    get_request,
+    history_for,
+    list_chains,
+    list_my_pending,
+    reassign_current_step,
+    register_subject,
+    skip_current_step,
+    start,
+    unregister_subject,
+    update_chain,
+)
+
+__all__ = [
+    "SUBJECT_PERMISSIONS",
+    "ApproverResolver",
+    "DelegateResolver",
+    "EscalationSpec",
+    "FinalDecision",
+    "ResolvedApprover",
+    "StartResult",
+    "StepDecision",
+    "StepSpec",
+    "cancel_open",
+    "conditions",
+    "create_chain",
+    "decide",
+    "delete_chain",
+    "get_chain",
+    "get_request",
+    "history_for",
+    "list_chains",
+    "list_my_pending",
+    "reassign_current_step",
+    "register_approval_subject",
+    "register_approver_resolver",
+    "register_delegate_resolver",
+    "register_route_resolver",
+    "register_subject",
+    "registry",
+    "resolve_route",
+    "routes",
+    "service",
+    "skip_current_step",
+    "start",
+    "unregister_approval_subject",
+    "unregister_subject",
+    "update_chain",
+]

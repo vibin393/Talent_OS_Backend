@@ -1,0 +1,146 @@
+# Epic 64 Analytics Evaluation Set -- interviews (schema: id, persona, question, expected{definition+viz | clarify | unanswerable}, tolerance, tags).
+- id: iv_per_week_quarter
+  persona: admin
+  question: Interviews scheduled per week this quarter
+  expected:
+    definition:
+      source: interviews.interview
+      filters:
+        field: starts_at
+        op: between
+        value:
+        - '2026-10-01T00:00:00+05:30'
+        - '2026-12-31T23:59:59+05:30'
+      group_by:
+      - field: starts_at
+        bucket: week
+      measures:
+      - &id001
+        key: n
+        agg: count
+    viz:
+      type: line
+      x: starts_at
+      value: n
+    assumptions:
+    - I took 'this quarter' as Oct-Dec 2026
+  tags:
+  - quarter
+  - time_series
+- id: iv_by_status
+  persona: admin
+  question: Interviews by status
+  expected:
+    definition:
+      source: interviews.interview
+      group_by:
+      - field: status
+      measures:
+      - *id001
+    viz:
+      type: pie
+      x: status
+      value: n
+  tags: []
+- id: iv_no_show_rate
+  persona: admin
+  question: No-show share by interview mode
+  expected:
+    definition:
+      source: interviews.interview
+      group_by:
+      - field: mode
+      - field: status
+      measures:
+      - key: share
+        agg: pct_of_total
+    viz:
+      type: pivot
+      x: mode
+      value: share
+      series: status
+  tags:
+  - pct_of_total
+  - pivot
+- id: iv_by_organizer_month
+  persona: admin
+  question: Interviews this month by organiser
+  expected:
+    definition:
+      source: interviews.interview
+      filters:
+        field: starts_at
+        op: between
+        value:
+        - '2026-10-01T00:00:00+05:30'
+        - '2026-10-31T23:59:59+05:30'
+      group_by:
+      - field: organizer_user_id
+      measures:
+      - *id001
+    viz:
+      type: bar
+      x: organizer_user_id
+      value: n
+  tags:
+  - this_month
+  - by_recruiter
+- id: iv_avg_round
+  persona: admin
+  question: Average interview round by demand
+  expected:
+    definition:
+      source: interviews.interview
+      group_by:
+      - field: demand.title
+      measures:
+      - key: round
+        agg: avg
+        field: round
+    viz:
+      type: bar
+      x: demand.title
+      value: round
+  tags: []
+- id: iv_completed_fy
+  persona: admin
+  question: Completed interviews this FY
+  expected:
+    definition:
+      source: interviews.interview
+      filters:
+        and:
+        - field: status
+          op: eq
+          value: completed
+        - field: completed_at
+          op: between
+          value:
+          - '2026-04-01T00:00:00+05:30'
+          - '2027-03-31T23:59:59+05:30'
+      measures:
+      - *id001
+    viz:
+      type: kpi
+      value: n
+  tags:
+  - fy
+  - kpi
+- id: iv_by_stage
+  persona: admin
+  question: Interviews by stage name
+  expected:
+    definition:
+      source: interviews.interview
+      group_by:
+      - field: stage_name
+      measures:
+      - *id001
+      sort:
+      - key: n
+        desc: true
+    viz:
+      type: bar
+      x: stage_name
+      value: n
+  tags: []

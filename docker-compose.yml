@@ -1,0 +1,73 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: db
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: myapp
+    ports:
+      - 5433:5432
+    volumes:
+      - ./data/db/postgres/data:/var/lib/postgresql/data
+
+  redis:
+    image: "redis:alpine"
+    container_name: redis
+    command: redis-server --requirepass "hOW32#$@41u31Aq4"
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./data/db/redis/redis-data:/var/lib/redis
+      - ./data/db/redis/redis.conf:/usr/local/etc/redis/redis.conf
+    environment:
+      - REDIS_REPLICATION_MODE=master
+
+  # Epic 13 (AD-37): Celery worker on every queue, and exactly one (Redis-locked) beat.
+  worker:
+    build: .
+    container_name: worker
+    command: celery -A app.core.celery worker -Q interactive,finance_runs,connectors,ai,maintenance,campaigns,analytics,reports,agents,ecosystem --loglevel=info
+    env_file: .env
+    depends_on:
+      - postgres
+      - redis
+
+  # Epic 53 (AD-68): Copilot and candidate / worker conversation turns on their own low-latency worker.
+  worker-conversations:
+    build: .
+    container_name: worker-conversations
+    command: celery -A app.core.celery worker -Q conversations --concurrency 8 --loglevel=info
+    env_file: .env
+    depends_on:
+      - postgres
+      - redis
+
+  # Epic 66 (AD-92): outbox relay + webhook deliveries (egress-only network in deployment).
+  worker-webhooks:
+    build: .
+    container_name: worker-webhooks
+    command: celery -A app.core.celery worker -Q webhooks -n webhooks@%h --concurrency 16 --loglevel=info
+    env_file: .env
+    depends_on:
+      - postgres
+      - redis
+
+  # Epic 66 (AD-92): telephony callbacks, recording retrieval and STT jobs (Epic 76 adds the tasks).
+  worker-telephony:
+    build: .
+    container_name: worker-telephony
+    command: celery -A app.core.celery worker -Q telephony -n telephony@%h --concurrency 4 --loglevel=info
+    env_file: .env
+    depends_on:
+      - postgres
+      - redis
+
+  beat:
+    build: .
+    container_name: beat
+    command: celery -A app.core.celery beat --loglevel=info
+    env_file: .env
+    depends_on:
+      - redis

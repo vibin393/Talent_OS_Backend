@@ -1,0 +1,59 @@
+# Epic 64 Analytics Evaluation Set -- referral_rewards (schema: id, persona, question, expected{definition+viz | clarify | unanswerable}, tolerance, tags).
+- id: rw_by_status
+  persona: admin
+  question: Referral rewards by status
+  expected:
+    definition:
+      source: referrals.reward
+      group_by:
+      - field: status
+    viz:
+      type: pie
+      x: status
+  tags: []
+- id: rw_paid_total
+  persona: admin
+  question: Total referral rewards paid this FY
+  expected:
+    definition:
+      source: referrals.reward
+      filters:
+        and:
+        - field: status
+          op: eq
+          value: paid
+        - field: paid_at
+          op: between
+          value:
+          - '2026-04-01T00:00:00+05:30'
+          - '2027-03-31T23:59:59+05:30'
+      measures:
+      - key: amount
+        agg: sum
+        field: amount
+    viz:
+      type: kpi
+      value: amount
+  tags:
+  - fy
+  - compensation
+- id: rw_paid_masked
+  persona: recruiter
+  question: Total referral rewards paid
+  expected:
+    definition:
+      source: referrals.reward
+      filters:
+        field: status
+        op: eq
+        value: paid
+      measures:
+      - key: amount
+        agg: sum
+        field: amount
+    viz:
+      type: kpi
+      value: amount
+  tags:
+  - masked
+  - compensation

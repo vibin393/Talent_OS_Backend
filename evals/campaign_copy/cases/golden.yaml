@@ -1,0 +1,687 @@
+- id: email_new_jobs_friendly
+  description: Golden email copy (new_jobs, friendly)
+  channel: email
+  tags:
+  - golden
+  - email
+  postings:
+  - &id001
+    posting_id: 11111111-1111-1111-1111-111111111111
+    title: Senior Data Engineer
+    location: Pune
+    work_mode: hybrid
+    show_rate: true
+    pay_min: 1000000
+    pay_max: 1400000
+    description: Build data pipelines on Spark and Airflow.
+  brief: new_jobs campaign, friendly tone
+  result:
+    segments:
+    - key: seg_a
+      variants:
+      - subject: Senior Data Engineer roles for you
+        preheader: Fresh openings for you
+        body_html: '<p>Hi {{candidate.first_name}},</p><p>Senior Data Engineer roles
+          are open in Pune. Take a look and apply in minutes.</p><p>{{job_link.1}}</p><p>Pay:
+          ₹10–14 LPA as published.</p>'
+        job_link_blocks:
+        - posting_id: 11111111-1111-1111-1111-111111111111
+          cta: View role
+      - subject: New Senior Data Engineer openings
+        preheader: Fresh openings for you
+        body_html: '<p>Hi {{candidate.first_name}},</p><p>Senior Data Engineer roles
+          are open in Pune. Take a look and apply in minutes.</p><p>{{job_link.1}}</p><p>Pay:
+          ₹10–14 LPA as published.</p>'
+        job_link_blocks: []
+  expect:
+    valid: true
+- id: email_new_jobs_professional
+  description: Golden email copy (new_jobs, professional)
+  channel: email
+  tags:
+  - golden
+  - email
+  postings:
+  - &id002
+    posting_id: 22222222-2222-2222-2222-222222222222
+    title: Java Developer
+    location: Chennai
+    work_mode: onsite
+    show_rate: false
+    description: Spring Boot services for a bank.
+  brief: new_jobs campaign, professional tone
+  result:
+    segments:
+    - key: seg_a
+      variants:
+      - subject: Java Developer roles for you
+        preheader: Fresh openings for you
+        body_html: <p>Hi {{candidate.first_name}},</p><p>Java Developer roles are
+          open in Chennai. Take a look and apply in minutes.</p><p>{{job_link.1}}</p>
+        job_link_blocks:
+        - posting_id: 22222222-2222-2222-2222-222222222222
+          cta: View role
+      - subject: New Java Developer openings
+        preheader: Fresh openings for you
+        body_html: <p>Hi {{candidate.first_name}},</p><p>Java Developer roles are
+          open in Chennai. Take a look and apply in minutes.</p><p>{{job_link.1}}</p>
+        job_link_blocks: []
+  expect:
+    valid: true
+- id: email_new_jobs_concise
+  description: Golden email copy (new_jobs, concise)
+  channel: email
+  tags:
+  - golden
+  - email
+  postings:
+  - *id001
+  brief: new_jobs campaign, concise tone
+  result:
+    segments:
+    - key: seg_a
+      variants:
+      - subject: Senior Data Engineer roles for you
+        preheader: Fresh openings for you
+        body_html: '<p>Hi {{candidate.first_name}},</p><p>Senior Data Engineer roles
+          are open in Pune. Take a look and apply in minutes.</p><p>{{job_link.1}}</p><p>Pay:
+          ₹10–14 LPA as published.</p>'
+        job_link_blocks:
+        - posting_id: 11111111-1111-1111-1111-111111111111
+          cta: View role
+      - subject: New Senior Data Engineer openings
+        preheader: Fresh openings for you
+        body_html: '<p>Hi {{candidate.first_name}},</p><p>Senior Data Engineer roles
+          are open in Pune. Take a look and apply in minutes.</p><p>{{job_link.1}}</p><p>Pay:
+          ₹10–14 LPA as published.</p>'
+        job_link_blocks: []
+  expect:
+    valid: true
+- id: email_new_jobs_enthusiastic
+  description: Golden email copy (new_jobs, enthusiastic)
+  channel: email
+  tags:
+  - golden
+  - email
+  postings:
+  - *id002
+  brief: new_jobs campaign, enthusiastic tone
+  result:
+    segments:
+    - key: seg_a
+      variants:
+      - subject: Java Developer roles for you
+        preheader: Fresh openings for you
+        body_html: <p>Hi {{candidate.first_name}},</p><p>Java Developer roles are
+          open in Chennai. Take a look and apply in minutes.</p><p>{{job_link.1}}</p>
+        job_link_blocks:
+        - posting_id: 22222222-2222-2222-2222-222222222222
+          cta: View role
+      - subject: New Java Developer openings
+        preheader: Fresh openings for you
+        body_html: <p>Hi {{candidate.first_name}},</p><p>Java Developer roles are
+          open in Chennai. Take a look and apply in minutes.</p><p>{{job_link.1}}</p>
+        job_link_blocks: []
+  expect:
+    valid: true
+- id: email_reengage_friendly
+  description: Golden email copy (reengage, friendly)
+  channel: email
+  tags:
+  - golden
+  - email
+  postings:
+  - *id001
+  brief: reengage campaign, friendly tone
+  result:
+    segments:
+    - key: seg_a
+      variants:
+      - subject: Senior Data Engineer roles for you
+        preheader: Fresh openings for you
+        body_html: '<p>Hi {{candidate.first_name}},</p><p>Senior Data Engineer roles
+          are open in Pune. Take a look and apply in minutes.</p><p>{{job_link.1}}</p><p>Pay:
+          ₹10–14 LPA as published.</p>'
+        job_link_blocks:
+        - posting_id: 11111111-1111-1111-1111-111111111111
+          cta: View role
+      - subject: New Senior Data Engineer openings
+        preheader: Fresh openings for you
+        body_html: '<p>Hi {{candidate.first_name}},</p><p>Senior Data Engineer roles
+          are open in Pune. Take a look and apply in minutes.</p><p>{{job_link.1}}</p><p>Pay:
+          ₹10–14 LPA as published.</p>'
+        job_link_blocks: []
+  expect:
+    valid: true
+- id: email_reengage_professional
+  description: Golden email copy (reengage, professional)
+  channel: email
+  tags:
+  - golden
+  - email
+  postings:
+  - *id002
+  brief: reengage campaign, professional tone
+  result:
+    segments:
+    - key: seg_a
+      variants:
+      - subject: Java Developer roles for you
+        preheader: Fresh openings for you
+        body_html: <p>Hi {{candidate.first_name}},</p><p>Java Developer roles are
+          open in Chennai. Take a look and apply in minutes.</p><p>{{job_link.1}}</p>
+        job_link_blocks:
+        - posting_id: 22222222-2222-2222-2222-222222222222
+          cta: View role
+      - subject: New Java Developer openings
+        preheader: Fresh openings for you
+        body_html: <p>Hi {{candidate.first_name}},</p><p>Java Developer roles are
+          open in Chennai. Take a look and apply in minutes.</p><p>{{job_link.1}}</p>
+        job_link_blocks: []
+  expect:
+    valid: true
+- id: email_reengage_concise
+  description: Golden email copy (reengage, concise)
+  channel: email
+  tags:
+  - golden
+  - email
+  postings:
+  - *id001
+  brief: reengage campaign, concise tone
+  result:
+    segments:
+    - key: seg_a
+      variants:
+      - subject: Senior Data Engineer roles for you
+        preheader: Fresh openings for you
+        body_html: '<p>Hi {{candidate.first_name}},</p><p>Senior Data Engineer roles
+          are open in Pune. Take a look and apply in minutes.</p><p>{{job_link.1}}</p><p>Pay:
+          ₹10–14 LPA as published.</p>'
+        job_link_blocks:
+        - posting_id: 11111111-1111-1111-1111-111111111111
+          cta: View role
+      - subject: New Senior Data Engineer openings
+        preheader: Fresh openings for you
+        body_html: '<p>Hi {{candidate.first_name}},</p><p>Senior Data Engineer roles
+          are open in Pune. Take a look and apply in minutes.</p><p>{{job_link.1}}</p><p>Pay:
+          ₹10–14 LPA as published.</p>'
+        job_link_blocks: []
+  expect:
+    valid: true
+- id: email_reengage_enthusiastic
+  description: Golden email copy (reengage, enthusiastic)
+  channel: email
+  tags:
+  - golden
+  - email
+  postings:
+  - *id002
+  brief: reengage campaign, enthusiastic tone
+  result:
+    segments:
+    - key: seg_a
+      variants:
+      - subject: Java Developer roles for you
+        preheader: Fresh openings for you
+        body_html: <p>Hi {{candidate.first_name}},</p><p>Java Developer roles are
+          open in Chennai. Take a look and apply in minutes.</p><p>{{job_link.1}}</p>
+        job_link_blocks:
+        - posting_id: 22222222-2222-2222-2222-222222222222
+          cta: View role
+      - subject: New Java Developer openings
+        preheader: Fresh openings for you
+        body_html: <p>Hi {{candidate.first_name}},</p><p>Java Developer roles are
+          open in Chennai. Take a look and apply in minutes.</p><p>{{job_link.1}}</p>
+        job_link_blocks: []
+  expect:
+    valid: true
+- id: email_event_friendly
+  description: Golden email copy (event, friendly)
+  channel: email
+  tags:
+  - golden
+  - email
+  postings:
+  - *id001
+  brief: event campaign, friendly tone
+  result:
+    segments:
+    - key: seg_a
+      variants:
+      - subject: Senior Data Engineer roles for you
+        preheader: Fresh openings for you
+        body_html: '<p>Hi {{candidate.first_name}},</p><p>Senior Data Engineer roles
+          are open in Pune. Take a look and apply in minutes.</p><p>{{job_link.1}}</p><p>Pay:
+          ₹10–14 LPA as published.</p>'
+        job_link_blocks:
+        - posting_id: 11111111-1111-1111-1111-111111111111
+          cta: View role
+      - subject: New Senior Data Engineer openings
+        preheader: Fresh openings for you
+        body_html: '<p>Hi {{candidate.first_name}},</p><p>Senior Data Engineer roles
+          are open in Pune. Take a look and apply in minutes.</p><p>{{job_link.1}}</p><p>Pay:
+          ₹10–14 LPA as published.</p>'
+        job_link_blocks: []
+  expect:
+    valid: true
+- id: email_event_professional
+  description: Golden email copy (event, professional)
+  channel: email
+  tags:
+  - golden
+  - email
+  postings:
+  - *id002
+  brief: event campaign, professional tone
+  result:
+    segments:
+    - key: seg_a
+      variants:
+      - subject: Java Developer roles for you
+        preheader: Fresh openings for you
+        body_html: <p>Hi {{candidate.first_name}},</p><p>Java Developer roles are
+          open in Chennai. Take a look and apply in minutes.</p><p>{{job_link.1}}</p>
+        job_link_blocks:
+        - posting_id: 22222222-2222-2222-2222-222222222222
+          cta: View role
+      - subject: New Java Developer openings
+        preheader: Fresh openings for you
+        body_html: <p>Hi {{candidate.first_name}},</p><p>Java Developer roles are
+          open in Chennai. Take a look and apply in minutes.</p><p>{{job_link.1}}</p>
+        job_link_blocks: []
+  expect:
+    valid: true
+- id: email_event_concise
+  description: Golden email copy (event, concise)
+  channel: email
+  tags:
+  - golden
+  - email
+  postings:
+  - *id001
+  brief: event campaign, concise tone
+  result:
+    segments:
+    - key: seg_a
+      variants:
+      - subject: Senior Data Engineer roles for you
+        preheader: Fresh openings for you
+        body_html: '<p>Hi {{candidate.first_name}},</p><p>Senior Data Engineer roles
+          are open in Pune. Take a look and apply in minutes.</p><p>{{job_link.1}}</p><p>Pay:
+          ₹10–14 LPA as published.</p>'
+        job_link_blocks:
+        - posting_id: 11111111-1111-1111-1111-111111111111
+          cta: View role
+      - subject: New Senior Data Engineer openings
+        preheader: Fresh openings for you
+        body_html: '<p>Hi {{candidate.first_name}},</p><p>Senior Data Engineer roles
+          are open in Pune. Take a look and apply in minutes.</p><p>{{job_link.1}}</p><p>Pay:
+          ₹10–14 LPA as published.</p>'
+        job_link_blocks: []
+  expect:
+    valid: true
+- id: email_event_enthusiastic
+  description: Golden email copy (event, enthusiastic)
+  channel: email
+  tags:
+  - golden
+  - email
+  postings:
+  - *id002
+  brief: event campaign, enthusiastic tone
+  result:
+    segments:
+    - key: seg_a
+      variants:
+      - subject: Java Developer roles for you
+        preheader: Fresh openings for you
+        body_html: <p>Hi {{candidate.first_name}},</p><p>Java Developer roles are
+          open in Chennai. Take a look and apply in minutes.</p><p>{{job_link.1}}</p>
+        job_link_blocks:
+        - posting_id: 22222222-2222-2222-2222-222222222222
+          cta: View role
+      - subject: New Java Developer openings
+        preheader: Fresh openings for you
+        body_html: <p>Hi {{candidate.first_name}},</p><p>Java Developer roles are
+          open in Chennai. Take a look and apply in minutes.</p><p>{{job_link.1}}</p>
+        job_link_blocks: []
+  expect:
+    valid: true
+- id: email_referral_ask_friendly
+  description: Golden email copy (referral_ask, friendly)
+  channel: email
+  tags:
+  - golden
+  - email
+  postings:
+  - *id001
+  brief: referral_ask campaign, friendly tone
+  result:
+    segments:
+    - key: seg_a
+      variants:
+      - subject: Senior Data Engineer roles for you
+        preheader: Fresh openings for you
+        body_html: '<p>Hi {{candidate.first_name}},</p><p>Senior Data Engineer roles
+          are open in Pune. Take a look and apply in minutes.</p><p>{{job_link.1}}</p><p>Pay:
+          ₹10–14 LPA as published.</p>'
+        job_link_blocks:
+        - posting_id: 11111111-1111-1111-1111-111111111111
+          cta: View role
+      - subject: New Senior Data Engineer openings
+        preheader: Fresh openings for you
+        body_html: '<p>Hi {{candidate.first_name}},</p><p>Senior Data Engineer roles
+          are open in Pune. Take a look and apply in minutes.</p><p>{{job_link.1}}</p><p>Pay:
+          ₹10–14 LPA as published.</p>'
+        job_link_blocks: []
+  expect:
+    valid: true
+- id: email_referral_ask_professional
+  description: Golden email copy (referral_ask, professional)
+  channel: email
+  tags:
+  - golden
+  - email
+  postings:
+  - *id002
+  brief: referral_ask campaign, professional tone
+  result:
+    segments:
+    - key: seg_a
+      variants:
+      - subject: Java Developer roles for you
+        preheader: Fresh openings for you
+        body_html: <p>Hi {{candidate.first_name}},</p><p>Java Developer roles are
+          open in Chennai. Take a look and apply in minutes.</p><p>{{job_link.1}}</p>
+        job_link_blocks:
+        - posting_id: 22222222-2222-2222-2222-222222222222
+          cta: View role
+      - subject: New Java Developer openings
+        preheader: Fresh openings for you
+        body_html: <p>Hi {{candidate.first_name}},</p><p>Java Developer roles are
+          open in Chennai. Take a look and apply in minutes.</p><p>{{job_link.1}}</p>
+        job_link_blocks: []
+  expect:
+    valid: true
+- id: email_referral_ask_concise
+  description: Golden email copy (referral_ask, concise)
+  channel: email
+  tags:
+  - golden
+  - email
+  postings:
+  - *id001
+  brief: referral_ask campaign, concise tone
+  result:
+    segments:
+    - key: seg_a
+      variants:
+      - subject: Senior Data Engineer roles for you
+        preheader: Fresh openings for you
+        body_html: '<p>Hi {{candidate.first_name}},</p><p>Senior Data Engineer roles
+          are open in Pune. Take a look and apply in minutes.</p><p>{{job_link.1}}</p><p>Pay:
+          ₹10–14 LPA as published.</p>'
+        job_link_blocks:
+        - posting_id: 11111111-1111-1111-1111-111111111111
+          cta: View role
+      - subject: New Senior Data Engineer openings
+        preheader: Fresh openings for you
+        body_html: '<p>Hi {{candidate.first_name}},</p><p>Senior Data Engineer roles
+          are open in Pune. Take a look and apply in minutes.</p><p>{{job_link.1}}</p><p>Pay:
+          ₹10–14 LPA as published.</p>'
+        job_link_blocks: []
+  expect:
+    valid: true
+- id: email_referral_ask_enthusiastic
+  description: Golden email copy (referral_ask, enthusiastic)
+  channel: email
+  tags:
+  - golden
+  - email
+  postings:
+  - *id002
+  brief: referral_ask campaign, enthusiastic tone
+  result:
+    segments:
+    - key: seg_a
+      variants:
+      - subject: Java Developer roles for you
+        preheader: Fresh openings for you
+        body_html: <p>Hi {{candidate.first_name}},</p><p>Java Developer roles are
+          open in Chennai. Take a look and apply in minutes.</p><p>{{job_link.1}}</p>
+        job_link_blocks:
+        - posting_id: 22222222-2222-2222-2222-222222222222
+          cta: View role
+      - subject: New Java Developer openings
+        preheader: Fresh openings for you
+        body_html: <p>Hi {{candidate.first_name}},</p><p>Java Developer roles are
+          open in Chennai. Take a look and apply in minutes.</p><p>{{job_link.1}}</p>
+        job_link_blocks: []
+  expect:
+    valid: true
+- id: email_nurture_friendly
+  description: Golden email copy (nurture, friendly)
+  channel: email
+  tags:
+  - golden
+  - email
+  postings:
+  - *id001
+  brief: nurture campaign, friendly tone
+  result:
+    segments:
+    - key: seg_a
+      variants:
+      - subject: Senior Data Engineer roles for you
+        preheader: Fresh openings for you
+        body_html: '<p>Hi {{candidate.first_name}},</p><p>Senior Data Engineer roles
+          are open in Pune. Take a look and apply in minutes.</p><p>{{job_link.1}}</p><p>Pay:
+          ₹10–14 LPA as published.</p>'
+        job_link_blocks:
+        - posting_id: 11111111-1111-1111-1111-111111111111
+          cta: View role
+      - subject: New Senior Data Engineer openings
+        preheader: Fresh openings for you
+        body_html: '<p>Hi {{candidate.first_name}},</p><p>Senior Data Engineer roles
+          are open in Pune. Take a look and apply in minutes.</p><p>{{job_link.1}}</p><p>Pay:
+          ₹10–14 LPA as published.</p>'
+        job_link_blocks: []
+  expect:
+    valid: true
+- id: email_nurture_professional
+  description: Golden email copy (nurture, professional)
+  channel: email
+  tags:
+  - golden
+  - email
+  postings:
+  - *id002
+  brief: nurture campaign, professional tone
+  result:
+    segments:
+    - key: seg_a
+      variants:
+      - subject: Java Developer roles for you
+        preheader: Fresh openings for you
+        body_html: <p>Hi {{candidate.first_name}},</p><p>Java Developer roles are
+          open in Chennai. Take a look and apply in minutes.</p><p>{{job_link.1}}</p>
+        job_link_blocks:
+        - posting_id: 22222222-2222-2222-2222-222222222222
+          cta: View role
+      - subject: New Java Developer openings
+        preheader: Fresh openings for you
+        body_html: <p>Hi {{candidate.first_name}},</p><p>Java Developer roles are
+          open in Chennai. Take a look and apply in minutes.</p><p>{{job_link.1}}</p>
+        job_link_blocks: []
+  expect:
+    valid: true
+- id: email_nurture_concise
+  description: Golden email copy (nurture, concise)
+  channel: email
+  tags:
+  - golden
+  - email
+  postings:
+  - *id001
+  brief: nurture campaign, concise tone
+  result:
+    segments:
+    - key: seg_a
+      variants:
+      - subject: Senior Data Engineer roles for you
+        preheader: Fresh openings for you
+        body_html: '<p>Hi {{candidate.first_name}},</p><p>Senior Data Engineer roles
+          are open in Pune. Take a look and apply in minutes.</p><p>{{job_link.1}}</p><p>Pay:
+          ₹10–14 LPA as published.</p>'
+        job_link_blocks:
+        - posting_id: 11111111-1111-1111-1111-111111111111
+          cta: View role
+      - subject: New Senior Data Engineer openings
+        preheader: Fresh openings for you
+        body_html: '<p>Hi {{candidate.first_name}},</p><p>Senior Data Engineer roles
+          are open in Pune. Take a look and apply in minutes.</p><p>{{job_link.1}}</p><p>Pay:
+          ₹10–14 LPA as published.</p>'
+        job_link_blocks: []
+  expect:
+    valid: true
+- id: email_nurture_enthusiastic
+  description: Golden email copy (nurture, enthusiastic)
+  channel: email
+  tags:
+  - golden
+  - email
+  postings:
+  - *id002
+  brief: nurture campaign, enthusiastic tone
+  result:
+    segments:
+    - key: seg_a
+      variants:
+      - subject: Java Developer roles for you
+        preheader: Fresh openings for you
+        body_html: <p>Hi {{candidate.first_name}},</p><p>Java Developer roles are
+          open in Chennai. Take a look and apply in minutes.</p><p>{{job_link.1}}</p>
+        job_link_blocks:
+        - posting_id: 22222222-2222-2222-2222-222222222222
+          cta: View role
+      - subject: New Java Developer openings
+        preheader: Fresh openings for you
+        body_html: <p>Hi {{candidate.first_name}},</p><p>Java Developer roles are
+          open in Chennai. Take a look and apply in minutes.</p><p>{{job_link.1}}</p>
+        job_link_blocks: []
+  expect:
+    valid: true
+- id: sms_golden_1
+  description: DLT template, every variable within 30 chars
+  channel: sms
+  tags:
+  - golden
+  - sms
+  template: &id003
+    body: 'Hi {#var#}, new {#var#} roles near you. Apply: {#var#}. Reply STOP to opt
+      out.'
+    variables:
+    - name
+    - role
+    - link_url
+    url_variables:
+    - link_url
+  postings:
+  - *id002
+  result:
+    segments:
+    - key: seg_a
+      variants:
+      - template_values:
+          name: there
+          role: Java
+          link_url: https://app.example.test/j/1
+  expect:
+    valid: true
+- id: sms_golden_2
+  description: DLT template, short role text
+  channel: sms
+  tags:
+  - golden
+  - sms
+  template: *id003
+  postings:
+  - *id001
+  result:
+    segments:
+    - key: seg_a
+      variants:
+      - template_values:
+          name: friend
+          role: data
+          link_url: https://app.example.test/j/2
+  expect:
+    valid: true
+- id: wa_golden_1
+  description: WhatsApp parameters match
+  channel: whatsapp
+  tags:
+  - golden
+  - whatsapp
+  template: &id004
+    body: Hello {{1}}, we have {{2}} openings. {{3}}
+    variables:
+    - '1'
+    - '2'
+    - '3'
+  postings:
+  - &id005
+    posting_id: 33333333-3333-3333-3333-333333333333
+    title: QA Engineer
+    location: null
+    work_mode: remote
+    show_rate: false
+    description: Automation testing with Playwright.
+  result:
+    segments:
+    - key: seg_a
+      variants:
+      - template_values:
+          '1': there
+          '2': QA
+          '3': Reply to know more
+  expect:
+    valid: true
+- id: wa_golden_2
+  description: WhatsApp remote role
+  channel: whatsapp
+  tags:
+  - golden
+  - whatsapp
+  template: *id004
+  postings:
+  - *id005
+  result:
+    segments:
+    - key: seg_a
+      variants:
+      - template_values:
+          '1': friend
+          '2': remote QA
+          '3': Tap to apply
+  expect:
+    valid: true
+- id: email_remote_supported
+  description: Remote claim backed by a remote posting
+  channel: email
+  tags:
+  - golden
+  - email
+  postings:
+  - *id005
+  result:
+    segments:
+    - key: seg_a
+      variants:
+      - subject: Remote QA roles
+        preheader: Fresh openings for you
+        body_html: <p>Hi {{candidate.first_name}}, these QA roles are fully remote.</p>
+        job_link_blocks: []
+  expect:
+    valid: true

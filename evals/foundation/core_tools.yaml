@@ -1,0 +1,97 @@
+# Epic 53 foundation cases (AD-69): the core tools and run endings behave as specified under the Fake LLM.
+- id: note_and_finish
+  description: A low-risk note executes automatically and the run completes
+  script:
+    - kind: tool_calls
+      calls: [[notes.add, {entity_type: candidate, entity_id: "{{candidate_id}}", body: "Strong Python profile."}]]
+    - kind: emit_result
+      result: {outcome: done, summary: noted}
+  expect:
+    status: completed
+    outcomes: {notes.add: executed}
+    max_mode_by_tool: {notes.add: auto}
+    max_tokens: 2000
+- id: create_task_for_owner
+  description: A follow-up task is created for the owner (natural-key idempotent)
+  script:
+    - kind: tool_calls
+      calls: [[tasks.create, {title: "Call Priya", entity_type: candidate, entity_id: "{{candidate_id}}", due_in_hours: 4}]]
+    - kind: emit_result
+      result: {outcome: done, summary: task}
+  expect:
+    status: completed
+    outcomes: {tasks.create: executed}
+- id: raise_flag
+  description: A flag is an internal note plus an in-app alert; it changes no status
+  script:
+    - kind: tool_calls
+      calls: [[flags.raise, {entity_type: candidate, entity_id: "{{candidate_id}}", flag: missing_info, severity: low, message: "No notice period"}]]
+    - kind: emit_result
+      result: {outcome: done, summary: flagged}
+  expect:
+    status: completed
+    outcomes: {flags.raise: executed}
+- id: read_consent
+  description: Consent status is a read and executes
+  script:
+    - kind: tool_calls
+      calls: [[consent.status, {candidate_id: "{{candidate_id}}", purposes: [ai_processing, marketing]}]]
+    - kind: emit_result
+      result: {outcome: done, summary: read}
+  expect:
+    status: completed
+    outcomes: {consent.status: executed}
+- id: draft_message_is_a_proposal
+  description: Drafting creates a Proposal for messaging.send; nothing is sent
+  script:
+    - kind: tool_calls
+      calls: [[messaging.create_draft, {recipient_kind: candidate, recipient_id: "{{candidate_id}}", channel: email, subject: "Hello", body: "Are you open to a new role?"}]]
+    - kind: emit_result
+      result: {outcome: done, summary: drafted}
+  expect:
+    status: completed
+    proposals: [messaging.create_draft]
+    tools_not_executed: [messaging.send]
+- id: nothing_to_do
+  description: The agent may finish immediately
+  script:
+    - kind: emit_result
+      result: {outcome: nothing_to_do, summary: none}
+  expect:
+    status: completed
+    fallback_task: false
+- id: needs_human_runs_fallback
+  description: emit_result needs_human completes the run and creates the fallback task
+  script:
+    - kind: emit_result
+      result: {outcome: needs_human, summary: "Candidate asked about salary"}
+  expect:
+    status: completed
+    fallback_task: true
+- id: pause_then_finish
+  description: pause_turn continues with the next step
+  script:
+    - kind: pause
+    - kind: emit_result
+      result: {outcome: done, summary: resumed}
+  expect:
+    status: completed
+- id: refusal_fails_with_fallback
+  description: A model refusal fails the run with a fallback task
+  script:
+    - kind: refusal
+      refusal_category: cyber
+  expect:
+    status: failed
+    reason_code: refused
+    fallback_task: true
+- id: knowledge_search_available
+  description: knowledge.search is filled by Epic 62 (a read; no published sources -> empty hits, run continues)
+  script:
+    - kind: tool_calls
+      calls: [[knowledge.search, {query: "leave policy", audience: internal}]]
+    - kind: emit_result
+      result: {outcome: done, summary: none}
+  expect:
+    status: completed
+    outcomes: {knowledge.search: executed}

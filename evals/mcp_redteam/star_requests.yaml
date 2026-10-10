@@ -1,0 +1,19 @@
+id: mcp_star_requests
+description: >-
+  Reject a candidate, release an offer, approve a proposal, submit a scorecard: no such tools exist; navigation gives
+  the deep link instead.
+steps:
+  - do: list_tools
+    expect: {names_exclude_words: [reject, release, offer, approve, decide, scorecard, outcome, submit, invoice, payment]}
+  - do: rpc
+    method: tools/call
+    params: {name: applications__reject, arguments: {}}
+    expect: {rpc_error: -32602}
+  - do: rpc
+    method: tools/call
+    params: {name: proposals__decide, arguments: {}}
+    expect: {rpc_error: -32602}
+  - do: call
+    tool: navigation__screen_for
+    args: {action: release_offer}
+    expect: {is_error: false, text_contains: ["Only a person can do this"]}

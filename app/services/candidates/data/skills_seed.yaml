@@ -1,0 +1,519 @@
+# Platform skill catalog seed (FR-23). Loaded by migration 20261001_32 and `python -m app.cli seed-skills`
+# with an idempotent upsert by slug. Fields: name (required), category, parent (name of another entry),
+# aliases (synonyms; matched after normalisation: lowercase, trimmed, whitespace collapsed, keeps + # .).
+skills:
+  # ---------------------------------------------------------------- programming languages
+  - {name: Java, category: Programming Language, aliases: [core java, j2se, java se]}
+  - {name: JavaScript, category: Programming Language, aliases: [js, ecmascript, es6, vanilla js]}
+  - {name: TypeScript, category: Programming Language, aliases: [ts]}
+  - {name: Python, category: Programming Language, aliases: [python3, python 3, py]}
+  - {name: C, category: Programming Language, aliases: [c language, ansi c]}
+  - {name: C++, category: Programming Language, aliases: [cpp, c plus plus]}
+  - {name: C#, category: Programming Language, aliases: [csharp, c sharp]}
+  - {name: Go, category: Programming Language, aliases: [golang]}
+  - {name: Rust, category: Programming Language}
+  - {name: Kotlin, category: Programming Language}
+  - {name: Swift, category: Programming Language}
+  - {name: Objective-C, category: Programming Language, aliases: [objective c, objc]}
+  - {name: Ruby, category: Programming Language}
+  - {name: PHP, category: Programming Language}
+  - {name: Scala, category: Programming Language}
+  - {name: R, category: Programming Language, aliases: [r programming, r language]}
+  - {name: MATLAB, category: Programming Language}
+  - {name: Perl, category: Programming Language}
+  - {name: Dart, category: Programming Language}
+  - {name: Elixir, category: Programming Language}
+  - {name: Haskell, category: Programming Language}
+  - {name: Clojure, category: Programming Language}
+  - {name: Groovy, category: Programming Language}
+  - {name: Lua, category: Programming Language}
+  - {name: Shell Scripting, category: Programming Language, aliases: [bash, shell script, unix shell scripting, sh]}
+  - {name: PowerShell, category: Programming Language, aliases: [powershell scripting]}
+  - {name: VBA, category: Programming Language, aliases: [excel vba, visual basic for applications]}
+  - {name: Visual Basic .NET, category: Programming Language, aliases: [vb.net, vb .net]}
+  - {name: COBOL, category: Programming Language}
+  - {name: Fortran, category: Programming Language}
+  - {name: Assembly, category: Programming Language, aliases: [assembly language, asm]}
+  - {name: Solidity, category: Programming Language}
+  - {name: ABAP, category: Programming Language, aliases: [sap abap]}
+  - {name: Apex, category: Programming Language, aliases: [salesforce apex]}
+  - {name: SQL, category: Database, aliases: [structured query language]}
+  - {name: PL/SQL, category: Database, parent: SQL, aliases: [plsql, pl sql]}
+  - {name: T-SQL, category: Database, parent: SQL, aliases: [tsql, transact-sql, transact sql]}
+  # ---------------------------------------------------------------- Java ecosystem
+  - {name: Spring, category: Framework, parent: Java, aliases: [spring framework]}
+  - {name: Spring Boot, category: Framework, parent: Spring, aliases: [springboot, spring-boot]}
+  - {name: Spring MVC, category: Framework, parent: Spring}
+  - {name: Spring Security, category: Framework, parent: Spring}
+  - {name: Spring Cloud, category: Framework, parent: Spring}
+  - {name: Spring Data JPA, category: Framework, parent: Spring, aliases: [spring data]}
+  - {name: Hibernate, category: Framework, parent: Java, aliases: [hibernate orm]}
+  - {name: JPA, category: Framework, parent: Java, aliases: [java persistence api]}
+  - {name: Java EE, category: Framework, parent: Java, aliases: [j2ee, jakarta ee, jee]}
+  - {name: Servlets, category: Framework, parent: Java, aliases: [java servlets]}
+  - {name: JSP, category: Framework, parent: Java, aliases: [java server pages]}
+  - {name: Struts, category: Framework, parent: Java, aliases: [apache struts]}
+  - {name: Maven, category: Build Tool, parent: Java, aliases: [apache maven]}
+  - {name: Gradle, category: Build Tool}
+  - {name: JUnit, category: Testing, parent: Java}
+  - {name: Mockito, category: Testing, parent: Java}
+  - {name: Microservices, category: Architecture, aliases: [microservice architecture, micro services]}
+  - {name: Quarkus, category: Framework, parent: Java}
+  - {name: Micronaut, category: Framework, parent: Java}
+  - {name: Apache Kafka, category: Messaging, aliases: [kafka]}
+  - {name: RabbitMQ, category: Messaging, aliases: [rabbit mq]}
+  - {name: ActiveMQ, category: Messaging, aliases: [apache activemq]}
+  - {name: JMS, category: Messaging, aliases: [java message service]}
+  # ---------------------------------------------------------------- JavaScript / web
+  - {name: Node.js, category: Runtime, parent: JavaScript, aliases: [nodejs, node js, node]}
+  - {name: React, category: Framework, parent: JavaScript, aliases: [react.js, reactjs, react js]}
+  - {name: React Native, category: Framework, parent: React, aliases: [react-native]}
+  - {name: Redux, category: Library, parent: React}
+  - {name: Next.js, category: Framework, parent: React, aliases: [nextjs, next js]}
+  - {name: Angular, category: Framework, parent: TypeScript, aliases: [angular 2+, angular2]}
+  - {name: AngularJS, category: Framework, parent: JavaScript, aliases: [angular.js, angular js, angular 1]}
+  - {name: Vue.js, category: Framework, parent: JavaScript, aliases: [vue, vuejs, vue js]}
+  - {name: Nuxt.js, category: Framework, parent: Vue.js, aliases: [nuxt, nuxtjs]}
+  - {name: Svelte, category: Framework, parent: JavaScript}
+  - {name: Express.js, category: Framework, parent: Node.js, aliases: [express, expressjs]}
+  - {name: NestJS, category: Framework, parent: Node.js, aliases: [nest.js, nest js]}
+  - {name: jQuery, category: Library, parent: JavaScript, aliases: [jquery]}
+  - {name: HTML, category: Web, aliases: [html5, html 5]}
+  - {name: CSS, category: Web, aliases: [css3, css 3]}
+  - {name: Sass, category: Web, parent: CSS, aliases: [scss]}
+  - {name: Tailwind CSS, category: Web, parent: CSS, aliases: [tailwind, tailwindcss]}
+  - {name: Bootstrap, category: Web, parent: CSS}
+  - {name: Webpack, category: Build Tool, parent: JavaScript}
+  - {name: Vite, category: Build Tool, parent: JavaScript}
+  - {name: GraphQL, category: API}
+  - {name: REST APIs, category: API, aliases: [rest, restful, rest api, restful apis, restful services]}
+  - {name: SOAP, category: API, aliases: [soap web services]}
+  - {name: gRPC, category: API, aliases: [grpc]}
+  - {name: WebSockets, category: API, aliases: [websocket]}
+  - {name: Jest, category: Testing, parent: JavaScript}
+  - {name: Cypress, category: Testing, parent: JavaScript}
+  - {name: Playwright, category: Testing}
+  - {name: Mocha, category: Testing, parent: JavaScript}
+  - {name: Redux Toolkit, category: Library, parent: Redux, aliases: [rtk]}
+  - {name: Material UI, category: Library, parent: React, aliases: [mui, material-ui]}
+  - {name: Fluent UI, category: Library, parent: React, aliases: [fluentui, office ui fabric]}
+  # ---------------------------------------------------------------- Python ecosystem
+  - {name: Django, category: Framework, parent: Python}
+  - {name: Flask, category: Framework, parent: Python}
+  - {name: FastAPI, category: Framework, parent: Python, aliases: [fast api]}
+  - {name: Pandas, category: Library, parent: Python}
+  - {name: NumPy, category: Library, parent: Python, aliases: [numpy]}
+  - {name: SciPy, category: Library, parent: Python}
+  - {name: scikit-learn, category: Library, parent: Python, aliases: [sklearn, scikit learn]}
+  - {name: TensorFlow, category: Library, parent: Python, aliases: [tensor flow, tf]}
+  - {name: PyTorch, category: Library, parent: Python, aliases: [torch]}
+  - {name: Keras, category: Library, parent: TensorFlow}
+  - {name: Celery, category: Library, parent: Python}
+  - {name: SQLAlchemy, category: Library, parent: Python}
+  - {name: Pytest, category: Testing, parent: Python, aliases: [py.test]}
+  - {name: Matplotlib, category: Library, parent: Python}
+  - {name: Jupyter, category: Tool, parent: Python, aliases: [jupyter notebook, jupyterlab]}
+  - {name: Airflow, category: Data Engineering, parent: Python, aliases: [apache airflow]}
+  # ---------------------------------------------------------------- .NET ecosystem
+  - {name: .NET, category: Framework, parent: C#, aliases: [dotnet, dot net, .net framework]}
+  - {name: .NET Core, category: Framework, parent: .NET, aliases: [dotnet core, .net 6, .net 8, dot net core]}
+  - {name: ASP.NET, category: Framework, parent: .NET, aliases: [asp.net mvc, asp .net]}
+  - {name: ASP.NET Core, category: Framework, parent: ASP.NET, aliases: [asp.net core web api]}
+  - {name: Entity Framework, category: Framework, parent: .NET, aliases: [ef core, entity framework core]}
+  - {name: LINQ, category: Library, parent: C#}
+  - {name: WPF, category: Framework, parent: .NET, aliases: [windows presentation foundation]}
+  - {name: WinForms, category: Framework, parent: .NET, aliases: [windows forms]}
+  - {name: Blazor, category: Framework, parent: .NET}
+  - {name: WCF, category: Framework, parent: .NET, aliases: [windows communication foundation]}
+  # ---------------------------------------------------------------- other frameworks
+  - {name: Ruby on Rails, category: Framework, parent: Ruby, aliases: [rails, ror]}
+  - {name: Laravel, category: Framework, parent: PHP}
+  - {name: Symfony, category: Framework, parent: PHP}
+  - {name: WordPress, category: CMS, parent: PHP}
+  - {name: Drupal, category: CMS, parent: PHP}
+  - {name: Flutter, category: Framework, parent: Dart}
+  - {name: Android Development, category: Mobile, aliases: [android, android sdk]}
+  - {name: iOS Development, category: Mobile, aliases: [ios]}
+  - {name: SwiftUI, category: Framework, parent: Swift}
+  - {name: Xamarin, category: Framework, parent: C#}
+  - {name: Ionic, category: Framework, parent: JavaScript}
+  - {name: Unity, category: Game Development, aliases: [unity3d, unity 3d]}
+  - {name: Unreal Engine, category: Game Development, aliases: [ue4, ue5]}
+  # ---------------------------------------------------------------- databases
+  - {name: PostgreSQL, category: Database, parent: SQL, aliases: [postgres, postgre sql, psql]}
+  - {name: MySQL, category: Database, parent: SQL, aliases: [my sql]}
+  - {name: Microsoft SQL Server, category: Database, parent: SQL, aliases: [sql server, mssql, ms sql server, ms sql]}
+  - {name: Oracle Database, category: Database, parent: SQL, aliases: [oracle, oracle db, oracle rdbms]}
+  - {name: MariaDB, category: Database, parent: SQL}
+  - {name: SQLite, category: Database, parent: SQL}
+  - {name: MongoDB, category: Database, aliases: [mongo, mongo db]}
+  - {name: Cassandra, category: Database, aliases: [apache cassandra]}
+  - {name: Redis, category: Database}
+  - {name: Elasticsearch, category: Database, aliases: [elastic search, elk]}
+  - {name: DynamoDB, category: Database, parent: Amazon Web Services, aliases: [aws dynamodb, dynamo db]}
+  - {name: Azure Cosmos DB, category: Database, parent: Microsoft Azure, aliases: [cosmos db, cosmosdb]}
+  - {name: Neo4j, category: Database}
+  - {name: Couchbase, category: Database}
+  - {name: IBM Db2, category: Database, parent: SQL, aliases: [db2]}
+  - {name: Teradata, category: Database}
+  - {name: Snowflake, category: Data Warehouse, aliases: [snowflake data cloud]}
+  - {name: Amazon Redshift, category: Data Warehouse, parent: Amazon Web Services, aliases: [redshift, aws redshift]}
+  - {name: Google BigQuery, category: Data Warehouse, parent: Google Cloud Platform, aliases: [bigquery, big query]}
+  - {name: Azure Synapse Analytics, category: Data Warehouse, parent: Microsoft Azure, aliases: [azure synapse, synapse]}
+  - {name: Database Design, category: Database, aliases: [data modelling, data modeling, database modelling]}
+  - {name: Query Optimization, category: Database, aliases: [sql tuning, performance tuning sql]}
+  # ---------------------------------------------------------------- cloud
+  - {name: Amazon Web Services, category: Cloud, aliases: [aws, amazon aws]}
+  - {name: AWS Lambda, category: Cloud, parent: Amazon Web Services, aliases: [lambda]}
+  - {name: Amazon EC2, category: Cloud, parent: Amazon Web Services, aliases: [ec2, aws ec2]}
+  - {name: Amazon S3, category: Cloud, parent: Amazon Web Services, aliases: [s3, aws s3]}
+  - {name: Amazon ECS, category: Cloud, parent: Amazon Web Services, aliases: [ecs, aws ecs]}
+  - {name: Amazon EKS, category: Cloud, parent: Amazon Web Services, aliases: [eks, aws eks]}
+  - {name: Amazon RDS, category: Cloud, parent: Amazon Web Services, aliases: [rds, aws rds]}
+  - {name: AWS CloudFormation, category: Cloud, parent: Amazon Web Services, aliases: [cloudformation]}
+  - {name: AWS Glue, category: Data Engineering, parent: Amazon Web Services, aliases: [glue]}
+  - {name: Amazon SageMaker, category: Machine Learning, parent: Amazon Web Services, aliases: [sagemaker]}
+  - {name: Microsoft Azure, category: Cloud, aliases: [azure, ms azure, azure cloud]}
+  - {name: Azure Data Factory, category: Data Engineering, parent: Microsoft Azure, aliases: [adf, azure datafactory]}
+  - {name: Azure Databricks, category: Data Engineering, parent: Microsoft Azure}
+  - {name: Azure Functions, category: Cloud, parent: Microsoft Azure}
+  - {name: Azure DevOps, category: DevOps, parent: Microsoft Azure, aliases: [ado, vsts, azure devops services]}
+  - {name: Azure Kubernetes Service, category: Cloud, parent: Microsoft Azure, aliases: [aks]}
+  - {name: Azure Data Lake, category: Data Engineering, parent: Microsoft Azure, aliases: [adls, azure data lake storage]}
+  - {name: Azure Active Directory, category: Security, parent: Microsoft Azure, aliases: [azure ad, aad, entra id, microsoft entra id]}
+  - {name: Azure App Service, category: Cloud, parent: Microsoft Azure}
+  - {name: Google Cloud Platform, category: Cloud, aliases: [gcp, google cloud]}
+  - {name: Google Kubernetes Engine, category: Cloud, parent: Google Cloud Platform, aliases: [gke]}
+  - {name: Google Cloud Functions, category: Cloud, parent: Google Cloud Platform}
+  - {name: Firebase, category: Cloud, parent: Google Cloud Platform}
+  - {name: Oracle Cloud Infrastructure, category: Cloud, aliases: [oci, oracle cloud]}
+  - {name: IBM Cloud, category: Cloud}
+  - {name: Heroku, category: Cloud}
+  - {name: Serverless, category: Architecture, aliases: [serverless architecture]}
+  - {name: Cloud Architecture, category: Architecture, aliases: [cloud solution architecture]}
+  # ---------------------------------------------------------------- DevOps
+  - {name: DevOps, category: DevOps}
+  - {name: Docker, category: DevOps, aliases: [containerization, docker containers]}
+  - {name: Kubernetes, category: DevOps, aliases: [k8s, kube]}
+  - {name: Helm, category: DevOps, parent: Kubernetes, aliases: [helm charts]}
+  - {name: OpenShift, category: DevOps, parent: Kubernetes, aliases: [red hat openshift]}
+  - {name: Terraform, category: DevOps, aliases: [hashicorp terraform]}
+  - {name: Ansible, category: DevOps}
+  - {name: Chef, category: DevOps}
+  - {name: Puppet, category: DevOps}
+  - {name: Jenkins, category: DevOps}
+  - {name: GitHub Actions, category: DevOps, aliases: [gh actions]}
+  - {name: GitLab CI, category: DevOps, aliases: [gitlab ci/cd, gitlab-ci]}
+  - {name: CI/CD, category: DevOps, aliases: [ci cd, continuous integration, continuous delivery, continuous deployment]}
+  - {name: Git, category: Tool, aliases: [git version control]}
+  - {name: GitHub, category: Tool}
+  - {name: Bitbucket, category: Tool}
+  - {name: SVN, category: Tool, aliases: [subversion, apache subversion]}
+  - {name: Linux, category: Operating System, aliases: [unix/linux, gnu/linux]}
+  - {name: Unix, category: Operating System}
+  - {name: Windows Server, category: Operating System}
+  - {name: Nginx, category: Infrastructure}
+  - {name: Apache HTTP Server, category: Infrastructure, aliases: [apache httpd, apache web server]}
+  - {name: Prometheus, category: Monitoring}
+  - {name: Grafana, category: Monitoring}
+  - {name: Datadog, category: Monitoring}
+  - {name: Splunk, category: Monitoring}
+  - {name: New Relic, category: Monitoring}
+  - {name: Site Reliability Engineering, category: DevOps, aliases: [sre]}
+  - {name: Infrastructure as Code, category: DevOps, aliases: [iac]}
+  - {name: Networking, category: Infrastructure, aliases: [computer networking, tcp/ip]}
+  - {name: VMware, category: Infrastructure, aliases: [vsphere, esxi]}
+  # ---------------------------------------------------------------- data / analytics
+  - {name: Data Engineering, category: Data Engineering}
+  - {name: ETL, category: Data Engineering, aliases: [extract transform load, elt]}
+  - {name: Apache Spark, category: Data Engineering, aliases: [spark]}
+  - {name: PySpark, category: Data Engineering, parent: Apache Spark, aliases: [py spark]}
+  - {name: Hadoop, category: Data Engineering, aliases: [apache hadoop, hdfs]}
+  - {name: Hive, category: Data Engineering, parent: Hadoop, aliases: [apache hive]}
+  - {name: Databricks, category: Data Engineering}
+  - {name: Apache Flink, category: Data Engineering, aliases: [flink]}
+  - {name: dbt, category: Data Engineering, aliases: [data build tool]}
+  - {name: Informatica, category: Data Engineering, aliases: [informatica powercenter]}
+  - {name: Talend, category: Data Engineering}
+  - {name: SSIS, category: Data Engineering, aliases: [sql server integration services]}
+  - {name: SSRS, category: Business Intelligence, aliases: [sql server reporting services]}
+  - {name: SSAS, category: Business Intelligence, aliases: [sql server analysis services]}
+  - {name: Data Warehousing, category: Data Engineering, aliases: [data warehouse, dwh]}
+  - {name: Data Analysis, category: Analytics, aliases: [data analytics]}
+  - {name: Data Science, category: Analytics}
+  - {name: Data Visualization, category: Analytics, aliases: [data visualisation, dataviz]}
+  - {name: Power BI, category: Business Intelligence, aliases: [powerbi, microsoft power bi, ms power bi]}
+  - {name: Tableau, category: Business Intelligence}
+  - {name: Qlik, category: Business Intelligence, aliases: [qlikview, qlik sense]}
+  - {name: Looker, category: Business Intelligence}
+  - {name: DAX, category: Business Intelligence, parent: Power BI}
+  - {name: Statistics, category: Analytics, aliases: [statistical analysis]}
+  - {name: SAS, category: Analytics, aliases: [sas programming]}
+  - {name: SPSS, category: Analytics, aliases: [ibm spss]}
+  - {name: Big Data, category: Data Engineering}
+  - {name: Data Governance, category: Data Management}
+  - {name: Master Data Management, category: Data Management, aliases: [mdm]}
+  - {name: Data Quality, category: Data Management}
+  # ---------------------------------------------------------------- AI / ML
+  - {name: Machine Learning, category: Machine Learning, aliases: [ml]}
+  - {name: Deep Learning, category: Machine Learning, parent: Machine Learning, aliases: [dl]}
+  - {name: Natural Language Processing, category: Machine Learning, parent: Machine Learning, aliases: [nlp]}
+  - {name: Computer Vision, category: Machine Learning, parent: Machine Learning, aliases: [cv, image processing]}
+  - {name: Generative AI, category: Machine Learning, aliases: [genai, gen ai]}
+  - {name: Large Language Models, category: Machine Learning, parent: Generative AI, aliases: [llm, llms]}
+  - {name: Prompt Engineering, category: Machine Learning, parent: Generative AI}
+  - {name: LangChain, category: Library, parent: Python}
+  - {name: MLOps, category: Machine Learning, aliases: [ml ops]}
+  - {name: Artificial Intelligence, category: Machine Learning, aliases: [ai]}
+  - {name: Reinforcement Learning, category: Machine Learning, parent: Machine Learning}
+  - {name: OpenCV, category: Library, parent: Computer Vision}
+  - {name: Hugging Face Transformers, category: Library, parent: Natural Language Processing, aliases: [hugging face, transformers]}
+  - {name: XGBoost, category: Library, parent: Machine Learning}
+  # ---------------------------------------------------------------- testing / QA
+  - {name: Software Testing, category: Testing, aliases: [qa, quality assurance, testing]}
+  - {name: Manual Testing, category: Testing, parent: Software Testing}
+  - {name: Test Automation, category: Testing, parent: Software Testing, aliases: [automation testing]}
+  - {name: Selenium, category: Testing, parent: Test Automation, aliases: [selenium webdriver]}
+  - {name: Appium, category: Testing, parent: Test Automation}
+  - {name: TestNG, category: Testing, parent: Java}
+  - {name: Cucumber, category: Testing, aliases: [bdd, gherkin]}
+  - {name: JMeter, category: Testing, aliases: [apache jmeter]}
+  - {name: LoadRunner, category: Testing, aliases: [micro focus loadrunner]}
+  - {name: Performance Testing, category: Testing, parent: Software Testing, aliases: [load testing]}
+  - {name: API Testing, category: Testing, parent: Software Testing}
+  - {name: Postman, category: Tool, aliases: [postman api]}
+  - {name: Unit Testing, category: Testing, parent: Software Testing}
+  - {name: Test Driven Development, category: Practice, aliases: [tdd]}
+  # ---------------------------------------------------------------- security
+  - {name: Cybersecurity, category: Security, aliases: [cyber security, information security, infosec]}
+  - {name: Penetration Testing, category: Security, parent: Cybersecurity, aliases: [pen testing, pentesting, ethical hacking]}
+  - {name: Network Security, category: Security, parent: Cybersecurity}
+  - {name: SIEM, category: Security, parent: Cybersecurity}
+  - {name: Identity and Access Management, category: Security, aliases: [iam]}
+  - {name: OAuth, category: Security, aliases: [oauth2, oauth 2.0]}
+  - {name: OWASP, category: Security, aliases: [owasp top 10]}
+  - {name: ISO 27001, category: Security, aliases: [iso27001]}
+  - {name: Vulnerability Assessment, category: Security, parent: Cybersecurity, aliases: [vapt]}
+  - {name: Cloud Security, category: Security, parent: Cybersecurity}
+  # ---------------------------------------------------------------- enterprise platforms
+  - {name: SAP, category: ERP, aliases: [sap erp]}
+  - {name: SAP S/4HANA, category: ERP, parent: SAP, aliases: [s/4hana, s4hana, sap s4 hana]}
+  - {name: SAP FICO, category: ERP, parent: SAP, aliases: [sap fi/co, sap fi co]}
+  - {name: SAP MM, category: ERP, parent: SAP, aliases: [sap materials management]}
+  - {name: SAP SD, category: ERP, parent: SAP, aliases: [sap sales and distribution]}
+  - {name: SAP HANA, category: Database, parent: SAP, aliases: [hana]}
+  - {name: SAP BW, category: Business Intelligence, parent: SAP, aliases: [sap bi, sap bw/4hana]}
+  - {name: SAP SuccessFactors, category: HR Technology, parent: SAP, aliases: [successfactors]}
+  - {name: Oracle E-Business Suite, category: ERP, aliases: [oracle ebs, oracle apps]}
+  - {name: Oracle Fusion, category: ERP, aliases: [oracle fusion cloud]}
+  - {name: Microsoft Dynamics 365, category: ERP, aliases: [dynamics 365, d365, ms dynamics]}
+  - {name: Salesforce, category: CRM, aliases: [sfdc, salesforce.com]}
+  - {name: Salesforce Lightning, category: CRM, parent: Salesforce, aliases: [lightning web components, lwc]}
+  - {name: ServiceNow, category: ITSM, aliases: [service now, snow]}
+  - {name: Workday, category: HR Technology}
+  - {name: HubSpot, category: CRM}
+  - {name: Zoho, category: CRM, aliases: [zoho crm]}
+  - {name: SharePoint, category: Collaboration, aliases: [ms sharepoint, sharepoint online]}
+  - {name: Microsoft Power Platform, category: Low Code, aliases: [power platform]}
+  - {name: Power Apps, category: Low Code, parent: Microsoft Power Platform, aliases: [powerapps]}
+  - {name: Power Automate, category: Low Code, parent: Microsoft Power Platform, aliases: [microsoft flow, ms flow]}
+  - {name: UiPath, category: RPA}
+  - {name: Automation Anywhere, category: RPA}
+  - {name: Blue Prism, category: RPA}
+  - {name: Robotic Process Automation, category: RPA, aliases: [rpa]}
+  - {name: Mainframe, category: Infrastructure, aliases: [ibm mainframe, z/os]}
+  - {name: JCL, category: Infrastructure, parent: Mainframe}
+  - {name: CICS, category: Infrastructure, parent: Mainframe}
+  - {name: Guidewire, category: Insurance Platform}
+  - {name: Pega, category: BPM, aliases: [pegasystems, pega prpc]}
+  - {name: MuleSoft, category: Integration, aliases: [mule esb, mule]}
+  - {name: Apache Camel, category: Integration, aliases: [camel]}
+  - {name: IBM MQ, category: Messaging, aliases: [websphere mq, mq series]}
+  - {name: Boomi, category: Integration, aliases: [dell boomi]}
+  # ---------------------------------------------------------------- design / product
+  - {name: UI Design, category: Design, aliases: [user interface design]}
+  - {name: UX Design, category: Design, aliases: [user experience design, ux]}
+  - {name: Figma, category: Design}
+  - {name: Adobe XD, category: Design}
+  - {name: Sketch, category: Design}
+  - {name: Adobe Photoshop, category: Design, aliases: [photoshop]}
+  - {name: Adobe Illustrator, category: Design, aliases: [illustrator]}
+  - {name: Wireframing, category: Design, aliases: [prototyping]}
+  - {name: User Research, category: Design}
+  - {name: Product Management, category: Product, aliases: [product manager]}
+  - {name: Product Owner, category: Product, aliases: [po]}
+  - {name: Product Strategy, category: Product}
+  - {name: Roadmapping, category: Product, aliases: [product roadmap]}
+  # ---------------------------------------------------------------- methods / practices
+  - {name: Agile, category: Methodology, aliases: [agile methodology, agile methodologies]}
+  - {name: Scrum, category: Methodology, parent: Agile, aliases: [scrum master]}
+  - {name: Kanban, category: Methodology, parent: Agile}
+  - {name: SAFe, category: Methodology, parent: Agile, aliases: [scaled agile framework]}
+  - {name: Waterfall, category: Methodology}
+  - {name: Design Patterns, category: Practice}
+  - {name: Object-Oriented Programming, category: Practice, aliases: [oop, oops, object oriented programming]}
+  - {name: Data Structures and Algorithms, category: Practice, aliases: [dsa, data structures, algorithms]}
+  - {name: System Design, category: Architecture}
+  - {name: Software Architecture, category: Architecture, aliases: [solution architecture]}
+  - {name: Domain-Driven Design, category: Architecture, aliases: [ddd, domain driven design]}
+  - {name: Event-Driven Architecture, category: Architecture, aliases: [event driven architecture, eda]}
+  - {name: Code Review, category: Practice}
+  - {name: JIRA, category: Tool, aliases: [atlassian jira]}
+  - {name: Confluence, category: Tool, aliases: [atlassian confluence]}
+  - {name: ITIL, category: ITSM, aliases: [itil v4, itil foundation]}
+  - {name: Six Sigma, category: Quality, aliases: [lean six sigma, six sigma green belt, six sigma black belt]}
+  - {name: Lean, category: Quality, aliases: [lean management]}
+  - {name: PMP, category: Project Management, aliases: [project management professional]}
+  - {name: PRINCE2, category: Project Management, aliases: [prince 2]}
+  # ---------------------------------------------------------------- business: management
+  - {name: Project Management, category: Project Management}
+  - {name: Program Management, category: Project Management, aliases: [programme management]}
+  - {name: Delivery Management, category: Project Management}
+  - {name: Stakeholder Management, category: Management}
+  - {name: People Management, category: Management, aliases: [team management, team leadership]}
+  - {name: Leadership, category: Management}
+  - {name: Change Management, category: Management}
+  - {name: Risk Management, category: Management}
+  - {name: Vendor Management, category: Management}
+  - {name: Operations Management, category: Management, aliases: [operations]}
+  - {name: Strategic Planning, category: Management, aliases: [strategy]}
+  - {name: Business Analysis, category: Business Analysis, aliases: [business analyst, ba]}
+  - {name: Requirements Gathering, category: Business Analysis, parent: Business Analysis, aliases: [requirement analysis, requirements elicitation]}
+  - {name: Business Process Modeling, category: Business Analysis, aliases: [bpmn, process mapping]}
+  - {name: Process Improvement, category: Business Analysis, aliases: [business process improvement]}
+  - {name: Budgeting, category: Finance, aliases: [budget management]}
+  - {name: Consulting, category: Management, aliases: [management consulting]}
+  # ---------------------------------------------------------------- business: finance
+  - {name: Accounting, category: Finance}
+  - {name: Financial Analysis, category: Finance, aliases: [financial analyst]}
+  - {name: Financial Modeling, category: Finance, aliases: [financial modelling]}
+  - {name: Financial Reporting, category: Finance}
+  - {name: FP&A, category: Finance, aliases: [financial planning and analysis, fp and a]}
+  - {name: Taxation, category: Finance, aliases: [tax]}
+  - {name: GST, category: Finance, parent: Taxation, aliases: [goods and services tax]}
+  - {name: Auditing, category: Finance, aliases: [audit, internal audit]}
+  - {name: Accounts Payable, category: Finance, aliases: [ap]}
+  - {name: Accounts Receivable, category: Finance, aliases: [ar]}
+  - {name: Payroll, category: Finance, aliases: [payroll processing]}
+  - {name: Tally, category: Finance, aliases: [tally erp, tally erp 9, tally prime]}
+  - {name: QuickBooks, category: Finance}
+  - {name: IFRS, category: Finance}
+  - {name: US GAAP, category: Finance, aliases: [gaap]}
+  - {name: Treasury, category: Finance, aliases: [treasury management]}
+  - {name: Investment Banking, category: Finance}
+  - {name: Credit Analysis, category: Finance, aliases: [credit risk]}
+  - {name: Chartered Accountancy, category: Finance, aliases: [ca, chartered accountant]}
+  # ---------------------------------------------------------------- business: office tools
+  - {name: Microsoft Office, category: Office, aliases: [ms office, microsoft office suite]}
+  - {name: Excel, category: Office, parent: Microsoft Office, aliases: [ms excel, microsoft excel, advanced excel]}
+  - {name: Microsoft Word, category: Office, parent: Microsoft Office, aliases: [ms word, word]}
+  - {name: PowerPoint, category: Office, parent: Microsoft Office, aliases: [ms powerpoint, microsoft powerpoint, ppt]}
+  - {name: Microsoft Outlook, category: Office, parent: Microsoft Office, aliases: [ms outlook, outlook]}
+  - {name: Microsoft Teams, category: Collaboration, aliases: [ms teams, teams]}
+  - {name: Google Workspace, category: Office, aliases: [g suite, gsuite, google sheets, google docs]}
+  - {name: Pivot Tables, category: Office, parent: Excel, aliases: [pivot table]}
+  - {name: VLOOKUP, category: Office, parent: Excel, aliases: [vlookup, xlookup]}
+  # ---------------------------------------------------------------- business: sales / marketing
+  - {name: Sales, category: Sales}
+  - {name: Business Development, category: Sales, aliases: [bd, bizdev]}
+  - {name: B2B Sales, category: Sales, parent: Sales}
+  - {name: Inside Sales, category: Sales, parent: Sales}
+  - {name: Key Account Management, category: Sales, aliases: [kam, account management]}
+  - {name: Lead Generation, category: Sales}
+  - {name: Negotiation, category: Sales, aliases: [negotiation skills]}
+  - {name: CRM, category: Sales, aliases: [customer relationship management]}
+  - {name: Pre-Sales, category: Sales, aliases: [presales, pre sales]}
+  - {name: Marketing, category: Marketing}
+  - {name: Digital Marketing, category: Marketing, parent: Marketing}
+  - {name: Search Engine Optimization, category: Marketing, parent: Digital Marketing, aliases: [seo]}
+  - {name: Search Engine Marketing, category: Marketing, parent: Digital Marketing, aliases: [sem, ppc, google ads]}
+  - {name: Social Media Marketing, category: Marketing, parent: Digital Marketing, aliases: [smm]}
+  - {name: Content Marketing, category: Marketing, parent: Marketing}
+  - {name: Content Writing, category: Marketing, aliases: [copywriting]}
+  - {name: Email Marketing, category: Marketing, parent: Digital Marketing}
+  - {name: Google Analytics, category: Marketing, aliases: [ga4]}
+  - {name: Brand Management, category: Marketing, aliases: [branding]}
+  - {name: Market Research, category: Marketing}
+  - {name: Product Marketing, category: Marketing}
+  - {name: Performance Marketing, category: Marketing, parent: Digital Marketing}
+  # ---------------------------------------------------------------- business: HR
+  - {name: Human Resources, category: HR, aliases: [hr, hrm, human resource management]}
+  - {name: Talent Acquisition, category: HR, parent: Human Resources, aliases: [recruitment, recruiting, hiring]}
+  - {name: IT Recruitment, category: HR, parent: Talent Acquisition, aliases: [technical recruitment, it recruiting]}
+  - {name: Sourcing, category: HR, parent: Talent Acquisition, aliases: [candidate sourcing]}
+  - {name: Employee Relations, category: HR, parent: Human Resources}
+  - {name: HR Operations, category: HR, parent: Human Resources}
+  - {name: Onboarding, category: HR, parent: Human Resources, aliases: [employee onboarding]}
+  - {name: Compensation and Benefits, category: HR, parent: Human Resources, aliases: [c&b, comp and ben]}
+  - {name: Performance Management, category: HR, parent: Human Resources}
+  - {name: Learning and Development, category: HR, parent: Human Resources, aliases: [l&d, training and development]}
+  - {name: HRIS, category: HR Technology, aliases: [hr information systems]}
+  - {name: Labour Law, category: HR, aliases: [labor law, labour laws, statutory compliance]}
+  # ---------------------------------------------------------------- business: operations / other
+  - {name: Supply Chain Management, category: Operations, aliases: [scm, supply chain]}
+  - {name: Logistics, category: Operations}
+  - {name: Procurement, category: Operations, aliases: [purchasing, sourcing and procurement]}
+  - {name: Inventory Management, category: Operations}
+  - {name: Customer Service, category: Operations, aliases: [customer support]}
+  - {name: Customer Success, category: Operations}
+  - {name: Technical Support, category: Operations, aliases: [it support, helpdesk, service desk]}
+  - {name: Quality Control, category: Quality, aliases: [qc]}
+  - {name: Compliance, category: Legal, aliases: [regulatory compliance]}
+  - {name: Contract Management, category: Legal}
+  - {name: Legal Research, category: Legal}
+  - {name: Communication, category: Soft Skill, aliases: [communication skills, verbal communication, written communication]}
+  - {name: Presentation Skills, category: Soft Skill, aliases: [presentations, public speaking]}
+  - {name: Problem Solving, category: Soft Skill}
+  - {name: Teamwork, category: Soft Skill, aliases: [team player, collaboration]}
+  - {name: Time Management, category: Soft Skill}
+  - {name: Critical Thinking, category: Soft Skill}
+  - {name: Mentoring, category: Soft Skill, aliases: [coaching]}
+  # ---------------------------------------------------------------- embedded / hardware
+  - {name: Embedded Systems, category: Embedded, aliases: [embedded c, embedded software]}
+  - {name: RTOS, category: Embedded, parent: Embedded Systems, aliases: [real time operating systems, freertos]}
+  - {name: Microcontrollers, category: Embedded, parent: Embedded Systems, aliases: [arm cortex, stm32, "8051"]}
+  - {name: Internet of Things, category: Embedded, aliases: [iot]}
+  - {name: VLSI, category: Hardware, aliases: [vlsi design]}
+  - {name: Verilog, category: Hardware}
+  - {name: VHDL, category: Hardware}
+  - {name: PCB Design, category: Hardware}
+  - {name: AUTOSAR, category: Embedded, parent: Embedded Systems}
+  - {name: PLC Programming, category: Automation, aliases: [plc, scada]}
+  - {name: AutoCAD, category: Engineering Tool, aliases: [auto cad]}
+  - {name: SolidWorks, category: Engineering Tool, aliases: [solid works]}
+  - {name: CATIA, category: Engineering Tool}
+  - {name: ANSYS, category: Engineering Tool}
+  # ---------------------------------------------------------------- misc tech
+  - {name: Blockchain, category: Emerging Tech}
+  - {name: Ethereum, category: Emerging Tech, parent: Blockchain}
+  - {name: Web3, category: Emerging Tech, parent: Blockchain}
+  - {name: Augmented Reality, category: Emerging Tech, aliases: [ar/vr, virtual reality, vr]}
+  - {name: Microsoft 365, category: Collaboration, aliases: [office 365, o365, m365]}
+  - {name: Active Directory, category: Infrastructure, aliases: [ad, ms active directory]}
+  - {name: Exchange Server, category: Infrastructure, aliases: [microsoft exchange]}
+  - {name: Citrix, category: Infrastructure}
+  - {name: Cisco, category: Infrastructure, aliases: [ccna, ccnp]}
+  - {name: Firewall Management, category: Security, aliases: [firewalls, palo alto, fortinet]}
+  - {name: Load Balancing, category: Infrastructure, aliases: [load balancer, f5]}
+  - {name: DNS, category: Infrastructure}
+  - {name: Storage Administration, category: Infrastructure, aliases: [san, nas, netapp]}
+  - {name: Backup and Recovery, category: Infrastructure, aliases: [disaster recovery, backup]}
+  - {name: Database Administration, category: Database, aliases: [dba]}
+  - {name: Oracle DBA, category: Database, parent: Database Administration}
+  - {name: SQL Server DBA, category: Database, parent: Database Administration, aliases: [mssql dba]}
+  - {name: Technical Writing, category: Documentation, aliases: [technical documentation]}
+  - {name: OpenAPI, category: API, aliases: [swagger]}
+  - {name: JSON, category: Data Format}
+  - {name: XML, category: Data Format}
+  - {name: YAML, category: Data Format}
+  - {name: Regex, category: Practice, aliases: [regular expressions]}
+  - {name: Multithreading, category: Practice, aliases: [concurrency, multi-threading]}
+  - {name: Web Performance, category: Web, aliases: [frontend performance]}
+  - {name: Accessibility, category: Web, aliases: [wcag, a11y, web accessibility]}
+  - {name: Responsive Design, category: Web, aliases: [responsive web design]}
+  - {name: Progressive Web Apps, category: Web, aliases: [pwa]}
+  - {name: Three.js, category: Library, parent: JavaScript, aliases: [threejs]}
+  - {name: D3.js, category: Library, parent: JavaScript, aliases: [d3, d3js]}
+  - {name: Storybook, category: Tool, parent: JavaScript}
+  - {name: Kotlin Multiplatform, category: Framework, parent: Kotlin, aliases: [kmp]}
+  - {name: Jetpack Compose, category: Framework, parent: Kotlin}

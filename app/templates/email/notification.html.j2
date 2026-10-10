@@ -1,0 +1,5 @@
+<p>Hi {{ recipient_name }},</p>
+<p><strong>{{ title }}</strong></p>
+{% if body %}<p>{{ body }}</p>{% endif %}
+{% if link %}<p><a href="{{ link }}">Open in {{ tenant_name }}</a></p>{% endif %}
+<p>You receive this email because of your notification preferences in Talent OS.</p>

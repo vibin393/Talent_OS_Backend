@@ -1,0 +1,100 @@
+# Epic 64 Analytics Evaluation Set -- workers (schema: id, persona, question, expected{definition+viz | clarify | unanswerable}, tolerance, tags).
+- id: wk_active_by_client
+  persona: admin
+  question: Active workers by client
+  expected:
+    definition:
+      source: placements.worker
+      filters:
+        field: status
+        op: eq
+        value: active
+      group_by:
+      - field: client_id
+    viz:
+      type: bar
+      x: client_id
+  tags:
+  - by_client
+- id: wk_compliance_blocked
+  persona: admin
+  question: How many workers are compliance blocked?
+  expected:
+    definition:
+      source: placements.worker
+      filters:
+        field: compliance_blocked
+        op: eq
+        value: true
+      measures:
+      - key: n
+        agg: count
+    viz:
+      type: kpi
+      value: n
+  tags:
+  - kpi
+- id: wk_by_worker_type
+  persona: admin
+  question: Workers by worker type
+  expected:
+    definition:
+      source: placements.worker
+      group_by:
+      - field: worker_type
+    viz:
+      type: pie
+      x: worker_type
+  tags: []
+- id: wk_by_city
+  persona: admin
+  question: Workers by city
+  expected:
+    definition:
+      source: placements.worker
+      group_by:
+      - field: candidate.city
+    viz:
+      type: bar
+      x: candidate.city
+  tags: []
+- id: wk_starting_month
+  persona: admin
+  question: Workers starting this month
+  expected:
+    definition:
+      source: placements.worker
+      filters:
+        field: actual_start_date
+        op: between
+        value:
+        - '2026-10-01'
+        - '2026-10-31'
+      fields:
+      - human_id
+      - candidate.full_name
+      - role_title
+    viz:
+      type: table
+  tags:
+  - this_month
+  - list
+- id: wk_offboarding_reason
+  persona: admin
+  question: Workers by offboarding reason
+  expected:
+    definition:
+      source: placements.worker
+      filters:
+        field: status
+        op: eq
+        value: ended
+      group_by:
+      - field: engagement_kind
+    viz:
+      type: bar
+      x: engagement_kind
+    assumptions:
+    - I grouped ended workers by engagement kind; offboarding reasons are filter-only
+  tags:
+  - ambiguity

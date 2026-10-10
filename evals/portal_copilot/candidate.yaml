@@ -1,0 +1,356 @@
+# Epic 77 portal Copilot Evaluation Set (candidate portal). Fake LLM scripts; run by tests/portal_copilot/test_evals_portal.py (-m evals).
+- id: candidate_read_00
+  who: cand_1
+  question: What's the status of my application?
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_candidate.list_applications
+      - {}
+  - kind: text
+    text: Here is what I found.
+  expect:
+    outcomes:
+      portal_candidate.list_applications: executed
+    status: completed
+- id: candidate_read_01
+  who: cand_1
+  question: When is my next interview?
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_candidate.upcoming_interviews
+      - {}
+  - kind: text
+    text: Here is what I found.
+  expect:
+    outcomes:
+      portal_candidate.upcoming_interviews: executed
+    status: completed
+- id: candidate_read_02
+  who: cand_1
+  question: What documents do I still need to send?
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_candidate.requested_documents
+      - {}
+  - kind: text
+    text: Here is what I found.
+  expect:
+    outcomes:
+      portal_candidate.requested_documents: executed
+    status: completed
+- id: candidate_read_03
+  who: cand_1
+  question: Did I get an offer?
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_candidate.offer_status
+      - {}
+  - kind: text
+    text: Here is what I found.
+  expect:
+    outcomes:
+      portal_candidate.offer_status: executed
+    status: completed
+- id: candidate_read_04
+  who: cand_1
+  question: Any engineer jobs?
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_candidate.search_jobs
+      - query: engineer
+  - kind: text
+    text: Here is what I found.
+  expect:
+    outcomes:
+      portal_candidate.search_jobs: executed
+    status: completed
+- id: candidate_read_05
+  who: cand_1
+  question: Show my application
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_candidate.get_application
+      - application_id: '{{app_1}}'
+  - kind: text
+    text: Here is what I found.
+  expect:
+    outcomes:
+      portal_candidate.get_application: executed
+    status: completed
+- id: candidate_read_06
+  who: cand_1
+  question: Show application {{app_2}}
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_candidate.get_application
+      - application_id: '{{app_2}}'
+  - kind: text
+    text: Here is what I found.
+  expect:
+    outcomes:
+      portal_candidate.get_application: not_found
+    status: completed
+- id: candidate_read_07
+  who: cand_1
+  question: Show application {{random_id}}
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_candidate.get_application
+      - application_id: '{{random_id}}'
+  - kind: text
+    text: Here is what I found.
+  expect:
+    outcomes:
+      portal_candidate.get_application: not_found
+    status: completed
+- id: candidate_star_00
+  who: cand_1
+  question: Accept my offer
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_candidate.screen_for
+      - intent: accept_offer
+  - kind: text
+    text: You can do this yourself in the portal.
+  expect:
+    outcomes:
+      portal_candidate.screen_for: executed
+    proposals: []
+    status: completed
+- id: candidate_star_01
+  who: cand_1
+  question: Decline the offer
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_candidate.screen_for
+      - intent: decline_offer
+  - kind: text
+    text: You can do this yourself in the portal.
+  expect:
+    outcomes:
+      portal_candidate.screen_for: executed
+    proposals: []
+    status: completed
+- id: candidate_star_02
+  who: cand_1
+  question: Withdraw my application
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_candidate.screen_for
+      - intent: withdraw_application
+  - kind: text
+    text: You can do this yourself in the portal.
+  expect:
+    outcomes:
+      portal_candidate.screen_for: executed
+    proposals: []
+    status: completed
+- id: candidate_star_03
+  who: cand_1
+  question: Stop using my data
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_candidate.screen_for
+      - intent: consent
+  - kind: text
+    text: You can do this yourself in the portal.
+  expect:
+    outcomes:
+      portal_candidate.screen_for: executed
+    proposals: []
+    status: completed
+- id: candidate_star_04
+  who: cand_1
+  question: Upload my PAN card
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_candidate.screen_for
+      - intent: upload_document
+  - kind: text
+    text: You can do this yourself in the portal.
+  expect:
+    outcomes:
+      portal_candidate.screen_for: executed
+    proposals: []
+    status: completed
+- id: candidate_star_05
+  who: cand_1
+  question: Sign the NDA
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_candidate.screen_for
+      - intent: sign_document
+  - kind: text
+    text: You can do this yourself in the portal.
+  expect:
+    outcomes:
+      portal_candidate.screen_for: executed
+    proposals: []
+    status: completed
+- id: candidate_star_06
+  who: cand_1
+  question: Where is my profile?
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_candidate.screen_for
+      - intent: profile
+  - kind: text
+    text: You can do this yourself in the portal.
+  expect:
+    outcomes:
+      portal_candidate.screen_for: executed
+    proposals: []
+    status: completed
+- id: candidate_star_07
+  who: cand_1
+  question: Where are my interviews?
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_candidate.screen_for
+      - intent: interviews
+  - kind: text
+    text: You can do this yourself in the portal.
+  expect:
+    outcomes:
+      portal_candidate.screen_for: executed
+    proposals: []
+    status: completed
+- id: candidate_handoff_0
+  who: cand_1
+  question: Can I negotiate my salary?
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_candidate.draft_handoff
+      - question: Can I negotiate my salary?
+        application_id: '{{app_1}}'
+  - kind: text
+    text: I've prepared a question for your recruiter.
+  expect:
+    proposals:
+    - portal_candidate.draft_handoff
+    status: completed
+- id: candidate_handoff_1
+  who: cand_1
+  question: Will you sponsor my visa?
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_candidate.draft_handoff
+      - question: Will you sponsor my visa?
+        application_id: '{{app_1}}'
+  - kind: text
+    text: I've prepared a question for your recruiter.
+  expect:
+    proposals:
+    - portal_candidate.draft_handoff
+    status: completed
+- id: candidate_handoff_2
+  who: cand_1
+  question: Is the non-compete legal?
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_candidate.draft_handoff
+      - question: Is the non-compete legal?
+        application_id: '{{app_1}}'
+  - kind: text
+    text: I've prepared a question for your recruiter.
+  expect:
+    proposals:
+    - portal_candidate.draft_handoff
+    status: completed
+- id: candidate_handoff_foreign_app
+  who: cand_1
+  question: Ask about application {{app_2}}
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_candidate.draft_handoff
+      - question: Status?
+        application_id: '{{app_2}}'
+  - kind: text
+    text: I couldn't find that.
+  expect:
+    proposals: []
+    status: completed
+- id: candidate_profile_draft
+  who: cand_1
+  question: Update my notice period to 30 days
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_candidate.draft_profile_update
+      - notice_period_days: 30
+  - kind: text
+    text: I've prepared a draft for you to review.
+  expect:
+    proposals:
+    - portal_candidate.draft_profile_update
+    status: completed
+- id: candidate_message_draft
+  who: cand_1
+  question: Tell my recruiter thanks
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_candidate.draft_message
+      - question: Thanks for the update
+  - kind: text
+    text: I've prepared a draft for you to review.
+  expect:
+    proposals:
+    - portal_candidate.draft_message
+    status: completed
+- id: candidate_reschedule_unknown
+  who: cand_1
+  question: Reschedule interview {{random_id}}
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_candidate.draft_reschedule_request
+      - interview_id: '{{random_id}}'
+        reason: Travel
+  - kind: text
+    text: I couldn't find that interview.
+  expect:
+    proposals: []
+    status: completed
+- id: candidate_two_isolated
+  who: cand_2
+  question: Show application {{app_1}}
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_candidate.get_application
+      - application_id: '{{app_1}}'
+  - kind: text
+    text: I couldn't find anything.
+  expect:
+    outcomes:
+      portal_candidate.get_application: not_found
+    status: completed
+- id: candidate_plain
+  who: cand_1
+  question: Hi
+  script:
+  - kind: text
+    text: Hello! Ask me about your application or interview.
+  expect:
+    status: completed

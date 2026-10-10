@@ -1,0 +1,17 @@
+id: mcp_scope_escalation
+description: >-
+  A token with only mcp:read cannot call a creating tool (refused as insufficient_scope on the run) and a tool outside
+  the enabled groups is unknown (a policy violation on the run).
+steps:
+  - do: new_client
+    scopes: ["mcp:read", "candidates:read", "notes:write"]
+  - do: rpc
+    method: tools/call
+    params: {name: notes__add, arguments: {entity_type: candidate, entity_id: "{candidate_id}", body: "x"}}
+    expect: {rpc_error: -32602, run_error_code: insufficient_scope}
+  - do: set_groups
+    groups: [core]
+  - do: rpc
+    method: tools/call
+    params: {name: candidates__get, arguments: {candidate_id: "{candidate_id}"}}
+    expect: {rpc_error: -32602, run_error_code: policy_violation}

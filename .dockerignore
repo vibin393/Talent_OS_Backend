@@ -1,0 +1,15 @@
+venv/
+.venv/
+**/__pycache__/
+**/*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+data/
+.env
+.env.*
+*.log
+e11_state.json
+smoke_state2.json

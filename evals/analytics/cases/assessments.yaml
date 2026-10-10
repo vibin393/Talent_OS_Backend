@@ -1,0 +1,113 @@
+# Epic 64 Analytics Evaluation Set -- assessments (schema: id, persona, question, expected{definition+viz | clarify | unanswerable}, tolerance, tags).
+- id: as_pass_share
+  persona: admin
+  question: Assessment pass share
+  expected:
+    definition:
+      source: assessments.result
+      filters:
+        field: status
+        op: in
+        value:
+        - passed
+        - failed
+      group_by:
+      - field: status
+      measures:
+      - key: share
+        agg: pct_of_total
+    viz:
+      type: pie
+      x: status
+      value: share
+  tags:
+  - pct_of_total
+- id: as_avg_score_by_assessment
+  persona: admin
+  question: Average score by assessment
+  expected:
+    definition:
+      source: assessments.result
+      filters:
+        field: status
+        op: in
+        value:
+        - completed
+        - reviewed
+        - passed
+        - failed
+      group_by:
+      - field: assessment.name
+      measures:
+      - key: score
+        agg: avg
+        field: score_pct
+    viz:
+      type: bar
+      x: assessment.name
+      value: score
+  tags: []
+- id: as_completed_per_month
+  persona: admin
+  question: Assessments completed per month this FY
+  expected:
+    definition:
+      source: assessments.result
+      filters:
+        field: completed_at
+        op: between
+        value:
+        - '2026-04-01T00:00:00+05:30'
+        - '2027-03-31T23:59:59+05:30'
+      group_by:
+      - field: completed_at
+        bucket: month
+      measures:
+      - &id001
+        key: n
+        agg: count
+    viz:
+      type: line
+      x: completed_at
+      value: n
+  tags:
+  - fy
+  - time_series
+- id: as_by_context
+  persona: admin
+  question: Assessments by context
+  expected:
+    definition:
+      source: assessments.result
+      group_by:
+      - field: context_kind
+      measures:
+      - *id001
+    viz:
+      type: bar
+      x: context_kind
+      value: n
+  tags: []
+- id: as_expired_this_month
+  persona: admin
+  question: Assessments that expired this month
+  expected:
+    definition:
+      source: assessments.result
+      filters:
+        and:
+        - field: status
+          op: eq
+          value: expired
+        - field: deadline_at
+          op: between
+          value:
+          - '2026-10-01T00:00:00+05:30'
+          - '2026-10-31T23:59:59+05:30'
+      measures:
+      - *id001
+    viz:
+      type: kpi
+      value: n
+  tags:
+  - this_month

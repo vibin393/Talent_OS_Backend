@@ -1,0 +1,6 @@
+exclude_dirs:
+  - tests
+  - env
+skips:
+  - B101  # assert statement
+  - B104  # exec used

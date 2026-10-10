@@ -1,0 +1,31 @@
+# Epic 64: a Manager asks "Placements by client by FY month with total bill rate" (admin persona: everything visible).
+id: placements_by_client_fy
+description: Catalogue, then a governed Definition grouped by client and month of FY 2026-27 with count and sum
+persona: admin
+script:
+  - kind: tool_calls
+    calls: [[semantic.catalogue, {}]]
+  - kind: tool_calls
+    calls: [[semantic.catalogue, {source_key: placements.placement}]]
+  - kind: tool_calls
+    calls:
+      - - semantic.run
+        - question: Placements by client by FY month with total bill rate
+          definition:
+            source: placements.placement
+            filters: {field: planned_start_date, op: between, value: ["2026-04-01", "2027-03-31"]}
+            group_by: [{field: client.name}, {field: planned_start_date, bucket: month}]
+            measures: [{key: placements, agg: count}, {key: bill, agg: sum, field: bill_rate}]
+            sort: [{key: client.name}]
+          viz: {type: bar, x: client.name, value: placements}
+  - kind: text
+    text: Globex had 2 placements and Acme 1 in FY 2026-27.
+expect:
+  status: completed
+  sequence: [[semantic.catalogue, executed], [semantic.catalogue, executed], [semantic.run, executed]]
+  answers: 1
+  answer:
+    row_count: 3
+    masked_fields: []
+    explanation: "Counted placements (source: Placements) where Planned start is in FY 2026-27, grouped by Client and Planned start (by month). Measures: Count, Sum of Bill rate. Sorted by Client, ascending."
+  target_on: semantic.run

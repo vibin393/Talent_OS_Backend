@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{{ subject }}</title></head>
+<body style="margin:0;padding:24px;background:#f5f5f5;font-family:'Segoe UI',Arial,sans-serif;color:#242424;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;margin:0 auto;background:#ffffff;border:1px solid #e0e0e0;border-radius:8px;">
+    <tr><td style="padding:20px 24px;border-bottom:1px solid #e0e0e0;font-size:16px;font-weight:600;">{{ tenant_name }}</td></tr>
+    <tr><td style="padding:20px 24px;font-size:14px;line-height:20px;">
+      <p style="margin:0 0 12px;">{% if contact_name %}Dear {{ contact_name }},{% else %}Hello,{% endif %}</p>
+      <p style="margin:0 0 16px;">Please find below a candidate for <strong>{{ demand_title }}</strong>{% if demand_ref %} ({{ demand_ref }}){% endif %}. Reference: {{ submission_ref }}.</p>
+      {% if body_html %}<div style="margin:0 0 16px;">{{ body_html }}</div>{% endif %}
+      <table role="presentation" cellpadding="6" cellspacing="0" style="width:100%;border-collapse:collapse;font-size:14px;margin:0 0 16px;">
+        <tr><td style="color:#616161;width:40%;border-bottom:1px solid #f0f0f0;">Candidate</td><td style="border-bottom:1px solid #f0f0f0;">{{ candidate.full_name }}</td></tr>
+        {% if candidate.current_title %}<tr><td style="color:#616161;border-bottom:1px solid #f0f0f0;">Current title</td><td style="border-bottom:1px solid #f0f0f0;">{{ candidate.current_title }}</td></tr>{% endif %}
+        {% if candidate.experience %}<tr><td style="color:#616161;border-bottom:1px solid #f0f0f0;">Experience</td><td style="border-bottom:1px solid #f0f0f0;">{{ candidate.experience }}</td></tr>{% endif %}
+        {% if candidate.notice %}<tr><td style="color:#616161;border-bottom:1px solid #f0f0f0;">Notice period</td><td style="border-bottom:1px solid #f0f0f0;">{{ candidate.notice }}</td></tr>{% endif %}
+        {% if candidate.location %}<tr><td style="color:#616161;border-bottom:1px solid #f0f0f0;">Location</td><td style="border-bottom:1px solid #f0f0f0;">{{ candidate.location }}</td></tr>{% endif %}
+        {% if bill_rate %}<tr><td style="color:#616161;border-bottom:1px solid #f0f0f0;">Bill rate</td><td style="border-bottom:1px solid #f0f0f0;">{{ bill_rate }}</td></tr>{% endif %}
+      </table>
+      {% if note %}<p style="margin:0 0 4px;color:#616161;">Recruiter note</p><p style="margin:0 0 16px;white-space:pre-line;">{{ note }}</p>{% endif %}
+      {% if attachment_name %}<p style="margin:0 0 16px;">The resume is attached ({{ attachment_name }}).</p>{% endif %}
+      {% if links %}
+      <p style="margin:0 0 8px;">Let us know what you think:</p>
+      <table role="presentation" cellpadding="0" cellspacing="0"><tr>
+        <td style="padding:0 8px 8px 0;"><a href="{{ links.interested }}" style="display:inline-block;padding:10px 16px;background:#0f6cbd;color:#ffffff;text-decoration:none;border-radius:4px;font-weight:600;">Interested</a></td>
+        <td style="padding:0 8px 8px 0;"><a href="{{ links.on_hold }}" style="display:inline-block;padding:10px 16px;background:#ffffff;color:#0f6cbd;text-decoration:none;border:1px solid #0f6cbd;border-radius:4px;font-weight:600;">On hold</a></td>
+        <td style="padding:0 8px 8px 0;"><a href="{{ links.rejected }}" style="display:inline-block;padding:10px 16px;background:#ffffff;color:#b10e1c;text-decoration:none;border:1px solid #b10e1c;border-radius:4px;font-weight:600;">Not a fit</a></td>
+      </tr></table>
+      <p style="margin:8px 0 0;font-size:12px;color:#707070;">Each button opens a confirmation page; nothing is recorded until you confirm.</p>
+      {% endif %}
+    </td></tr>
+    <tr><td style="padding:12px 24px;border-top:1px solid #e0e0e0;font-size:12px;color:#707070;">Submitted by {{ tenant_name }}</td></tr>
+  </table>
+</body>
+</html>

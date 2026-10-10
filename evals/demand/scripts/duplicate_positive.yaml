@@ -1,0 +1,10 @@
+# Epic 55 (A10, FR-283): search, then flag the similar demand; the score and reasons come from the platform.
+agent_demand:
+  - kind: tool_calls
+    calls: [[demands.get_for_review, {demand_id: "{{demand_id}}"}]]
+  - kind: tool_calls
+    calls: [[demands.search_similar, {demand_id: "{{demand_id}}"}]]
+  - kind: tool_calls
+    calls: [[demands.flag_duplicate, {demand_id: "{{demand_id}}", related_demand_id: "{{related_id}}", summary: "Same role for the same hiring manager."}]]
+  - kind: emit_result
+    result: {outcome: done, summary: "Flagged a possible duplicate.", flags_raised: 1}

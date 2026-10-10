@@ -1,0 +1,110 @@
+# Epic 64 Analytics Evaluation Set -- payments (schema: id, persona, question, expected{definition+viz | clarify | unanswerable}, tolerance, tags).
+- id: pay_by_client_fy
+  persona: admin
+  question: Payments received by client this FY
+  expected:
+    definition:
+      source: receivables.payment
+      filters:
+        field: payment_date
+        op: between
+        value: &id001
+        - '2026-04-01'
+        - '2027-03-31'
+      group_by:
+      - field: client.name
+      measures:
+      - key: amount
+        agg: sum
+        field: inr_amount
+      sort:
+      - key: amount
+        desc: true
+    viz:
+      type: bar
+      x: client.name
+      value: amount
+  tags:
+  - by_client
+  - fy
+- id: pay_per_month
+  persona: admin
+  question: Collections per month this FY
+  expected:
+    definition:
+      source: receivables.payment
+      filters:
+        field: payment_date
+        op: between
+        value: *id001
+      group_by:
+      - field: payment_date
+        bucket: month
+      measures:
+      - key: amount
+        agg: sum
+        field: inr_amount
+    viz:
+      type: line
+      x: payment_date
+      value: amount
+  tags:
+  - fy
+  - time_series
+- id: pay_unallocated
+  persona: admin
+  question: Unallocated payments
+  expected:
+    definition:
+      source: receivables.payment
+      filters:
+        field: allocation_status
+        op: in
+        value:
+        - unallocated
+        - partially_allocated
+      fields:
+      - human_id
+      - client.name
+      - payment_date
+      - amount
+    viz:
+      type: table
+  tags:
+  - list
+- id: pay_tds_total
+  persona: admin
+  question: Total TDS deducted this FY
+  expected:
+    definition:
+      source: receivables.payment
+      filters:
+        field: payment_date
+        op: between
+        value: *id001
+      measures:
+      - key: tds
+        agg: sum
+        field: tds_amount
+    viz:
+      type: kpi
+      value: tds
+  tags:
+  - fy
+  - kpi
+- id: pay_by_mode
+  persona: admin
+  question: Payments by mode
+  expected:
+    definition:
+      source: receivables.payment
+      group_by:
+      - field: mode
+      measures:
+      - key: n
+        agg: count
+    viz:
+      type: pie
+      x: mode
+      value: n
+  tags: []

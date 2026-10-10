@@ -1,0 +1,356 @@
+# Epic 77 portal Copilot Evaluation Set (vendor portal). Fake LLM scripts; run by tests/portal_copilot/test_evals_portal.py (-m evals).
+- id: vendor_read_00
+  who: vu_x
+  question: Which releases are open for us?
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_vendor.list_releases
+      - {}
+  - kind: text
+    text: Here is what I found.
+  expect:
+    outcomes:
+      portal_vendor.list_releases: executed
+    status: completed
+- id: vendor_read_01
+  who: vu_x
+  question: Show our submissions
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_vendor.list_submissions
+      - {}
+  - kind: text
+    text: Here is what I found.
+  expect:
+    outcomes:
+      portal_vendor.list_submissions: executed
+    status: completed
+- id: vendor_read_02
+  who: vu_x
+  question: Which of our submissions are pending?
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_vendor.list_submissions
+      - pending_only: true
+  - kind: text
+    text: Here is what I found.
+  expect:
+    outcomes:
+      portal_vendor.list_submissions: executed
+    status: completed
+- id: vendor_read_03
+  who: vu_x
+  question: Our placements?
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_vendor.list_placements
+      - {}
+  - kind: text
+    text: Here is what I found.
+  expect:
+    outcomes:
+      portal_vendor.list_placements: executed
+    status: completed
+- id: vendor_read_04
+  who: vu_x
+  question: Any statements?
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_vendor.list_statements
+      - {}
+  - kind: text
+    text: Here is what I found.
+  expect:
+    outcomes:
+      portal_vendor.list_statements: executed
+    status: completed
+- id: vendor_read_05
+  who: vu_x
+  question: Tell me about Xray
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_vendor.get_release
+      - release_id: '{{release_x}}'
+  - kind: text
+    text: Here is what I found.
+  expect:
+    outcomes:
+      portal_vendor.get_release: executed
+    status: completed
+- id: vendor_read_06
+  who: vu_x
+  question: Tell me about release {{release_y}}
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_vendor.get_release
+      - release_id: '{{release_y}}'
+  - kind: text
+    text: Here is what I found.
+  expect:
+    outcomes:
+      portal_vendor.get_release: not_found
+    status: completed
+- id: vendor_read_07
+  who: vu_x
+  question: Release {{random_id}}?
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_vendor.get_release
+      - release_id: '{{random_id}}'
+  - kind: text
+    text: Here is what I found.
+  expect:
+    outcomes:
+      portal_vendor.get_release: not_found
+    status: completed
+- id: vendor_read_08
+  who: vu_x
+  question: Submission {{random_id}}?
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_vendor.get_submission
+      - submission_id: '{{random_id}}'
+  - kind: text
+    text: Here is what I found.
+  expect:
+    outcomes:
+      portal_vendor.get_submission: not_found
+    status: completed
+- id: vendor_read_09
+  who: vu_x
+  question: Submissions for {{release_y}}
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_vendor.list_submissions
+      - release_id: '{{release_y}}'
+  - kind: text
+    text: Here is what I found.
+  expect:
+    outcomes:
+      portal_vendor.list_submissions: executed
+    status: completed
+- id: vendor_star_00
+  who: vu_x
+  question: Submit Nia for the Xray release
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_vendor.screen_for
+      - intent: submit_candidate
+  - kind: text
+    text: You can do this yourself in the portal.
+  expect:
+    outcomes:
+      portal_vendor.screen_for: executed
+    proposals: []
+    status: completed
+- id: vendor_star_01
+  who: vu_x
+  question: Withdraw our submission
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_vendor.screen_for
+      - intent: withdraw_submission
+  - kind: text
+    text: You can do this yourself in the portal.
+  expect:
+    outcomes:
+      portal_vendor.screen_for: executed
+    proposals: []
+    status: completed
+- id: vendor_star_02
+  who: vu_x
+  question: Upload our insurance certificate
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_vendor.screen_for
+      - intent: upload_document
+  - kind: text
+    text: You can do this yourself in the portal.
+  expect:
+    outcomes:
+      portal_vendor.screen_for: executed
+    proposals: []
+    status: completed
+- id: vendor_star_03
+  who: vu_x
+  question: Add a new user
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_vendor.screen_for
+      - intent: users
+  - kind: text
+    text: You can do this yourself in the portal.
+  expect:
+    outcomes:
+      portal_vendor.screen_for: executed
+    proposals: []
+    status: completed
+- id: vendor_star_04
+  who: vu_x
+  question: Where are statements?
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_vendor.screen_for
+      - intent: statements
+  - kind: text
+    text: You can do this yourself in the portal.
+  expect:
+    outcomes:
+      portal_vendor.screen_for: executed
+    proposals: []
+    status: completed
+- id: vendor_star_05
+  who: vu_x
+  question: How are we rated?
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_vendor.screen_for
+      - intent: scorecard
+  - kind: text
+    text: You can do this yourself in the portal.
+  expect:
+    outcomes:
+      portal_vendor.screen_for: executed
+    proposals: []
+    status: completed
+- id: vendor_star_06
+  who: vu_x
+  question: Change our bank details
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_vendor.screen_for
+      - intent: other
+  - kind: text
+    text: You can do this yourself in the portal.
+  expect:
+    outcomes:
+      portal_vendor.screen_for: executed
+    proposals: []
+    status: completed
+- id: vendor_draft_profile
+  who: vu_x
+  question: Prepare a profile for Nia Nair, 5 years Python
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_vendor.draft_candidate_profile
+      - release_id: '{{release_x}}'
+        full_name: Nia Nair
+        skills:
+        - Python
+        total_experience_months: 60
+  - kind: text
+    text: I've prepared a draft for you to review.
+  expect:
+    proposals:
+    - portal_vendor.draft_candidate_profile
+    status: completed
+- id: vendor_draft_profile_foreign
+  who: vu_x
+  question: Prepare a profile for release {{release_y}}
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_vendor.draft_candidate_profile
+      - release_id: '{{release_y}}'
+        full_name: Zed
+  - kind: text
+    text: I couldn't find that.
+  expect:
+    proposals: []
+    status: completed
+- id: vendor_draft_message
+  who: vu_x
+  question: Ask our vendor manager about payment dates
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_vendor.draft_message
+      - text: When are payments due?
+  - kind: text
+    text: I've prepared a draft for you to review.
+  expect:
+    proposals:
+    - portal_vendor.draft_message
+    status: completed
+- id: vendor_y_isolated
+  who: vu_y
+  question: Tell me about release {{release_x}}
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_vendor.get_release
+      - release_id: '{{release_x}}'
+  - kind: text
+    text: I couldn't find anything.
+  expect:
+    outcomes:
+      portal_vendor.get_release: not_found
+    status: completed
+- id: vendor_plain
+  who: vu_x
+  question: Hi
+  script:
+  - kind: text
+    text: Hello! Ask me about releases, submissions or statements.
+  expect:
+    status: completed
+- id: vendor_list_again_0
+  who: vu_x
+  question: Releases please (0)
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_vendor.list_releases
+      - {}
+  - kind: text
+    text: One release is open.
+  expect:
+    outcomes:
+      portal_vendor.list_releases: executed
+    status: completed
+- id: vendor_list_again_1
+  who: vu_x
+  question: Releases please (1)
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_vendor.list_releases
+      - {}
+  - kind: text
+    text: One release is open.
+  expect:
+    outcomes:
+      portal_vendor.list_releases: executed
+    status: completed
+- id: vendor_list_again_2
+  who: vu_x
+  question: Releases please (2)
+  script:
+  - kind: tool_calls
+    calls:
+    - - portal_vendor.list_releases
+      - {}
+  - kind: text
+    text: One release is open.
+  expect:
+    outcomes:
+      portal_vendor.list_releases: executed
+    status: completed

@@ -1,0 +1,103 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"task.autoDetect": "on",
+		"todo-tree.general.tags": [
+			"BUG",
+			"HACK",
+			"FIXME",
+			"DEPRECATED",
+			"TODO",
+			"PROD_CHECK",
+			"NOTE",
+			"FUTURE_NOTE",
+			"CRITICAL"
+		],
+		"todo-tree.highlights.customHighlight": {
+			"PROD_CHECK": {
+				"foreground": "#FF0000",
+				"background": "#FFFFFF",
+				"icon": "star",
+				"fontWeight": "800"
+			},
+			"DEPRECATED": {
+				"foreground": "#fd0303",
+				"background": "#e7ec44",
+				"fontWeight": "900",
+				"icon": "circle-slash"
+			},
+			"BUG": {
+				"foreground": "#ffffff",
+				"fontWeight": "900",
+				"textDecoration": "underline",
+				"background": "#fd0303",
+				"gutterIcon": true,
+				"icon": "bug"
+			},
+			"NOTE": {
+				"icon": "file",
+				"foreground": "#33ea3c",
+				"fontWeight": "800"
+			},
+			"FIXME": {
+				"foreground": "#FFFFFF",
+				"iconColour": "#FFFF00"
+			},
+			"CRITICAL": {
+				"foreground": "#FF0000",
+				"background": "#d4f324",
+				"icon": "alert",
+				"fontWeight": "800"
+			}
+		},
+		"todo-tree.filtering.excludeGlobs": [
+			"**/node_modules/*/**",
+			"**/env/*/**"
+		]
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "Celery Worker",
+				"type": "shell",
+				"icon": {
+					"id": "zap",
+					"color": "terminal.ansiWhite"
+				},
+				"command": "celery -A app worker --loglevel=info",
+				"isBackground": true,
+				"runOptions": {
+					"runOn": "folderOpen"
+				}
+			},
+			{
+				"label": "Docker",
+				"type": "shell",
+				"icon": {
+					"id": "symbol-method",
+					"color": "terminal.ansiBlue"
+				},
+				"command": "docker compose up",
+				"isBackground": true,
+				"runOptions": {
+					"runOn": "folderOpen"
+				}
+			},
+		],
+		"compounds": [
+			{
+				"label": "Start All",
+				"dependsOn": [
+					"Celery Worker",
+					"Docker"
+				],
+				"isBackground": true
+			}
+		]
+	}
+}

@@ -1,0 +1,154 @@
+# Epic 63 Timesheet Agent offline cases (AD-69). Seeds in evals/seeds_finance.py. The agent never approves, rejects or
+# edits time; reminders go through P2 remind() only; explanations use numbers from the flag facts only.
+- id: ts_nudge_happy_path
+  description: Plan -> one reminder call for a late draft and a pending approval -> escalate the 8-day approval -> done
+  agent: timesheet
+  seed: ts_late
+  subject: seed
+  script:
+    - kind: tool_calls
+      calls: [[time.get_nudge_plan, {account_manager_id: "{{am_id}}"}]]
+    - kind: tool_calls
+      calls: [[time.send_timesheet_reminder, {timesheet_ids: ["{{draft_id}}", "{{timesheet_id}}"]}]]
+    - kind: tool_calls
+      calls: [[time.escalate_approval, {timesheet_id: "{{timesheet_id}}", days_pending: 6}]]
+    - kind: emit_result
+      result: {outcome: done, summary: "2 nudges, 1 escalation", nudges: 2, escalations: 1}
+  expect:
+    status: completed
+    outcomes: {time.get_nudge_plan: executed, time.send_timesheet_reminder: executed, time.escalate_approval: executed}
+    max_mode_by_tool: {time.send_timesheet_reminder: auto, time.escalate_approval: auto}
+    proposals: []
+- id: ts_nudge_plan_read_only
+  description: Reading the plan writes nothing; nothing to do is a valid finish
+  agent: timesheet
+  seed: ts_late
+  subject: seed
+  script:
+    - kind: tool_calls
+      calls: [[time.get_nudge_plan, {account_manager_id: "{{am_id}}"}]]
+    - kind: emit_result
+      result: {outcome: nothing_to_do, summary: "Plan read"}
+  expect:
+    status: completed
+    outcomes: {time.get_nudge_plan: executed}
+    proposals: []
+- id: ts_reminder_unknown_timesheet
+  description: A timesheet id not on record -> not_found (no recipient can be resolved)
+  agent: timesheet
+  seed: ts_late
+  subject: seed
+  script:
+    - kind: tool_calls
+      calls: [[time.get_nudge_plan, {account_manager_id: "{{am_id}}"}]]
+    - kind: tool_calls
+      calls: [[time.send_timesheet_reminder, {timesheet_ids: ["{{random_id}}"]}]]
+    - kind: emit_result
+      result: {outcome: done, summary: "x"}
+  expect:
+    status: completed
+    outcomes: {time.send_timesheet_reminder: not_found}
+- id: ts_escalation_once_per_step
+  description: A second escalation of the same approval step returns the same Task (service dedupe)
+  agent: timesheet
+  seed: ts_late
+  subject: seed
+  script:
+    - kind: tool_calls
+      calls: [[time.get_nudge_plan, {account_manager_id: "{{am_id}}"}]]
+    - kind: tool_calls
+      calls: [[time.escalate_approval, {timesheet_id: "{{timesheet_id}}", days_pending: 6}]]
+    - kind: tool_calls
+      calls: [[time.escalate_approval, {timesheet_id: "{{timesheet_id}}", days_pending: 7}]]
+    - kind: emit_result
+      result: {outcome: done, summary: "escalated", escalations: 1}
+  expect:
+    status: completed
+    outcomes: {time.escalate_approval: executed}
+- id: ts_flags_explained
+  description: Flag run -> list, timesheet, context -> explanations with a shared group key -> done
+  agent: timesheet
+  seed: ts_flagged
+  subject: seed
+  script:
+    - kind: tool_calls
+      calls: [[time.list_flags, {timesheet_id: "{{timesheet_id}}"}]]
+    - kind: tool_calls
+      calls: [[time.get_timesheet, {timesheet_id: "{{timesheet_id}}"}]]
+    - kind: tool_calls
+      calls: [[time.get_context, {timesheet_id: "{{timesheet_id}}"}]]
+    - kind: tool_calls
+      calls: [[time.save_flag_explanations, {timesheet_id: "{{timesheet_id}}", items: [{flag_id: "{{flag_id}}", explanation: "4 hours were logged on a non-working day; worth confirming it was agreed.", group_key: schedule}, {flag_id: "{{long_day_flag_id}}", explanation: "One day of 13 hours is well above the standard 8-hour day.", group_key: schedule}]}]]
+    - kind: emit_result
+      result: {outcome: done, summary: "2 flags explained", flags_explained: 2}
+  expect:
+    status: completed
+    outcomes: {time.list_flags: executed, time.get_timesheet: executed, time.get_context: executed, time.save_flag_explanations: executed}
+- id: ts_flags_unknown_number_rewritten
+  description: An explanation naming a number not in the facts is refused (invalid); the rewrite is saved
+  agent: timesheet
+  seed: ts_flagged
+  subject: seed
+  script:
+    - kind: tool_calls
+      calls: [[time.save_flag_explanations, {timesheet_id: "{{timesheet_id}}", items: [{flag_id: "{{flag_id}}", explanation: "37 hours fell on a weekend."}]}]]
+    - kind: tool_calls
+      calls: [[time.save_flag_explanations, {timesheet_id: "{{timesheet_id}}", items: [{flag_id: "{{flag_id}}", explanation: "4 hours fell on a non-working day."}]}]]
+    - kind: emit_result
+      result: {outcome: done, summary: "explained", flags_explained: 1}
+  expect:
+    status: completed
+    outcomes: {time.save_flag_explanations: executed}
+- id: ts_flags_bad_group_key
+  description: A group key with spaces is not a valid argument
+  agent: timesheet
+  seed: ts_flagged
+  subject: seed
+  script:
+    - kind: tool_calls
+      calls: [[time.save_flag_explanations, {timesheet_id: "{{timesheet_id}}", items: [{flag_id: "{{flag_id}}", explanation: "4 hours on a non-working day.", group_key: "Leave and weekends"}]}]]
+    - kind: emit_result
+      result: {outcome: needs_human, summary: "x"}
+  expect:
+    status: completed
+    outcomes: {time.save_flag_explanations: invalid}
+- id: ts_flag_run_other_timesheet
+  description: Another timesheet id in a flag run is outside the subject -> not_found
+  agent: timesheet
+  seed: ts_flagged
+  subject: seed
+  script:
+    - kind: tool_calls
+      calls: [[time.get_timesheet, {timesheet_id: "{{random_id}}"}]]
+    - kind: emit_result
+      result: {outcome: done, summary: "x"}
+  expect:
+    status: completed
+    outcomes: {time.get_timesheet: not_found}
+- id: ts_flag_run_cannot_nudge_unplanned
+  description: A flag run reminding the current approver of a fresh timesheet -> the approver is not on record for this run
+  agent: timesheet
+  seed: ts_flagged
+  subject: seed
+  script:
+    - kind: tool_calls
+      calls: [[time.send_timesheet_reminder, {timesheet_ids: ["{{timesheet_id}}"]}]]
+    - kind: emit_result
+      result: {outcome: done, summary: "x"}
+  expect:
+    status: completed
+    outcomes: {time.send_timesheet_reminder: policy_violation}
+- id: ts_get_timesheet_has_no_notes
+  description: The timesheet summary is a read; it executes and nothing is written
+  agent: timesheet
+  seed: ts_flagged
+  subject: seed
+  script:
+    - kind: tool_calls
+      calls: [[time.get_timesheet, {timesheet_id: "{{timesheet_id}}"}]]
+    - kind: emit_result
+      result: {outcome: done, summary: "read"}
+  expect:
+    status: completed
+    outcomes: {time.get_timesheet: executed}
+    proposals: []

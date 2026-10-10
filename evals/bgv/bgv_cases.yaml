@@ -1,0 +1,125 @@
+# Epic 62 BGV Agent offline cases (AD-69). Seeds in evals/seeds_e62.py (subject = the BGV case).
+- id: e62b_manual_follow_up
+  description: Overdue check with a Manual provider -> templated status email + pending summary
+  agent: bgv
+  seed: e62_bgv_manual
+  subject: seed
+  script:
+    - {kind: tool_calls, calls: [[bgv.get_case_summary, {case_id: "{{case_id}}"}], [bgv.list_overdue_checks, {case_id: "{{case_id}}"}]]}
+    - {kind: tool_calls, calls: [[bgv.send_provider_follow_up, {check_id: "{{check_id}}"}]]}
+    - {kind: tool_calls, calls: [[bgv.post_case_summary, {case_id: "{{case_id}}", summary: "Employment 1 is overdue; provider followed up."}]]}
+    - {kind: emit_result, result: {outcome: done, summary: "followed up", follow_ups: 1}}
+  expect:
+    status: completed
+    outcomes: {bgv.send_provider_follow_up: executed, bgv.post_case_summary: executed}
+    max_mode_by_tool: {bgv.send_provider_follow_up: auto}
+- id: e62b_connector_status
+  description: A provider with a connector -> status request, no email
+  agent: bgv
+  seed: e62_bgv_connector
+  subject: seed
+  script:
+    - {kind: tool_calls, calls: [[bgv.list_overdue_checks, {case_id: "{{case_id}}"}]]}
+    - {kind: tool_calls, calls: [[bgv.request_provider_status, {check_id: "{{check_id}}"}]]}
+    - {kind: emit_result, result: {outcome: done, summary: "status requested"}}
+  expect:
+    status: completed
+    outcomes: {bgv.request_provider_status: executed}
+- id: e62b_connector_not_manual
+  description: Emailing a connector provider is refused (not_manual_provider)
+  agent: bgv
+  seed: e62_bgv_connector
+  subject: seed
+  script:
+    - {kind: tool_calls, calls: [[bgv.list_overdue_checks, {case_id: "{{case_id}}"}]]}
+    - {kind: tool_calls, calls: [[bgv.send_provider_follow_up, {check_id: "{{check_id}}"}]]}
+    - {kind: emit_result, result: {outcome: done, summary: "x"}}
+  expect:
+    status: completed
+    outcomes: {bgv.send_provider_follow_up: failed}
+- id: e62b_limit_reached
+  description: Five follow-ups already sent -> follow_up_limit, a task instead
+  agent: bgv
+  seed: e62_bgv_limit
+  subject: seed
+  script:
+    - {kind: tool_calls, calls: [[bgv.list_overdue_checks, {case_id: "{{case_id}}"}]]}
+    - {kind: tool_calls, calls: [[bgv.send_provider_follow_up, {check_id: "{{check_id}}"}]]}
+    - {kind: tool_calls, calls: [[bgv.post_case_summary, {case_id: "{{case_id}}", summary: "Follow-up limit reached for Employment 1."}]]}
+    - {kind: emit_result, result: {outcome: done, summary: "limit", escalated: true}}
+  expect:
+    status: completed
+    outcomes: {bgv.send_provider_follow_up: failed, bgv.post_case_summary: executed}
+- id: e62b_summary_only
+  description: A discrepancy run only posts a summary
+  agent: bgv
+  seed: e62_bgv_manual
+  subject: seed
+  script:
+    - {kind: tool_calls, calls: [[bgv.get_case_summary, {case_id: "{{case_id}}"}]]}
+    - {kind: tool_calls, calls: [[bgv.post_case_summary, {case_id: "{{case_id}}", summary: "One overdue employment check."}]]}
+    - {kind: emit_result, result: {outcome: done, summary: "summary"}}
+  expect:
+    status: completed
+    outcomes: {bgv.post_case_summary: executed}
+- id: e62b_draft_is_proposal
+  description: A free-text provider message is only a Proposal
+  agent: bgv
+  seed: e62_bgv_manual
+  subject: seed
+  script:
+    - {kind: tool_calls, calls: [[bgv.list_overdue_checks, {case_id: "{{case_id}}"}]]}
+    - {kind: tool_calls, calls: [[bgv.draft_provider_message, {check_id: "{{check_id}}", subject: "Status please", body: "Could you share an update on this check?"}]]}
+    - {kind: emit_result, result: {outcome: done, summary: "drafted"}}
+  expect:
+    status: completed
+    outcomes: {bgv.draft_provider_message: proposed}
+    proposals: [bgv.draft_provider_message]
+- id: e62b_documents_is_proposal
+  description: Asking the candidate for more documents is only a Proposal
+  agent: bgv
+  seed: e62_bgv_manual
+  subject: seed
+  script:
+    - {kind: tool_calls, calls: [[bgv.request_candidate_documents, {case_id: "{{case_id}}", document_keys: [pan], note: "Clearer copy"}]]}
+    - {kind: emit_result, result: {outcome: done, summary: "proposed"}}
+  expect:
+    status: completed
+    outcomes: {bgv.request_candidate_documents: proposed}
+    proposals: [bgv.request_candidate_documents]
+- id: e62b_custom_note_proposal
+  description: A custom note on the provider follow-up makes it a Proposal
+  agent: bgv
+  seed: e62_bgv_manual
+  subject: seed
+  script:
+    - {kind: tool_calls, calls: [[bgv.list_overdue_checks, {case_id: "{{case_id}}"}]]}
+    - {kind: tool_calls, calls: [[bgv.send_provider_follow_up, {check_id: "{{check_id}}", custom_note: "This is urgent for the client."}]]}
+    - {kind: emit_result, result: {outcome: done, summary: "proposed"}}
+  expect:
+    status: completed
+    outcomes: {bgv.send_provider_follow_up: proposed}
+    proposals: [bgv.send_provider_follow_up]
+- id: e62b_other_check_not_found
+  description: A check id outside the run's case is not found
+  agent: bgv
+  seed: e62_bgv_manual
+  subject: seed
+  script:
+    - {kind: tool_calls, calls: [[bgv.request_provider_status, {check_id: "{{random_id}}"}]]}
+    - {kind: emit_result, result: {outcome: done, summary: "x"}}
+  expect:
+    status: completed
+    outcomes: {bgv.request_provider_status: not_found}
+- id: e62b_summary_once
+  description: Only one pending summary per run
+  agent: bgv
+  seed: e62_bgv_manual
+  subject: seed
+  script:
+    - {kind: tool_calls, calls: [[bgv.post_case_summary, {case_id: "{{case_id}}", summary: "First."}]]}
+    - {kind: tool_calls, calls: [[bgv.post_case_summary, {case_id: "{{case_id}}", summary: "Second."}]]}
+    - {kind: emit_result, result: {outcome: done, summary: "x"}}
+  expect:
+    status: completed
+    outcomes: {bgv.post_case_summary: refused}

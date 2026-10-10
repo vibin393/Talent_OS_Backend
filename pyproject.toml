@@ -1,0 +1,167 @@
+[tool.mypy]
+# Target Python 3.12 for type inference and compatibility
+python_version = "3.12"
+
+# Enable all recommended strict type-checking options
+strict = true
+
+# Add support for Pydantic and SQLAlchemy model typing
+plugins = ["pydantic.mypy", "sqlalchemy.ext.mypy.plugin"]
+
+# Warn if a function implicitly returns Any
+warn_return_any = true
+
+# Warn about unused or misspelled config options
+warn_unused_configs = true
+
+# Disallow functions without type hints for arguments and return type
+disallow_untyped_defs = true
+
+# Suppress errors for imports without type stubs (e.g. third-party libs)
+ignore_missing_imports = true
+
+# Warn about unreachable code (e.g. code after return or raise)
+warn_unreachable = true
+
+# Require all function definitions to be fully typed, including *args/**kwargs
+disallow_incomplete_defs = true
+
+# Warn if a 
+warn_unused_ignores = true
+
+# type: ignore comment is unnecessary
+# Type-check the bodies of functions even if they are not annotated
+check_untyped_defs = true
+
+# Only run mypy on these directories to avoid scanning external code
+files = ["app/", "tests/"]
+
+# Exclude the sub directories from allowed directories
+exclude = ["alembic", "migrations"]
+
+
+[tool.ruff]
+# Target Python version for compatibility
+target-version = "py312"
+
+# Maximum line length for formatting and linting
+line-length = 110
+
+# Automatically apply safe autofixes on lint errors
+fix = true
+
+# Show what was fixed in output
+show-fixes = true
+
+# Exclude specific folders from linting (e.g. venvs, migrations)
+exclude = ["env", "alembic", "migrations", ".pyenv", ".git", ".vscode"]
+# include = ["app", "tests"]
+
+[tool.ruff.format]
+# Format docstring code blocks
+docstring-code-format = true
+
+# skip the comma after the end of the comment
+skip-magic-trailing-comma = true
+
+# Enforce use of double quotes for strings
+quote-style = "double"
+
+# Use spaces (not tabs) for indentation
+indent-style = "space"
+
+# Use LF for line endings (Unix-style)
+line-ending = "lf"
+
+
+[tool.ruff.lint]
+# Enable upcoming (preview) lint rules
+preview = true
+
+# Enable recommended rule sets: 
+# F (pyflakes), E/W (pycodestyle), I (isort), B (bugbear), UP (pyupgrade), etc.
+# select = ["F", "E", "W", "I", "B", "UP", "ARG", "C4", "SIM"]
+select = [
+    "F",
+    "E",
+    "W",
+    "I",
+    "B",
+    "UP",
+    "ARG",
+    "C4",
+    "SIM",
+    "ANN",
+    "N",
+    "D",
+    "RET",
+    "RUF",
+    "TC",
+    "TID",
+]
+
+ignore = [
+    "ANN401",  # wants to avoid using typing.Any entirely, too much effort
+    "COM812",  # conflicts with formatter
+    "D1",      # wants docstrings everywhere, too much effort
+    "D2",      # wants overly specific conventions for docstrings
+    "D404",    # wants overly specific conventions for docstrings
+    "EXE002",  # wants to avoid using executable files
+    "FIX",     # wants to avoid using TODO comments
+    "ISC001",  # conflicts with formatter
+    "PLR0913", # wants to limit the number of arguments in functions
+    "SIM102",  # wants to avoid nested if statements
+    "SIM108",  # wants to use ternary operations everywhere
+    "TD002",   # wants TODO comments to contain author
+    "TD003",   # wants TODO comments to contain issue link
+    "TID252",  # wants to avoid using relative imports
+    "PLC0415", # wants to avoid using internal class/method imports
+    # TODO: This needs to be enabled later
+    "ERA001", # wants to avoid commented code 
+    # TODO: Add Copyright rule later
+    "CPY001",  # wants to define copyright in every file, can be done later
+    "PLR6301",
+    "RUF029",
+    "RET504",
+    "RUF043",
+]
+
+[tool.coverage.report]
+exclude_also = ["if TYPE_CHECKING:"]
+
+[tool.ruff.lint.per-file-ignores]
+# Some checks may not be applicable to test files, so we ignore them
+"tests/**/*.py" = [
+    "INP001",  # wants to use __init__.py for test classes
+    "S101",    # wants to avoid using assert statements
+    "SLF001",  # wants to avoid accessing private attributes
+    "PLR6301", # wants to avoid using non public methods if static possible
+    "PLR2004", # wants to avoid using direct values
+    "ARG001",  # pytest fixtures requested only for their side effects
+    "ARG002",  # fake/spy methods must match the real signature
+    "ARG005",  # monkeypatched lambdas must match the real signature
+]
+
+# En dashes in human-readable interview time ranges ("10:00–11:00") are intentional.
+"app/services/interviews/invites.py" = ["RUF001"]
+
+[tool.ruff.lint.isort]
+# Don't split imports based on trailing commas
+split-on-trailing-comma = false
+# Ignore specific rules:
+# E501 = line too long, B008 = function call in default argument
+
+[tool.coverage.run]
+concurrency = ["greenlet", "thread"]
+omit = [
+    "app/schemas/*.py", # Pydantic models
+    "app/models/*.py",  # SQLAlchemy models
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "session"
+asyncio_default_test_loop_scope = "session"
+filterwarnings = ["ignore::DeprecationWarning:celery.*"]
+markers = ["live_ai: calls the real Anthropic API (skipped without ANTHROPIC_API_KEY_LIVE)", "perf: performance checks with large seeded data (run with -m perf)", "slow: long-running checks such as the Epic 11 dashboard performance test (deselect with -m \"not slow\")", "evals: Epic 53 offline agent evals and red-team cases (Fake LLM, run with -m evals)"]

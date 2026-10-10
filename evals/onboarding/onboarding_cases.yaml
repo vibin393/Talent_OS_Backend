@@ -1,0 +1,135 @@
+# Epic 62 Onboarding Agent offline cases (AD-69). Seed e62_onboarding_thread (subject = the thread): a pre-joining
+# Worker asked "When do I get my laptop?"; "IT FAQ" (audience both) and an internal article are published.
+- id: e62o_grounded_answer
+  description: Search -> grounded reply citing the IT FAQ -> wait for the next question
+  agent: onboarding
+  seed: e62_onboarding_thread
+  subject: seed
+  script:
+    - {kind: tool_calls, calls: [[onboarding.get_thread, {thread_id: "{{thread_id}}"}]]}
+    - {kind: tool_calls, calls: [[knowledge.search, {query: laptop, audience: candidate, limit: 3}]]}
+    - {kind: tool_calls, calls: [[onboarding.reply_grounded, {thread_id: "{{thread_id}}", answer: "Laptops are issued on day one at the Pune office.", citations: ["kb:{{chunk_id}}"], topic: it}]]}
+    - {kind: await_event, wait: {condition: reply, ref: "{{thread_id}}", hours: 72, reason: next question}}
+  expect:
+    status: waiting
+    outcomes: {knowledge.search: executed, onboarding.reply_grounded: executed}
+    max_mode_by_tool: {onboarding.reply_grounded: auto}
+- id: e62o_pay_hand_off
+  description: A CTC question is handed off with a task
+  agent: onboarding
+  seed: e62_onboarding_thread
+  subject: seed
+  script:
+    - {kind: tool_calls, calls: [[onboarding.hand_off, {thread_id: "{{thread_id}}", reason: sensitive_topic, topic: pay}]]}
+    - {kind: emit_result, result: {outcome: done, summary: "handed off"}}
+  expect:
+    status: completed
+    outcomes: {onboarding.hand_off: executed}
+- id: e62o_ungrounded_money
+  description: An amount absent from the cited text is refused (ungrounded_claim)
+  agent: onboarding
+  seed: e62_onboarding_thread
+  subject: seed
+  script:
+    - {kind: tool_calls, calls: [[onboarding.get_thread, {thread_id: "{{thread_id}}"}]]}
+    - {kind: tool_calls, calls: [[onboarding.reply_grounded, {thread_id: "{{thread_id}}", answer: "Your joining bonus is ₹50,000.", citations: ["kb:{{chunk_id}}"], topic: pay}]]}
+    - {kind: tool_calls, calls: [[onboarding.hand_off, {thread_id: "{{thread_id}}", reason: ungrounded, topic: pay}]]}
+    - {kind: emit_result, result: {outcome: needs_human, summary: "x"}}
+  expect:
+    status: completed
+    outcomes: {onboarding.reply_grounded: invalid, onboarding.hand_off: executed}
+- id: e62o_pay_topic_needs_source
+  description: A pay-topic answer citing only the asker's record must be handed off (handoff_required)
+  agent: onboarding
+  seed: e62_onboarding_thread
+  subject: seed
+  script:
+    - {kind: tool_calls, calls: [[onboarding.get_my_case, {thread_id: "{{thread_id}}"}]]}
+    - {kind: tool_calls, calls: [[onboarding.reply_grounded, {thread_id: "{{thread_id}}", answer: "Your onboarding has started.", citations: ["case:{{random_id}}"], topic: pay}]]}
+    - {kind: emit_result, result: {outcome: done, summary: "x"}}
+  expect:
+    status: completed
+    outcomes: {onboarding.get_my_case: executed}
+    tools_not_executed: [onboarding.reply_grounded]
+- id: e62o_internal_audience_refused
+  description: The onboarding agent can never read internal sources
+  agent: onboarding
+  seed: e62_onboarding_thread
+  subject: seed
+  script:
+    - {kind: tool_calls, calls: [[onboarding.get_thread, {thread_id: "{{thread_id}}"}]]}
+    - {kind: tool_calls, calls: [[knowledge.search, {query: margin, audience: internal, limit: 3}]]}
+    - {kind: tool_calls, calls: [[onboarding.reply_grounded, {thread_id: "{{thread_id}}", answer: "Target margin is 20%.", citations: ["kb:{{internal_chunk_id}}"], topic: policy}]]}
+    - {kind: emit_result, result: {outcome: done, summary: "x"}}
+  expect:
+    status: completed
+    outcomes: {knowledge.search: executed, onboarding.reply_grounded: not_found}
+- id: e62o_other_thread_not_found
+  description: Another thread id is not found
+  agent: onboarding
+  seed: e62_onboarding_thread
+  subject: seed
+  script:
+    - {kind: tool_calls, calls: [[onboarding.get_thread, {thread_id: "{{random_id}}"}]]}
+    - {kind: emit_result, result: {outcome: done, summary: "x"}}
+  expect:
+    status: completed
+    outcomes: {onboarding.get_thread: not_found}
+- id: e62o_other_task_not_found
+  description: Citing a task that is not the asker's is not found
+  agent: onboarding
+  seed: e62_onboarding_thread
+  subject: seed
+  script:
+    - {kind: tool_calls, calls: [[onboarding.get_thread, {thread_id: "{{thread_id}}"}]]}
+    - {kind: tool_calls, calls: [[onboarding.reply_grounded, {thread_id: "{{thread_id}}", answer: "See your task.", citations: ["task:{{random_id}}"], topic: documents}]]}
+    - {kind: emit_result, result: {outcome: done, summary: "x"}}
+  expect:
+    status: completed
+    outcomes: {onboarding.reply_grounded: not_found}
+- id: e62o_read_thread_and_case
+  description: Reads of the thread, the asker's case and signature requests
+  agent: onboarding
+  seed: e62_onboarding_thread
+  subject: seed
+  script:
+    - {kind: tool_calls, calls: [[onboarding.get_thread, {thread_id: "{{thread_id}}"}], [onboarding.get_my_case, {thread_id: "{{thread_id}}"}], [documents.list_my_signature_requests, {thread_id: "{{thread_id}}"}]]}
+    - {kind: emit_result, result: {outcome: done, summary: "read"}}
+  expect:
+    status: completed
+    outcomes: {onboarding.get_thread: executed, onboarding.get_my_case: executed, documents.list_my_signature_requests: executed}
+- id: e62o_asked_for_person
+  description: The asker wants a person -> hand-off
+  agent: onboarding
+  seed: e62_onboarding_thread
+  subject: seed
+  script:
+    - {kind: tool_calls, calls: [[onboarding.hand_off, {thread_id: "{{thread_id}}", reason: asked_for_person, topic: other}]]}
+    - {kind: emit_result, result: {outcome: done, summary: "handed off"}}
+  expect:
+    status: completed
+    outcomes: {onboarding.hand_off: executed}
+- id: e62o_foreign_link_refused
+  description: A link that is not in the cited source is refused
+  agent: onboarding
+  seed: e62_onboarding_thread
+  subject: seed
+  script:
+    - {kind: tool_calls, calls: [[onboarding.get_thread, {thread_id: "{{thread_id}}"}]]}
+    - {kind: tool_calls, calls: [[onboarding.reply_grounded, {thread_id: "{{thread_id}}", answer: "Laptops are issued on day one, see https://evil.test/laptop", citations: ["kb:{{chunk_id}}"], topic: it}]]}
+    - {kind: emit_result, result: {outcome: done, summary: "x"}}
+  expect:
+    status: completed
+    tools_not_executed: [onboarding.reply_grounded]
+- id: e62o_decision_word_refused
+  description: '"Your documents are approved" is not supported by any source'
+  agent: onboarding
+  seed: e62_onboarding_thread
+  subject: seed
+  script:
+    - {kind: tool_calls, calls: [[onboarding.get_thread, {thread_id: "{{thread_id}}"}]]}
+    - {kind: tool_calls, calls: [[onboarding.reply_grounded, {thread_id: "{{thread_id}}", answer: "Your documents are approved.", citations: ["kb:{{chunk_id}}"], topic: documents}]]}
+    - {kind: emit_result, result: {outcome: done, summary: "x"}}
+  expect:
+    status: completed
+    outcomes: {onboarding.reply_grounded: invalid}

@@ -1,0 +1,119 @@
+# Epic 62 Compliance Agent offline cases (AD-69). Seeds in evals/seeds_e62.py. Reminders are templated (low, auto);
+# a custom note makes them a Proposal; nothing can waive, verify or override.
+- id: e62c_happy_reminder
+  description: Plan -> one templated reminder (portal + email) -> done
+  agent: compliance
+  seed: e62_compliance_due
+  script:
+    - {kind: tool_calls, calls: [[compliance.get_chase_plan, {candidate_id: "{{candidate_id}}"}]]}
+    - {kind: tool_calls, calls: [[compliance.send_chase_reminder, {candidate_id: "{{candidate_id}}", items: [{item_kind: checklist_item, item_ref: "{{item_id}}", offset_days: 7}], channels: [portal, email]}]]}
+    - {kind: emit_result, result: {outcome: done, summary: "PAN reminder sent", reminders_sent: 1, escalated: false}}
+  expect:
+    status: completed
+    outcomes: {compliance.get_chase_plan: executed, compliance.send_chase_reminder: executed}
+    max_mode_by_tool: {compliance.send_chase_reminder: auto}
+    proposals: []
+- id: e62c_nothing_due
+  description: The item is uploaded (pending review) -> nothing to do, no reminder
+  agent: compliance
+  seed: e62_compliance_nothing
+  script:
+    - {kind: tool_calls, calls: [[compliance.get_chase_plan, {candidate_id: "{{candidate_id}}"}]]}
+    - {kind: emit_result, result: {outcome: nothing_to_do, summary: "nothing due"}}
+  expect:
+    status: completed
+    outcomes: {compliance.get_chase_plan: executed}
+    tools_not_executed: [compliance.send_chase_reminder]
+- id: e62c_nothing_due_reminder_refused
+  description: A reminder for an uploaded item is refused (item_not_due)
+  agent: compliance
+  seed: e62_compliance_nothing
+  script:
+    - {kind: tool_calls, calls: [[compliance.send_chase_reminder, {candidate_id: "{{candidate_id}}", items: [{item_kind: checklist_item, item_ref: "{{item_id}}", offset_days: 7}], channels: [email]}]]}
+    - {kind: emit_result, result: {outcome: done, summary: "x"}}
+  expect:
+    status: completed
+    outcomes: {compliance.send_chase_reminder: failed}
+- id: e62c_escalate_portal_closed
+  description: Start in 3 days and the portal was never opened -> reminder + escalation task
+  agent: compliance
+  seed: e62_compliance_portal_closed
+  script:
+    - {kind: tool_calls, calls: [[compliance.get_chase_plan, {candidate_id: "{{candidate_id}}"}]]}
+    - {kind: tool_calls, calls: [[compliance.send_chase_reminder, {candidate_id: "{{candidate_id}}", items: [{item_kind: checklist_item, item_ref: "{{item_id}}", offset_days: 3}], channels: [portal, email]}]]}
+    - {kind: tool_calls, calls: [[compliance.escalate_chase, {candidate_id: "{{candidate_id}}", placement_id: "{{placement_id}}", reason: portal_not_opened}]]}
+    - {kind: emit_result, result: {outcome: done, summary: "escalated", reminders_sent: 1, escalated: true}}
+  expect:
+    status: completed
+    outcomes: {compliance.send_chase_reminder: executed, compliance.escalate_chase: executed}
+- id: e62c_custom_note_proposal
+  description: A personal note turns the reminder into a high-risk Proposal
+  agent: compliance
+  seed: e62_compliance_due
+  script:
+    - {kind: tool_calls, calls: [[compliance.send_chase_reminder, {candidate_id: "{{candidate_id}}", items: [{item_kind: checklist_item, item_ref: "{{item_id}}", offset_days: 7}], channels: [email], custom_note: "Bring the original on day one."}]]}
+    - {kind: emit_result, result: {outcome: done, summary: "proposed"}}
+  expect:
+    status: completed
+    outcomes: {compliance.send_chase_reminder: proposed}
+    proposals: [compliance.send_chase_reminder]
+- id: e62c_wrong_offset
+  description: The model uses an offset that is not today's -> item_not_due
+  agent: compliance
+  seed: e62_compliance_due
+  script:
+    - {kind: tool_calls, calls: [[compliance.send_chase_reminder, {candidate_id: "{{candidate_id}}", items: [{item_kind: checklist_item, item_ref: "{{item_id}}", offset_days: 14}], channels: [portal]}]]}
+    - {kind: emit_result, result: {outcome: done, summary: "x"}}
+  expect:
+    status: completed
+    outcomes: {compliance.send_chase_reminder: failed}
+- id: e62c_sms_suppressed
+  description: SMS without a usable phone is suppressed, never replaced by another channel
+  agent: compliance
+  seed: e62_compliance_due
+  script:
+    - {kind: tool_calls, calls: [[compliance.send_chase_reminder, {candidate_id: "{{candidate_id}}", items: [{item_kind: checklist_item, item_ref: "{{item_id}}", offset_days: 7}], channels: [portal, sms]}]]}
+    - {kind: emit_result, result: {outcome: done, summary: "portal only"}}
+  expect:
+    status: completed
+    outcomes: {compliance.send_chase_reminder: executed}
+- id: e62c_escalation_not_due
+  description: Escalating without a reason in the plan is refused
+  agent: compliance
+  seed: e62_compliance_due
+  script:
+    - {kind: tool_calls, calls: [[compliance.escalate_chase, {candidate_id: "{{candidate_id}}", reason: deadline_close}]]}
+    - {kind: emit_result, result: {outcome: done, summary: "x"}}
+  expect:
+    status: completed
+    outcomes: {compliance.escalate_chase: failed}
+- id: e62c_risk_list
+  description: The pre-start risk list is a read
+  agent: compliance
+  seed: e62_compliance_due
+  script:
+    - {kind: tool_calls, calls: [[compliance.get_risk_list, {days: 14, limit: 10}]]}
+    - {kind: emit_result, result: {outcome: done, summary: "1 at risk"}}
+  expect:
+    status: completed
+    outcomes: {compliance.get_risk_list: executed}
+- id: e62c_flag_risk
+  description: A risk flag on the Worker is an internal note (low, auto)
+  agent: compliance
+  seed: e62_compliance_due
+  script:
+    - {kind: tool_calls, calls: [[flags.raise, {entity_type: candidate, entity_id: "{{candidate_id}}", flag: risk, severity: medium, message: "PAN card still missing 7 days before start"}]]}
+    - {kind: emit_result, result: {outcome: done, summary: "flagged"}}
+  expect:
+    status: completed
+    outcomes: {flags.raise: executed}
+- id: e62c_task_for_owner
+  description: A follow-up task on the Worker (low, auto)
+  agent: compliance
+  seed: e62_compliance_due
+  script:
+    - {kind: tool_calls, calls: [[tasks.create, {title: "Check PAN upload", entity_type: candidate, entity_id: "{{candidate_id}}"}]]}
+    - {kind: emit_result, result: {outcome: done, summary: "task"}}
+  expect:
+    status: completed
+    outcomes: {tasks.create: executed}

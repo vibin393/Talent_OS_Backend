@@ -1,0 +1,79 @@
+# Epic 64 Analytics Evaluation Set -- referrals (schema: id, persona, question, expected{definition+viz | clarify | unanswerable}, tolerance, tags).
+- id: rf_by_status
+  persona: admin
+  question: Referrals by status
+  expected:
+    definition:
+      source: referrals.referral
+      group_by:
+      - field: status
+    viz:
+      type: bar
+      x: status
+  tags: []
+- id: rf_hired_fy
+  persona: admin
+  question: Referral hires this FY
+  expected:
+    definition:
+      source: referrals.referral
+      filters:
+        and:
+        - field: status
+          op: eq
+          value: hired
+        - field: decided_at
+          op: between
+          value: &id001
+          - '2026-04-01T00:00:00+05:30'
+          - '2027-03-31T23:59:59+05:30'
+      measures:
+      - &id002
+        key: n
+        agg: count
+    viz:
+      type: kpi
+      value: n
+  tags:
+  - fy
+  - kpi
+- id: rf_by_channel_month
+  persona: admin
+  question: Referrals per month by channel this FY
+  expected:
+    definition:
+      source: referrals.referral
+      filters:
+        field: created_at
+        op: between
+        value: *id001
+      group_by:
+      - field: created_at
+        bucket: month
+      - field: channel
+    viz:
+      type: pivot
+      x: created_at
+      series: channel
+  tags:
+  - pivot
+  - fy
+- id: rf_by_referrer
+  persona: admin
+  question: Top referrers
+  expected:
+    definition:
+      source: referrals.referral
+      group_by:
+      - field: referrer_user_id
+      measures:
+      - *id002
+      sort:
+      - key: n
+        desc: true
+    viz:
+      type: bar
+      x: referrer_user_id
+      value: n
+  tags:
+  - top_n

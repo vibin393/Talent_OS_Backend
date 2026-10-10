@@ -1,0 +1,111 @@
+# Platform visa type templates (Epic 46, FR-232, AD-52). India-outbound: US H-1B, UK Skilled Worker, UAE employment
+# visa. Upserted by key from migration 20261007_310_01 and ``python -m app.cli seed-visa-templates`` (owner role);
+# ``template_version`` is bumped when the content of a template changes. Operational checklists only -- not legal
+# advice. Talent OS files nothing with any government.
+notice: &notice "Operational checklist, not legal advice — verify with your counsel before use."
+templates:
+  - key: us_h1b
+    country: US
+    name: US H-1B
+    category: work
+    last_reviewed: 2026-10-06
+    notice: *notice
+    definition:
+      stages:
+        - {key: petition_preparation, label: Petition preparation, category: preparing, sla_days: 30}
+        - {key: lca_filed, label: LCA filed, category: filed, sla_days: 10}
+        - {key: i129_filed, label: I-129 filed, category: filed, sla_days: 15}
+        - {key: uscis_processing, label: USCIS processing, category: pending_decision, sla_days: 90}
+        - {key: rfe_response, label: RFE response, category: pending_decision, sla_days: 60}
+        - {key: consular_processing, label: Petition approved — consular processing, category: pending_decision, sla_days: 45}
+        - {key: visa_interview, label: Visa interview, category: pending_decision, sla_days: 30}
+      checklist:
+        - {key: passport, label: Passport (at least 6 months validity beyond travel), document_category: passport, mandatory: true, applies_to: principal, collect_from: worker, validity_rule: {min_months_remaining: 6}}
+        - {key: degree_certificates, label: Degree certificates and transcripts, document_category: education, mandatory: true, applies_to: principal, collect_from: worker}
+        - {key: credential_evaluation, label: Credential evaluation (if non-US degree), document_category: education, mandatory: false, applies_to: principal, collect_from: counsel}
+        - {key: experience_letters, label: Experience letters, document_category: employment, mandatory: true, applies_to: principal, collect_from: worker}
+        - {key: resume, label: Current resume, document_category: resume, mandatory: true, applies_to: principal, collect_from: worker}
+        - {key: offer_letter, label: Offer / employment letter, document_category: employment, mandatory: true, applies_to: employer, collect_from: internal}
+        - {key: client_letter, label: Client letter and itinerary (third-party placement), document_category: employment, mandatory: false, applies_to: employer, collect_from: internal}
+        - {key: payslips, label: Payslips (last 3), document_category: payslip, mandatory: true, applies_to: principal, collect_from: worker, validity_rule: {max_age_days: 120}}
+        - {key: prior_us_visas, label: Prior US visas / I-94s, document_category: immigration, mandatory: false, applies_to: principal, collect_from: worker}
+        - {key: ds160_confirmation, label: DS-160 confirmation, document_category: immigration, mandatory: true, applies_to: principal, collect_from: counsel}
+        - {key: photograph, label: Photograph, document_category: photograph, mandatory: true, applies_to: principal, collect_from: worker}
+        - {key: dependant_passport, label: Dependant passport, document_category: passport, mandatory: true, applies_to: dependant, collect_from: worker, validity_rule: {min_months_remaining: 6}}
+      expiry_fields:
+        - {key: i797_valid_to, label: I-797 valid to, primary: true, required: true}
+        - {key: visa_stamp_valid_to, label: Visa stamp valid to, primary: false, required: false}
+        - {key: i94_valid_to, label: I-94 valid to, primary: false, required: false}
+      alert_offsets: [120, 90, 60, 30]
+      key_dates:
+        - {key: filing, label: Filing}
+        - {key: receipt, label: Receipt}
+        - {key: rfe_due, label: RFE due}
+        - {key: decision, label: Decision}
+        - {key: interview, label: Interview}
+        - {key: travel_date, label: Travel date}
+  - key: uk_skilled_worker
+    country: GB
+    name: UK Skilled Worker
+    category: work
+    last_reviewed: 2026-10-06
+    notice: *notice
+    definition:
+      stages:
+        - {key: cos_requested, label: CoS requested, category: preparing, sla_days: 15}
+        - {key: cos_assigned, label: CoS assigned, category: preparing, sla_days: 10}
+        - {key: application_submitted, label: Visa application submitted, category: filed, sla_days: 10}
+        - {key: biometrics_completed, label: Biometrics completed, category: filed, sla_days: 10}
+        - {key: decision_pending, label: Decision pending, category: pending_decision, sla_days: 21}
+      checklist:
+        - {key: passport, label: Passport, document_category: passport, mandatory: true, applies_to: principal, collect_from: worker, validity_rule: {min_months_remaining: 6}}
+        - {key: cos_reference, label: CoS reference, document_category: immigration, mandatory: true, applies_to: employer, collect_from: internal}
+        - {key: english_evidence, label: English-language evidence (degree taught in English or SELT), document_category: education, mandatory: true, applies_to: principal, collect_from: worker}
+        - {key: tb_certificate, label: TB test certificate (required for India applicants), document_category: medical, mandatory: true, applies_to: principal, collect_from: worker, validity_rule: {max_age_days: 180}}
+        - {key: maintenance_evidence, label: Financial-maintenance evidence or sponsor certification, document_category: financial, mandatory: true, applies_to: principal, collect_from: worker, validity_rule: {max_age_days: 31}}
+        - {key: qualification_certificates, label: Qualification certificates, document_category: education, mandatory: true, applies_to: principal, collect_from: worker}
+        - {key: criminal_record_certificate, label: Criminal record certificate (where the occupation requires it), document_category: police_clearance, mandatory: false, applies_to: principal, collect_from: worker}
+        - {key: dependant_passport, label: Dependant passport, document_category: passport, mandatory: true, applies_to: dependant, collect_from: worker, validity_rule: {min_months_remaining: 6}}
+      expiry_fields:
+        - {key: evisa_valid_to, label: eVisa valid to, primary: true, required: true}
+        - {key: brp_valid_to, label: BRP valid to, primary: false, required: false}
+      alert_offsets: [120, 90, 60, 30]
+      key_dates:
+        - {key: cos_assigned, label: CoS assigned}
+        - {key: filing, label: Filing}
+        - {key: biometrics, label: Biometrics}
+        - {key: decision, label: Decision}
+        - {key: travel_date, label: Travel date}
+  - key: ae_employment
+    country: AE
+    name: UAE employment visa
+    category: work
+    last_reviewed: 2026-10-06
+    notice: *notice
+    definition:
+      stages:
+        - {key: offer_and_documents, label: Offer and documents, category: preparing, sla_days: 15}
+        - {key: degree_attestation, label: Degree attestation, category: preparing, sla_days: 30}
+        - {key: permit_applied, label: Work permit / entry permit applied, category: filed, sla_days: 10}
+        - {key: entry_permit_issued, label: Entry permit issued, category: pending_decision, sla_days: 30}
+        - {key: medical_and_biometrics, label: Medical fitness and Emirates ID biometrics, category: pending_decision, sla_days: 10}
+        - {key: residence_stamping, label: Residence visa stamping, category: pending_decision, sla_days: 10}
+      checklist:
+        - {key: passport, label: Passport, document_category: passport, mandatory: true, applies_to: principal, collect_from: worker, validity_rule: {min_months_remaining: 6}}
+        - {key: photograph, label: Photograph, document_category: photograph, mandatory: true, applies_to: principal, collect_from: worker}
+        - {key: signed_offer_letter, label: Signed offer letter, document_category: employment, mandatory: true, applies_to: principal, collect_from: worker}
+        - {key: attested_degree, label: Attested degree certificate (MEA + UAE embassy), document_category: education, mandatory: true, applies_to: principal, collect_from: worker}
+        - {key: medical_fitness, label: Medical fitness certificate, document_category: medical, mandatory: true, applies_to: principal, collect_from: worker}
+        - {key: emirates_id_receipt, label: Emirates ID application receipt, document_category: identity, mandatory: true, applies_to: principal, collect_from: internal}
+        - {key: dependant_passport, label: Dependant passport, document_category: passport, mandatory: true, applies_to: dependant, collect_from: worker, validity_rule: {min_months_remaining: 6}}
+      expiry_fields:
+        - {key: residence_visa_valid_to, label: Residence visa valid to, primary: true, required: true}
+        - {key: emirates_id_valid_to, label: Emirates ID valid to, primary: false, required: false}
+        - {key: labour_card_valid_to, label: Labour card valid to, primary: false, required: false}
+      alert_offsets: [120, 90, 60, 30]
+      key_dates:
+        - {key: entry_permit_issued, label: Entry permit issued}
+        - {key: medical, label: Medical}
+        - {key: biometrics, label: Biometrics}
+        - {key: stamping, label: Stamping}
+        - {key: travel_date, label: Travel date}

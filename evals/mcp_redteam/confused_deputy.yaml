@@ -1,0 +1,13 @@
+id: mcp_confused_deputy
+description: >-
+  The user asks for another team's (or a random) demand by id and for a record out of scope; the answer is not found,
+  never the data.
+steps:
+  - do: call
+    tool: demands__get
+    args: {demand_id: "{random_id}"}
+    expect: {is_error: true, text_equals: "No matching record was found."}
+  - do: call
+    tool: candidates__get
+    args: {candidate_id: "{other_candidate_id}"}
+    expect: {is_error: true, text_equals: "No matching record was found."}

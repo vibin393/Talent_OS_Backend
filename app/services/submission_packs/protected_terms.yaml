@@ -1,0 +1,61 @@
+# Epic 61: deterministic scan of a submission write-up before it is saved (FR-305, P3 FR-189).
+# A hit refuses the text with ``write_up_protected_attribute`` (the agent rewrites; a person edits).
+# Matching is case-insensitive on word boundaries; a trailing "*" matches any word ending.
+protected_attributes:
+  - age
+  - aged
+  - years old
+  - year old
+  - yrs old
+  - date of birth
+  - born in
+  - gender
+  - male
+  - female
+  - woman
+  - women
+  - religion
+  - religious
+  - hindu
+  - muslim
+  - christian
+  - sikh
+  - jain
+  - caste
+  - dalit
+  - brahmin
+  - marital
+  - married
+  - unmarried
+  - divorced
+  - widow*
+  - single mother
+  - pregnan*
+  - maternity
+  - children
+  - disability
+  - disabled
+  - handicap*
+  - health
+  - medical condition
+  - ethnicity
+  - race
+  - racial
+  - nationality
+  - skin colour
+  - skin color
+  - sexual orientation
+  - gay
+  - lesbian
+compensation_history:
+  - ctc
+  - current salary
+  - salary history
+  - previous salary
+  - last drawn
+  - currently earning
+  - current package
+  - current compensation
+  - expected salary
+  - expected ctc
+  - lpa

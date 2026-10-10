@@ -1,0 +1,141 @@
+# Epic 64 Analytics Evaluation Set -- applications (schema: id, persona, question, expected{definition+viz | clarify | unanswerable}, tolerance, tags).
+- id: ap_by_stage
+  persona: admin
+  question: Applications by stage
+  expected:
+    definition:
+      source: pipeline.application
+      group_by:
+      - field: stage.label
+      measures:
+      - &id001
+        key: n
+        agg: count
+    viz:
+      type: bar
+      x: stage.label
+      value: n
+  tags: []
+- id: ap_by_source_fy
+  persona: admin
+  question: Applications by source this FY
+  expected:
+    definition:
+      source: pipeline.application
+      filters:
+        field: created_at
+        op: between
+        value:
+        - '2026-04-01T00:00:00+05:30'
+        - '2027-03-31T23:59:59+05:30'
+      group_by:
+      - field: source
+      measures:
+      - *id001
+    viz:
+      type: pie
+      x: source
+      value: n
+  tags:
+  - fy
+- id: ap_by_client
+  persona: admin
+  question: Applications by client
+  expected:
+    definition:
+      source: pipeline.application
+      group_by:
+      - field: client.name
+      measures:
+      - *id001
+      sort:
+      - key: n
+        desc: true
+    viz:
+      type: bar
+      x: client.name
+      value: n
+  tags:
+  - by_client
+- id: ap_per_week_quarter
+  persona: admin
+  question: Applications per week this quarter
+  expected:
+    definition:
+      source: pipeline.application
+      filters:
+        field: created_at
+        op: between
+        value:
+        - '2026-10-01T00:00:00+05:30'
+        - '2026-12-31T23:59:59+05:30'
+      group_by:
+      - field: created_at
+        bucket: week
+      measures:
+      - *id001
+    viz:
+      type: line
+      x: created_at
+      value: n
+    assumptions:
+    - I took 'this quarter' as Oct-Dec 2026
+  tags:
+  - quarter
+  - time_series
+- id: ap_screening_pass_rate
+  persona: admin
+  question: Screening pass share
+  expected:
+    definition:
+      source: pipeline.application
+      group_by:
+      - field: screening_passed
+      measures:
+      - key: share
+        agg: pct_of_total
+    viz:
+      type: pie
+      x: screening_passed
+      value: share
+  tags:
+  - pct_of_total
+- id: ap_by_recruiter_90d
+  persona: admin
+  question: Applications by recruiter in the last 90 days
+  expected:
+    definition:
+      source: pipeline.application
+      filters:
+        field: created_at
+        op: within_days
+        value: 90
+      group_by:
+      - field: owner_id
+      measures:
+      - *id001
+    viz:
+      type: bar
+      x: owner_id
+      value: n
+  tags:
+  - by_recruiter
+- id: ap_per_demand
+  persona: admin
+  question: Applications per demand for open demands
+  expected:
+    definition:
+      source: pipeline.application
+      filters:
+        field: demand.status
+        op: eq
+        value: open
+      group_by:
+      - field: demand.title
+      measures:
+      - *id001
+    viz:
+      type: bar
+      x: demand.title
+      value: n
+  tags: []

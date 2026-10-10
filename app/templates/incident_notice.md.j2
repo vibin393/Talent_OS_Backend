@@ -1,0 +1,27 @@
+# Personal data breach notification: {{ incident.title }}
+
+Dear {{ tenant_name }} administrator,
+
+We are informing you of a personal data breach confirmed on **{{ confirmed_at }}** that affects your
+workspace on Talent OS.
+
+## What happened
+{{ details.nature or incident.description }}
+
+## Data categories involved
+{% if details.data_categories %}{% for category in details.data_categories %}- {{ category }}
+{% endfor %}{% else %}- Under investigation; we will update you as soon as this is known.
+{% endif %}
+## What we have done
+{{ details.mitigation or "We contained the incident and are investigating. We will send updates as we learn more." }}
+
+## What you should do (DPDP Act 2023)
+- Inform the Data Protection Board of India without delay, as required for Data Fiduciaries.
+- Inform the affected Data Principals (candidates and users) in clear and plain language: nature, extent,
+  timing and likely consequences of the breach, the mitigation taken, and the safety measures they can take.
+- Record the breach and your actions in your incident register.
+
+## Contact
+{{ details.contact or "security@talentos.example" }}
+
+Severity: {{ incident.severity }} · Reference: {{ incident.id }}

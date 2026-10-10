@@ -1,0 +1,50 @@
+[
+  {
+    "secret_hex": "7365637265742d6f6e65",
+    "secondary_secret_hex": "6f6c642d736563726574",
+    "timestamp": 1700000000,
+    "body": "{\"event\":\"placement.created\",\"id\":\"evt_1\"}",
+    "expected_v1": "08eb8370b11a1de5d8bbc1c49523ec82b6f191c839715737390f7926308a1772",
+    "header": "t=1700000000,v1=08eb8370b11a1de5d8bbc1c49523ec82b6f191c839715737390f7926308a1772,v1=ebfa78620a722868350e892142e08f177df8741ed634e8f42c45d7306b52a271"
+  },
+  {
+    "secret_hex": "00112233445566778899aabbccddeeff",
+    "secondary_secret_hex": "ffeeddccbbaa99887766554433221100",
+    "timestamp": 1735689600,
+    "body": "",
+    "expected_v1": "b2cf5d9d4285f8fa6c7b561eaadef3cc28f94c1f9abd8821155bf305c218d265",
+    "header": "t=1735689600,v1=b2cf5d9d4285f8fa6c7b561eaadef3cc28f94c1f9abd8821155bf305c218d265,v1=d2c45aab11aec9b1da7566673f29b192711978fec0ebcc6156d1b450b2e562fa"
+  },
+  {
+    "secret_hex": "77686b5f746573745f6b6579",
+    "secondary_secret_hex": "77686b5f6e65775f6b6579",
+    "timestamp": 1767225600,
+    "body": "{\"name\":\"Priya Sharma\",\"city\":\"Bengaluru\"}",
+    "expected_v1": "6b89ea8673b16bee40d0f04d6b07036ca9cdd1f4eef010597a480110992af596",
+    "header": "t=1767225600,v1=6b89ea8673b16bee40d0f04d6b07036ca9cdd1f4eef010597a480110992af596,v1=d886b4fc00933b385758b598f53be4c6a8929ccd4a02a0510db8bf4233081825"
+  },
+  {
+    "secret_hex": "a1",
+    "secondary_secret_hex": "b2",
+    "timestamp": 1,
+    "body": "hello world",
+    "expected_v1": "a93a479aa55d87ad8072955d73c301c8a0649dc53270deaad73271e762bb0a8b",
+    "header": "t=1,v1=a93a479aa55d87ad8072955d73c301c8a0649dc53270deaad73271e762bb0a8b,v1=ed97e4e7e7ac5c1fed56603e8449d2da63ec1fcf86e25a40393f881c6ef4f4f6"
+  },
+  {
+    "secret_hex": "deadbeefdeadbeefdeadbeefdeadbeef",
+    "secondary_secret_hex": "cafebabecafebabe",
+    "timestamp": 2000000000,
+    "body": "{\"unicode\":\"नमस्ते ₹100\"}",
+    "expected_v1": "918c92fdc2bb85aba3336f9b52da0d18b430570262af9472565ab495f3a0c657",
+    "header": "t=2000000000,v1=918c92fdc2bb85aba3336f9b52da0d18b430570262af9472565ab495f3a0c657,v1=e4b7e87c01b0a7f706f0b20cd642f1a208978ad3a32f64014f158ecbc6570e8f"
+  },
+  {
+    "secret_hex": "5f5f",
+    "secondary_secret_hex": "6060",
+    "timestamp": 1800000000,
+    "body": "line1\nline2\r\n",
+    "expected_v1": "56858fcff55d221e55285ea4d5f09775e26fa94fefa3109513b2ef1055399f2a",
+    "header": "t=1800000000,v1=56858fcff55d221e55285ea4d5f09775e26fa94fefa3109513b2ef1055399f2a,v1=5739f839405e99c44ae133a620f26cd7d1b1d804304081348720072dcba3f9f2"
+  }
+]

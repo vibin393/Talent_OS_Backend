@@ -40,7 +40,9 @@ from app.schemas.identity import (
     TenantSecurityUpdate,
     UserLogin,
 )
+from app.core.errors import Unauthorized
 from app.services import auth_service as service
+from app.services import central_token
 from app.services import mfa_service as mfa
 
 auth_router = APIRouter(prefix="/auth", tags=["auth"])
@@ -97,6 +99,22 @@ async def user_login(body: UserLogin, request: Request, response: Response) -> A
         return _mfa_challenge(response, result)
     await service.revoke_incoming_session(request, "user", USER_COOKIE)  # story 22.9: re-login revokes
     return _sign_in(response, result)
+
+
+@auth_router.get("/jwks.json")
+async def central_jwks() -> dict[str, object]:
+    """Public JWKS so other apps validate central tenant-claim tokens offline (Epic 3 / AD-6)."""
+    return central_token.jwks()
+
+
+@auth_router.get("/token")
+async def central_token_mint(principal: CurrentUserDep) -> dict[str, object]:
+    """Mint a short-lived tenant-claim JWT from the current session (hybrid model: the opaque
+    ``tos_session`` stays the source of truth; this token is validated offline via JWKS)."""
+    if principal.tenant_id is None:
+        raise Unauthorized()
+    token = central_token.mint_central_token(user_id=principal.id, tenant_id=principal.tenant_id)
+    return {"access_token": token, "token_type": "Bearer", "expires_in": central_token.TTL_SECONDS}
 
 
 @auth_router.post("/mfa/verify", response_model=AuthOut)

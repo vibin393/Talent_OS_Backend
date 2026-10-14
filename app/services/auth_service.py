@@ -809,12 +809,19 @@ async def _open_user_session(
 async def open_user_sign_in(
     ctx: RequestContext, db: AsyncSession, user: User, tenant: Tenant, now: datetime, *, method: str
 ) -> "UserAuthResult":
-    """Complete a user sign-in (password, or password + MFA): session, ``last_login_at``, audit."""
+    """Complete a user sign-in (password, or password + MFA): session, ``last_login_at``, audit.
+
+    ``sessions`` is a platform table (``authenticate_user`` reads it via ``platform_session``), so in
+    the DB-per-tenant model the session row must be written to the platform DB, not this tenant ``db``.
+    Tenant-side work (``last_login_at``, audit, access load) runs first on ``db``; the session row is
+    written last in a short ``platform_session`` so a failure before it issues no cookie.
+    """
     user.last_login_at = now
-    issued = await _open_user_session(ctx, db, user, tenant)
     await db.flush()
     auth = _auth_out(user, tenant, await access.load_access(db, user.id))
     audit.record("auth.login_succeeded", "user", user.id, session=db, method=method)
+    async with platform_session() as pdb:
+        issued = await _open_user_session(ctx, pdb, user, tenant)
     return UserAuthResult(
         auth=auth, session_token=issued.token, csrf_token=csrf_token_for(issued.token), max_age=issued.max_age
     )

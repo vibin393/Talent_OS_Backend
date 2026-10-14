@@ -28,8 +28,12 @@ from app.core.settings import get_settings
 # Statuses a tenant DB may be routed to at request time.
 LIVE_STATUSES = ("active", "provisioning", "suspended")
 
+# One tenant has a DIFFERENT database in each app (Talent OS, Croar, …), so the registry keys on
+# (tenant_id, service). This process is the Talent OS service.
+SERVICE = "talentos"
+
 _control_engine: AsyncEngine | None = None
-# tenant_id (str) -> db_name. Mapping is stable for a tenant's lifetime; invalidated on register.
+# tenant_id (str) -> db_name for THIS service. Stable for a tenant's lifetime; invalidated on register.
 _db_name_cache: dict[str, str] = {}
 
 
@@ -63,20 +67,24 @@ async def dispose_control_engine() -> None:
 
 
 async def ensure_registry_schema() -> None:
-    """Create the ``tenants`` registry table if absent (idempotent)."""
+    """Create the ``tenant_db_map`` registry table if absent (idempotent). Keyed (tenant_id, service)
+    so one tenant can have a different database in each app."""
     async with control_engine().begin() as conn:
         await conn.execute(
             text(
                 """
-                CREATE TABLE IF NOT EXISTS tenants (
-                    tenant_id       uuid PRIMARY KEY,
-                    slug            text NOT NULL UNIQUE,
+                CREATE TABLE IF NOT EXISTS tenant_db_map (
+                    tenant_id       uuid NOT NULL,
+                    service         text NOT NULL,
+                    slug            text NOT NULL,
                     db_name         text NOT NULL,
                     cell            text NOT NULL DEFAULT 'local',
                     schema_version  text,
                     status          text NOT NULL DEFAULT 'provisioning',
                     created_at      timestamptz NOT NULL DEFAULT now(),
-                    updated_at      timestamptz NOT NULL DEFAULT now()
+                    updated_at      timestamptz NOT NULL DEFAULT now(),
+                    PRIMARY KEY (tenant_id, service),
+                    UNIQUE (service, slug)
                 )
                 """
             )
@@ -92,15 +100,15 @@ async def register_tenant(
     schema_version: str | None = None,
     status: str = "active",
 ) -> None:
-    """Insert or update a tenant's registry row (idempotent on ``tenant_id``)."""
+    """Insert or update this service's registry row for a tenant (idempotent on (tenant_id, service))."""
     tid = uuid.UUID(str(tenant_id))
     async with control_engine().begin() as conn:
         await conn.execute(
             text(
                 """
-                INSERT INTO tenants (tenant_id, slug, db_name, cell, schema_version, status)
-                VALUES (:tid, :slug, :db, :cell, :ver, :status)
-                ON CONFLICT (tenant_id) DO UPDATE SET
+                INSERT INTO tenant_db_map (tenant_id, service, slug, db_name, cell, schema_version, status)
+                VALUES (:tid, :svc, :slug, :db, :cell, :ver, :status)
+                ON CONFLICT (tenant_id, service) DO UPDATE SET
                     slug = EXCLUDED.slug,
                     db_name = EXCLUDED.db_name,
                     cell = EXCLUDED.cell,
@@ -109,7 +117,8 @@ async def register_tenant(
                     updated_at = now()
                 """
             ),
-            {"tid": str(tid), "slug": slug, "db": db_name, "cell": cell, "ver": schema_version, "status": status},
+            {"tid": str(tid), "svc": SERVICE, "slug": slug, "db": db_name, "cell": cell,
+             "ver": schema_version, "status": status},
         )
     _db_name_cache[str(tid)] = db_name
 
@@ -117,8 +126,11 @@ async def register_tenant(
 async def set_schema_version(tenant_id: uuid.UUID | str, version: str) -> None:
     async with control_engine().begin() as conn:
         await conn.execute(
-            text("UPDATE tenants SET schema_version = :v, updated_at = now() WHERE tenant_id = :tid"),
-            {"v": version, "tid": str(uuid.UUID(str(tenant_id)))},
+            text(
+                "UPDATE tenant_db_map SET schema_version = :v, updated_at = now() "
+                "WHERE tenant_id = :tid AND service = :svc"
+            ),
+            {"v": version, "tid": str(uuid.UUID(str(tenant_id))), "svc": SERVICE},
         )
 
 
@@ -134,29 +146,32 @@ def _row_to_record(row: Any) -> TenantRecord:
 
 
 async def list_tenants(*, only_live: bool = True) -> list[TenantRecord]:
-    """All registered tenants (for migration fan-out). ``only_live`` filters to routable statuses."""
-    sql = "SELECT tenant_id, slug, db_name, cell, schema_version, status FROM tenants"
+    """This service's registered tenants (for migration fan-out). ``only_live`` filters statuses."""
+    sql = "SELECT tenant_id, slug, db_name, cell, schema_version, status FROM tenant_db_map WHERE service = :svc"
+    params: dict[str, Any] = {"svc": SERVICE}
     if only_live:
-        sql += " WHERE status = ANY(:statuses)"
+        sql += " AND status = ANY(:statuses)"
+        params["statuses"] = list(LIVE_STATUSES)
     sql += " ORDER BY created_at"
     async with control_engine().connect() as conn:
-        result = await conn.execute(text(sql), {"statuses": list(LIVE_STATUSES)} if only_live else {})
+        result = await conn.execute(text(sql), params)
         return [_row_to_record(r) for r in result]
 
 
 async def resolve_db_name(tenant_id: uuid.UUID | str) -> str:
-    """Return the DB name that holds this tenant's data (cached). Raises if unknown/not routable."""
+    """Return the DB name that holds this tenant's data FOR THIS SERVICE (cached)."""
     tid = str(uuid.UUID(str(tenant_id)))
     cached = _db_name_cache.get(tid)
     if cached is not None:
         return cached
     async with control_engine().connect() as conn:
         result = await conn.execute(
-            text("SELECT db_name, status FROM tenants WHERE tenant_id = :tid"), {"tid": tid}
+            text("SELECT db_name, status FROM tenant_db_map WHERE tenant_id = :tid AND service = :svc"),
+            {"tid": tid, "svc": SERVICE},
         )
         row = result.first()
     if row is None:
-        msg = f"tenant {tid} is not in the control registry"
+        msg = f"tenant {tid} is not registered for service {SERVICE!r}"
         raise LookupError(msg)
     if row.status not in LIVE_STATUSES:
         msg = f"tenant {tid} is not routable (status={row.status})"

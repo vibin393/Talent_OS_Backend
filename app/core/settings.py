@@ -35,6 +35,15 @@ class Settings(BaseSettings):
 
     test_db_name: str = "talent_os_main_test"
 
+    # --- Tenancy (D11 / AD-29): "pooled" = one shared DB + RLS; "silo" = one DB per tenant ---
+    # In "silo" mode, tenant_session(tenant_id) routes to that tenant's own database, resolved
+    # through the control-plane tenant registry (control_db_name). platform_session() routes to
+    # platform_db_name (defaults to db_name). Default stays "pooled" so existing deploys are unchanged.
+    tenancy_mode: Literal["pooled", "silo"] = "pooled"
+    control_db_name: str = "control"  # control-plane DB holding the tenant registry (tenant_id -> db)
+    platform_db_name: str = ""  # DB for platform/global (non-tenant) rows in silo; "" -> db_name
+    tenant_db_prefix: str = "tenant_"  # local silo DB naming: <prefix><slug>
+
     # --- Redis / Celery ---
     redis_host: str = "localhost"
     redis_port: int = 6379
@@ -405,6 +414,14 @@ class Settings(BaseSettings):
     def app_db_url(self, db_name: str | None = None) -> str:
         """URL for the runtime ``talent_app`` role; used by the API and workers."""
         return self._url(self.db_app_user, self.db_app_password, db_name)
+
+    def tenant_db_name(self, slug: str) -> str:
+        """Local silo DB name for a tenant slug, e.g. ``acme`` -> ``tenant_acme``."""
+        return f"{self.tenant_db_prefix}{slug}"
+
+    def platform_db(self) -> str:
+        """DB holding platform/global (non-tenant) rows in silo mode."""
+        return self.platform_db_name or self.db_name
 
     def redis_url(self, db: int = 0) -> str:
         auth = f":{quote(self.redis_password, safe='')}@" if self.redis_password else ""

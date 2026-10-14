@@ -91,6 +91,14 @@ _app_engine_loop: asyncio.AbstractEventLoop | None = None
 _LoopMakers = weakref.WeakKeyDictionary[asyncio.AbstractEventLoop, async_sessionmaker[AsyncSession]]
 _foreign_loop_makers: _LoopMakers = weakref.WeakKeyDictionary()
 
+# Silo mode (D11 / AD-29): one engine per (event loop, tenant database). Keyed first by loop
+# (asyncpg connections belong to the loop that opened them, like the pool above), then by DB name.
+_TenantLoopMakers = weakref.WeakKeyDictionary[
+    asyncio.AbstractEventLoop, dict[str, async_sessionmaker[AsyncSession]]
+]
+_tenant_loop_makers: _TenantLoopMakers = weakref.WeakKeyDictionary()
+_tenant_engines: set[AsyncEngine] = set()  # every per-tenant engine, for dispose_engines()
+
 
 def get_engine(url: str, **engine_kwargs: Any) -> AsyncEngine:
     return create_async_engine(url, **engine_kwargs)
@@ -154,6 +162,53 @@ def _sessionmaker() -> async_sessionmaker[AsyncSession]:
     return _app_sessionmaker
 
 
+def _db_sessionmaker(db_name: str) -> async_sessionmaker[AsyncSession]:
+    """Silo (D11/AD-29): a sessionmaker bound to one specific database, cached per (loop, db_name)."""
+    s = get_settings()
+    loop = _running_loop()
+    if loop is None:  # no running loop (rare): a throwaway NullPool engine
+        engine = create_async_engine(s.app_db_url(db_name), poolclass=NullPool)
+        _tenant_engines.add(engine)
+        return async_sessionmaker(engine, class_=TosAsyncSession, expire_on_commit=False)
+    per_loop = _tenant_loop_makers.get(loop)
+    if per_loop is None:
+        per_loop = {}
+        _tenant_loop_makers[loop] = per_loop
+    maker = per_loop.get(db_name)
+    if maker is None:
+        engine = create_async_engine(
+            s.app_db_url(db_name),
+            echo=s.db_echo,
+            pool_size=s.db_pool_size,
+            max_overflow=s.db_max_overflow,
+            pool_timeout=s.db_pool_timeout,
+            pool_pre_ping=True,
+        )
+        _tenant_engines.add(engine)
+        maker = async_sessionmaker(engine, class_=TosAsyncSession, expire_on_commit=False)
+        per_loop[db_name] = maker
+    return maker
+
+
+async def _resolve_maker(info: dict[str, Any]) -> async_sessionmaker[AsyncSession]:
+    """Pick the sessionmaker for a unit of work. In pooled mode this is the shared pool; in silo
+    mode a tenant's session routes to that tenant's own DB and a platform session to the platform DB."""
+    override = _override_maker.get()
+    if override is not None:
+        return override
+    if get_settings().tenancy_mode != "silo":
+        return _sessionmaker()
+    from app.core import tenant_registry  # local import: avoid a module-load import cycle
+
+    tenant_id = info.get(TENANT_INFO_KEY)
+    db_name = (
+        await tenant_registry.resolve_db_name(tenant_id)
+        if tenant_id is not None
+        else get_settings().platform_db()
+    )
+    return _db_sessionmaker(db_name)
+
+
 @contextlib.asynccontextmanager
 async def isolated_engine() -> AsyncIterator[None]:
     """Use a private engine (small pool, bound to the current loop, disposed on exit) for every
@@ -174,6 +229,15 @@ async def dispose_engines() -> None:
     _app_engine = None
     _app_sessionmaker = None
     _app_engine_loop = None
+    # Silo: dispose every per-tenant engine, then the control-plane engine.
+    for engine in list(_tenant_engines):
+        await engine.dispose()
+    _tenant_engines.clear()
+    _tenant_loop_makers.clear()
+    if get_settings().tenancy_mode == "silo":
+        from app.core import tenant_registry
+
+        await tenant_registry.dispose_control_engine()
 
 
 def owner_engine(db_name: str | None = None, **engine_kwargs: Any) -> AsyncEngine:
@@ -196,7 +260,7 @@ def _apply_tenant_context(session: Session, _transaction: SessionTransaction, co
 
 @contextlib.asynccontextmanager
 async def _unit_of_work(info: dict[str, Any]) -> AsyncGenerator[AsyncSession]:
-    session = _sessionmaker()(info=info)
+    session = (await _resolve_maker(info))(info=info)
     try:
         yield session
         await session.commit()

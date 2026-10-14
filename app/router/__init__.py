@@ -105,9 +105,9 @@ def get_layered_routers() -> list[APIRouter]:
 def _identity_routers() -> list[APIRouter]:
     """Identity (Epic 1): operator sign-in / tenant provisioning, tenant-user auth, tenant security and
     tenant administration. Mounted first, in this order."""
-    from app.router import admin, auth, platform
+    from app.router import admin, auth, entitlements, platform
 
-    return [platform.operator_router, auth.auth_router, auth.tenant_router, admin.router]
+    return [platform.operator_router, auth.auth_router, auth.tenant_router, admin.router, entitlements.router]
 
 
 def _epic12_routers() -> list[APIRouter]:

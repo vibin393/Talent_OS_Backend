@@ -31,10 +31,18 @@ def _key() -> RSAKey:
     return _signing_key
 
 
-def mint_central_token(*, user_id: uuid.UUID, tenant_id: uuid.UUID, tenant_slug: str | None = None) -> str:
-    """Mint a short-lived tenant-claim JWT for a signed-in user."""
+def mint_central_token(
+    *,
+    user_id: uuid.UUID,
+    tenant_id: uuid.UUID,
+    tenant_slug: str | None = None,
+    email: str | None = None,
+    name: str | None = None,
+) -> str:
+    """Mint a short-lived tenant-claim JWT for a signed-in user. ``email``/``name`` let other apps
+    identify (and JIT-provision) the matching local user for seamless SSO."""
     now = int(time.time())
-    claims = {
+    claims: dict[str, object] = {
         "iss": ISSUER,
         "aud": AUDIENCE,
         "sub": str(user_id),
@@ -44,6 +52,10 @@ def mint_central_token(*, user_id: uuid.UUID, tenant_id: uuid.UUID, tenant_slug:
     }
     if tenant_slug:
         claims["tenant_slug"] = tenant_slug
+    if email:
+        claims["email"] = email
+    if name:
+        claims["name"] = name
     header = {"alg": "RS256", "kid": _KID, "typ": "JWT"}
     return jwt.encode(header, claims, _key())
 

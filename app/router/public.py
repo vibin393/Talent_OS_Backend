@@ -8,18 +8,19 @@ Secure-link responses carry ``Cache-Control: no-store``, ``Referrer-Policy: no-r
 import hashlib
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, Path, Request, Response
+from fastapi import APIRouter, BackgroundTasks, Depends, Path, Request, Response, status
 
 from app.core import rate_limit
 from app.core.context import get_context
 from app.core.errors import Forbidden
 from app.core.settings import get_settings
+from app.schemas.find_workspace import FindWorkspaceIn, FindWorkspaceOut
 from app.schemas.interviews import PublicScorecardIn
 from app.schemas.offers import AcceptIn, CandidateOfferView, DeclineIn, OfferActionOut
 from app.schemas.pipeline import PublicActionOut, PublicFeedbackIn, PublicLinkView, PublicSubmitIn
 from app.schemas.platform import SubProcessorOut
 from app.schemas.privacy import PublicConsentIn, PublicConsentOut
-from app.services import platform_service, privacy, public_links_service
+from app.services import find_workspace_service, platform_service, privacy, public_links_service
 
 router = APIRouter(prefix="/public", tags=["public"])
 
@@ -55,6 +56,23 @@ ActionGuard = Annotated[None, Depends(_action_guard)]
 @router.get("/sub-processors", response_model=list[SubProcessorOut])
 async def public_sub_processors() -> list[SubProcessorOut]:
     return await platform_service.list_sub_processors(include_planned=True)
+
+
+@router.post(
+    "/find-workspace", response_model=FindWorkspaceOut, status_code=status.HTTP_202_ACCEPTED
+)
+async def find_workspace(body: FindWorkspaceIn, background: BackgroundTasks) -> FindWorkspaceOut:
+    """Phase 2 Story 1.2: email the workspace link(s) for any tenant(s) this email belongs to.
+
+    Enumeration-safe: always the same ``202 {status: "ok"}`` whether or not anything matched, and the email
+    (sent only on a match) goes out as a background task so the response timing reveals nothing either.
+    """
+    # Rate limit per IP and per email (hashed): two refusals share the generic 429, which leaks no existence.
+    ip = get_context().ip or "unknown"
+    await rate_limit.enforce("find_workspace_ip", hashlib.sha256(ip.encode()).hexdigest()[:32], 20, 3600)
+    await rate_limit.enforce("find_workspace_email", rate_limit.subject_hash(body.email), 5, 3600)
+    await find_workspace_service.find_workspaces(body.email, background)
+    return FindWorkspaceOut()
 
 
 @router.get("/links/{token}", response_model=PublicLinkView)

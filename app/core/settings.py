@@ -240,6 +240,9 @@ class Settings(BaseSettings):
     bot_challenge_provider: Literal["none", "turnstile", "hcaptcha"] = "none"
     bot_challenge_site_key: str = ""
     bot_challenge_secret: str = ""
+    # Epic 6.2 / AD-1: tenant-subdomain root (``<slug>.<APP_ROOT_DOMAIN>`` resolves the host to a tenant,
+    # so sign-in can infer the tenant from the host). Empty = off (tenant_slug must be supplied).
+    app_root_domain: str = ""
     # Subdomain mode ``<slug>.<CAREERS_ROOT_DOMAIN>`` (empty = path mode ``/careers/<slug>`` only).
     careers_root_domain: str = ""
     # Epic 33 (AD-38): CNAME target shown to tenants adding a custom Career Portal domain (hosting-provided).

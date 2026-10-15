@@ -50,6 +50,19 @@ PLAN_MODULES: dict[str, set[str]] = {
 }
 DEFAULT_PLAN = "standard"
 
+# Metering (Epic 4.4): entitlement and metering are a TWO-STAGE gate — the entitlement check
+# ("does this tenant have the module/feature?") runs FIRST; for metered modules a second check then
+# debits the metering sub-system ("does this tenant have the credits for this action?"). Croar's
+# credit ledger (`credit_accounts` / `credit_transactions`, `CREDIT_COSTS`) is the metering
+# implementation; entitlements only declares WHICH modules are metered and enforces the ordering.
+METERED_MODULES: frozenset[str] = frozenset({"ai_copilot", "assessments"})
+
+
+def is_metered(module: str) -> bool:
+    """True if using this module draws on the credit/metering sub-system (debited after the check)."""
+    return module in METERED_MODULES
+
+
 _engine: AsyncEngine | None = None
 _modules_cache: dict[str, set[str]] = {}  # tenant_id -> enabled modules
 

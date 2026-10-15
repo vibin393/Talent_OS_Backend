@@ -221,7 +221,8 @@ class TenantSecurityUpdate(BaseModel):
 
 
 class UserLogin(BaseModel):
-    tenant_slug: TenantSlug
+    # Optional: when omitted, the tenant is inferred from the request subdomain (Epic 6.2).
+    tenant_slug: TenantSlug | None = None
     email: Email
     password: Annotated[str, StringConstraints(min_length=1, max_length=1024)]
 

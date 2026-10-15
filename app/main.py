@@ -35,6 +35,13 @@ class RequestContextMiddleware:
         headers = {k.decode("latin-1").lower(): v.decode("latin-1") for k, v in scope.get("headers", [])}
         incoming = headers.get(REQUEST_ID_HEADER, "")
         request_id = incoming if _REQUEST_ID_RE.fullmatch(incoming) else uuid.uuid4().hex
+        # Epic 6.2: resolve the tenant from the request host (<slug>.<APP_ROOT_DOMAIN>) for routes that
+        # infer the tenant from the subdomain (e.g. sign-in). The host only proposes a slug.
+        from app.core.tenant_resolver import resolve_tenant_slug_from_host
+
+        scope.setdefault("state", {})["tenant_slug"] = resolve_tenant_slug_from_host(
+            headers.get("host", ""), get_settings().app_root_domain
+        )
         # Epic 12: X-Forwarded-For is honoured only from TRUSTED_PROXIES.
         ctx = RequestContext(
             request_id=request_id, ip=client_ip(scope, headers), user_agent=headers.get("user-agent")

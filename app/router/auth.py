@@ -40,7 +40,7 @@ from app.schemas.identity import (
     TenantSecurityUpdate,
     UserLogin,
 )
-from app.core.errors import Unauthorized
+from app.core.errors import Unauthorized, ValidationFailed
 from app.services import auth_service as service
 from app.services import central_token
 from app.services import mfa_service as mfa
@@ -94,6 +94,10 @@ async def accept_invitation(token: TokenPath, body: InvitationAccept, response: 
 
 @auth_router.post("/login", response_model=AuthOut | MfaRequiredOut)
 async def user_login(body: UserLogin, request: Request, response: Response) -> AuthOut | MfaRequiredOut:
+    if body.tenant_slug is None:  # Epic 6.2: infer the tenant from the request subdomain
+        body.tenant_slug = getattr(request.state, "tenant_slug", None)
+        if body.tenant_slug is None:
+            raise ValidationFailed("tenant_slug is required (or sign in on the tenant's subdomain)")
     result = await service.login_user(get_context(), body)
     if isinstance(result, service.MfaChallengeResult):
         return _mfa_challenge(response, result)

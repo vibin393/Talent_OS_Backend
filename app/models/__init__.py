@@ -345,3 +345,18 @@ __all__ += ["job_network"]
 from app.models import ecosystem_governance  # noqa: E402
 
 __all__ += ["ecosystem_governance"]
+
+# Unified platform (hub ingest): inbound data loops — Croar assessments, Feedback IQ engagement signals.
+from app.models import ingest  # noqa: E402
+
+__all__ += ["ingest"]
+
+# Per-tenant outbound email (SMTP) configuration — one row per tenant (org-configured sending mailbox).
+from app.models import mail_settings  # noqa: E402
+
+__all__ += ["mail_settings"]
+
+# Unified platform (spoke -> hub): per-tenant integration credentials (platform table; encrypted ATS key).
+from app.models import integration_credentials  # noqa: E402
+
+__all__ += ["integration_credentials"]

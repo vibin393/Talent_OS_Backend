@@ -17,7 +17,9 @@ import zoneinfo
 from datetime import timedelta
 from typing import Any
 
+from loguru import logger
 from sqlalchemy import select
+from sqlalchemy.exc import DBAPIError, IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core import audit
@@ -95,11 +97,22 @@ def _fields_error(fields: dict[str, str]) -> ValidationFailed:
 
 async def get_row(db: AsyncSession, tenant_id: uuid.UUID | None = None) -> TenantSettings:
     row = (await db.execute(select(TenantSettings))).scalar_one_or_none()
-    if row is None:
-        tid = tenant_id or uuid.UUID(str(db.sync_session.info["tenant_id"]))
-        row = TenantSettings(tenant_id=tid, link_expiries=dict(DEFAULT_LINK_EXPIRIES))
-        db.add(row)
-        await db.flush()
+    if row is not None:
+        return row
+    # First access for a tenant: create the row lazily. Two concurrent first requests (e.g. the admin
+    # settings page loading /settings/sections and /settings at once) can both see no row and both insert
+    # the same primary key, which would surface a duplicate-key IntegrityError as an HTTP 500. Guard the
+    # insert in a savepoint and recover by re-reading the row the other request committed, so a cold-start
+    # race returns 200 instead of an intermittent 500 (FR-74).
+    tid = tenant_id or uuid.UUID(str(db.sync_session.info["tenant_id"]))
+    row = TenantSettings(tenant_id=tid, link_expiries=dict(DEFAULT_LINK_EXPIRIES))
+    try:
+        async with db.begin_nested():
+            db.add(row)
+            await db.flush()
+    except (IntegrityError, DBAPIError):
+        logger.info("tenant_settings lazy-create race for tenant {}; re-reading existing row", tid)
+        row = (await db.execute(select(TenantSettings))).scalar_one()
     return row
 
 

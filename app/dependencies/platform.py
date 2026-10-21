@@ -19,7 +19,7 @@ from app.services import auth_service as identity_service
 
 async def require_platform_operator_mfa(request: Request) -> Principal:
     principal = await identity_service.require_platform_operator(request)
-    if get_settings().platform_operator_mfa_required:
+    if get_settings().platform_operator_mfa_enforced:
         async with platform_session() as pdb:
             operator = await pdb.get(PlatformOperator, principal.id)
             enrolled = operator is not None and operator.mfa_enabled

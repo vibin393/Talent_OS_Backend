@@ -13,3 +13,9 @@
   summary: "Webhooks (Epic 68): an App's own webhook subscriptions (scope webhooks:manage), signed thin event deliveries with replay and test events, the event type catalogue and the 30-day event list for backfill."
   paths: ["/api/public/v1/event_types", "/api/public/v1/events", "/api/public/v1/events/{event_id}", "/api/public/v1/webhooks", "/api/public/v1/webhooks/deliveries/{delivery_id}/replay", "/api/public/v1/webhooks/{subscription_id}", "/api/public/v1/webhooks/{subscription_id}/deliveries", "/api/public/v1/webhooks/{subscription_id}/rotate_secret", "/api/public/v1/webhooks/{subscription_id}/test"]
   fields: ["*"]
+- date: "2026-10-16"
+  version: v1
+  kind: added
+  summary: "Unified platform inbound data loops: POST /assessments (Croar assessment results, linked to a candidate) and POST /engagement (Feedback IQ engagement signals, best-effort matched to a candidate by email). Both require candidates:write, are idempotent on event_id and the Idempotency-Key header."
+  paths: ["/api/public/v1/assessments", "/api/public/v1/engagement"]
+  fields: ["*"]

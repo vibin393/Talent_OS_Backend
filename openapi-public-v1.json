@@ -221,6 +221,280 @@
         "title": "ApplicationOut",
         "type": "object"
       },
+      "ApplicationRef": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          }
+        },
+        "title": "ApplicationRef",
+        "type": "object"
+      },
+      "AssessmentIngestIn": {
+        "additionalProperties": false,
+        "properties": {
+          "application_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ApplicationRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "assessment": {
+            "$ref": "#/components/schemas/AssessmentPayload"
+          },
+          "candidate_ref": {
+            "$ref": "#/components/schemas/CandidateRef"
+          },
+          "event_id": {
+            "description": "Idempotency key of the source event (unique per tenant)",
+            "maxLength": 128,
+            "title": "Event Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "event_id",
+          "candidate_ref",
+          "assessment"
+        ],
+        "title": "AssessmentIngestIn",
+        "type": "object"
+      },
+      "AssessmentOut": {
+        "properties": {
+          "application_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Application Id"
+          },
+          "candidate_id": {
+            "format": "uuid",
+            "title": "Candidate Id",
+            "type": "string"
+          },
+          "completed_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Completed At"
+          },
+          "created_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Created At"
+          },
+          "detail": {
+            "additionalProperties": true,
+            "title": "Detail",
+            "type": "object"
+          },
+          "event_id": {
+            "title": "Event Id",
+            "type": "string"
+          },
+          "human_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Human Id"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "masked_fields": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Masked Fields",
+            "type": "array"
+          },
+          "max_score": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Score"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "object": {
+            "title": "Object",
+            "type": "string"
+          },
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "score": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Score"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "type": {
+            "title": "Type",
+            "type": "string"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated At"
+          },
+          "version": {
+            "description": "Send as If-Match (W/\"<version>\") on PATCH",
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "object",
+          "version",
+          "event_id",
+          "candidate_id",
+          "type",
+          "provider",
+          "name",
+          "status"
+        ],
+        "title": "AssessmentOut",
+        "type": "object"
+      },
+      "AssessmentPayload": {
+        "additionalProperties": false,
+        "properties": {
+          "completed_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Completed At"
+          },
+          "detail": {
+            "additionalProperties": true,
+            "title": "Detail",
+            "type": "object"
+          },
+          "max_score": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Score"
+          },
+          "name": {
+            "maxLength": 200,
+            "title": "Name",
+            "type": "string"
+          },
+          "provider": {
+            "maxLength": 120,
+            "title": "Provider",
+            "type": "string"
+          },
+          "score": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Score"
+          },
+          "status": {
+            "maxLength": 40,
+            "title": "Status",
+            "type": "string"
+          },
+          "type": {
+            "maxLength": 60,
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "provider",
+          "name",
+          "status"
+        ],
+        "title": "AssessmentPayload",
+        "type": "object"
+      },
       "Body_create_import_api_public_v1_imports_post": {
         "properties": {
           "consent_basis": {
@@ -636,6 +910,51 @@
           "full_name"
         ],
         "title": "CandidateOut",
+        "type": "object"
+      },
+      "CandidateRef": {
+        "additionalProperties": false,
+        "properties": {
+          "email": {
+            "anyOf": [
+              {
+                "maxLength": 320,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The candidate's email \u2014 used to resolve the candidate when the caller (e.g. Croar) does not know the ATS id/human_id",
+            "title": "Email"
+          },
+          "external_id": {
+            "anyOf": [
+              {
+                "maxLength": 128,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The candidate's human id (e.g. CAND-0001)",
+            "title": "External Id"
+          },
+          "id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          }
+        },
+        "title": "CandidateRef",
         "type": "object"
       },
       "CandidateUpdateIn": {
@@ -1555,6 +1874,239 @@
           "status"
         ],
         "title": "DemandOut",
+        "type": "object"
+      },
+      "EngagementIngestIn": {
+        "additionalProperties": false,
+        "properties": {
+          "event_id": {
+            "description": "Idempotency key of the source event (unique per tenant)",
+            "maxLength": 128,
+            "title": "Event Id",
+            "type": "string"
+          },
+          "signal": {
+            "$ref": "#/components/schemas/EngagementPayload"
+          },
+          "subject_ref": {
+            "$ref": "#/components/schemas/SubjectRef"
+          }
+        },
+        "required": [
+          "event_id",
+          "subject_ref",
+          "signal"
+        ],
+        "title": "EngagementIngestIn",
+        "type": "object"
+      },
+      "EngagementOut": {
+        "properties": {
+          "created_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Created At"
+          },
+          "detail": {
+            "additionalProperties": true,
+            "title": "Detail",
+            "type": "object"
+          },
+          "event_id": {
+            "title": "Event Id",
+            "type": "string"
+          },
+          "human_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Human Id"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "masked_fields": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Masked Fields",
+            "type": "array"
+          },
+          "matched": {
+            "default": false,
+            "title": "Matched",
+            "type": "boolean"
+          },
+          "matched_candidate_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Matched Candidate Id"
+          },
+          "object": {
+            "title": "Object",
+            "type": "string"
+          },
+          "occurred_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Occurred At"
+          },
+          "score": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Score"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          },
+          "subject_ats_candidate_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subject Ats Candidate Id"
+          },
+          "subject_email": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subject Email"
+          },
+          "summary": {
+            "title": "Summary",
+            "type": "string"
+          },
+          "type": {
+            "title": "Type",
+            "type": "string"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated At"
+          },
+          "version": {
+            "description": "Send as If-Match (W/\"<version>\") on PATCH",
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "object",
+          "version",
+          "event_id",
+          "type",
+          "source",
+          "summary"
+        ],
+        "title": "EngagementOut",
+        "type": "object"
+      },
+      "EngagementPayload": {
+        "additionalProperties": false,
+        "properties": {
+          "detail": {
+            "additionalProperties": true,
+            "title": "Detail",
+            "type": "object"
+          },
+          "occurred_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Occurred At"
+          },
+          "score": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Score"
+          },
+          "source": {
+            "maxLength": 120,
+            "title": "Source",
+            "type": "string"
+          },
+          "summary": {
+            "maxLength": 2000,
+            "title": "Summary",
+            "type": "string"
+          },
+          "type": {
+            "maxLength": 60,
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "source",
+          "summary"
+        ],
+        "title": "EngagementPayload",
         "type": "object"
       },
       "EventOut": {
@@ -4318,6 +4870,37 @@
         "title": "StageMoveIn",
         "type": "object"
       },
+      "SubjectRef": {
+        "additionalProperties": false,
+        "properties": {
+          "ats_candidate_id": {
+            "anyOf": [
+              {
+                "maxLength": 128,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ats Candidate Id"
+          },
+          "email": {
+            "anyOf": [
+              {
+                "maxLength": 320,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Email"
+          }
+        },
+        "title": "SubjectRef",
+        "type": "object"
+      },
       "SubmissionOut": {
         "properties": {
           "application_id": {
@@ -5960,6 +6543,50 @@
         ]
       }
     },
+    "/api/public/v1/assessments": {
+      "post": {
+        "operationId": "ingest_assessment_api_public_v1_assessments_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssessmentIngestIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AssessmentOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Ingest Assessment",
+        "tags": [
+          "public:assessments"
+        ],
+        "x-required-scopes": [
+          "candidates:write"
+        ]
+      }
+    },
     "/api/public/v1/candidates": {
       "get": {
         "operationId": "list_candidates_api_public_v1_candidates_get",
@@ -6912,6 +7539,50 @@
         ],
         "x-required-scopes": [
           "demands:read"
+        ]
+      }
+    },
+    "/api/public/v1/engagement": {
+      "post": {
+        "operationId": "ingest_engagement_api_public_v1_engagement_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EngagementIngestIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EngagementOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Ingest Engagement",
+        "tags": [
+          "public:engagement"
+        ],
+        "x-required-scopes": [
+          "candidates:write"
         ]
       }
     },

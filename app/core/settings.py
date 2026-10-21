@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import Literal, Self
 from urllib.parse import quote
 
-from pydantic import PositiveInt, model_validator
+from pydantic import Field, PositiveInt, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from sqlalchemy.engine import URL
 
@@ -102,6 +102,12 @@ class Settings(BaseSettings):
     # Empty = dev key; in production an empty key is refused when used (``security.key_material``).
     demographic_encryption_key: str = ""
 
+    # --- Internal service-to-service (unified platform) ---
+    # Shared secret for backend-to-backend calls on the compose network (``X-Internal-Secret``), e.g. the
+    # Portal / Croar / Feedback IQ spokes fetching their OWN per-tenant ATS Public API key from
+    # ``/api/v1/internal/tenant-ats-key``. Empty = every internal call is refused (fail closed, 401).
+    internal_service_secret: str = Field("", validation_alias="INTERNAL_SERVICE_SECRET")
+
     # --- External principals (Epic 13, AD-26): Client Users / Vendor Users ---
     external_session_idle_minutes: PositiveInt = 30
     external_session_absolute_hours: PositiveInt = 12
@@ -199,6 +205,16 @@ class Settings(BaseSettings):
     bulk_concurrency_per_tenant: PositiveInt = 4
     # Platform operator endpoints of Epic 12 require an MFA-enrolled operator (story 1.4).
     platform_operator_mfa_required: bool = True
+
+    @property
+    def platform_operator_mfa_enforced(self) -> bool:
+        """Whether operator endpoints actually enforce MFA enrolment.
+
+        ``platform_operator_mfa_required`` is the policy; it is suspended in ``development`` so a locally
+        seeded super-admin can use the console (list/create/manage tenants) without a TOTP dance. Staging
+        and production keep the policy in force, so this never weakens a real deployment.
+        """
+        return self.platform_operator_mfa_required and self.app_env != "development"
 
     # --- Communication, notifications & workflow (Epic 10) ---
     email_send_rate_per_user_hour: PositiveInt = 200

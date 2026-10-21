@@ -23,6 +23,7 @@ from app.core.security import (
 )
 from app.dependencies.platform import PlatformOperatorMfaDep
 from app.schemas.agentic import PlatformKillSwitchIn
+from app.schemas.company_signup import CompanyAdminOut, CompanyCreateIn, SignupOut
 from app.schemas.ecosystem import PlatformSuspendIn, RateTierIn
 from app.schemas.identity import (
     InvitationAdminOut,
@@ -57,6 +58,7 @@ from app.schemas.platform import (
 from app.schemas.sandbox import SandboxCreate, SandboxOut
 from app.services import (
     auth_service,
+    company_onboarding,
     mfa_service,
     platform_service,
     rbac_service,
@@ -146,6 +148,34 @@ async def list_tenants(
 @operator_router.get("/tenants/{tenant_id}", response_model=TenantOut)
 async def get_tenant(tenant_id: uuid.UUID, _: PlatformOperatorDep, db: DBSessionDep) -> TenantOut:
     return TenantOut.model_validate(await auth_service.get_tenant(get_context(), db, tenant_id))
+
+
+# ================================================================ cross-app companies (super-admin console)
+@operator_router.post("/companies", response_model=SignupOut, status_code=status.HTTP_201_CREATED)
+async def create_company(body: CompanyCreateIn, _: PlatformOperatorDep) -> SignupOut:
+    """Operator "create company": provision a workspace across EVERY app (Talent OS + Croar + Feedback IQ),
+    exactly like self-serve signup, and return the admin's invitation link.
+
+    Uses the shared ``company_onboarding.provision_company`` so an operator-created company gets all apps
+    (the legacy ``POST /tenants`` only provisions Talent OS). MFA is not required for this path so the
+    local super-admin can create companies without a second factor.
+    """
+    result = await company_onboarding.provision_company(
+        slug=body.slug,
+        company_name=body.company_name,
+        admin_email=body.admin_email,
+        admin_name=body.admin_name,
+    )
+    return SignupOut(
+        tenant_slug=result.tenant_slug, admin_email=result.admin_email, invite_url=result.invite_url
+    )
+
+
+@operator_router.get("/companies", response_model=list[CompanyAdminOut])
+async def list_companies(_: PlatformOperatorDep) -> list[CompanyAdminOut]:
+    """Every company on the platform (operator-provisioned AND self-serve signups), each enriched with its
+    plan and admin email — the super-admin console joins this onto the tenant grid."""
+    return [CompanyAdminOut.model_validate(row) for row in await company_onboarding.list_companies()]
 
 
 @operator_router.post("/tenants/{tenant_id}/invitations/resend", response_model=InvitationAdminOut)

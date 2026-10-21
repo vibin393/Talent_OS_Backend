@@ -95,6 +95,22 @@ async def seats_used(db: AsyncSession) -> int:
     return int((await db.execute(select(active + pending))).scalar_one())
 
 
+async def module_caps_for_user(db: AsyncSession, user_id: uuid.UUID) -> dict[str, list[str]]:
+    """Unified RBAC: the user's effective module capabilities — the union across their assigned roles
+    (the Tenant Admin role confers every cap). Shape ``{app: [cap, ...]}``; apps with no granted cap are
+    omitted. Imported lazily so ``core`` / ``identity`` keep no dependency on the module-RBAC service."""
+    from app.services import module_rbac
+
+    roles = (
+        await db.execute(
+            select(Role.key, Role.is_system, Role.module_caps)
+            .join(UserRole, UserRole.role_id == Role.id)
+            .where(UserRole.user_id == user_id)
+        )
+    ).all()
+    return module_rbac.effective_module_caps((r.key, r.is_system, r.module_caps) for r in roles)
+
+
 async def load_access(db: AsyncSession, user_id: uuid.UUID) -> Access:
     roles = (
         await db.execute(

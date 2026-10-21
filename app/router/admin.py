@@ -9,7 +9,7 @@ from typing import Annotated
 
 from fastapi import APIRouter, BackgroundTasks, Depends, Query, Response, status
 
-from app.core import audit
+from app.core import audit, rate_limit
 from app.core.context import get_context
 from app.core.pagination import Page, PageParams
 from app.core.permissions import Principal, require
@@ -20,6 +20,7 @@ from app.schemas.identity import (
     BusinessUnitOut,
     BusinessUnitUpdate,
     InvitationAdminOut,
+    ModuleAppOut,
     PermissionOut,
     RoleCreate,
     RoleOut,
@@ -33,6 +34,8 @@ from app.schemas.identity import (
     UserInvite,
     UserUpdate,
 )
+from app.schemas.mail_settings import MailSettingsOut, MailSettingsUpdate, MailTestRequest, MailTestResult
+from app.services import mail_settings_service as mail_settings
 from app.services import rbac_service as rbac
 
 admin_router = APIRouter(prefix="/admin", tags=["admin"])
@@ -47,6 +50,8 @@ TeamRead = Annotated[Principal, Depends(require("team:read"))]
 TeamManage = Annotated[Principal, Depends(require("team:manage"))]
 BURead = Annotated[Principal, Depends(require("business_unit:read"))]
 BUManage = Annotated[Principal, Depends(require("business_unit:manage"))]
+SettingsRead = Annotated[Principal, Depends(require("settings:read"))]
+SettingsManage = Annotated[Principal, Depends(require("settings:manage"))]
 AuditRead = Annotated[Principal, Depends(require("audit:read"))]
 AuditFilterParams = Annotated[audit.AuditFilters, Depends()]
 Paging = Annotated[PageParams, Depends()]
@@ -56,6 +61,13 @@ Paging = Annotated[PageParams, Depends()]
 @permissions_router.get("/permissions", response_model=list[PermissionOut])
 async def list_permissions(_: RoleRead) -> list[PermissionOut]:
     return rbac.permission_catalog()
+
+
+# ================================================================ module capability catalog (unified RBAC)
+@admin_router.get("/module-capabilities", response_model=list[ModuleAppOut])
+async def list_module_capabilities(_: RoleRead) -> list[ModuleAppOut]:
+    """The per-module capability catalog (Croar / Feedback IQ / Job Portal) for the role editor."""
+    return rbac.module_capability_catalog()
 
 
 # ================================================================ users
@@ -240,6 +252,32 @@ async def export_audit_logs(_: AuditRead, db: TenantDBSessionDep, filters: Audit
             "X-Export-Truncated": "true" if export.truncated else "false",
         },
     )
+
+
+# ================================================================ outbound email (SMTP) settings
+@admin_router.get("/mail-settings", response_model=MailSettingsOut)
+async def get_mail_settings(_: SettingsRead, db: TenantDBSessionDep) -> MailSettingsOut:
+    """Return the tenant's outbound email config; the password is masked (``password_set`` only)."""
+    tenant_id = get_context().tenant_id
+    assert tenant_id is not None
+    return await mail_settings.get_mail_settings(db, tenant_id)
+
+
+@admin_router.put("/mail-settings", response_model=MailSettingsOut)
+async def put_mail_settings(
+    body: MailSettingsUpdate, _: SettingsManage, db: TenantDBSessionDep
+) -> MailSettingsOut:
+    """Upsert the tenant's outbound email config. ``smtp_password`` is write-only (omit/null keeps it)."""
+    return await mail_settings.upsert_mail_settings(get_context(), db, body)
+
+
+@admin_router.post("/mail-settings/test", response_model=MailTestResult)
+async def test_mail_settings(body: MailTestRequest, principal: SettingsManage) -> MailTestResult:
+    """Send a REAL test email using the tenant's resolved mailer (rate-limited per tenant)."""
+    tenant_id = principal.tenant_id
+    assert tenant_id is not None
+    await rate_limit.enforce("mail_test", str(tenant_id), 10, 3600)  # 10 test sends / hour / tenant
+    return await mail_settings.send_test_email(tenant_id, body.to)
 
 
 router = APIRouter()

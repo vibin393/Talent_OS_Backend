@@ -29,8 +29,17 @@ Email = Annotated[EmailStr, StringConstraints(max_length=254)]
 
 
 # ---------------------------------------------------------------- auth
+# Platform operators are seeded internally (CLI / seed script), not self-registered, so login accepts any
+# well-formed ``local@domain`` identifier rather than strict ``EmailStr``. This lets internal/dev domains
+# such as ``superadmin@talentos.local`` sign in (``EmailStr`` rejects ``.local`` as a special-use domain).
+# It is input validation only — the password, lockout policy and DB match are unchanged.
+OperatorEmail = Annotated[
+    str, StringConstraints(strip_whitespace=True, min_length=3, max_length=254, pattern=r"^[^@\s]+@[^@\s]+$")
+]
+
+
 class OperatorLogin(BaseModel):
-    email: Email
+    email: OperatorEmail
     password: Annotated[str, StringConstraints(min_length=1, max_length=1024)]
 
 
@@ -42,6 +51,10 @@ class OperatorOut(BaseModel):
     name: str
     mfa_enabled: bool
     last_login_at: datetime | None
+    # Whether the console actually forces MFA enrolment (false in development; see
+    # ``Settings.platform_operator_mfa_enforced``). Lets the operator console skip the enrol-MFA gate
+    # locally without weakening staging/production. Defaults to enforced; set when the profile is built.
+    mfa_enforced: bool = True
 
 
 # ---------------------------------------------------------------- tenants
@@ -348,6 +361,10 @@ class InvitationAdminOut(BaseModel):
     expires_at: datetime
     expired: bool
     created_at: datetime
+    # The accept-invite link, returned to the admin on CREATE/RESEND so they can copy + share it
+    # (an email is also sent). Only populated on the invite/resend response — never on list (the raw
+    # token is one-time and not persisted in plaintext).
+    invite_url: str | None = None
 
 
 class PermissionOut(BaseModel):
@@ -359,6 +376,27 @@ class PermissionOut(BaseModel):
     sensitive: bool = False
 
 
+# Unified RBAC: per-module capability grants ({app: [cap, ...]}), carried in the central SSO token.
+ModuleCaps = Annotated[dict[str, list[str]], Field(default_factory=dict)]
+
+
+class ModuleCapabilityOut(BaseModel):
+    """One capability within an app (``GET /admin/module-capabilities``)."""
+
+    key: str
+    label: str
+    description: str
+
+
+class ModuleAppOut(BaseModel):
+    """An app and its capabilities in the module-capability catalog."""
+
+    key: str
+    label: str
+    description: str
+    capabilities: list[ModuleCapabilityOut]
+
+
 class RoleOut(BaseModel):
     id: uuid.UUID
     key: str
@@ -367,6 +405,8 @@ class RoleOut(BaseModel):
     is_system: bool
     is_immutable: bool
     permissions: dict[str, str]
+    # Unified RBAC: effective per-module capability grants (the Tenant Admin shows every cap).
+    module_caps: dict[str, list[str]] = Field(default_factory=dict)
     user_count: int
     created_at: datetime
     updated_at: datetime
@@ -377,6 +417,7 @@ class RoleCreate(_Strict):
     name: OrgName
     description: Description | None = None
     permissions: dict[str, str] = Field(default_factory=dict)
+    module_caps: ModuleCaps = Field(default_factory=dict)
 
     @field_validator("key")
     @classmethod
@@ -392,6 +433,7 @@ class RoleUpdate(_Strict):
     name: OrgName | None = None
     description: Description | None = None
     permissions: dict[str, str] | None = None
+    module_caps: dict[str, list[str]] | None = None
 
     @field_validator("key")
     @classmethod

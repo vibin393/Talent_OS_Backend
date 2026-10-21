@@ -27,4 +27,15 @@ def build_api_router() -> APIRouter:
 
     for router in get_layered_routers():
         api.include_router(router)
+
+    # Module gateway: the single backend surface the unified shell uses to render other products
+    # (Croar, Feedback IQ, Portal) as native pages — /api/v1/modules/{module}/{path}.
+    from app.router.modules import router as modules_router
+
+    api.include_router(modules_router)
+
+    # Internal service-to-service surface — /api/v1/internal/* (X-Internal-Secret; not a public / gateway route).
+    from app.router.internal import router as internal_router
+
+    api.include_router(internal_router)
     return api

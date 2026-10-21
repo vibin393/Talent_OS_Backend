@@ -11,7 +11,14 @@ from app.core.public_api import PUBLIC_PREFIX
 def get_public_v1_routers() -> list[APIRouter]:
     from app.router.public_v1 import meta
 
-    return [meta.router, *_epic67_routers(), *_epic68_routers()]
+    return [meta.router, *_epic67_routers(), *_epic68_routers(), *_unified_ingest_routers()]
+
+
+def _unified_ingest_routers() -> list[APIRouter]:
+    """Unified-platform hub ingest: Croar assessments and Feedback IQ engagement signals (additive)."""
+    from app.router.public_v1 import ingest
+
+    return [ingest.assessments_router, ingest.engagement_router]
 
 
 def _epic68_routers() -> list[APIRouter]:

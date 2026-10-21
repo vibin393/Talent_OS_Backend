@@ -183,6 +183,15 @@ PLATFORM_TABLES |= frozenset(
     }
 )
 
+PLATFORM_TABLES |= frozenset(
+    {
+        # Unified platform (spoke -> hub): per-(tenant, service) Fernet-encrypted Public API key so the internal
+        # service endpoint can return a tenant's OWN ATS key idempotently. Keyed by the central tenant_id across
+        # tenants (platform DB, read / written via platform_session). No tenant business data.
+        "tenant_integration_credentials"
+    }
+)
+
 # Epic 75 (509_01): Job Network public index. Careers-public posting data and opaque routing keys only; no Candidate
 # data ever crosses tenants (schema guard ``tests/job_network/test_no_personal_data.py``). ``tenant_id`` on these rows
 # is routing / isolation only and is never serialised by any public schema. Grants per the migration

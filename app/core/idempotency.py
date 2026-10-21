@@ -15,7 +15,8 @@ Usage in a router::
 * Same key + same hash with a stored response -> the stored JSON is replayed with the stored status code.
   Same key + different hash -> 409 ``idempotency_key_reused``. A row without a response older than five
   minutes is treated as abandoned and taken over (younger -> 409 ``idempotency_key_in_progress``).
-* Rows expire after 24 h (``maintenance.purge_idempotency_keys``).
+* Rows expire after 30 days (``maintenance.purge_idempotency_keys``) so a delayed relay/replay still replays
+  the stored response rather than re-running the change.
 
 ``app.dependencies.auth`` registers the request-session dependency (``set_session_dependency``) so the guard
 shares the route's ``TenantDBSessionDep`` session (FastAPI caches a dependency per request).
@@ -40,7 +41,9 @@ from app.core.context import get_context
 from app.core.errors import ConflictError, ValidationFailed
 
 HEADER = "Idempotency-Key"
-TTL = timedelta(hours=24)
+# 30 days (was 24 h): a delayed relay / replay from a spoke app (Croar, Feedback IQ) can arrive long after
+# the original call; a short window would let a late retry create a duplicate once the key row had expired.
+TTL = timedelta(days=30)
 ABANDONED_AFTER = timedelta(minutes=5)
 MAX_KEY_LENGTH = 128
 

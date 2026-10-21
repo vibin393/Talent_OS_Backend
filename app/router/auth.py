@@ -42,6 +42,7 @@ from app.schemas.identity import (
 )
 from app.core.errors import Unauthorized, ValidationFailed
 from app.models.identity import User
+from app.services import access_service as access
 from app.services import auth_service as service
 from app.services import central_token
 from app.services import mfa_service as mfa
@@ -116,15 +117,18 @@ async def central_jwks() -> dict[str, object]:
 async def central_token_mint(principal: CurrentUserDep, db: TenantDBSessionDep) -> dict[str, object]:
     """Mint a short-lived tenant-claim JWT from the current session (hybrid model: the opaque
     ``tos_session`` stays the source of truth; this token is validated offline via JWKS). Carries the
-    user's email/name so embedded apps can SSO the matching local user."""
+    user's email/name so embedded apps can SSO the matching local user, and the user's effective
+    ``module_caps`` (unified RBAC) so the other suite apps honor the central role grants offline."""
     if principal.tenant_id is None:
         raise Unauthorized()
     user = await db.get(User, principal.id)
+    module_caps = await access.module_caps_for_user(db, principal.id)
     token = central_token.mint_central_token(
         user_id=principal.id,
         tenant_id=principal.tenant_id,
         email=getattr(user, "email", None),
         name=getattr(user, "name", None),
+        module_caps=module_caps,
     )
     return {"access_token": token, "token_type": "Bearer", "expires_in": central_token.TTL_SECONDS}
 

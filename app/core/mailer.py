@@ -205,6 +205,8 @@ class SmtpMailer:
 
 @lru_cache
 def get_mailer() -> Mailer:
+    """Return the shared PLATFORM mailer (one per process). Per-tenant SMTP is resolved by
+    ``get_mailer_for_tenant`` / ``resolve_mailer``; this stays the fallback."""
     s = get_settings()
     if s.mailer_backend == "smtp":
         if not s.smtp_address:
@@ -229,13 +231,125 @@ def get_mailer() -> Mailer:
     return OutboxMailer(Path(s.outbox_dir), s.effective_mail_from)
 
 
-async def send_email(message: EmailMessage) -> None:
-    """Send from async code without blocking the event loop (mailers do blocking I/O)."""
-    mailer = get_mailer()
-    if await _sandbox_message(message):  # Epic 66 (FR-339): a Sandbox Tenant's mail only ever reaches the outbox
+# ---------------------------------------------------------------- per-tenant SMTP (org-configured mailboxes)
+# Each org may send from its own SMTP account (``tenant_mail_settings``). The resolved SmtpMailer is cached
+# per tenant with a short TTL backstop AND an explicit invalidation hook the settings service calls on every
+# save, so an update is never ignored. ``None`` means "no usable tenant config" -> the platform mailer sends.
+_TENANT_MAILER_TTL_SECONDS = 60.0
+_tenant_mailer_cache: dict[str, tuple["SmtpMailer | None", float]] = {}
+
+
+def invalidate_tenant_mailer(tenant_id: uuid.UUID | str | None = None) -> None:
+    """Drop cached per-tenant mailers (all tenants when ``tenant_id`` is None)."""
+    if tenant_id is None:
+        _tenant_mailer_cache.clear()
+    else:
+        _tenant_mailer_cache.pop(str(tenant_id), None)
+
+
+async def _load_tenant_smtp_mailer(tenant_id: str) -> "SmtpMailer | None":
+    """Build an ``SmtpMailer`` from the tenant's stored config, or None when it is absent / disabled /
+    not SMTP / incomplete / its password cannot be decrypted. Reads the tenant SILO DB directly (no service
+    import: core never imports services, AD-1)."""
+    from cryptography.fernet import InvalidToken
+    from sqlalchemy import text as _text
+
+    from app.core.database import tenant_session
+    from app.core.security import decrypt_str
+
+    async with tenant_session(tenant_id) as db:
+        row = (
+            (
+                await db.execute(
+                    _text(
+                        "SELECT backend, enabled, smtp_address, smtp_port, smtp_username, "
+                        "smtp_password_encrypted, smtp_use_ssl, sender_email, sender_name "
+                        "FROM tenant_mail_settings WHERE tenant_id = CAST(:t AS uuid)"
+                    ),
+                    {"t": tenant_id},
+                )
+            )
+            .mappings()
+            .first()
+        )
+    if row is None or not row["enabled"] or row["backend"] != "smtp":
+        return None
+    if not row["smtp_address"] or not row["sender_email"]:
+        return None
+    password = ""
+    if row["smtp_password_encrypted"]:
+        try:
+            password = decrypt_str("connector", row["smtp_password_encrypted"])
+        except InvalidToken:
+            logger.warning("Tenant SMTP password could not be decrypted (tenant_id={})", tenant_id)
+            return None
+    sender = formataddr((row["sender_name"] or "", row["sender_email"]))
+    s = get_settings()
+    copy = None
+    if s.mailer_outbox_copy and s.app_env != "production":
+        copy = OutboxMailer(Path(s.outbox_dir), sender)
+    return SmtpMailer(
+        row["smtp_address"],
+        int(row["smtp_port"]),
+        row["smtp_username"] or "",
+        password,
+        sender,
+        use_ssl=bool(row["smtp_use_ssl"]),
+        timeout=float(s.smtp_timeout_seconds),
+        copy_to=copy,
+    )
+
+
+async def _tenant_smtp_mailer(tenant_id: uuid.UUID | str | None) -> "SmtpMailer | None":
+    if tenant_id is None:
+        return None
+    import time
+
+    key = str(tenant_id)
+    now = time.monotonic()
+    hit = _tenant_mailer_cache.get(key)
+    if hit is not None and hit[1] > now:
+        return hit[0]
+    try:
+        mailer = await _load_tenant_smtp_mailer(key)
+    except Exception:  # never break sending on a settings lookup -> fall back to the platform mailer
+        logger.exception("Tenant mail settings lookup failed (tenant_id={})", key)
+        return None
+    _tenant_mailer_cache[key] = (mailer, now + _TENANT_MAILER_TTL_SECONDS)
+    return mailer
+
+
+async def get_mailer_for_tenant(tenant_id: uuid.UUID | str | None) -> Mailer:
+    """Return the tenant's own SMTP mailer when it is enabled + valid, else the shared platform mailer."""
+    tenant_mailer = await _tenant_smtp_mailer(tenant_id)
+    return tenant_mailer if tenant_mailer is not None else get_mailer()
+
+
+async def resolve_mailer(message: EmailMessage) -> tuple[Mailer, str]:
+    """Pick the mailer for ``message`` and label the channel, by precedence.
+
+    * Sandbox Tenant (Epic 66, FR-339): the outbox only, never a real server -> ``"outbox"``.
+    * the message's tenant has its own enabled SMTP config -> that mailer (``"tenant_smtp"``).
+    * otherwise the shared platform mailer (``"platform"``).
+    """
+    from app.core.context import get_context
+
+    if await _sandbox_message(message):
         s = get_settings()
-        mailer = OutboxMailer(Path(s.outbox_dir), s.effective_mail_from)
+        return OutboxMailer(Path(s.outbox_dir), s.effective_mail_from), "outbox"
+    tenant_id = message.tenant_id or get_context().tenant_id
+    tenant_mailer = await _tenant_smtp_mailer(tenant_id)
+    if tenant_mailer is not None:
+        return tenant_mailer, "tenant_smtp"
+    return get_mailer(), "platform"
+
+
+async def send_email(message: EmailMessage) -> str:
+    """Send from async code without blocking the event loop (mailers do blocking I/O). Resolves the mailer
+    per the message's tenant (its own SMTP, else platform; sandbox -> outbox) and returns the channel used."""
+    mailer, channel = await resolve_mailer(message)
     await asyncio.to_thread(mailer.send, message)
+    return channel
 
 
 async def _sandbox_message(message: EmailMessage) -> bool:
@@ -279,10 +393,16 @@ class RoutingMailer:
         ):
             try:
                 if await sender(message.tenant_id, message.sender_user_id, message):
-                    logger.info("Email sent through the user's mailbox (id={}, kind={})", message.id, message.kind)
+                    logger.info(
+                        "Email sent through the user's mailbox (id={}, kind={})", message.id, message.kind
+                    )
                     return "mailbox"
             except Exception as exc:
-                logger.warning("Mailbox send failed, using the platform mailer (id={}, error={})", message.id, type(exc).__name__)
+                logger.warning(
+                    "Mailbox send failed, using the platform mailer (id={}, error={})",
+                    message.id,
+                    type(exc).__name__,
+                )
         await send_email(message)
         return "platform"
 

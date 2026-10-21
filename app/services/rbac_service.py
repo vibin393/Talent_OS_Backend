@@ -54,6 +54,8 @@ from app.schemas.identity import (
     BusinessUnitRef,
     BusinessUnitUpdate,
     InvitationAdminOut,
+    ModuleAppOut,
+    ModuleCapabilityOut,
     PermissionOut,
     RoleCreate,
     RoleOut,
@@ -72,6 +74,7 @@ from app.schemas.identity import (
 )
 from app.services import access_service as access
 from app.services import auth_service as service
+from app.services import module_rbac
 
 ROLE_KEY_CONSTRAINT = "uq_roles_tenant_id_key"
 TEAM_NAME_CONSTRAINT = "uq_teams_tenant_id_name"
@@ -455,7 +458,11 @@ async def invite_user(
     )
     await db.refresh(issued.invitation)
     background.add_task(service.deliver_email, user_invitation_email(tenant, data.email, issued.token))
-    return _invitation_out(issued.invitation)
+    out = _invitation_out(issued.invitation)
+    # Hand the admin the copyable accept-invite link (email is also sent). Local/dev has no mail, and
+    # admins routinely want to share the link directly; the token is one-time and only returned here.
+    out.invite_url = f"http://{tenant.slug}.talentos.localhost/accept-invite?token={issued.token}"
+    return out
 
 
 async def list_invitations(
@@ -608,6 +615,22 @@ def permission_catalog() -> list[PermissionOut]:
     ]
 
 
+def module_capability_catalog() -> list[ModuleAppOut]:
+    """Unified RBAC: the per-module capability catalog for the role editor (grouped by app)."""
+    return [
+        ModuleAppOut(
+            key=app.key,
+            label=app.label,
+            description=app.description,
+            capabilities=[
+                ModuleCapabilityOut(key=c.key, label=c.label, description=c.description)
+                for c in app.capabilities
+            ],
+        )
+        for app in module_rbac.catalog()
+    ]
+
+
 def _is_immutable(role: Role) -> bool:
     return role.is_system and role.key == TENANT_ADMIN
 
@@ -621,6 +644,7 @@ def _role_out(role: Role, user_count: int) -> RoleOut:
         is_system=role.is_system,
         is_immutable=_is_immutable(role),
         permissions=dict(sorted(role.permissions.items())),
+        module_caps=module_rbac.effective_role_module_caps(role.key, role.is_system, role.module_caps),
         user_count=user_count,
         created_at=role.created_at,
         updated_at=role.updated_at,
@@ -692,6 +716,7 @@ async def create_role(ctx: RequestContext, db: AsyncSession, data: RoleCreate) -
     assert principal.tenant_id is not None
     grants = _grants(data.permissions)
     ensure_can_grant(principal, grants)
+    module_caps = module_rbac.validate_module_caps(data.module_caps)
     if (await db.execute(select(Role.id).where(Role.key == data.key))).first():
         raise _role_exists()
     role = Role(
@@ -701,6 +726,7 @@ async def create_role(ctx: RequestContext, db: AsyncSession, data: RoleCreate) -
         description=data.description,
         is_system=False,
         permissions=grants,
+        module_caps=module_caps,
     )
     db.add(role)
     try:
@@ -731,6 +757,13 @@ async def update_role(ctx: RequestContext, db: AsyncSession, role_id: uuid.UUID,
             ensure_can_grant(principal, role.permissions)
             ensure_can_grant(principal, grants)
             role.permissions = grants
+    if "module_caps" in sent and data.module_caps is not None:
+        module_caps = module_rbac.validate_module_caps(data.module_caps)
+        if _is_immutable(role):
+            if module_caps != module_rbac.effective_role_module_caps(role.key, role.is_system, {}):
+                raise _system_role("The Tenant Admin role's module access cannot be changed")
+        else:
+            role.module_caps = module_caps
     if "name" in sent and data.name is not None:
         role.name = data.name
     if "description" in sent:

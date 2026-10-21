@@ -1,11 +1,17 @@
 """Story 12.8 (FR-74): settings hub catalog, company / regional / ID prefixes / link expiries with field-level
 422s and audit. Matrix rows 33, 34, 35."""
 
+import asyncio
+import uuid
+
 from fastapi import FastAPI
+from sqlalchemy import select
 
 from app.core.database import tenant_session
+from app.models.settings import TenantSettings
 from app.services import settings_service
 from tests.epic12 import Org3, create_candidate, h, member
+from tests.factories import create_tenant_row
 
 SETTINGS = "/api/v1/settings"
 
@@ -78,8 +84,6 @@ async def test_company_and_permissions(app: FastAPI, org3: Org3, other3: Org3) -
     assert resp.status_code == 200, resp.text
     assert resp.json()["grievance_officer"]["name"] == "Gita"
     assert (await other3.admin.client.get(f"{SETTINGS}/sections")).json()["company"] == {}
-    import uuid
-
     missing_logo = await org3.admin.client.patch(
         f"{SETTINGS}/company", json={"logo_file_id": str(uuid.uuid4())}, headers=h(org3.admin)
     )
@@ -101,3 +105,29 @@ async def test_catalog_endpoints_are_real_routes(app: FastAPI, org3: Org3) -> No
         assert keys["matching_weights"]["endpoint"] == "/api/v1/settings/matching"
     missing = [e["endpoint"] for e in catalog if e["available"] and e["endpoint"] not in paths]
     assert missing == []
+
+
+async def test_sections_first_access_is_race_safe() -> None:
+    """Cold-start race (FR-74): the first requests for a tenant lazily create ``tenant_settings``. Several
+    concurrent first requests all see no row and all try to insert the same primary key; one wins and the
+    others must recover by re-reading rather than surfacing a duplicate-key IntegrityError as an HTTP 500.
+
+    A barrier releases every session to call ``get_row`` at once so their inserts genuinely contend (this
+    fails with a raw ``IntegrityError`` without the savepoint guard). Asserts every concurrent ``get_row``
+    returns the row and exactly one row ends up persisted."""
+    tenant = await create_tenant_row()
+    release = asyncio.Event()
+
+    async def one() -> uuid.UUID:
+        async with tenant_session(tenant) as db:
+            await release.wait()  # poise every session, then create concurrently
+            return (await settings_service.get_row(db, tenant)).tenant_id
+
+    tasks = [asyncio.create_task(one()) for _ in range(8)]
+    await asyncio.sleep(0.1)  # let all sessions open and reach the barrier
+    release.set()
+    results = await asyncio.gather(*tasks)
+    assert all(r == tenant for r in results)
+    async with tenant_session(tenant) as db:
+        rows = (await db.execute(select(TenantSettings))).scalars().all()
+        assert len(rows) == 1 and rows[0].tenant_id == tenant

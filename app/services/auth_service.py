@@ -373,6 +373,13 @@ class OperatorLoginResult:
     max_age: int
 
 
+def operator_out(operator: PlatformOperator) -> OperatorOut:
+    """``OperatorOut`` for an operator, with ``mfa_enforced`` resolved from settings (dev-gated)."""
+    profile = OperatorOut.model_validate(operator)
+    profile.mfa_enforced = get_settings().platform_operator_mfa_enforced
+    return profile
+
+
 async def create_operator(email: str, name: str, password: str) -> OperatorOut:
     """Create a platform operator (used by ``python -m app.cli create-operator``)."""
     try:
@@ -418,7 +425,7 @@ async def open_operator_session(
         db, principal_type="platform", principal_id=operator.id, ip=ctx.ip, user_agent=ctx.user_agent
     )
     await db.flush()
-    profile = OperatorOut.model_validate(operator)
+    profile = operator_out(operator)
     audit.record(
         "auth.login_succeeded",
         "platform_operator",
@@ -517,7 +524,7 @@ async def get_operator_profile(ctx: RequestContext, db: AsyncSession) -> Operato
     operator = await db.get(PlatformOperator, principal.id)
     if operator is None:
         raise NotFound("Operator not found")
-    return OperatorOut.model_validate(operator)
+    return operator_out(operator)
 
 
 async def require_platform_operator(request: Request) -> Principal:

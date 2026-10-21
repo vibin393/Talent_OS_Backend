@@ -360,6 +360,11 @@ class Role(UUIDPk, TenantMixin, Timestamps, AuditedMixin, Base):
     permissions: Mapped[dict[str, str]] = mapped_column(
         JSONB(), nullable=False, server_default=text("'{}'::jsonb")
     )
+    # Unified RBAC: per-module capability grants across the suite (Croar / Feedback IQ / Job Portal), shaped
+    # ``{app: [cap, ...]}`` (``app.services.module_rbac``). Carried in the central SSO ``module_caps`` claim.
+    module_caps: Mapped[dict[str, list[str]]] = mapped_column(
+        JSONB(), nullable=False, server_default=text("'{}'::jsonb")
+    )
 
 
 class UserRole(TenantMixin, AuditedMixin, Base):

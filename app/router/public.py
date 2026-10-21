@@ -16,11 +16,18 @@ from app.core.errors import Forbidden
 from app.core.settings import get_settings
 from app.schemas.find_workspace import FindWorkspaceIn, FindWorkspaceOut
 from app.schemas.interviews import PublicScorecardIn
+from app.schemas.company_signup import SignupIn, SignupOut
 from app.schemas.offers import AcceptIn, CandidateOfferView, DeclineIn, OfferActionOut
 from app.schemas.pipeline import PublicActionOut, PublicFeedbackIn, PublicLinkView, PublicSubmitIn
 from app.schemas.platform import SubProcessorOut
 from app.schemas.privacy import PublicConsentIn, PublicConsentOut
-from app.services import find_workspace_service, platform_service, privacy, public_links_service
+from app.services import (
+    company_onboarding,
+    find_workspace_service,
+    platform_service,
+    privacy,
+    public_links_service,
+)
 
 router = APIRouter(prefix="/public", tags=["public"])
 
@@ -73,6 +80,27 @@ async def find_workspace(body: FindWorkspaceIn, background: BackgroundTasks) -> 
     await rate_limit.enforce("find_workspace_email", rate_limit.subject_hash(body.email), 5, 3600)
     await find_workspace_service.find_workspaces(body.email, background)
     return FindWorkspaceOut()
+
+
+@router.post("/signup", response_model=SignupOut)
+async def signup(body: SignupIn) -> SignupOut:
+    """Self-serve "Create your company": provision a new workspace across the unified platform and return
+    the admin's invitation link.
+
+    Unauthenticated (it is self-serve) and rate-limited per client IP. Local-first: there is no real email,
+    so the invite link is RETURNED here (the success page shows it) instead of being emailed.
+    """
+    ip = get_context().ip or "unknown"
+    await rate_limit.enforce("signup_ip", hashlib.sha256(ip.encode()).hexdigest()[:32], 10, 3600)
+    result = await company_onboarding.provision_company(
+        slug=body.slug,
+        company_name=body.company_name,
+        admin_email=body.admin_email,
+        admin_name=body.admin_name,
+    )
+    return SignupOut(
+        tenant_slug=result.tenant_slug, admin_email=result.admin_email, invite_url=result.invite_url
+    )
 
 
 @router.get("/links/{token}", response_model=PublicLinkView)

@@ -189,6 +189,7 @@ async def test_purge_expired(member: Member) -> None:
     key = uuid.uuid4().hex
     assert (await member.client.post(PATH, json={"value": 1}, headers=_headers(member, key))).status_code == 201
     async with tenant_session(member.tenant_id) as s:
-        assert await purge_expired(s, datetime.now(UTC) + timedelta(hours=25)) >= 1
+        # Retention is 30 days (delayed-relay safety): a cutoff just past the window purges the row.
+        assert await purge_expired(s, datetime.now(UTC) + timedelta(days=31)) >= 1
         left = (await s.execute(text("SELECT count(*) FROM idempotency_keys WHERE key = :k"), {"k": key})).scalar_one()
     assert left == 0

@@ -14,6 +14,7 @@ from app.services.public_api import (
     engagement,
     finance,
     imports,
+    ingest,
 )
 from app.services.public_api._core import Order
 from app.services.public_api.imports import process_import
@@ -47,5 +48,6 @@ __all__ = [
     "engagement",
     "finance",
     "imports",
+    "ingest",
     "process_import",
 ]

@@ -86,7 +86,7 @@ def mark_dirty(tenant_id: Any, subject_kind: str, subject_id: Any) -> None:
     try:
         if (
             countdown
-            and not getattr(getattr(tasks.score_subject, "app", None), "conf", None).task_always_eager
+            and not getattr(getattr(getattr(tasks.score_subject, "app", None), "conf", None), "task_always_eager", False)
         ):
             tasks.score_subject.apply_async(args=[str(tid), subject_kind, str(sid)], countdown=countdown)
             return

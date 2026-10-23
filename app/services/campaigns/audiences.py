@@ -307,7 +307,7 @@ def _rows_from_upload(filename: str | None, content: bytes) -> list[str]:
         text = content.decode("utf-8-sig", errors="replace")
         for row in csv.reader(io.StringIO(text)):
             cell = next((c for c in row if c.strip()), "")
-            values.append(cell.strip())
+            values.append((cell or "").strip())
     if values and values[0].lower() in ("email", "phone", "email or phone", "value", "contact"):
         values[0] = ""
     return values[:MAX_IMPORT_ROWS]

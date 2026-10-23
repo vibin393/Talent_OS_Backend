@@ -125,7 +125,7 @@ async def mapped_fields(db: AsyncSession, board_key: str, src: Source) -> dict[s
     d = src.demand
     lookups = {
         "function": (d.department or "").strip(),
-        "location": (_location(d).city or "") if src.posting.show_location and _location(d) else "",
+        "location": (loc.city or "") if src.posting.show_location and (loc := _location(d)) else "",
         "experience_band": _band(d.min_experience_years) or "",
         "employment_type": d.employment_type or "",
         "education": (d.education or "").strip(),

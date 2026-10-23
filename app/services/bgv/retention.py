@@ -35,7 +35,7 @@ async def preview_due(db: AsyncSession, on: date | None = None) -> list[dict[str
         {
             "case_id": str(c.id),
             "human_id": c.human_id,
-            "evidence_purge_after": c.evidence_purge_after.isoformat(),
+            "evidence_purge_after": c.evidence_purge_after.isoformat() if c.evidence_purge_after else None,
         }
         for c in await _due(db, on)
     ]

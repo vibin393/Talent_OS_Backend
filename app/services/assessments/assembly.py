@@ -52,7 +52,7 @@ def section_summary(section: dict[str, Any]) -> VersionSectionOut:
     if section.get("draw"):
         pool = section.get("pool") or []
         count = int(section["draw"]["count"])
-        mean = (sum(Decimal(str(p["points"])) for p in pool) / len(pool)) if pool else Decimal(0)
+        mean = (sum((Decimal(str(p["points"])) for p in pool), Decimal(0)) / len(pool)) if pool else Decimal(0)
         return VersionSectionOut(
             key=section["key"], title=section["title"], time_limit_minutes=section.get("time_limit_minutes"),
             kind="draw", item_count=count, points=(mean * count).quantize(Decimal("0.01")), pool_size=len(pool),

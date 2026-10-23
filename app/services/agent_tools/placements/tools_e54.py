@@ -49,7 +49,7 @@ async def _list(tctx: Any, args: PlacementListIn) -> ToolOutcome:
         PlacementRow(
             id=p.id, human_id=p.human_id, candidate_name=p.candidate_name, client_name=p.client_name, role_title=p.role_title,
             status=p.status, planned_start_date=p.planned_start_date.isoformat() if p.planned_start_date else None,
-            effective_end_date=(p.end_date or p.planned_end_date).isoformat() if (p.end_date or p.planned_end_date) else None,
+            effective_end_date=(_eff.isoformat() if (_eff := p.end_date or p.planned_end_date) else None),
             url=url_for("placement", p.id),
         )
         for p in page.items

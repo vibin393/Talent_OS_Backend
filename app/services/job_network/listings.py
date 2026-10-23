@@ -150,6 +150,7 @@ async def load_eligibility_input(
         )
         return data, None
     posting, demand = row
+    assert demand is not None  # inner join on Demand: a posting row always has its demand
     # ``careers._live`` is expressed as SQL; re-check it in Python for this already-loaded row.
     from app.services.portal.careers import LIVE_DEMAND_STATUSES
 

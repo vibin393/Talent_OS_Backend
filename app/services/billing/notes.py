@@ -13,7 +13,7 @@ import uuid
 from collections import defaultdict
 from datetime import date
 from decimal import Decimal
-from typing import Any
+from typing import Any, cast
 
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -114,6 +114,9 @@ async def remaining(
         (-1, CreditNote, CreditNoteLine, CreditNoteTaxLine, "credit_note_id"),
         (1, DebitNote, DebitNoteLine, DebitNoteTaxLine, "debit_note_id"),
     ):
+        head = cast("type[CreditNote]", head)
+        line_model = cast("type[CreditNoteLine]", line_model)
+        tax_model = cast("type[CreditNoteTaxLine]", tax_model)
         stmt = (
             select(line_model)
             .join(head, head.id == getattr(line_model, fk))
@@ -301,6 +304,8 @@ async def _finalize(db: AsyncSession, kind: str, note: Any, invoice: Invoice) ->
         if kind == "credit_note"
         else (DebitNote, DebitNoteLine, DebitNoteTaxLine, "debit_note_id")
     )
+    line_model = cast("type[CreditNoteLine]", line_model)
+    tax_model = cast("type[CreditNoteTaxLine]", tax_model)
     from sqlalchemy import delete
 
     rows = list(

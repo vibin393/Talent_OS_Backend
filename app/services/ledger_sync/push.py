@@ -15,7 +15,7 @@
 import uuid
 from collections.abc import Sequence
 from datetime import date
-from typing import Any
+from typing import Any, cast
 
 from sqlalchemy import select
 from sqlalchemy.dialects.postgresql import insert as pg_insert
@@ -222,6 +222,7 @@ async def discover(db: AsyncSession, installation_id: uuid.UUID, legal_entity_id
     while auto-push was off). Returns the number created."""
     created = 0
     for kind, model in _MODELS.items():
+        model = cast("type[Invoice]", model)
         stmt = select(model).where(model.legal_entity_id == legal_entity_id, model.status.in_(("issued", "cancelled")), model.number.is_not(None))
         if from_date:
             stmt = stmt.where(model.doc_date >= from_date)

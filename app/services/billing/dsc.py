@@ -22,7 +22,7 @@ import asyncio
 import dataclasses
 import uuid
 from datetime import UTC, datetime
-from typing import Any
+from typing import Any, cast
 
 from loguru import logger
 from sqlalchemy import func, select
@@ -549,7 +549,7 @@ async def pending(ctx: RequestContext, db: AsyncSession) -> list[DscPendingOut]:
     now = _now()
     out: list[DscPendingOut] = []
     for r in rows:
-        doc = await db.get(MODEL[r.kind], r.doc_id)
+        doc = cast("Invoice | None", await db.get(MODEL[r.kind], r.doc_id))
         if doc is None:
             continue
         snap = doc.recipient_snapshot or {}
@@ -577,6 +577,7 @@ async def pending_digest(ctx: RequestContext, db: AsyncSession) -> int:
     (deduplicated per day by the notification event id)."""
     # Sweep: documents marked pending at issue whose signing task never ran (e.g. a worker crash) get re-queued.
     for kind, model in MODEL.items():
+        model = cast("type[Invoice]", model)
         orphans = select(model.id).where(
             model.dsc_status == "pending",
             model.status == "issued",

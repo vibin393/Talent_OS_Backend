@@ -12,7 +12,7 @@ import uuid
 from collections.abc import Sequence
 from datetime import date, timedelta
 from decimal import Decimal
-from typing import Any
+from typing import Any, cast
 
 from sqlalchemy import delete, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -506,7 +506,7 @@ async def list_documents(
     original_invoice_id: uuid.UUID | None = None,
     limit: int = 200,
 ) -> list[DocSummaryOut]:
-    model = {"invoice": Invoice, "credit_note": CreditNote, "debit_note": DebitNote}[kind]
+    model = cast("type[Invoice]", {"invoice": Invoice, "credit_note": CreditNote, "debit_note": DebitNote}[kind])
     stmt = select(model)
     if status:
         stmt = stmt.where(model.status.in_(status.split(",")))

@@ -7,6 +7,7 @@ the Egress Guard with their own timeouts. Scheduled pulls and event pushes use t
 
 import uuid
 from datetime import date
+from typing import cast
 
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -64,6 +65,7 @@ async def _outs(db: AsyncSession, rows: list[LedgerSyncRecord]) -> list[LedgerRe
     client_ids: set[uuid.UUID] = set()
     docs: dict[uuid.UUID, object] = {}
     for kind, model in _DOCS.items():
+        model = cast("type[Invoice]", model)
         ids = [r.document_id for r in rows if r.document_kind == kind]
         if ids:
             for d in (await db.execute(select(model).where(model.id.in_(ids)))).scalars():

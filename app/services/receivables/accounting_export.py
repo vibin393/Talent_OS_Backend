@@ -10,7 +10,7 @@ import io
 import uuid
 from datetime import date
 from decimal import Decimal
-from typing import Any
+from typing import Any, cast
 
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -61,6 +61,7 @@ async def collect(db: AsyncSession, legal_entity_id: uuid.UUID, start: date, end
     rows: list[dict[str, Any]] = []
     numbers: dict[uuid.UUID, str | None] = {}
     for kind, m in (("invoice", Invoice), ("credit_note", CreditNote), ("debit_note", DebitNote)):
+        m = cast("type[Invoice]", m)
         stmt = select(m).where(m.legal_entity_id == legal_entity_id, m.status.in_(("issued", "cancelled")), m.doc_date >= start, m.doc_date <= end)
         for doc in (await db.execute(stmt)).scalars():
             numbers[doc.id] = doc.number

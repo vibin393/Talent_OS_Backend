@@ -5,7 +5,7 @@ import uuid
 from dataclasses import dataclass
 from datetime import UTC, date, datetime
 from decimal import Decimal
-from typing import Any, Literal
+from typing import Any, Literal, cast
 
 from sqlalchemy import select, text
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -158,7 +158,7 @@ async def documents(
 ) -> list[DocRow]:
     out: list[DocRow] = []
     for kind in DOC_KINDS:
-        m = model_for(kind)
+        m = cast("type[Invoice]", model_for(kind))
         stmt = select(m).where(m.status.in_(("issued", "cancelled")), m.doc_date.is_not(None))
         if legal_entity_id is not None:
             stmt = stmt.where(m.legal_entity_id == legal_entity_id)
@@ -175,7 +175,7 @@ async def documents(
 
 
 async def document(db: AsyncSession, kind: str, doc_id: uuid.UUID) -> DocRow:
-    m = model_for(kind)
+    m = cast("type[Invoice]", model_for(kind))
     d = (await db.execute(select(m).where(m.id == doc_id))).scalar_one_or_none()
     if d is None or d.status not in ("issued", "cancelled") or d.doc_date is None:
         raise NotFound("Receivable document not found")

@@ -124,6 +124,10 @@ ignore = [
     "RUF029",
     "RET504",
     "RUF043",
+    # Long lines are overwhelmingly docstrings, comments and string constants the
+    # formatter cannot wrap; the formatter still wraps code at line-length. Matches the
+    # "# ruff: file-ignore[line-too-long]" comments already used across the codebase.
+    "E501",    # line-too-long
 ]
 
 [tool.coverage.report]

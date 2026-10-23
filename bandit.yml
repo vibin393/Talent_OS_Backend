@@ -4,3 +4,7 @@ exclude_dirs:
 skips:
   - B101  # assert statement
   - B104  # exec used
+  # Field names, token-type labels and OAuth token-endpoint URLs containing the word
+  # "password"/"token" are matched as hardcoded secrets; these are constants, not secrets.
+  - B105  # hardcoded_password_string (false positives: field/URL/label constants)
+  - B106  # hardcoded_password_funcarg (false positives: '' and seed-user sentinel)

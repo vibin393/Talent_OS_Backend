@@ -38,7 +38,8 @@ from app.schemas.portal import (
     PortalScreeningDetail,
     PortalTimelineEntry,
 )
-from app.services.portal.common import TERMINAL_STAGES, plain_text, render_markdown, stage_label
+from app.services.portal.common import TERMINAL_STAGES, plain_text, stage_label
+from app.services.portal.common import render_markdown as render_markdown
 
 VALID_THROUGH_DAYS = 60
 EMPLOYMENT_TYPES = {

@@ -49,10 +49,8 @@ _SPACES = re.compile(r"\s+")
 
 
 # Epic 22: moved to ``documents/esign.py`` (re-exported here).
-from app.services.documents.esign import (  # ruff: ignore[module-import-not-at-top-of-file]
-    clean_ip,
-    normalize_name,
-)
+from app.services.documents.esign import clean_ip  # ruff: ignore[module-import-not-at-top-of-file]
+from app.services.documents.esign import normalize_name as normalize_name
 
 
 async def released_version(db: AsyncSession, offer: Offer) -> OfferVersion:

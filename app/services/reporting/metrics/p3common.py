@@ -11,9 +11,7 @@ from typing import Any
 
 from app.core.permissions import can_view_compensation
 from app.services.reporting.metrics import TileContext, link
-from app.services.reporting.metrics.p2common import (
-    need,  # ruff: ignore[unused-import] - re-exported  # noqa: F401
-)
+from app.services.reporting.metrics.p2common import need as need  # ruff: ignore[unused-import] - re-exported
 
 SUPPORTING_SIGNAL = "Supporting signal"
 

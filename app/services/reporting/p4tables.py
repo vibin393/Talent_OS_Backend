@@ -10,7 +10,8 @@ transcripts, Proposal args / preview, Copilot text) are never projected.
 from sqlalchemy.sql.expression import TableClause
 
 from app.services.reporting import common
-from app.services.reporting.p2tables import _required, _t
+from app.services.reporting.p2tables import _required
+from app.services.reporting.p2tables import _t as _t
 
 agent_runs = _t(
     "agent_runs",

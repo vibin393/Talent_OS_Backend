@@ -110,7 +110,7 @@ async def send_email(body: EmailSendIn, _: Send, db: DB) -> Any:
 async def address_status(
     _: Send,
     db: DB,
-    addresses: Annotated[list[str], Query(max_length=50)] = [],  # noqa: B006 - FastAPI query default, read-only (never mutated)
+    addresses: Annotated[list[str], Query(max_length=50)] = [],  # noqa: B006
 ) -> Any:
     flat = [a for item in addresses for a in item.split(",")]
     return await svc.address_status(get_context(), db, flat)

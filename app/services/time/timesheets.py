@@ -55,12 +55,12 @@ from app.services.time.common import (
     ZERO,
     fmt_time,
     get_placement,
-    get_timesheet,
     invalid,
     not_editable,
     now,
     parse_hours,
 )
+from app.services.time.common import get_timesheet as get_timesheet
 from app.services.time.configs import config_on, config_version
 from app.services.time.events import TimesheetRecalled, TimesheetReopened
 

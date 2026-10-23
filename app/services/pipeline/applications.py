@@ -59,7 +59,6 @@ from app.services.pipeline.common import (
     acting_as,
     actor_id,
     actor_kind_of,
-    application_for,
     conflict,
     demand_for,
     item_savepoint,
@@ -70,6 +69,7 @@ from app.services.pipeline.common import (
     timeline,
     visible_applications,
 )
+from app.services.pipeline.common import application_for as application_for
 
 APPLICATION_SEQUENCE_KEY = "APP"
 

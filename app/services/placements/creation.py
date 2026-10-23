@@ -28,7 +28,8 @@ from app.events.placements import PlacementCreated
 from app.models.placements import Placement, RateSegment
 from app.schemas.placements_api import PlacementCreateBody, PlacementUpdate
 from app.services.placements import margin, status
-from app.services.placements.common import DEFAULT_WORKER_TYPES, get_placement, settings_row, stale
+from app.services.placements.common import DEFAULT_WORKER_TYPES, settings_row, stale
+from app.services.placements.common import get_placement as get_placement
 
 EMPLOYMENT_TO_ENGAGEMENT = {
     "contract": "contract",

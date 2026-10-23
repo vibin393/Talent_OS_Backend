@@ -16,7 +16,8 @@ Disputed or held documents are never in ``items`` (hypothesis-tested).
 import dataclasses
 import uuid
 from collections.abc import Mapping
-from datetime import date, datetime, time
+from datetime import date, datetime
+from datetime import time as time
 from decimal import Decimal
 
 ZERO = Decimal("0.00")

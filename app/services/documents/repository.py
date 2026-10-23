@@ -33,16 +33,8 @@ from app.models.files import ATTACHMENT_CATEGORIES, Attachment, StoredFile
 from app.schemas.documents import DocumentOut, DocumentPatchIn, DocumentVersionOut
 from app.schemas.files import AttachmentOut
 from app.services import files_service
-from app.services.documents.common import (
-    DOCUMENT_HR,
-    conflict,
-    has,
-    level_allowed,
-    not_found,
-    now,
-    tenant_of,
-    user_id,
-)
+from app.services.documents.common import DOCUMENT_HR, conflict, has, level_allowed, not_found, now, user_id
+from app.services.documents.common import tenant_of as tenant_of
 
 UPLOAD_KINDS = files_service.ATTACHMENT_KINDS
 FILE_OWNER = "document"

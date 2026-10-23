@@ -40,10 +40,10 @@ from app.schemas.messaging import (
     ManualQueueItemOut,
     MessagingStateOut,
     NoticeBrief,
-    RecipientRef,
     SendMessagesOut,
     SendResultOut,
 )
+from app.schemas.messaging import RecipientRef as RecipientRef
 from app.services import entity_refs
 from app.services.comms import channel_settings
 from app.services.connectors import jobs

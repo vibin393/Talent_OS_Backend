@@ -34,7 +34,9 @@ from app.services.demands.assignment import (
     record_first_application,
     record_first_submission,
 )
-from app.services.demands.common import READ, access_condition, get_for
+from app.services.demands.common import READ as READ
+from app.services.demands.common import access_condition
+from app.services.demands.common import get_for as get_for
 from app.services.demands.constants import REASON_CODES
 from app.services.demands.jd import list_live_postings
 from app.services.demands.lifecycle import transition_demand

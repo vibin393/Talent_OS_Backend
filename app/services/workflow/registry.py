@@ -25,7 +25,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.context import RequestContext, get_context
 from app.core.registry import Registry
-from app.services.workflow.conditions import FieldDef
+from app.services.workflow.conditions import FieldDef as FieldDef
 
 DEMAND_STATUSES = ("draft", "pending_approval", "open", "on_hold", "filled", "cancelled", "closed")
 PRIORITIES = ("low", "medium", "high", "critical")

@@ -18,7 +18,8 @@ from app.core.context import RequestContext
 from app.core.errors import RateLimited, ValidationFailed
 from app.models.webhooks import WebhookDelivery
 from app.schemas.webhooks import DeliveryOut, TestEventIn
-from app.services.webhooks import common, log, signing
+from app.services.webhooks import common as common
+from app.services.webhooks import log, signing
 
 PER_MINUTE = 10
 

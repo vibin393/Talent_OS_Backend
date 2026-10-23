@@ -864,7 +864,7 @@ async def summaries(db: AsyncSession, rows: Sequence[Timesheet]) -> list[Timeshe
                     .where(TimesheetAdjustmentEntry.timesheet_id.in_(ids))
                     .group_by(TimesheetAdjustmentEntry.timesheet_id)
                 )
-            ).all()
+            ).tuples().all()
         )
     )
     return [

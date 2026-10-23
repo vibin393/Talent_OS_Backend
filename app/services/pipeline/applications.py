@@ -516,7 +516,7 @@ async def _match_scores(
                     Match.demand_id == demand_id, Match.candidate_id.in_(candidate_ids)
                 )
             )
-            return dict(rows.all())
+            return dict(rows.tuples().all())
     except Exception:  # pragma: no cover - matching tables not migrated yet
         return {}
 

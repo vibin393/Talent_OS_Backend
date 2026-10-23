@@ -78,7 +78,7 @@ async def _consent_out(db: AsyncSession, rows: list[Consent]) -> list[PortalCons
                 await db.execute(
                     select(ConsentNotice.id, ConsentNotice.version).where(ConsentNotice.id.in_(notice_ids))
                 )
-            ).all()
+            ).tuples().all()
         )
     names: dict[uuid.UUID, str] = {}
     if client_ids:

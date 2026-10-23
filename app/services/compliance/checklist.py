@@ -531,6 +531,7 @@ async def waive(
 
 # ================================================================ start gate (registered in hooks)
 async def gate_resolver(ctx: RequestContext, db: AsyncSession, placement_id: uuid.UUID) -> list[Any]:
+    from app.services.placements.registry import GateStatus
     from app.services.placements_service import GateState
 
     rows = list(
@@ -547,7 +548,7 @@ async def gate_resolver(ctx: RequestContext, db: AsyncSession, placement_id: uui
     )
     out = []
     for r in rows:
-        status = (
+        status: GateStatus = (
             "met"
             if r.status in ("met", "expiring")
             else "waived"

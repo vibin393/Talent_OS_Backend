@@ -76,7 +76,7 @@ async def _outs(db: AsyncSession, rows: list[LedgerSyncRecord]) -> list[LedgerRe
         for p in (await db.execute(select(Payment).where(Payment.id.in_(pids)))).scalars():
             docs[p.id] = p
             client_ids.add(p.client_id)
-    names = dict((await db.execute(select(Client.id, Client.name).where(Client.id.in_(client_ids)))).all()) if client_ids else {}
+    names = dict((await db.execute(select(Client.id, Client.name).where(Client.id.in_(client_ids)))).tuples().all()) if client_ids else {}
     for r in rows:
         d = docs.get(r.document_id)
         number = getattr(d, "number", None) or getattr(d, "human_id", None)

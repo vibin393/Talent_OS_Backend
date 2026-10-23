@@ -28,7 +28,7 @@ from app.events.placements import StartGateStatusChanged
 from app.models.placements import Placement, StartGate, StartGateOverride
 from app.schemas.placements_api import GateOverrideOut, StartGateOut
 from app.services.placements.common import PRE_START, get_placement, now
-from app.services.placements.registry import GateState, StartGateKindDef, start_gate_kinds
+from app.services.placements.registry import GateState, GateStatus, StartGateKindDef, start_gate_kinds
 
 OVERRIDE_SUBJECT = "start_gate_override"
 CLEAR = frozenset({"met", "waived", "not_required"})
@@ -339,7 +339,7 @@ async def po_resolver(ctx: RequestContext, db: AsyncSession, placement_id: uuid.
     if not required:
         return [GateState("po", "not_required", False, {})]
     validity = await commercials_service.validate_po(ctx, db, p.po_id, p.planned_start_date)
-    status = "met" if validity.valid else "pending"
+    status: GateStatus = "met" if validity.valid else "pending"
     return [
         GateState("po", status, True, {"reason": validity.reason, "po_id": str(p.po_id) if p.po_id else None})
     ]
@@ -384,7 +384,7 @@ async def handle_upstream(
         else:
             outcome = payload.get("outcome")
             p.bgv_summary = {**(p.bgv_summary or {}), "case_id": case_ref, "status": f"adjudicated_{outcome}"}
-            status = "met" if outcome == "clear" else "failed"
+            status: GateStatus = "met" if outcome == "clear" else "failed"
             await upsert_gate(
                 db,
                 p,
@@ -408,7 +408,7 @@ async def handle_upstream(
             await db.flush()
             await joining.evaluate_dropout(ctx, db, p)
             return 0
-        status = {
+        status: GateStatus = {
             "OnboardingCaseCreated": "pending",
             "OnboardingCaseCompleted": "met",
             "OnboardingCaseCancelled": "not_required",
@@ -419,7 +419,7 @@ async def handle_upstream(
         touched += 1
     elif name == "CredentialStatusChanged":
         to_status = str(payload.get("to_status") or "")
-        status = "met" if to_status in _MET else "failed" if to_status in _FAILED else "pending"
+        status: GateStatus = "met" if to_status in _MET else "failed" if to_status in _FAILED else "pending"
         for raw in payload.get("mandatory_for_placement_ids") or ():
             p = await _placement_or_none(db, raw)
             if p is None or p.status not in (*PRE_START, "active"):

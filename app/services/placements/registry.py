@@ -18,10 +18,13 @@ from app.core.context import RequestContext
 from app.core.registry import Registry
 
 
+GateStatus = Literal["pending", "met", "failed", "waived", "not_required"]
+
+
 @dataclasses.dataclass(frozen=True)
 class GateState:
     source_ref: str
-    status: Literal["pending", "met", "failed", "waived", "not_required"]
+    status: GateStatus
     required: bool
     detail: Mapping[str, Any]
 

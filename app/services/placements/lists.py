@@ -240,7 +240,7 @@ async def pre_joining(ctx: RequestContext, db: AsyncSession, starts_within: int 
                 .where(PlacementTouchpoint.placement_id.in_(ids))
                 .group_by(PlacementTouchpoint.placement_id)
             )
-        ).all()
+        ).tuples().all()
     )
     out: list[PreJoiningRow] = []
     for p in rows:

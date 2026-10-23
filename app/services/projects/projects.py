@@ -247,7 +247,7 @@ async def list_projects(
                 .where(ProjectBurn.project_id.in_(ids))
                 .group_by(ProjectBurn.project_id)
             )
-        ).all()
+        ).tuples().all()
     )
     risks = await overview.risk_counts(db, rows)
     return [

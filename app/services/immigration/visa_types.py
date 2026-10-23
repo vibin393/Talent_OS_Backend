@@ -234,7 +234,7 @@ async def _open_cases(db: AsyncSession, ids: list[uuid.UUID]) -> dict[uuid.UUID,
 
 
 async def _template_reviewed(db: AsyncSession) -> dict[str, Any]:
-    return dict((await db.execute(select(VisaTypeTemplate.key, VisaTypeTemplate.last_reviewed))).all())
+    return dict((await db.execute(select(VisaTypeTemplate.key, VisaTypeTemplate.last_reviewed))).tuples().all())
 
 
 def _out(vt: VisaType, version_no: int | None, reviewed: dict[str, Any], open_cases: int) -> dict[str, Any]:

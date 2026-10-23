@@ -131,7 +131,7 @@ async def sweep_stale(db: AsyncSession, days: int, *, today: date | None = None)
 
 async def _names(db: AsyncSession, rows: list[PaymentSuggestion]) -> dict[uuid.UUID, str]:
     ids = {r.client_id for r in rows if r.client_id}
-    return dict((await db.execute(select(Client.id, Client.name).where(Client.id.in_(ids)))).all()) if ids else {}
+    return dict((await db.execute(select(Client.id, Client.name).where(Client.id.in_(ids)))).tuples().all()) if ids else {}
 
 
 def prefill(s: PaymentSuggestion) -> dict[str, Any] | None:

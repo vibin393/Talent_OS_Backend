@@ -13,10 +13,10 @@ from typing import Annotated
 
 from pydantic import BaseModel, ConfigDict, Field, StringConstraints
 
-from app.core.field_visibility import ClientNameRevealed, register_portal_schema
+from app.core.field_visibility import ClientNameRevealed, PrincipalKind, register_portal_schema
 from app.core.money import DecimalStr
 
-VENDOR = "vendor_user"
+VENDOR: PrincipalKind = "vendor_user"
 
 
 @register_portal_schema(VENDOR)

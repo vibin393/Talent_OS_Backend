@@ -9,7 +9,7 @@ Epic 13 contract layer (AD-36): ``lock_for_settlement`` / ``get_receivable_docum
 import uuid
 from collections.abc import Awaitable, Callable
 from decimal import Decimal
-from typing import Literal
+from typing import Literal, cast
 
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -47,6 +47,12 @@ async def has_settlements(
     return False
 
 
+# A receivable document is an Invoice or a DebitNote; both carry the accessed columns via the
+# shared _DocumentColumns/_BillingColumns mixins. select() over the type union collapses the row
+# type to Base in the SQLAlchemy mypy plugin, so results are cast back to this concrete union.
+_ReceivableDoc = Invoice | DebitNote
+
+
 def _model(document_kind: str) -> type[Invoice] | type[DebitNote]:
     if document_kind == "invoice":
         return Invoice
@@ -76,9 +82,10 @@ async def lock_for_settlement(
     document_id: uuid.UUID,
 ) -> SettlementFacts:
     model = _model(document_kind)
-    doc = (
-        await db.execute(select(model).where(model.id == document_id).with_for_update())
-    ).scalar_one_or_none()
+    doc = cast(
+        "_ReceivableDoc | None",
+        (await db.execute(select(model).where(model.id == document_id).with_for_update())).scalar_one_or_none(),
+    )
     if doc is None or doc.status not in ("issued", "cancelled") or doc.doc_date is None:
         raise NotFound("Receivable document not found")
     return SettlementFacts(
@@ -105,7 +112,10 @@ async def get_receivable_document(
     document_id: uuid.UUID,
 ) -> ReceivableDocumentSummary:
     model = _model(document_kind)
-    doc = (await db.execute(select(model).where(model.id == document_id))).scalar_one_or_none()
+    doc = cast(
+        "_ReceivableDoc | None",
+        (await db.execute(select(model).where(model.id == document_id))).scalar_one_or_none(),
+    )
     if doc is None or doc.number is None or doc.doc_date is None:
         raise NotFound("Receivable document not found")
     return ReceivableDocumentSummary(

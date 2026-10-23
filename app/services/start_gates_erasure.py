@@ -40,7 +40,7 @@ class StartGatesHandler:
             .execution_options(synchronize_session=False)
         )
         await db.flush()
-        return {"gates_cleared": int(result.rowcount or 0)}  # type: ignore[attr-defined]
+        return {"gates_cleared": int(result.rowcount or 0)}
 
     async def export(self, db: AsyncSession, ctx: ErasureContext) -> dict[str, Any] | None:
         where = await _where(db, ctx)

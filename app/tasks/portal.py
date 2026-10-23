@@ -59,7 +59,7 @@ def notify_privacy_contact(tenant_id: str, dsr_id: str) -> str:
 def purge_apply_sessions() -> dict[str, object]:
     return run(
         lambda: for_each_tenant(portal.apply.purge_expired, statuses=("active", "suspended", "offboarding"))
-    )  # type: ignore[no-any-return]
+    )
 
 
 @celery_app.task(name="portal.expire_exports")  # type: ignore[untyped-decorator,unused-ignore]
@@ -68,7 +68,7 @@ def expire_exports() -> dict[str, object]:
         lambda: for_each_tenant(
             portal.privacy_self_service.expire_exports, statuses=("active", "suspended", "offboarding")
         )
-    )  # type: ignore[no-any-return]
+    )
 
 
 @celery_app.task(name="portal.alert_stale_exports")  # type: ignore[untyped-decorator,unused-ignore]

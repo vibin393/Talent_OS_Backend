@@ -34,8 +34,8 @@ def _summary(p: Placement) -> PlacementSummary:
         vendor_id=p.vendor_id,
         legal_entity_id=p.legal_entity_id,
         supplier_gst_registration_id=p.supplier_gst_registration_id,
-        payee_kind=p.payee_kind,  # type: ignore[arg-type]
-        worker_type=(p.worker_type or "employee"),  # type: ignore[arg-type]
+        payee_kind=p.payee_kind,
+        worker_type=(p.worker_type or "employee"),
         planned_start_date=p.planned_start_date,
         actual_start_date=p.actual_start_date,
         end_date=p.end_date,
@@ -48,7 +48,7 @@ def _segment_out(s: RateSegment) -> RateSegmentOut:
         id=s.id,
         effective_from=s.effective_from,
         effective_to=s.effective_to,
-        rate_unit=s.rate_unit,  # type: ignore[arg-type]
+        rate_unit=s.rate_unit,
         currency=s.currency,
         pay_rate=s.pay_rate,
         bill_rate=s.bill_rate,
@@ -70,7 +70,7 @@ async def create_direct(ctx: RequestContext, db: AsyncSession, data: PlacementCr
 
     body = PlacementCreateBody(
         **data.model_dump(exclude={"offer_id", "engagement_kind", "worker_type"}),
-        engagement_kind=data.engagement_kind or "contract",  # type: ignore[arg-type]
+        engagement_kind=data.engagement_kind or "contract",
         worker_type=data.worker_type,
     )
     return _summary(await creation.create_direct(ctx, db, body))
@@ -119,7 +119,7 @@ async def billing_context(
         po_ids=[p.po_id] if p.po_id else [],
         currency=p.currency,
         rate_segment_id=seg.id,
-        rate_unit=seg.rate_unit,  # type: ignore[arg-type]
+        rate_unit=seg.rate_unit,
         bill_rate=seg.bill_rate,
         work_state_code=p.work_state_code,
         actual_start_date=p.actual_start_date,
@@ -141,12 +141,12 @@ async def pay_context(
         placement_id=p.id,
         candidate_id=p.candidate_id,
         legal_entity_id=p.legal_entity_id,
-        payee_kind=p.payee_kind,  # type: ignore[arg-type]
+        payee_kind=p.payee_kind,
         vendor_id=p.vendor_id,
-        worker_type=(p.worker_type or "employee"),  # type: ignore[arg-type]
+        worker_type=(p.worker_type or "employee"),
         currency=p.currency,
         rate_segment_id=seg.id,
-        rate_unit=seg.rate_unit,  # type: ignore[arg-type]
+        rate_unit=seg.rate_unit,
         pay_rate=seg.pay_rate,
         vendor_rate=seg.vendor_rate,
         actual_start_date=p.actual_start_date,

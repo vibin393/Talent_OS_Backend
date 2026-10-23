@@ -191,8 +191,8 @@ async def out(db: AsyncSession, row: VoiceSession) -> VoiceSessionOut:
     rec = await consent_state(db, row, PURPOSE_RECORDING)
     return VoiceSessionOut(
         id=row.id, human_id=row.human_id, application_id=row.application_id, candidate_id=row.candidate_id,
-        mode=row.mode, provider_key=row.provider_key, status=row.status, external_ref=row.external_ref,  # type: ignore[arg-type]
-        voice_consent=voice, recording_consent=rec, jurisdiction=row.jurisdiction, recording_rule=row.recording_rule,  # type: ignore[arg-type]
+        mode=row.mode, provider_key=row.provider_key, status=row.status, external_ref=row.external_ref,
+        voice_consent=voice, recording_consent=rec, jurisdiction=row.jurisdiction, recording_rule=row.recording_rule,
         recording_allowed=row.recording_allowed, recording_block_reason=block_reason(row, rec),
         has_recording=row.recording_file_id is not None, recording_media_type=row.recording_media_type,
         recording_deleted_at=row.recording_deleted_at, has_transcript=row.transcript_id is not None,

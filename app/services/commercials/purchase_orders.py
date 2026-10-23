@@ -387,7 +387,7 @@ def _check(
     rem_a, rem_h = remaining(po, *used)
 
     def out(valid: bool, reason: str) -> PoValidity:
-        return PoValidity(valid=valid, reason=reason, remaining_amount=rem_a, remaining_hours=rem_h)  # type: ignore[arg-type]
+        return PoValidity(valid=valid, reason=reason, remaining_amount=rem_a, remaining_hours=rem_h)
 
     if po.status == "cancelled":
         return out(False, "po_cancelled")

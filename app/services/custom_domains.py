@@ -177,7 +177,7 @@ def _out(row: CustomDomain) -> CustomDomainOut:
     return CustomDomainOut(
         id=row.id,
         host=str(row.host),
-        status=row.status,  # type: ignore[arg-type]
+        status=row.status,
         txt_name=txt_name(str(row.host)),
         txt_value=f"{TXT_VALUE_PREFIX}{row.txt_token}",
         cname_target=get_settings().careers_cname_target or None,

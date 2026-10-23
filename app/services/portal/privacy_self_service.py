@@ -157,7 +157,7 @@ async def _file_dsr(
         db,
         DsrCreate(
             candidate_id=principal.candidate_id, kind=kind, channel="candidate_portal", details=details
-        ),  # type: ignore[arg-type]
+        ),
         channel="candidate_portal",
     )
     return out.id

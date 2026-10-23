@@ -633,8 +633,8 @@ def parse_csv(data: bytes) -> tuple[list[RateCardLineIn], list[ImportRowError], 
                 role=role,
                 location=(raw.get("location") or "").strip() or None,
                 currency=currency,
-                rate_unit=unit,  # type: ignore[arg-type]
-                **values,  # type: ignore[arg-type]
+                rate_unit=unit,
+                **values,
             )
         )
     return lines, errors, total
@@ -676,7 +676,7 @@ async def import_csv(
             min_bill_rate=x.min_bill_rate,
             max_bill_rate=x.max_bill_rate,
             currency=x.currency,
-            rate_unit=x.rate_unit,  # type: ignore[arg-type]
+            rate_unit=x.rate_unit,
             max_vendor_rate=x.max_vendor_rate,
             markup_pct=x.markup_pct,
         )

@@ -30,7 +30,7 @@ class ProjectsHandler:
             .execution_options(synchronize_session=False)
         )
         await db.flush()
-        return {"assignments": int(result.rowcount or 0)}  # type: ignore[attr-defined]
+        return {"assignments": int(result.rowcount or 0)}
 
     async def export(self, db: AsyncSession, ctx: ErasureContext) -> dict[str, Any] | None:
         rows = list(

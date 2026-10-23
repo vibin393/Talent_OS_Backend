@@ -753,7 +753,7 @@ async def copy_previous(ctx: RequestContext, db: AsyncSession, ts: Timesheet) ->
         if day > ts.period_end or (day, e.category) in taken:
             continue
         hours = e.entered_hours if e.category == "regular" and e.entered_hours is not None else e.hours
-        cells.append(DayEntryIn(date=day, category=e.category, hours=str(hours)))  # type: ignore[arg-type]
+        cells.append(DayEntryIn(date=day, category=e.category, hours=str(hours)))
     placement = await get_placement(db, ts.placement_id)
     lo = max(ts.period_start, placement.actual_start_date or ts.period_start)
     hi = min(d for d in (ts.period_end, placement.end_date) if d is not None)
@@ -762,7 +762,7 @@ async def copy_previous(ctx: RequestContext, db: AsyncSession, ts: Timesheet) ->
         cfg = await config_version(db, ts.placement_id, ts.config_version)
         if cfg.entry_mode != "hours":
             cells = [c for c in cells if c.category != "regular"] + [
-                DayEntryIn(date=c.date, category="regular", hours=c.hours)  # type: ignore[arg-type]
+                DayEntryIn(date=c.date, category="regular", hours=c.hours)
                 for c in cells
                 if c.category == "regular"
             ]
@@ -882,7 +882,7 @@ async def summaries(db: AsyncSession, rows: Sequence[Timesheet]) -> list[Timeshe
             original_timesheet_id=r.original_timesheet_id,
             period_start=r.period_start,
             period_end=r.period_end,
-            status=r.status,  # type: ignore[arg-type]
+            status=r.status,
             total_hours=Decimal(hours.get(r.id) or 0).quantize(Decimal("0.01")),
             submitted_at=r.submitted_at,
             approved_at=r.approved_at,

@@ -111,8 +111,8 @@ async def get_intake_settings(ctx: RequestContext, db: AsyncSession) -> IntakeSe
     if s.intake_mode != "off" and s.fallback_owner_id is None:
         warnings.append("fallback_owner_missing")
     return IntakeSettingsOut(
-        intake_mode=s.intake_mode, mailbox_user_id=s.mailbox_user_id, mailbox_folder=s.mailbox_folder,  # type: ignore[arg-type]
-        mailbox_status=status, fallback_owner_id=s.fallback_owner_id, accept_forwarded=s.accept_forwarded,  # type: ignore[arg-type]
+        intake_mode=s.intake_mode, mailbox_user_id=s.mailbox_user_id, mailbox_folder=s.mailbox_folder,
+        mailbox_status=status, fallback_owner_id=s.fallback_owner_id, accept_forwarded=s.accept_forwarded,
         require_sender_auth=s.require_sender_auth,
         platform_address=platform_address(s.route_token) if s.intake_mode == "platform_address" else None,
         warnings=warnings,

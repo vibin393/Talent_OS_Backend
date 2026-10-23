@@ -57,7 +57,7 @@ def summary_out(r: FairnessRun) -> RunSummaryOut:
         id=r.id,
         selection_point=r.selection_point,
         params=dict(r.params or {}),
-        date_from=r.date_from,  # type: ignore[arg-type]
+        date_from=r.date_from,
         date_to=r.date_to,
         k=r.k,
         method=r.method,

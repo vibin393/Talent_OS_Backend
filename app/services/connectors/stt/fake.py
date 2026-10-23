@@ -21,7 +21,7 @@ class FakeSpeechToText(FakeAdapterBase):
         if scripted:
             segments = tuple(
                 TranscriptSegmentDTO(
-                    speaker=speaker if speaker in _SPEAKERS else "unknown",  # type: ignore[arg-type]
+                    speaker=speaker if speaker in _SPEAKERS else "unknown",
                     start_ms=None,
                     end_ms=None,
                     text=str(text),

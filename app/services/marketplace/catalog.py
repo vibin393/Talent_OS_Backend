@@ -114,10 +114,10 @@ def _connector_card(lk: _Ctx, m: ConnectorManifest, row: MarketplaceListing | No
     state, inst_id = _state(lk.by_connector.get(m.key))
     allowed, why = _allowed(lk, kind, "platform")
     return ListingCardOut(
-        slug=str(row.slug) if row is not None else platform_catalog.slug_for(m.key), kind=kind,  # type: ignore[arg-type]
+        slug=str(row.slug) if row is not None else platform_catalog.slug_for(m.key), kind=kind,
         name=row.name if row is not None else m.name, tagline=row.tagline if row is not None else (m.summary or m.name)[:200],
         category=listing_category(m.category), publisher_kind="platform", publisher_badge="Talent OS",
-        install_state=state, install_allowed=allowed, not_allowed_reason=why, installation_id=inst_id,  # type: ignore[arg-type]
+        install_state=state, install_allowed=allowed, not_allowed_reason=why, installation_id=inst_id,
         manage_path=platform_catalog.CALENDAR_MANAGE_PATH if kind == "calendar" else None,
         featured=bool(row.featured) if row is not None else False,
     )  # fmt: skip
@@ -132,8 +132,8 @@ def _app_card(lk: _Ctx, app: App, row: MarketplaceListing | None, partner_verifi
         slug=slug, kind="app", name=row.name if row is not None else app.name,
         tagline=row.tagline if row is not None else str((app.manifest or {}).get("description") or app.name)[:200],
         category=row.category if row is not None else str((app.manifest or {}).get("category") or "other"),
-        publisher_kind=publisher, publisher_badge=_badge(publisher, partner_verified),  # type: ignore[arg-type]
-        install_state=state, install_allowed=allowed and app.status in ("published", "development"), not_allowed_reason=why,  # type: ignore[arg-type]
+        publisher_kind=publisher, publisher_badge=_badge(publisher, partner_verified),
+        install_state=state, install_allowed=allowed and app.status in ("published", "development"), not_allowed_reason=why,
         installation_id=inst_id, featured=bool(row.featured) if row is not None else False,
     )  # fmt: skip
 
@@ -230,7 +230,7 @@ async def all_cards(ctx: RequestContext, db: AsyncSession) -> list[ListingCardOu
                     r,
                     verified.get(r.partner_org_id, False) if r.partner_org_id else False,
                 )
-            )  # type: ignore[index, arg-type]
+            )
     cards.extend(_app_card(lk, a, None, False) for a in await _private_apps(ctx.tenant_id))
     cards.extend(_legacy_cards(lk))
     return cards

@@ -248,7 +248,7 @@ async def _build_plan(
                 int(rule["count"]),
                 tuple(rule.get("difficulty") or (1, 5)),
                 rng,
-            )  # type: ignore[arg-type]
+            )
             entries = [(vid, points[vid]) for vid in picked]
         else:
             entries = [(e["item_version_id"], Decimal(str(e["points"]))) for e in s.get("items") or []]
@@ -619,7 +619,7 @@ async def submit(subject: Subject, header: str | None) -> SubmitOut:
         if now() > att.deadline_at + GRACE:
             raise conflict("attempt_deadline_passed", "Time is up -- your answers were submitted")
         await finish_attempt(db, inv, att, "submitted", subject.actor_kind)
-        return SubmitOut(status=att.status, submitted_at=att.submitted_at)  # type: ignore[arg-type]
+        return SubmitOut(status=att.status, submitted_at=att.submitted_at)
 
 
 async def auto_submit_due(db: AsyncSession) -> int:

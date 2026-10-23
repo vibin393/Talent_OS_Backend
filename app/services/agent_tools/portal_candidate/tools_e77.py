@@ -236,7 +236,7 @@ async def _knowledge(tctx: Any, args: KnowledgeIn) -> ToolOutcome:
         id=act.principal.id,
         tenant_id=act.tenant_id,
         permissions={"knowledge:read": Scope.TENANT},
-    )  # type: ignore[arg-type]
+    )
     kctx = RequestContext(tenant_id=act.tenant_id, principal=reader)
     async with tenant_session(
         act.tenant_id

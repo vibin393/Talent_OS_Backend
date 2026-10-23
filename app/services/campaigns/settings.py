@@ -136,7 +136,7 @@ def out(row: MarketingSettings) -> MarketingSettingsOut:
         frequency_cap_days=row.frequency_cap_days,
         send_windows={
             ch: {"start": w[0].strftime("%H:%M"), "end": w[1].strftime("%H:%M")} for ch, w in windows.items()
-        },  # type: ignore[misc]
+        },
         approval_threshold=row.approval_threshold,
         ab_window_hours=row.ab_window_hours,
         rate_per_minute={ch: effective_rate(row, ch) for ch in CHANNELS},

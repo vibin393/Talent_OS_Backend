@@ -5,8 +5,8 @@ it): core tables (``app.core.sequences``, ``app.core.audit``, ``app.core.secure_
 users, roles, sessions) and every other domain.
 """
 
-import app.core.audit
-import app.core.secure_links
+import app.core.audit  # ruff: ignore[unused-import]  (side-effect import: registers tables on Base.metadata)
+import app.core.secure_links  # ruff: ignore[unused-import]  (side-effect import: registers tables on Base.metadata)
 import app.core.sequences  # ruff: ignore[unused-import]
 from app.models import activity, ai, candidates, clients, files, identity
 

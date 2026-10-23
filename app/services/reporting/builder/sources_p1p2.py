@@ -89,13 +89,13 @@ def _text(
     return FieldDef(
         "string", label, pii, expr, _STR_OPS, aggs=frozenset({"count_distinct"}), groupable=groupable,
         join=join,
-    )  # type: ignore[arg-type]  # fmt: skip
+    )  # fmt: skip
 
 
 def _date(label: str, expr: Expr, *, kind: str = "date", join: str | None = None) -> FieldDef:
     return FieldDef(
         kind, label, "none", expr, _DATE_OPS, aggs=_DATE_AGGS, groupable=True, date_buckets=True, join=join
-    )  # type: ignore[arg-type]
+    )
 
 
 def _num(

@@ -41,7 +41,7 @@ from app.services.campaign_copy.common import (
 def to_out(r: CampaignCopyRequest) -> CopyRequestOut:
     return CopyRequestOut(
         id=r.id, campaign_id=r.campaign_id, sequence_id=r.sequence_id, sequence_step_id=r.sequence_step_id,
-        step_position=r.step_position, channel=r.channel, status=r.status,  # type: ignore[arg-type]
+        step_position=r.step_position, channel=r.channel, status=r.status,
         variants_per_segment=r.variants_per_segment, segment_count=len(r.segments or []), agent_run_id=r.agent_run_id,
         error_code=r.error_code, fallback_message=FALLBACK_MESSAGE if r.status == "failed" else None,
         requested_by=r.requested_by, created_at=r.created_at,

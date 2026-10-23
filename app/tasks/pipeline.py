@@ -64,11 +64,11 @@ async def in_tenant(
     # company-DB tenant's rows (offer-letter render etc. silently no-op). Fall back to the pooled DB when the
     # tenant has no registry row (pooled mode) or resolution is unavailable.
     try:
-        _db_name, _schema_name = await tenant_registry.resolve_db_target(tenant_id)
+        db_name, schema_name = await tenant_registry.resolve_db_target(tenant_id)
         engine = create_async_engine(
-            get_settings().app_db_url(_db_name),
+            get_settings().app_db_url(db_name),
             poolclass=NullPool,
-            connect_args=_schema_connect_args(_schema_name),
+            connect_args=_schema_connect_args(schema_name),
         )
     except Exception:
         engine = create_async_engine(get_settings().app_db_url(), poolclass=NullPool)

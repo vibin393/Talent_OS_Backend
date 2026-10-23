@@ -63,10 +63,10 @@ def _answer_out(a: ScreeningAnswer, q: dict[str, Any] | None, limit: Decimal) ->
     return AnswerOut(
         id=a.id, question_id=a.question_id, question_label=str(q.get("label") or "Question"),
         question_type=str(q.get("type") or "text"), unit=q.get("unit"), required=bool(q.get("required")),
-        source=a.source, answer_text=a.answer_text, normalized=a.normalized, confidence=a.confidence,  # type: ignore[arg-type]
+        source=a.source, answer_text=a.answer_text, normalized=a.normalized, confidence=a.confidence,
         low_confidence=a.confidence is None or a.confidence < limit, flags=list(a.flags or []),
         knockout=KnockoutRule.model_validate(q["knockout"]) if q.get("knockout") else None,
-        status=a.status, edited_value=a.edited_value, segment_refs=list(a.segment_refs or []),  # type: ignore[arg-type]
+        status=a.status, edited_value=a.edited_value, segment_refs=list(a.segment_refs or []),
         start_ms=a.start_ms, reviewed_by=a.reviewed_by, reviewed_at=a.reviewed_at,
     )  # fmt: skip
 

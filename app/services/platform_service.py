@@ -50,7 +50,9 @@ SUB_PROCESSOR_NOTICE = timedelta(days=30)
 INCIDENT_DEADLINE = timedelta(hours=24)
 TEMPLATES = Path(__file__).resolve().parents[1] / "templates"
 _jinja = jinja2.Environment(
-    loader=jinja2.FileSystemLoader(str(TEMPLATES)), autoescape=False, undefined=jinja2.ChainableUndefined
+    loader=jinja2.FileSystemLoader(str(TEMPLATES)),
+    autoescape=jinja2.select_autoescape(),
+    undefined=jinja2.ChainableUndefined,
 )
 
 
@@ -61,7 +63,7 @@ def _now() -> datetime:
 def _operator(ctx: RequestContext) -> uuid.UUID:
     if getattr(ctx.principal, "type", None) != "platform":
         raise Unauthorized()
-    return ctx.principal.id  # type: ignore[union-attr, no-any-return]
+    return ctx.principal.id
 
 
 # ================================================================ tenants

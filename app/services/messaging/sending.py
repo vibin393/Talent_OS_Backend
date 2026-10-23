@@ -533,7 +533,7 @@ async def manual_queue(ctx: RequestContext, db: AsyncSession) -> list[ManualQueu
     return [
         ManualQueueItemOut(
             id=m.id,
-            channel=m.channel,  # type: ignore[arg-type]
+            channel=m.channel,
             to_e164=m.to_e164,
             body_rendered=m.body_rendered,
             template_name=names[m.template_id].name if m.template_id in names else None,
@@ -591,8 +591,8 @@ async def _messages_out(db: AsyncSession, rows: Sequence[ChannelMessage]) -> lis
     return [
         ChannelMessageOut(
             id=m.id,
-            channel=m.channel,  # type: ignore[arg-type]
-            direction=m.direction,  # type: ignore[arg-type]
+            channel=m.channel,
+            direction=m.direction,
             template_id=m.template_id,
             template_name=names.get(m.template_id) if m.template_id else None,
             status=m.status,

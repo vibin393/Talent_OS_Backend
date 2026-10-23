@@ -308,12 +308,12 @@ async def _vendor_notice_view(link: secure_links.ResolvedLink) -> PublicLinkView
     notice = view["notice"]
     return PublicLinkView(
         purpose=link.purpose,
-        tenant_name=view["tenant_name"],  # type: ignore[arg-type]
+        tenant_name=view["tenant_name"],
         expires_at=link.expires_at,
         notice=NoticeOut.model_validate(notice) if notice is not None else None,
-        status=view["status"],  # type: ignore[arg-type]
-        job_title=view["job_title"],  # type: ignore[arg-type]
-        candidate_first_name=view["candidate_first_name"],  # type: ignore[arg-type]
+        status=view["status"],
+        job_title=view["job_title"],
+        candidate_first_name=view["candidate_first_name"],
         consent_required=True,
     )
 

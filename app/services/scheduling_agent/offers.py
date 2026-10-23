@@ -315,7 +315,7 @@ async def _view(
     view = SlotPickView(
         offer_id=offer.id if portal else None, tenant=data["tenant"], demand_title=data["demand_title"],
         stage_name=data["stage_name"], duration=int(req.duration_minutes), mode=req.mode, slots=slots,
-        candidate_timezone=req.candidate_timezone, status=status, expires_at=offer.expires_at,  # type: ignore[arg-type]
+        candidate_timezone=req.candidate_timezone, status=status, expires_at=offer.expires_at,
         booked_start=booked_start, picked_index=offer.picked_index, notice=notice,
     )  # fmt: skip
     return view

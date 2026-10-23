@@ -164,7 +164,7 @@ def _summary(row: Contract) -> ContractSummary:
     return ContractSummary(
         id=row.id,
         human_id=row.human_id,
-        contract_type=row.contract_type,  # type: ignore[arg-type]
+        contract_type=row.contract_type,
         client_id=row.client_id,
         vendor_id=row.vendor_id,
         legal_entity_id=row.legal_entity_id,
@@ -876,7 +876,7 @@ async def get_contract(ctx: RequestContext, db: AsyncSession, contract_id: uuid.
         reverse_charge=row.reverse_charge,
         share_bgv_outcome=row.share_bgv_outcome,
         conversion_fee_rule=ConversionFeeRule(
-            kind=row.conversion_fee_kind,  # type: ignore[arg-type]
+            kind=row.conversion_fee_kind,
             value=row.conversion_fee_value if row.conversion_fee_value is not None else None,
             waive_after_months=row.conversion_fee_waive_after_months,
         ),

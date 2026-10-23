@@ -112,7 +112,7 @@ async def orgs_of(db: AsyncSession, account_id: uuid.UUID) -> list[OrgOut]:
 def org_out(o: PartnerOrg, role: str | None = None) -> OrgOut:
     return OrgOut(
         id=o.id, name=o.name, slug=str(o.slug), status=o.status, verification_status=o.verification_status,
-        verified_at=o.verified_at, verification_expires_at=o.verification_expires_at, role=role,  # type: ignore[arg-type]
+        verified_at=o.verified_at, verification_expires_at=o.verification_expires_at, role=role,
     )  # fmt: skip
 
 
@@ -377,7 +377,7 @@ async def purge_unverified() -> int:
         result = await db.execute(
             delete(DeveloperAccount).where(DeveloperAccount.email_verified_at.is_(None), DeveloperAccount.created_at < cutoff)
         )
-        return int(result.rowcount or 0)  # type: ignore[attr-defined]
+        return int(result.rowcount or 0)
 
 
 __all__ = [

@@ -86,7 +86,7 @@ async def _current_segment(db: AsyncSession, placement_id: uuid.UUID) -> Any:
 
 
 def _r(name: str, status: str, overridable: bool = False, **details: Any) -> CheckResult:
-    return CheckResult(name=name, status=status, overridable=overridable, details=details)  # type: ignore[arg-type]
+    return CheckResult(name=name, status=status, overridable=overridable, details=details)
 
 
 async def _rate_card(

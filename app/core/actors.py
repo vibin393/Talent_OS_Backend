@@ -93,7 +93,7 @@ def actor_from_ctx(ctx: RequestContext) -> ActorRef:
         return ActorRef("app", getattr(principal, "app_installation_id", None) or pid,
                         on_behalf_of=getattr(principal, "acting_user_id", None))  # fmt: skip
     if kind in {"user", "candidate", "client_user", "vendor_user", "api_key"}:
-        return ActorRef(kind, pid)  # type: ignore[arg-type]
+        return ActorRef(kind, pid)
     return ActorRef("system", None)
 
 

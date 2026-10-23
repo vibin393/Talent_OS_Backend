@@ -17,7 +17,7 @@ __all__ = ["KekaPayroll"]
 
 
 class KekaPayroll(KekaHrms):
-    category = "payroll"  # type: ignore[assignment]
+    category = "payroll"
     provider_key = "keka_payroll"
 
     async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]

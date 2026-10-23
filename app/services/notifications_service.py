@@ -1013,8 +1013,8 @@ async def get_preferences(ctx: RequestContext, db: AsyncSession) -> PreferencesO
             type=key,
             label=d.label,
             group=d.group,
-            channel=stored.get(key, d.default_channel),  # type: ignore[arg-type]
-            default_channel=d.default_channel,  # type: ignore[arg-type]
+            channel=stored.get(key, d.default_channel),
+            default_channel=d.default_channel,
             mandatory=d.mandatory_in_app,
         )
         for key, d in NOTIFICATION_TYPES.items()
@@ -1204,7 +1204,7 @@ async def purge_old(db: AsyncSession, now: datetime | None = None) -> int:
             )
         )
     )
-    return int(result.rowcount or 0)  # type: ignore[attr-defined]
+    return int(result.rowcount or 0)
 
 
 # ================================================================ wiring

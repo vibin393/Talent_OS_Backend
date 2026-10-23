@@ -88,7 +88,7 @@ async def stage_outs(db: AsyncSession, stages: list[InterviewStage]) -> list[Pla
             id=s.id,
             position=s.position,
             name=s.name,
-            kind=s.kind,  # type: ignore[arg-type]
+            kind=s.kind,
             kit_id=s.kit_id,
             kit_name=names.get(s.kit_id) if s.kit_id else None,
             default_duration_minutes=s.default_duration_minutes,

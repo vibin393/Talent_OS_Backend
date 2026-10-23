@@ -97,7 +97,7 @@ async def login(body: LoginIn, response: Response) -> LoginStepOut:
     set_session_cookie(response, DEV_MFA_COOKIE, pending.token, PENDING_MAX_AGE)
     set_csrf_cookie(response, csrf_token_for(pending.token), PENDING_MAX_AGE)
     response.headers.update(NO_STORE)
-    return LoginStepOut(step=step)  # type: ignore[arg-type]
+    return LoginStepOut(step=step)
 
 
 @router.post("/auth/mfa/enroll/start", response_model=MfaEnrollOut)

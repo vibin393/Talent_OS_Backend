@@ -59,7 +59,7 @@ async def transition(
 
     return await pipeline_service.transition_application(
         ctx, db, application_id, to_key, actor, reason_code, note
-    )  # type: ignore[arg-type]
+    )
 
 
 # ================================================================ demands

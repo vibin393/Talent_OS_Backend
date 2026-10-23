@@ -244,7 +244,7 @@ async def _default_steps(db: AsyncSession) -> list[StepIn]:
     templates = await ensure_templates(db)
     return [
         StepIn(
-            position=i, offset_days=offset, tone=tone, audience=audience,  # type: ignore[arg-type]
+            position=i, offset_days=offset, tone=tone, audience=audience,
             email_template_id=templates.get(tone), allow_auto=False, create_task=tone == "escalation",
         )
         for i, (offset, tone, audience) in enumerate(DEFAULT_STEPS, 1)

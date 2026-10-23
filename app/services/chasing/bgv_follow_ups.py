@@ -445,7 +445,7 @@ async def case_follow_ups(db: AsyncSession, case_id: uuid.UUID, today: date) -> 
             FollowUpOut(
                 id=r.id, check_id=r.check_id, check_type=checks[r.check_id].type if r.check_id in checks else "",
                 check_label=checks[r.check_id].subject_label if r.check_id in checks else "",
-                provider_name=providers.get(r.provider_id) if r.provider_id else None, channel=r.channel,  # type: ignore[arg-type]
+                provider_name=providers.get(r.provider_id) if r.provider_id else None, channel=r.channel,
                 seq=r.seq, status=r.status, provider_status=r.provider_status,
                 days_overdue=(r.sent_at.date() - checks[r.check_id].due_on).days if r.check_id in checks and checks[r.check_id].due_on else None,
                 sent_at=r.sent_at,

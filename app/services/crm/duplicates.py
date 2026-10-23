@@ -54,7 +54,7 @@ async def find_duplicates(
     def add(kind: str, id_: uuid.UUID, label: str, reason: str, human_id: str | None = None) -> None:
         found.setdefault(
             (kind, id_), DuplicateMatch(kind=kind, id=id_, name=label, reason=reason, human_id=human_id)
-        )  # type: ignore[arg-type]
+        )
 
     # ---- clients: exact (citext) name, domain, GSTIN, then similar names
     conds = []

@@ -155,7 +155,7 @@ async def _timed(
 
 def _group(kind: str, hits: list[QuickHit], limit: int, timed_out: bool) -> GlobalGroup:
     mine = [h for h in hits if h.type == kind]
-    return GlobalGroup(type=kind, items=mine[:limit], has_more=len(mine) > limit, timed_out=timed_out)  # type: ignore[arg-type]
+    return GlobalGroup(type=kind, items=mine[:limit], has_more=len(mine) > limit, timed_out=timed_out)
 
 
 # ================================================================ Epic 34 (A5): group registry

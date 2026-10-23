@@ -1114,7 +1114,7 @@ async def purge_otps(db: AsyncSession) -> int:
     result = await db.execute(
         delete(SignerOtp).where(or_(SignerOtp.consumed_at < cutoff, SignerOtp.expires_at < cutoff))
     )
-    return int(result.rowcount or 0)  # type: ignore[attr-defined]
+    return int(result.rowcount or 0)
 
 
 # ================================================================ external provider status (A8)

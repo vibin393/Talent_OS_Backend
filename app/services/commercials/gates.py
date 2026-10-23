@@ -63,7 +63,7 @@ async def _gate(
     if bill_rate is None or not currency or not rate_unit:
         return None
     req = RateCheckRequest(
-        subject_kind=subject_kind,  # type: ignore[arg-type]
+        subject_kind=subject_kind,
         subject_id=subject_id,
         client_id=client_id,
         on_date=await _today(db, ctx.tenant_id),

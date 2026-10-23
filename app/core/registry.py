@@ -57,7 +57,7 @@ class Registry[K, V]:
 
     @contextlib.contextmanager
     def override(self, key: K, value: V) -> Iterator[None]:
-        previous = self._items.get(key, _MISSING)  # type: ignore[arg-type]
+        previous = self._items.get(key, _MISSING)
         self._items[key] = value
         try:
             yield

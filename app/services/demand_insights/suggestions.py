@@ -40,7 +40,7 @@ async def resolve_ref(ctx: RequestContext, db: AsyncSession, label: str, skill_r
     from app.services.candidates import skills as catalog
 
     if skill_id is not None and skill_ref_kind is not None:
-        ref = await catalog.get_ref(db, SkillRefIn(kind=skill_ref_kind, id=skill_id))  # type: ignore[arg-type]
+        ref = await catalog.get_ref(db, SkillRefIn(kind=skill_ref_kind, id=skill_id))
         if ref is not None:
             return ref
     return await catalog.resolve_skill(ctx, db, label, create_pending=False)
@@ -122,7 +122,7 @@ async def add_link_suggestion(
 
 def out(row: DemandSuggestion) -> SuggestionOut:
     return SuggestionOut(
-        id=row.id, kind=row.kind, payload=row.payload, status=row.status, created_at=row.created_at,  # type: ignore[arg-type]
+        id=row.id, kind=row.kind, payload=row.payload, status=row.status, created_at=row.created_at,
         decided_at=row.decided_at,
     )  # fmt: skip
 
@@ -199,7 +199,7 @@ async def accept(
                 label=s.skill_label,
                 skill_id=s.skill_id,
                 skill_ref_kind=s.skill_ref_kind,
-                kind=s.kind,  # type: ignore[arg-type]
+                kind=s.kind,
                 min_years=s.min_years,
                 min_proficiency=s.min_proficiency,
                 expand=s.expand,

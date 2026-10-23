@@ -56,7 +56,7 @@ class TimeHandler:
                         .values(note=None)
                         .execution_options(synchronize_session=False)
                     )
-                    counts["entries"] += int(result.rowcount or 0)  # type: ignore[attr-defined]
+                    counts["entries"] += int(result.rowcount or 0)
             except Exception:  # locked (posted / approved) rows keep their notes: retained financial records
                 counts["retained"] = counts.get("retained", 0) + 1
         return counts

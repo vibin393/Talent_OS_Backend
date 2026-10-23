@@ -63,7 +63,7 @@ def _result(outcome: Outcome, *, report: ReportDefinition | None) -> RunResultOu
         truncated=outcome.truncated,
         row_limit=outcome.row_limit,
         masked_fields=outcome.masked_fields,
-        limit_hit=LimitHitOut(kind=outcome.limit_kind, message=outcome.limit_message or "")  # type: ignore[arg-type]
+        limit_hit=LimitHitOut(kind=outcome.limit_kind, message=outcome.limit_message or "")
         if outcome.limit_kind
         else None,
         viz=outcome.viz,
@@ -84,7 +84,7 @@ async def run_report(
 ) -> RunResultOut:
     principal = principal_of(ctx)
     report = await visible_report(db, principal, report_id)
-    key = (ctx.tenant_id, principal.id, report.id, report.definition_version, offset)  # type: ignore[assignment]
+    key = (ctx.tenant_id, principal.id, report.id, report.definition_version, offset)
     if cached:
         hit = _cache.get(key)  # type: ignore[arg-type]
         if hit is not None and hit[0] > time.monotonic():
@@ -130,12 +130,12 @@ def _export_out(run: ReportRun, fmt: str, mode: str, outcome: Outcome | None = N
     ready = run.file_id is not None and run.status in ("done", "limit_hit")
     return ExportOut(
         run_id=run.id,
-        mode=mode,  # type: ignore[arg-type]
+        mode=mode,
         status=run.status,
-        format=fmt,  # type: ignore[arg-type]
+        format=fmt,
         row_count=run.row_count,
         masked_fields=list(run.masked_fields or []),
-        limit_hit=LimitHitOut(kind=outcome.limit_kind, message=outcome.limit_message or "")  # type: ignore[arg-type]
+        limit_hit=LimitHitOut(kind=outcome.limit_kind, message=outcome.limit_message or "")
         if outcome is not None and outcome.limit_kind
         else None,
         download_url=delivery.download_path(run.id) if ready else None,

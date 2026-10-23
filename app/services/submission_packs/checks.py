@@ -96,7 +96,7 @@ def _d(
         for k, v in details.items()
         if v is not None
     }
-    return PackCheckDetail(key=key, level=level, code=code, message=message[:300], details=clean, link=link)  # type: ignore[arg-type]
+    return PackCheckDetail(key=key, level=level, code=code, message=message[:300], details=clean, link=link)
 
 
 # ---------------------------------------------------------------- consent
@@ -249,7 +249,7 @@ async def check_vendor(ctx: RequestContext, db: AsyncSession, f: Facts) -> PackC
         return _d(
             "vendor_ownership", "warn", "owned_by_other",
             f"{owner['vendor_name']} owns this candidate for this client until {expires.date().isoformat() if expires else 'further notice'}.",  # type: ignore[attr-defined]
-            PackLink(kind="vendor", id=owner["vendor_id"], path=f"/vendors/{owner['vendor_id']}"),  # type: ignore[arg-type]
+            PackLink(kind="vendor", id=owner["vendor_id"], path=f"/vendors/{owner['vendor_id']}"),
             owner_kind="vendor", vendor_id=owner["vendor_id"],
         )  # fmt: skip
     first = await pipeline_service.client_first_submitter(db, f.demand.client_id, f.app.candidate_id)

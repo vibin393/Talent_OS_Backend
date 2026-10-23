@@ -109,7 +109,7 @@ async def refresh_docs(
             result = await db.execute(
                 delete(CandidateSearchDoc).where(CandidateSearchDoc.candidate_id.in_(gone))
             )
-            counts["deleted"] += int(result.rowcount or 0)  # type: ignore[attr-defined]
+            counts["deleted"] += int(result.rowcount or 0)
         for p in projections.values():
             if p is None:
                 continue
@@ -130,7 +130,7 @@ async def delete_docs(db: AsyncSession, candidate_ids: Sequence[uuid.UUID]) -> i
     result = await db.execute(
         delete(CandidateSearchDoc).where(CandidateSearchDoc.candidate_id.in_(list(candidate_ids)))
     )
-    return int(result.rowcount or 0)  # type: ignore[attr-defined]
+    return int(result.rowcount or 0)
 
 
 async def reindex(db: AsyncSession, tenant_id: uuid.UUID, *, batch: int = BATCH) -> int:

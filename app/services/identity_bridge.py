@@ -114,7 +114,7 @@ async def revoke_tenant_sessions(
         )
         .values(revoked_at=_now())
     )
-    return int(result.rowcount)  # type: ignore[attr-defined]
+    return int(result.rowcount)
 
 
 async def revoke_grant_sessions(db: AsyncSession, grant_id: uuid.UUID) -> int:
@@ -123,4 +123,4 @@ async def revoke_grant_sessions(db: AsyncSession, grant_id: uuid.UUID) -> int:
         .where(AuthSession.support_grant_id == grant_id, AuthSession.revoked_at.is_(None))
         .values(revoked_at=_now())
     )
-    return int(result.rowcount)  # type: ignore[attr-defined]
+    return int(result.rowcount)

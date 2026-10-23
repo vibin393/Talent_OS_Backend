@@ -93,7 +93,7 @@ async def _gate(db: AsyncSession, row: VoiceSession, uploader: uuid.UUID | None 
         participant_user_ids=[uploader] if uploader else [],
         acks={uploader: common.now()} if uploader else {},
         confirmed_jurisdiction=confirmed,
-    )  # type: ignore[arg-type]
+    )
 
 
 def _snapshot(decision: Any) -> dict[str, Any]:

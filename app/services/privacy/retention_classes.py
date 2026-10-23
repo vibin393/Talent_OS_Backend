@@ -220,8 +220,8 @@ def class_out(row: RetentionClass) -> Any:
         key=row.key,
         label=row.label,
         period_months=row.min_retention_months,
-        anchor=row.anchor,  # type: ignore[arg-type]
-        expiry_action=row.expiry_action,  # type: ignore[arg-type]
+        anchor=row.anchor,
+        expiry_action=row.expiry_action,
         is_system=row.is_system,
         floor_months=row.floor_months,
         auto_execute=row.auto_execute,

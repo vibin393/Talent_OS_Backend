@@ -156,7 +156,7 @@ async def preview_run(ctx: RequestContext, db: AsyncSession, data: RunCreate) ->
         entry = per_client.setdefault(e.client_id, RunPreviewClient(client_id=e.client_id))
         entry.exceptions.append(
             RunPreviewException(
-                kind=e.kind, category=CATEGORY.get(e.kind, "other"),  # type: ignore[arg-type]
+                kind=e.kind, category=CATEGORY.get(e.kind, "other"),
                 placement_id=e.placement_id, severity=e.severity, details=dict(e.details or {}),
             )
         )  # fmt: skip

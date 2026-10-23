@@ -36,7 +36,7 @@ async def preview_due(db: AsyncSession, on: date | None = None) -> list[dict[str
             "case_id": str(c.id),
             "human_id": c.human_id,
             "evidence_purge_after": c.evidence_purge_after.isoformat(),
-        }  # type: ignore[union-attr]
+        }
         for c in await _due(db, on)
     ]
 
@@ -101,7 +101,7 @@ async def candidate_for_row(db: AsyncSession, row_id: uuid.UUID, *, table: str) 
             await db.execute(select(BgvEvidence.candidate_id).where(BgvEvidence.id == row_id))
         ).scalar_one_or_none()
     model = BgvDocumentRequest if table == "bgv_document_requests" else BgvDiscrepancy
-    return (await db.execute(select(model.candidate_id).where(model.id == row_id))).scalar_one_or_none()  # type: ignore[attr-defined]
+    return (await db.execute(select(model.candidate_id).where(model.id == row_id))).scalar_one_or_none()
 
 
 async def anchor_for_row(db: AsyncSession, row_id: uuid.UUID, *, table: str) -> Any:
@@ -114,7 +114,7 @@ async def anchor_for_row(db: AsyncSession, row_id: uuid.UUID, *, table: str) -> 
         ).scalar_one_or_none()
     else:
         model = BgvDocumentRequest if table == "bgv_document_requests" else BgvDiscrepancy
-        case_id = (await db.execute(select(model.case_id).where(model.id == row_id))).scalar_one_or_none()  # type: ignore[attr-defined]
+        case_id = (await db.execute(select(model.case_id).where(model.id == row_id))).scalar_one_or_none()
     if case_id is None:
         return None
     return (

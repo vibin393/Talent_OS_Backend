@@ -84,11 +84,11 @@ async def event_out(db: AsyncSession, event: RecruitmentEvent) -> EventOut:
     queue = dict((await db.execute(select(QueueEntry.status, func.count()).where(QueueEntry.event_id == event.id).group_by(QueueEntry.status))).tuples().all())
     stations = int((await db.execute(select(func.count()).select_from(EventStation).where(EventStation.event_id == event.id))).scalar_one())
     return EventOut(
-        id=event.id, name=event.name, kind=event.kind, drive_id=event.drive_id, owner_id=event.owner_id,  # type: ignore[arg-type]
+        id=event.id, name=event.name, kind=event.kind, drive_id=event.drive_id, owner_id=event.owner_id,
         demands=[DemandRef(**refs[d]) for d in event.demand_ids or [] if d in refs], starts_at=event.starts_at,
         ends_at=event.ends_at, timezone=event.timezone, venue=event.venue, video_link=event.video_link,
-        status=event.status, registration_url=event_url(token) if token else None,  # type: ignore[arg-type]
-        avg_interview_minutes=event.avg_interview_minutes, notify_channel=event.notify_channel,  # type: ignore[arg-type]
+        status=event.status, registration_url=event_url(token) if token else None,
+        avg_interview_minutes=event.avg_interview_minutes, notify_channel=event.notify_channel,
         station_count=stations,
         counts=EventCounts(
             registered=sum(int(v) for v in checkins.values()), checked_in=int(checkins.get("checked_in", 0)),
@@ -204,7 +204,7 @@ async def secure_links_for_checkins(db: AsyncSession, event_id: uuid.UUID) -> in
 def _station_out(s: EventStation, current: uuid.UUID | None = None) -> StationOut:
     return StationOut(
         id=s.id, event_id=s.event_id, label=s.label, interviewer_user_ids=list(s.interviewer_user_ids or []),
-        demand_id=s.demand_id, status=s.status, current_entry_id=current,  # type: ignore[arg-type]
+        demand_id=s.demand_id, status=s.status, current_entry_id=current,
     )
 
 
@@ -287,9 +287,9 @@ async def checkin_outs(db: AsyncSession, rows: list[EventCheckin]) -> list[Check
             CheckinOut(
                 id=r.id, event_id=r.event_id, candidate_id=r.candidate_id, candidate_name=facts.get(r.candidate_id, (None, None))[0],
                 demand_id=r.demand_id, demand_title=refs.get(r.demand_id, {}).get("title") if r.demand_id else None,
-                status=r.status, method=r.method, registered_at=r.registered_at, checked_in_at=r.checked_in_at,  # type: ignore[arg-type]
+                status=r.status, method=r.method, registered_at=r.registered_at, checked_in_at=r.checked_in_at,
                 queue_entry_id=e.id if e else None, queue_position=e.position if e else None,
-                queue_status=e.status if e else None,  # type: ignore[arg-type]
+                queue_status=e.status if e else None,
             )
         )
     return out

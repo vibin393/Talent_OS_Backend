@@ -70,11 +70,11 @@ def entry_out(e: AgentShortlistEntry, names: Mapping[uuid.UUID, Mapping[str, Any
         overall=float(e.overall) if e.overall is not None else None, match_id=e.match_id,
         sources=list(e.sources or []), explanation=e.explanation, agent_note=e.agent_note, flags=list(e.flags or []),
         contactability={k: ChannelState(**v) for k, v in (e.contactability or {}).items() if isinstance(v, dict)},
-        best_channel=e.best_channel, last_activity_at=e.last_activity_at,  # type: ignore[arg-type]
-        notice_period_days=e.notice_period_days, availability_date=e.availability_date, status=e.status,  # type: ignore[arg-type]
+        best_channel=e.best_channel, last_activity_at=e.last_activity_at,
+        notice_period_days=e.notice_period_days, availability_date=e.availability_date, status=e.status,
         decided_by=e.decided_by, decided_at=e.decided_at, dismiss_reason=e.dismiss_reason,
-        application_id=e.application_id, draft_channel=e.draft_channel, draft_subject=e.draft_subject,  # type: ignore[arg-type]
-        draft_body=e.draft_body, draft_status=e.draft_status, outreach_proposal_id=e.outreach_proposal_id,  # type: ignore[arg-type]
+        application_id=e.application_id, draft_channel=e.draft_channel, draft_subject=e.draft_subject,
+        draft_body=e.draft_body, draft_status=e.draft_status, outreach_proposal_id=e.outreach_proposal_id,
         outreach_sent_at=e.outreach_sent_at,
     )  # fmt: skip
 
@@ -99,8 +99,8 @@ async def shortlist_out(db: AsyncSession, s: AgentShortlist) -> ShortlistOut:
     entries = await _entries(db, s.id)
     names = await _names(db, [e.candidate_id for e in entries])
     return ShortlistOut(
-        id=s.id, demand_id=s.demand_id, run_id=s.run_id, version=s.version, status=s.status,  # type: ignore[arg-type]
-        trigger_key=s.trigger_key, considered_count=s.considered_count,  # type: ignore[arg-type]
+        id=s.id, demand_id=s.demand_id, run_id=s.run_id, version=s.version, status=s.status,
+        trigger_key=s.trigger_key, considered_count=s.considered_count,
         excluded_counts={k: int(v) for k, v in (s.excluded_counts or {}).items()},
         suppressed_counts={k: int(v) for k, v in (s.suppressed_counts or {}).items()}, top_n=s.top_n,
         summary=s.summary, created_at=s.created_at, entries=[entry_out(e, names) for e in entries],
@@ -160,7 +160,7 @@ async def list_versions(
             version=s.version,
             status=s.status,
             trigger_key=s.trigger_key,
-            created_at=s.created_at,  # type: ignore[arg-type]
+            created_at=s.created_at,
             entry_count=int(n),
         )
         for s, n in rows.all()

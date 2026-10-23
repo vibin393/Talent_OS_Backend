@@ -105,8 +105,8 @@ async def contact_channels(db: AsyncSession, conv: ScreeningConversation) -> dic
         bool(phone)
         and not await opt_outs.is_opted_out(db, "whatsapp", phone)
         and await has_whatsapp_consent(db, "candidate", conv.candidate_id)
-    )  # type: ignore[arg-type]
-    sms = bool(phone) and not await opt_outs.is_opted_out(db, "sms", phone)  # type: ignore[arg-type]
+    )
+    sms = bool(phone) and not await opt_outs.is_opted_out(db, "sms", phone)
     return {
         "portal": await conversations._portal_active(conv.candidate_id),
         "email": who is not None and bool(who.address),

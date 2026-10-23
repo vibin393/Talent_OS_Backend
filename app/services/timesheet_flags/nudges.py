@@ -74,7 +74,7 @@ class NudgeFacts:
 
 def _item(f: NudgeFacts, kind: str, age: int, *, escalate: bool = False) -> NudgeItem:
     return NudgeItem(
-        timesheet_id=f.timesheet_id, human_id=f.human_id, kind=kind, status=f.status,  # type: ignore[arg-type]
+        timesheet_id=f.timesheet_id, human_id=f.human_id, kind=kind, status=f.status,
         period_start=f.period_start, period_end=f.period_end, age_business_days=age, nudges_sent=f.agent_nudges,
         recipient_kind=f.recipient_kind, recipient_id=f.recipient_id, placement_id=f.placement_id,
         candidate_id=f.candidate_id, escalate=escalate, approver_step=f.approver_step,

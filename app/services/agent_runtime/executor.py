@@ -234,7 +234,7 @@ def _policy_input(
         tool=tool,
         args=args,
         effective_permissions=principal.permissions,
-        action_policy_mode=policy.mode if policy is not None else None,  # type: ignore[arg-type]
+        action_policy_mode=policy.mode if policy is not None else None,
         config_default_mode=config.default_mode if config is not None else None,
         spec_default_mode=spec.default_mode,
         origin=run.origin,

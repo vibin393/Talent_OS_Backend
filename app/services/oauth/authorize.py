@@ -243,7 +243,7 @@ async def authorize_request(ctx: RequestContext, db: AsyncSession, req: Authoriz
         raise redirect_error("invalid_target", "mcp:* scopes need the MCP resource")
     if resource == "mcp" and not has_mcp:
         raise redirect_error("invalid_scope", "The MCP resource needs an mcp:* scope")
-    base = AuthorizeView(request_id="", app_name=app_name, scopes=[], resource=resource, app=consent_app)  # type: ignore[arg-type]
+    base = AuthorizeView(request_id="", app_name=app_name, scopes=[], resource=resource, app=consent_app)
     inst = (
         await db.execute(
             select(AppInstallation).where(

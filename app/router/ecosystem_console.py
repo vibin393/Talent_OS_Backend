@@ -69,7 +69,7 @@ async def revoke_authorization(authorization_id: uuid.UUID, body: RevokeIn, _: M
 
     revoke = getattr(oauth_service, "revoke_for", None) or getattr(oauth_service, "revoke_authorization", None)
     if revoke is not None:
-        await revoke(get_context(), db, authorization_id, reason=body.reason)  # type: ignore[misc]
+        await revoke(get_context(), db, authorization_id, reason=body.reason)
     return Response(status_code=204)
 
 

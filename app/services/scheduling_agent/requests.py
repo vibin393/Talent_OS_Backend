@@ -696,7 +696,7 @@ async def start_run(
 ) -> Any:
     kick = await kickoff(db, req, mode, offer_id=offer_id, pick_id=pick_id, windows=windows, note=note)
     ref = await runtime.start_run(
-        ctx, db, agent_key=AGENT_KEY, trigger_kind=trigger_kind, trigger_key=trigger_key,  # type: ignore[arg-type]
+        ctx, db, agent_key=AGENT_KEY, trigger_kind=trigger_kind, trigger_key=trigger_key,
         subject=("application", req.application_id), kickoff=kick, owner_user_id=req.owner_user_id,
         dedup_key=f"sched:req:{req.id}", parent_run_id=req.current_run_id,
     )  # fmt: skip

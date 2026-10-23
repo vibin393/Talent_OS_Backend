@@ -30,8 +30,8 @@ def _latency(d: WebhookDelivery) -> int | None:
 
 def out(d: WebhookDelivery) -> DeliveryOut:
     return DeliveryOut(
-        id=d.id, subscription_id=d.subscription_id, event_id=d.event_id, event_type=d.event_type, kind=d.kind,  # type: ignore[arg-type]
-        replay_of_id=d.replay_of_id, status=d.status, attempt_count=d.attempt_count, next_attempt_at=d.next_attempt_at,  # type: ignore[arg-type]
+        id=d.id, subscription_id=d.subscription_id, event_id=d.event_id, event_type=d.event_type, kind=d.kind,
+        replay_of_id=d.replay_of_id, status=d.status, attempt_count=d.attempt_count, next_attempt_at=d.next_attempt_at,
         last_status_code=d.last_status_code, last_error=d.last_error, latency_ms=_latency(d), delivered_at=d.delivered_at,
         created_at=d.created_at,
     )  # fmt: skip

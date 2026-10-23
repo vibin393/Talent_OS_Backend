@@ -105,11 +105,11 @@ async def _project(db: AsyncSession, conv: ScreeningConversation, after_seq: int
     status = _status(conv)
     rows = await turns.list_turns(db, conv.id, after_seq)
     return PortalScreeningChat(
-        id=conv.id, title=await channels.demand_title(db, conv), status=status,  # type: ignore[arg-type]
+        id=conv.id, title=await channels.demand_title(db, conv), status=status,
         recruiter_name=await channels.owner_name(db, conv), consent_needed=status == "waiting_for_consent",
         can_reply=status in ("open", "paused"),
         notice=await _notice(db, conv.tenant_id) if status == "waiting_for_consent" else None,
-        turns=[PortalChatTurn(seq=t.seq, author=AUTHOR.get(t.author, "assistant"), body=t.body, sent_at=t.created_at) for t in rows],  # type: ignore[arg-type]
+        turns=[PortalChatTurn(seq=t.seq, author=AUTHOR.get(t.author, "assistant"), body=t.body, sent_at=t.created_at) for t in rows],
     )  # fmt: skip
 
 
@@ -132,7 +132,7 @@ async def portal_list(tenant_id: uuid.UUID, candidate_id: uuid.UUID) -> list[Por
                 PortalScreeningChatSummary(
                     id=conv.id,
                     title=await channels.demand_title(db, conv),
-                    status=_status(conv),  # type: ignore[arg-type]
+                    status=_status(conv),
                     recruiter_name=await channels.owner_name(db, conv),
                     last_message_at=max(
                         (d for d in (conv.last_inbound_at, conv.last_outbound_at) if d), default=None

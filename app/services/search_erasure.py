@@ -22,7 +22,7 @@ from app.services.privacy.registry import ErasureContext, register_ai_derived_pu
 
 async def _delete(db: AsyncSession, model: Any, column: Any, ids: list[uuid.UUID]) -> int:
     result = await db.execute(delete(model).where(column.in_(ids)))
-    return int(result.rowcount or 0)  # type: ignore[attr-defined]
+    return int(result.rowcount or 0)
 
 
 class SearchIndexHandler:

@@ -202,8 +202,8 @@ async def _out(db: AsyncSession, row: IdentityProvider) -> ClientIdentityProvide
         id=row.id,
         client_id=row.client_id,
         name=row.name,
-        kind=row.kind,  # type: ignore[arg-type]
-        status=row.status,  # type: ignore[arg-type]
+        kind=row.kind,
+        status=row.status,
         email_domains=list(row.email_domains or []),
         config=dict(row.config or {}),
         has_secret=row.secret is not None,

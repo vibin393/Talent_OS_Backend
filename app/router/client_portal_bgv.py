@@ -23,4 +23,4 @@ router = APIRouter(
 
 @router.get("/placements/{placement_id}/bgv-status", response_model=ClientBgvStatusOut)
 async def bgv_status(placement_id: uuid.UUID, _: ClientDep, db: ClientDBSessionDep) -> Any:
-    return ClientBgvStatusOut(status=await adjudication.client_status(get_context(), db, placement_id))  # type: ignore[arg-type]
+    return ClientBgvStatusOut(status=await adjudication.client_status(get_context(), db, placement_id))

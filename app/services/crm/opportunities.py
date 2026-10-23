@@ -180,7 +180,7 @@ async def outs(
             client_name=names.get(o.client_id),
             primary_contact_id=o.primary_contact_id,
             lead_id=o.lead_id,
-            service=o.service,  # type: ignore[arg-type]
+            service=o.service,
             estimated_revenue=format(o.estimated_revenue, "f"),
             weighted_revenue=format(weighted(o.estimated_revenue, o.probability_pct, o.currency), "f"),
             currency=o.currency,
@@ -191,7 +191,7 @@ async def outs(
             owner=users.get(o.owner_id),
             account_manager_id=o.account_manager_id,
             account_manager=users.get(o.account_manager_id) if o.account_manager_id else None,
-            stage=o.stage,  # type: ignore[arg-type]
+            stage=o.stage,
             stage_entered_at=o.stage_entered_at,
             lost_reason_code=o.lost_reason_code,
             lost_competitor=o.lost_competitor,
@@ -297,7 +297,7 @@ async def board(ctx: RequestContext, db: AsyncSession, filters: dict[str, Any]) 
         )
         columns.append(
             BoardColumn(
-                stage=stage,  # type: ignore[arg-type]
+                stage=stage,
                 count=counts.get(stage, 0),
                 totals=totals(per_stage.get(stage, [])),
                 items=await outs(db, list(rows.scalars())),
@@ -349,7 +349,7 @@ async def summary(
         )
         for k, g in sorted(groups.items())
     ]
-    return SummaryOut(group_by=group_by, groups=out_groups)  # type: ignore[arg-type]
+    return SummaryOut(group_by=group_by, groups=out_groups)
 
 
 async def client_opportunities(

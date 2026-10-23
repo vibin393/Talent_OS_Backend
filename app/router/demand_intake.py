@@ -73,7 +73,7 @@ async def list_intake_messages(
     status_: Annotated[list[IntakeStatus] | None, Query(alias="status")] = None,
     client_id: uuid.UUID | None = None,
 ) -> Any:
-    q = IntakeQuery(status=status_, tab=tab, client_id=client_id)  # type: ignore[arg-type]
+    q = IntakeQuery(status=status_, tab=tab, client_id=client_id)
     return await svc.list_messages(get_context(), db, q, params)
 
 

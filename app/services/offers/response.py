@@ -88,20 +88,20 @@ async def candidate_view(db: AsyncSession, offer: Offer, *, letter_url: str | No
     return CandidateOfferView(
         id=offer.id,
         reference=offer.human_id,
-        status=offer.status,  # type: ignore[arg-type]
+        status=offer.status,
         version_no=version.version_no,
         tenant_name=tenant["name"],
         candidate_name=candidate.get("full_name"),
         title=version.title,
-        employment_type=version.employment_type,  # type: ignore[arg-type]
+        employment_type=version.employment_type,
         pay_rate=Money(**pay),
-        pay_rate_unit=version.pay_rate_unit,  # type: ignore[arg-type]
+        pay_rate_unit=version.pay_rate_unit,
         bonus=Money(**bonus) if bonus else None,
         benefits_summary=version.benefits_summary,
         start_date=version.start_date,
         end_date=version.end_date,
         location=version.location,
-        work_mode=version.work_mode,  # type: ignore[arg-type]
+        work_mode=version.work_mode,
         expiry_date=version.expiry_date,
         expires_at=offer.expires_at,
         released_at=offer.released_at,
@@ -109,7 +109,7 @@ async def candidate_view(db: AsyncSession, offer: Offer, *, letter_url: str | No
         letter_url=letter_url if version.letter_file_id is not None else None,
         can_respond=can_respond,
         response=CandidateOfferResponse(
-            decision=response_row.decision,  # type: ignore[arg-type]
+            decision=response_row.decision,
             version_no=response_row.version_no,
             typed_name=response_row.typed_name,
             decided_at=response_row.decided_at,

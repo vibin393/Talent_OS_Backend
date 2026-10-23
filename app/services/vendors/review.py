@@ -466,4 +466,4 @@ async def end_ownerships_for(db: AsyncSession, candidate_ids: Sequence[uuid.UUID
         .values(ended_at=now())
         .execution_options(synchronize_session=False)
     )
-    return int(result.rowcount or 0)  # type: ignore[attr-defined]
+    return int(result.rowcount or 0)

@@ -55,7 +55,7 @@ def actor_kind_of(ctx: RequestContext) -> ActorKind:
     """Actor of the caller: an explicit automated actor on the context wins (Epic 10 workflow)."""
     explicit = getattr(ctx, "actor_kind", None)
     if explicit in ("workflow", "ai", "agent", "system", "candidate"):
-        return explicit  # type: ignore[return-value]
+        return explicit
     kind = getattr(ctx.principal, "type", None)
     if kind == "user":
         return "user"

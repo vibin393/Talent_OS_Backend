@@ -56,7 +56,7 @@ async def contactability(
             email=states["email"],
             sms=states["sms"],
             whatsapp=states["whatsapp"],
-            best_channel=best_channel(states, preferred),  # type: ignore[arg-type]
+            best_channel=best_channel(states, preferred),
         )
     return out
 

@@ -98,7 +98,7 @@ async def import_immigration_case(
             permit = PermitIn(
                 permit_type=data.permit_type,
                 number=data.permit_number,
-                valid_from=data.permit_valid_from,  # type: ignore[arg-type]
+                valid_from=data.permit_valid_from,
                 valid_to=data.permit_valid_to,
             )
             permits.check_expiry(d, permit)

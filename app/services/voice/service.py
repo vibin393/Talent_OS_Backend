@@ -20,7 +20,7 @@ def _fake_available() -> bool:
 
 def _out(row: VoiceSettings) -> VoiceSettingsOut:
     return VoiceSettingsOut(
-        default_provider=row.default_provider,  # type: ignore[arg-type]
+        default_provider=row.default_provider,
         consent_link_days=row.consent_link_days,
         consent_channel_order=list(row.consent_channel_order or []),
         max_upload_mb=row.max_upload_mb,

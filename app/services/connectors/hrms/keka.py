@@ -93,7 +93,7 @@ class KekaHrms(LiveHrmsBase):
 
     @property
     def _cfg(self) -> KekaConfig:
-        return self.ctx.config  # type: ignore[no-any-return]
+        return self.ctx.config
 
     def _base(self) -> str:
         cfg = self._cfg

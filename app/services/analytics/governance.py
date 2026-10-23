@@ -279,10 +279,10 @@ async def model_cards(ctx: RequestContext, db: AsyncSession, kind: str | None = 
         on = enabled(row, k)
         cards.append(
             ModelCard(
-                kind=k,  # type: ignore[arg-type]
+                kind=k,
                 kind_label=KIND_LABELS[k],
                 enabled=on,
-                status=_card_status(latest, active, on),  # type: ignore[arg-type]
+                status=_card_status(latest, active, on),
                 reduced=not full,
                 active=_detail(active, not full) if active is not None else None,
                 latest=ModelRef(

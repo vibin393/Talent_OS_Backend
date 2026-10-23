@@ -245,4 +245,4 @@ def idempotency(required: bool = True) -> Callable[..., Awaitable[IdempotencyGua
 
 async def purge_expired(db: AsyncSession, now: datetime | None = None) -> int:
     result = await db.execute(delete(_keys).where(_keys.c.expires_at < (now or _now())))
-    return int(result.rowcount or 0)  # type: ignore[attr-defined]
+    return int(result.rowcount or 0)

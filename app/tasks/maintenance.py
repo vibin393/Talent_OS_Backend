@@ -45,7 +45,7 @@ async def _purge(db: AsyncSession, model: Any, condition: Any, pk: Any = None) -
     while True:
         ids = select(pk).where(condition).limit(BATCH).with_for_update(skip_locked=True).scalar_subquery()
         result = await db.execute(delete(model).where(pk.in_(ids)).execution_options(synchronize_session=False))
-        count = int(result.rowcount or 0)  # type: ignore[attr-defined]
+        count = int(result.rowcount or 0)
         total += count
         await db.commit()
         if count < BATCH:
@@ -97,7 +97,7 @@ async def purge_secure_links_job(now: datetime | None = None, only: str | None =
             for start in range(0, len(stale), BATCH):
                 chunk = stale[start : start + BATCH]
                 res = await db.execute(delete(SecureLinkLookup).where(SecureLinkLookup.link_id.in_(chunk)))
-                lookups += int(res.rowcount or 0)  # type: ignore[attr-defined]
+                lookups += int(res.rowcount or 0)
             links = await _purge(db, SecureLink, SecureLink.created_at < now - timedelta(days=180))
             return {"lookups": lookups, "links": links}
 

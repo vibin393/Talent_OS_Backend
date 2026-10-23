@@ -119,7 +119,7 @@ async def won_preview(ctx: RequestContext, db: AsyncSession, opp_id: uuid.UUID) 
             will_activate=client.status != "active",
         ),
         contract=WonPreviewContract(
-            type=ctype,  # type: ignore[arg-type]
+            type=ctype,
             title=f"{client.name} {ctype.upper()}",
             legal_entity_id=await _default_legal_entity(db, opp.owner_id),
             start_date=now().date(),

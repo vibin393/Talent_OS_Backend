@@ -529,10 +529,10 @@ async def run_out(db: AsyncSession, run: TdsReconRun, counts: dict[str, int] | N
         id=run.id,
         legal_entity_id=run.legal_entity_id,
         fy=run.fy,
-        quarter=run.quarter,  # type: ignore[arg-type]
-        statement_kind=run.statement_kind,  # type: ignore[arg-type]
-        source=run.source,  # type: ignore[arg-type]
-        status=run.status,  # type: ignore[arg-type]
+        quarter=run.quarter,
+        statement_kind=run.statement_kind,
+        source=run.source,
+        status=run.status,
         line_count=run.line_count,
         error=run.error,
         created_by=run.created_by,
@@ -580,7 +580,7 @@ async def match_out(
         id=m.id,
         statement_line_id=m.statement_line_id,
         tds_deduction_id=m.tds_deduction_id,
-        status=m.status,  # type: ignore[arg-type]
+        status=m.status,
         score=m.score,
         reasons=list(m.reasons or []),
         decided_by=m.decided_by,
@@ -630,7 +630,7 @@ async def lines_out(db: AsyncSession, lines: list[TdsStatementLine]) -> list[Tds
                 id=m.id,
                 statement_line_id=m.statement_line_id,
                 tds_deduction_id=m.tds_deduction_id,
-                status=m.status,  # type: ignore[arg-type]
+                status=m.status,
                 score=m.score,
                 reasons=list(m.reasons or []),
                 decided_by=m.decided_by,

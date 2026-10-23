@@ -76,7 +76,7 @@ async def get_settings(ctx: RequestContext, db: AsyncSession) -> FxFeedSettingsO
     return FxFeedSettingsOut(
         enabled=row.enabled,
         pairs=list(row.pairs or []),
-        precedence=row.precedence,  # type: ignore[arg-type]
+        precedence=row.precedence,
         max_stale_days=row.max_stale_days,
         fetch_hour_ist=row.fetch_hour_ist,
         provider_key=await _provider_key(ctx, db),

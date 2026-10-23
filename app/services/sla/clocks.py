@@ -29,7 +29,7 @@ def view(clock: SlaClock) -> SlaClockView:
         at_risk_at=clock.at_risk_at,
         completed_at=clock.completed_at,
         breached_at=clock.breached_at,
-        status=clock.status,  # type: ignore[arg-type]
+        status=clock.status,
     )
 
 

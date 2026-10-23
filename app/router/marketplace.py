@@ -58,7 +58,7 @@ async def listings(
 ) -> ListingPageOut:
     query = ListingQuery(
         category=category, publisher=publisher, q=q, installed=installed, page=page, page_size=page_size
-    )  # type: ignore[arg-type]
+    )
     return await marketplace_service.list_listings(get_context(), db, query)
 
 
@@ -89,7 +89,7 @@ async def installations(
 ) -> list[InstallationOut]:
     q = InstallationQuery(
         status=status_, kind=kind, category=category, include_uninstalled=include_uninstalled, limit=200
-    )  # type: ignore[arg-type]
+    )
     return (await marketplace_service.list_installations(get_context(), db, q)).data
 
 

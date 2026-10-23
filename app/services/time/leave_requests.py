@@ -749,7 +749,7 @@ def to_out(
         end_half=req.end_half,
         days=req.days,
         reason=req.reason,
-        status=req.status,  # type: ignore[arg-type]
+        status=req.status,
         approval_request_id=req.approval_request_id,
         requested_by_kind=req.requested_by_kind,
         proxy_reason=req.proxy_reason,
@@ -820,7 +820,7 @@ def expand(req: LeaveRequest, working: list[date], *, with_type: str | None) -> 
             half = "pm"
         elif d == req.end_date and req.end_half == "am":
             half = "am"
-        out.append(LeaveCalendarDay(date=d, half=half, status=status, leave_type_name=with_type))  # type: ignore[arg-type]
+        out.append(LeaveCalendarDay(date=d, half=half, status=status, leave_type_name=with_type))
     return out
 
 

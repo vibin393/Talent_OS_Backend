@@ -110,7 +110,7 @@ async def _cancel_run(db: AsyncSession, capture: InterviewCapture) -> None:
             capture.agent_run_id,
             reason="interview recording consent withdrawn",
             reason_code="subject_closed",
-        )  # type: ignore[arg-type]
+        )
     except Exception:
         logger.debug("Interview Assistant run {} not cancelled", capture.agent_run_id)
 

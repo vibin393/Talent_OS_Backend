@@ -76,7 +76,7 @@ async def flag_out(ctx: RequestContext, db: AsyncSession, row: DemandFlag) -> Fl
     demand = await db.get(Demand, row.demand_id)
     return FlagOut(
         id=row.id, demand_id=row.demand_id, demand_human_id=demand.req_id if demand is not None else None,
-        kind=row.kind, status=row.status, score=row.score,  # type: ignore[arg-type]
+        kind=row.kind, status=row.status, score=row.score,
         reasons=[ReasonOut(**r) for r in row.reasons or []], summary=row.summary, milestone=row.milestone,
         basis=row.basis, p_late=row.p_late, next_steps=[NextStep(**n) for n in row.next_steps or []],
         related=related, raised_by_kind=row.raised_by_kind, run_id=row.run_id, created_at=row.created_at,

@@ -121,7 +121,7 @@ def _release_out(r: VendorRelease, used: int) -> PortalReleaseOut:
         employment_type=r.employment_type,
         experience_range=r.experience_range,
         jd_public_text=r.jd_public_text,
-        client_name=r.client_display_name,  # type: ignore[arg-type]  # snapshot: "Confidential client" unless revealed
+        client_name=r.client_display_name,  # snapshot: "Confidential client" unless revealed
         max_vendor_rate=r.max_vendor_rate,
         rate_unit=r.rate_unit,
         currency=r.currency,
@@ -748,7 +748,7 @@ async def dashboard(ctx: RequestContext, db: AsyncSession, principal: Principal)
         open_releases=open_releases,
         submissions_by_label=[PortalLabelCount(label=k, count=n) for k, n in sorted(counts.items())],
         upcoming_interviews=[
-            PortalUpcomingInterview(submission_id=s.id, full_name=s.full_name, at=s.next_interview_at)  # type: ignore[arg-type]
+            PortalUpcomingInterview(submission_id=s.id, full_name=s.full_name, at=s.next_interview_at)
             for s in upcoming
         ],
         active_placements=active_placements,

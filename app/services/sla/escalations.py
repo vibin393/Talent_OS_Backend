@@ -161,7 +161,7 @@ def _policy_out(p: EscalationPolicy) -> EscalationPolicyOut:
         after_business_hours=p.after_business_hours,
         calendar=p.calendar,
         action=p.action,
-        target_kind=TARGET_FROM_DB.get(p.target_kind, "named_user"),  # type: ignore[arg-type]
+        target_kind=TARGET_FROM_DB.get(p.target_kind, "named_user"),
         target_user_id=user_ref,
         target_role_id=role_ref,
         repeat_every_value=_value(p.repeat_every_hours, p.after_unit),
@@ -525,7 +525,7 @@ async def close_watches(
     if except_position is not None:
         stmt = stmt.where(EscalationWatch.step_position.is_distinct_from(except_position))
     result = await db.execute(stmt)
-    return int(result.rowcount or 0)  # type: ignore[attr-defined]
+    return int(result.rowcount or 0)
 
 
 async def open_approval_watch(db: AsyncSession, request_id: uuid.UUID, position: int) -> uuid.UUID | None:

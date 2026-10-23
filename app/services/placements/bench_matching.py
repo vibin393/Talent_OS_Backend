@@ -192,7 +192,7 @@ async def bench_matches(ctx: RequestContext, db: AsyncSession, demand_id: uuid.U
                     current_title=getattr(cand, "current_title", None),
                     city=loc.get("city"),
                 ),
-                pool=member.pool,  # type: ignore[arg-type]
+                pool=member.pool,
                 match_id=match.id if match else None,
                 overall=match.overall if match else None,
                 sub_scores=match.sub_scores if match else {},
@@ -208,14 +208,14 @@ async def bench_matches(ctx: RequestContext, db: AsyncSession, demand_id: uuid.U
                     and match.overall >= threshold
                 ),
                 bench_entry_id=entry.id if entry else None,
-                bench_status=entry.status if entry else None,  # type: ignore[arg-type]
+                bench_status=entry.status if entry else None,
                 bench_days=days,
                 available_from=entry.available_from if entry else None,
                 rolling_off_end_date=member.rolling_off_end_date,
                 cost_per_day=entry.cost_per_day if entry is not None and show else None,
                 cost_currency=entry.cost_currency if entry is not None else None,
                 cost_masked=not show,
-                review_decision=review.decision if review else None,  # type: ignore[arg-type]
+                review_decision=review.decision if review else None,
                 review_reason=review.reason if review else None,
             )
         )

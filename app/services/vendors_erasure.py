@@ -84,7 +84,7 @@ class VendorSubmissionsHandler:
             delete(VendorCandidateOwnership).where(VendorCandidateOwnership.candidate_id.in_(ids))
         )
         await db.flush()
-        return {"vendor_submissions": erased, "files": files, "ownerships": int(owned.rowcount or 0)}  # type: ignore[attr-defined]
+        return {"vendor_submissions": erased, "files": files, "ownerships": int(owned.rowcount or 0)}
 
     async def export(self, db: AsyncSession, ctx: ErasureContext) -> dict[str, Any] | None:
         ids = await subject_ids(db, ctx.candidate_id)

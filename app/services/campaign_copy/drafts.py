@@ -50,7 +50,7 @@ async def approver_names(db: AsyncSession, rows: Iterable[CampaignCopyDraft]) ->
 def to_out(d: CampaignCopyDraft, names: dict[uuid.UUID, str] | None = None) -> CopyDraftOut:
     return CopyDraftOut(
         id=d.id, request_id=d.request_id, segment_key=d.segment_key, segment_label=d.segment_label,
-        variant_no=d.variant_no, channel=d.channel, subject=d.subject, preheader=d.preheader,  # type: ignore[arg-type]
+        variant_no=d.variant_no, channel=d.channel, subject=d.subject, preheader=d.preheader,
         body_html=d.body_html, template_values={str(k): str(v) for k, v in (d.template_values or {}).items()} if d.template_values is not None else None,
         job_link_blocks=list(d.job_link_blocks or []), status=d.status,
         findings=[Finding(**f) for f in d.findings or []], blocked=is_blocked(d), needs_ack=needs_ack(d),
@@ -128,7 +128,7 @@ async def edit_draft(ctx: RequestContext, db: AsyncSession, draft_id: uuid.UUID,
         d.edited_by, d.edited_at = principal.id, now()
         d.warnings_acknowledged_by = None
         if was_approved:
-            d.approved_by = d.approved_at = d.approval_ms = d.approved_sha256 = None  # type: ignore[assignment]
+            d.approved_by = d.approved_at = d.approval_ms = d.approved_sha256 = None
             d.rubber_stamp = False
         audit.record(
             "campaign_copy.edited", "campaign_copy_draft", d.id, session=db,

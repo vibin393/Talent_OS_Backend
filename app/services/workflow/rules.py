@@ -455,7 +455,7 @@ async def purge_executions(db: AsyncSession, now: datetime | None = None) -> int
             WorkflowExecution.created_at < cutoff, WorkflowExecution.status != "waiting"
         )
     )
-    return int(result.rowcount or 0)  # type: ignore[attr-defined]
+    return int(result.rowcount or 0)
 
 
 # ================================================================ dry runs

@@ -247,7 +247,7 @@ async def snapshot_gate(db: AsyncSession, row: VoiceSession) -> Any:
     confirmed = (row.confirmed_country, row.confirmed_region) if row.confirmed_country else None
     decision = await gate.check(
         rctx, db, purpose=PURPOSE_RECORDING, candidate_id=row.candidate_id, confirmed_jurisdiction=confirmed
-    )  # type: ignore[arg-type]
+    )
     row.jurisdiction = decision.jurisdiction
     row.recording_rule = decision.rule
     if not decision.recording_allowed and row.recording_file_id is not None:

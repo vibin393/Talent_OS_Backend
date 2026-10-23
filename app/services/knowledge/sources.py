@@ -37,7 +37,7 @@ FILE_KINDS = ("pdf", "docx")
 
 def source_out(s: KnowledgeSource) -> SourceOut:
     return SourceOut(
-        id=s.id, title=s.title, kind=s.kind, audience=s.audience, status=s.status,  # type: ignore[arg-type]
+        id=s.id, title=s.title, kind=s.kind, audience=s.audience, status=s.status,
         current_version_no=s.current_version_no, published_version_no=s.published_version_no, ref_kind=s.ref_kind,
         ref_id=s.ref_id, legal_entity_id=s.legal_entity_id, client_id=s.client_id, owner_id=s.owner_id,
         tags=list(s.tags or []), last_reviewed_on=s.last_reviewed_on, created_at=s.created_at, updated_at=s.updated_at,

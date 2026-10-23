@@ -514,7 +514,7 @@ async def confirm(
                 bill_rate=ext.bill_rate,
                 vendor_rate=ext.vendor_rate,
                 burden_pct=ext.burden_pct,
-                rate_unit=ext.rate_unit,  # type: ignore[arg-type]
+                rate_unit=ext.rate_unit,
                 reason=f"Extension {ext.human_id}",
             ),
             actor=actor if actor.kind == "user" else SYSTEM,

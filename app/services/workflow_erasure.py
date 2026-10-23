@@ -66,7 +66,7 @@ class WorkflowWaitsHandler:
             .execution_options(synchronize_session=False)
         )
         await db.flush()
-        return {"cancelled": int(cancelled.rowcount or 0), "cleared": int(cleared.rowcount or 0)}  # type: ignore[attr-defined]
+        return {"cancelled": int(cancelled.rowcount or 0), "cleared": int(cleared.rowcount or 0)}
 
     async def export(self, db: AsyncSession, ctx: ErasureContext) -> dict[str, Any] | None:  # ruff: ignore[unused-method-argument]
         return None  # bookkeeping only

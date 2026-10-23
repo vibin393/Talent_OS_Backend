@@ -82,7 +82,7 @@ async def outs(db: AsyncSession, rows: Sequence[ProjectAssignment]) -> list[Assi
             allocation_pct=r.allocation_pct,
             start_date=r.start_date,
             end_date=r.end_date,
-            status=r.status,  # type: ignore[arg-type]
+            status=r.status,
             ended_reason=r.ended_reason,
         )
         for r in rows

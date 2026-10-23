@@ -283,7 +283,7 @@ async def list_types(
     reviewed = await _template_reviewed(db)
     counts = await _open_cases(db, [r.id for r in rows])
     return [
-        VisaTypeOut(**_out(r, versions.get(r.current_version_id), reviewed, counts.get(r.id, 0)))  # type: ignore[arg-type]
+        VisaTypeOut(**_out(r, versions.get(r.current_version_id), reviewed, counts.get(r.id, 0)))
         for r in rows
     ]
 

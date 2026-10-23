@@ -78,7 +78,7 @@ def _run_out(run: MatchRun | None) -> RunOut | None:
         return None
     return RunOut(
         id=run.id,
-        status=run.status,  # type: ignore[arg-type]
+        status=run.status,
         trigger=run.trigger,
         started_at=run.started_at,
         finished_at=run.finished_at,
@@ -150,11 +150,11 @@ def _match_out(m: Match, doc: CandidateSearchDoc | None, show_comp: bool, rank: 
         missing_mandatory=list(m.missing_mandatory or []),
         evidence=_evidence(m.evidence, show_comp),
         explanation=m.explanation,
-        explanation_status=m.explanation_status,  # type: ignore[arg-type]
+        explanation_status=m.explanation_status,
         computed_at=m.computed_at,
         dismissed_at=m.dismissed_at,
         dismissed_by=m.dismissed_by,
-        dismiss_reason=m.dismiss_reason,  # type: ignore[arg-type]
+        dismiss_reason=m.dismiss_reason,
         dismiss_note=m.dismiss_note,
         added_to_pipeline_at=m.added_to_pipeline_at,
         application_id=m.application_id,

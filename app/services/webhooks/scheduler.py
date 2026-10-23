@@ -199,7 +199,7 @@ async def attempt(ctx: RequestContext, db: AsyncSession, d: WebhookDelivery, sub
     d.attempts = log[-MAX_ATTEMPT_LOG:]
     d.attempt_count = n
     d.last_status_code = outcome.status_code
-    d.last_error = (outcome.error or None) and outcome.error[:60]  # type: ignore[index]
+    d.last_error = (outcome.error or None) and outcome.error[:60]
     d.updated_at = now
     if outcome.ok:
         d.status, d.next_attempt_at, d.delivered_at = "succeeded", None, now

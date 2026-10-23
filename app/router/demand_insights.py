@@ -37,7 +37,7 @@ async def list_flags(
     status: Annotated[str | None, Query(max_length=20)] = "open",
     demand_id: uuid.UUID | None = None,
 ) -> Any:
-    q = FlagQuery(kind=kind, status=status or None, demand_id=demand_id)  # type: ignore[arg-type]
+    q = FlagQuery(kind=kind, status=status or None, demand_id=demand_id)
     return await svc.list_flags(get_context(), db, q, params)
 
 

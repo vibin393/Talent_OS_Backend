@@ -79,7 +79,7 @@ async def _resolve_skills(
         else:
             known.append(
                 DemandSkillIn(label=ref.name[:200], skill_id=ref.id, skill_ref_kind=ref.kind, kind=kind)
-            )  # type: ignore[arg-type]
+            )
     return known, unknown
 
 
@@ -181,7 +181,7 @@ async def _create_from_intake(ctx: RequestContext, db: AsyncSession, data: Draft
     if unknown:
         await suggestions.add_skill_suggestions(
             ctx, db, demand,
-            [SuggestSkillItem(label=label[:100], skill_kind=kind, evidence=quotes.get(f"{kind}_skills", "")[:300] or None) for label, kind in unknown],  # type: ignore[arg-type]
+            [SuggestSkillItem(label=label[:100], skill_kind=kind, evidence=quotes.get(f"{kind}_skills", "")[:300] or None) for label, kind in unknown],
             run_id=run_id,
         )  # fmt: skip
     await _link_suggestions(ctx, db, demand, run_id)
@@ -222,7 +222,7 @@ async def _create_direct(ctx: RequestContext, db: AsyncSession, data: DraftDeman
             db,
             demand,
             [SuggestSkillItem(label=label[:100], skill_kind=kind) for label, kind in unknown],
-            run_id=run_id,  # type: ignore[arg-type]
+            run_id=run_id,
         )
     if data.notes:
         from app.services.demands.common import timeline
@@ -247,7 +247,7 @@ async def _skill_items(
         out.append(
             DemandSkillIn(
                 label=(ref.name if ref is not None else item.label)[:200], skill_id=ref.id if ref is not None else None,
-                skill_ref_kind=ref.kind if ref is not None else None, kind=item.skill_kind, min_proficiency=item.min_proficiency,  # type: ignore[arg-type]
+                skill_ref_kind=ref.kind if ref is not None else None, kind=item.skill_kind, min_proficiency=item.min_proficiency,
             )
         )  # fmt: skip
     return out, unknown

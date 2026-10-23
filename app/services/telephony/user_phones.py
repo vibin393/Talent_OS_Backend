@@ -78,7 +78,7 @@ def _out(row: UserCallPhone | None) -> CallPhoneOut:
     if row is None:
         return CallPhoneOut(status="none")
     return CallPhoneOut(
-        status=row.status,  # type: ignore[arg-type]
+        status=row.status,
         last4=row.phone_last4,
         verified_at=row.verified_at,
         verification_method=row.verification_method,

@@ -84,7 +84,7 @@ def _row(key: str, spec: Any, latest: dict[tuple[str, str, str], Any]) -> EvalRo
         prompt_ref=newest.prompt_ref if newest is not None else None, model=newest.model if newest is not None else None,
         offline=_score(offline), live=_score(live),
         redteam=RedteamScore(cases_total=red.cases_total, cases_passed=red.cases_passed) if red is not None else None,
-        threshold=str(_threshold(spec)), status=status, failing_case_ids=sorted(set(failing))[:50],  # type: ignore[arg-type]
+        threshold=str(_threshold(spec)), status=status, failing_case_ids=sorted(set(failing))[:50],
         last_run_at=max(times) if times else None,
     )  # fmt: skip
 

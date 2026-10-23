@@ -200,7 +200,7 @@ async def check_assets(logo_key: str | None, screenshot_keys: list[str]) -> Chec
     ]
     for key, limit in items:
         try:
-            data = await storage.get(key)  # type: ignore[arg-type]
+            data = await storage.get(key)
         except Exception:
             return CheckResult("assets_scan", False, "An image could not be read")
         if not (data.startswith(_PNG) or data.startswith(_JPEG)):

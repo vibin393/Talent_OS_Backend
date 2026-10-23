@@ -245,7 +245,7 @@ async def list_profiles(ctx: RequestContext, db: AsyncSession, subject_kind: str
     return [
         ProfileOut(
             id=r.id,
-            subject_kind=r.subject_kind,  # type: ignore[arg-type]
+            subject_kind=r.subject_kind,
             subject_id=r.subject_id,
             subject_name=names.get((r.subject_kind, r.subject_id), (None, None))[0],
             subject_email=names.get((r.subject_kind, r.subject_id), (None, None))[1],
@@ -287,7 +287,7 @@ async def upsert_profile(ctx: RequestContext, db: AsyncSession, data: ProfileIn)
     name, email = (await _subject_names(db, [row])).get((row.subject_kind, row.subject_id), (None, None))
     return ProfileOut(
         id=row.id,
-        subject_kind=row.subject_kind,  # type: ignore[arg-type]
+        subject_kind=row.subject_kind,
         subject_id=row.subject_id,
         subject_name=name,
         subject_email=email,
@@ -356,7 +356,7 @@ async def import_profiles(ctx: RequestContext, db: AsyncSession, content: bytes,
             if sid is None:
                 error = "no internal user or worker on assignment has this email"
         rows.append(
-            ProfileImportRow(line=i, email=email, subject_kind=kind, subject_id=sid, grade=grade, location=location, error=error)  # type: ignore[arg-type]
+            ProfileImportRow(line=i, email=email, subject_kind=kind, subject_id=sid, grade=grade, location=location, error=error)
         )
     errors = sum(1 for r in rows if r.error)
     applied = 0

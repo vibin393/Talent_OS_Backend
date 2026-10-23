@@ -616,7 +616,7 @@ async def build_outs(db: AsyncSession, apps: Iterable[Application]) -> list[Appl
                     current_employer=c.get("current_employer"),
                     city=c.get("city"),
                 ),
-                stage=StageRef(id=stage.id, key=stage.key, label=stage.label, kind=stage.kind),  # type: ignore[arg-type]
+                stage=StageRef(id=stage.id, key=stage.key, label=stage.label, kind=stage.kind),
                 stage_entered_at=a.stage_entered_at,
                 days_in_stage=max((at - a.stage_entered_at).days, 0),
                 source=a.source,
@@ -624,13 +624,13 @@ async def build_outs(db: AsyncSession, apps: Iterable[Application]) -> list[Appl
                 owner_id=a.owner_id,
                 screening_passed=a.screening_passed,
                 screening_status=screening.get(a.id),
-                last_client_feedback=a.last_client_feedback,  # type: ignore[arg-type]
+                last_client_feedback=a.last_client_feedback,
                 pending_client_rejection_id=pending.get(a.id),
                 latest_submission=SubmissionBrief(
                     id=sub.id,
                     human_id=sub.human_id,
-                    status=sub.status,  # type: ignore[arg-type]
-                    feedback_status=sub.feedback_status,  # type: ignore[arg-type]
+                    status=sub.status,
+                    feedback_status=sub.feedback_status,
                     sent_at=sub.sent_at,
                 )
                 if sub is not None
@@ -741,8 +741,8 @@ async def get_application(
             SubmissionBrief(
                 id=s.id,
                 human_id=s.human_id,
-                status=s.status,  # type: ignore[arg-type]
-                feedback_status=s.feedback_status,  # type: ignore[arg-type]
+                status=s.status,
+                feedback_status=s.feedback_status,
                 sent_at=s.sent_at,
             )
             for s in subs
@@ -841,10 +841,10 @@ async def candidate_applications(
                 id=smap[a.stage_id].id,
                 key=smap[a.stage_id].key,
                 label=smap[a.stage_id].label,
-                kind=smap[a.stage_id].kind,  # type: ignore[arg-type]
+                kind=smap[a.stage_id].kind,
             ),
             stage_entered_at=a.stage_entered_at,
-            last_client_feedback=a.last_client_feedback,  # type: ignore[arg-type]
+            last_client_feedback=a.last_client_feedback,
             created_at=a.created_at,
         )
         for a in rows

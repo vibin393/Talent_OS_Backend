@@ -157,8 +157,8 @@ async def plans_out(ctx: RequestContext, db: AsyncSession, plans: list[Workforce
                 client_name=clients.get(p.client_id) if p.client_id else None,
                 project_id=p.project_id,
                 currency=p.currency,
-                status=p.status,  # type: ignore[arg-type]
-                origin=p.origin,  # type: ignore[arg-type]
+                status=p.status,
+                origin=p.origin,
                 owner_id=p.owner_id,
                 owner_name=owners.get(p.owner_id),
                 submitted_by_client_user_id=p.submitted_by_client_user_id,

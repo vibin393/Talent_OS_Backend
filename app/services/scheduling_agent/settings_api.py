@@ -151,7 +151,7 @@ async def request_out(db: AsyncSession, req: SchedulingRequest) -> RequestOut:
     return RequestOut(
         id=req.id, human_id=req.human_id, application_id=req.application_id, candidate_id=req.candidate_id,
         demand_id=req.demand_id, stage_id=req.stage_id, stage_name=stage.name if stage else None, interview_id=req.interview_id,
-        kind=req.kind, status=req.status, round=req.round, max_rounds=settings.max_rounds,  # type: ignore[arg-type]
+        kind=req.kind, status=req.status, round=req.round, max_rounds=settings.max_rounds,
         duration_minutes=req.duration_minutes, buffer_minutes=req.buffer_minutes,
         participant_user_ids=list(req.participant_user_ids or []), mode=req.mode, candidate_timezone=req.candidate_timezone,
         owner_user_id=req.owner_user_id, current_run_id=req.current_run_id, booked_interview_id=req.booked_interview_id,

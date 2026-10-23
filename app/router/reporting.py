@@ -179,7 +179,7 @@ async def create_export(body: ExportCreate, _: ReportExport, db: DB) -> Response
     if result.mode == "async":
         accepted = ExportAccepted(
             export_id=result.export.id,
-            status=result.export.status,  # type: ignore[arg-type]
+            status=result.export.status,
             row_count=result.export.row_count or 0,
             masked_columns=result.masked_columns,
         )

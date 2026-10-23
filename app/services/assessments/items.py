@@ -235,7 +235,7 @@ def validate_item(
                 "invalid_item", "Every {{blank:n}} marker needs exactly one answer entry", "answer_key.blanks"
             )
     if isinstance(key, CodeOrderKey):
-        line_ids = [line.id for line in options.lines]  # type: ignore[attr-defined]
+        line_ids = [line.id for line in options.lines]
         if sorted(key.order) != sorted(line_ids) or len(set(line_ids)) != len(line_ids):
             raise invalid("invalid_item", "The order must list every line exactly once", "answer_key.order")
     if isinstance(key, FindBugKey):

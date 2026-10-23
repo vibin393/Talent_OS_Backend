@@ -132,7 +132,7 @@ class _BaseIndex:
         model = _model_of(owner_kind)
         result = await db.execute(delete(model).where(_id_col(owner_kind).in_(list(owner_ids))))
         _cache_invalidate(tenant_id)
-        return int(result.rowcount or 0)  # type: ignore[attr-defined]
+        return int(result.rowcount or 0)
 
     async def vectors(
         self, db: AsyncSession, owner_kind: OwnerKind, owner_ids: Sequence[uuid.UUID]

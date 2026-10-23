@@ -162,7 +162,7 @@ async def decide(token: str, decision: str, comment: str | None, *, ip_hash: str
             ctx,
             db,
             request.id,
-            DecideIn(action=decision, comment=text),  # type: ignore[arg-type]
+            DecideIn(action=decision, comment=text),
             actor=ActorRef("secure_link", link.id, attributed_to=("client_user", addressee)),
         )
         audit.record(

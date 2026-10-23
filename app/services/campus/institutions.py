@@ -81,10 +81,10 @@ async def _out(db: AsyncSession, row: Institution) -> InstitutionDetailOut:
         city=row.city,
         state=row.state,
         country=row.country,
-        tier=row.tier,  # type: ignore[arg-type]
+        tier=row.tier,
         programs=list(row.programs or []),
         website=row.website,
-        status=row.status,  # type: ignore[arg-type]
+        status=row.status,
         notes=row.notes,
         contact_count=len(contacts),
         primary_contact_name=primary.name if primary else None,
@@ -128,8 +128,8 @@ async def list_institutions(
     ) if rows else {}
     return [
         InstitutionOut(
-            id=r.id, name=str(r.name), city=r.city, state=r.state, country=r.country, tier=r.tier,  # type: ignore[arg-type]
-            programs=list(r.programs or []), website=r.website, status=r.status, notes=r.notes,  # type: ignore[arg-type]
+            id=r.id, name=str(r.name), city=r.city, state=r.state, country=r.country, tier=r.tier,
+            programs=list(r.programs or []), website=r.website, status=r.status, notes=r.notes,
             contact_count=int(counts.get(r.id, 0)), primary_contact_name=primaries.get(r.id),
             created_at=r.created_at, updated_at=r.updated_at,
         )

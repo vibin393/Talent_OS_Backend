@@ -71,7 +71,7 @@ async def policy_view(db: AsyncSession, row: VoiceSession) -> dict[str, Any]:
         purpose=common.PURPOSE_RECORDING,
         candidate_id=row.candidate_id,
         confirmed_jurisdiction=confirmed,
-    )  # type: ignore[arg-type]
+    )
     return {"rule": d.rule, "recording_allowed": d.recording_allowed, "reasons": list(d.reasons)}
 
 
@@ -137,7 +137,7 @@ async def extract(
     out = await screening_agent_service.extract_answers(
         ctx, db,
         ExtractAnswersIn(
-            application_id=row.application_id, questionnaire_id=row.questionnaire_id, questionnaire_version=row.questionnaire_version,  # type: ignore[arg-type]
+            application_id=row.application_id, questionnaire_id=row.questionnaire_id, questionnaire_version=row.questionnaire_version,
             transcript_id=row.transcript_id, source="voice", run_id=run_id,
         ),
     )  # fmt: skip

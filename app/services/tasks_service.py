@@ -475,7 +475,7 @@ async def entity_tasks(
 
     entity_type = activity_service.resolve_entity_type(segment)
     await _check_entity(ctx, db, entity_type, entity_id)
-    return await list_tasks(ctx, db, TaskFilters(entity_type=entity_type, entity_id=entity_id), params)  # type: ignore[arg-type]
+    return await list_tasks(ctx, db, TaskFilters(entity_type=entity_type, entity_id=entity_id), params)
 
 
 async def overdue_and_today(

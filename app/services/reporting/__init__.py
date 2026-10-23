@@ -232,7 +232,7 @@ async def purge_active_days(db: AsyncSession, today: date | None = None) -> int:
     result = await db.execute(
         delete(UserActiveDay).where(UserActiveDay.day < today - timedelta(days=ACTIVE_DAYS_RETENTION))
     )
-    return int(result.rowcount or 0)  # type: ignore[attr-defined]
+    return int(result.rowcount or 0)
 
 
 # ================================================================ wiring

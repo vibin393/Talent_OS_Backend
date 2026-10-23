@@ -38,7 +38,7 @@ def _event_class(trigger: TriggerSpec) -> type | None:
     )
     for name in modules:
         try:
-            module = importlib.import_module(name)  # type: ignore[arg-type]
+            module = importlib.import_module(name)
         except ImportError:
             continue
         cls = getattr(module, trigger.event or "", None)

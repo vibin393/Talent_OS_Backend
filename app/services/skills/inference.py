@@ -233,7 +233,7 @@ async def _ai_suggestions(ctx: RequestContext, db: AsyncSession, candidate_id: u
                 ctx,
                 db,
                 candidate_id,
-                SkillKey(kind=ref.kind, id=ref.id),  # type: ignore[arg-type]
+                SkillKey(kind=ref.kind, id=ref.id),
                 source="ai_resume",
                 proficiency=item.proficiency,
                 rationale=item.evidence_quote or "Found in the resume",
@@ -287,9 +287,9 @@ async def _out(db: AsyncSession, rows: list[SkillSuggestion]) -> list[SkillSugge
             skill_key=_key_of(r).as_str(),
             name=names[_key_of(r).as_str()].name,
             proposed_proficiency=r.proposed_proficiency,
-            source=r.source,  # type: ignore[arg-type]
+            source=r.source,
             rationale=r.rationale,
-            status=r.status,  # type: ignore[arg-type]
+            status=r.status,
             created_at=r.created_at,
             decided_at=r.decided_at,
         )
@@ -352,7 +352,7 @@ async def accept(
         skill,
         EvidenceIn(
             kind=evidence_kind, proficiency=level, source_ref=f"skill_suggestion:{row.id}"
-        ),  # type: ignore[arg-type]
+        ),
     )
     edited = proficiency is not None and proficiency != row.proposed_proficiency
     row.status = "edited" if edited else "accepted"

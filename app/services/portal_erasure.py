@@ -85,7 +85,7 @@ class PortalAccountHandler:
         return {
             "application_answers": len(answers),
             "exports_deleted": deleted,
-            "sessions_revoked": int(sessions.rowcount or 0),  # type: ignore[attr-defined]
+            "sessions_revoked": int(sessions.rowcount or 0),
         }
 
     async def export(self, db: AsyncSession, ctx: ErasureContext) -> dict[str, Any] | None:

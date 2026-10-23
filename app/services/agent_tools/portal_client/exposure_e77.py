@@ -12,4 +12,4 @@ for _tool in TOOLS:
             ToolExposure(
                 _tool.key, frozenset({"portal_client"}), portal_permissions=_tool.permissions, max_results=20
             )
-        )  # type: ignore[arg-type]
+        )

@@ -264,11 +264,11 @@ def version_out(v: OfferVersion, *, show_money: bool, min_pct: Decimal | None) -
     return OfferVersionOut(
         version_no=v.version_no,
         title=v.title,
-        employment_type=v.employment_type,  # type: ignore[arg-type]
+        employment_type=v.employment_type,
         pay_rate=Money(**pay),
-        pay_rate_unit=v.pay_rate_unit,  # type: ignore[arg-type]
+        pay_rate_unit=v.pay_rate_unit,
         bill_rate=Money(**bill) if bill else None,
-        bill_rate_unit=v.bill_rate_unit if show_money else None,  # type: ignore[arg-type]
+        bill_rate_unit=v.bill_rate_unit if show_money else None,
         burden_pct=f"{q2(Decimal(v.burden_pct)):.2f}" if show_money and v.burden_pct is not None else None,
         margin_amount=Money(**margin) if margin else None,
         margin_pct=pct,
@@ -279,14 +279,14 @@ def version_out(v: OfferVersion, *, show_money: bool, min_pct: Decimal | None) -
         start_date=v.start_date,
         end_date=v.end_date,
         location=v.location,
-        work_mode=v.work_mode,  # type: ignore[arg-type]
+        work_mode=v.work_mode,
         expiry_date=v.expiry_date,
         template_id=v.template_id,
         template_version=v.template_version,
         letter_file_id=v.letter_file_id,
         letter_sha256=v.letter_sha256,
         letter_ready=v.letter_file_id is not None,
-        approval_state=v.approval_state,  # type: ignore[arg-type]
+        approval_state=v.approval_state,
         approved_at=v.approved_at,
         frozen=v.frozen,
         created_by=v.created_by,
@@ -297,7 +297,7 @@ def version_out(v: OfferVersion, *, show_money: bool, min_pct: Decimal | None) -
 def brief(v: OfferVersion, released_version_id: uuid.UUID | None) -> OfferVersionBrief:
     return OfferVersionBrief(
         version_no=v.version_no,
-        approval_state=v.approval_state,  # type: ignore[arg-type]
+        approval_state=v.approval_state,
         frozen=v.frozen,
         created_at=v.created_at,
         released=v.id == released_version_id,

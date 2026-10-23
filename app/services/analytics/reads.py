@@ -107,7 +107,7 @@ def _contributions(raw: Sequence[dict[str, Any]]) -> list[ContributionOut]:
 
 def entry_from(p: MlPrediction, model: MlModel | None) -> PredictionEntry:
     return PredictionEntry(
-        kind=p.kind,  # type: ignore[arg-type]
+        kind=p.kind,
         kind_label=KIND_LABELS[p.kind],
         status="ok",
         prediction_id=p.id,
@@ -117,9 +117,9 @@ def entry_from(p: MlPrediction, model: MlModel | None) -> PredictionEntry:
         score=str(p.score),
         predicted_days=str(p.predicted_days) if p.predicted_days is not None else None,
         interval=Interval(**p.interval) if p.interval else None,
-        band=p.band,  # type: ignore[arg-type]
+        band=p.band,
         contributions=_contributions(p.contributions),
-        explanation_status=p.explanation_status,  # type: ignore[arg-type]
+        explanation_status=p.explanation_status,
         explanation_text=p.explanation_text if p.explanation_status == "ok" else None,
     )
 
@@ -127,7 +127,7 @@ def entry_from(p: MlPrediction, model: MlModel | None) -> PredictionEntry:
 async def _status_entry(db: AsyncSession, kind: str, enabled: bool) -> PredictionEntry | None:
     """A status-only entry, or None when a model is active (the caller then reads the prediction)."""
     if not enabled:
-        return PredictionEntry(kind=kind, kind_label=KIND_LABELS[kind], status="disabled")  # type: ignore[arg-type]
+        return PredictionEntry(kind=kind, kind_label=KIND_LABELS[kind], status="disabled")
     if await governance.active_model(db, kind) is not None:
         return None
     latest = await governance.latest_model(db, kind)
@@ -135,8 +135,8 @@ async def _status_entry(db: AsyncSession, kind: str, enabled: bool) -> Predictio
     if progress is not None:
         return PredictionEntry(
             kind=kind, kind_label=KIND_LABELS[kind], status="insufficient_data", progress=progress
-        )  # type: ignore[arg-type]
-    return PredictionEntry(kind=kind, kind_label=KIND_LABELS[kind], status="no_model")  # type: ignore[arg-type]
+        )
+    return PredictionEntry(kind=kind, kind_label=KIND_LABELS[kind], status="no_model")
 
 
 async def _latest(
@@ -183,10 +183,10 @@ async def predictions_for(
             continue
         found = await _latest(db, kind, subject_kind, subject_id)
         if found is None:
-            entries.append(PredictionEntry(kind=kind, kind_label=KIND_LABELS[kind], status="no_model"))  # type: ignore[arg-type]
+            entries.append(PredictionEntry(kind=kind, kind_label=KIND_LABELS[kind], status="no_model"))
         else:
             entries.append(entry_from(*found))
-    return PredictionsOut(subject_kind=subject_kind, subject_id=subject_id, predictions=entries)  # type: ignore[arg-type]
+    return PredictionsOut(subject_kind=subject_kind, subject_id=subject_id, predictions=entries)
 
 
 async def batch(
@@ -225,9 +225,9 @@ async def batch(
         items.append(
             BatchItem(
                 subject_id=p.subject_id,
-                kind=p.kind,  # type: ignore[arg-type]
+                kind=p.kind,
                 status="ok",
-                band=p.band,  # type: ignore[arg-type]
+                band=p.band,
                 score=str(p.score),
                 predicted_days=str(p.predicted_days) if p.predicted_days is not None else None,
                 interval=Interval(**p.interval) if p.interval else None,

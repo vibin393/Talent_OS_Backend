@@ -113,7 +113,7 @@ class AzureSpeechToText:
             raise ConnectorPermanentError("audio_too_large", "The audio is too large for one transcription request")
         wanted = tuple(loc for loc in (locales or LANGUAGES) if loc in LANGUAGES) or LANGUAGES
         if language_hint in LANGUAGES:
-            wanted = (language_hint, *[w for w in wanted if w != language_hint])  # type: ignore[assignment]
+            wanted = (language_hint, *[w for w in wanted if w != language_hint])
         definition: dict[str, Any] = {"locales": list(wanted), "profanityFilterMode": "Masked" if self._cfg.profanity == "masked" else "None"}
         if diarize:
             definition["diarization"] = {"maxSpeakers": 2, "enabled": True}

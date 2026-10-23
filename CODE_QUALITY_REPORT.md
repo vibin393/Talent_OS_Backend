@@ -1,4 +1,4 @@
-# Talent OS Backend — Ruff & Bandit Report
+# Talent OS Backend — Ruff, Mypy & Bandit Code Quality Report
 
 _Generated 2026-10-23 · scope: `Backend/app/` · ruff 0.16.4 · bandit 1.9.4 · 338106 LOC scanned_
 

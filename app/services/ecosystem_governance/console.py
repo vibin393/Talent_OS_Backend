@@ -89,7 +89,7 @@ async def _failing_subscriptions(ctx: RequestContext, db: AsyncSession) -> int:
     try:
         from app.services import webhooks_service
 
-        subs = await webhooks_service.list_subscriptions(ctx, db)  # type: ignore[attr-defined]
+        subs = await webhooks_service.list_subscriptions(ctx, db)
         return sum(1 for s in subs if getattr(s, "status", None) in ("failing", "disabled", "auto_disabled"))
     except Exception:  # pragma: no cover
         return 0

@@ -82,7 +82,7 @@ async def _outs(db: Any, me: uuid.UUID, rows: list[ClientUserDelegation]) -> lis
             starts_on=r.starts_on,
             ends_on=r.ends_on,
             revoked_at=r.revoked_at,
-            state=_state(r),  # type: ignore[arg-type]
+            state=_state(r),
             mine=r.client_user_id == me,
         )
         for r in rows

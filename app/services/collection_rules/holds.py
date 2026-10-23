@@ -113,7 +113,7 @@ async def state(ctx: RequestContext, db: AsyncSession, client_id: uuid.UUID) -> 
     rows = await active_holds(db, client_id)
     client_paused = any(r.document_id is None for r in rows)
     value = "paused" if client_paused else ("taken_over" if any(r.mode == "takeover" for r in rows) else "active")
-    return AgentStateOut(client_id=client_id, state=value, holds=[HoldOut.model_validate(r) for r in rows])  # type: ignore[arg-type]
+    return AgentStateOut(client_id=client_id, state=value, holds=[HoldOut.model_validate(r) for r in rows])
 
 
 async def holds_map(db: AsyncSession, client_id: uuid.UUID) -> tuple[str | None, dict[uuid.UUID, str]]:

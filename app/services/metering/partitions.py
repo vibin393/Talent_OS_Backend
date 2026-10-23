@@ -161,7 +161,7 @@ async def _delete_rows(spec: PartitionedTable, cutoff: dt.datetime) -> int:
         try:
             async with tenant_session(tid) as db:
                 result = await db.execute(delete(t).where(t.c[spec.time_column] < cutoff))
-                total += int(result.rowcount or 0)  # type: ignore[attr-defined]
+                total += int(result.rowcount or 0)
         except Exception:
             logger.exception("Retention purge of {} failed for tenant {}", spec.name, tid)
     return total

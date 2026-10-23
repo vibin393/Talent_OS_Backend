@@ -54,7 +54,7 @@ async def load_rewards(ctx: RequestContext, db: AsyncSession, query: SourceQuery
         item_date = _local_date(reward)
         if item_date > query.period_end or (
             query.period_start is not None and item_date < query.period_start
-        ):  # type: ignore[operator]
+        ):
             continue
         out.append(
             SourceItem(

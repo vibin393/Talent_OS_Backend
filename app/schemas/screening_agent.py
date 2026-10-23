@@ -99,7 +99,7 @@ class QuestionDraft(_In):
 class AgentQuestion(QuestionDraft):
     """Superset of the P1 ``Question``; ``id`` is stable across versions."""
 
-    id: uuid.UUID  # type: ignore[assignment]
+    id: uuid.UUID
 
 
 class VersionCreate(_In):

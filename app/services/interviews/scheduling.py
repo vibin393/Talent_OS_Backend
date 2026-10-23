@@ -181,11 +181,11 @@ async def interview_outs(db: AsyncSession, rows: Sequence[Interview]) -> list[In
                 timezone=r.timezone,
                 start_local=timeutil.local_iso(r.starts_at, r.timezone),
                 display_time=timeutil.render_for(r.starts_at, r.timezone),
-                mode=r.mode,  # type: ignore[arg-type]
+                mode=r.mode,
                 meeting_url=r.meeting_url,
                 location=r.location,
                 notes=r.notes,
-                status=r.status,  # type: ignore[arg-type]
+                status=r.status,
                 sequence=r.sequence,
                 organizer_user_id=r.organizer_user_id,
                 provider=r.provider,
@@ -195,7 +195,7 @@ async def interview_outs(db: AsyncSession, rows: Sequence[Interview]) -> list[In
                 participants=[
                     ParticipantOut(
                         id=p.id,
-                        kind=p.kind,  # type: ignore[arg-type]
+                        kind=p.kind,
                         user_id=p.user_id,
                         email=p.email,
                         name=p.name,
@@ -203,7 +203,7 @@ async def interview_outs(db: AsyncSession, rows: Sequence[Interview]) -> list[In
                         local_time=timeutil.render_for(r.starts_at, p.timezone),
                         response_status=p.response_status,
                         scorecard_required=p.scorecard_required,
-                        scorecard_status=statuses.get(p.id),  # type: ignore[arg-type]
+                        scorecard_status=statuses.get(p.id),
                     )
                     for p in plist
                 ],

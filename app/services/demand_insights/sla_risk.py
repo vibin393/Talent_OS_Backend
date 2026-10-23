@@ -252,7 +252,7 @@ async def assess_row(
     sourcing = sourcing_on if sourcing_on is not None else await _sourcing_on(db)
     steps = _next_steps(demand, risky_milestones, sourcing) if at_risk else []
     return SlaRiskOut(
-        demand_id=demand.id, at_risk=at_risk, basis=basis if (at_risk or basis == "prediction") else "pipeline_only",  # type: ignore[arg-type]
+        demand_id=demand.id, at_risk=at_risk, basis=basis if (at_risk or basis == "prediction") else "pipeline_only",
         basis_text=basis_text, p_late=p_late, milestone=milestone, clocks=clocks_out, counts=counts,
         reasons=reasons[:5], next_steps=steps,
     )  # fmt: skip

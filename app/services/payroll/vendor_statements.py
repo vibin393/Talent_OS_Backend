@@ -532,7 +532,7 @@ async def _mark_expenses_stated(
 ) -> None:
     """Epic 27 contract (downward call inside the finalize transaction); skipped until expenses lands."""
     try:
-        from app.services import expenses_service  # type: ignore[attr-defined]
+        from app.services import expenses_service
     except ImportError:
         return
     mark = getattr(expenses_service, "mark_stated", None)

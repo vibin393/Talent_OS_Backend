@@ -105,7 +105,7 @@ def to_out(p: Permit) -> PermitOut:
         document_id=p.document_id,
         credential_id=p.credential_id,
         superseded_by_id=p.superseded_by_id,
-        status=status_of(p),  # type: ignore[arg-type]
+        status=status_of(p),
         created_at=p.created_at,
     )
 

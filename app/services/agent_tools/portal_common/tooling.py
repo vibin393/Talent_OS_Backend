@@ -116,7 +116,7 @@ async def acting(tctx: Any, kind: str) -> Acting:
         id=found[1],
         tenant_id=req.tenant_id,
         org_id=found[3],
-        portal_permissions=rights,  # type: ignore[arg-type]
+        portal_permissions=rights,
     )
     return Acting(kind, req.tenant_id, owner, dataclasses.replace(req, principal=owner), run_path=True)
 

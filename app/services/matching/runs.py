@@ -434,7 +434,7 @@ async def delete_candidate_matches(db: AsyncSession, candidate_ids: list[uuid.UU
     if not candidate_ids:
         return 0
     result = await db.execute(delete(Match).where(Match.candidate_id.in_(candidate_ids)))
-    return int(result.rowcount or 0)  # type: ignore[attr-defined]
+    return int(result.rowcount or 0)
 
 
 async def _threshold(db: AsyncSession, demand_id: uuid.UUID) -> float | None:
@@ -507,4 +507,4 @@ async def mark_stale(db: AsyncSession, demand_id: uuid.UUID) -> int:
     result = await db.execute(
         update(Match).where(Match.demand_id == demand_id, Match.is_stale.is_(False)).values(is_stale=True)
     )
-    return int(result.rowcount or 0)  # type: ignore[attr-defined]
+    return int(result.rowcount or 0)

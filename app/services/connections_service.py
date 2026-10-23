@@ -165,7 +165,7 @@ def _out(row: UserConnection) -> ConnectionOut:
         provider=row.provider,
         account_email=row.account_email,
         scopes=list(row.scopes or []),
-        status=row.status,  # type: ignore[arg-type]
+        status=row.status,
         connected_at=row.connected_at,
         expires_at=row.expires_at,
         last_error=row.last_error,
@@ -186,7 +186,7 @@ def list_providers() -> list[ProviderOut]:
             from app.services.connections.provider import MICROSOFT_SCOPES
 
             scopes = list(MICROSOFT_SCOPES)
-        out.append(ProviderOut(provider=name, configured=is_configured(name), scopes=scopes))  # type: ignore[arg-type]
+        out.append(ProviderOut(provider=name, configured=is_configured(name), scopes=scopes))
     return out
 
 

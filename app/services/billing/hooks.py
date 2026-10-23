@@ -96,7 +96,7 @@ async def mark_stale(db: AsyncSession, placement_id: uuid.UUID) -> int:
         .values(stale=True)
         .execution_options(synchronize_session=False)
     )
-    return int(result.rowcount or 0)  # type: ignore[attr-defined]
+    return int(result.rowcount or 0)
 
 
 # ---------------------------------------------------------------- platform registrations

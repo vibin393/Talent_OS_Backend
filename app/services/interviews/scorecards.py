@@ -74,14 +74,14 @@ def _out(row: Interview, p: InterviewParticipant, card: Scorecard | None) -> Sco
         interview_id=row.id,
         participant_id=p.id,
         participant_name=p.name,
-        participant_kind=p.kind,  # type: ignore[arg-type]
+        participant_kind=p.kind,
         author_user_id=card.author_user_id if card else None,
         kit=(card.kit_snapshot if card and card.kit_snapshot else _kit(row)),
         ratings=[RatingIn.model_validate(r) for r in (card.ratings if card else [])],
         answers=[AnswerIn.model_validate(a) for a in (card.answers if card else [])],
-        recommendation=card.recommendation if card else None,  # type: ignore[arg-type]
+        recommendation=card.recommendation if card else None,
         summary=card.summary if card else None,
-        status=card.status if card else "draft",  # type: ignore[arg-type]
+        status=card.status if card else "draft",
         submitted_at=card.submitted_at if card else None,
         source=card.source if card else "in_app",
     )
@@ -225,7 +225,7 @@ async def submit_mine(
             data = ScorecardDraftIn(
                 ratings=[RatingIn.model_validate(r) for r in card.ratings or []],
                 answers=[AnswerIn.model_validate(a) for a in card.answers or []],
-                recommendation=card.recommendation,  # type: ignore[arg-type]
+                recommendation=card.recommendation,
                 summary=card.summary,
             )
     kit = card.kit_snapshot if card and card.kit_snapshot else _kit(row)
@@ -358,7 +358,7 @@ async def public_view(link: secure_links.ResolvedLink) -> PublicScorecardView:
             else ("not_started" if row.starts_at > now() else "open")
         )
         return PublicScorecardView(
-            state=state,  # type: ignore[arg-type]
+            state=state,
             candidate_display_name=_display_name(candidate.get("full_name")),
             demand_title=titles.get(row.demand_id),
             stage_name=row.stage_name,
@@ -367,7 +367,7 @@ async def public_view(link: secure_links.ResolvedLink) -> PublicScorecardView:
             timezone=p.timezone,
             display_time=timeutil.render_for(row.starts_at, p.timezone),
             rating_scale=int(kit.get("rating_scale") or 5),
-            recommendation_options=list(kit.get("recommendation_options") or RECOMMENDATION_OPTIONS),  # type: ignore[arg-type]
+            recommendation_options=list(kit.get("recommendation_options") or RECOMMENDATION_OPTIONS),
             competencies=[
                 PublicCompetency(key=c["key"], label=c["label"], guidance=c.get("guidance"))
                 for c in kit["competencies"]

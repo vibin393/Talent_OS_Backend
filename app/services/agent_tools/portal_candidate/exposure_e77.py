@@ -15,4 +15,4 @@ for _tool in TOOLS:
                 portal_permissions=_tool.permissions,
                 max_results=20,
             )
-        )  # type: ignore[arg-type]
+        )

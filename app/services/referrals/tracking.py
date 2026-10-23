@@ -178,7 +178,7 @@ def reward_out(row: ReferralReward, referral: Referral | None, names: dict[uuid.
         referrer_name=names.get(rid) if rid else None,
         program_id=row.program_id,
         placement_id=row.placement_id,
-        status=row.status,  # type: ignore[arg-type]
+        status=row.status,
         amount=row.amount,
         currency=row.currency,
         condition_due_on=row.condition_due_on,
@@ -224,7 +224,7 @@ async def _internal_many(db: AsyncSession, rows: list[Referral]) -> list[Referra
             ReferralOut(
                 id=r.id,
                 human_id=r.human_id,
-                status=r.status,  # type: ignore[arg-type]
+                status=r.status,
                 channel=r.channel,
                 demand_id=r.demand_id,
                 demand_title=titles.get(r.demand_id) if r.demand_id else None,
@@ -317,9 +317,9 @@ async def for_candidate(
         CandidateReferralOut(
             referral_id=r.id,
             human_id=r.human_id,
-            referrer_name=names.get(r.referrer_user_id or r.referrer_candidate_id),  # type: ignore[arg-type]
+            referrer_name=names.get(r.referrer_user_id or r.referrer_candidate_id),
             referrer_kind=r.referrer_kind,
-            status=r.status,  # type: ignore[arg-type]
+            status=r.status,
             created_at=r.created_at,
         )
         for r in rows

@@ -60,10 +60,10 @@ async def create_sandbox(platform_ctx: RequestContext, data: SandboxCreate) -> S
     return SandboxOut(
         tenant=created.tenant,
         mode="sandbox",
-        owner_kind=created.owner_kind,  # type: ignore[arg-type]
+        owner_kind=created.owner_kind,
         owner_id=created.owner_id,
         seed=SandboxSeedOut(
-            size=created.seed.size,  # type: ignore[arg-type]
+            size=created.seed.size,
             seed=created.seed.seed,
             counts=created.seed.counts,
             plan_digest=created.seed.plan_digest,

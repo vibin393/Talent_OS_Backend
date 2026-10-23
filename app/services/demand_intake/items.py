@@ -62,8 +62,8 @@ async def _client_names(db: AsyncSession, ids: set[uuid.UUID]) -> dict[uuid.UUID
 
 def _summary(row: DemandIntakeMessage, names: dict[uuid.UUID, str | None]) -> IntakeMessageSummaryOut:
     return IntakeMessageSummaryOut(
-        id=row.id, source=row.source, from_address=row.from_address, from_name=row.from_name, subject=row.subject,  # type: ignore[arg-type]
-        received_at=row.received_at, status=row.status, status_reason=row.status_reason,  # type: ignore[arg-type]
+        id=row.id, source=row.source, from_address=row.from_address, from_name=row.from_name, subject=row.subject,
+        received_at=row.received_at, status=row.status, status_reason=row.status_reason,
         client_id=row.matched_client_id, client_name=names.get(row.matched_client_id) if row.matched_client_id else None,
         draft_demand_ids=list(row.draft_demand_ids or []), group_label=row.group_label,
     )  # fmt: skip
@@ -83,7 +83,7 @@ async def _match_out(db: AsyncSession, row: DemandIntakeMessage) -> MatchOut:
         else None
     )
     return MatchOut(
-        status=row.status, method=row.match_method, client_id=row.matched_client_id,  # type: ignore[arg-type]
+        status=row.status, method=row.match_method, client_id=row.matched_client_id,
         client_name=await clients_service.client_name(db, row.matched_client_id) if row.matched_client_id else None,
         contact_id=row.matched_contact_id, contact_name=contact_name, owner_user_id=row.owner_user_id,
         explanation=matching.explanation(row.match_method, row.from_address, original),
@@ -454,7 +454,7 @@ async def create_from_upload(
 
     require_human(actor_from_ctx(ctx))
     principal = ctx.principal
-    check(principal, "demand:create")  # type: ignore[arg-type]
+    check(principal, "demand:create")
     features = await ai.features_map(db)
     if not (features.get("agentic") and features.get("agent_demand")):
         raise ConflictError("The Demand Agent is turned off", code="demand_agent_disabled")

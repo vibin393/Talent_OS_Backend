@@ -74,10 +74,10 @@ def kit_out(row: InterviewKit) -> KitOut:
         id=row.id,
         name=row.name,
         description=row.description,
-        competencies=row.competencies or [],  # type: ignore[arg-type]
-        questions=row.questions or [],  # type: ignore[arg-type]
+        competencies=row.competencies or [],
+        questions=row.questions or [],
         rating_scale=row.rating_scale,
-        recommendation_options=list(row.recommendation_options or RECOMMENDATION_OPTIONS),  # type: ignore[arg-type]
+        recommendation_options=list(row.recommendation_options or RECOMMENDATION_OPTIONS),
         version=row.version,
         archived_at=row.archived_at,
         created_at=row.created_at,
@@ -210,7 +210,7 @@ def template_out(row: InterviewStageTemplate) -> TemplateOut:
     return TemplateOut(
         id=row.id,
         name=row.name,
-        stages=row.stages or [],  # type: ignore[arg-type]
+        stages=row.stages or [],
         is_default=row.is_default,
         archived_at=row.archived_at,
         created_at=row.created_at,

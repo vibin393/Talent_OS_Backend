@@ -42,7 +42,7 @@ def detector_rollup() -> dict[str, Any]:
 
         return await mcp_service.rollup(tid)
 
-    return run(lambda: for_each_tenant(job)) or {}  # type: ignore[no-any-return]
+    return run(lambda: for_each_tenant(job)) or {}
 
 
 @celery_app.task(name="mcp.purge", queue=QUEUE)  # type: ignore[misc,untyped-decorator,unused-ignore]
@@ -52,4 +52,4 @@ def purge() -> dict[str, Any]:
 
         return await mcp_service.purge(tid)
 
-    return run(lambda: for_each_tenant(job)) or {}  # type: ignore[no-any-return]
+    return run(lambda: for_each_tenant(job)) or {}

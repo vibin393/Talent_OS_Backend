@@ -59,7 +59,7 @@ async def _out(row: DeveloperSandbox) -> SandboxOut:
         async with platform_session() as db:
             slug = (await db.execute(select(Tenant.slug).where(Tenant.id == row.tenant_id))).scalar_one_or_none()
     return SandboxOut(
-        id=row.id, name=row.name, size=row.size, status=row.status, owner_kind=row.owner_kind, tenant_id=row.tenant_id,  # type: ignore[arg-type]
+        id=row.id, name=row.name, size=row.size, status=row.status, owner_kind=row.owner_kind, tenant_id=row.tenant_id,
         tenant_slug=str(slug) if slug else None, failure_code=row.failure_code, created_at=row.created_at, ready_at=row.ready_at,
         last_reset_at=row.last_reset_at,
     )  # fmt: skip

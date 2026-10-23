@@ -78,7 +78,7 @@ async def preview(
 
     fields = _generation_inputs(
         demand, await _skills(db, demand.id), JdGenerateIn(kind=kind, show_rate=False)
-    )  # type: ignore[arg-type]
+    )
     token = fake_llm.CURRENT_PROMPT.set(
         "demands_jd_generate"
     )  # the scripted Fake LLM serves this call (tests)

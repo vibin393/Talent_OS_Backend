@@ -211,7 +211,7 @@ async def start_run(
             conversation_id=conversation_id, origin=origin,
         )  # fmt: skip
     owner_id = await _resolve_owner(ctx, db, spec, trigger, subject, owner_user_id)
-    owner = None  # type: ignore[assignment]  # from here on: the owner's live Principal
+    owner = None  # from here on: the owner's live Principal
     if owner_id is not None:
         try:
             owner = await owner_principal(db, tenant_id, owner_id)
@@ -235,8 +235,8 @@ async def start_run(
             resolve(PolicyInput(
                 global_kill=False, tenant_kill=False, agentic_on=True, agent_on=True, allow_list=allow, tool=t, args=None,
                 effective_permissions=effective.permissions,
-                action_policy_mode=policies[t.key].mode if t.key in policies else None,  # type: ignore[arg-type]
-                config_default_mode=config.default_mode if config is not None else None,  # type: ignore[arg-type]
+                action_policy_mode=policies[t.key].mode if t.key in policies else None,
+                config_default_mode=config.default_mode if config is not None else None,
                 spec_default_mode=spec.default_mode, origin=run_origin,
             )).mode
             for t in writes

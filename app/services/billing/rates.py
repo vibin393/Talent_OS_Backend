@@ -66,7 +66,7 @@ async def default_sac(db: AsyncSession, line_kind: str) -> str:
         await db.execute(
             select(SacCode.code)
             .where(SacCode.active.is_(True), SacCode.default_for_line_kind.any(line_kind))
-            .limit(1)  # type: ignore[arg-type]
+            .limit(1)
         )
     ).scalar_one_or_none()
     return row or DEFAULT_SAC

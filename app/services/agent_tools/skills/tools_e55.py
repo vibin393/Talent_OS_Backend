@@ -68,7 +68,7 @@ async def _normalise(tctx: Any, args: NormaliseIn) -> ToolOutcome:
                 label=label,
                 match=SkillMatch(kind=ref.kind, id=ref.id, name=ref.name, status=ref.status)
                 if ref is not None
-                else None,  # type: ignore[arg-type]
+                else None,
                 method=method,
                 related=related,
             )

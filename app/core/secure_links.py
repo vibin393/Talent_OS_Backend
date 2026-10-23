@@ -227,7 +227,7 @@ async def revoke(db: AsyncSession, link_id: uuid.UUID) -> bool:
         .where(SecureLink.id == link_id, SecureLink.revoked_at.is_(None))
         .values(revoked_at=_now())
     )
-    return bool(result.rowcount)  # type: ignore[attr-defined]
+    return bool(result.rowcount)
 
 
 async def revoke_for_subject(
@@ -241,7 +241,7 @@ async def revoke_for_subject(
     if purpose is not None:
         stmt = stmt.where(SecureLink.purpose == purpose)
     result = await db.execute(stmt.values(revoked_at=_now()))
-    return int(result.rowcount)  # type: ignore[attr-defined]
+    return int(result.rowcount)
 
 
 async def links_for_subject(db: AsyncSession, subject_type: str, subject_id: uuid.UUID) -> list[SecureLink]:

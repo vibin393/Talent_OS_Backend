@@ -405,7 +405,7 @@ def privacy_request(row: Any) -> PortalPrivacyRequest:
     return PortalPrivacyRequest(
         id=row.id,
         kind=row.kind,
-        status=DSR_STATUS.get(row.status, "open"),  # type: ignore[arg-type]
+        status=DSR_STATUS.get(row.status, "open"),
         received_at=row.received_at,
         due_at=row.due_at,
         completed_at=row.completed_at,

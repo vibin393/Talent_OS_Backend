@@ -53,7 +53,7 @@ async def get(ctx: RequestContext, db: AsyncSession) -> CalendarSyncSettingsOut:
     row = await settings_row(db)
     opted = (await db.execute(select(func.count()).select_from(CalendarFreeBusyOptout))).scalar_one()
     return CalendarSyncSettingsOut(
-        enabled=row.enabled, move_policy=row.move_policy, poll_minutes=row.poll_minutes,  # type: ignore[arg-type]
+        enabled=row.enabled, move_policy=row.move_policy, poll_minutes=row.poll_minutes,
         restore_limit_per_hour=row.restore_limit_per_hour, org_source_enabled=row.org_source_enabled,
         org_source_installed=await org_installed(db), opted_out_count=int(opted),
     )  # fmt: skip
@@ -98,7 +98,7 @@ async def mine(ctx: RequestContext, db: AsyncSession) -> MySyncOut:
         ).scalar_one_or_none()
         out.append(
             MyChannelOut(
-                connection_id=c.id, provider=c.provider, status=ch.status if ch is not None else "none",  # type: ignore[arg-type]
+                connection_id=c.id, provider=c.provider, status=ch.status if ch is not None else "none",
                 last_notification_at=ch.last_notification_at if ch else None, last_sync_at=ch.last_sync_at if ch else None,
                 poll_minutes=row.poll_minutes,
             )
@@ -174,7 +174,7 @@ async def sync_health(db: AsyncSession, interview_id: uuid.UUID) -> list[Partici
                 state = "polling"
             else:
                 state = "not_syncing"
-        out.append(ParticipantSyncState(participant_id=pid, user_id=user_id, name=await user_name(db, user_id), state=state))  # type: ignore[arg-type]
+        out.append(ParticipantSyncState(participant_id=pid, user_id=user_id, name=await user_name(db, user_id), state=state))
     return out
 
 
@@ -187,11 +187,11 @@ async def interview_sync(ctx: RequestContext, db: AsyncSession, interview_id: uu
     organiser = await user_name(db, row.organizer_user_id)
     link_rows = await links.for_interview(db, interview_id)
     return InterviewSyncOut(
-        interview_id=interview_id, move_policy=settings.move_policy,  # type: ignore[arg-type]
+        interview_id=interview_id, move_policy=settings.move_policy,
         participants=await sync_health(db, interview_id),
         links=[
             EventLinkOut(
-                id=lk.id, role=lk.role, participant_id=lk.participant_id, state=lk.state,  # type: ignore[arg-type]
+                id=lk.id, role=lk.role, participant_id=lk.participant_id, state=lk.state,
                 seen_start=lk.seen_start, seen_end=lk.seen_end, organizer_name=organiser if lk.role == "organizer" else None,
             )
             for lk in link_rows
@@ -239,7 +239,7 @@ async def list_channels(ctx: RequestContext, db: AsyncSession, status: str | Non
     rows = list((await db.execute(stmt)).scalars())
     return [
         ChannelAdminOut(
-            id=r.id, person=await user_name(db, r.user_id), provider=r.provider, status=r.status,  # type: ignore[arg-type]
+            id=r.id, person=await user_name(db, r.user_id), provider=r.provider, status=r.status,
             last_notification_at=r.last_notification_at, last_sync_at=r.last_sync_at,
         )
         for r in rows

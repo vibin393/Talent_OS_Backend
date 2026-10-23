@@ -259,7 +259,7 @@ async def apply(ctx: RequestContext, db: AsyncSession, batch_id: uuid.UUID) -> I
         if r.get("errors") or not r.get("timesheet_id"):
             continue
         by_ts[uuid.UUID(r["timesheet_id"])].append(
-            DayEntryIn(date=date.fromisoformat(r["date"]), category=r["category"], hours=r["hours"])  # type: ignore[arg-type]
+            DayEntryIn(date=date.fromisoformat(r["date"]), category=r["category"], hours=r["hours"])
         )
     submitted: list[uuid.UUID] = []
     applied = 0

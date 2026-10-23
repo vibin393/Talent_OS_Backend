@@ -95,12 +95,12 @@ async def _out(db: AsyncSession, row: IdentityProvider) -> IdentityProviderOut:
     return IdentityProviderOut(
         id=row.id,
         name=row.name,
-        kind=row.kind,  # type: ignore[arg-type]
-        status=row.status,  # type: ignore[arg-type]
+        kind=row.kind,
+        status=row.status,
         email_domains=list(row.email_domains or []),
         config=dict(row.config or {}),
         has_secret=row.secret is not None,
-        enforce_for=row.enforce_for,  # type: ignore[arg-type]
+        enforce_for=row.enforce_for,
         enforced_role_ids=list(row.enforced_role_ids or []),
         jit_enabled=row.jit_enabled,
         jit_default_role_id=row.jit_default_role_id,

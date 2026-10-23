@@ -42,13 +42,13 @@ TRUNCATED = "[transcript truncated]"
 def _out(row: Transcript, segments: Sequence[TranscriptSegment] = ()) -> TranscriptOut:
     return TranscriptOut(
         id=row.id,
-        source_kind=row.source_kind,  # type: ignore[arg-type]
+        source_kind=row.source_kind,
         source_id=row.source_id,
         candidate_id=row.candidate_id,
         application_id=row.application_id,
         interview_id=row.interview_id,
         language=row.language,
-        status=row.status,  # type: ignore[arg-type]
+        status=row.status,
         segment_count=row.segment_count,
         file_id=row.file_id,
         created_by_kind=row.created_by_kind,
@@ -60,7 +60,7 @@ def _out(row: Transcript, segments: Sequence[TranscriptSegment] = ()) -> Transcr
         segments=tuple(
             TranscriptSegmentOut(
                 seq=s.seq,
-                speaker_role=s.speaker_role,  # type: ignore[arg-type]
+                speaker_role=s.speaker_role,
                 speaker_ref=s.speaker_ref,
                 start_ms=s.start_ms,
                 end_ms=s.end_ms,
@@ -249,7 +249,7 @@ async def ingest_upload(
         attested_by=attested_by,
     )
     segments = [
-        TranscriptSegmentIn(speaker_role=p.speaker_role, start_ms=p.start_ms, end_ms=p.end_ms, text=p.text)  # type: ignore[arg-type]
+        TranscriptSegmentIn(speaker_role=p.speaker_role, start_ms=p.start_ms, end_ms=p.end_ms, text=p.text)
         for p in parsed
     ]
     out = await append_segments(ctx, db, created.id, segments, final=True)

@@ -440,11 +440,11 @@ async def status(ctx: RequestContext, db: AsyncSession, kind: str, doc_id: uuid.
     req = await _request(db, kind, doc_id)
     required = req is not None or doc.dsc_status != "not_required"
     return DscStatusOut(
-        kind=kind,  # type: ignore[arg-type]
+        kind=kind,
         doc_id=doc.id,
         dsc_status=doc.dsc_status,
         required=required,
-        request_status=req.status if req else None,  # type: ignore[arg-type]
+        request_status=req.status if req else None,
         adapter_key=req.adapter_key if req else None,
         attempts=req.attempts if req else 0,
         last_error=req.last_error if req else None,
@@ -556,12 +556,12 @@ async def pending(ctx: RequestContext, db: AsyncSession) -> list[DscPendingOut]:
         out.append(
             DscPendingOut(
                 request_id=r.id,
-                kind=r.kind,  # type: ignore[arg-type]
+                kind=r.kind,
                 doc_id=r.doc_id,
                 number=doc.number,
                 client_id=doc.client_id,
                 client_name=snap.get("display_name") or snap.get("name"),
-                status=r.status,  # type: ignore[arg-type]
+                status=r.status,
                 age_hours=round(max((now - r.requested_at).total_seconds(), 0) / 3600, 1),
                 adapter_key=r.adapter_key,
                 attempts=r.attempts,

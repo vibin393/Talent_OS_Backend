@@ -122,7 +122,7 @@ async def _apply_step(ctx: RequestContext, db: AsyncSession, req: CampaignCopyRe
             else:
                 config["channel_template_id"] = str(req.channel_template_id) if req.channel_template_id else None
             config["job_links"] = [{"posting_id": str(b["posting_id"]), "label": str(b.get("cta") or "")} for b in d.job_link_blocks or []]
-        out.append(StepIn(kind=s.kind, config=config))  # type: ignore[arg-type]
+        out.append(StepIn(kind=s.kind, config=config))
     await sequences.update_sequence(ctx, db, seq.id, SequenceUpdate(steps=out))
     live = await sequences.steps_of(db, seq.id, seq.current_version + 1)
     target = next(s for s in live if s.position == req.step_position)
@@ -153,7 +153,7 @@ async def _per_segment(ctx: RequestContext, db: AsyncSession, req: CampaignCopyR
             ctx, db,
             AudienceCreate(
                 name=f"{base.name} - {d.segment_label}"[:200],
-                sources=[AudienceSourceIn(mode="include", kind=src.kind, talent_pool_id=src.talent_pool_id, segment_id=src.segment_id)],  # type: ignore[arg-type]
+                sources=[AudienceSourceIn(mode="include", kind=src.kind, talent_pool_id=src.talent_pool_id, segment_id=src.segment_id)],
             ),
         )  # fmt: skip
         child = await campaigns.create_campaign(

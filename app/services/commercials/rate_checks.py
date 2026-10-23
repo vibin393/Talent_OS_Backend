@@ -85,7 +85,7 @@ async def evaluate_request(db: AsyncSession, req: RateCheckRequest) -> dict[str,
 def _result(graded: dict[str, Any], rate_check_id: uuid.UUID | None) -> RateCheckResult:
     line = graded["line"]
     return RateCheckResult(
-        status=STATUS_OF[graded["result"]],  # type: ignore[arg-type]
+        status=STATUS_OF[graded["result"]],
         matched_line_id=line.id if line else None,
         min_bill_rate=line.min_bill_rate if line else None,
         max_bill_rate=line.max_bill_rate if line else None,

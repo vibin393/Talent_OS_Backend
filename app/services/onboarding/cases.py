@@ -577,7 +577,7 @@ async def _names(
     cands = (
         dict(
             (await db.execute(select(Candidate.id, Candidate.full_name).where(Candidate.id.in_(cids)))).all()
-        )  # type: ignore[arg-type]
+        )
         if cids
         else {}
     )

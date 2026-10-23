@@ -304,7 +304,7 @@ async def decide(
             idb,
             request_id,
             DecideIn(action=decision, comment=text, subject_payload=subject_payload),
-            actor=actor,  # type: ignore[arg-type]
+            actor=actor,
         )
         status = (
             await idb.execute(select(ApprovalRequest.status).where(ApprovalRequest.id == request_id))

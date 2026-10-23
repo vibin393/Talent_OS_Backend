@@ -89,7 +89,7 @@ async def members(dctx: DeveloperContext, org_id: uuid.UUID) -> list[MemberOut]:
             .where(PartnerOrgMember.partner_org_id == org_id, PartnerOrgMember.removed_at.is_(None))
             .order_by(PartnerOrgMember.joined_at)
         )
-        return [MemberOut(account_id=a.id, name=a.name, email=str(a.email), role=m.role, joined_at=m.joined_at) for m, a in rows.all()]  # type: ignore[arg-type]
+        return [MemberOut(account_id=a.id, name=a.name, email=str(a.email), role=m.role, joined_at=m.joined_at) for m, a in rows.all()]
 
 
 async def _live_member(db: AsyncSession, org_id: uuid.UUID, account_id: uuid.UUID) -> PartnerOrgMember:
@@ -129,7 +129,7 @@ async def set_member_role(dctx: DeveloperContext, org_id: uuid.UUID, account_id:
                       target_id=account_id, before=before, after=role)  # fmt: skip
         account = await db.get(DeveloperAccount, account_id)
         assert account is not None
-        return MemberOut(account_id=account.id, name=account.name, email=str(account.email), role=role, joined_at=member.joined_at)  # type: ignore[arg-type]
+        return MemberOut(account_id=account.id, name=account.name, email=str(account.email), role=role, joined_at=member.joined_at)
 
 
 async def remove_member(dctx: DeveloperContext, org_id: uuid.UUID, account_id: uuid.UUID) -> None:
@@ -220,7 +220,7 @@ async def expire_invitations() -> int:
             .where(PartnerOrgInvitation.accepted_at.is_(None), PartnerOrgInvitation.revoked_at.is_(None), PartnerOrgInvitation.expires_at < now())
             .values(revoked_at=now())
         )
-        return int(result.rowcount or 0)  # type: ignore[attr-defined]
+        return int(result.rowcount or 0)
 
 
 __all__ = [

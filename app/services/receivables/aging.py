@@ -84,7 +84,7 @@ async def query(
         if k not in rows:
             rows[k] = AgingRow(
                 key=key, label=label, currency=currency, buckets=dict.fromkeys(labels, ZERO), total_open=ZERO, total_open_inr=ZERO,
-                disputed=ZERO, unallocated_credit=ZERO, **extra,  # type: ignore[arg-type]
+                disputed=ZERO, unallocated_credit=ZERO, **extra,
             )  # fmt: skip
         return rows[k]
 

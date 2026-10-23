@@ -117,7 +117,7 @@ def _settings_out(row: BenchSettings) -> BenchSettingsOut:
     return BenchSettingsOut(
         hours_per_day=row.hours_per_day,
         monthly_rate_divisor=row.monthly_rate_divisor,
-        bench_day_basis=row.bench_day_basis,  # type: ignore[arg-type]
+        bench_day_basis=row.bench_day_basis,
         upcoming_roll_off_days=row.upcoming_roll_off_days,
         notify_strong_bench_match=row.notify_strong_bench_match,
         require_bench_review_for_vendor_release=row.require_bench_review_for_vendor_release,
@@ -189,8 +189,8 @@ def entry_out(
         candidate_human_id=getattr(cand, "human_id", None),
         source_placement_id=entry.source_placement_id,
         legal_entity_id=entry.legal_entity_id,
-        status=entry.status,  # type: ignore[arg-type]
-        origin=entry.origin,  # type: ignore[arg-type]
+        status=entry.status,
+        origin=entry.origin,
         available_from=entry.available_from,
         skills=[SkillRef(**s) for s in entry.skills_snapshot or []],
         location=entry.location,
@@ -207,7 +207,7 @@ def entry_out(
         proposed_application_ids=list(entry.proposed_application_ids or []),
         proposed_count=len(entry.proposed_application_ids or []),
         redeployed_placement_id=entry.redeployed_placement_id,
-        released_reason=entry.released_reason,  # type: ignore[arg-type]
+        released_reason=entry.released_reason,
         released_note=entry.released_note,
         closed_at=entry.closed_at,
         notes=entry.notes,
@@ -692,8 +692,8 @@ async def on_application_closed(
 def _portal_out(entry: BenchEntry) -> WorkerBenchOut:
     return WorkerBenchOut(
         id=entry.id,
-        status=entry.status,  # type: ignore[arg-type]
-        origin=entry.origin,  # type: ignore[arg-type]
+        status=entry.status,
+        origin=entry.origin,
         available_from=entry.available_from,
         work_authorization=entry.work_authorization,
         preferred_locations=[str(x) for x in entry.preferred_locations or []],

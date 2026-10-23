@@ -225,7 +225,7 @@ async def delete_conversations(db: AsyncSession, ids: list[uuid.UUID]) -> int:
     if not ids:
         return 0
     result = await db.execute(delete(PortalCopilotConversation).where(PortalCopilotConversation.id.in_(ids)))
-    return int(result.rowcount or 0)  # type: ignore[attr-defined]
+    return int(result.rowcount or 0)
 
 
 async def expired_ids(db: AsyncSession, now: datetime | None = None) -> list[uuid.UUID]:

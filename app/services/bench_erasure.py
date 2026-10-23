@@ -28,7 +28,7 @@ class BenchHandler:
             (BenchEntry, "entries"),
         ):
             result = await db.execute(delete(model).where(model.candidate_id.in_(ids)))
-            counts[key] = int(result.rowcount or 0)  # type: ignore[attr-defined]
+            counts[key] = int(result.rowcount or 0)
         await db.flush()
         return counts
 

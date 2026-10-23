@@ -70,7 +70,7 @@ class MobilityHandler:
         ids = await subject_ids(db, ctx.candidate_id)
         findings: list[str] = []
         for model, label in ((MobilityApplication, "internal applications"), (InternalTransfer, "internal transfers"), (MobilityEmployeeLink, "employee links")):
-            if (await db.execute(select(model.id).where(model.candidate_id.in_(ids)).limit(1))).first() is not None:  # type: ignore[attr-defined]
+            if (await db.execute(select(model.id).where(model.candidate_id.in_(ids)).limit(1))).first() is not None:
                 findings.append(f"{label} remain")
         return findings
 

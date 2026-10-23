@@ -112,7 +112,7 @@ async def outs(
             description=r.description,
             acceptance_criteria=r.acceptance_criteria,
             due_date=r.due_date,
-            status=r.status,  # type: ignore[arg-type]
+            status=r.status,
             submitted_at=r.submitted_at,
             accepted_at=r.accepted_at,
             accepted_actor=r.accepted_actor,

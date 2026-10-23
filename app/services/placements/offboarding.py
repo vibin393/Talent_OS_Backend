@@ -718,7 +718,7 @@ async def detail_out(
     out.items = [
         OffboardingItemOut.model_validate(i).model_copy(update={"owner_name": owners.get(i.owner_id)})
         for i in items
-    ]  # type: ignore[arg-type]
+    ]
     fb = (
         await db.execute(select(OffboardingFeedback).where(OffboardingFeedback.case_id == case.id))
     ).scalar_one_or_none()
@@ -728,7 +728,7 @@ async def detail_out(
             kind=i.kind,
             label=i.label,
             status=i.status,
-            auto_verified=i.auto_verified,  # type: ignore[arg-type]
+            auto_verified=i.auto_verified,
             details=i.verifier_details,
             link=SETTLEMENT_KINDS[i.kind].format(pid=case.placement_id),
         )

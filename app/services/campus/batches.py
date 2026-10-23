@@ -80,7 +80,7 @@ async def batch_out(db: AsyncSession, batch: InterviewBatch, *, with_slots: bool
     return BatchOut(
         id=batch.id, drive_id=batch.drive_id, demand_id=batch.demand_id, demand_title=refs.get(batch.demand_id, {}).get("title"),
         date=batch.day, start_time=batch.start_time, end_time=batch.end_time, timezone=batch.timezone,
-        slot_minutes=batch.slot_minutes, panels=list(batch.panels or []), status=batch.status,  # type: ignore[arg-type]
+        slot_minutes=batch.slot_minutes, panels=list(batch.panels or []), status=batch.status,
         send_sms=batch.send_sms, slot_count=len(slots), filled_count=sum(1 for s in slots if s.registration_id),
         slots=[
             SlotOut(
@@ -240,7 +240,7 @@ async def auto_slot(c: RequestContext, db: AsyncSession, batch_id: uuid.UUID) ->
             continue
         panel = (batch.panels or [])[slot.panel_index]
         data = InterviewCreate(
-            stage_id=stage_id,  # type: ignore[arg-type]
+            stage_id=stage_id,
             start_local=local(slot.starts_at, batch.timezone),
             timezone=batch.timezone,
             duration_minutes=batch.slot_minutes,
@@ -252,8 +252,8 @@ async def auto_slot(c: RequestContext, db: AsyncSession, batch_id: uuid.UUID) ->
         )
         try:
             async with db.begin_nested():
-                await prepare_application(c, db, reg.application_id)  # type: ignore[arg-type]
-                interview = await interviews_service.schedule_interview(c, db, reg.application_id, data)  # type: ignore[arg-type]
+                await prepare_application(c, db, reg.application_id)
+                interview = await interviews_service.schedule_interview(c, db, reg.application_id, data)
                 slot.registration_id = reg.id
                 slot.interview_id = interview.id
                 await db.flush()

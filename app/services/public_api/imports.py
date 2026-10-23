@@ -200,7 +200,7 @@ async def _row_candidate(db: AsyncSession, row: dict[str, Any], basis: str) -> s
     data = CandidateCreateIn(
         **{k: (row.get(k) or None) for k in CANDIDATE_COLUMNS if k != "full_name"},
         full_name=str(row.get("full_name") or "").strip(),
-        consent=ConsentIn(basis=basis, captured_at=_now(), channel="bulk_import"),  # type: ignore[arg-type]
+        consent=ConsentIn(basis=basis, captured_at=_now(), channel="bulk_import"),
     )  # fmt: skip
     out = await candidates.create_candidate(db, data)
     return "duplicate" if out.get("possible_duplicate") else "created"
@@ -229,7 +229,7 @@ def _error_field(exc: Exception) -> tuple[str, str]:
         field = next(iter(fields)) if isinstance(fields, dict) and fields else ""
         return field, exc.code
     if hasattr(exc, "errors"):
-        errs = exc.errors()  # type: ignore[attr-defined]
+        errs = exc.errors()
         loc = errs[0].get("loc", ("",)) if errs else ("",)
         return str(loc[-1] if loc else ""), "validation_failed"
     return "", "invalid_row"

@@ -80,7 +80,7 @@ async def status(ctx: RequestContext, kind: str, principal: Any) -> PortalCopilo
         else 0
     )
     return PortalCopilotStatusOut(
-        portal=kind, available=state.available, reason=state.reason, tenant_name=tenant.name,  # type: ignore[arg-type]
+        portal=kind, available=state.available, reason=state.reason, tenant_name=tenant.name,
         questions_per_hour=limit, questions_left_this_hour=left, retention_days=s.retention_days,
         disclosure=DISCLOSURE.format(tenant=tenant.name), disclosure_extra=s.disclosure_extra,
         consent_notice_id=notice[0] if notice else None, consent_notice_text=notice[1] if notice else None,
@@ -394,7 +394,7 @@ async def usage(
             PortalUsageRowOut(
                 portal=kind,
                 questions=int(runs[0]),
-                helpful_pct=round(100 * int(ratings.get("up", 0)) / rated, 1) if rated else None,  # type: ignore[arg-type]
+                helpful_pct=round(100 * int(ratings.get("up", 0)) / rated, 1) if rated else None,
                 drafts_confirmed=int(confirmed),
                 input_tokens=int(runs[1]),
                 output_tokens=int(runs[2]),

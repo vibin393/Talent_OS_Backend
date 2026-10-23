@@ -133,7 +133,7 @@ async def task_version(db: AsyncSession, task_id: uuid.UUID) -> str:
 async def create_task(db: AsyncSession, data: TaskCreateIn) -> dict[str, Any]:
     ctx, _ = ctx_principal()
     out = await tasks_service.create_task(ctx, db, TaskCreate(
-        title=data.title, notes=data.notes, owner_id=data.assignee_id, entity_type=data.entity_type,  # type: ignore[arg-type]
+        title=data.title, notes=data.notes, owner_id=data.assignee_id, entity_type=data.entity_type,
         entity_id=data.entity_id, due_at=data.due_at, priority=data.priority,
     ))  # fmt: skip
     return await get_task(db, out.id)

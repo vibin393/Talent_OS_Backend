@@ -25,7 +25,7 @@ async def _out(db: AsyncSession, row: RecordingPolicy) -> RecordingPolicyOut:
 
     who = await entity_refs.user(db, row.updated_by) if row.updated_by else None
     return RecordingPolicyOut(
-        id=row.id, country=row.country, region=row.region, rule=row.rule, note=row.note, updated_by=row.updated_by,  # type: ignore[arg-type]
+        id=row.id, country=row.country, region=row.region, rule=row.rule, note=row.note, updated_by=row.updated_by,
         updated_by_name=who.name if who is not None else None, updated_at=row.updated_at,
     )  # fmt: skip
 
@@ -132,12 +132,12 @@ async def evaluate(
         if row is not None:
             return PolicyEvaluationOut(
                 country=code, region=reg, jurisdiction=label, rule=row.rule, matched="region"
-            )  # type: ignore[arg-type]
+            )
     row = await _find(db, code, None)
     if row is not None:
         return PolicyEvaluationOut(
             country=code, region=reg, jurisdiction=label, rule=row.rule, matched="country"
-        )  # type: ignore[arg-type]
+        )
     return PolicyEvaluationOut(
         country=code, region=reg, jurisdiction=label, rule="not_permitted", matched="none"
     )

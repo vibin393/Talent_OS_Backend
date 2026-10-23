@@ -536,7 +536,7 @@ async def get_settings_out(ctx: RequestContext, db: AsyncSession) -> McpSettings
         proposals_per_hour=values["proposals_per_hour"], bulk_read_threshold=values["bulk_read_threshold"],
         max_results=values["max_results"], allowed_origins=list(values["allowed_origins"] or []),
         notify_user_on_first_connection=values["notify_user_on_first_connection"],
-        low_tool_modes=await _low_modes(ctx, db),  # type: ignore[arg-type]
+        low_tool_modes=await _low_modes(ctx, db),
         server_url=get_settings().p5_mcp_resource_url(),
     )  # fmt: skip
 

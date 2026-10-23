@@ -537,7 +537,7 @@ async def summaries(db: AsyncSession, rows: Sequence[Candidate]) -> list[Candida
             merged_into_id=r.merged_into_id,
             created_at=r.created_at,
             updated_at=r.updated_at,
-            ai_consent_state=r.ai_consent_state,  # type: ignore[arg-type]
+            ai_consent_state=r.ai_consent_state,
         )
         for r in rows
     ]

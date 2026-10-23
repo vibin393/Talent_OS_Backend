@@ -260,7 +260,7 @@ def _out(row: InternalOpening, result: eligibility.EligibilityResult, fit: match
         work_mode=row.work_mode,
         employment_type=row.employment_type,
         skills=[OpeningSkill(name=str(s.get("name")), min_proficiency=s.get("min_proficiency")) for s in row.skills or []],
-        visibility=row.visibility,  # type: ignore[arg-type]
+        visibility=row.visibility,
         opened_at=row.opened_at,
         closes_at=row.closes_at,
         eligible=result.eligible,
@@ -268,7 +268,7 @@ def _out(row: InternalOpening, result: eligibility.EligibilityResult, fit: match
         fit_pct=fit.fit_pct if fit else None,
         fit_reasons=list(fit.reasons) if fit else [],
         application_id=app.id if app else None,
-        application_status=app.status if app else None,  # type: ignore[arg-type]
+        application_status=app.status if app else None,
     )
 
 

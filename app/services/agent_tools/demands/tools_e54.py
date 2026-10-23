@@ -81,7 +81,7 @@ async def list_rows(
         priority=[args.priority] if args.priority else None,
         owner_id=owner_id,
         q=args.q or None,
-        sla_status=sla_status,  # type: ignore[arg-type]
+        sla_status=sla_status,
     )
     size = SKILL_SCAN if args.skill else args.limit
     page = await records.list_demands(scoped(tctx), tctx.db, filters, PageParams(page=1, page_size=size))

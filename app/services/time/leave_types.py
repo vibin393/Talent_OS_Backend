@@ -79,7 +79,7 @@ def _out(t: LeaveType, overrides: list[LeaveTypeClientOverride] | None = None) -
         name=t.name,
         paid=t.paid,
         billable=t.billable,
-        accrual_mode=t.accrual_mode,  # type: ignore[arg-type]
+        accrual_mode=t.accrual_mode,
         accrual_amount=t.accrual_amount,
         cap=t.cap,
         carry_forward_limit=t.carry_forward_limit,
@@ -282,7 +282,7 @@ async def get_client_settings(
     row = await client_settings_row(db, client_id)
     return LeaveClientSettingsOut(
         client_id=client_id,
-        leave_client_mode=(row.leave_client_mode if row is not None else "none"),  # type: ignore[arg-type]
+        leave_client_mode=(row.leave_client_mode if row is not None else "none"),
         client_team_calendar=row.client_team_calendar if row is not None else None,
         team_calendar_enabled=await team_calendar_enabled(db, tenant_id, client_id),
     )

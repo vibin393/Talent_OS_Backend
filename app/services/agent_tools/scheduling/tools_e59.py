@@ -90,7 +90,7 @@ async def _free_busy(tctx: Any, args: FreeBusyIn) -> ToolOutcome:
         tctx.request, tctx.db, list(req.participant_user_ids), args.start, args.end
     )
     users = [
-        UserBusy(user_id=u, status=s, busy=[BusyBlock(start=a, end=b) for a, b in sorted(blocks)])  # type: ignore[arg-type]
+        UserBusy(user_id=u, status=s, busy=[BusyBlock(start=a, end=b) for a, b in sorted(blocks)])
         for u, (s, blocks) in fb.items()
     ]
     return ToolOutcome(
@@ -185,7 +185,7 @@ async def _timezone(tctx: Any, args: TimezoneIn) -> ToolOutcome:
         TimezoneOut(timezone=tz, source=source),
         candidate_ids=(app.candidate_id,),
         summary="candidate time zone",
-    )  # type: ignore[arg-type]
+    )
 
 
 register_tool(
@@ -386,7 +386,7 @@ async def _offer_intent(tctx: Any, args: OfferIn) -> SendIntent:
     _, req = await _offer_and_request(tctx, args.offer_id, args.candidate_id)
     channel = "email" if args.channel == "sms" else args.channel
     return SendIntent(
-        recipients=(Recipient(kind="candidate", id=req.candidate_id, channel=channel),),  # type: ignore[arg-type]
+        recipients=(Recipient(kind="candidate", id=req.candidate_id, channel=channel),),
         templated=True, template_ref="scheduling_offer", text_for_checks="",
     )  # fmt: skip
 

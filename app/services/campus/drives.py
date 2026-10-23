@@ -99,7 +99,7 @@ async def drive_out(db: AsyncSession, drive: CampusDrive) -> DriveOut:
                 id=d.id,
                 institution_id=d.institution_id,
                 institution_name=names.get(d.institution_id, "Institution"),
-                status=d.status,  # type: ignore[arg-type]
+                status=d.status,
                 registration_cap=d.registration_cap,
                 registration_url=registration_url(token) if token else None,
                 link_expires_at=link.expires_at if link is not None else None,
@@ -122,7 +122,7 @@ async def drive_out(db: AsyncSession, drive: CampusDrive) -> DriveOut:
         id=drive.id,
         name=drive.name,
         batch_year=drive.batch_year,
-        status=drive.status,  # type: ignore[arg-type]
+        status=drive.status,
         owner_id=drive.owner_id,
         owner_name=owners.get(drive.owner_id),
         registration_opens_at=drive.registration_opens_at,
@@ -162,7 +162,7 @@ async def list_drives(c: RequestContext, db: AsyncSession, *, q: str | None = No
     owners = await user_names(db, [r.owner_id for r in rows])
     return [
         DriveListItem(
-            id=r.id, name=r.name, batch_year=r.batch_year, status=r.status, owner_id=r.owner_id,  # type: ignore[arg-type]
+            id=r.id, name=r.name, batch_year=r.batch_year, status=r.status, owner_id=r.owner_id,
             owner_name=owners.get(r.owner_id), registration_closes_at=r.registration_closes_at,
             institution_count=int(inst.get(r.id, 0)), registration_count=int(regs.get(r.id, 0)), created_at=r.created_at,
         )

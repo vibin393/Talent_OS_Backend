@@ -193,9 +193,9 @@ def _citations(raw: Any) -> list[dict[str, Any]]:
 
 def _portal_message(m: OnboardingQaMessage) -> PortalHelpMessage:
     return PortalHelpMessage(
-        id=m.id, seq=m.seq, author=AUTHOR.get(m.role, "system"), text=m.plain_text or "",  # type: ignore[arg-type]
+        id=m.id, seq=m.seq, author=AUTHOR.get(m.role, "system"), text=m.plain_text or "",
         citations=[PortalCitation(label=str(c.get("title") or "Source")[:200], kind=c.get("kind") or "knowledge") for c in _citations(m.citations)],
-        feedback=m.feedback, sent_at=m.created_at,  # type: ignore[arg-type]
+        feedback=m.feedback, sent_at=m.created_at,
     )  # fmt: skip
 
 
@@ -217,7 +217,7 @@ async def _messages(db: AsyncSession, thread_id: uuid.UUID, *, decrypt: bool = T
 
 async def portal_thread(db: AsyncSession, thread: OnboardingQaThread) -> PortalHelpThread:
     return PortalHelpThread(
-        id=thread.id, status=thread.status, coordinator_name=await _name(db, thread.coordinator_user_id),  # type: ignore[arg-type]
+        id=thread.id, status=thread.status, coordinator_name=await _name(db, thread.coordinator_user_id),
         can_reply=thread.status != "closed", messages=[_portal_message(m) for m in await _messages(db, thread.id)],
     )  # fmt: skip
 
@@ -249,7 +249,7 @@ async def _summaries(db: AsyncSession, candidate_id: uuid.UUID) -> list[PortalHe
                 id=t.id,
                 status=t.status,
                 first_question=(first or "")[:200],
-                last_message_at=t.last_message_at,  # type: ignore[arg-type]
+                last_message_at=t.last_message_at,
             )
         )
     return out
@@ -817,9 +817,9 @@ async def run_failed(db: AsyncSession, run_id: uuid.UUID, reason: str) -> bool:
 # ================================================================ internal (coordinators)
 def _message_out(m: OnboardingQaMessage) -> QaMessageOut:
     return QaMessageOut(
-        id=m.id, seq=m.seq, role=m.role, text=m.plain_text or "",  # type: ignore[arg-type]
+        id=m.id, seq=m.seq, role=m.role, text=m.plain_text or "",
         citations=[QaCitation(citation=str(c.get("citation") or ""), title=str(c.get("title") or ""), kind=c.get("kind") or "knowledge") for c in _citations(m.citations)],
-        outcome=m.outcome, topic=m.topic, feedback=m.feedback, agent_run_id=m.agent_run_id,  # type: ignore[arg-type]
+        outcome=m.outcome, topic=m.topic, feedback=m.feedback, agent_run_id=m.agent_run_id,
         author_user_id=m.author_user_id, created_at=m.created_at,
     )  # fmt: skip
 
@@ -831,7 +831,7 @@ async def _thread_out(db: AsyncSession, t: OnboardingQaThread, *, with_messages:
     last_q = (last_asker.plain_text if with_messages else last_asker.topic_label) if last_asker is not None else None
     return QaThreadOut(
         id=t.id, candidate_id=t.candidate_id, candidate_name=await _candidate_name(db, t.candidate_id),
-        audience=t.audience, status=t.status, coordinator_user_id=t.coordinator_user_id,  # type: ignore[arg-type]
+        audience=t.audience, status=t.status, coordinator_user_id=t.coordinator_user_id,
         coordinator_name=await _name(db, t.coordinator_user_id, "") or None, placement_id=t.placement_id, task_id=t.task_id,
         last_message_at=t.last_message_at, created_at=t.created_at, last_question=(last_q or "")[:300] or None,
         messages=[_message_out(m) for m in msgs] if with_messages else [],

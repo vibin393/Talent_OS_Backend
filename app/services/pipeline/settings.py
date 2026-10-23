@@ -28,7 +28,7 @@ async def settings_out(db: AsyncSession, row: PipelineSettings) -> PipelineSetti
 
     link_days = {p: (await settings_service.link_ttl(db, p)).days for p in LINK_PURPOSES}
     return PipelineSettingsOut(
-        submission_consent_mode=row.submission_consent_mode,  # type: ignore[arg-type]
+        submission_consent_mode=row.submission_consent_mode,
         prior_submission_window_days=row.prior_submission_window_days,
         min_margin_pct=Decimal(row.min_margin_pct),
         burden_pct={k: Decimal(str(v)) for k, v in {**DEFAULT_BURDEN, **(row.burden_pct or {})}.items()},

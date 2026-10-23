@@ -326,10 +326,10 @@ async def _edge_out(
         out.append(
             SkillEdgeOut(
                 id=e.edge_id,
-                origin=e.origin,  # type: ignore[arg-type]
+                origin=e.origin,
                 from_skill=names[e.src],
                 to_skill=names[e.dst],
-                kind=e.kind,  # type: ignore[arg-type]
+                kind=e.kind,
                 weight=e.weight,
                 note=getattr(row, "note", None),
                 source=getattr(row, "source", None) if e.origin == "platform" else e.origin,

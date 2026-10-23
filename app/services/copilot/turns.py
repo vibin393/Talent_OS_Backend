@@ -332,7 +332,7 @@ async def rate_turn(ctx: Any, db: Any, run_id: uuid.UUID, data: FeedbackIn) -> F
         db, tenant_id=ctx.tenant_id, run_id=run_id, conversation_id=conv.id, user_id=principal.id,
         agent_key=conv.agent_key, rating=data.rating, comment=comment,
     )  # fmt: skip
-    return FeedbackOut(run_id=row.run_id, rating=row.rating, comment=row.comment, updated_at=row.updated_at)  # type: ignore[arg-type]
+    return FeedbackOut(run_id=row.run_id, rating=row.rating, comment=row.comment, updated_at=row.updated_at)
 
 
 __all__ = [

@@ -127,7 +127,7 @@ def _out(row: AppInstallation, config_ids: list[uuid.UUID] | None = None, **extr
         connector_key=row.connector_key,
         instance_no=row.instance_no,
         display_name=row.display_name,
-        status=row.status,  # type: ignore[arg-type]
+        status=row.status,
         manifest_version=row.manifest_version,
         manifest_sha256=row.manifest_sha256,
         pending_manifest_version=row.pending_manifest_version,
@@ -922,7 +922,7 @@ async def test(ctx: RequestContext, db: AsyncSession, installation_id: uuid.UUID
         message=outcome.message,
         status=inst.status,
         health_status=inst.health_status,
-    )  # type: ignore[arg-type]
+    )
 
 
 async def jobs(

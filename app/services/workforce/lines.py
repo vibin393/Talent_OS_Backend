@@ -98,19 +98,19 @@ def line_out(line: WorkforcePlanLine, counts: SlotCounts | None, *, money: bool)
             for s in (line.skills or [])
         ],
         headcount=line.headcount,
-        line_type=line.line_type,  # type: ignore[arg-type]
+        line_type=line.line_type,
         location_text=line.location_text,
-        work_mode=line.work_mode,  # type: ignore[arg-type]
+        work_mode=line.work_mode,
         start_month=month_key(line.period_start),
         period_start=line.period_start,
         period_end=line.period_end,
         budget_amount=line.budget_amount if money else None,
         bill_rate_amount=line.bill_rate_amount if money else None,
-        rate_unit=line.rate_unit,  # type: ignore[arg-type]
+        rate_unit=line.rate_unit,
         project_role_id=line.project_role_id,
         status=line.status,
         derived_status=derived_status(line, counts),
-        change_kind=line.change_kind,  # type: ignore[arg-type]
+        change_kind=line.change_kind,
         supersedes_line_id=line.supersedes_line_id,
         notes=line.notes,
         client_comment=line.client_comment,

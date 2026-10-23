@@ -137,7 +137,7 @@ async def revoke_for(db: AsyncSession, channel: str, phone: str, reason: str) ->
 def _out(row: ChannelOptOut) -> OptOutOut:
     return OptOutOut(
         id=row.id,
-        channel=row.channel,  # type: ignore[arg-type]
+        channel=row.channel,
         phone_masked=mask_phone(row.phone_e164),
         source=row.source,
         recipient_kind=row.recipient_kind,

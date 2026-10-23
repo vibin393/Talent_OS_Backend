@@ -122,13 +122,13 @@ async def _responses(db: AsyncSession, offer_id: uuid.UUID) -> list[OfferRespons
     ).scalars()
     return [
         OfferResponseOut(
-            decision=r.decision,  # type: ignore[arg-type]
+            decision=r.decision,
             version_no=r.version_no,
             typed_name=r.typed_name,
             decline_reason=r.decline_reason,
             ip=str(r.ip) if r.ip is not None else None,
             user_agent=r.user_agent,
-            channel=r.channel,  # type: ignore[arg-type]
+            channel=r.channel,
             letter_sha256=r.letter_sha256,
             decided_at=r.decided_at,
         )
@@ -155,7 +155,7 @@ async def offer_out(
     return OfferOut(
         id=offer.id,
         human_id=offer.human_id,
-        status=offer.status,  # type: ignore[arg-type]
+        status=offer.status,
         application_id=offer.application_id,
         demand_id=offer.demand_id,
         candidate_id=offer.candidate_id,

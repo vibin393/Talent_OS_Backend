@@ -200,9 +200,9 @@ def version_of(sub: WebhookSubscription) -> str:
 
 async def out(ctx: RequestContext, db: AsyncSession, sub: WebhookSubscription, *, paused: bool = False) -> SubscriptionOut:
     return SubscriptionOut(
-        id=sub.id, owner_kind=sub.owner_kind, installation_id=sub.installation_id, url=sub.url, url_host=sub.url_host,  # type: ignore[arg-type]
+        id=sub.id, owner_kind=sub.owner_kind, installation_id=sub.installation_id, url=sub.url, url_host=sub.url_host,
         description=sub.description, event_types=list(sub.event_types or []), all_events=bool(sub.all_events),
-        filters=dict(sub.filters or {}), status=sub.status, disabled_reason=sub.disabled_reason, paused=paused,  # type: ignore[arg-type]
+        filters=dict(sub.filters or {}), status=sub.status, disabled_reason=sub.disabled_reason, paused=paused,
         verified_at=sub.verified_at, verification_error=sub.verification_error, max_in_flight=sub.max_in_flight,
         suppress_own_changes=sub.suppress_own_changes, consecutive_failures=sub.consecutive_failures,
         failure_streak_started_at=sub.failure_streak_started_at, last_success_at=sub.last_success_at,

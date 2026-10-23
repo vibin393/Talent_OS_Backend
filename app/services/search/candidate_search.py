@@ -709,7 +709,7 @@ async def interpret(
                 ],
             )
         )
-    f = CandidateSearchFilters(skills=skills, skills_mode=mode)  # type: ignore[arg-type]
+    f = CandidateSearchFilters(skills=skills, skills_mode=mode)
     if data.experience_min is not None:
         f.experience_min = Decimal(str(data.experience_min))
         chips.append(
@@ -818,7 +818,7 @@ async def search_candidates(
         facets=facets,
         facets_approximate=approximate,
         interpretation=chips,
-        notice=notice,  # type: ignore[arg-type]
+        notice=notice,
         ai_action_id=ai_action_id,
         applied_q=applied_q,
         applied_filters=applied_filters if body.mode == "nl" else None,

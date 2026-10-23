@@ -56,7 +56,7 @@ def invalid_token(description: str = "invalid token") -> Unauthorized:
         if headers is not None:
             headers["WWW-Authenticate"] = f'Bearer error="invalid_token", error_description="{description}"'
 
-    exc.response_hooks.append(_hdr)  # type: ignore[arg-type]
+    exc.response_hooks.append(_hdr)
     return exc
 
 

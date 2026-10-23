@@ -279,7 +279,7 @@ async def transcript(ctx: RequestContext, db: AsyncSession, session_id: uuid.UUI
     )
     return VoiceTranscriptOut(
         transcript_id=t.id, status=t.status,
-        segments=[{"seq": s.seq, "speaker_role": s.speaker_role, "start_ms": s.start_ms, "end_ms": s.end_ms, "text": s.text} for s in t.segments],  # type: ignore[misc]
+        segments=[{"seq": s.seq, "speaker_role": s.speaker_role, "start_ms": s.start_ms, "end_ms": s.end_ms, "text": s.text} for s in t.segments],
     )  # fmt: skip
 
 

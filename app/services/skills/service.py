@@ -140,7 +140,7 @@ async def explain_paths(
                 PathHopOut(
                     from_key=h.edge.src,
                     to_key=h.edge.dst,
-                    kind=h.kind,  # type: ignore[arg-type]
+                    kind=h.kind,
                     weight=h.weight,
                     label=f"{names[h.edge.src].name} {verb[h.kind]} {names[h.edge.dst].name}",
                 )

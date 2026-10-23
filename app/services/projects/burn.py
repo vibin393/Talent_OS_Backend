@@ -299,7 +299,7 @@ async def fx_rates(ctx: RequestContext, db: AsyncSession, facts: Iterable[Fact],
 # ================================================================ rebuild
 def _burn_out(row: ProjectBurn) -> BurnOut:
     return BurnOut(
-        dimension=row.dimension,  # type: ignore[arg-type]
+        dimension=row.dimension,
         actual=row.actual,
         budget=row.budget,
         pct=row.pct,

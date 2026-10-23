@@ -131,7 +131,7 @@ async def erase_unretained(
     req_ids = [r.id for r in reqs]
     if req_ids:
         result = await db.execute(delete(SignerOtp).where(SignerOtp.request_id.in_(req_ids)))
-        counts["signer_otps"] = int(result.rowcount or 0)  # type: ignore[attr-defined]
+        counts["signer_otps"] = int(result.rowcount or 0)
     for doc in docs:
         if _retained_doc(doc, ctx) and not include_signed:
             counts["retained"] += 1

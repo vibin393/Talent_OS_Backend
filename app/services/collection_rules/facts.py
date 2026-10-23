@@ -130,7 +130,7 @@ def to_out(loaded: Loaded) -> CollectionPlanOut:
     items = [
         PlanItem(
             step_id=i.step.id, position=i.step.position, offset_days=i.step.offset_days, tone=i.step.tone,
-            audience=i.step.audience, email_template_id=i.step.email_template_id, send_class=i.send_class,  # type: ignore[arg-type]
+            audience=i.step.audience, email_template_id=i.step.email_template_id, send_class=i.send_class,
             create_task=i.step.create_task, currency=i.currency, total_remindable=i.total_remindable,
             partially_disputed=i.partially_disputed,
             documents=[

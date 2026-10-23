@@ -96,7 +96,7 @@ async def outs(ctx: RequestContext, db: AsyncSession, rows: Sequence[ProjectRole
             project_id=r.project_id,
             title=r.title,
             headcount=r.headcount,
-            status=r.status,  # type: ignore[arg-type]
+            status=r.status,
             start_date=r.start_date,
             end_date=r.end_date,
             skills=[RoleSkill(**s) for s in (r.skills or [])],

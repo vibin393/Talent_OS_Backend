@@ -104,7 +104,7 @@ async def exceptions(
             reason = "booking_unmatched"
         if reason:
             ref = runs.deduction_ref(d, names)
-            not_deposited.append(TdsRecordedNotDepositedOut(**ref.model_dump(), reason=reason))  # type: ignore[arg-type]
+            not_deposited.append(TdsRecordedNotDepositedOut(**ref.model_dump(), reason=reason))
     return TdsExceptionsOut(
         run_id=run.id,
         deducted_not_recorded=await runs.lines_out(db, open_lines),

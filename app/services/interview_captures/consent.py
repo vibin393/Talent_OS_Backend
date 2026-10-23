@@ -366,7 +366,7 @@ async def status_out(
     return CaptureStatusOut(
         interview_id=interview.id,
         capture_id=capture.id if capture else None,
-        status=status,  # type: ignore[arg-type]
+        status=status,
         capture_kind=capture.capture_kind if capture else None,
         offered=ev.permitted
         and interview.mode in common.CAPTURABLE_MODES

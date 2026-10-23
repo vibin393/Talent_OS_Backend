@@ -64,7 +64,7 @@ async def verify_upload(ctx: RequestContext, db: AsyncSession, data: bytes) -> V
     await db.flush()
     del ctx
     return VerifyOut(
-        match=match,  # type: ignore[arg-type]
+        match=match,
         request_id=req.id,
         human_id=req.human_id,
         status=req.status,

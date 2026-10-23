@@ -168,8 +168,8 @@ async def _choose(db: object, found: list[dict[str, object]]) -> uuid.UUID:
         apps = await pipeline.candidate_applications(db, cid)  # type: ignore[arg-type]
         latest = max((a["applied_at"] for a in apps), default=None)
         key = (latest is not None, latest or c["updated_at"], cid)
-        if best is None or key[:2] > best[:2]:  # type: ignore[operator]
-            best = key  # type: ignore[assignment]
+        if best is None or key[:2] > best[:2]:
+            best = key
     assert best is not None
     return best[2]
 

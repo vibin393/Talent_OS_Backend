@@ -48,7 +48,7 @@ def pump_all() -> dict[str, Any]:
     for tid, flag in due.items():
         if flag is True:
             enqueue(pump, tid)
-    return due  # type: ignore[no-any-return]
+    return due
 
 
 @celery_app.task(name="webhooks.deliver", queue=QUEUE, acks_late=True)  # type: ignore[misc,untyped-decorator,unused-ignore]

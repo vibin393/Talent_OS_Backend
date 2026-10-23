@@ -215,7 +215,7 @@ async def run_question(
         total=outcome.total,
         truncated=outcome.truncated,
         masked_fields=list(outcome.masked_fields),
-        limit_hit=LimitHitOut(kind=outcome.limit_kind, message=outcome.limit_message or "")  # type: ignore[arg-type]
+        limit_hit=LimitHitOut(kind=outcome.limit_kind, message=outcome.limit_message or "")
         if outcome.limit_kind
         else None,
         suppressed_cells=suppressed,
@@ -374,7 +374,7 @@ async def preview_answer(ctx: RequestContext, db: AsyncSession, answer_id: uuid.
         truncated=outcome.truncated,
         row_limit=outcome.row_limit,
         masked_fields=list(outcome.masked_fields),
-        limit_hit=ReportLimitHitOut(kind=outcome.limit_kind, message=outcome.limit_message or "")  # type: ignore[arg-type]
+        limit_hit=ReportLimitHitOut(kind=outcome.limit_kind, message=outcome.limit_message or "")
         if outcome.limit_kind
         else None,
         viz=outcome.viz,

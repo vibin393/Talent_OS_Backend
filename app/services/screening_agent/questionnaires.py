@@ -202,7 +202,7 @@ async def version_out(db: AsyncSession, row: ScreeningQuestionnaireVersion) -> V
         questionnaire_id=row.questionnaire_id,
         questionnaire_name=qn.name if qn is not None else None,
         version=row.version,
-        status=row.status,  # type: ignore[arg-type]
+        status=row.status,
         questions=[AgentQuestion.model_validate(q) for q in row.questions or []],
         clarifications={k: dict(v) for k, v in (row.clarifications or {}).items()},
         approved_by=row.approved_by,

@@ -81,7 +81,7 @@ async def conversation_out(db: AsyncSession, conv: ScreeningConversation) -> Con
         id=conv.id, human_id=conv.human_id, application_id=conv.application_id, candidate_id=conv.candidate_id,
         demand_id=conv.demand_id, screening_id=conv.screening_id, questionnaire_version_id=conv.questionnaire_version_id,
         questionnaire_label=f"{qn.name if qn is not None else 'Questionnaire'} v{ver.version}",
-        channel=conv.channel, status=conv.status, current_run_id=conv.current_run_id,  # type: ignore[arg-type]
+        channel=conv.channel, status=conv.status, current_run_id=conv.current_run_id,
         owner_user_id=conv.owner_user_id, owner_name=await channels.owner_name(db, conv), invited_at=conv.invited_at,
         consented_at=conv.consented_at, completed_at=conv.completed_at, expires_at=conv.expires_at,
         last_inbound_at=conv.last_inbound_at, last_outbound_at=conv.last_outbound_at,
@@ -269,7 +269,7 @@ async def start_options(ctx: RequestContext, db: AsyncSession, application_id: u
     best = _best(options)
     blocked = await _block_reason(db, app) or (None if best else "no_channel")
     return StartOptionsOut(
-        channels=options, best_channel=best, questionnaire_id=ver.questionnaire_id if ver else None,  # type: ignore[arg-type]
+        channels=options, best_channel=best, questionnaire_id=ver.questionnaire_id if ver else None,
         questionnaire_name=name or ("Default questions + the demand's skills" if ver is None else None),
         version_id=ver.id if ver else None, version=ver.version if ver else None, blocked_reason=blocked,
     )  # fmt: skip
@@ -795,7 +795,7 @@ async def complete(
     p1_summary = ScreeningSummary(
         structured_answers=structured[:20],
         gaps=[Gap(question_key="gap", issue=g[:500]) for g in gaps[:20]],
-        summary=summary[:3000], suggested_outcome=suggested_next,  # type: ignore[arg-type]
+        summary=summary[:3000], suggested_outcome=suggested_next,
     )  # fmt: skip
     screening_id = await p1.record_agent_result(
         ctx, db, conv.application_id, questions_snapshot=snapshot, answers=answers, summary=p1_summary,

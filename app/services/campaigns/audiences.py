@@ -300,7 +300,7 @@ def _rows_from_upload(filename: str | None, content: bytes) -> list[str]:
         from openpyxl import load_workbook
 
         wb = load_workbook(io.BytesIO(content), read_only=True, data_only=True)
-        for row in wb.active.iter_rows(values_only=True):  # type: ignore[union-attr]
+        for row in wb.active.iter_rows(values_only=True):
             cell = next((c for c in row if c not in (None, "")), None)
             values.append("" if cell is None else str(cell).strip())
     else:

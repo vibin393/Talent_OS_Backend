@@ -91,7 +91,7 @@ def _cal_out(c: HolidayCalendar, count: int = 0) -> HolidayCalendarOut:
         id=c.id,
         name=c.name,
         year=c.year,
-        scope_kind=c.scope_kind,  # type: ignore[arg-type]
+        scope_kind=c.scope_kind,
         country_code=c.country_code,
         state_code=c.state_code,
         client_id=c.client_id,
@@ -109,7 +109,7 @@ def _holiday_out(h: Holiday) -> HolidayOut:
         calendar_id=h.calendar_id,
         holiday_date=h.holiday_date,
         name=h.name,
-        type=h.type,  # type: ignore[arg-type]
+        type=h.type,
     )
 
 
@@ -424,7 +424,7 @@ async def copy_calendar(
                 holiday_date=target,
                 name=h.name,
                 type=h.type,
-                needs_review=h.type in REVIEW_TYPES,  # type: ignore[arg-type]
+                needs_review=h.type in REVIEW_TYPES,
             )
         )
     await db.flush()
@@ -569,7 +569,7 @@ def day_out(d: HolidayDay) -> HolidayDayOut:
         name=d.name,
         type=d.type,
         holiday_id=d.holiday_id,
-        calendar_id=d.calendar_id,  # type: ignore[arg-type]
+        calendar_id=d.calendar_id,
         optional=d.optional,
         selected=d.selected,
     )

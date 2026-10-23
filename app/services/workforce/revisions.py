@@ -112,7 +112,7 @@ async def diff_lines(
             DiffLine(
                 lineage_id=ln.lineage_id or ln.id,
                 line_id=ln.id,
-                change_kind=ln.change_kind,  # type: ignore[arg-type]
+                change_kind=ln.change_kind,
                 role_title=ln.role_title,
                 before=before,
                 after=after,

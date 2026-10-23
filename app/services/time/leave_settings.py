@@ -12,7 +12,7 @@ from app.services.time.holidays import leave_settings_row
 
 def _out(row: LeaveSettings) -> LeaveSettingsOut:
     return LeaveSettingsOut(
-        leave_year=row.leave_year,  # type: ignore[arg-type]
+        leave_year=row.leave_year,
         default_work_week=sorted(int(d) for d in row.default_work_week or []),
         accrual_day=row.accrual_day,
         client_team_calendar_default=row.client_team_calendar_default,

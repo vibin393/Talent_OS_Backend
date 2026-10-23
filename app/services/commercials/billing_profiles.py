@@ -74,7 +74,7 @@ async def _contacts(db: AsyncSession, profile_id: uuid.UUID, client_id: uuid.UUI
         if f is not None:
             out.append(
                 BillingContactOut(contact_id=r.contact_id, role=r.role, name=f["name"], email=f["email"])
-            )  # type: ignore[arg-type]
+            )
     return out
 
 
@@ -399,4 +399,4 @@ async def erase_contact_links(db: AsyncSession, contact_id: uuid.UUID) -> int:
     result = await db.execute(
         delete(BillingProfileContact).where(BillingProfileContact.contact_id == contact_id)
     )
-    return int(result.rowcount or 0)  # type: ignore[attr-defined]
+    return int(result.rowcount or 0)

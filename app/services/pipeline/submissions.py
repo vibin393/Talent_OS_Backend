@@ -145,7 +145,7 @@ def margin_out(m: margin_calc.Margin) -> MarginOut:
     return MarginOut(
         pay_rate=MoneyOut(amount=f"{m.pay:.2f}", currency=m.currency),
         bill_rate=MoneyOut(amount=f"{m.bill:.2f}", currency=m.currency),
-        rate_unit=m.rate_unit,  # type: ignore[arg-type]
+        rate_unit=m.rate_unit,
         burden_pct=f"{m.burden_pct:.2f}",
         margin_amount=MoneyOut(amount=f"{m.amount:.2f}", currency=m.currency),
         margin_pct=f"{m.pct:.2f}",
@@ -196,17 +196,17 @@ async def submission_out(ctx: RequestContext, db: AsyncSession, sub: Submission)
         demand_id=sub.demand_id,
         client_id=sub.client_id,
         candidate_id=sub.candidate_id,
-        status=sub.status,  # type: ignore[arg-type]
+        status=sub.status,
         pay_rate=_money(sub.pay_rate, sub.currency),
         bill_rate=_money(sub.bill_rate, sub.currency),
-        rate_unit=sub.rate_unit,  # type: ignore[arg-type]
+        rate_unit=sub.rate_unit,
         employment_type=sub.employment_type,
         burden_pct=f"{Decimal(sub.burden_pct):.2f}",
         margin_amount=_money(sub.margin_amount, sub.currency),
         margin_pct=f"{Decimal(sub.margin_pct):.2f}",
         below_min_margin=sub.below_min_margin,
         approval_request_id=sub.approval_request_id,
-        resume_kind=sub.resume_kind,  # type: ignore[arg-type]
+        resume_kind=sub.resume_kind,
         resume_file_id=sub.resume_file_id,
         resume_sha256=sub.resume_sha256,
         resume_download_url=f"/api/v1/files/{sub.resume_file_id}/download" if sub.resume_file_id else None,
@@ -221,7 +221,7 @@ async def submission_out(ctx: RequestContext, db: AsyncSession, sub: Submission)
         sent_at=sub.sent_at,
         sent_by=sub.sent_by,
         cancelled_at=sub.cancelled_at,
-        feedback_status=sub.feedback_status,  # type: ignore[arg-type]
+        feedback_status=sub.feedback_status,
         feedback=[FeedbackOut.model_validate(f) for f in feedback],
     )
     principal = ctx.principal if isinstance(ctx.principal, Principal) else None
@@ -869,7 +869,7 @@ async def deliver_emails(ctx: RequestContext, db: AsyncSession, submission_id: u
         db, sub.client_id, _uuid_list(sub.recipient_contact_ids)
     )
     cc = tuple((await user_emails(db, _uuid_list(sub.cc_user_ids))).values())
-    reply_to = (await user_emails(db, [sub.sent_by])).get(sub.sent_by) if sub.sent_by else None  # type: ignore[arg-type]
+    reply_to = (await user_emails(db, [sub.sent_by])).get(sub.sent_by) if sub.sent_by else None
     attachment: EmailAttachment | None = None
     if sub.resume_file_id is not None:
         stored = await files_service.get_file(db, sub.resume_file_id)

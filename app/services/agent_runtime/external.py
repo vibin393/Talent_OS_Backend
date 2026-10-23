@@ -196,7 +196,7 @@ def _mask(data: dict[str, Any], principal: Principal) -> dict[str, Any]:
     """§0.5 field masking by the token's ``pii.*`` scopes (``core.public_api``, when shipped) on top of the tool's
     own masking for the user."""
     try:
-        from app.core.public_api import mask_for_scopes  # type: ignore[attr-defined]
+        from app.core.public_api import mask_for_scopes
     except ImportError:  # pragma: no cover - the Public API conventions module ships with Epic 66.3
         return data
     masked = mask_for_scopes(data, principal)
@@ -346,7 +346,7 @@ def _out(call: _Call, principal: Principal, run: AgentRun) -> ExternalCallOut:  
             detail = parsed if isinstance(parsed, dict) else None
         except ValueError:
             detail = None
-    return ExternalCallOut(outcome=mapped, result=detail, error_code=call.error_code or mapped)  # type: ignore[arg-type]
+    return ExternalCallOut(outcome=mapped, result=detail, error_code=call.error_code or mapped)
 
 
 # ================================================================ close

@@ -119,7 +119,7 @@ async def authorize_view(request: Request, db: TenantDBSessionDep) -> Response:
     except oauth_service.OAuthRedirectError as exc:
         return JSONResponse({"redirect_to": exc.redirect_to}, headers=FRAME)
     except DomainError as exc:
-        exc.response_hooks.append(lambda r: r.headers.update(FRAME))  # type: ignore[arg-type, union-attr]
+        exc.response_hooks.append(lambda r: r.headers.update(FRAME))
         raise
     return JSONResponse(view.model_dump(mode="json"), headers=FRAME)
 

@@ -46,7 +46,7 @@ class PlacementExitHandler:
             result = await db.execute(
                 update(model).where(where).values(**values).execution_options(synchronize_session=False)
             )
-            counts[model.__tablename__] = int(result.rowcount or 0)  # type: ignore[attr-defined]
+            counts[model.__tablename__] = int(result.rowcount or 0)
         cases = select(OffboardingCase.id).where(OffboardingCase.candidate_id.in_(ids)).scalar_subquery()
         result = await db.execute(
             update(OffboardingFeedback)
@@ -54,7 +54,7 @@ class PlacementExitHandler:
             .values(answers={})
             .execution_options(synchronize_session=False)
         )
-        counts["offboarding_feedback"] = int(result.rowcount or 0)  # type: ignore[attr-defined]
+        counts["offboarding_feedback"] = int(result.rowcount or 0)
         await db.flush()
         return counts
 

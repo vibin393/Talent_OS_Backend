@@ -128,7 +128,7 @@ def validate_filters(filters: dict[str, Any] | None, principal: Principal | None
         return None
     defn = sem.validate({"source": SEMANTIC_SOURCE, "filters": filters}, principal=principal)
     sem.validate(wrapped(uuid.uuid4(), [uuid.uuid4()], defn.filters), principal=principal)
-    return defn.model_dump(by_alias=True, mode="json")  # type: ignore[no-any-return]
+    return defn.model_dump(by_alias=True, mode="json")
 
 
 async def set_definition(c: RequestContext, db: AsyncSession, drive_id: uuid.UUID, filters: dict[str, Any] | None) -> DriveOut:

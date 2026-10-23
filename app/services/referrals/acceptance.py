@@ -407,7 +407,7 @@ async def view(token: str) -> PublicReferralView:
         else:
             raise NotFound("Link not found", code="link_invalid")
         return PublicReferralView(
-            mode=mode,  # type: ignore[arg-type]
+            mode=mode,
             status=status,
             tenant_name=tenant.name if tenant is not None else None,
             job_title=await _job_title(db, demand_id),

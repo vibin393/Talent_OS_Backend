@@ -94,7 +94,7 @@ async def add_turn(
         async with db.begin_nested():
             out = await transcripts_service.append_segments(
                 ctx, db, transcript_id,
-                [TranscriptSegmentIn(speaker_role=SPEAKER.get(author, "unknown"), text=text)],  # type: ignore[arg-type]
+                [TranscriptSegmentIn(speaker_role=SPEAKER.get(author, "unknown"), text=text)],
             )  # fmt: skip
             turn.transcript_seq = out.segment_count
     except Exception:
@@ -122,7 +122,7 @@ async def list_turns(db: AsyncSession, conversation_id: uuid.UUID, after_seq: in
 
 def turn_out(row: ScreeningTurn) -> TurnOut:
     return TurnOut(
-        id=row.id, seq=row.seq, direction=row.direction, author=row.author, kind=row.kind,  # type: ignore[arg-type]
+        id=row.id, seq=row.seq, direction=row.direction, author=row.author, kind=row.kind,
         channel=row.channel, body=row.body, question_ids=list(row.question_ids or []),
         citations=[str(c) for c in row.citations or []], template_key=row.template_key, created_at=row.created_at,
     )  # fmt: skip

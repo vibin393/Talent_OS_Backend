@@ -49,10 +49,10 @@ async def _transcript_status(db: AsyncSession, call: VoiceCall) -> str:
 async def out(db: AsyncSession, call: VoiceCall, *, manual: str | None = None) -> VoiceCallOut:
     return VoiceCallOut(
         id=call.id, human_id=call.human_id, voice_session_id=call.voice_session_id, application_id=call.application_id,
-        candidate_id=call.candidate_id, placed_by=call.placed_by, provider_key=call.provider_key, status=call.status,  # type: ignore[arg-type]
+        candidate_id=call.candidate_id, placed_by=call.placed_by, provider_key=call.provider_key, status=call.status,
         refusal_code=call.refusal_code, failure_code=call.failure_code, recorded=call.recording_requested,
-        recording_unavailable_reason=call.recording_unavailable_reason, recording_status=call.recording_fetch_status,  # type: ignore[arg-type]
-        transcript_status=await _transcript_status(db, call),  # type: ignore[arg-type]
+        recording_unavailable_reason=call.recording_unavailable_reason, recording_status=call.recording_fetch_status,
+        transcript_status=await _transcript_status(db, call),
         provider_delete_status=call.provider_delete_status, requested_at=call.requested_at, answered_at=call.answered_at,
         ended_at=call.ended_at, duration_s=call.duration_s, billable_minutes=call.billable_minutes,
         cost_estimate_minor=call.cost_estimate_minor, manual_instructions=manual,
@@ -208,8 +208,8 @@ async def call_options(
         cand = app.candidate_id if app is not None else None
     phone_row = await user_phones.verified_row(db, user_id)
     consent = ConsentFlags(
-        voice_screening=bool(cand) and await has_consent(db, cand, PURPOSE_CALL),  # type: ignore[arg-type]
-        call_recording=bool(cand) and await has_consent(db, cand, PURPOSE_RECORDING),  # type: ignore[arg-type]
+        voice_screening=bool(cand) and await has_consent(db, cand, PURPOSE_CALL),
+        call_recording=bool(cand) and await has_consent(db, cand, PURPOSE_RECORDING),
     )
     base: dict[str, Any] = {
         "consent": consent, "phone_verified": phone_row is not None,
@@ -230,7 +230,7 @@ async def call_options(
     if not res.ok:
         nxt = res.details.get("next_window_at")
         return CallOptionsOut(
-            can_call=False, refusal_code=res.code, refusal_message=res.message, next_window_at=nxt,  # type: ignore[arg-type]
+            can_call=False, refusal_code=res.code, refusal_message=res.message, next_window_at=nxt,
             today_cost_pct=today_pct, **base,
         )  # fmt: skip
     can_notice = await _can_notice(ctx, db, res)

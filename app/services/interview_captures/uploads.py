@@ -408,7 +408,7 @@ async def transcribe(
             start_ms=s.start_ms,
             end_ms=s.end_ms,
             text=s.text,
-        )  # type: ignore[arg-type]
+        )
         for s in dto.segments
     ]
     out = await transcripts_service.append_segments(rctx, db, created.id, segments, final=True)

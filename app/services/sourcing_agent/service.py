@@ -66,7 +66,7 @@ async def settings_row(db: AsyncSession, tenant_id: uuid.UUID) -> SourcingAgentS
 
 def settings_out(row: SourcingAgentSettings) -> SourcingSettingsOut:
     return SourcingSettingsOut(
-        top_n=row.top_n, draft_top=row.draft_top, preferred_channel=row.preferred_channel,  # type: ignore[arg-type]
+        top_n=row.top_n, draft_top=row.draft_top, preferred_channel=row.preferred_channel,
         include_silver_medalists=row.include_silver_medalists, max_searches=row.max_searches,
         propose_pipeline_adds=row.propose_pipeline_adds, propose_sequence_id=row.propose_sequence_id,
         updated_at=row.updated_at,

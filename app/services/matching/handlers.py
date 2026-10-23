@@ -237,7 +237,7 @@ def register() -> None:
         CandidateResumeParsed,
         AIConsentGranted,
     ):
-        subscribe(event_type, _changed)  # type: ignore[arg-type]
+        subscribe(event_type, _changed)
     subscribe(CandidateArchived, _gone)
     subscribe(AIConsentWithdrawn, _gone)
     subscribe(CandidatesMerged, _merged)
@@ -250,5 +250,5 @@ def register() -> None:
     subscribe(MatchRunCompleted, _run_completed)
     subscribe(RediscoveryCompleted, _rediscovery)
     for event_type in (MatchDismissed, MatchRestored, MatchAddedToPipeline):
-        subscribe(event_type, _log)  # type: ignore[arg-type]
+        subscribe(event_type, _log)
     _registered = True

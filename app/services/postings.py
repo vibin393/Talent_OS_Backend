@@ -303,7 +303,7 @@ async def post(
         .values(state="posted", posted_at=_now())
         .execution_options(synchronize_session=False)
     )
-    return int(result.rowcount or 0)  # type: ignore[attr-defined]
+    return int(result.rowcount or 0)
 
 
 async def release(
@@ -325,7 +325,7 @@ async def release(
         .values(state="released", released_at=_now(), release_reason=reason.strip()[:200])
         .execution_options(synchronize_session=False)
     )
-    return int(result.rowcount or 0)  # type: ignore[attr-defined]
+    return int(result.rowcount or 0)
 
 
 async def targets_for(db: AsyncSession, ledger: Ledger, source_kind: str, source_id: uuid.UUID) -> list[PostingOut]:

@@ -414,10 +414,10 @@ def export_out(row: Export) -> ExportOut:
     downloadable = row.status == "done" and row.file_id is not None
     return ExportOut(
         id=row.id,
-        kind=row.kind,  # type: ignore[arg-type]
-        format=row.format,  # type: ignore[arg-type]
-        mode=row.mode,  # type: ignore[arg-type]
-        status=row.status,  # type: ignore[arg-type]
+        kind=row.kind,
+        format=row.format,
+        mode=row.mode,
+        status=row.status,
         filters=row.filters,
         columns=list(row.columns),
         masked_columns=list(row.masked_columns),

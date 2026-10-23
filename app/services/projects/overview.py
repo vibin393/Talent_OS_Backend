@@ -201,7 +201,7 @@ async def project_360(ctx: RequestContext, db: AsyncSession, project_id: uuid.UU
     assignment_out = await assignments.list_for_project(ctx, db, project.id)
     names = {a.candidate_id: a.worker_name for a in assignment_out if a.candidate_id and a.worker_name}
     lo, hi = timeline.window(None, None, max(on, project.start_date) if project.start_date else on)
-    tl = await timeline.load_timeline(db, project, lo, hi, names)  # type: ignore[arg-type]
+    tl = await timeline.load_timeline(db, project, lo, hi, names)
     over = [(w.placement_id, w.worker_name) for w in tl.workers if any(s.over for s in w.segments)]
     return Project360Out(
         project=await projects.out(db, project),

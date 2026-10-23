@@ -52,7 +52,7 @@ class ComplianceHandler:
             c.erased_at = c.erased_at or now()
             counts["credentials"] += 1
         result = await db.execute(delete(CredentialAlert).where(CredentialAlert.candidate_id.in_(ids)))
-        counts["alerts"] = int(result.rowcount or 0)  # type: ignore[attr-defined]
+        counts["alerts"] = int(result.rowcount or 0)
         for it in (
             await db.execute(
                 select(PlacementComplianceItem).where(PlacementComplianceItem.candidate_id.in_(ids))

@@ -33,12 +33,12 @@ async def _out(ctx: RequestContext, db: AsyncSession, row: ProviderConnectorConf
     names = await registry.secret_names(ctx, db, row.id)
     return ConnectorConfigOut(
         id=row.id,
-        category=row.category,  # type: ignore[arg-type]
+        category=row.category,
         provider_key=row.provider_key,
         legal_entity_id=row.legal_entity_id,
         display_name=row.display_name,
         settings=dict(row.settings or {}),
-        status=row.status,  # type: ignore[arg-type]
+        status=row.status,
         has_credentials="credentials" in names,
         has_webhook_secret="webhook_secret" in names,
         webhook_path=f"/api/v1/hooks/{row.category}/{row.id}",

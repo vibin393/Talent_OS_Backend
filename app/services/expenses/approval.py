@@ -365,8 +365,8 @@ async def decide_as(
         ctx,
         db,
         claim.approval_request_id,
-        DecideIn(action=action, comment=comment, subject_payload={"line_decisions": line_decisions}),  # type: ignore[arg-type]
-        actor=actor or actor_from_ctx(ctx),  # type: ignore[arg-type]
+        DecideIn(action=action, comment=comment, subject_payload={"line_decisions": line_decisions}),
+        actor=actor or actor_from_ctx(ctx),
     )
 
 

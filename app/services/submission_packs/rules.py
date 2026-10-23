@@ -78,7 +78,7 @@ async def _out(db: AsyncSession, client_id: uuid.UUID) -> ClientSubmissionRulesO
     src = row if row is not None else DEFAULTS
     return ClientSubmissionRulesOut(
         client_id=client_id,
-        resume_format=src.resume_format,  # type: ignore[arg-type]
+        resume_format=src.resume_format,
         mask_contact_details=src.mask_contact_details,
         write_up_max_words=src.write_up_max_words,
         write_up_instructions=src.write_up_instructions,

@@ -65,7 +65,7 @@ def _out(row: InterviewStageOutcome, can_select: bool) -> StageOutcomeOut:
         id=row.id,
         application_id=row.application_id,
         stage_id=row.stage_id,
-        outcome=row.outcome,  # type: ignore[arg-type]
+        outcome=row.outcome,
         reason_code=row.reason_code,
         comment=row.comment,
         decided_by=row.decided_by,

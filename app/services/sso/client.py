@@ -307,7 +307,7 @@ async def test_report(tenant_id: uuid.UUID, idp_id: uuid.UUID, claims: "Claims")
         email_verified=claims.email_verified,
         name=claims.name,
         groups=claims.groups,
-        resolution=kind,  # type: ignore[arg-type]
+        resolution=kind,
         reason=reason,
         client_user_id=cu_id,
     )

@@ -145,7 +145,7 @@ def _dto(kind: str) -> type[BaseModel] | None:
     path = P3_OWNERS[kind][3]
     module, _, name = path.partition(":")
     try:
-        return getattr(importlib.import_module(module), name, None)  # type: ignore[no-any-return]
+        return getattr(importlib.import_module(module), name, None)
     except ImportError:
         return None
 

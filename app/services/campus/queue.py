@@ -71,7 +71,7 @@ async def entry_outs(db: AsyncSession, rows: list[QueueEntry], *, eta: dict[uuid
             QueueEntryOut(
                 id=r.id, position=r.position, candidate_id=r.candidate_id, candidate_name=facts.get(r.candidate_id, (None, None))[0],
                 demand_id=r.demand_id, demand_title=refs.get(r.demand_id, {}).get("title") if r.demand_id else None,
-                status=r.status, station_id=r.station_id, station_label=labels.get(r.station_id) if r.station_id else None,  # type: ignore[arg-type]
+                status=r.status, station_id=r.station_id, station_label=labels.get(r.station_id) if r.station_id else None,
                 application_id=r.application_id, interview_id=r.interview_id, ahead=ahead, eta_minutes=minutes,
                 called_at=r.called_at, started_at=r.started_at, completed_at=r.completed_at, notified_at=r.notified_at,
                 notify_result=r.notify_result,
@@ -97,7 +97,7 @@ async def queue_view(c: RequestContext, db: AsyncSession, event_id: uuid.UUID) -
             eta[r.id] = (ahead, estimate(ahead, open_count, median))
             ahead += 1
     return QueueOut(
-        event_id=event.id, status=event.status, open_stations=open_count, median_minutes=median,  # type: ignore[arg-type]
+        event_id=event.id, status=event.status, open_stations=open_count, median_minutes=median,
         waiting=ahead, entries=await entry_outs(db, rows, eta=eta), stations=stations, generated_at=now(),
     )
 

@@ -53,11 +53,11 @@ class LeaveHandler:
                 .where(LeaveBalance.candidate_id.in_(ids))
                 .execution_options(synchronize_session=False)
             )
-            cache = int(result.rowcount or 0)  # type: ignore[attr-defined]
+            cache = int(result.rowcount or 0)
         return {
-            "leave_requests": int(req.rowcount or 0),  # type: ignore[attr-defined]
-            "ledger_reasons": int(ledger.rowcount or 0),  # type: ignore[attr-defined]
-            "optional_holidays": int(picks.rowcount or 0),  # type: ignore[attr-defined]
+            "leave_requests": int(req.rowcount or 0),
+            "ledger_reasons": int(ledger.rowcount or 0),
+            "optional_holidays": int(picks.rowcount or 0),
             "balance_rows": cache,
         }
 

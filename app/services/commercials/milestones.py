@@ -40,7 +40,7 @@ def _out(row: ContractMilestone, billed: bool) -> MilestoneOut:
         name=row.name,
         amount=MoneyOut(amount=row.amount, currency=row.currency),
         due_date=row.due_date,
-        status=row.status,  # type: ignore[arg-type]
+        status=row.status,
         accepted_at=row.accepted_at,
         accepted_by=row.accepted_by,
         billed=billed,

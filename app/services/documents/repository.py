@@ -471,7 +471,7 @@ class AttachmentFacade:
             id=doc.id,
             entity_type=doc.owner_kind,
             entity_id=doc.owner_id,
-            category=doc.category,  # type: ignore[arg-type]
+            category=doc.category,
             expires_on=doc.expires_on,
             note=doc.note,
             archived_at=doc.archived_at,

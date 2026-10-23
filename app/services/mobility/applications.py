@@ -227,7 +227,7 @@ def my_out(row: MobilityApplication, title: str, stage: tuple[str, str] | None) 
         id=row.id,
         demand_id=row.demand_id,
         demand_title=title,
-        status=row.status,  # type: ignore[arg-type]
+        status=row.status,
         stage_name=stage[1] if released and stage else None,
         rejection_reason=row.rejection_reason if row.status == "manager_rejected" else None,
         submitted_at=row.submitted_at,
@@ -301,10 +301,10 @@ async def internal_views(db: AsyncSession, rows: list[MobilityApplication]) -> l
             demand_title=titles.get(r.demand_id),
             candidate_id=r.candidate_id,
             candidate_name=names.get(r.candidate_id),
-            employee_kind=r.employee_kind,  # type: ignore[arg-type]
+            employee_kind=r.employee_kind,
             user_id=r.user_id,
             current_placement_id=r.current_placement_id,
-            status=r.status,  # type: ignore[arg-type]
+            status=r.status,
             stage_key=stages.get(r.application_id, (None, None))[0],
             approval_request_id=r.approval_request_id,
             manager_user_id=r.manager_user_id,

@@ -82,7 +82,7 @@ async def outs(db: AsyncSession, rows: Sequence[Project]) -> list[ProjectOut]:
                 business_unit_id=r.business_unit_id,
                 legal_entity_id=r.legal_entity_id,
                 currency=r.currency,
-                status=r.status,  # type: ignore[arg-type]
+                status=r.status,
                 start_date=r.start_date,
                 end_date=r.end_date,
                 description=r.description,

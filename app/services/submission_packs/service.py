@@ -174,7 +174,7 @@ def stub_out(pack: SubmissionPack) -> SubmissionPackOut:
     checks = [PackCheckDetail.model_validate(c) for c in pack.checks_detail or []]
     return SubmissionPackOut(
         pack_id=pack.id, application_id=pack.application_id, demand_id=pack.demand_id, client_id=pack.client_id,
-        status=pack.status, checks=to_stub(checks), document_ids=tuple(pack.document_ids or ()),  # type: ignore[arg-type]
+        status=pack.status, checks=to_stub(checks), document_ids=tuple(pack.document_ids or ()),
         summary_text=pack.summary_text or "", missing=tuple(pack.missing or ()),
     )  # fmt: skip
 
@@ -344,14 +344,14 @@ async def detail(ctx: RequestContext, db: AsyncSession, pack: SubmissionPack) ->
         id=pack.id, human_id=pack.human_id, application_id=pack.application_id, candidate_id=pack.candidate_id,
         candidate_name=await entity_refs.entity_label(db, "candidate", pack.candidate_id), demand_id=pack.demand_id,
         demand_title=demand.title if demand is not None else None, client_id=pack.client_id,
-        client_name=await entity_refs.entity_label(db, "client", pack.client_id), status=pack.status,  # type: ignore[arg-type]
-        lifecycle=pack.lifecycle, version=pack.version, resume_kind=pack.resume_kind, resume_id=pack.resume_id,  # type: ignore[arg-type]
+        client_name=await entity_refs.entity_label(db, "client", pack.client_id), status=pack.status,
+        lifecycle=pack.lifecycle, version=pack.version, resume_kind=pack.resume_kind, resume_id=pack.resume_id,
         resume_version=pack.resume_version, resume_uploaded_at=resume.created_at if resume is not None else None,
         resume_stale=pack.lifecycle == "open" and latest is not None and latest.id != pack.resume_id,
-        document_ids=list(pack.document_ids or []), summary_text=pack.summary_text, write_up_status=pack.write_up_status,  # type: ignore[arg-type]
+        document_ids=list(pack.document_ids or []), summary_text=pack.summary_text, write_up_status=pack.write_up_status,
         word_count=word_count(pack.summary_text), max_words=rules.write_up_max_words,
         pay_rate=money(pack.pay_rate), bill_rate=money(pack.bill_rate), currency=pack.currency,
-        pay_rate_unit=pack.pay_rate_unit, bill_rate_unit=pack.bill_rate_unit, rates_hidden=not see,  # type: ignore[arg-type]
+        pay_rate_unit=pack.pay_rate_unit, bill_rate_unit=pack.bill_rate_unit, rates_hidden=not see,
         email_subject=pack.email_subject, checks=checks, missing=list(pack.missing or []),
         blocker_count=pack.blocker_count, warning_count=pack.warning_count, checked_at=pack.checked_at,
         consent_request_sent_at=pack.consent_request_sent_at, prepared_by_kind=pack.prepared_by_kind,
@@ -436,8 +436,8 @@ async def list_packs(
                 id=pack.id, human_id=pack.human_id, application_id=pack.application_id, candidate_id=pack.candidate_id,
                 candidate_name=await entity_refs.entity_label(db, "candidate", pack.candidate_id), demand_id=pack.demand_id,
                 demand_title=demand.title if demand is not None else None, client_id=pack.client_id,
-                client_name=await entity_refs.entity_label(db, "client", pack.client_id), status=pack.status,  # type: ignore[arg-type]
-                lifecycle=pack.lifecycle, blocker_count=pack.blocker_count, warning_count=pack.warning_count,  # type: ignore[arg-type]
+                client_name=await entity_refs.entity_label(db, "client", pack.client_id), status=pack.status,
+                lifecycle=pack.lifecycle, blocker_count=pack.blocker_count, warning_count=pack.warning_count,
                 prepared_by_kind=pack.prepared_by_kind, owner_id=owner, owner_name=user.name if user else None,
                 created_at=pack.created_at, updated_at=pack.updated_at,
             )
@@ -734,14 +734,14 @@ async def pack_context(ctx: RequestContext, db: AsyncSession, application_id: uu
             currency=demand.currency, rate_unit=demand.rate_unit, submission_limit=demand.submission_limit,
         ),
         rules=ContextRules(
-            resume_format=rules.resume_format, mask_contact_details=rules.mask_contact_details,  # type: ignore[arg-type]
+            resume_format=rules.resume_format, mask_contact_details=rules.mask_contact_details,
             write_up_max_words=rules.write_up_max_words, write_up_instructions=rules.write_up_instructions,
             duplicate_window_days=rules.duplicate_window_days, require_candidate_consent=rules.require_candidate_consent,
             show_notice_period=rules.show_notice_period, consent_mode=rules.consent_mode,
         ),
         prior_submissions_to_client=int(prior is not None),
         open_pack=ContextPack(
-            pack_id=pack.id, human_id=pack.human_id, status=pack.status, write_up_status=pack.write_up_status,  # type: ignore[arg-type]
+            pack_id=pack.id, human_id=pack.human_id, status=pack.status, write_up_status=pack.write_up_status,
             consent_request_sent_at=pack.consent_request_sent_at, blocker_count=pack.blocker_count,
         ) if pack is not None else None,
     )  # fmt: skip

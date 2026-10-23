@@ -52,7 +52,7 @@ class PortalCopilotHandler:
         res = await db.execute(
             delete(PortalCopilotConversation).where(PortalCopilotConversation.id.in_(conv_ids))
         )  # messages / feedback cascade
-        counts[TABLES[0]] = int(res.rowcount or 0)  # type: ignore[attr-defined]
+        counts[TABLES[0]] = int(res.rowcount or 0)
         await db.flush()
         return counts
 

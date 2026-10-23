@@ -237,5 +237,5 @@ async def decide_as(
         db,
         ts.approval_request_id,
         DecideIn(action=action, comment=comment),
-        actor=actor or actor_from_ctx(ctx),  # type: ignore[arg-type]
+        actor=actor or actor_from_ctx(ctx),
     )

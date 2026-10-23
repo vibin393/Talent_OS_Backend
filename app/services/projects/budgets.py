@@ -21,7 +21,7 @@ DEFAULT_CURRENCY = "INR"
 
 def out(row: ProjectBudget) -> BudgetOut:
     return BudgetOut(
-        dimension=row.dimension,  # type: ignore[arg-type]
+        dimension=row.dimension,
         amount=row.amount,
         currency=row.currency,
         version=row.version,

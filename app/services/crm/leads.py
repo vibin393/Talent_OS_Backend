@@ -135,7 +135,7 @@ async def outs(db: AsyncSession, leads: list[Lead]) -> list[LeadOut]:
             currency=lead.currency,
             owner_id=lead.owner_id,
             owner=users.get(lead.owner_id),
-            status=lead.status,  # type: ignore[arg-type]
+            status=lead.status,
             disqualify_reason_code=lead.disqualify_reason_code,
             disqualify_note=lead.disqualify_note,
             converted_at=lead.converted_at,

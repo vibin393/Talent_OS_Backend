@@ -264,12 +264,12 @@ async def delete_task(
 def _as_in(t: OnboardingTemplateTask) -> TemplateTaskIn:
     return TemplateTaskIn(
         key=t.key,
-        kind=t.kind,  # type: ignore[arg-type]
+        kind=t.kind,
         label=t.label,
         instructions=t.instructions,
         mandatory=t.mandatory,
-        assignee=t.assignee,  # type: ignore[arg-type]
-        owner_kind=t.owner_kind,  # type: ignore[arg-type]
+        assignee=t.assignee,
+        owner_kind=t.owner_kind,
         owner_role_key=t.owner_role_key,
         due_offset_days=t.due_offset_days,
         auto_approve=t.auto_approve,

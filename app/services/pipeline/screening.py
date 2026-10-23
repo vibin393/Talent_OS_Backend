@@ -415,14 +415,14 @@ async def screening_out(db: AsyncSession, row: Screening, *, with_proposals: boo
         id=row.id,
         application_id=row.application_id,
         candidate_id=row.candidate_id,
-        kind=row.kind,  # type: ignore[arg-type]
+        kind=row.kind,
         questionnaire_id=row.questionnaire_id,
         questions=list(row.questions or []),
         answers=dict(row.answers or {}),
         notes=row.notes,
-        outcome=row.outcome,  # type: ignore[arg-type]
+        outcome=row.outcome,
         reason_code=row.reason_code,
-        status=row.status,  # type: ignore[arg-type]
+        status=row.status,
         ai_summary=row.ai_summary,
         ai_generated=row.ai_generated,
         ai_action_id=row.ai_action_id,
@@ -624,7 +624,7 @@ async def apply_candidate_updates(
         ctx, db, row.candidate_id, {f: by_field[f] for f in fields}
     )
     audit.record("screening.candidate_updates_applied", "screening", row.id, session=db, fields=applied)
-    return ApplyUpdatesOut(applied=applied)  # type: ignore[arg-type]
+    return ApplyUpdatesOut(applied=applied)
 
 
 # ================================================================ AI screening

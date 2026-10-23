@@ -69,7 +69,7 @@ def summary(inv: AssessmentInvitation) -> AssessmentInvitationSummary:
     return AssessmentInvitationSummary(
         id=inv.id,
         assessment_id=inv.assessment_id,
-        candidate_id=inv.candidate_id,  # type: ignore[arg-type]
+        candidate_id=inv.candidate_id,
         application_id=inv.application_id,
         context_kind=inv.context_kind,
         context_id=inv.context_id,
@@ -391,8 +391,8 @@ async def hidden_scores(db: AsyncSession, invs: list[AssessmentInvitation]) -> d
         for i in invs
         if i.candidate_id and i.application_id in demand_of
     }
-    hidden = await suppressed_pairs(db, list(pairs.values()))  # type: ignore[arg-type]
-    return {iid: hidden[p] for iid, p in pairs.items() if p in hidden}  # type: ignore[index]
+    hidden = await suppressed_pairs(db, list(pairs.values()))
+    return {iid: hidden[p] for iid, p in pairs.items() if p in hidden}
 
 
 async def outs(db: AsyncSession, invs: list[AssessmentInvitation]) -> list[InvitationOut]:
@@ -560,7 +560,7 @@ async def badges(ctx: RequestContext, db: AsyncSession, application_ids: list[uu
                 score=None if i.id in hidden else i.score,
                 result=i.result,
                 score_hidden_reason=hidden.get(i.id),
-            )  # type: ignore[arg-type]
+            )
             for i in invs
         ]
     )
@@ -694,7 +694,7 @@ async def send_reminders(db: AsyncSession) -> int:
             AssessmentReminderDue(
                 tenant_id=inv.tenant_id, invitation_id=inv.id, candidate_id=inv.candidate_id
             ),
-        )  # type: ignore[arg-type]
+        )
         email = await candidate_email(db, inv.candidate_id)  # type: ignore[arg-type]
         if email:
             name = (await db.get(Assessment, inv.assessment_id)).name  # type: ignore[union-attr]

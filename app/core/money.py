@@ -41,7 +41,7 @@ def _currencies() -> dict[str, dict[str, Any]]:
 def to_decimal(value: Decimal | int | str) -> Decimal:
     """Exact Decimal of ``value``. Floats are refused (``TypeError``); NaN / Infinity are refused
     (``ValueError``); scientific notation strings (``'1e3'``) are accepted."""
-    if isinstance(value, bool) or isinstance(value, float):
+    if isinstance(value, (bool, float)):
         msg = f"money values must not be float/bool (got {type(value).__name__})"
         raise TypeError(msg)
     if isinstance(value, Decimal):
@@ -134,7 +134,7 @@ class Money:
             msg = "float operands are not allowed in money arithmetic"
             raise TypeError(msg)
         if not isinstance(other, Money):
-            return NotImplemented  # type: ignore[return-value]
+            return NotImplemented
         if other.currency != self.currency:
             msg = f"mixed currencies: {self.currency} vs {other.currency}"
             raise ValueError(msg)

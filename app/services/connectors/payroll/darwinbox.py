@@ -24,7 +24,7 @@ class DarwinboxPayrollConfig(DarwinboxConfig):
 
 
 class DarwinboxPayroll(DarwinboxHrms):
-    category = "payroll"  # type: ignore[assignment]
+    category = "payroll"
     provider_key = "darwinbox_payroll"
 
     async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]

@@ -103,8 +103,8 @@ async def status(
         TdsStatusRowOut(
             client_id=cid,
             client_name=names.get(cid),
-            quarter=q,  # type: ignore[arg-type]
-            status=classify(c.has_run, c.recorded_count, c.matched_count, c.open_lines, c.statement_count),  # type: ignore[arg-type]
+            quarter=q,
+            status=classify(c.has_run, c.recorded_count, c.matched_count, c.open_lines, c.statement_count),
             recorded_count=c.recorded_count,
             recorded_amount=c.recorded_amount,
             matched_count=c.matched_count,

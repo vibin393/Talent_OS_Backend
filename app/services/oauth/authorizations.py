@@ -92,7 +92,7 @@ async def list_my_authorizations(ctx: RequestContext, db: AsyncSession) -> list[
             installation_id=inst.id,
             app_id=inst.app_id,
             app_name=names.get(inst.app_id, inst.display_name) if inst.app_id else inst.display_name,
-            resource=auth.resource,  # type: ignore[arg-type]
+            resource=auth.resource,
             scopes=list(auth.scopes),
             granted_at=auth.granted_at,
             revoked_at=auth.revoked_at,

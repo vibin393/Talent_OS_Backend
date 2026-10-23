@@ -42,7 +42,7 @@ def _out(
     return EvidenceOut(
         id=row.id,
         candidate_skill_id=row.candidate_skill_id,
-        kind=row.kind,  # type: ignore[arg-type]
+        kind=row.kind,
         proficiency=row.proficiency,
         years=row.years,
         last_used=row.last_used,
@@ -224,7 +224,7 @@ async def profile(ctx: RequestContext, db: AsyncSession, candidate_id: uuid.UUID
             skill_key=graph_mod.ref_key(r.skill_id, r.tenant_skill_id),
             name=names[graph_mod.ref_key(r.skill_id, r.tenant_skill_id)].name,
             proficiency=r.proficiency,
-            verification=r.verification,  # type: ignore[arg-type]
+            verification=r.verification,
             evidence_count=int(counts.get(r.id, 0)),
         )
         for r in rows

@@ -46,7 +46,7 @@ def transfer_out(t: InternalTransfer, to_human_id: str | None = None) -> Transfe
     return TransferOut(
         id=t.id,
         mobility_application_id=t.mobility_application_id,
-        employee_kind=t.employee_kind,  # type: ignore[arg-type]
+        employee_kind=t.employee_kind,
         candidate_id=t.candidate_id,
         user_id=t.user_id,
         from_placement_id=t.from_placement_id,
@@ -160,8 +160,8 @@ async def context(ctx: RequestContext, db: AsyncSession, mobility_application_id
     blocking = _blocking(row, stage_key, current, open_off, open_ext)
     return TransferContextOut(
         mobility_application_id=row.id,
-        employee_kind=row.employee_kind,  # type: ignore[arg-type]
-        status=row.status,  # type: ignore[arg-type]
+        employee_kind=row.employee_kind,
+        status=row.status,
         stage_key=stage_key,
         can_confirm=blocking is None,
         blocking_reason=blocking,
@@ -288,7 +288,7 @@ async def confirm(ctx: RequestContext, db: AsyncSession, mobility_application_id
         from_team_id=await _user_team(db, row.user_id) if row.employee_kind == "user" else None,
         to_team_id=data.to_team_id if row.employee_kind == "user" else None,
         to_role_title=data.to_role_title or demand.title,
-        confirmed_by=actor.id,  # type: ignore[arg-type]
+        confirmed_by=actor.id,
         confirmed_at=now(),
         note=data.note or None,
     )

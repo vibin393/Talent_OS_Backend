@@ -79,7 +79,7 @@ def register() -> None:
 
     gs.register_global_group("installation", "Installations", "integration:view", search_installations)
     try:
-        from app.services import job_distribution_service as jd  # type: ignore[import-not-found]
+        from app.services import job_distribution_service as jd
 
         fn = getattr(jd, "quick_search", None)
         if callable(fn):

@@ -70,7 +70,7 @@ def to_out(
         dependant_name=dep_names.get(r.dependant_id) if r.dependant_id else None,
         collect_from=r.collect_from,
         mandatory=r.mandatory,
-        status=r.status,  # type: ignore[arg-type]
+        status=r.status,
         document_id=r.document_id,
         rejection_reason=r.rejection_reason,
         requested_at=r.requested_at,

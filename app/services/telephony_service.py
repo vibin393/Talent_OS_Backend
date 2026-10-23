@@ -61,7 +61,7 @@ async def usage(
     return UsageOut(
         from_date=lo,
         to_date=hi,
-        group_by=group_by,  # type: ignore[arg-type]
+        group_by=group_by,
         rows=[UsageRow(label=labels.get(r["key"]), **r) for r in rows],
         today_cost_minor=spent,
         daily_cost_cap_minor=s.daily_cost_cap_minor,

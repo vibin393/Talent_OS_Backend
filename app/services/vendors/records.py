@@ -87,7 +87,7 @@ def vendor_out(v: Vendor) -> VendorOut:
         id=v.id,
         human_id=v.human_id,
         legal_name=v.legal_name,
-        status=v.status,  # type: ignore[arg-type]
+        status=v.status,
         tier=v.tier,
         pan_last4=v.pan_last4,
         address=v.address or {},
@@ -570,7 +570,7 @@ async def document_outs(db: AsyncSession, vendor_id: uuid.UUID) -> list[VendorDo
             category=d.category,
             title=d.title,
             expires_on=d.expires_on,
-            status=doc_status(d.expires_on, today),  # type: ignore[arg-type]
+            status=doc_status(d.expires_on, today),
             current_version_id=d.current_version_id,
             pending_review=d.id in pending,
             created_at=d.created_at,

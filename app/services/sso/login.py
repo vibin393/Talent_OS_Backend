@@ -341,7 +341,7 @@ async def _finish(ctx: RequestContext, login_state: SsoLoginState, claims: Claim
                 email_verified=claims.email_verified,
                 name=claims.name,
                 groups=claims.groups,
-                resolution=resolution,  # type: ignore[arg-type]
+                resolution=resolution,
             ),
         )
     error: DomainError | None = None

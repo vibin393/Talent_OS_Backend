@@ -75,7 +75,7 @@ async def _scopes(db: AsyncSession, ids: Sequence[uuid.UUID]) -> dict[uuid.UUID,
         await db.execute(select(ClientUserScope).where(ClientUserScope.client_user_id.in_(ids)))
     ).scalars()
     for r in rows:
-        out[r.client_user_id].append(ClientUserScopeIn(subject_kind=r.subject_kind, subject_id=r.subject_id))  # type: ignore[arg-type]
+        out[r.client_user_id].append(ClientUserScopeIn(subject_kind=r.subject_kind, subject_id=r.subject_id))
     return out
 
 
@@ -86,7 +86,7 @@ def _client_out(cu: ClientUser, scopes: list[ClientUserScopeIn]) -> ClientUserOu
         contact_id=cu.contact_id,
         email=str(cu.email),
         display_name=cu.display_name,
-        status=cu.status,  # type: ignore[arg-type]
+        status=cu.status,
         portal_permissions=sorted(cu.portal_permissions or ()),
         restricted=cu.restricted,
         scopes=scopes,
@@ -396,7 +396,7 @@ def _vendor_out(vu: VendorUser) -> VendorUserOut:
         vendor_id=vu.vendor_id,
         email=str(vu.email),
         display_name=vu.display_name,
-        status=vu.status,  # type: ignore[arg-type]
+        status=vu.status,
         is_vendor_admin=vu.is_vendor_admin,
         portal_permissions=sorted(vu.portal_permissions or ()),
         mfa_enabled=vu.mfa_enabled_at is not None,
@@ -410,7 +410,7 @@ def _vendor_portal_out(vu: VendorUser) -> VendorPortalUserOut:
         id=vu.id,
         email=str(vu.email),
         display_name=vu.display_name,
-        status=vu.status,  # type: ignore[arg-type]
+        status=vu.status,
         is_vendor_admin=vu.is_vendor_admin,
         portal_permissions=sorted(vu.portal_permissions or ()),
         mfa_enabled=vu.mfa_enabled_at is not None,

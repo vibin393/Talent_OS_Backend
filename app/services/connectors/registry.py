@@ -164,10 +164,10 @@ async def get(
 def _bridge_manifest(m: ConnectorManifest) -> None:
     if m.category not in CONNECTOR_CATEGORIES or not m.adapters:
         return  # listing-only manifests (calendar, Epic 72)
-    register_adapter(m.category, m.key, BridgedFactory(m))  # type: ignore[arg-type]
+    register_adapter(m.category, m.key, BridgedFactory(m))
     for mode in ("fake", "manual"):
         if mode in m.adapters and adapter_factory(m.category, mode) is None:
-            register_adapter(m.category, mode, BridgedFactory(m, mode))  # type: ignore[arg-type]
+            register_adapter(m.category, mode, BridgedFactory(m, mode))
 
 
 on_register(_bridge_manifest)

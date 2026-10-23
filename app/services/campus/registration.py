@@ -147,8 +147,8 @@ async def registration_outs(db: AsyncSession, rows: list[Registration]) -> list[
         out.append(
             RegistrationOut(
                 id=r.id, drive_id=r.drive_id, institution_id=r.institution_id, institution_name=names.get(r.institution_id),
-                candidate_id=r.candidate_id, candidate_name=name, candidate_email=email, status=r.status,  # type: ignore[arg-type]
-                source=r.source, program=r.program, branch=r.branch, cgpa=r.cgpa, percentage=r.percentage,  # type: ignore[arg-type]
+                candidate_id=r.candidate_id, candidate_name=name, candidate_email=email, status=r.status,
+                source=r.source, program=r.program, branch=r.branch, cgpa=r.cgpa, percentage=r.percentage,
                 backlogs=r.backlogs, graduation_year=r.graduation_year, answers=dict(r.answers or {}),
                 eligibility=_eligibility(r.eligibility), overridden=r.override_at is not None,
                 override_reason=r.override_reason, override_at=r.override_at,

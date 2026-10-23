@@ -106,7 +106,7 @@ async def get_basis(db: AsyncSession) -> str:
 
 async def basis_out(ctx: RequestContext, db: AsyncSession) -> AIBasisOut:  # ruff: ignore[unused-function-argument]
     return AIBasisOut(
-        basis=await get_basis(db),  # type: ignore[arg-type]
+        basis=await get_basis(db),
         pending_count=await candidates.count_with_state(db, "pending"),
     )
 

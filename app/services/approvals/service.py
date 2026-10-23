@@ -84,7 +84,7 @@ OnReturned = Callable[[RequestContext, AsyncSession, uuid.UUID, str, str], Await
 class _SubjectsCompat(dict[str, Any]):
     """Phase 1 tests read / restore ``service._subjects[kind]``; backed by the subject registry since Epic 13."""
 
-    def get(self, key: str, default: Any = None) -> Any:  # type: ignore[override]
+    def get(self, key: str, default: Any = None) -> Any:
         found = subject(key)
         return found if found is not None else default
 
@@ -303,7 +303,7 @@ async def _chain_out(db: AsyncSession, chain: ApprovalChain) -> ChainOut:
     roles = await directory.role_names(db, [s.approver_role_id for s in steps if s.approver_role_id])
     return ChainOut(
         id=chain.id,
-        subject_type=chain.subject_type,  # type: ignore[arg-type]
+        subject_type=chain.subject_type,
         name=chain.name,
         is_active=chain.is_active,
         created_at=chain.created_at,
@@ -1112,7 +1112,7 @@ def _out(
         chain_id=request.chain_id,
         chain_snapshot=request.chain_snapshot,
         facts=facts,
-        status=request.status,  # type: ignore[arg-type]
+        status=request.status,
         current_position=request.current_position,
         current_step_name=step["name"] if step else None,
         current_approver_user_id=request.current_approver_user_id,

@@ -51,7 +51,7 @@ class CampaignsMarketingHandler:
         ids = await subject_ids(db, ctx.candidate_id)
         out: dict[str, int] = {}
         for model in MODELS:
-            result = await db.execute(delete(model).where(model.candidate_id.in_(ids)))  # type: ignore[attr-defined]
+            result = await db.execute(delete(model).where(model.candidate_id.in_(ids)))
             out[model.__tablename__] = int(getattr(result, "rowcount", 0) or 0)
         await db.flush()
         return out
@@ -92,7 +92,7 @@ class CampaignsMarketingHandler:
         for model in MODELS:
             row = (
                 await db.execute(select(model.candidate_id).where(model.candidate_id.in_(ids)).limit(1))
-            ).first()  # type: ignore[attr-defined]
+            ).first()
             if row is not None:
                 left.append(f"{model.__tablename__} rows remain")
         return left

@@ -118,7 +118,7 @@ async def summary(
                 bench_entry_id=e.id,
                 candidate_id=e.candidate_id,
                 candidate_name=cands.get(e.candidate_id),
-                status=e.status,  # type: ignore[arg-type]
+                status=e.status,
                 bench_days=days,
             )
         )

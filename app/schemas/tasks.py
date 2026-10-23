@@ -6,7 +6,16 @@ from typing import Annotated, Literal
 
 from pydantic import BaseModel, StringConstraints, model_validator
 
-TaskEntity = Literal["client", "contact", "demand", "candidate", "application", "lead", "opportunity"]  # Epic 15: +lead, opportunity
+# Keep in sync with TASK_ENTITY_TYPES (the DB CHECK constraint in app/models/tasks.py) — that tuple is the
+# source of truth for the valid task-entity set; this Literal mirrors it for schema validation / typing.
+TaskEntity = Literal[
+    "client", "contact", "demand", "candidate", "application", "lead", "opportunity",  # Epic 15: +lead, opportunity
+    "offer", "placement", "project", "deliverable", "immigration_case", "campus_drive", "workforce_plan",  # Epic 36
+    "referral", "talent_pool", "campaign",
+    "agent_run", "agent_proposal",  # Epic 53
+    "installation", "webhook_subscription", "board_posting", "hrms_sync", "ledger_sync", "payment_suggestion",  # Epic 66
+    "calendar_change", "network_listing", "mcp_session",
+]
 Priority = Literal["low", "normal", "high", "urgent"]
 View = Literal["today", "overdue", "upcoming", "no_date", "completed"]
 Sort = Literal["due_at", "-due_at", "priority", "created_at", "-created_at"]

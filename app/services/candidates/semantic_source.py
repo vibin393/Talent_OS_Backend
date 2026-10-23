@@ -11,7 +11,7 @@ from typing import Any
 from sqlalchemy import ColumnElement, Numeric, and_, cast, exists, false, func, literal_column, or_, select
 from sqlalchemy.orm import aliased
 
-from app.core.semantic import CMP, FieldDef, JoinDef, ScopeSpec, register_semantic_source, sources
+from app.core.semantic import CMP, FieldDef, JoinDef, Op, ScopeSpec, register_semantic_source, sources
 from app.core.skill_refs import ExpandedSkill
 from app.models.candidates import CANDIDATE_SOURCES, Candidate, CandidateSkill, CandidateTag, Tag
 from app.models.pipeline import Application, ApplicationStageHistory, PipelineStage
@@ -24,8 +24,8 @@ __all__ = ["SOURCE_KEY", "candidate_skill_predicate", "register"]
 SOURCE_KEY = "candidates.candidate"
 CONSENT_VALUES = ("granted", "withdrawn", "none")
 
-_STR = frozenset({"contains", "starts_with", "eq", "in"})
-_DATE = CMP | {"between", "within_days", "is_null"}
+_STR: frozenset[Op] = frozenset({"contains", "starts_with", "eq", "in"})
+_DATE: frozenset[Op] = frozenset({"lt", "lte", "gt", "gte", "between", "within_days", "is_null"})  # CMP + between/within_days/is_null
 
 
 def candidate_skill_predicate(

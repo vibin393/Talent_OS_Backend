@@ -8,7 +8,7 @@ from typing import Any
 
 from sqlalchemy import func
 
-from app.core.semantic import CMP, FieldDef, JoinDef, ScopeSpec, register_semantic_source, sources
+from app.core.semantic import CMP, FieldDef, JoinDef, Op, ScopeSpec, register_semantic_source, sources
 from app.models.candidates import Candidate
 from app.models.placements import ENGAGEMENT_KINDS, PLACEMENT_STATUSES, WORKER_TYPES, Placement
 from app.services.candidates.semantic_source import candidate_skill_predicate
@@ -17,8 +17,8 @@ __all__ = ["SOURCE_KEY", "register"]
 
 SOURCE_KEY = "placements.worker"
 
-_ID_OPS = frozenset({"eq", "in"})
-_DATE = CMP | {"between", "within_days", "is_null"}
+_ID_OPS: frozenset[Op] = frozenset({"eq", "in"})
+_DATE: frozenset[Op] = frozenset({"lt", "lte", "gt", "gte", "between", "within_days", "is_null"})  # CMP + between/within_days/is_null
 
 
 def _uuid(label: str, attr: str) -> FieldDef:

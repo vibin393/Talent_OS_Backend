@@ -21,7 +21,17 @@ from typing import Any
 
 from sqlalchemy import ColumnElement, func, select
 
-from app.core.semantic import CMP, FieldDef, JoinDef, ScopeSpec, register_semantic_source, sources
+from app.core.semantic import (
+    Agg,
+    FieldDef,
+    FieldType,
+    JoinDef,
+    Op,
+    PiiClass,
+    ScopeSpec,
+    register_semantic_source,
+    sources,
+)
 from app.models.billing import CreditNote, Invoice
 from app.models.candidates import Candidate
 from app.models.clients import Client
@@ -46,14 +56,14 @@ __all__ = ["FINANCE_SOURCES", "SOURCE_KEYS", "register"]
 # Exports of these sources also need ``report:finance_export`` (A1).
 FINANCE_SOURCES = frozenset({"billing.invoice", "billing.credit_note", "receivables.payment"})
 
-_ID = frozenset({"eq", "in"})
-_UUID_OPS = frozenset({"eq", "ne", "in", "not_in", "is_null"})
-_ENUM_OPS = frozenset({"eq", "ne", "in", "not_in"})
-_STR_OPS = frozenset({"eq", "in", "contains", "starts_with", "is_null"})
-_NUM_OPS = CMP | {"eq", "between", "is_null"}
-_DATE_OPS = CMP | {"between", "within_days", "is_null"}
-_NUM_AGGS = frozenset({"sum", "avg", "min", "max", "count"})
-_DATE_AGGS = frozenset({"min", "max", "count"})
+_ID: frozenset[Op] = frozenset({"eq", "in"})
+_UUID_OPS: frozenset[Op] = frozenset({"eq", "ne", "in", "not_in", "is_null"})
+_ENUM_OPS: frozenset[Op] = frozenset({"eq", "ne", "in", "not_in"})
+_STR_OPS: frozenset[Op] = frozenset({"eq", "in", "contains", "starts_with", "is_null"})
+_NUM_OPS: frozenset[Op] = frozenset({"lt", "lte", "gt", "gte", "eq", "between", "is_null"})  # CMP + eq/between/is_null
+_DATE_OPS: frozenset[Op] = frozenset({"lt", "lte", "gt", "gte", "between", "within_days", "is_null"})  # CMP + between/within_days/is_null
+_NUM_AGGS: frozenset[Agg] = frozenset({"sum", "avg", "min", "max", "count"})
+_DATE_AGGS: frozenset[Agg] = frozenset({"min", "max", "count"})
 
 Expr = Callable[[Any], Any]
 
@@ -84,7 +94,7 @@ def _enum(label: str, expr: Expr, values: tuple[str, ...], *, join: str | None =
 
 
 def _text(
-    label: str, expr: Expr, *, pii: str = "none", join: str | None = None, groupable: bool = True
+    label: str, expr: Expr, *, pii: PiiClass = "none", join: str | None = None, groupable: bool = True
 ) -> FieldDef:
     return FieldDef(
         "string", label, pii, expr, _STR_OPS, aggs=frozenset({"count_distinct"}), groupable=groupable,
@@ -92,16 +102,16 @@ def _text(
     )  # fmt: skip
 
 
-def _date(label: str, expr: Expr, *, kind: str = "date", join: str | None = None) -> FieldDef:
+def _date(label: str, expr: Expr, *, kind: FieldType = "date", join: str | None = None) -> FieldDef:
     return FieldDef(
         kind, label, "none", expr, _DATE_OPS, aggs=_DATE_AGGS, groupable=True, date_buckets=True, join=join
     )
 
 
 def _num(
-    label: str, expr: Expr, *, kind: str = "decimal", pii: str = "none", join: str | None = None
+    label: str, expr: Expr, *, kind: FieldType = "decimal", pii: PiiClass = "none", join: str | None = None
 ) -> FieldDef:
-    return FieldDef(kind, label, pii, expr, _NUM_OPS, aggs=_NUM_AGGS, join=join)  # type: ignore[arg-type]
+    return FieldDef(kind, label, pii, expr, _NUM_OPS, aggs=_NUM_AGGS, join=join)
 
 
 def _money(label: str, expr: Expr, *, join: str | None = None) -> FieldDef:

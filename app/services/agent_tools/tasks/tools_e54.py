@@ -3,15 +3,14 @@
 completes, reassigns or deletes a task (``tasks.create`` drafts are a separate, confirmed tool)."""
 
 import uuid
-from typing import Any, Literal
+from typing import Any
 
 from pydantic import Field
 
 from app.core.agentic import ScopeRule, ToolOutcome, ToolSpec, register_tool
 from app.core.pagination import PageParams
+from app.schemas.tasks import TaskEntity
 from app.services.agent_tools.copilot.common_e54 import OWNER_EPIC, In, Out, plural, scoped
-
-TaskEntity = Literal["client", "contact", "demand", "candidate", "application", "lead", "opportunity"]
 
 
 class TaskListIn(In):

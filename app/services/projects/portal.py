@@ -89,7 +89,7 @@ async def client_list(ctx: RequestContext, db: AsyncSession) -> list[ProjectPort
                 .where(Deliverable.project_id.in_([r.id for r in rows]), Deliverable.status == "submitted")
                 .group_by(Deliverable.project_id)
             )
-        ).all()
+        ).tuples().all()
     )
     return [
         ProjectPortalOut(
@@ -154,7 +154,7 @@ async def client_detail(ctx: RequestContext, db: AsyncSession, project_id: uuid.
     cids = {a.candidate_id for a in active if a.candidate_id and (scope is None or a.placement_id in scope)}
     names = (
         dict(
-            (await db.execute(select(Candidate.id, Candidate.full_name).where(Candidate.id.in_(cids)))).all()
+            (await db.execute(select(Candidate.id, Candidate.full_name).where(Candidate.id.in_(cids)))).tuples().all()
         )
         if cids
         else {}

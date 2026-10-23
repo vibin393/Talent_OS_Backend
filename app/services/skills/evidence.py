@@ -209,7 +209,7 @@ async def profile(ctx: RequestContext, db: AsyncSession, candidate_id: uuid.UUID
                 )
                 .group_by(CandidateSkillEvidence.candidate_skill_id)
             )
-        ).all()
+        ).tuples().all()
     )
     rows = list(
         (

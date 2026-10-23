@@ -81,7 +81,7 @@ async def client_my_scorecards(ctx: RequestContext, db: AsyncSession) -> list[Cl
             await db.execute(
                 select(Demand.id, Demand.title).where(Demand.id.in_({i.demand_id for _, i in pairs}))
             )
-        ).all()  # type: ignore[arg-type]
+        ).tuples().all()
     )
     now = datetime.now(UTC)
     out: list[ClientScorecardItem] = []

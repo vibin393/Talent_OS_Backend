@@ -8,9 +8,10 @@ of failing. Reporting never writes to any of these tables.
 """
 
 from collections.abc import Callable
+from typing import Any
 
 from sqlalchemy import Boolean, Date, DateTime, Integer, Numeric, String, Uuid, column, table
-from sqlalchemy.sql.expression import TableClause
+from sqlalchemy.sql.expression import ColumnClause, TableClause
 
 from app.services.reporting import common
 
@@ -27,7 +28,7 @@ _TYPES = {
 
 def _t(name: str, spec: str) -> TableClause:
     """``_t("x", "id:u status:s")`` -> ``table("x", column("id", Uuid()), column("status", String()))``."""
-    cols = []
+    cols: list[ColumnClause[Any]] = []
     for part in spec.split():
         col, kind = part.split(":")
         cols.append(column(col, _TYPES[kind]))

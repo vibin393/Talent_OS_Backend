@@ -180,7 +180,7 @@ async def _worker_rows(
     from app.models.placements import Placement
 
     cand = dict(
-        (await db.execute(select(Placement.id, Placement.candidate_id).where(Placement.id.in_(ids)))).all()
+        (await db.execute(select(Placement.id, Placement.candidate_id).where(Placement.id.in_(ids)))).tuples().all()
     )
     candidates = {c for c in cand.values() if c is not None}
     # Every assignment of these Workers (any project, any of their placements) inside the window.

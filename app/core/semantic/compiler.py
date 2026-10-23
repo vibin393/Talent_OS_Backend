@@ -82,13 +82,13 @@ IDENTITY_VIEW = "identity:view"
 INTERNAL_PRINCIPALS: frozenset[str] = frozenset({"user", "api_key", "app"})  # Epic 66: +app
 PII_PERMISSIONS = {"compensation": COMPENSATION_VIEW, "identity": IDENTITY_VIEW}
 _NODE_TAGS = frozenset({"condition", "and", "or"})
-_TRUNC = {
+_TRUNC: dict[str, ColumnElement[Any]] = {
     "day": literal_column("'day'"),
     "week": literal_column("'week'"),
     "month": literal_column("'month'"),
     "quarter": literal_column("'quarter'"),
 }
-_FY_SHIFT = literal_column("interval '3 months'")
+_FY_SHIFT: ColumnElement[Any] = literal_column("interval '3 months'")
 
 
 @dataclasses.dataclass(frozen=True, slots=True)
@@ -500,7 +500,7 @@ async def compile(defn: Definition, ctx: SemanticContext) -> CompiledQuery:
     sort_targets: dict[str, Any] = {}
     if plan.aggregate:
         cols: list[Any] = []
-        group_ordinals = []
+        group_ordinals: list[ColumnElement[Any]] = []
         for i, g in enumerate(defn.group_by):
             fd = src.fields[g.field]
             label = f"g{i}"

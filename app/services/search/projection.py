@@ -22,7 +22,7 @@ from app.services.candidates.search_port import SearchProjection
 from app.services.matching import settings as matching_settings
 from app.services.matching.scoring import convert
 
-CFG = literal_column("'talent_en'::regconfig")
+CFG: Any = literal_column("'talent_en'::regconfig")
 RESUME_MAX = 200_000
 BATCH = 1000
 

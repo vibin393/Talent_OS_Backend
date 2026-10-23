@@ -93,7 +93,7 @@ async def pump(tenant_id: uuid.UUID) -> list[uuid.UUID]:
     async with tenant_session(tid) as db:
         await db.execute(text("SELECT pg_advisory_xact_lock(hashtext(:k))"), {"k": f"webhooks.pump:{tid}"})
         inflight = dict(
-            (await db.execute(select(WebhookDelivery.subscription_id, func.count()).where(WebhookDelivery.status == "in_flight").group_by(WebhookDelivery.subscription_id))).all()
+            (await db.execute(select(WebhookDelivery.subscription_id, func.count()).where(WebhookDelivery.status == "in_flight").group_by(WebhookDelivery.subscription_id))).tuples().all()
         )
         total = sum(inflight.values())
         if total >= cap:

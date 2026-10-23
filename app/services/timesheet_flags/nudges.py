@@ -144,7 +144,7 @@ async def facts_for(
                 .where(TimesheetReminderSent.timesheet_id.in_(ids))
                 .group_by(TimesheetReminderSent.timesheet_id)
             )
-        ).all()
+        ).tuples().all()
     )
     agent_rows = (
         await db.execute(

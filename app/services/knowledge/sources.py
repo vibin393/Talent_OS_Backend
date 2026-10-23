@@ -91,7 +91,7 @@ async def _versions(db: AsyncSession, s: KnowledgeSource) -> list[VersionOut]:
                 .where(KnowledgeChunk.source_id == s.id)
                 .group_by(KnowledgeChunk.version_no)
             )
-        ).all()
+        ).tuples().all()
     )
     return [
         VersionOut(

@@ -576,7 +576,7 @@ async def list_connected_apps(ctx: RequestContext, db: AsyncSession) -> list[dic
                 .where(OAuthToken.user_authorization_id.in_([a.id for a in auths]))
                 .group_by(OAuthToken.user_authorization_id)
             )
-        ).all()
+        ).tuples().all()
     )
     app_ids = {a.app_id for a in auths if a.app_id}
     publishers: dict[uuid.UUID, tuple[str, str]] = {}

@@ -187,7 +187,7 @@ async def load_facts(
                     VendorCandidateOwnership.ended_at.is_(None),
                 )
             )
-        ).scalars()
+        ).scalars().all()
         if matched
         else []
     )

@@ -101,7 +101,7 @@ def indian_grouping(amount: Decimal) -> str:
     whole, _, frac = text.partition(".")
     if len(whole) > 3:
         head, tail = whole[:-3], whole[-3:]
-        groups = []
+        groups: list[str] = []
         while len(head) > 2:
             groups.insert(0, head[-2:])
             head = head[:-2]

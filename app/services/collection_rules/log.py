@@ -161,7 +161,7 @@ async def list_log(
     rows = list((await db.execute(stmt.order_by(CollectionAgentLog.at.desc()).limit(limit))).scalars())
     prop_ids = [r.proposal_id for r in rows if r.proposal_id]
     human = (
-        dict((await db.execute(select(AgentProposal.id, AgentProposal.human_id).where(AgentProposal.id.in_(prop_ids)))).all())
+        dict((await db.execute(select(AgentProposal.id, AgentProposal.human_id).where(AgentProposal.id.in_(prop_ids)))).tuples().all())
         if prop_ids
         else {}
     )

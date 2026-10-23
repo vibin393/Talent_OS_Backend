@@ -820,7 +820,7 @@ async def metrics(
                 )
                 .group_by(ApplicationStageHistory.application_id)
             )
-        ).all()
+        ).tuples().all()
     )
     with_pack: list[float] = []
     without: list[float] = []

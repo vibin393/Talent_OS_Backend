@@ -818,21 +818,21 @@ async def _names(
     cands = {r.candidate_id for r in rows}
     clients = {r.client_id for r in rows}
     places = {r.placement_id for r in rows}
-    cn = (
+    cn: dict[uuid.UUID, str] = (
         dict(
-            (await db.execute(select(Candidate.id, Candidate.full_name).where(Candidate.id.in_(cands)))).all()
+            (await db.execute(select(Candidate.id, Candidate.full_name).where(Candidate.id.in_(cands)))).tuples().all()
         )
         if cands
         else {}
     )
-    cl = (
-        dict((await db.execute(select(Client.id, Client.name).where(Client.id.in_(clients)))).all())
+    cl: dict[uuid.UUID, str] = (
+        dict((await db.execute(select(Client.id, Client.name).where(Client.id.in_(clients)))).tuples().all())
         if clients
         else {}
     )
-    pl = (
+    pl: dict[uuid.UUID, str] = (
         dict(
-            (await db.execute(select(Placement.id, Placement.human_id).where(Placement.id.in_(places)))).all()
+            (await db.execute(select(Placement.id, Placement.human_id).where(Placement.id.in_(places)))).tuples().all()
         )
         if places
         else {}
@@ -845,14 +845,14 @@ async def summaries(db: AsyncSession, rows: Sequence[Timesheet]) -> list[Timeshe
         return []
     cn, cl, pl = await _names(db, rows)
     ids = [r.id for r in rows]
-    hours = dict(
+    hours: dict[uuid.UUID, Decimal] = dict(
         (
             await db.execute(
                 select(TimesheetEntry.timesheet_id, func.sum(TimesheetEntry.hours))
                 .where(TimesheetEntry.timesheet_id.in_(ids))
                 .group_by(TimesheetEntry.timesheet_id)
             )
-        ).all()
+        ).tuples().all()
     )
     hours.update(
         dict(

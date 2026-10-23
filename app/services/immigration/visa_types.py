@@ -55,7 +55,7 @@ async def list_templates(ctx: RequestContext, db: AsyncSession) -> list[VisaTemp
                     VisaType.template_key.is_not(None), VisaType.archived_at.is_(None)
                 )
             )
-        ).all()
+        ).tuples().all()
     )
     return [
         VisaTemplateOut(
@@ -275,7 +275,7 @@ async def list_types(
                         VisaTypeVersion.id.in_([r.current_version_id for r in rows if r.current_version_id])
                     )
                 )
-            ).all()
+            ).tuples().all()
         )
         if rows
         else {}

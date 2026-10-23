@@ -576,13 +576,13 @@ async def _names(
     kids = list(set(client_ids))
     cands = (
         dict(
-            (await db.execute(select(Candidate.id, Candidate.full_name).where(Candidate.id.in_(cids)))).all()
+            (await db.execute(select(Candidate.id, Candidate.full_name).where(Candidate.id.in_(cids)))).tuples().all()
         )
         if cids
         else {}
     )
     clients = (
-        dict((await db.execute(select(Client.id, Client.name).where(Client.id.in_(kids)))).all())  # type: ignore[arg-type]
+        dict((await db.execute(select(Client.id, Client.name).where(Client.id.in_(kids)))).tuples().all())
         if kids
         else {}
     )
@@ -765,7 +765,7 @@ async def worker_360(ctx: RequestContext, db: AsyncSession, candidate_id: uuid.U
                     .where(OnboardingTask.case_id == c.id)
                     .group_by(OnboardingTask.status)
                 )
-            ).all()  # type: ignore[arg-type]
+            ).tuples().all()
         )
         out.append(
             {

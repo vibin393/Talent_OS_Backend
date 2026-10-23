@@ -185,15 +185,15 @@ async def monitor(
     cands = {r.candidate_id for r in rows}
     clients = {r.client_id for r in rows}
     pls = {r.placement_id for r in rows}
-    cn = (
+    cn: dict[uuid.UUID, str] = (
         dict(
-            (await db.execute(select(Candidate.id, Candidate.full_name).where(Candidate.id.in_(cands)))).all()
+            (await db.execute(select(Candidate.id, Candidate.full_name).where(Candidate.id.in_(cands)))).tuples().all()
         )
         if cands
         else {}
     )
-    cl = (
-        dict((await db.execute(select(Client.id, Client.name).where(Client.id.in_(clients)))).all())
+    cl: dict[uuid.UUID, str] = (
+        dict((await db.execute(select(Client.id, Client.name).where(Client.id.in_(clients)))).tuples().all())
         if clients
         else {}
     )

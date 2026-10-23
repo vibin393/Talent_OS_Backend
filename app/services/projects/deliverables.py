@@ -78,7 +78,7 @@ async def outs(
                 await db.execute(
                     select(ContractMilestone.id, ContractMilestone.name).where(ContractMilestone.id.in_(mids))
                 )
-            ).all()
+            ).tuples().all()
         )
         if mids
         else {}

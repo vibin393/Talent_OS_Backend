@@ -50,7 +50,7 @@ async def outs(db: AsyncSession, rows: Sequence[ProjectAssignment]) -> list[Assi
                     ProjectRole.id.in_({r.project_role_id for r in rows})
                 )
             )
-        ).all()
+        ).tuples().all()
     )
     placements = dict(
         (
@@ -59,12 +59,12 @@ async def outs(db: AsyncSession, rows: Sequence[ProjectAssignment]) -> list[Assi
                     Placement.id.in_({r.placement_id for r in rows})
                 )
             )
-        ).all()
+        ).tuples().all()
     )
     cids = {r.candidate_id for r in rows if r.candidate_id}
     names = (
         dict(
-            (await db.execute(select(Candidate.id, Candidate.full_name).where(Candidate.id.in_(cids)))).all()
+            (await db.execute(select(Candidate.id, Candidate.full_name).where(Candidate.id.in_(cids)))).tuples().all()
         )
         if cids
         else {}

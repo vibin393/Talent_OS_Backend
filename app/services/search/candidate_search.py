@@ -70,7 +70,7 @@ from app.services.matching.scoring import convert
 from app.services.search import query_parser as qp
 
 READ = "candidate:read"
-CFG = literal_column("'talent_en'::regconfig")
+CFG: Any = literal_column("'talent_en'::regconfig")
 NAME_SIMILARITY = 0.35
 FACET_TIMEOUT_MS = 800
 FACET_EXACT_MAX = 50_000  # above this many hits facets are computed on a 10 % sample

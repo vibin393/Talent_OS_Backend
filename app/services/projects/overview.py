@@ -243,7 +243,7 @@ async def get_timeline(
     cids = set(rows)
     names = (
         dict(
-            (await db.execute(select(Candidate.id, Candidate.full_name).where(Candidate.id.in_(cids)))).all()
+            (await db.execute(select(Candidate.id, Candidate.full_name).where(Candidate.id.in_(cids)))).tuples().all()
         )
         if cids
         else {}

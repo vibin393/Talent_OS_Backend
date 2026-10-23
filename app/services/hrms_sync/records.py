@@ -46,8 +46,8 @@ async def put_settings(ctx: RequestContext, db: AsyncSession, data: HrmsSettings
 async def _outs(db: AsyncSession, rows: list[HrmsSyncRecord]) -> list[HrmsRecordOut]:
     cids = {r.candidate_id for r in rows}
     pids = {r.placement_id for r in rows}
-    names = dict((await db.execute(select(Candidate.id, Candidate.full_name).where(Candidate.id.in_(cids)))).all()) if cids else {}
-    hids = dict((await db.execute(select(Placement.id, Placement.human_id).where(Placement.id.in_(pids)))).all()) if pids else {}
+    names = dict((await db.execute(select(Candidate.id, Candidate.full_name).where(Candidate.id.in_(cids)))).tuples().all()) if cids else {}
+    hids = dict((await db.execute(select(Placement.id, Placement.human_id).where(Placement.id.in_(pids)))).tuples().all()) if pids else {}
     return [
         HrmsRecordOut.model_validate(r).model_copy(update={"worker_name": names.get(r.candidate_id), "placement_human_id": hids.get(r.placement_id)})
         for r in rows

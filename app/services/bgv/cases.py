@@ -500,7 +500,7 @@ async def _list_items(db: AsyncSession, cases: list[BgvCase]) -> list[CaseListIt
     pids = {c.placement_id for c in cases if c.placement_id}
     clients = (
         dict(
-            (await db.execute(select(Placement.id, Placement.client_id).where(Placement.id.in_(pids)))).all()
+            (await db.execute(select(Placement.id, Placement.client_id).where(Placement.id.in_(pids)))).tuples().all()
         )
         if pids
         else {}

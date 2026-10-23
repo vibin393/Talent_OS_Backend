@@ -163,7 +163,7 @@ async def preview_run(ctx: RequestContext, db: AsyncSession, data: RunCreate) ->
     from app.models.clients import Client
 
     names = dict(
-        (await db.execute(select(Client.id, Client.name).where(Client.id.in_(list(per_client) or [uuid.uuid4()])))).all()
+        (await db.execute(select(Client.id, Client.name).where(Client.id.in_(list(per_client) or [uuid.uuid4()])))).tuples().all()
     )
     for cid, entry in per_client.items():
         entry.client_name = str(names[cid]) if cid in names else None

@@ -52,14 +52,14 @@ async def outs(db: AsyncSession, rows: Sequence[Project]) -> list[ProjectOut]:
     clients = dict(
         (
             await db.execute(select(Client.id, Client.name).where(Client.id.in_({r.client_id for r in rows})))
-        ).all()
+        ).tuples().all()
     )
     contract_ids = {r.contract_id for r in rows if r.contract_id}
     contracts = (
         dict(
             (
                 await db.execute(select(Contract.id, Contract.human_id).where(Contract.id.in_(contract_ids)))
-            ).all()
+            ).tuples().all()
         )
         if contract_ids
         else {}

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Campus dashboard tiles (Epic 52 A4; Epic 43 data). Drives are scoped like ``GET /campus/drives``
 (``campus:read`` on the drive owner); the institution funnel is the owner's ``campus_service.funnel``."""
 

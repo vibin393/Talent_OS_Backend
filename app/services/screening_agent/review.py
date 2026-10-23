@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Recruiter review of extracted answers (Epic 57 story 57.5, FR-291; spec A6). Text (conversation) and voice
 (Epic 58 ``voice_session_id``) answers share this path.
 
@@ -256,7 +256,7 @@ async def complete(
     return out.model_copy(update={"screening_id": screening_id})
 
 
-async def erase_voice_answers(ctx: RequestContext, db: AsyncSession, voice_session_id: uuid.UUID) -> int:  # noqa: ARG001
+async def erase_voice_answers(ctx: RequestContext, db: AsyncSession, voice_session_id: uuid.UUID) -> int:  # ruff: ignore[unused-function-argument]
     result = await db.execute(
         delete(ScreeningAnswer).where(
             ScreeningAnswer.voice_session_id == voice_session_id, ScreeningAnswer.source == "voice"

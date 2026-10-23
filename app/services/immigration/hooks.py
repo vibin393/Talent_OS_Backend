@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Registrations of the ``immigration`` domain (autodiscovered by ``core.hooks``), Epic 46 A6.
 
 * Consent notice ``immigration`` (English default; lazily seeded per tenant by the foundation mechanism).

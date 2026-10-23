@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Kickoff of the ``sourcing`` agent (Epic 56). Trusted ids / labels only -- no untrusted text.
 
 Runs started by the sourcing domain (manual, requirements change, weekly refresh) pass a full Kickoff with the tenant

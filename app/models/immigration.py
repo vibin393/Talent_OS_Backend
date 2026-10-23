@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Immigration (Epic 46, branch ``p3_immigration``, migrations ``20261007_310_01..04``; AD-52, FR-232..236).
 
 * ``visa_type_templates`` -- platform reference data (no RLS, SELECT-only for ``talent_app``): US H-1B, UK Skilled

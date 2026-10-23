@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Cross-tenant Job Network (Epic 75, AD-74/AD-87; migrations ``20261020_509_01_job_network`` / ``509_02_jn_stats``).
 
 Jobs only -- **no Candidate data ever crosses tenants** (DPDP decision 2). The ``p5-network-platform`` import-linter

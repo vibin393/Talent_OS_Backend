@@ -129,7 +129,7 @@ async def validate_rate(ctx: RequestContext, db: AsyncSession, req: RateCheckReq
     return _result(graded, row.id)
 
 
-async def preview(ctx: RequestContext, db: AsyncSession, req: RateCheckRequest) -> RateCheckPreviewOut:  # noqa: ARG001
+async def preview(ctx: RequestContext, db: AsyncSession, req: RateCheckRequest) -> RateCheckPreviewOut:  # ruff: ignore[unused-function-argument]
     graded = await evaluate_request(db, req)
     res = _result(graded, None)
     return RateCheckPreviewOut(
@@ -251,7 +251,7 @@ async def require_rate_clearance(
 
 
 async def history(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     subject_kind: str,
     subject_id: uuid.UUID,
@@ -305,7 +305,7 @@ async def on_final_decided(ctx: RequestContext, db: AsyncSession, decision: Any)
             pass
 
 
-async def describe(ctx: RequestContext, db: AsyncSession, ids: list[uuid.UUID]) -> dict[uuid.UUID, Any]:  # noqa: ARG001
+async def describe(ctx: RequestContext, db: AsyncSession, ids: list[uuid.UUID]) -> dict[uuid.UUID, Any]:  # ruff: ignore[unused-function-argument]
     from app.schemas.approvals import SubjectSummary
 
     rows = (await db.execute(select(RateCheck).where(RateCheck.id.in_(ids)))).scalars()
@@ -315,6 +315,6 @@ async def describe(ctx: RequestContext, db: AsyncSession, ids: list[uuid.UUID]) 
         bounds = f" (card {_s(r.min_bill_rate)}-{_s(r.max_bill_rate)})" if r.min_bill_rate is not None else ""
         out[r.id] = SubjectSummary(
             label=f"Rate exception: {r.subject_kind}",
-            title=f"{r.input.get('role') or ''} at {rate} {r.input.get('currency')}/{r.input.get('rate_unit')}{bounds}".strip(),  # noqa: E501
+            title=f"{r.input.get('role') or ''} at {rate} {r.input.get('currency')}/{r.input.get('rate_unit')}{bounds}".strip(),  # ruff: ignore[line-too-long]
         )
     return out

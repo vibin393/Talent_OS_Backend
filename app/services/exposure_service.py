@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Facade of the ``exposure`` domain (Epic 66, D-11, D-25(d)): ``record`` (buffered), ``flush`` (beat ``exposure.flush``),
 and the erasure fan-out readers ``installations_exposed`` / ``api_keys_exposed``."""
 

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Tenant-side eligibility and projection (Epic 75, spec A2 / A3).
 
 The projection copies **only** the careers-public fields of a Demand Posting into the shape of ``network_listings``

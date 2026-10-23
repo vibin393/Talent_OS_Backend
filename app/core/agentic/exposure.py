@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Tool exposure registry (Epic 66, spec §0.15, AD-84 / AD-89). Pure: imports nothing from ``app.services``.
 
 An exposure makes a registered agent tool callable from an external surface: MCP (Epic 73) or a portal Copilot

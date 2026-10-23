@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """NYC LL144 candidate notice (Epic 49 A8, FR-248, FR-249).
 
 A Demand flagged for NYC publishes the notice at ``notice_published_at``; the AEDT may be *used* for that Demand only

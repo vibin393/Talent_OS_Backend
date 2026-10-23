@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Public bias-audit endpoints (Epic 49): ``/api/v1/public/fairness/{slug}/*`` -- no principal.
 
 * ``GET  self-id-form`` / ``POST self-id`` -- the optional self-ID step on the apply success page (apply token,
@@ -14,7 +14,7 @@ from typing import Annotated, Any
 
 from fastapi import APIRouter, Depends, Path, Query, Response
 
-import app.models.fairness  # noqa: F401  - fairness tables on Base.metadata at app start (AD-47)
+import app.models.fairness  # ruff: ignore[unused-import]  - fairness tables on Base.metadata at app start (AD-47)
 from app.core import rate_limit
 from app.core.context import get_context
 from app.schemas.fairness import (

@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Registrations of the ``billing`` domain (autodiscovered by ``core.hooks``; Epic 29).
 
 * Approval subjects ``invoice`` / ``credit_note`` / ``debit_note`` (callbacks in the deciding transaction).

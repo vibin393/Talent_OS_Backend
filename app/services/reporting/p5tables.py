@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Phase 5 read-model projections for reporting (Epic 79, AD-1 read-model exception).
 
 Read-only ``sqlalchemy.table()`` projections guarded by ``available()``; reporting imports **no** Phase 5 module

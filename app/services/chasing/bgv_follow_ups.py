@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """BGV provider follow-ups (Epic 62 A3 / A4, story 62.3, FR-309).
 
 * ``overdue_checks`` -- provider-assigned ``in_progress`` checks past ``due_on`` with the follow-up count, the last date

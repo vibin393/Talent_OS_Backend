@@ -20,7 +20,7 @@ def main(argv: list[str] | None = None) -> int:
     backfill.add_argument("--tenant", required=True, type=uuid.UUID)
     args = parser.parse_args(argv)
     if args.command == "backfill-embeddings":
-        import app.services.matching  # noqa: F401 - registers handlers / models
+        import app.services.matching  # ruff: ignore[unused-import] - registers handlers / models
 
         count = asyncio.run(backfill_async(args.tenant))
         print(f"embedded {count} candidate(s) for tenant {args.tenant}")

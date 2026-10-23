@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Resolve the facts a document needs from the foundation / commercials (no tax logic here; ``tax.py`` decides).
 
 ``supply_for`` -> supplier registration, recipient (Billing Profile default address), treatment, LUT of the

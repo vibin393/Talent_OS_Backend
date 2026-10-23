@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Ecosystem events (Epic 66, spec 0.4): Installations, the Ecosystem Kill Switch, OAuth token families, delegated
 authorisations and connector sync / health.
 

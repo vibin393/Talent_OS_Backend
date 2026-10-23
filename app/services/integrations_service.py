@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Integrations facade (Epic 66, spec 0.10; frozen signatures). Installs, configuration and uninstall go through
 ``marketplace_service``; this facade runs installed connectors. Domain sync handlers (70-72) register with
 ``register_sync_handler`` and obtain adapters only through ``adapter_for``."""

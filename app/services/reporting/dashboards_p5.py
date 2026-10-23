@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Phase 5 dashboard projections for reporting (Epic 79 story 79.3, FR-407).
 
 Read-only aggregates over the ``p5tables`` projections for the "Ecosystem" dashboard tiles that do not need a Phase 5
@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 U, W, C = p5tables.usage_counters, p5tables.webhook_deliveries, p5tables.connector_sync_state
 
 
-async def api_requests_by_installation(db: AsyncSession, tenant_id, date_from: dt.date, date_to: dt.date) -> list[dict]:  # noqa: ANN001
+async def api_requests_by_installation(db: AsyncSession, tenant_id, date_from: dt.date, date_to: dt.date) -> list[dict]:  # ruff: ignore[missing-type-function-argument]
     stmt = (
         sa.select(
             U.c.installation_id,
@@ -35,7 +35,7 @@ async def api_requests_by_installation(db: AsyncSession, tenant_id, date_from: d
     return [dict(r) for r in (await db.execute(stmt)).mappings()]
 
 
-async def connector_health_by_category(db: AsyncSession, tenant_id) -> list[dict]:  # noqa: ANN001
+async def connector_health_by_category(db: AsyncSession, tenant_id) -> list[dict]:  # ruff: ignore[missing-type-function-argument]
     stmt = (
         sa.select(C.c.entity_type, sa.func.sum(C.c.consecutive_failures).label("failures"))
         .where(C.c.tenant_id == tenant_id)
@@ -44,7 +44,7 @@ async def connector_health_by_category(db: AsyncSession, tenant_id) -> list[dict
     return [dict(r) for r in (await db.execute(stmt)).mappings()]
 
 
-async def webhook_success_rate(db: AsyncSession, tenant_id, date_from: dt.date, date_to: dt.date) -> dict:  # noqa: ANN001
+async def webhook_success_rate(db: AsyncSession, tenant_id, date_from: dt.date, date_to: dt.date) -> dict:  # ruff: ignore[missing-type-function-argument]
     stmt = sa.select(
         sa.func.count().label("total"),
         sa.func.sum(sa.case((W.c.outcome == "delivered", 1), else_=0)).label("delivered"),

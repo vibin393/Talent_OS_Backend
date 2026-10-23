@@ -135,7 +135,7 @@ async def clear_dropout(
     ctx: RequestContext,
     db: AsyncSession,
     placement_id: uuid.UUID,
-    note: str | None,  # noqa: ARG001
+    note: str | None,  # ruff: ignore[unused-function-argument]
 ) -> Placement:
     actor = actor_from_ctx(ctx)
     p = await get_placement(db, placement_id, lock=True)
@@ -147,7 +147,7 @@ async def clear_dropout(
     return p
 
 
-async def evaluate_dropout(ctx: RequestContext, db: AsyncSession, p: Placement) -> list[str]:  # noqa: ARG001
+async def evaluate_dropout(ctx: RequestContext, db: AsyncSession, p: Placement) -> list[str]:  # ruff: ignore[unused-function-argument]
     """Evaluate the rules; raise the flag (and notify the recruiter) only when a *new* rule fires."""
     if p.status not in PRE_START:
         return []

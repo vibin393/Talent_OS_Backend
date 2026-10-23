@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Campus erasure handler ``campus.records`` (57), Epic 43 A8 (FR-258, AD-34).
 
 * Registrations, event check-ins and queue entries of the subject (and records merged into it) are deleted; batch

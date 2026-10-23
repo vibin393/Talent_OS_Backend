@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Analytics Agent DTOs (Epic 64). Every input model is ``extra="forbid"``: the only structured input the model controls is
 a foundation ``Definition`` (closed operators, registered keys) plus a report ``VizSpec`` and short labels -- there is no
 SQL, expression or formula field anywhere (NFR-46)."""

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Candidate Portal: interview recording consent (Epic 60, A8): ``GET`` / ``POST /api/v1/portal/interviews/{id}/recording-consent``.
 
 ``Depends(current_candidate)`` authenticates the ``tos_candidate`` cookie (+ CSRF on mutations). Scoped to the signed-in

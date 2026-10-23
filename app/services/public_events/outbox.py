@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Outbox rows, the frozen wire envelope and the replay read model (Epic 66, AD-79, FR-334/350)."""
 
 import base64

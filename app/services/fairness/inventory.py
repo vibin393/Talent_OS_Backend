@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """AEDT inventory (Epic 49 A7, FR-248): AI Match, AI Screening and assessment auto-scoring are seeded per tenant as
 ``inactive`` until a Compliance user confirms them; edits are audited (``AuditedMixin``)."""
 
@@ -77,7 +77,7 @@ async def ensure_seed(db: AsyncSession) -> None:
     await aedt_p4.ensure_seed_p4(db)
 
 
-async def list_entries(ctx: RequestContext, db: AsyncSession) -> list[AedtOut]:  # noqa: ARG001
+async def list_entries(ctx: RequestContext, db: AsyncSession) -> list[AedtOut]:  # ruff: ignore[unused-function-argument]
     await ensure_seed(db)
     rows = (
         await db.execute(select(AedtInventory).order_by(AedtInventory.created_at, AedtInventory.name))
@@ -92,7 +92,7 @@ async def load(db: AsyncSession, aedt_id: uuid.UUID) -> AedtInventory:
     return row
 
 
-async def create(ctx: RequestContext, db: AsyncSession, data: AedtIn) -> AedtOut:  # noqa: ARG001
+async def create(ctx: RequestContext, db: AsyncSession, data: AedtIn) -> AedtOut:  # ruff: ignore[unused-function-argument]
     row = AedtInventory(id=uuid.uuid4(), tenant_id=tenant_of(db), **data.model_dump())
     db.add(row)
     await db.flush()
@@ -100,7 +100,7 @@ async def create(ctx: RequestContext, db: AsyncSession, data: AedtIn) -> AedtOut
     return AedtOut.model_validate(row)
 
 
-async def update(ctx: RequestContext, db: AsyncSession, aedt_id: uuid.UUID, data: AedtPatch) -> AedtOut:  # noqa: ARG001
+async def update(ctx: RequestContext, db: AsyncSession, aedt_id: uuid.UUID, data: AedtPatch) -> AedtOut:  # ruff: ignore[unused-function-argument]
     row = await load(db, aedt_id)
     for key, value in data.model_dump(exclude_unset=True).items():
         if value is None and key in {"feature", "name", "job_categories", "used_to_filter", "status"}:

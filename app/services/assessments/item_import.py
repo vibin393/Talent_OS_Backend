@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 r"""Item import (Epic 40 A3): CSV / XLSX -> preview with per-row errors -> commit; and the go-live import function
 ``import_assessment_item`` (FR-263, foundation 0.7).
 

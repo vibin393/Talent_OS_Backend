@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Onboarding templates and settings (Epic 23 A1 / A3, P2-10.1, FR-122). ``onboarding:configure``, tenant scope.
 
 Editing a template (fields or tasks) bumps ``version``; existing cases keep their ``template_snapshot``.

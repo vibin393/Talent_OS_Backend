@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Ecosystem maintenance tasks (Epic 66), queue ``maintenance``: OAuth lookup purge, exposure flush, monthly partitions,
 vault rewrap, log purges and idle external (MCP) session close."""
 
@@ -6,8 +6,8 @@ QUEUE = "maintenance"
 
 
 # ---------------------------------------------------------- Epic 66 (D-11): subject exposure buffer flush
-from app.core.celery import celery_app  # noqa: E402
-from app.tasks.runtime import run  # noqa: E402
+from app.core.celery import celery_app  # ruff: ignore[module-import-not-at-top-of-file]
+from app.tasks.runtime import run  # ruff: ignore[module-import-not-at-top-of-file]
 
 
 @celery_app.task(name="exposure.flush", queue=QUEUE)  # type: ignore[misc,untyped-decorator,unused-ignore]

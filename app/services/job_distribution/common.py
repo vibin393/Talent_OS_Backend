@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Shared helpers of the job distribution domain (Epic 70)."""
 
 import uuid

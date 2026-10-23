@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Shared base of the real job board adapters (Epic 70, spec A2): Naukri, LinkedIn and Indeed.
 
 Adapters see only ``core.integrations``, ``core.net_safety``, ``core.signing``, the job board DTOs and their own
@@ -137,23 +137,23 @@ class LiveJobBoardBase:
     async def health(self) -> None:  # pragma: no cover - overridden
         return None
 
-    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # noqa: ARG002
+    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         if op == "health":
             await self.health()
             return {"ok": True}
         msg = f"job_board op {op} runs through the job board sync handlers"
         raise ConnectorPermanentError("op_unsupported", msg)
 
-    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # noqa: ARG002
+    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # ruff: ignore[unused-method-argument]
         return False
 
-    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # noqa: ARG002
+    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         return {}
 
     async def fetch_applicants(
         self,
-        since: datetime | None,  # noqa: ARG002
-        cursor: str | None,  # noqa: ARG002
+        since: datetime | None,  # ruff: ignore[unused-method-argument]
+        cursor: str | None,  # ruff: ignore[unused-method-argument]
     ) -> tuple[Sequence[BoardApplicantDTO], str | None]:
         return (), None
 

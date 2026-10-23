@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D400, D415
+# ruff: file-ignore[line-too-long, missing-trailing-period, missing-terminal-punctuation]
 """Integrations wiring (Epic 66, spec 0.10 / 0.17), autodiscovered:
 
 * the ``sync:`` op runner and the Installation job listener in the P2 connector job layer (P2 code never imports
@@ -15,7 +15,7 @@ from app.services.integrations.runner import SYNC_OP_PREFIX, on_job_outcome, run
 from app.services.integrations.triggers import connector_triggers_sink
 
 
-async def _sink(ctx, db, rows) -> None:  # type: ignore[no-untyped-def]  # noqa: ANN001
+async def _sink(ctx, db, rows) -> None:  # type: ignore[no-untyped-def]  # ruff: ignore[missing-type-function-argument]
     await connector_triggers_sink(ctx, db, rows)
 
 

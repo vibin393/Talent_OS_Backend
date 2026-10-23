@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Uploads (Epic 60, story 60.2; FR-302): a meeting transcript export and / or an audio recording.
 
 * **Transcript** (TXT, VTT, SRT, DOCX -- Teams, Zoom or Meet exports; at most 5 MB): stored scanned in tenant storage,

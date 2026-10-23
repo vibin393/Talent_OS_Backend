@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Transcripts (Epic 53, AD-66; migration ``20261008_400_03_p4_hubs``). Owner: ``transcripts``.
 
 ``transcripts`` is the audited header; ``transcript_segments`` are append-only and NOT audited, so no transcript text is

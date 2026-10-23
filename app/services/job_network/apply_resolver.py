@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Careers apply-source resolver for the ``job_network`` tag (Epic 75, spec A4; FR-388).
 
 Registered with ``portal.apply.register_apply_source_resolver('job_network', resolve)`` from ``hooks.py``. The careers
@@ -16,7 +16,7 @@ from app.core.database import platform_session
 from app.models.job_network import NetworkListing
 
 
-async def resolve(db: AsyncSession, tenant_id: uuid.UUID, ref: str | None) -> tuple[str, str] | None:  # noqa: ARG001 - db is the tenant session; the network reads only its own platform index
+async def resolve(db: AsyncSession, tenant_id: uuid.UUID, ref: str | None) -> tuple[str, str] | None:  # ruff: ignore[unused-function-argument] - db is the tenant session; the network reads only its own platform index
     if not ref:
         return None
     try:

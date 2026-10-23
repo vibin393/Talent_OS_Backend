@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Recruitment marketing (Epic 39, FR-196..FR-201; branch ``p3_campaigns``, band 303).
 
 * ``marketing_settings``: one row per tenant (lazy): frequency cap (3 / 7 days, lower only), send windows (narrow

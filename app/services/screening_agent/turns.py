@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Conversation turns (Epic 57 A3): storage, transcript mirroring and the server-rendered texts.
 
 Every turn is stored with a per-conversation ``seq`` (the conversation row is locked by the caller) and mirrored into

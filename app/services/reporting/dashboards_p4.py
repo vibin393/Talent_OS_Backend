@@ -1,4 +1,4 @@
-# ruff: noqa: E501, N812, RUF001
+# ruff: file-ignore[line-too-long, lowercase-imported-as-non-lowercase, ambiguous-unicode-character-string]
 """Phase 4 dashboards (Epic 65 A4, FR-321, NFR-53): "AI agents" (operations and quality, ``ai:govern``) and "Agent
 outcomes" (SM-30..SM-39, SM-C14..SM-C18, ``report:read``).
 
@@ -11,7 +11,9 @@ shows Proposal content, conversation text, self-ID or fairness data.
 from typing import Any
 
 from app.core.permissions import Principal
-from app.services.reporting import p4tables as _P4  # noqa: F401 - registers the optional-table guards
+from app.services.reporting import (
+    p4tables as _P4,  # ruff: ignore[unused-import] - registers the optional-table guards
+)
 from app.services.reporting.dashboards import DashboardDef, TileDef, TileFn
 from app.services.reporting.metrics import agent_outcomes as _O
 from app.services.reporting.metrics import agents as _A

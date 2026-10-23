@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Facade of the ``public_events`` domain (Epic 66, AD-79, spec §0.8; frozen API consumed by Epic 68).
 
 * ``register_sink`` / ``SinkFn`` -- outbox consumers (``connector_triggers`` 66, ``webhooks`` 68, ...); idempotent.

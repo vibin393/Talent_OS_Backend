@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 54 Copilot tool ``navigation.screen_for`` (FR-278, FR-280): where a person does an action the Copilot must not
 do. ★ actions (reject, shortlist, submit, release an offer, record an interview outcome, approve, decide a proposal,
 change settings, export) are never tools; the Copilot explains and deep-links. A static map; a deep link to a record is given only when you can see the record."""

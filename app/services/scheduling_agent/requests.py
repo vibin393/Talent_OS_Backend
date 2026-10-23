@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Scheduling requests (Epic 59 stories 59.2-59.4; spec A3) and the agent run chain (coordinator C-12).
 
 Lifecycle: ``open`` -> ``slots_offered`` -> ``picked`` -> ``booked``; ``counter_proposed`` (the Candidate asked for other
@@ -588,7 +588,7 @@ async def request_reschedule(
 
 
 async def request_reschedule_system(
-    ctx: RequestContext,  # noqa: ARG001 - facade signature; the request runs as the system actor
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument] - facade signature; the request runs as the system actor
     db: AsyncSession,
     interview_id: uuid.UUID,
     *,

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Phase 4 read-model guards (Epic 65 A4, AD-1 read-model exception; see ``common`` / ``p2tables``).
 
 Reporting imports **no** Phase 4 service or model module (``p4-below``): every Phase 4 table a tile reads is a

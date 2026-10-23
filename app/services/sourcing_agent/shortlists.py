@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Agent shortlists (Epic 56 stories 56.2 / 56.5, FR-286, FR-323).
 
 * ``save_shortlist`` -- supersedes the current version and inserts version + 1 in deterministic order

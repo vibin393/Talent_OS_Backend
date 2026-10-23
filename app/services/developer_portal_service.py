@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Developer Portal facade (Epic 74, AD-85). Routers and other epics call this module only.
 
 * Accounts / sessions / MFA (74.1): ``signup``, ``verify_email``, ``login``, ``mfa_enroll_start|confirm``, ``mfa_verify``,

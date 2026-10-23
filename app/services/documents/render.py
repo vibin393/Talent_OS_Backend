@@ -136,7 +136,7 @@ def _numbered_canvas(header: str, footer_prefix: str) -> type[rl_canvas.Canvas]:
             super().__init__(*args, **kwargs)
             self._saved: list[dict[str, Any]] = []
 
-        def showPage(self) -> None:  # noqa: N802 - reportlab API
+        def showPage(self) -> None:  # ruff: ignore[invalid-function-name] - reportlab API
             self._saved.append(dict(self.__dict__))
             self._startPage()
 

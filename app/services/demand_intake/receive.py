@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401, ARG001
+# ruff: file-ignore[line-too-long, non-imperative-mood, unused-function-argument]
 """Intake receive pipeline (Epic 55, A5 "receive", story 55.1).
 
 1. Idempotency on ``(source, external_ref)`` (``Message-ID`` or the provider message id).

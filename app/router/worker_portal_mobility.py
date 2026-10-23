@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Worker "My Work -> Opportunities" (Epic 41, ``/api/v1/portal/work/opportunities*``): the internal job board, apply
 with manager approval, My internal applications, withdraw. Any Worker (a Candidate with a non-terminal Placement)
 while ``worker_board_enabled``; Worker-safe payloads only (``schemas/mobility_portal``: no client, no rates /

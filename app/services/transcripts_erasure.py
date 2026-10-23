@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Erasure handlers ``transcripts.records`` (order 63) and ``recordings.files`` (order 64), Epic 53 (FR-326, spec
 0.15).
 
@@ -134,7 +134,7 @@ class RecordingFilesHandler:
             "interview_captures": await retention.purge_capture_recordings(db, captures),
         }
 
-    async def export(self, db: AsyncSession, ctx: ErasureContext) -> dict[str, Any] | None:  # noqa: ARG002
+    async def export(self, db: AsyncSession, ctx: ErasureContext) -> dict[str, Any] | None:  # ruff: ignore[unused-method-argument]
         return None  # recordings are binary media: listed by ``files.candidate`` exports, not inlined
 
     async def verify(self, db: AsyncSession, ctx: ErasureContext) -> list[str]:

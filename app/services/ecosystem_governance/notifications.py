@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 79's own notification types (story 79.6, FR-411). Registered from ``ecosystem_governance.hooks``.
 
 * ``access_review_opened`` -- a new quarterly access review is open (reviewers).
@@ -18,7 +18,7 @@ if TYPE_CHECKING:
     from sqlalchemy.ext.asyncio import AsyncSession
 
 
-async def _reviewers(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # noqa: ARG001
+async def _reviewers(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
     from app.services.agent_runtime.hooks import _holders
 
     return await _holders(db, "integration:manage")
@@ -36,7 +36,7 @@ async def _accountable(db: AsyncSession, payload: Any) -> set[uuid.UUID]:
     return await _holders(db, "integration:manage")
 
 
-async def _integration_admins(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # noqa: ARG001
+async def _integration_admins(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
     from app.services.agent_runtime.hooks import _holders
 
     return await _holders(db, "integration:manage", "ecosystem:kill_switch")
@@ -45,21 +45,21 @@ async def _integration_admins(db: AsyncSession, payload: Any) -> set[uuid.UUID]:
 def register() -> None:
     from app.services import notifications_service as ns
 
-    def _render_opened(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG001
+    def _render_opened(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
         return ns.Content(
             title="A new access review is open",
             body="Review the Installations, authorisations and API keys that have access to this tenant.",
             link_path="/admin/integrations/access-reviews",
         )
 
-    def _render_auto(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG001
+    def _render_auto(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
         return ns.Content(
             title="Access was removed automatically",
             body="A grant or key had not been used and was revoked during the access review.",
             link_path="/admin/integrations/access-reviews",
         )
 
-    def _render_golive(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG001
+    def _render_golive(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
         return ns.Content(
             title="A go-live check failed",
             body="An integrations readiness or plaintext-free check failed. Open the readiness page for details.",

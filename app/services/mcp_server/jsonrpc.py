@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """JSON-RPC 2.0 envelope for the MCP endpoint (Epic 73, spec 0.1 / 0.5). Pure.
 
 One message per POST: a batch (JSON array) is ``-32600`` (batching was removed in protocol 2025-06-18)."""

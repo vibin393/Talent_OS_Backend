@@ -1,4 +1,4 @@
-# ruff: noqa: E501, RUF001
+# ruff: file-ignore[line-too-long, ambiguous-unicode-character-string]
 """Auditor pack (Epic 49 A7, FR-248): a PDF (``documents/render.py``, template ``fairness_auditor_pack``) and one CSV
 per table (the P1 export writer's ``csv_line``, formula-safe), stored under the tenant storage prefix and delivered as
 expiring, permission-checked download links (``GET /fairness/runs/{id}/pack/files/{name}``, ``fairness:read``).
@@ -132,7 +132,7 @@ def _name(key: str) -> str:
     return "".join(ch if ch.isalnum() or ch in "_-" else "_" for ch in key.replace("×", "_x_"))
 
 
-async def generate(ctx: RequestContext, db: AsyncSession, run_id: uuid.UUID, data: PackIn) -> PackOut:  # noqa: ARG001
+async def generate(ctx: RequestContext, db: AsyncSession, run_id: uuid.UUID, data: PackIn) -> PackOut:  # ruff: ignore[unused-function-argument]
     from app.services.documents.render import render_markdown
 
     run = await reports.load(db, run_id)
@@ -181,7 +181,7 @@ def pack_out(run: Any) -> PackOut:
 
 
 async def download(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     run_id: uuid.UUID,
     name: str,

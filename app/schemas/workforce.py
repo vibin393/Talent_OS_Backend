@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Workforce planning API schemas (Epic 44, FR-222..FR-225).
 
 Money is ``Decimal`` end to end (AD-14 / AD-20): inputs accept a decimal string or an integer -- a JSON float is

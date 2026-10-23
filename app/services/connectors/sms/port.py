@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """``sms`` provider port (AD-29, Epic 33 A4; owned by Epic 33 after the foundation, R16).
 
 The adapter factory binds the ``ConnectorConfig`` (credentials only from ``provider_connector_configs``), so the

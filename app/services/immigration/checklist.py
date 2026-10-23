@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Document checklist collection (Epic 46 A3, FR-234, AD-28).
 
 * ``generate`` creates one ``case_document_requests`` row per checklist item of the pinned version (one per
@@ -293,7 +293,9 @@ async def store_upload(
     from app.core.events import emit
     from app.models.immigration import CaseEvent
     from app.services.documents import repository
-    from app.services.immigration.events import ImmigrationCaseStep  # noqa: F401  (catalogue import check)
+    from app.services.immigration.events import (
+        ImmigrationCaseStep,  # ruff: ignore[unused-import]  (catalogue import check)
+    )
 
     if req.status in ("verified", "waived"):
         raise conflict("request_closed", "This item is already complete")

@@ -143,7 +143,7 @@ async def _load(db: AsyncSession, statement_id: uuid.UUID, *, lock: bool = False
 
 
 async def list_statements(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     vendor_id: uuid.UUID | None = None,
@@ -175,7 +175,7 @@ async def list_statements(
     return [_out(s, vendor_name=name, line_count=int(counts.get(s.id, 0))) for s, name in rows]
 
 
-async def get_statement(ctx: RequestContext, db: AsyncSession, statement_id: uuid.UUID) -> StatementDetailOut:  # noqa: ARG001
+async def get_statement(ctx: RequestContext, db: AsyncSession, statement_id: uuid.UUID) -> StatementDetailOut:  # ruff: ignore[unused-function-argument]
     return await _detail(db, await _load(db, statement_id))
 
 
@@ -612,7 +612,7 @@ async def _pay_period(ctx: RequestContext, db: AsyncSession, s: VendorPayableSta
     return ref.id if ref is not None else None
 
 
-async def delete_draft(ctx: RequestContext, db: AsyncSession, statement_id: uuid.UUID) -> None:  # noqa: ARG001
+async def delete_draft(ctx: RequestContext, db: AsyncSession, statement_id: uuid.UUID) -> None:  # ruff: ignore[unused-function-argument]
     s = await _load(db, statement_id, lock=True)
     if s.status != "draft":
         raise ConflictError("Only a draft statement can be deleted", code="document_immutable")
@@ -622,7 +622,7 @@ async def delete_draft(ctx: RequestContext, db: AsyncSession, statement_id: uuid
 
 
 async def download(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     statement_id: uuid.UUID,
     fmt: str,

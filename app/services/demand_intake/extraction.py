@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401, RUF001
+# ruff: file-ignore[line-too-long, non-imperative-mood, ambiguous-unicode-character-string]
 """Schema-bound fast-tier role extraction (Epic 55, spec 0.2; injection resistance).
 
 ``extract(ctx, db, message_id)`` runs ``demand_intake_extract`` once per message through ``ai.gateway.run`` (feature

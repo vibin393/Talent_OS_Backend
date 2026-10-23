@@ -161,7 +161,7 @@ async def _assert_vendor(db: AsyncSession, vendor_id: uuid.UUID) -> None:
 
 
 async def list_client_users(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     client_id: uuid.UUID,
 ) -> list[ClientUserOut]:
@@ -233,7 +233,7 @@ async def grant_client_user(
 
 
 async def update_client_user(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     client_id: uuid.UUID,
     cu_id: uuid.UUID,
@@ -264,7 +264,7 @@ async def update_client_user(
 
 
 async def set_client_user_status(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     client_id: uuid.UUID,
     cu_id: uuid.UUID,
@@ -301,7 +301,7 @@ async def set_client_user_status(
 
 
 async def resend_client_invite(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     client_id: uuid.UUID,
     cu_id: uuid.UUID,
@@ -316,7 +316,7 @@ async def resend_client_invite(
 
 
 async def reset_client_mfa(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     client_id: uuid.UUID,
     cu_id: uuid.UUID,
@@ -528,7 +528,7 @@ async def _set_vendor_status(
 
 
 async def list_vendor_users(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     vendor_id: uuid.UUID,
 ) -> list[VendorUserOut]:
@@ -558,7 +558,7 @@ async def invite_vendor_user(
 
 
 async def update_vendor_user(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     vendor_id: uuid.UUID,
     vu_id: uuid.UUID,
@@ -572,7 +572,7 @@ async def update_vendor_user(
 
 
 async def set_vendor_user_status(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     vendor_id: uuid.UUID,
     vu_id: uuid.UUID,
@@ -586,7 +586,7 @@ async def set_vendor_user_status(
 
 
 async def resend_vendor_invite(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     vendor_id: uuid.UUID,
     vu_id: uuid.UUID,
@@ -598,7 +598,7 @@ async def resend_vendor_invite(
 
 
 async def reset_vendor_mfa(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     vendor_id: uuid.UUID,
     vu_id: uuid.UUID,

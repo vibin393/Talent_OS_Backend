@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Run outcome handling (Epic 78 A3): a finished ``campaign_copy`` run's result (validated ``CampaignCopyResult``)
 becomes one draft per segment x variant (``generated`` -> checks -> ``checked``), the request ``generated`` with the
 run's tokens / cost, ``CampaignCopyGenerated`` and the ``campaign_copy_ready`` notification. A failed / stopped run

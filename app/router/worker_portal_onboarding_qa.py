@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Worker portal "Onboarding help" (Epic 62 B7; ``/api/v1/portal/work/help``).
 
 The signed-in Worker / pre-joining Candidate only (``WorkerDep``); another person's thread or message is a 404. The

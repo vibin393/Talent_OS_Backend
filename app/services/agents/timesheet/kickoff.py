@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Kickoff of the Timesheet Agent (Epic 63): ids only. Nudge runs: ``{run_kind: nudge, account_manager_id, today,
 timezone}``; flag runs: ``{run_kind: flags, timesheet_id, version}``. The domain ticks pass these explicitly; this
 builder covers manual / workflow starts from the subject."""

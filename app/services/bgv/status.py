@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """BGV case status machine (PRD §5.6, AD-4). ``transition_case`` is the only writer of ``bgv_cases.status``.
 
 * Automation moves (``documents_pending`` -> ``in_verification`` -> ``discrepancy`` / ``under_review``) are made

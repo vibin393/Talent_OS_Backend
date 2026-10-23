@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Move of the pre-vault secrets into ``vault_secrets`` (Epic 66, spec 0.10, Story 66.6, FR-336).
 
 Run by the migration ``20261009_500_05_p5_vault_move`` (and its downgrade). FROZEN with that migration: this module

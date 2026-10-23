@@ -288,7 +288,7 @@ def _selector(model: Any, document_id: uuid.UUID | None, posting_ids: Sequence[u
 
 
 async def post(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     ledger: Ledger,
     *,
@@ -307,7 +307,7 @@ async def post(
 
 
 async def release(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     ledger: Ledger,
     *,

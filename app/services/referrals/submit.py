@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Refer a Candidate (Epic 42 story 42.2, FR-214): openings, the upload channel, personal share links, withdraw.
 
 Upload channel: the referrer enters the referee's contact data and resume (scanned store, pdf / docx, <= 10 MB);

@@ -1,4 +1,4 @@
-# ruff: noqa: D401, E501
+# ruff: file-ignore[non-imperative-mood, line-too-long]
 """Identity-document rules shared by every domain (Epic 21 A2, NFR-24, AD-35). Pure: no tables, no I/O.
 
 * Aadhaar is stored only as its **last 4 digits** plus a redacted image. ``looks_like_full_aadhaar`` detects a

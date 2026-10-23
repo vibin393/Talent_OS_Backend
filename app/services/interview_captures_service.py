@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Interview Assistant facade (Epic 60; AD-1 naming). Entry point of the ``interview_captures`` domain for the routers,
 tasks, the agent definition (``capture_owner``) and the Epic 60 agent tools (``agent_tools.{interviews,interview_capture,
 skills}/tools_e60.py``)."""

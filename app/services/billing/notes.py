@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Credit Notes and Debit Notes (FR-150). Note lines copy the original line's SAC, tax rates, supply decision and the
 Invoice ``fx_rate`` verbatim: tax is never re-determined.
 

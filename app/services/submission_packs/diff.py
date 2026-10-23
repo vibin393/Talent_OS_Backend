@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """What the person changed between the prepared pack and the Submission they sent (Epic 61 A2, FR-307). Pure.
 
 Fields compared: resume kind, pay / bill rate (normalised to 2 dp), units, currency and the e-mail subject. The note is

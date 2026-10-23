@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Possible-duplicate and SLA-risk flags (Epic 55, stories 55.4 / 55.5, FR-283 / FR-284).
 
 * ``raise_duplicate`` **recomputes** the score server-side; below ``duplicate_threshold`` -> 422 ``below_threshold``.
@@ -276,7 +276,7 @@ async def list_flags(
     )
 
 
-async def expire(ctx: RequestContext, db: AsyncSession) -> int:  # noqa: ARG001
+async def expire(ctx: RequestContext, db: AsyncSession) -> int:  # ruff: ignore[unused-function-argument]
     """Duplicate flags on demands closed / cancelled > 90 days ago -> ``expired``; SLA flags whose demand is no
     longer open or has no open clock at risk -> ``resolved`` (system)."""
     from app.models.demands import DemandSlaClock

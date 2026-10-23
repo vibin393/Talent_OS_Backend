@@ -144,7 +144,7 @@ def summary(v: Vendor) -> VendorSummary:
 
 # ================================================================ CRUD
 async def list_vendors(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     status: str | None = None,
@@ -203,12 +203,12 @@ async def _check_pan_unique(
         raise conflict("vendor_pan_exists", "Another vendor has this PAN")
 
 
-async def get_vendor_detail(ctx: RequestContext, db: AsyncSession, vendor_id: uuid.UUID) -> VendorDetailOut:  # noqa: ARG001
+async def get_vendor_detail(ctx: RequestContext, db: AsyncSession, vendor_id: uuid.UUID) -> VendorDetailOut:  # ruff: ignore[unused-function-argument]
     return await detail_out(db, await get_vendor(db, vendor_id))
 
 
 async def update_vendor(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     vendor_id: uuid.UUID,
     data: VendorUpdate,
@@ -393,7 +393,7 @@ async def _cascade_releases(db: AsyncSession, vendor_id: uuid.UUID, to: str) -> 
 
 
 # ================================================================ GSTINs, bank accounts, reveal
-async def add_gstin(ctx: RequestContext, db: AsyncSession, vendor_id: uuid.UUID, data: GstinIn) -> GstinOut:  # noqa: ARG001
+async def add_gstin(ctx: RequestContext, db: AsyncSession, vendor_id: uuid.UUID, data: GstinIn) -> GstinOut:  # ruff: ignore[unused-function-argument]
     from app.services import legal_entities_service
 
     v = await get_vendor(db, vendor_id)
@@ -421,7 +421,7 @@ async def add_gstin(ctx: RequestContext, db: AsyncSession, vendor_id: uuid.UUID,
 
 
 async def delete_gstin(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     vendor_id: uuid.UUID,
     gstin_id: uuid.UUID,
@@ -483,7 +483,7 @@ async def _activate_bank(db: AsyncSession, row: VendorBankAccount) -> None:
     await db.flush()
 
 
-async def on_bank_change_decided(ctx: RequestContext, db: AsyncSession, decision: Any) -> None:  # noqa: ARG001
+async def on_bank_change_decided(ctx: RequestContext, db: AsyncSession, decision: Any) -> None:  # ruff: ignore[unused-function-argument]
     row = (
         await db.execute(
             select(VendorBankAccount).where(VendorBankAccount.id == decision.subject_id).with_for_update()
@@ -499,7 +499,7 @@ async def on_bank_change_decided(ctx: RequestContext, db: AsyncSession, decision
 
 
 async def describe_bank_changes(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     ids: list[uuid.UUID],
 ) -> dict[uuid.UUID, Any]:
@@ -580,7 +580,7 @@ async def document_outs(db: AsyncSession, vendor_id: uuid.UUID) -> list[VendorDo
 
 
 async def list_documents(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     vendor_id: uuid.UUID,
 ) -> list[VendorDocumentOut]:
@@ -737,12 +737,12 @@ def settings_out(row: Any) -> VendorSettingsOut:
     )
 
 
-async def get_settings(ctx: RequestContext, db: AsyncSession) -> VendorSettingsOut:  # noqa: ARG001
+async def get_settings(ctx: RequestContext, db: AsyncSession) -> VendorSettingsOut:  # ruff: ignore[unused-function-argument]
     return settings_out(await load_settings(db))
 
 
 async def update_settings(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     data: VendorSettingsUpdate,
 ) -> VendorSettingsOut:

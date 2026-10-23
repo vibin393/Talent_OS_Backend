@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Shared helpers of the Epic 55 Demand Agent tools (not a tool module: the loader imports only ``tools_*.py``).
 
 Reads and data-scope checks run under ``agent_runtime_service.scope_context`` (the Effective Rights presented as the

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Recruitment Copilot (Epic 54 A6, AD-64): ``/copilot/*`` including the SSE turn stream.
 
 Internal users only; API keys and automated actors are refused (human only). Conversations, messages, turn streams and

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """MCP rate limits and caps (Epic 73, spec 0.6; FR-379). Counters live in Redis db 2 (``RATE_LIMIT_BACKEND=memory`` ->
 in-process, as ``core.rate_limit``; an unreachable Redis falls back to memory with a warning).
 

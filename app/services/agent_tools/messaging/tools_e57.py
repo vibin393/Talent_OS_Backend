@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 57 tool ``candidates.get_contact_channels`` (read): which channels can reach the conversation's Candidate.
 No address or number is ever returned."""
 

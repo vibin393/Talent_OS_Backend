@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Segment repair (spec A3): definitions whose fields / joins / sources disappeared from the semantic registry.
 
 ``check_all`` runs nightly (the ``talent_pools.tick`` beat) and before every refresh (``issues_of``): a

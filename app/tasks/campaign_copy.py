@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """AI campaign copy Celery tasks (Epic 78). Every per-tenant task starts with ``tenant_id``.
 
 * ``campaign_copy.finalize_run(tenant_id, run_id, run_status, reason)`` (queue ``agents``) -- a finished / failed

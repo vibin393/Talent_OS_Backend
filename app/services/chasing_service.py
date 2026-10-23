@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Facade of the ``chasing`` domain (Epic 62, FR-308 / FR-309). Routers, tools, agents and tasks call these, never the
 package internals."""
 
@@ -13,7 +13,7 @@ from app.services.chasing.risk_list import risk_list
 
 
 async def compliance_owner(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     subject: tuple[str, uuid.UUID] | None,
 ) -> uuid.UUID | None:
@@ -27,7 +27,7 @@ async def compliance_owner(
 
 
 async def bgv_owner(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     subject: tuple[str, uuid.UUID] | None,
 ) -> uuid.UUID | None:

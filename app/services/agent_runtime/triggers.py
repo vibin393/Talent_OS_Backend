@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Agent triggers (Epic 53, story 53.9, FR-273).
 
 * **Event triggers** are subscribed at post-discovery from every registered ``TriggerSpec(kind="event")``: the handler
@@ -165,7 +165,7 @@ def register_workflow_action() -> None:
     if ACTION_KEY in ACTIONS:
         return
 
-    def _validate(params: Any, entity_type: str, path: str) -> None:  # noqa: ARG001
+    def _validate(params: Any, entity_type: str, path: str) -> None:  # ruff: ignore[unused-function-argument]
         from app.core.agentic.agents import get_agent
         from app.core.errors import ValidationFailed
 

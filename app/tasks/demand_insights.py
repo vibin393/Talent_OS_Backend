@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Demand insights Celery tasks (Epic 55, A7): ``demand_insights.expire_flags`` (beat, daily, queue ``maintenance``) --
 duplicate flags on demands closed > 90 days ago expire; SLA flags on met / closed clocks resolve."""
 

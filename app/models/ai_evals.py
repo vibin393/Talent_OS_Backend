@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Evaluation results store (Epic 65, story 65.5, FR-322, AD-69; branch ``p4_governance``, band 412).
 
 Platform tables (non-RLS, listed in ``core.tenancy.PLATFORM_TABLES``; ``talent_app`` gets SELECT / INSERT / UPDATE).

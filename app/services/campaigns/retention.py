@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Retention of marketing logs (Epic 39 A9; user decision: 2 years).
 
 Class ``marketing_logs`` (24 months, delete) is seeded by Epic 52; ``campaign_messages`` (anchor ``created_at``) and

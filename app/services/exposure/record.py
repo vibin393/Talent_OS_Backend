@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """``subject_exposures`` writer (Epic 66, D-11, D-25(d)).
 
 ``record`` is called on hot paths (Public API responses, webhook deliveries, connector pushes, MCP results), so it only
@@ -35,7 +35,7 @@ _redis_client = None
 _redis_down_until = 0.0
 
 
-def _redis():  # type: ignore[no-untyped-def]  # noqa: ANN202 - redis client typing is loose
+def _redis():  # type: ignore[no-untyped-def]  # ruff: ignore[missing-return-type-private-function] - redis client typing is loose
     """Return the lazy Redis client, or ``None`` while the breaker is open."""
     global _redis_client  # process-wide lazy client
     if time.monotonic() < _redis_down_until:

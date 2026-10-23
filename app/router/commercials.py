@@ -6,7 +6,7 @@ with ``client:read`` and written with ``client:update`` or ``billing:write``; co
 rate cards / checks ``rate_card:read|write``; POs ``po:read|write``; settings ``contract:read`` /
 ``settings:manage``. External (client / vendor) principals never reach these routes (AD-26). Each endpoint
 calls one service function.
-"""  # noqa: E501
+"""  # ruff: ignore[line-too-long]
 
 import uuid
 from datetime import date

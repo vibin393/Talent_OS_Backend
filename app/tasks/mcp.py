@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """MCP tasks (Epic 73, AD-92), queue ``maintenance``.
 
 * ``mcp.end_sessions(tenant_id, filter, reason)`` -- after-commit kick from the kill switch / disable / uninstall /

@@ -599,7 +599,7 @@ Validator = Callable[[Any, str, str], None]  # (params, trigger entity type, pat
 
 
 def _entity_types(*allowed: str) -> Validator:
-    def check(params: Any, entity_type: str, path: str) -> None:  # noqa: ARG001
+    def check(params: Any, entity_type: str, path: str) -> None:  # ruff: ignore[unused-function-argument]
         if entity_type not in allowed:
             raise _invalid(path, f"only for {', '.join(allowed)} triggers")
 
@@ -619,7 +619,7 @@ def _validate_email(params: Any, entity_type: str, path: str) -> None:
         raise _invalid(f"{path}.params.to", "only demand, application or submission triggers have a client")
 
 
-def _any(params: Any, entity_type: str, path: str) -> None:  # noqa: ARG001
+def _any(params: Any, entity_type: str, path: str) -> None:  # ruff: ignore[unused-function-argument]
     return None
 
 
@@ -702,7 +702,7 @@ def _invalid(path: str, reason: str) -> ValidationFailed:
 
 
 def validate_actions(actions: Any, entity_type: str) -> list[dict[str, Any]]:
-    """Validate a rule's action list (closed registry, params, trigger compatibility); returns it normalised."""  # noqa: E501
+    """Validate a rule's action list (closed registry, params, trigger compatibility); returns it normalised."""  # ruff: ignore[line-too-long]
     if actions is None:
         return []
     if not isinstance(actions, list):

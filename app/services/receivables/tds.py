@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """TDS / GST-TDS arithmetic (FR-154). Pure: no I/O.
 
 The base is the taxable value excluding GST (pure-agent amounts and RCM tax are never part of it).

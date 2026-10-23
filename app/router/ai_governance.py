@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """AI governance console (Epic 65, spec-p4-governance A1-A5; FR-319..FR-322, FR-325, FR-330).
 
 ``/ai-governance/*`` -- run explorer, run detail with timeline (Copilot runs metadata only), tool-call search, policy

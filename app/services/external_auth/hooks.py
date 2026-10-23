@@ -33,10 +33,10 @@ async def _vendor_user_directory(db: AsyncSession, vendor_user_id: uuid.UUID) ->
 
 
 async def _resolve_client_user(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     approver_ref: Mapping[str, Any],
-    facts: Mapping[str, Any],  # noqa: ARG001
+    facts: Mapping[str, Any],  # ruff: ignore[unused-function-argument]
 ) -> ResolvedApprover:
     raw = approver_ref.get("client_user_id")
     if not raw:
@@ -50,10 +50,10 @@ async def _resolve_client_user(
 
 
 async def _resolve_client_any(
-    ctx: RequestContext,  # noqa: ARG001
-    db: AsyncSession,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
+    db: AsyncSession,  # ruff: ignore[unused-function-argument]
     approver_ref: Mapping[str, Any],
-    facts: Mapping[str, Any],  # noqa: ARG001
+    facts: Mapping[str, Any],  # ruff: ignore[unused-function-argument]
 ) -> ResolvedApprover:
     raw = approver_ref.get("client_id")
     if not raw:
@@ -68,8 +68,8 @@ register_approver_resolver("client_user", _resolve_client_user)
 register_approver_resolver("client_any", _resolve_client_any)
 
 # Epic 14: a vendor that stops being active loses every Vendor User session (<= 1 minute).
-from app.core.events import subscribe  # noqa: E402
-from app.events.vendors import VendorStatusChanged  # noqa: E402
-from app.services.external_auth.handlers import on_vendor_status_changed  # noqa: E402
+from app.core.events import subscribe  # ruff: ignore[module-import-not-at-top-of-file]
+from app.events.vendors import VendorStatusChanged  # ruff: ignore[module-import-not-at-top-of-file]
+from app.services.external_auth.handlers import on_vendor_status_changed
 
 subscribe(VendorStatusChanged, on_vendor_status_changed)

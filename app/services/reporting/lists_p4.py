@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001, N812
+# ruff: file-ignore[line-too-long, unused-function-argument, lowercase-imported-as-non-lowercase]
 """Phase 4 list kinds (Epic 65 A8, FR-329): ``agent_runs`` and ``agent_proposals`` for the two kinds allowed by
 ``ck_exports_kind`` (foundation 0.3), built on the ``p4tables`` projections (reporting imports no Phase 4 module).
 

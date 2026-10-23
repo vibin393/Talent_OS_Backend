@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 56 Sourcing Agent tools of the ``sourcing`` domain (``owner_epic="56"``, ``version=1``).
 
 | Key | Risk | Notes |

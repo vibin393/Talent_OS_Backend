@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The MCP server's port (Epic 73): the protocol code in ``mcp_server`` never touches the database, OAuth, the agent
 runtime or a domain; the ``mcp_service`` facade implements this protocol and passes itself to ``transport.handle``
 (contract ``p5-mcp-via-runtime``)."""
@@ -37,7 +37,7 @@ class SessionRef:
     key: str  # hex SHA-256 of the session id (limits / detector key; never the raw id)
 
 
-class SessionGone(Exception):  # noqa: N818 - protocol name
+class SessionGone(Exception):  # ruff: ignore[error-suffix-on-exception-name] - protocol name
     """Unknown, ended or paused session (HTTP 404: the client must re-initialize)."""
 
     def __init__(self, reason: str) -> None:

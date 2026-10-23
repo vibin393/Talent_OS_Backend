@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Phase 3 go-live import kinds (Epic 52 A6, FR-263): templates, owner resolution and row handlers.
 
 Each kind delegates one CSV row to the owner's ``import_<x>(ctx, db, data: <X>ImportIn, *, validate_only)``
@@ -157,10 +157,10 @@ def make_handler(kind: str) -> Any:
         ctx: RequestContext,
         db: AsyncSession,
         row: dict[str, str],
-        batch_id: uuid.UUID,  # noqa: ARG001
+        batch_id: uuid.UUID,  # ruff: ignore[unused-function-argument]
         *,
         validate_only: bool,
-        scratch: dict[str, Any],  # noqa: ARG001
+        scratch: dict[str, Any],  # ruff: ignore[unused-function-argument]
     ) -> str | None:
         fn = owners.owner(kind)
         model = _dto(kind)

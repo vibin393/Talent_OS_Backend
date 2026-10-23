@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 31 (Extension, Conversion & Offboarding, FR-162..FR-166) tables, branch ``p2_placement_exit`` (migrations
 ``20261005_218_01..02``).
 

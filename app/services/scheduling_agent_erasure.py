@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Erasure handler ``scheduling_agent.requests`` (Epic 59, order 68; FR-326).
 
 For a candidate subject (+ merged ids): null the Candidate's free text on offers (``candidate_note``,

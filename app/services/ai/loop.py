@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Per-step agent model call (Epic 53, AD-57, FR-267/FR-272). With ``gateway.py`` the only importer of ``anthropic``.
 
 ``run_agent_step(ctx, db, req)`` / ``stream_agent_step(ctx, db, req, sink)`` make exactly ONE Messages API call with

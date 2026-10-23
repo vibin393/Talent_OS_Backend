@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Voice sessions (Epic 58, stories 58.1 / 58.2 / 58.5): request, read, cancel, speaker labels, the hand-offs to the
 Voice Screening Agent and the review completion.
 

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Usage reads (Epic 66; dashboards are Epic 79, partner views Epic 74). Source: the ``usage_counters`` daily rollup
 (values reach it within one ``metering.flush`` period)."""
 
@@ -49,7 +49,7 @@ def _sums() -> list[Any]:
     ]
 
 
-async def usage(ctx: Any, db: AsyncSession, q: UsageQuery) -> UsageOut:  # noqa: ARG001 - ctx kept for the contract
+async def usage(ctx: Any, db: AsyncSession, q: UsageQuery) -> UsageOut:  # ruff: ignore[unused-function-argument] - ctx kept for the contract
     """Return the tenant's usage (``db`` is its tenant session, RLS-scoped)."""
     groups = list(dict.fromkeys(q.group_by))
     cols = [_GROUP_COLUMNS[g].label(_ROW_FIELDS[g]) for g in groups]

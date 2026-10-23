@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The ``scheduling`` AgentSpec (Epic 59, spec A4; FR-297..FR-300).
 
 A negotiation is a chain of short runs (coordinator C-12): ``requested`` (manual / workflow) computes and offers slots and

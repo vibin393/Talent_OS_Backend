@@ -93,7 +93,7 @@ class InMemoryConsumerStore:
         return self._versions.get((str(tenant_id), subject_key))
 
     def set_version(self, tenant_id: uuid.UUID, subject_key: str, version: int) -> None:
-        self._versions[(str(tenant_id), subject_key)] = version
+        self._versions[str(tenant_id), subject_key] = version
 
 
 # Outcome of offering an event to the applier.

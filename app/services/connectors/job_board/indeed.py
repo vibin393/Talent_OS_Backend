@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Indeed adapter (Epic 70, spec A2; Indeed Job Sync API + Indeed Apply, live mode only under a partner agreement).
 
 * OAuth 2 client credentials at ``https://apis.indeed.com/oauth/v2/tokens`` (scope ``employer_access``), per employer.
@@ -217,7 +217,7 @@ class IndeedAdapter(LiveJobBoardBase):
     async def publish(self, posting: JobPostingDTO) -> BoardRefDTO:
         return await self._ingest(posting)
 
-    async def update(self, board_ref: str, posting: JobPostingDTO) -> BoardRefDTO:  # noqa: ARG002 - re-ingest by jobPostingId
+    async def update(self, board_ref: str, posting: JobPostingDTO) -> BoardRefDTO:  # ruff: ignore[unused-method-argument] - re-ingest by jobPostingId
         return await self._ingest(posting)
 
     async def close(self, board_ref: str) -> BoardRefDTO:
@@ -242,7 +242,7 @@ class IndeedAdapter(LiveJobBoardBase):
         given = next((v for k, v in headers.items() if k.lower() == SIGNATURE_HEADER.lower()), "")
         return bool(given) and hmac.compare_digest(given.strip(), sign(secret, body))
 
-    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # noqa: ARG002
+    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         try:
             data = json.loads(body or b"{}")
         except ValueError:

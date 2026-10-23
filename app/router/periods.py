@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Accounting Period close / reopen (Epic 30, FR-161): ``/api/v1/periods``.
 
 ``period:close`` (★, Idempotency-Key) closes after the checklist (blockers refuse, warnings need

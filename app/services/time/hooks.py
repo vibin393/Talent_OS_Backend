@@ -128,7 +128,7 @@ async def _worker_and_am(db: AsyncSession, payload: Any) -> set[Any]:
     return out
 
 
-async def _reminder_target(db: AsyncSession, payload: Any) -> set[Any]:  # noqa: ARG001
+async def _reminder_target(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument]
     from app.services.notifications_service import Recipient
 
     rid = _uuid(payload.get("recipient_id"))
@@ -138,7 +138,7 @@ async def _reminder_target(db: AsyncSession, payload: Any) -> set[Any]:  # noqa:
     )
 
 
-async def _digest_user(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # noqa: ARG001
+async def _digest_user(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
     uid = _uuid(payload.get("user_id"))
     return {uid} if uid else set()
 
@@ -173,7 +173,7 @@ async def _render_reminder(db: AsyncSession, payload: Any) -> Any:
     return _content(text, ts, worker=worker)
 
 
-async def _render_digest(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG001
+async def _render_digest(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
     from app.services.notifications_service import Content
 
     return Content(
@@ -227,7 +227,7 @@ _register_notifications()
 
 
 # ---------------------------------------------------------------- workflow, SLA, close check, offboarding
-async def _snapshot(ctx: RequestContext, db: AsyncSession, timesheet_id: uuid.UUID) -> dict[str, Any] | None:  # noqa: ARG001
+async def _snapshot(ctx: RequestContext, db: AsyncSession, timesheet_id: uuid.UUID) -> dict[str, Any] | None:  # ruff: ignore[unused-function-argument]
     from app.models.time import Timesheet
 
     ts = (await db.execute(select(Timesheet).where(Timesheet.id == timesheet_id))).scalar_one_or_none()

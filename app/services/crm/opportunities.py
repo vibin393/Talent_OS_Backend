@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Opportunities, role lines and the pipeline (FR-85, PRD §5.2; story 2.3).
 
 ``apply_stage`` is the only writer of ``stage`` (AD-4). Transitions (user only): create -> qualification;

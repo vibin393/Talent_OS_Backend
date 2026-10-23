@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Metering registrations (autodiscovered): an Installation change (e.g. a new ``rate_tier``) busts the cached
 Rate Tier of that Installation. ``api_request_log`` registers itself as a partitioned table in ``partitions``."""
 

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Facade of the ``demand_intake`` domain (Epic 55, A5). Routers, tasks, agent tools and the Demand Agent's owner
 callables import from here (Phase 4 domain layer, ``p4-dag``)."""
 

@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Predictive analytics Celery tasks (Epic 48). Queue ``analytics`` (AD-54); the snapshot purge runs on
 ``maintenance``.
 

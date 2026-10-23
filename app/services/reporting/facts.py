@@ -1,4 +1,4 @@
-# ruff: noqa: E501, N812, RUF002
+# ruff: file-ignore[line-too-long, lowercase-imported-as-non-lowercase, ambiguous-unicode-character-docstring]
 """Posted-fact query builders (Epic 34, A2, AD-33): one definition per finance / ops figure.
 
 Every money figure is read from **issued documents** (frozen per-line INR equivalents, AD-20) and summed in SQL

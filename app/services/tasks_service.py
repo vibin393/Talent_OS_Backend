@@ -451,7 +451,7 @@ async def list_tasks(
 
 
 async def summary(ctx: RequestContext, db: AsyncSession) -> TaskSummaryOut:
-    """The caller's own open tasks: total, due today (local), overdue."""  # noqa: D401
+    """The caller's own open tasks: total, due today (local), overdue."""  # ruff: ignore[non-imperative-mood]
     principal = _principal(ctx)
     tz, now = await _tz(db), _now()
     base = [Task.archived_at.is_(None), Task.owner_id == principal.id, Task.status == "open"]
@@ -501,7 +501,7 @@ async def overdue_and_today(
 
 # ================================================================ reminders (Celery)
 async def send_reminders(db: AsyncSession, now: datetime | None = None) -> int:
-    """Claim due reminders (``FOR UPDATE SKIP LOCKED``), stamp ``reminded_at`` and emit ``TaskReminderDue``."""  # noqa: E501
+    """Claim due reminders (``FOR UPDATE SKIP LOCKED``), stamp ``reminded_at`` and emit ``TaskReminderDue``."""  # ruff: ignore[line-too-long]
     now = now or _now()
     rows = list(
         (
@@ -543,7 +543,7 @@ async def send_reminders(db: AsyncSession, now: datetime | None = None) -> int:
 
 
 async def count_overdue_for_entities(
-    ctx: RequestContext,  # noqa: ARG001 - uniform service signature
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument] - uniform service signature
     db: AsyncSession,
     entity_types: Sequence[str],
     entity_ids: Any = None,

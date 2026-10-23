@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Referral status handlers (Epic 42 story 42.3, FR-215), system actor. Called by the after-commit tasks of
 ``app/tasks/referrals.py`` (subscribed in ``hooks.py``).
 

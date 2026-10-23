@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Subscription health (Epic 68, §0.8, FR-352): ``webhooks.health_scan`` (every 5 min) notifies a 1 h failure
 streak once per streak, auto-disables a 72 h streak with no success (open deliveries become ``held``), announces the
 end of a rotation overlap 2 h ahead and resets rows stuck ``in_flight`` (worker crash)."""

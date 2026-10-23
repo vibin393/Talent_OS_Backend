@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Domain-local events of the campus domain (Epic 43). The frozen ``app/events`` catalogue is untouched; these are
 dispatched after commit like any other event (``core.events.emit``). Ids only, no PII."""
 

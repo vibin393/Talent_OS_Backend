@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Pure answer scoring (Epic 40 A7, FR-205, NFR-36). No I/O, Decimal points only, no ``app`` imports.
 
 **Candidate code is never executed.** Coding items are scored by comparison only: ``code_output`` compares the

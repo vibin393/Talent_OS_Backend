@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Ecosystem console read models (Epic 79 story 79.1, FR-405).
 
 Unified, masked views over owner facades: Installations (Apps, connectors, API keys), delegated authorisations, webhooks,
@@ -95,7 +95,7 @@ async def _failing_subscriptions(ctx: RequestContext, db: AsyncSession) -> int:
         return 0
 
 
-async def _active_mcp_sessions(ctx: RequestContext, db: AsyncSession) -> int:  # noqa: ARG001
+async def _active_mcp_sessions(ctx: RequestContext, db: AsyncSession) -> int:  # ruff: ignore[unused-function-argument]
     try:
         res = await db.execute(select(func.count()).select_from(_mcp_sessions_table()).where(_mcp_active_clause()))
         return int(res.scalar_one())

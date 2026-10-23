@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """BGV cases (Epic 20 A3, P2-7.1, FR-110): creation (event + ad-hoc), expansion, start, cancel, reads, document review.
 
 * ``handle_requirements_evaluated`` (``ComplianceRequirementsEvaluated``): idempotent per ``(candidate, package)``.
@@ -381,7 +381,7 @@ async def cancel_case(
     return await detail(ctx, db, case.id)
 
 
-async def handle_placement_dropped(ctx: RequestContext, db: AsyncSession, placement_id: uuid.UUID) -> int:  # noqa: ARG001
+async def handle_placement_dropped(ctx: RequestContext, db: AsyncSession, placement_id: uuid.UUID) -> int:  # ruff: ignore[unused-function-argument]
     rows = list(
         (
             await db.execute(
@@ -442,7 +442,7 @@ async def review_document(
 async def _provider_names(db: AsyncSession, ids: set[uuid.UUID]) -> dict[uuid.UUID, str]:
     if not ids:
         return {}
-    return {  # noqa: C416
+    return {  # ruff: ignore[unnecessary-comprehension]
         pid: name
         for pid, name in (
             await db.execute(select(BgvProvider.id, BgvProvider.name).where(BgvProvider.id.in_(ids)))
@@ -529,7 +529,7 @@ async def _list_items(db: AsyncSession, cases: list[BgvCase]) -> list[CaseListIt
 
 
 async def list_cases(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     status: str | None = None,
@@ -563,7 +563,7 @@ async def list_cases(
     return await _list_items(db, rows)
 
 
-async def detail(ctx: RequestContext, db: AsyncSession, case_id: uuid.UUID) -> CaseOut:  # noqa: ARG001
+async def detail(ctx: RequestContext, db: AsyncSession, case_id: uuid.UUID) -> CaseOut:  # ruff: ignore[unused-function-argument]
     case = await get_case(db, case_id)
     (item,) = await _list_items(db, [case])
     docs = list(
@@ -612,7 +612,7 @@ async def detail(ctx: RequestContext, db: AsyncSession, case_id: uuid.UUID) -> C
     )
 
 
-async def timeline(ctx: RequestContext, db: AsyncSession, case_id: uuid.UUID) -> list[CaseEventOut]:  # noqa: ARG001
+async def timeline(ctx: RequestContext, db: AsyncSession, case_id: uuid.UUID) -> list[CaseEventOut]:  # ruff: ignore[unused-function-argument]
     await get_case(db, case_id)
     rows = (
         await db.execute(
@@ -623,7 +623,7 @@ async def timeline(ctx: RequestContext, db: AsyncSession, case_id: uuid.UUID) ->
 
 
 async def summaries(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     candidate_id: uuid.UUID | None = None,

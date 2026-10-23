@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Compliance chasing (Epic 62 A3 / A4, stories 62.1-62.2, FR-308): plan view, templated reminders, escalations.
 
 * ``plan_view`` -- the deterministic plan of a Worker (``plan.due_chases`` over ``facts.gather``) with the channels
@@ -321,7 +321,7 @@ async def escalate(
     placement_id: uuid.UUID | None,
     reason: str,
     *,
-    run_id: uuid.UUID | None,  # noqa: ARG001 - kept for the audit trail of the caller
+    run_id: uuid.UUID | None,  # ruff: ignore[unused-function-argument] - kept for the audit trail of the caller
 ) -> uuid.UUID:
     from app.models.tasks import Task
     from app.schemas.tasks import TaskCreate

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 55 Demand Agent tools on demands and intake messages (A3; FR-281..FR-284).
 
 Handlers call only the ``demand_intake_service`` / ``demand_insights_service`` facades and the P1 demands records.

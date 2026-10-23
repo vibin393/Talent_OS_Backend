@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Agent email templates (Epic 62 A5): "Agent · Document reminder", "Agent · Credential expiry reminder" and
 "Agent · BGV status request" -- English, ``key='custom'``, ``is_system=true``, editable in the P1 template editor.
 Seeded idempotently on first use (``ensure_system_template``); the tenant's edited version is used when present.

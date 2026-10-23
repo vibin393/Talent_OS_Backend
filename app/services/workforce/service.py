@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Public functions of the ``workforce`` domain (Epic 44) re-exported by ``workforce_service``.
 
 * ``plan_summary(ctx, db, from, to)`` -- Epic 52 dashboards: plans whose period touches ``[from, to]`` (viewer's
@@ -31,12 +31,12 @@ def _settings_out(row: object) -> WorkforceSettingsOut:
     )
 
 
-async def get_settings(ctx: RequestContext, db: AsyncSession) -> WorkforceSettingsOut:  # noqa: ARG001
+async def get_settings(ctx: RequestContext, db: AsyncSession) -> WorkforceSettingsOut:  # ruff: ignore[unused-function-argument]
     return _settings_out(await settings_row(db))
 
 
 async def update_settings(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     data: WorkforceSettingsIn,
 ) -> WorkforceSettingsOut:

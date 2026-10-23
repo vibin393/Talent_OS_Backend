@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 61 Submission Agent tools (``owner_epic="61"``, ``version=1``). None of them creates, sends, cancels or edits a
 Submission, moves an Application, changes rates on a Candidate or Offer, grants consent or decides an approval: those
 stay human (★ ``("submission", "sent")``; P1 ``create_submissions`` refuses non-``user`` actors).

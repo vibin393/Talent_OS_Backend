@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """★ Approval of AI-drafted copy (Epic 78 A5, FR-403, FR-409). Human only: every automated actor (``agent``, ``app``,
 ``api_key``, ``ai``, ``workflow``, ``system``) -> 403 ``human_only_action``. Needs ``campaign:copy_approve``, no
 ``block`` finding and, when there are warnings, an acknowledgement. SM-C23: an approval of an unopened draft or within

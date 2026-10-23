@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """CRM settings, reason codes and lead sources (story 2.1, A1). Rows are created / seeded lazily per tenant."""
 
 import uuid
@@ -89,7 +89,7 @@ async def default_currency(db: AsyncSession) -> str:
     return (await _row(db)).default_currency
 
 
-async def get_settings(ctx: RequestContext, db: AsyncSession) -> CrmSettingsOut:  # noqa: ARG001
+async def get_settings(ctx: RequestContext, db: AsyncSession) -> CrmSettingsOut:  # ruff: ignore[unused-function-argument]
     row = await _row(db)
     return CrmSettingsOut(
         stage_probabilities=await stage_probabilities(db), default_currency=row.default_currency
@@ -108,7 +108,7 @@ async def update_settings(ctx: RequestContext, db: AsyncSession, data: CrmSettin
 
 # ---------------------------------------------------------------- reason codes
 async def list_reason_codes(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     kind: str | None = None,
     include_archived: bool = False,
@@ -125,7 +125,7 @@ async def list_reason_codes(
     return [ReasonCodeOut.model_validate(r) for r in rows.scalars()]
 
 
-async def create_reason_code(ctx: RequestContext, db: AsyncSession, data: ReasonCodeIn) -> ReasonCodeOut:  # noqa: ARG001
+async def create_reason_code(ctx: RequestContext, db: AsyncSession, data: ReasonCodeIn) -> ReasonCodeOut:  # ruff: ignore[unused-function-argument]
     await ensure_seeded(db)
     clash = await db.execute(
         select(CrmReasonCode.id).where(CrmReasonCode.kind == data.kind, CrmReasonCode.code == data.code)
@@ -142,7 +142,7 @@ async def create_reason_code(ctx: RequestContext, db: AsyncSession, data: Reason
 
 
 async def update_reason_code(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     code_id: uuid.UUID,
     data: ReasonCodeUpdate,
@@ -188,7 +188,7 @@ async def require_reason(db: AsyncSession, kind: str, code: str | None, note: st
 
 # ---------------------------------------------------------------- lead sources
 async def list_sources(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     include_archived: bool = False,
 ) -> list[LeadSourceOut]:
@@ -206,7 +206,7 @@ async def source_codes(db: AsyncSession) -> set[str]:
     return set(rows.scalars())
 
 
-async def create_source(ctx: RequestContext, db: AsyncSession, data: LeadSourceIn) -> LeadSourceOut:  # noqa: ARG001
+async def create_source(ctx: RequestContext, db: AsyncSession, data: LeadSourceIn) -> LeadSourceOut:  # ruff: ignore[unused-function-argument]
     await ensure_seeded(db)
     if (await db.execute(select(CrmLeadSource.id).where(CrmLeadSource.code == data.code))).first():
         raise ConflictError("This lead source already exists", code="lead_source_exists")
@@ -218,7 +218,7 @@ async def create_source(ctx: RequestContext, db: AsyncSession, data: LeadSourceI
 
 
 async def update_source(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     source_id: uuid.UUID,
     data: LeadSourceUpdate,

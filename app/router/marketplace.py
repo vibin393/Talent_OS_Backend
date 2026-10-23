@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Integration Marketplace (Epic 69, Part C tenant; ``/api/v1/marketplace``). Reads need ``integration:view``, writes
 ``integration:manage``. Installing, upgrading, resuming, testing, uninstalling and pre-approving people are human-only
 (★ in the service: API keys, app tokens and automated actors get 403 ``human_only_action``). No endpoint returns a

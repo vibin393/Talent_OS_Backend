@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Shared helpers of the campus domain (Epic 43): constants, errors, settings, scoped loaders and name lookups.
 
 Data scope: ``campus:read`` / ``campus:manage`` on the drive owner (``campus_drives.owner_id``), ``event:manage`` on
@@ -55,7 +55,7 @@ def tenant_of(db: AsyncSession) -> uuid.UUID:
     return uuid.UUID(str(raw))
 
 
-def ctx(principal: Principal | None = None) -> RequestContext:  # noqa: ARG001
+def ctx(principal: Principal | None = None) -> RequestContext:  # ruff: ignore[unused-function-argument]
     """The request context (``require`` has already put the principal on it)."""
     return get_context()
 

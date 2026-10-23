@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Marketplace tasks (Epic 69): ``marketplace.sync_platform_catalog`` (worker start + daily 02:40 IST, queue
 ``maintenance``: manifests -> listings, then every Tenant's re-consent pass), ``marketplace.health_sweep`` (hourly),
 ``marketplace.run_checks`` (automated checks of a partner version), ``marketplace.sync_failed`` (3 failed sync jobs ->

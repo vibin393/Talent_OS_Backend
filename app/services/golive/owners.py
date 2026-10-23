@@ -29,13 +29,13 @@ IFSC_RE = re.compile(r"^[A-Z]{4}0[A-Z0-9]{6}$")
 ErrorItem = dict[str, Any]  # {column, code, message}
 
 
-class RowErrors(Exception):  # noqa: N818
+class RowErrors(Exception):  # ruff: ignore[error-suffix-on-exception-name]
     def __init__(self, errors: list[ErrorItem]) -> None:
         super().__init__("row errors")
         self.errors = errors
 
 
-class WorkerPending(Exception):  # noqa: N818
+class WorkerPending(Exception):  # ruff: ignore[error-suffix-on-exception-name]
     """The referenced Worker (by email) does not exist yet: apply needs a ``workers`` batch first."""
 
 
@@ -267,7 +267,7 @@ async def workers(
     ctx: RequestContext,
     db: AsyncSession,
     row: dict[str, str],
-    batch_id: uuid.UUID,  # noqa: ARG001
+    batch_id: uuid.UUID,  # ruff: ignore[unused-function-argument]
     *,
     validate_only: bool,
     scratch: Ctx,
@@ -327,10 +327,10 @@ async def placements(
     ctx: RequestContext,
     db: AsyncSession,
     row: dict[str, str],
-    batch_id: uuid.UUID,  # noqa: ARG001
+    batch_id: uuid.UUID,  # ruff: ignore[unused-function-argument]
     *,
     validate_only: bool,
-    scratch: Ctx,  # noqa: ARG001
+    scratch: Ctx,  # ruff: ignore[unused-function-argument]
 ) -> str | None:
     from app.schemas.placements import PlacementCreateIn
 

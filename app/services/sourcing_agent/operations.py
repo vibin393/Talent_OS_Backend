@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Operations behind the Sourcing Agent tools (Epic 56, Part B). ``read_ctx`` is the data-scope context (Effective
 Rights presented as the Accountable Owner); ``ctx`` is the tool's own context (actor ``agent``, or the approving person
 when a Proposal executes). Nothing here writes ``matches`` / ``match_runs`` or any score (AD-8)."""

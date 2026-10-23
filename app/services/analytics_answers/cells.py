@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Minimum cell size (Epic 64 story 64.2, FR-317). Pure.
 
 ``MIN_CELL_SIZE`` maps a semantic source key to ``k``: for a **grouped** answer over a listed source, every group whose

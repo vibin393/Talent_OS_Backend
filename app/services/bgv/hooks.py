@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Registrations of the ``bgv`` domain (autodiscovered by ``core.hooks``; Epic 20 A8).
 
 * Start-gate kind ``bgv`` (not overridable; resolver over the placement's required cases).
@@ -67,7 +67,7 @@ def _subscribe() -> None:
 
 
 # ---------------------------------------------------------------- notifications
-async def _candidate(db: AsyncSession, payload: Any) -> set[Any]:  # noqa: ARG001
+async def _candidate(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument]
     from app.services.notifications_service import Recipient
 
     cid = _uuid(payload.get("candidate_id"))
@@ -89,7 +89,7 @@ async def _discrepancy_candidate(db: AsyncSession, payload: Any) -> set[Any]:
     return {Recipient("candidate", cid)} if cid else set()
 
 
-async def _listed(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # noqa: ARG001
+async def _listed(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
     return {u for u in (_uuid(x) for x in payload.get("recipient_ids") or []) if u}
 
 
@@ -113,13 +113,13 @@ def _content(title: str, *, case_id: uuid.UUID | None = None, link: str | None =
     )
 
 
-async def _render_docs(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG001
+async def _render_docs(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
     return _content(
         "Background verification: please give consent and upload your documents", link="/portal/work/bgv"
     )
 
 
-async def _render_discrepancy(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG001
+async def _render_discrepancy(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
     return _content("Background verification: a finding needs your response", link="/portal/work/bgv")
 
 
@@ -135,7 +135,7 @@ async def _render_withdrawn(db: AsyncSession, payload: Any) -> Any:
     )
 
 
-async def _render_reference(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG001
+async def _render_reference(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
     return _content("Please name your referees for a reference check", link="/portal/work/bgv")
 
 
@@ -184,7 +184,7 @@ def _register_notifications() -> None:
 
 
 # ---------------------------------------------------------------- workflow
-async def _snapshot(ctx: RequestContext, db: AsyncSession, entity_id: uuid.UUID) -> dict[str, Any] | None:  # noqa: ARG001
+async def _snapshot(ctx: RequestContext, db: AsyncSession, entity_id: uuid.UUID) -> dict[str, Any] | None:  # ruff: ignore[unused-function-argument]
     from app.models.bgv import BgvCase
 
     case = await db.get(BgvCase, entity_id)
@@ -238,7 +238,7 @@ def _register_workflow() -> None:
         model_config = ConfigDict(extra="forbid")
         package_id: uuid.UUID
 
-    def _validate(params: Any, entity_type: str, path: str) -> None:  # noqa: ARG001
+    def _validate(params: Any, entity_type: str, path: str) -> None:  # ruff: ignore[unused-function-argument]
         if entity_type not in ("candidate", "placement"):
             raise actions._invalid(path, "only for candidate or placement triggers")
 
@@ -268,7 +268,7 @@ def _register_workflow() -> None:
         )
         return f"Opened BGV case {case.human_id}"
 
-    async def _dry(ac: Any) -> str:  # noqa: ARG001
+    async def _dry(ac: Any) -> str:  # ruff: ignore[unused-function-argument]
         return "Would open a BGV case"
 
     if "bgv.create_case" not in actions.ACTIONS:
@@ -344,7 +344,7 @@ def _register_retention() -> None:
         )
 
 
-async def _webhook(ctx: RequestContext, db: AsyncSession, payload: dict[str, Any], config: Any) -> None:  # noqa: ARG001
+async def _webhook(ctx: RequestContext, db: AsyncSession, payload: dict[str, Any], config: Any) -> None:  # ruff: ignore[unused-function-argument]
     """Inbound provider result -> ``provider_proposal`` (never the result itself)."""
     from app.models.bgv import BgvCheck
     from app.services.bgv.common import now

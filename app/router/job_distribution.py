@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Job boards (Epic 70, spec A8; prefix ``/api/v1``). Publishing, updating, refreshing, closing and the manual path need
 ``posting:publish_external`` and are user actions (★ in the service: API keys, apps and automated actors get 403
 ``human_only_action``); reads need ``demand:read``; board settings ``integration:view`` / ``integration:manage``."""

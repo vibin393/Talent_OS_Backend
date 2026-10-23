@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Assessment assembly and publishing (Epic 40 A4, FR-202).
 
 * Assessments are edited as a draft (``draft_sections``: fixed ``item_id`` lists or draw rules).

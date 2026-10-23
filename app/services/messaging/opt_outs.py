@@ -149,7 +149,7 @@ def _out(row: ChannelOptOut) -> OptOutOut:
 
 
 async def list_opt_outs(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     channel: str | None = None,
     q: str | None = None,

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Interview Assistant tools of the ``interviews`` domain (Epic 60 Part B; ``owner_epic="60"``, ``version=1``).
 
 | Key | Risk | Default after burn-in |

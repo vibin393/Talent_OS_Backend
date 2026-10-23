@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Ecosystem suspension state (Epic 66, AD-86, FR-340).
 
 ``is_suspended(tenant_id, app_id=None)`` is the one check used by ``oauth.authenticate_bearer``, API keys on the Public

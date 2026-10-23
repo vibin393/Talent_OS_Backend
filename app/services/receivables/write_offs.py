@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Write-offs (FR-158): mutable requests on approval subject ``write_off``. Execution runs in the approval callback
 transaction: it locks the document and writes the immutable ``write_offs`` fact only while the requested amount
 still equals the open balance; otherwise the request lapses with "balance changed". ``written_off`` is derived.
@@ -145,12 +145,12 @@ async def reverse(ctx: RequestContext, db: AsyncSession, write_off_id: uuid.UUID
     await settlement.refresh_cache(db, [doc_id])
 
 
-async def list_requests(ctx: RequestContext, db: AsyncSession, status: str | None = None) -> list[WriteOffRequestOut]:  # noqa: ARG001
+async def list_requests(ctx: RequestContext, db: AsyncSession, status: str | None = None) -> list[WriteOffRequestOut]:  # ruff: ignore[unused-function-argument]
     stmt = select(WriteOffRequest)
     if status:
         stmt = stmt.where(WriteOffRequest.status == status)
     return [out(r) for r in (await db.execute(stmt.order_by(WriteOffRequest.created_at.desc()).limit(500))).scalars()]
 
 
-async def get_request(ctx: RequestContext, db: AsyncSession, request_id: uuid.UUID) -> WriteOffRequestOut:  # noqa: ARG001
+async def get_request(ctx: RequestContext, db: AsyncSession, request_id: uuid.UUID) -> WriteOffRequestOut:  # ruff: ignore[unused-function-argument]
     return out(await _request(db, request_id))

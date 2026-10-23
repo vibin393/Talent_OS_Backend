@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """``/public/v1/notes`` (Epic 67, spec A4): notes on records the caller can read."""
 
 import uuid

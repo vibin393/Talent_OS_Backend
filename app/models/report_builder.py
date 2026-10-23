@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Custom report builder & scheduled reports (Epic 47, FR-237..FR-240; branch ``p3_reports``, band 311).
 
 * ``report_definitions`` -- a saved foundation ``Definition`` (``definition`` JSONB, stored as-is) plus the

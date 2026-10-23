@@ -1,4 +1,4 @@
-# ruff: noqa: D401
+# ruff: file-ignore[non-imperative-mood]
 """Segments contract (Epic 38, filling the Epic 36 stub, AD-39). The signature is FINAL
 (``tests/contracts/signatures.json``).
 

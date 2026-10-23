@@ -366,7 +366,7 @@ async def unarchive_client(ctx: RequestContext, db: AsyncSession, client_id: uui
 async def assert_client_accepts_demands(
     db: AsyncSession,
     client_id: uuid.UUID,
-    ctx: RequestContext | None = None,  # noqa: ARG001 - reserved (uniform service signature)
+    ctx: RequestContext | None = None,  # ruff: ignore[unused-function-argument] - reserved (uniform service signature)
 ) -> None:
     """Raise unless the client can take a new demand (Epic 4).
 

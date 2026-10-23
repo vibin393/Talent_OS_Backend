@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Ecosystem governance wiring (Epic 79), autodiscovered by ``core.hooks``.
 
 * subscribes to ``DsrCompleted(kind='erasure')`` -> the erasure downstream fan-out task;

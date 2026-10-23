@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 54 Copilot read tool ``interviews.list`` (FR-277): interviews of a demand or an application you can see, or
 your own (organiser / participant) -- ``interviews_service.list_for_demand`` / ``list_for_application`` /
 ``list_mine``. It never schedules, cancels or records an outcome."""

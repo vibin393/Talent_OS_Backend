@@ -90,7 +90,7 @@ def _out(s: EffectiveSettings) -> MatchingSettingsOut:
     )
 
 
-async def get_settings(ctx: RequestContext, db: AsyncSession) -> MatchingSettingsOut:  # noqa: ARG001
+async def get_settings(ctx: RequestContext, db: AsyncSession) -> MatchingSettingsOut:  # ruff: ignore[unused-function-argument]
     return _out(await effective(db))
 
 

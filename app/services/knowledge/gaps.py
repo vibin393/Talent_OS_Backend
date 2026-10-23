@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """FAQ gap report (Epic 62 A1 / B5): onboarding questions the assistant could not answer -- handed off, ungrounded or
 marked incorrect by the asker.
 
@@ -7,7 +7,7 @@ Epic 78 (FR-404): questions are clustered by the non-reversible ``topic_label`` 
 decrypted only for ``knowledge:manage`` holders; everyone else sees the label."""
 
 import re
-import uuid  # noqa: TC003
+import uuid  # ruff: ignore[typing-only-standard-library-import]
 from datetime import datetime
 from typing import Any
 

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Skill evidence suggestions from an interview (Epic 60, story 60.4; FR-303; coordinator decision C-10).
 
 * ``suggest_from_capture`` -- each item (skill name, proficiency 1..5, quote, segment) becomes a P3 skill suggestion of

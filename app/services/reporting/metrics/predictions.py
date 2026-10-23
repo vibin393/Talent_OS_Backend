@@ -1,4 +1,4 @@
-# ruff: noqa: E501, N812
+# ruff: file-ignore[line-too-long, lowercase-imported-as-non-lowercase]
 """Predictions dashboard tiles (Epic 52 A4; Epic 48 data). Every tile is a **supporting signal**, never a decision
 (NFR-37): the tile payload carries ``badge``. ``attrition`` appears only with ``prediction:read_attrition`` (owner rule
 ``analytics.governance.can_read_kind``, reached through ``core.prediction_port``: no service imports analytics). Subjects are limited to those the caller can read (demand / offer scope via the

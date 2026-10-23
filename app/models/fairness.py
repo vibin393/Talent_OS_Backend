@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Bias audit & adverse-impact reporting (Epic 49, branch ``p3_fairness``, migrations ``20261007_313_01..03``;
 FR-246..FR-249, AD-47, NFR-38).
 

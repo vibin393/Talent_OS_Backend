@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Shared helpers of the Epic 60 Interview Assistant tools (not a tool module: the loader imports only ``tools_*.py``).
 
 Every handler resolves the capture through ``interview_captures_service.agent_capture`` with the run's subject: a
@@ -35,7 +35,7 @@ def subject(tctx: Any) -> tuple[str, uuid.UUID] | None:
 
 
 def preview(title: str, describe: Any) -> Any:
-    async def _preview(tctx: Any, args: Any) -> ProposalPreview:  # noqa: ARG001
+    async def _preview(tctx: Any, args: Any) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
         return ProposalPreview(title=title[:200], summary=str(describe(args))[:4000], renderer=None)
 
     return _preview

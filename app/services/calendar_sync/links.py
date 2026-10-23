@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Event links and the version tag (Epic 72 stories 72.1 / 72.2, spec A3).
 
 * ``make_tag(interview_id, sequence)`` -- ``tos1:<interview_id>:<sequence>:<nonce8>`` (registered as the

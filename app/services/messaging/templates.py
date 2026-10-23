@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """SMS / WhatsApp channel templates (Epic 33, FR-172/173; ``messaging:configure`` for writes).
 
 * Bodies use the P1 ``{{ group.field }}`` merge catalogue; ``variables`` is the ordered list of merge paths a
@@ -120,7 +120,7 @@ def render(t: ChannelTemplate, data: merge_fields.MergeData) -> tuple[str, list[
 
 # ================================================================ CRUD
 async def list_templates(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     channel: str | None = None,
     status: str | None = None,
@@ -157,7 +157,7 @@ async def create_template(
 
 
 async def update_template(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     template_id: uuid.UUID,
     data: ChannelTemplateUpdate,

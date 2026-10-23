@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Plan submission and approval (Epic 44, FR-223, PRD 5.6) -- approval subject ``workforce_plan`` (AD-24) ★.
 
 * ``submit``: ``budgeted -> pending_approval`` (initial) or ``revision_draft -> pending_approval`` (revision). Every
@@ -69,7 +69,7 @@ async def _previous(db: AsyncSession, line: WorkforcePlanLine) -> WorkforcePlanL
     return await db.get(WorkforcePlanLine, line.supersedes_line_id) if line.supersedes_line_id else None
 
 
-async def check_revision(db: AsyncSession, plan: WorkforcePlan, lines: list[WorkforcePlanLine]) -> None:  # noqa: ARG001
+async def check_revision(db: AsyncSession, plan: WorkforcePlan, lines: list[WorkforcePlanLine]) -> None:  # ruff: ignore[unused-function-argument]
     """409 when a revision would cut below committed slots (Demands / Placements)."""
     for ln in lines:
         if ln.change_kind not in ("modified", "removed"):
@@ -211,7 +211,7 @@ async def _apply(db: AsyncSession, plan: WorkforcePlan) -> list[WorkforcePlanLin
     return approved
 
 
-async def on_final_decided(ctx: RequestContext, db: AsyncSession, decision: Any) -> None:  # noqa: ARG001
+async def on_final_decided(ctx: RequestContext, db: AsyncSession, decision: Any) -> None:  # ruff: ignore[unused-function-argument]
     plan = (
         await db.execute(
             select(WorkforcePlan).where(WorkforcePlan.id == decision.subject_id).with_for_update()
@@ -268,7 +268,7 @@ async def on_final_decided(ctx: RequestContext, db: AsyncSession, decision: Any)
     )
 
 
-async def describe(ctx: RequestContext, db: AsyncSession, ids: list[uuid.UUID]) -> dict[uuid.UUID, Any]:  # noqa: ARG001
+async def describe(ctx: RequestContext, db: AsyncSession, ids: list[uuid.UUID]) -> dict[uuid.UUID, Any]:  # ruff: ignore[unused-function-argument]
     from app.schemas.approvals import SubjectSummary
 
     rows = list((await db.execute(select(WorkforcePlan).where(WorkforcePlan.id.in_(ids)))).scalars())

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 79 (Phase 5 Governance) tenant tables (migration ``20261010_513_01_p5_gov``).
 
 * ``access_review_settings`` -- one row per Tenant: cadence, stale window, auto-revoke.

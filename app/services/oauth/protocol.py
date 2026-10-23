@@ -1,4 +1,4 @@
-# ruff: noqa: D401, E501
+# ruff: file-ignore[non-imperative-mood, line-too-long]
 """OAuth 2.1 protocol endpoints (Epic 67, stories 67.2-67.4; spec 0.2-0.5), with the frozen 66 signatures.
 
 * ``token``: ``client_credentials`` (tenant slug, active Installation, resource ``api``, no sensitive scope -- D-7),

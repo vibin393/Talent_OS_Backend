@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Projects Celery tasks (Epic 45; queue ``maintenance``, AD-54). Every task starts with ``tenant_id`` (except
 the fan-out).
 

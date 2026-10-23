@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Delivery and the Client Portal view of billing documents (FR-149).
 
 * ``send_document``: refused while the IRN is pending or before issue (409 ``pending_irn`` / ``invalid_state``);

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Pre-start compliance risk list (Epic 62 story 62.2, B1): Placements starting within N days (default 14) or active
 with expired mandatory items; missing items, last contact, portal last seen, chases sent, escalation Task and BGV
 status. Data scope = ``placement:read`` (recruiter / Account Manager / BU) through the P1 placement list filter."""

@@ -415,7 +415,7 @@ async def flag_missing(ctx: RequestContext, db: AsyncSession, today: date | None
 
 # ---------------------------------------------------------------- read contracts
 async def unapproved_timesheets(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     legal_entity_id: uuid.UUID,
     period_start: date,
@@ -473,7 +473,7 @@ async def _locked(db: AsyncSession, timesheet_id: uuid.UUID) -> bool:
 
 
 async def timesheet_state_for(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     placement_id: uuid.UUID,
     on_date: date,

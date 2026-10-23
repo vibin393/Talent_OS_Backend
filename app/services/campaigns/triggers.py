@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Re-engagement triggers (Epic 39 A8, FR-200, story 39.6).
 
 * Workflow action ``campaigns.enrol_in_sequence`` (contract key, Epic 36 catalogue): params ``{sequence_id,

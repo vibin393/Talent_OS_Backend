@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Keka HR adapter (Epic 71, spec A3; key ``keka``). Live mode only; tests use recorded fixtures (``httpx.MockTransport``).
 
 API (Keka public API v1, enabled per customer; confirmed with the vendor during onboarding -- spec Known gap 1):

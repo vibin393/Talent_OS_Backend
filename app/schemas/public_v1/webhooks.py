@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Public API v1 webhook shapes (Epic 68, spec A4): an App manages its OWN Subscriptions (``installation_id`` is the
 token's Installation; sending one is refused). Outputs reuse the internal DTOs (secrets only on create / rotate)."""
 

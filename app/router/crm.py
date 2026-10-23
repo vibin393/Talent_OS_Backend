@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Sales CRM endpoints (Epic 15, FR-83..FR-87): ``/crm/*``, ``/leads``, ``/lead-imports``, ``/opportunities``,
 ``/clients/{id}/opportunities``.
 

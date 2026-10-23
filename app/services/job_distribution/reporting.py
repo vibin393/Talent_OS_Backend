@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Board reporting (Epic 70, story 70.5; spec A6): per board and per Board Posting, within the caller's Demand read
 scope -- postings, applications (``source='job_board' AND source_ref=<board posting id>``; careers applications that
 carried ``src=<board>&bp=<id>`` are attributed the same way by the apply source resolvers), submissions, interviews,

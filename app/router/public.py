@@ -14,9 +14,9 @@ from app.core import rate_limit
 from app.core.context import get_context
 from app.core.errors import Forbidden
 from app.core.settings import get_settings
+from app.schemas.company_signup import SignupIn, SignupOut
 from app.schemas.find_workspace import FindWorkspaceIn, FindWorkspaceOut
 from app.schemas.interviews import PublicScorecardIn
-from app.schemas.company_signup import SignupIn, SignupOut
 from app.schemas.offers import AcceptIn, CandidateOfferView, DeclineIn, OfferActionOut
 from app.schemas.pipeline import PublicActionOut, PublicFeedbackIn, PublicLinkView, PublicSubmitIn
 from app.schemas.platform import SubProcessorOut

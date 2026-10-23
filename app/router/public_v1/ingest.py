@@ -1,4 +1,3 @@
-# ruff: noqa: E501
 """Unified-platform inbound data loops on the Public API v1.
 
 * ``POST /public/v1/assessments`` (Croar -> ATS): ``candidates:write``. Idempotent by ``event_id`` and by

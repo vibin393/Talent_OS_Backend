@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Registrations of the ``transcripts`` domain (autodiscovered by ``core.hooks``), Epic 53 (spec 0.15).
 
 Retention bindings: ``conversation_records`` <- ``transcript_segments``; ``recordings`` <- ``voice_sessions`` and

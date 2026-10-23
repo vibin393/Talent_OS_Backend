@@ -22,10 +22,10 @@ class PredictionReader(Protocol):
 
 
 class _NoPredictions:
-    def can_read_kind(self, principal: Any, kind: str) -> bool:  # noqa: ARG002
+    def can_read_kind(self, principal: Any, kind: str) -> bool:  # ruff: ignore[unused-method-argument]
         return False
 
-    async def model_cards(self, ctx: RequestContext, db: AsyncSession) -> list[Any]:  # noqa: ARG002
+    async def model_cards(self, ctx: RequestContext, db: AsyncSession) -> list[Any]:  # ruff: ignore[unused-method-argument]
         return []
 
 

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Public API / MCP request log (Epic 66, NFR-74): ``register_request_log`` adds an after-response hook
 (``scope["tos_after_response"]``, run by ``AfterResponseMiddleware``, as ``api_keys_service._register_request_log``)
 that writes one ``api_request_log`` row and meters ``api_request`` (``error`` when status >= 400).

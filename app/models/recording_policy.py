@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Tenant Recording Policy (Epic 53 table + gate, FR-294; migration ``20261008_400_03_p4_hubs``). Epic 58 owns the
 settings UI / API. Seed per tenant: ``IN`` / NULL / ``candidate_consent``; any jurisdiction not listed, or an unknown
 location, is not permitted."""

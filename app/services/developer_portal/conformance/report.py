@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The signed conformance report (Epic 74, spec 0.6; format and signing are Epic 69's ``conformance_report``):
 ``talentos.conformance/1`` with the seven required checks, ``observed_scopes`` / ``observed_hosts``, signed
 ``v1=<hex HMAC-SHA256>`` over the canonical JSON without ``signature`` using platform secret

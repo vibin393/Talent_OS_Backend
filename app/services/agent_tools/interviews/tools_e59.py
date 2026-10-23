@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Scheduling Agent tools of the ``interviews`` domain (Epic 59 Part B; ``owner_epic="59"``, ``version=1``).
 
 | Key | Risk | Default after burn-in |

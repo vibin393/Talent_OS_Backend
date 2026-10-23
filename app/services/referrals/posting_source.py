@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Pull-only posting source ``referral_reward`` (Epic 42 A6, AD-23), ledger ``payable`` only.
 
 The loader returns ``approved`` rewards with ``payout_channel='payroll'``; ``postings.load_unposted`` drops those
@@ -34,7 +34,7 @@ def _local_date(reward: ReferralReward) -> date:
     return reward.approved_at.astimezone(ZoneInfo(TZ)).date()
 
 
-async def load_rewards(ctx: RequestContext, db: AsyncSession, query: SourceQuery) -> list[SourceItem]:  # noqa: ARG001
+async def load_rewards(ctx: RequestContext, db: AsyncSession, query: SourceQuery) -> list[SourceItem]:  # ruff: ignore[unused-function-argument]
     if query.ledger != "payable":
         return []
     stmt = (

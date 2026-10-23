@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Worker "My Work" immigration (Epic 46 A3, AD-26). Runs in the worker org scope (``immigration_cases``,
 ``case_document_requests`` and ``permits`` of other Workers are invisible) and checks ownership explicitly
 (another Worker's case or request is a 404). Output: ``schemas/immigration_portal.py`` only -- no owner remarks,

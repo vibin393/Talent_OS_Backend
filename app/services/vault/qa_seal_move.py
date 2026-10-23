@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """In-migration sealing of onboarding Q&A plaintext (Epic 78, story 78.4, FR-404, AD-90).
 
 Run by ``20261010_512_03_qa_plain_drop`` (remainder sealing + verify) and by the downgrades of ``512_02`` / ``512_03``

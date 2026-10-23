@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Skill, new-skill, contract and rate-card suggestions (Epic 55, stories 55.2 / 55.3, FR-282).
 
 Agent tools only **write suggestions**: they never change ``demand_skills`` and never create ``TenantSkill`` rows

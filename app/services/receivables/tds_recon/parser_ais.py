@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Pure parser of the AIS (Annual Information Statement) TDS/TCS CSV export -- Epic 51, FR-254.
 
 Header rows above the table may carry ``PAN,<pan>`` and ``Assessment Year,<ay>`` (or ``Financial Year``). The table

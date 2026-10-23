@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Ledger sync (Epic 71, stories 71.4-71.6, FR-368..FR-370; migration ``<date>_505_02_ledger_sync``). Owner:
 ``app.services.ledger_sync``.
 

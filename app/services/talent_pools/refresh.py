@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Dynamic Pool refresh, diff and triggers (Epic 38 story 38.3, FR-192, FR-194, NFR-39).
 
 * ``request_refresh`` records a ``running`` refresh row and emits ``PoolRefreshRequested``; the after-commit

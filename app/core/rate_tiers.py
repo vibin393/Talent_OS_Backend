@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Rate Tiers (Epic 66, AD-78, FR-338). Pure: no I/O.
 
 | Tier         | Per minute | Burst (per second) | Per day   | MCP calls/min/session | Delegated user/min |

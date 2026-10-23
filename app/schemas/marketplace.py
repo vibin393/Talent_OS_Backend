@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Installation DTOs (Epic 66 minimal install contract; Epic 69 extends additively)."""
 
 import uuid

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The ``onboarding`` AgentSpec (Epic 62 A6, FR-310). A conversation agent (queue ``conversations``): a Worker's question
 starts or resumes a run on the thread; replies go out only as Grounded Answers. Owner = the thread's coordinator.
 ``fallback="none"``: a wait that ends at the wall clock is normal; a failed run hands the question to the coordinator

@@ -770,7 +770,7 @@ async def copy_previous(ctx: RequestContext, db: AsyncSession, ts: Timesheet) ->
     return ts
 
 
-async def refresh_prefill(ctx: RequestContext, db: AsyncSession, ts: Timesheet) -> Timesheet:  # noqa: ARG001
+async def refresh_prefill(ctx: RequestContext, db: AsyncSession, ts: Timesheet) -> Timesheet:  # ruff: ignore[unused-function-argument]
     if ts.status not in EDITABLE:
         raise not_editable(ts.status)
     cfg = await config_version(db, ts.placement_id, ts.config_version)
@@ -892,7 +892,7 @@ async def summaries(db: AsyncSession, rows: Sequence[Timesheet]) -> list[Timeshe
 
 
 async def list_timesheets(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     placement_id: uuid.UUID | None = None,
@@ -948,7 +948,7 @@ async def approval_history(db: AsyncSession, ts: Timesheet) -> tuple[list[Approv
     return out, current
 
 
-async def detail(ctx: RequestContext, db: AsyncSession, timesheet_id: uuid.UUID) -> TimesheetDetailOut:  # noqa: ARG001
+async def detail(ctx: RequestContext, db: AsyncSession, timesheet_id: uuid.UUID) -> TimesheetDetailOut:  # ruff: ignore[unused-function-argument]
     ts = await get_timesheet(db, timesheet_id)
     base = (await summaries(db, [ts]))[0]
     cfg = await config_version(db, ts.placement_id, ts.config_version)

@@ -189,7 +189,7 @@ async def _assert_client(db: AsyncSession, client_id: uuid.UUID) -> None:
 
 
 async def get_client_defaults(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     client_id: uuid.UUID,
 ) -> ClientTimeDefaultsOut:

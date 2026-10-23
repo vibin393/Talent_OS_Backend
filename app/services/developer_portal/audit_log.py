@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The partner org audit log (Epic 74, spec A5): append-only rows for every credential and workspace action. Details
 carry names, ids and counts only -- never secrets, codes or tokens (a key filter drops anything that looks like one)."""
 

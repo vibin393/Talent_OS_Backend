@@ -57,7 +57,7 @@ async def _clear_default(db: AsyncSession, keep: uuid.UUID | None) -> None:
 
 
 async def list_terms(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     include_archived: bool = False,
@@ -69,7 +69,7 @@ async def list_terms(
     return [PaymentTermOut.model_validate(r) for r in (await db.execute(stmt)).scalars()]
 
 
-async def create_term(ctx: RequestContext, db: AsyncSession, data: PaymentTermIn) -> PaymentTermOut:  # noqa: ARG001
+async def create_term(ctx: RequestContext, db: AsyncSession, data: PaymentTermIn) -> PaymentTermOut:  # ruff: ignore[unused-function-argument]
     await ensure_seeded(db)
     if data.is_default:
         await _clear_default(db, None)
@@ -81,7 +81,7 @@ async def create_term(ctx: RequestContext, db: AsyncSession, data: PaymentTermIn
 
 
 async def update_term(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     term_id: uuid.UUID,
     data: PaymentTermUpdate,
@@ -99,7 +99,7 @@ async def update_term(
     return PaymentTermOut.model_validate(row)
 
 
-async def archive_term(ctx: RequestContext, db: AsyncSession, term_id: uuid.UUID) -> PaymentTermOut:  # noqa: ARG001
+async def archive_term(ctx: RequestContext, db: AsyncSession, term_id: uuid.UUID) -> PaymentTermOut:  # ruff: ignore[unused-function-argument]
     row = await _get(db, term_id, lock=True)
     if row.is_default:
         raise conflict("payment_terms_default", "Choose another default before archiving these payment terms")
@@ -148,7 +148,7 @@ async def payment_terms_days(
 
 
 async def due_date(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     client_id: uuid.UUID | None,
     contract_id: uuid.UUID | None,

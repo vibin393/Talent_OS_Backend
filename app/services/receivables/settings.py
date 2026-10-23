@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Per-tenant receivables settings (lazy row): aging buckets, auto-allocate order, TDS variance tolerance, PTP grace
 days, reminder rules."""
 
@@ -26,11 +26,11 @@ def buckets_of(row: ReceivablesSettings) -> list[int]:
     return sorted({int(b) for b in raw if int(b) > 0}) or [30, 60, 90]
 
 
-async def get_settings(ctx: RequestContext, db: AsyncSession) -> ReceivablesSettingsOut:  # noqa: ARG001
+async def get_settings(ctx: RequestContext, db: AsyncSession) -> ReceivablesSettingsOut:  # ruff: ignore[unused-function-argument]
     return ReceivablesSettingsOut.model_validate(await get_settings_row(db))
 
 
-async def update_settings(ctx: RequestContext, db: AsyncSession, data: ReceivablesSettingsUpdate) -> ReceivablesSettingsOut:  # noqa: ARG001
+async def update_settings(ctx: RequestContext, db: AsyncSession, data: ReceivablesSettingsUpdate) -> ReceivablesSettingsOut:  # ruff: ignore[unused-function-argument]
     row = await get_settings_row(db)
     for key, value in data.model_dump(exclude_unset=True).items():
         if value is not None:

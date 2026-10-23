@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Shared rules of the ``talent_pools`` domain (Epic 38).
 
 * **Pool visibility** (``visible``): owner, team Pools of the viewer's teams, tenant Pools, Pools explicitly

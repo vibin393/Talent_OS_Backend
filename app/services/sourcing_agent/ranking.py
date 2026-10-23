@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Deterministic shortlist order (Epic 56, AD-71 / AD-8). Pure: no I/O, no model input.
 
 Order: ``overall`` descending (the stored P1 ``matches.overall``; unscored candidates rank after every scored one),

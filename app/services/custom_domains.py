@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Custom Career Portal domains (Phase 2 Epic 33, FR-174, AD-38). Re-exported by ``platform_service``.
 
 * ``custom_domains`` is a platform table (no RLS, no PII), read and written through ``platform_session`` with an

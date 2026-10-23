@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 56 Sourcing Agent tool ``pipeline.add_candidate`` (risk ``high``: only ever a Proposal).
 
 It is offered only when the recruiter enabled "Let the agent propose pipeline adds" (checked when the Proposal is

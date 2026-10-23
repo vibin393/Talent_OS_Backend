@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Platform skills graph seed (Epic 37, FR-187): ``data/skill_graph_seed.yaml``, ESCO-derived (CC BY 4.0).
 
 ``sync_graph_seed(conn)`` runs as the owner role (``talent_app`` has SELECT only on the platform tables) from

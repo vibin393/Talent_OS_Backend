@@ -15,7 +15,7 @@ class ManualWhatsAppProvider(ChannelAdapter):
     category = "whatsapp"
     provider_key = "manual"
 
-    async def _deliver(self, spec: SendSpec) -> SendResult:  # noqa: ARG002
+    async def _deliver(self, spec: SendSpec) -> SendResult:  # ruff: ignore[unused-method-argument]
         raise ManualActionRequired(
             "whatsapp: send this template message by hand from the manual queue", {"op": "send"}
         )
@@ -30,13 +30,13 @@ class ManualWhatsAppProvider(ChannelAdapter):
     async def list_templates(self) -> list[ProviderTemplate]:
         return []  # Manual connector: templates are entered by hand
 
-    async def _other(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # noqa: ARG002
+    async def _other(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         raise ManualActionRequired(f"whatsapp: complete {op} manually", {"op": op})
 
-    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # noqa: ARG002
+    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # ruff: ignore[unused-method-argument]
         return False
 
-    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # noqa: ARG002
+    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         return {"events": []}
 
 

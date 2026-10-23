@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Reconciliation (Epic 71, story 71.6, spec A9): per Legal Entity and date range, each issued (or ledger-linked)
 invoice with its Talent OS amount, outstanding and status against the ledger amount, balance and status
 (``document_status``, read once per request). Flags: ``amount_differs``, ``status_differs``, ``only_in_talent_os``

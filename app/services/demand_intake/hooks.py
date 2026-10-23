@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Demand intake wiring (Epic 55), autodiscovered by ``core.hooks``.
 
 * notification types ``demand_intake_unmatched`` (fallback owner, with the Task) and ``demand_drafts_created``
@@ -22,10 +22,10 @@ from app.core.events import subscribe
 def _notifications() -> None:
     from app.services import notifications_service as ns
 
-    async def nobody(db: AsyncSession, payload: Any) -> set[Any]:  # noqa: ARG001 - delivered with explicit recipients
+    async def nobody(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument] - delivered with explicit recipients
         return set()
 
-    async def render(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG001
+    async def render(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
         return ns.Content(
             title=str(payload.get("title") or "Demand Agent"), link_path=payload.get("link_path")
         )

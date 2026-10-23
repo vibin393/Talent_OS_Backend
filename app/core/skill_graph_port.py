@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Skills graph port for Phase 1 matching and search (Epic 37, AD-40 / AD-41).
 
 P1 ``matching`` / ``search`` must not import the Phase 3 ``skills`` package (import-linter ``p3-p1p2-below``), and

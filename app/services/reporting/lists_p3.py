@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Phase 3 list kinds (Epic 52 A5, FR-262): drill-down lists and export sources for the ten kinds allowed by
 ``ck_exports_kind`` (foundation 0.3).
 

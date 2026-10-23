@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Referral erasure handler ``referrals.records`` (47), Epic 42 A9 (FR-258, AD-34).
 
 * **Referee as subject** (``referrals.candidate_id`` in the subject's ids, or the subject's email on a referral

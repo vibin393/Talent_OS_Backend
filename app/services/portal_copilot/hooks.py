@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D400, D415
+# ruff: file-ignore[line-too-long, missing-trailing-period, missing-terminal-punctuation]
 """Portal Copilot wiring (Epic 77), autodiscovered by ``core.hooks``:
 
 * the Candidate implicit-rights resolver for portal-owned runs (``agent_runtime.principals.register_candidate_rights``);

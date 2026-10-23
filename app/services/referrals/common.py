@@ -1,4 +1,4 @@
-# ruff: noqa: D401
+# ruff: file-ignore[non-imperative-mood]
 """Shared helpers of the ``referrals`` domain (Epic 42): permissions, errors, the referrer identity, settings,
 clock and the data scope of the internal views."""
 

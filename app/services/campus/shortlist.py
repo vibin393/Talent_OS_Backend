@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Score-based shortlist (Epic 43 story 43.4, FR-219, FR-257).
 
 * ``propose`` -- read only: ``assessed`` registrations by score; ``top_n`` keeps every registration scoring at least the

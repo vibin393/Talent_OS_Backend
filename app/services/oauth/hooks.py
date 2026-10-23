@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """OAuth registrations (Epic 66): the scope catalogue v1, the post-discovery scope validation (startup fails on a
 non-delegable / ★ / unknown mapping) and the token notification types."""
 
@@ -28,7 +28,7 @@ def _register_notifications() -> None:
     from app.events.ecosystem import OAuthTokenFamilyRevoked
     from app.services import notifications_service as ns
 
-    async def admins(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # noqa: ARG001
+    async def admins(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
         from sqlalchemy import text
 
         rows = await db.execute(
@@ -40,7 +40,7 @@ def _register_notifications() -> None:
         )
         return {r[0] for r in rows}
 
-    async def render(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG001
+    async def render(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
         return ns.Content(
             title="A connected app's refresh token was reused; its access was revoked",
             body="Someone may have copied the app's credentials. Review the installation before reconnecting.",
@@ -63,4 +63,4 @@ def _register_notifications() -> None:
 
 _register_notifications()
 
-from app.services.oauth import hooks_e67  # noqa: E402, F401  (Epic 67 registrations)
+from app.services.oauth import hooks_e67  # ruff: ignore[unused-import]  (Epic 67 registrations)

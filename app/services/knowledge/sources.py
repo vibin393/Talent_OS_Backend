@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Knowledge Sources admin (Epic 62 A1, story 62.4; ``knowledge:manage`` at the router, audited rows).
 
 Versions are append-only: every content change is a new version (markdown, or an uploaded PDF / DOCX / TXT up to
@@ -55,7 +55,7 @@ async def _get(db: AsyncSession, source_id: uuid.UUID, *, lock: bool = False) ->
 
 
 async def list_sources(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     status: str | None = None,
@@ -110,7 +110,7 @@ async def _versions(db: AsyncSession, s: KnowledgeSource) -> list[VersionOut]:
     ]
 
 
-async def get_source(ctx: RequestContext, db: AsyncSession, source_id: uuid.UUID) -> SourceDetailOut:  # noqa: ARG001
+async def get_source(ctx: RequestContext, db: AsyncSession, source_id: uuid.UUID) -> SourceDetailOut:  # ruff: ignore[unused-function-argument]
     s = await _get(db, source_id)
     versions = await _versions(db, s)
     current = next((v for v in versions if v.version_no == s.current_version_no), None)
@@ -119,7 +119,7 @@ async def get_source(ctx: RequestContext, db: AsyncSession, source_id: uuid.UUID
     )
 
 
-async def list_versions(ctx: RequestContext, db: AsyncSession, source_id: uuid.UUID) -> list[VersionOut]:  # noqa: ARG001
+async def list_versions(ctx: RequestContext, db: AsyncSession, source_id: uuid.UUID) -> list[VersionOut]:  # ruff: ignore[unused-function-argument]
     return await _versions(db, await _get(db, source_id))
 
 

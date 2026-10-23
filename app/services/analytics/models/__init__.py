@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Classical, explainable models (Epic 48 A4/A5). **The only package that imports numpy / scikit-learn**
 (``tests/modules/analytics/test_import_guard.py``).
 

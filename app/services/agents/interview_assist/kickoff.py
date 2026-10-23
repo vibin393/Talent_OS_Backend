@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Default kickoff of the Interview Assistant (Epic 60). Event-triggered runs (``capture_ready``) and runs started
 without a domain kickoff get the Interview id only; the agent reads the capture id, interviewers and Kit with
 ``interviews__get`` / ``interview_kits__get``. Manual re-runs pass ``interview_captures_service.kickoff_for``. Trusted ids

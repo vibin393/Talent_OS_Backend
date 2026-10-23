@@ -56,7 +56,7 @@ def _policy_out(row: RetentionPolicy | None) -> RetentionPolicyOut:
     )
 
 
-async def get_policy(ctx: RequestContext, db: AsyncSession) -> RetentionPolicyOut:  # noqa: ARG001
+async def get_policy(ctx: RequestContext, db: AsyncSession) -> RetentionPolicyOut:  # ruff: ignore[unused-function-argument]
     return _policy_out(await _policy(db))
 
 
@@ -151,14 +151,14 @@ async def preview(
     return await _run_out(db, run)
 
 
-async def list_runs(ctx: RequestContext, db: AsyncSession, params: PageParams) -> Page[RetentionRunOut]:  # noqa: ARG001
+async def list_runs(ctx: RequestContext, db: AsyncSession, params: PageParams) -> Page[RetentionRunOut]:  # ruff: ignore[unused-function-argument]
     page = await paginate(db, select(RetentionRun).order_by(RetentionRun.created_at.desc(), RetentionRun.id), params)
     return Page[RetentionRunOut](
         items=[await _run_out(db, r) for r in page.items], total=page.total, page=page.page, page_size=page.page_size
     )
 
 
-async def get_run(ctx: RequestContext, db: AsyncSession, run_id: uuid.UUID) -> RetentionRunOut:  # noqa: ARG001
+async def get_run(ctx: RequestContext, db: AsyncSession, run_id: uuid.UUID) -> RetentionRunOut:  # ruff: ignore[unused-function-argument]
     run = await db.get(RetentionRun, run_id)
     if run is None:
         raise NotFound("Retention run not found")
@@ -201,7 +201,7 @@ async def execute(ctx: RequestContext, db: AsyncSession, run_id: uuid.UUID, *, a
     return await _run_out(db, run)
 
 
-async def cancel(ctx: RequestContext, db: AsyncSession, run_id: uuid.UUID) -> RetentionRunOut:  # noqa: ARG001
+async def cancel(ctx: RequestContext, db: AsyncSession, run_id: uuid.UUID) -> RetentionRunOut:  # ruff: ignore[unused-function-argument]
     run = await db.get(RetentionRun, run_id, with_for_update=True)
     if run is None:
         raise NotFound("Retention run not found")

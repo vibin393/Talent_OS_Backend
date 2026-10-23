@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Conformance runs for external Apps (Epic 74, story 74.4, spec 0.6).
 
 ``start_run`` (App installed and ``active`` in the owner's sandbox; at least one active sandbox Subscription when the App

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Reconciliation runner (NFR-25): runs every ``register_reconciliation_check`` (core registry) for a tenant, stores
 ``reconciliation_runs`` / ``reconciliation_findings`` and raises an AD-37 alert (log + audit) on findings.
 
@@ -44,7 +44,7 @@ def _f(check: str, kind: str, sid: uuid.UUID | None, **details: object) -> Findi
     return Finding(check=check, severity="error", subject_kind=kind, subject_id=sid, details={k: str(v) for k, v in details.items()})
 
 
-async def check_payments(ctx: RequestContext, db: AsyncSession, as_of: date) -> list[Finding]:  # noqa: ARG001
+async def check_payments(ctx: RequestContext, db: AsyncSession, as_of: date) -> list[Finding]:  # ruff: ignore[unused-function-argument]
     out = []
     for p in (await db.execute(select(Payment))).scalars():
         allocated, inr = await alloc_svc.payment_totals(db, p.id)
@@ -59,7 +59,7 @@ async def check_payments(ctx: RequestContext, db: AsyncSession, as_of: date) -> 
     return out
 
 
-async def check_documents(ctx: RequestContext, db: AsyncSession, as_of: date) -> list[Finding]:  # noqa: ARG001
+async def check_documents(ctx: RequestContext, db: AsyncSession, as_of: date) -> list[Finding]:  # ruff: ignore[unused-function-argument]
     out = []
     docs = await documents(db)
     bals = await settlement.balances(db, docs)
@@ -73,7 +73,7 @@ async def check_documents(ctx: RequestContext, db: AsyncSession, as_of: date) ->
     return out
 
 
-async def check_credit_notes(ctx: RequestContext, db: AsyncSession, as_of: date) -> list[Finding]:  # noqa: ARG001
+async def check_credit_notes(ctx: RequestContext, db: AsyncSession, as_of: date) -> list[Finding]:  # ruff: ignore[unused-function-argument]
     reversed_ids = select(AllocationReversal.allocation_id)
     rows = (
         await db.execute(
@@ -137,11 +137,11 @@ async def run(ctx: RequestContext, db: AsyncSession, as_of: date | None = None) 
     return ReconRunOut.model_validate(run_row)
 
 
-async def list_runs(ctx: RequestContext, db: AsyncSession) -> list[ReconRunOut]:  # noqa: ARG001
+async def list_runs(ctx: RequestContext, db: AsyncSession) -> list[ReconRunOut]:  # ruff: ignore[unused-function-argument]
     return [ReconRunOut.model_validate(r) for r in (await db.execute(select(ReconciliationRun).order_by(ReconciliationRun.started_at.desc()).limit(100))).scalars()]
 
 
-async def findings(ctx: RequestContext, db: AsyncSession, run_id: uuid.UUID) -> list[ReconFindingOut]:  # noqa: ARG001
+async def findings(ctx: RequestContext, db: AsyncSession, run_id: uuid.UUID) -> list[ReconFindingOut]:  # ruff: ignore[unused-function-argument]
     rows = (await db.execute(select(ReconciliationFinding).where(ReconciliationFinding.run_id == run_id).order_by(ReconciliationFinding.check))).scalars()
     return [ReconFindingOut.model_validate(r) for r in rows]
 

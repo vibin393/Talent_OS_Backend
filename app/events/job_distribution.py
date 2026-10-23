@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Job board distribution domain events (Epic 70, spec A7). Public Events ``board_posting.*`` are built from these."""
 
 import dataclasses

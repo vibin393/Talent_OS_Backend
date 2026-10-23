@@ -1,6 +1,6 @@
 """Compatibility shim (Epic 13): the business-hours calculator moved to ``app.core.business_hours``."""
 
-from app.core.business_hours import *  # noqa: F403
+from app.core.business_hours import *  # ruff: ignore[undefined-local-with-import-star]
 from app.core.business_hours import (
     WEEKDAYS,
     Calendar,

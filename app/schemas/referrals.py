@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Internal referral schemas (Epic 42): programs, settings, the full referral record (``referral:read``), rewards,
 payout export and the public referee page. Referrer-facing payloads live in ``schemas/referrals_referrer.py``."""
 

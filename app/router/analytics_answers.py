@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Analytics answers (Epic 64, FR-316..FR-318): ``/analytics/answers/*``. Internal users only (API keys refused, 403);
 every answer is private to its user (404 for anyone else). Asking goes through the Copilot endpoints (Epic 54,
 ``agent_key="analytics"``); these endpoints read, re-preview (as the current viewer) and link saved reports."""

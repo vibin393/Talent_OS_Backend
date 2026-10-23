@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Audiences (Epic 39 A2, FR-196, story 39.1).
 
 ``resolve`` = union of the include sources (Pools via ``pools_service.member_ids``, Segments via

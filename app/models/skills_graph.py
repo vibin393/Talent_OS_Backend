@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Skills graph & proficiency tables (Epic 37, FR-187..FR-191, AD-41; branch ``p3_skills``).
 
 * ``skill_edges`` -- platform edges between global ``skills`` (no RLS, SELECT-only for ``talent_app``, listed in

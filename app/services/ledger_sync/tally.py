@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Tally import files (Epic 71, story 71.4, spec A7; D-5): one file per run, Legal Entity and period with the issued
 invoices, notes and (``include_payments``) receipts of the period; optional party-ledger masters. Each voucher's
 ``REMOTEID`` is ``talentos-{document_id}-v{version}`` so re-generating a period gives the same ids (TallyPrime updates

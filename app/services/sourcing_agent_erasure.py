@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Sourcing Agent erasure handler ``sourcing_agent.shortlists`` (order 65), Epic 56 (FR-326, AD-34).
 
 On Candidate erasure the subject's (and merged ids') ``agent_shortlist_entries`` (ranks, sources, explanation, drafts)

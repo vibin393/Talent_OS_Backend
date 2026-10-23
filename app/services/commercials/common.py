@@ -65,7 +65,7 @@ async def legal_entity(db: AsyncSession, legal_entity_id: uuid.UUID) -> LegalEnt
 
 
 async def le_today(db: AsyncSession, legal_entity_id: uuid.UUID | None, at: datetime | None = None) -> date:
-    """Business "today" in the Legal Entity's timezone (AD-14)."""  # noqa: D401
+    """Business "today" in the Legal Entity's timezone (AD-14)."""  # ruff: ignore[non-imperative-mood]
     tz = DEFAULT_TZ
     if legal_entity_id is not None:
         found = (

@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Invoice drafts (FR-147, FR-148): create, price, tax-preview, edit manual lines, recompute, discard; read models.
 
 Drafts are never numbered (AD-18). Every write goes through ``refresh`` which recomputes the whole document from

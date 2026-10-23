@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Per-tenant training (Epic 48 A4, FR-244, NFR-37/39). Runs inside one tenant RLS session (one tenant per task).
 
 ``train(db, tenant_id, kind)``:
@@ -68,7 +68,7 @@ def minority(rows: Sequence[TrainingRow]) -> int:
     return min(pos, len(rows) - pos)
 
 
-def fit_rows(spec: FeatureSpec, rows: Sequence[TrainingRow], seed: int):  # type: ignore[no-untyped-def]  # noqa: ANN201
+def fit_rows(spec: FeatureSpec, rows: Sequence[TrainingRow], seed: int):  # type: ignore[no-untyped-def]  # ruff: ignore[missing-return-type-undocumented-public-function]
     from app.services.analytics import models as ml
 
     train, holdout = split(rows)

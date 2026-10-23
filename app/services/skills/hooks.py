@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Registrations of the ``skills`` domain (autodiscovered by ``core.hooks``), Epic 37 A6.
 
 * Event subscriptions -> ``app.tasks.skills`` (after commit): ``SkillGraphChanged`` (cache + stale matches),

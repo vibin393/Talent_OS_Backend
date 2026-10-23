@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Outreach drafts and the approved send (Epic 56 stories 56.3 / 56.4, FR-287 / FR-288).
 
 * ``validate_draft(text, pay)`` (pure) -- refuses pay amounts outside the published ``min..max`` range

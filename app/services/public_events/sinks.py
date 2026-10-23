@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Outbox sink registry (Epic 66, AD-79). Owners register from their ``hooks.py``: ``connector_triggers`` (66),
 ``webhooks`` (68), later consumers (79). Sinks must be idempotent (at-least-once delivery)."""
 

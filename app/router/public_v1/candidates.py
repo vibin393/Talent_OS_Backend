@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """``/public/v1/candidates`` (Epic 67, spec A4): ``candidates:read`` / ``candidates:write`` (+ ``pii.*`` unmask)."""
 
 import uuid

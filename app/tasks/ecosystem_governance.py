@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Ecosystem governance Celery tasks (Epic 79). Per-tenant tasks start with ``tenant_id``.
 
 * ``ecosystem_governance.fan_out_erasure(tenant_id, dsr_id)`` (queue ``ecosystem``) -- DSR erasure downstream fan-out.

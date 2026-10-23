@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Registrations of the ``onboarding`` domain (Epic 23 A8; autodiscovered by ``core.hooks``).
 
 * Event subscriptions -> ``onboarding.handle_event`` (queue ``interactive``): ``PlacementCreated`` /

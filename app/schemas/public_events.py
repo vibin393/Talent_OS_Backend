@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Public Event schemas (Epic 66, AD-79): the replay / backfill read model of ``outbox_events`` (FR-334/350).
 
 ``EventOut`` mirrors the frozen wire envelope (``public_events_service.envelope``). ``PublicPage`` comes from

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Public Demands and Postings (Epic 67, spec A4). Reads use ``demands.common.access_condition`` (owner / BU scope
 plus assignments). ``POST /demands`` creates a draft only (``records.create_demand_row``); submit / approve / open stay
 in the web app (★). Postings publish / close to the careers site through ``demands.jd.publish`` / ``unpublish``: the

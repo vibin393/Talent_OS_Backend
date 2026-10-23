@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Transfer confirmation (Epic 41 A4, FR-211) -- human only (*, FR-257).
 
 ``confirm`` (``mobility:transfer`` + ``core.actors.require_human``; 403 ``human_only_action`` for AI / workflow /

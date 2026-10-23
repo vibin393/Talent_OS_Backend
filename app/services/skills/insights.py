@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Skills supply and demand insight (Epic 37 A5, FR-191).
 
 Per skill: ``open_demand`` (open / on-hold Demands the caller may read: ``demand:read`` scope OR assignee),

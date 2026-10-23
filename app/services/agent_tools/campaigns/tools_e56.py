@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 56 Sourcing Agent tools of the ``campaigns`` domain (FR-288).
 
 * ``messaging.cap_status`` (read) -- per-channel contactability of up to 25 candidates under the P3 marketing
@@ -89,7 +89,7 @@ class EnrolOut(Out):
     refused: list[Refusal]
 
 
-async def _enrol_intent(tctx: Any, args: EnrolIn) -> SendIntent:  # noqa: ARG001
+async def _enrol_intent(tctx: Any, args: EnrolIn) -> SendIntent:  # ruff: ignore[unused-function-argument]
     return SendIntent(
         recipients=tuple(Recipient(kind="candidate", id=cid, channel="email") for cid in dict.fromkeys(args.candidate_ids)),
         templated=True, template_ref=f"sequence:{args.sequence_id}",

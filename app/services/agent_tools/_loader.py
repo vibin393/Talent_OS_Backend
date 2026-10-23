@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """``load_tool_modules(package)`` -- imports every ``tools_*.py`` (and, Epic 73, ``exposure_*.py``) module of an ``agent_tools`` domain package (Epic 53).
 Epics add tool files; nobody edits a domain package's ``hooks.py``."""
 

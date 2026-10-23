@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Controlled tool registry (Epic 53, AD-59, FR-266). Tools register only from
 ``app/services/agent_tools/<domain>/hooks.py`` (which loads every ``tools_*.py``).
 

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Platform index writer/reader (Epic 75, spec A3). The **only** writers of ``network_listings`` -- always in a
 ``platform_session``. The caller (sync task) has already projected the tenant's careers-public data; the index never
 reads tenant data itself."""
@@ -119,7 +119,7 @@ async def set_decision(
     await pdb.execute(update(NetworkListing).where(NetworkListing.id == listing_id).values(**values))
 
 
-async def unlist(pdb: AsyncSession, *, tenant_id: uuid.UUID, posting_ref: uuid.UUID, reason: str) -> bool:  # noqa: ARG001 - reason documents the caller's intent
+async def unlist(pdb: AsyncSession, *, tenant_id: uuid.UUID, posting_ref: uuid.UUID, reason: str) -> bool:  # ruff: ignore[unused-function-argument] - reason documents the caller's intent
     """Unlist one posting of a tenant and blank its text (DPDP: no stale public text). Terminal ``removed`` rows are
     left untouched."""
     listing = (
@@ -146,7 +146,7 @@ def _blank(listing: NetworkListing, *, status: str) -> None:
     listing.description_text = ""
 
 
-async def unlist_tenant(pdb: AsyncSession, tenant_id: uuid.UUID, *, reason: str) -> int:  # noqa: ARG001 - reason documents the caller's intent
+async def unlist_tenant(pdb: AsyncSession, tenant_id: uuid.UUID, *, reason: str) -> int:  # ruff: ignore[unused-function-argument] - reason documents the caller's intent
     """Unlist every (non-terminal) listing of a tenant and blank text + search vector in one statement."""
     result = await pdb.execute(
         update(NetworkListing)

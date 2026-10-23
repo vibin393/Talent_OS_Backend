@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Installed-connector operations (Epic 66, spec 0.10): the catalogue view, connection tests, manual sync runs and the
 one adapter resolver domain sync handlers use (``adapter_for``)."""
 
@@ -34,7 +34,7 @@ from app.services.integrations.runner import (
 HEALTH_TIMEOUT_SECONDS = 10
 
 
-async def available_connectors(ctx: RequestContext, db: AsyncSession) -> list[ConnectorListingOut]:  # noqa: ARG001
+async def available_connectors(ctx: RequestContext, db: AsyncSession) -> list[ConnectorListingOut]:  # ruff: ignore[unused-function-argument]
     rows = list(
         (
             await db.execute(

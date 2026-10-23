@@ -24,11 +24,11 @@ class SegmentEvaluation(BaseModel):
 
 
 # ---------------------------------------------------------------- Epic 38 API DTOs (not part of the contract)
-from typing import Annotated, Literal  # noqa: E402
+from typing import Annotated, Literal  # ruff: ignore[module-import-not-at-top-of-file]
 
-from pydantic import Field, StringConstraints  # noqa: E402
+from pydantic import Field, StringConstraints  # ruff: ignore[module-import-not-at-top-of-file]
 
-from app.schemas.semantic import ColumnMeta  # noqa: E402
+from app.schemas.semantic import ColumnMeta  # ruff: ignore[module-import-not-at-top-of-file]
 
 Visibility = Literal["private", "team", "tenant"]
 SegmentName = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=200)]

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """``/public/v1/webhooks`` (Epic 68, spec A4): an App's OWN Subscriptions (scope ``webhooks:manage``, app tokens only --
 API keys get 403 ``insufficient_scope``, D-24). Another Installation's or a tenant-owned Subscription -> 404."""
 

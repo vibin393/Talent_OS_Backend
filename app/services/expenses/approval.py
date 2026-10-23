@@ -287,7 +287,7 @@ async def _finalize(db: AsyncSession, claim: ExpenseClaim, actor: ActorRef, *, a
     )
 
 
-async def on_final_decided(ctx: RequestContext, db: AsyncSession, decision: FinalDecision) -> None:  # noqa: ARG001
+async def on_final_decided(ctx: RequestContext, db: AsyncSession, decision: FinalDecision) -> None:  # ruff: ignore[unused-function-argument]
     claim = await get_claim(db, decision.subject_id, lock=True)
     if claim.status not in IN_FLIGHT:
         return

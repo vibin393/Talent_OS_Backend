@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Candidate / Worker self-service: "Where your data went" (Epic 79 story 79.5, FR-408).
 
 Lists the Installations the signed-in subject was exposed to -- display name, publisher, purpose(s), destination

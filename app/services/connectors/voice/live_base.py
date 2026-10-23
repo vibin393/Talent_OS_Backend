@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Shared base of the real telephony adapters (Epic 76, spec A2): Exotel, Twilio and Plivo.
 
 Adapters see only ``core.integrations``, ``core.net_safety``, ``core.signing``, the voice DTOs and their own package.
@@ -131,7 +131,7 @@ class LiveTelephonyBase:
     async def delete_recording(self, recording_ref: str) -> Mapping[str, Any]:
         raise NotImplementedError
 
-    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # noqa: ARG002
+    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # ruff: ignore[unused-method-argument]
         return False  # verified by the ingress through the manifest WebhookSpec
 
     def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:
@@ -141,7 +141,7 @@ class LiveTelephonyBase:
     async def schedule_call(self, req: CallSessionRequestDTO) -> CallSessionDTO:
         raise ManualActionRequired(USE_CALL, {"op": "schedule_call", "voice_session_id": str(req.voice_session_id)})
 
-    async def start_call(self, external_ref: str) -> CallSessionDTO:  # noqa: ARG002
+    async def start_call(self, external_ref: str) -> CallSessionDTO:  # ruff: ignore[unused-method-argument]
         raise ManualActionRequired(USE_CALL, {"op": "start_call"})
 
     async def end_call(self, external_ref: str) -> CallSessionDTO:
@@ -151,7 +151,7 @@ class LiveTelephonyBase:
     async def fetch_recording(self, recording_ref: str) -> RecordingDTO | None:
         raise NotImplementedError
 
-    async def fetch_transcript(self, transcript_ref: str) -> TranscriptDTO | None:  # noqa: ARG002
+    async def fetch_transcript(self, transcript_ref: str) -> TranscriptDTO | None:  # ruff: ignore[unused-method-argument]
         return None  # transcription is the ``stt`` category's (Epic 76 A5)
 
     async def _download(self, url: str) -> RecordingDTO:

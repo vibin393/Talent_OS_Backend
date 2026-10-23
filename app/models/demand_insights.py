@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Demand insights (Epic 55, stories 55.2-55.5; migrations ``20261008_402_02_field_sources`` and
 ``20261008_402_03_demand_flags``). Owner: ``demand_insights``.
 

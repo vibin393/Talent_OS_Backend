@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Stateless Streamable-HTTP transport for MCP (Epic 73, spec 0.1; AD-84, D-23). Hand-rolled, no SDK dependency.
 
 * ``POST /api/mcp``: one JSON-RPC message; the answer is always ``application/json`` (never a stream). Notifications and

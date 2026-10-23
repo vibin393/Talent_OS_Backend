@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Self-scheduling offers, picks and counter-proposals (Epic 59 stories 59.2 / 59.3; FR-298, NFR-57).
 
 * ``send`` -- a ``draft`` offer becomes ``open``: older offers are superseded, a Secure Link (purpose ``slot_pick``,

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 54 Copilot read tool ``predictions.get`` (FR-277): the Epic 48 predictions of one demand, offer or placement
 you can see (``analytics.reads.predictions_for``) -- a supporting signal only. It never retrains or decides."""
 

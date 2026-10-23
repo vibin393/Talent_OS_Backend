@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Erasure handler ``copilot.messages`` (Epic 54, order 66, after the foundation's 62-64; FR-279 / FR-326).
 
 For a candidate subject: every Copilot message whose ``candidate_ids`` contains the candidate, or whose turn run's
@@ -61,7 +61,7 @@ class CopilotMessagesHandler:
         await db.flush()
         return {"copilot_messages": count, "copilot_conversations": len(conv_ids)}
 
-    async def export(self, db: AsyncSession, ctx: ErasureContext) -> dict[str, Any] | None:  # noqa: ARG002
+    async def export(self, db: AsyncSession, ctx: ErasureContext) -> dict[str, Any] | None:  # ruff: ignore[unused-method-argument]
         # Copilot conversations are the user's private working notes, not records about the candidate.
         return None
 

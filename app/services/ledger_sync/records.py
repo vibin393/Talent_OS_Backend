@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Ledger sync records, runs and settings (Epic 71, spec A8/A11): the Documents tab, the Invoice / note panel,
 retry / skip, runs (push / Tally file / pull payments / masters) and the tenant settings.
 
@@ -46,11 +46,11 @@ __all__ = ["create_run", "document_panel", "get_settings", "list_records", "list
 _DOCS = {"invoice": Invoice, "credit_note": CreditNote, "debit_note": DebitNote}
 
 
-async def get_settings(ctx: RequestContext, db: AsyncSession) -> LedgerSettingsOut:  # noqa: ARG001
+async def get_settings(ctx: RequestContext, db: AsyncSession) -> LedgerSettingsOut:  # ruff: ignore[unused-function-argument]
     return LedgerSettingsOut.model_validate(await get_settings_row(db))
 
 
-async def put_settings(ctx: RequestContext, db: AsyncSession, data: LedgerSettingsIn) -> LedgerSettingsOut:  # noqa: ARG001
+async def put_settings(ctx: RequestContext, db: AsyncSession, data: LedgerSettingsIn) -> LedgerSettingsOut:  # ruff: ignore[unused-function-argument]
     row = await get_settings_row(db)
     for key, value in data.model_dump(exclude_unset=True).items():
         if value is not None:
@@ -88,7 +88,7 @@ async def _outs(db: AsyncSession, rows: list[LedgerSyncRecord]) -> list[LedgerRe
 
 
 async def list_records(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     status: str | None = None,
@@ -122,7 +122,7 @@ async def _record(db: AsyncSession, record_id: uuid.UUID) -> LedgerSyncRecord:
     return rec
 
 
-async def document_panel(ctx: RequestContext, db: AsyncSession, kind: str, document_id: uuid.UUID) -> DocumentPanelOut:  # noqa: ARG001
+async def document_panel(ctx: RequestContext, db: AsyncSession, kind: str, document_id: uuid.UUID) -> DocumentPanelOut:  # ruff: ignore[unused-function-argument]
     if kind not in ("invoice", "credit_note", "debit_note", "payment"):
         raise NotFound("Document not found")
     doc = await documents.load_document(db, kind, document_id)
@@ -226,7 +226,7 @@ async def create_run(ctx: RequestContext, db: AsyncSession, data: RunIn) -> Ledg
     return (await _run_out(db, [run]))[0]
 
 
-async def list_runs(ctx: RequestContext, db: AsyncSession, *, legal_entity_id: uuid.UUID | None = None, kind: str | None = None, page: int = 1, page_size: int = 25) -> Page[LedgerRunOut]:  # noqa: ARG001
+async def list_runs(ctx: RequestContext, db: AsyncSession, *, legal_entity_id: uuid.UUID | None = None, kind: str | None = None, page: int = 1, page_size: int = 25) -> Page[LedgerRunOut]:  # ruff: ignore[unused-function-argument]
     stmt = select(LedgerRun)
     if legal_entity_id:
         stmt = stmt.where(LedgerRun.legal_entity_id == legal_entity_id)
@@ -237,7 +237,7 @@ async def list_runs(ctx: RequestContext, db: AsyncSession, *, legal_entity_id: u
     return Page[LedgerRunOut](items=await _run_out(db, rows), total=total, page=page, page_size=page_size)
 
 
-async def run_file(ctx: RequestContext, db: AsyncSession, run_id: uuid.UUID) -> files_service.Download:  # noqa: ARG001
+async def run_file(ctx: RequestContext, db: AsyncSession, run_id: uuid.UUID) -> files_service.Download:  # ruff: ignore[unused-function-argument]
     run = await db.get(LedgerRun, run_id)
     if run is None or run.file_id is None:
         raise NotFound("File not found")

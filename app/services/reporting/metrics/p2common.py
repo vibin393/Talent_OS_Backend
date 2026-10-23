@@ -1,4 +1,4 @@
-# ruff: noqa: ARG001, N812
+# ruff: file-ignore[unused-function-argument, lowercase-imported-as-non-lowercase]
 """Shared helpers of the Phase 2 tile functions (Epic 34, A3).
 
 Row visibility: placement-bound rows use the placements domain's own rule (``placement:read`` scope on the

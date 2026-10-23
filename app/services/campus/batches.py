@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Interview batches and auto-slotting (Epic 43 story 43.4, FR-219).
 
 A batch (Demand, date, start / end time, time zone, slot length, panels of interviewers with a room or video link)

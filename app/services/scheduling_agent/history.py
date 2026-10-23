@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Scheduling request history and status changes (Epic 59 story 59.4: "the scheduling history shows each step").
 
 ``detail`` holds ids, times, counts and codes only (never notes or names)."""

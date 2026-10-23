@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Client Portal hiring forecasts (Epic 44, FR-226): ``/api/v1/client-portal/forecasts``.
 
 Client session (org RLS ``client``: ``workforce_plans.client_id``) + the ``forecasts:submit`` portal permission

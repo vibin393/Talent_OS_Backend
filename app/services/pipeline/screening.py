@@ -135,7 +135,7 @@ async def ensure_default_questionnaire(db: AsyncSession) -> ScreeningQuestionnai
 
 
 async def list_questionnaires(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     include_archived: bool = False,
 ) -> list[QuestionnaireOut]:
@@ -168,7 +168,7 @@ async def _clear_default(db: AsyncSession, keep: uuid.UUID) -> None:
 
 
 async def create_questionnaire(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     data: QuestionnaireCreate,
 ) -> QuestionnaireOut:
@@ -199,7 +199,7 @@ async def _questionnaire(db: AsyncSession, questionnaire_id: uuid.UUID) -> Scree
 
 
 async def get_questionnaire(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     questionnaire_id: uuid.UUID,
 ) -> QuestionnaireOut:
@@ -207,7 +207,7 @@ async def get_questionnaire(
 
 
 async def update_questionnaire(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     questionnaire_id: uuid.UUID,
     data: QuestionnaireUpdate,
@@ -234,7 +234,7 @@ async def update_questionnaire(
 
 
 async def archive_questionnaire(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     questionnaire_id: uuid.UUID,
 ) -> QuestionnaireOut:
@@ -439,7 +439,7 @@ async def screening_out(db: AsyncSession, row: Screening, *, with_proposals: boo
     )
 
 
-async def screenings_for(ctx: RequestContext, db: AsyncSession, app: Application) -> list[ScreeningOut]:  # noqa: ARG001
+async def screenings_for(ctx: RequestContext, db: AsyncSession, app: Application) -> list[ScreeningOut]:  # ruff: ignore[unused-function-argument]
     rows = (
         await db.execute(
             select(Screening).where(Screening.application_id == app.id).order_by(Screening.created_at.desc())

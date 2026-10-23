@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """OAuth client authentication and the RFC 6749 error type (Epic 67, spec 0.2).
 
 * ``client_secret_basic`` / ``client_secret_post`` for confidential clients (``sha256`` lookup in ``app_secrets``;

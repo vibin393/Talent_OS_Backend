@@ -46,7 +46,7 @@ def _out(job: ConnectorJob) -> ConnectorJobOut:
 
 
 async def enqueue(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     category: str,
     op: str,
@@ -87,7 +87,7 @@ async def enqueue(
 
 
 async def pending(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     category: str | None = None,
     status: str | None = None,
@@ -100,7 +100,7 @@ async def pending(
     return [_out(j) for j in rows]
 
 
-async def retry(ctx: RequestContext, db: AsyncSession, job_id: uuid.UUID) -> ConnectorJobOut:  # noqa: ARG001
+async def retry(ctx: RequestContext, db: AsyncSession, job_id: uuid.UUID) -> ConnectorJobOut:  # ruff: ignore[unused-function-argument]
     job = (await db.execute(select(ConnectorJob).where(ConnectorJob.id == job_id).with_for_update())).scalar_one_or_none()
     if job is None:
         raise NotFound("Connector job not found")

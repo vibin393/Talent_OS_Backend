@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Pure item draw and per-attempt shuffling (Epic 40 A4, NFR-35). No I/O.
 
 Seeded by a SHA-256 of the invitation id (and attempt number), so a draw is deterministic per invitation and

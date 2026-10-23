@@ -4,7 +4,7 @@
   Legal Entity local date, renewal reminders (deduped), PO expiry alerts and validity events.
 * ``commercials.signature_completed(tenant_id, contract_id, request_id, document_id)``: the e-sign completion of
   a contract (store the signed file, attempt activation as the system).
-"""  # noqa: E501
+"""  # ruff: ignore[line-too-long]
 
 import uuid
 from typing import Any

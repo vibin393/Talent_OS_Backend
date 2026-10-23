@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Skill inference as reviewable suggestions (Epic 37 A3, FR-189, AD-6).
 
 * **Graph implications** (always, no AI): for each ``verified`` / ``declared`` Candidate Skill X, every direct

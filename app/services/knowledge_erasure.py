@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Erasure handler ``knowledge.onboarding_qa`` (Epic 62, order 66; FR-326).
 
 For a candidate subject (+ merged ids): delete the Onboarding Q&A messages and null the thread references (consent,

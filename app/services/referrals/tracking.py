@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Referral tracking (Epic 42 story 42.3, FR-215).
 
 * Referrer-safe views (``ReferrerReferralOut``): four status labels and the referrer's own reward only.

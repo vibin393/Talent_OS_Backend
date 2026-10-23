@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Platform Network Moderator console (Epic 75, spec A5; ``/api/v1/platform/network``). Platform operator + MFA; the
 ``network_moderator`` role is required for every action (403 ``platform_role_required``). Verify, reject, suspend,
 reinstate, remove, release-hold and uphold / dismiss report are ★ (human platform operators only). Each action needs a

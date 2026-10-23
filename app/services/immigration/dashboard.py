@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Immigration dashboard (Epic 46 A5, FR-236). Every Case query is data-scoped (``immigration:read`` on owner / BU).
 
 Tiles: open Cases, overdue Cases, Permits expiring in 30 / 60 / 90 days (non-superseded), and **abroad without a

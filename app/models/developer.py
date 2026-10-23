@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Developer Portal platform tables (Epic 74, spec A2; migrations ``20261010_508_01..03``).
 
 All are **platform** tables (``core.tenancy.PLATFORM_TABLES``; no RLS; explicit ``talent_app`` grants). They hold

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Retention of ``mcp_sessions`` metadata (``mcp_session_retention_days``; payloads follow the P4 retention)."""
 
 from datetime import UTC, datetime, timedelta

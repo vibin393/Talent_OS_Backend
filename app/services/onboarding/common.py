@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Shared helpers of the onboarding domain (Epic 23)."""
 
 import re

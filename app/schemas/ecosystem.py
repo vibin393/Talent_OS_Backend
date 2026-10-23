@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Ecosystem controls DTOs (Epic 66, spec 0.14 / 0.18)."""
 
 import uuid

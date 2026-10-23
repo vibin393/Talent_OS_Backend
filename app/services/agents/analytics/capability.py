@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Copilot capability ``analytics`` (Epic 64 story 64.4, FR-277): number questions in the general Copilot go through
 governed Definitions. On when ``agent_analytics`` is enabled for the tenant and the user holds ``report:read`` (C-4).
 ``reports.get`` stays analytics-mode only."""

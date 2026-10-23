@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Pure mapping of an issued document to the government e-invoice JSON (INV-01 v1.1, FR-151). INR values come from
 the stored INR columns (never recomputed). No DB, no I/O."""
 

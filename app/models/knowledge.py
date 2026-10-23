@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Knowledge Sources and Onboarding Q&A (Epic 62, FR-310; migrations ``20261008_409_01_knowledge`` /
 ``20261008_409_02_onb_qa``). Owner: ``knowledge``.
 

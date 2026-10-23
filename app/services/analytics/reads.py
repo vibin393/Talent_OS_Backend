@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Prediction reads (Epic 48 A5, FR-241..243, FR-245). One indexed query per subject; no model load.
 
 Permissions per kind: ``time_to_fill`` (demand) and ``offer_drop`` (offer / placement) need ``prediction:read``;

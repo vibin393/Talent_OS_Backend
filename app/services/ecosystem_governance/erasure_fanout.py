@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Erasure downstream fan-out (Epic 79 story 79.5, FR-410, D-11).
 
 On ``DsrCompleted(kind='erasure')`` for a Candidate / Worker, record one ``dsr_downstream_items`` row per Installation

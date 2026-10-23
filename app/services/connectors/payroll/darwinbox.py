@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Darwinbox payroll adapter (Epic 71, spec A6; key ``darwinbox_payroll``). Darwinbox payroll-input imports are
 client-specific (spec Known gap 1): with ``payroll_import_path`` configured the approved export is posted there
 (base64 file + ``api_key``); otherwise ``ManualActionRequired`` (download the file and upload it in Darwinbox)."""
@@ -27,7 +27,7 @@ class DarwinboxPayroll(DarwinboxHrms):
     category = "payroll"  # type: ignore[assignment]
     provider_key = "darwinbox_payroll"
 
-    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # noqa: ARG002
+    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         if op == "health":
             self._headers()
             return {"ok": True}

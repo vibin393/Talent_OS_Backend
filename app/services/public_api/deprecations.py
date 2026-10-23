@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Monthly deprecated-call report (Epic 67, FR-347, spec A5): last month's ``api_request_log`` rows with
 ``deprecated = true``, per Installation or API key and route, upserted into ``api_deprecation_notices``; each new notice
 emits ``PublicApiDeprecatedUsage`` (notification ``api_deprecated_usage`` to the Installation's accountable user or the

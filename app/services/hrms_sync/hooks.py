@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """HRMS sync wiring (Epic 71), autodiscovered by ``core.hooks``.
 
 * the Connector Manifests ``darwinbox``, ``keka`` (hrms) and ``darwinbox_payroll``, ``keka_payroll`` (payroll);
@@ -52,7 +52,7 @@ def _handlers() -> None:
 def _job_listener() -> None:
     from app.services.connectors.registry import register_job_listener
 
-    async def on_outcome(ctx: Any, db: AsyncSession, job: Any, outcome: str, exc: BaseException | None) -> None:  # noqa: ARG001
+    async def on_outcome(ctx: Any, db: AsyncSession, job: Any, outcome: str, exc: BaseException | None) -> None:  # ruff: ignore[unused-function-argument]
         if outcome not in ("dead", "permanent", "auth_failed") or not str(job.op).startswith("sync:push_") or job.category != "hrms":
             return
         payload = dict(job.payload or {})
@@ -102,14 +102,14 @@ def _notifications() -> None:
 
         return {u["id"] for u in await users_with_permission(db, "hrms:sync")}
 
-    async def failed(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG001
+    async def failed(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
         return ns.Content(
             title="A worker couldn't be pushed to the HR system",
             body="Open the HRMS sync queue to see the provider message and retry.",
             entity_type="placement", entity_id=_uuid(payload.get("placement_id")), link_path="/hrms/sync?tab=failed",
         )  # fmt: skip
 
-    async def mismatch(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG001
+    async def mismatch(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
         return ns.Content(
             title=str(payload.get("title") or "HRMS and Talent OS disagree"),
             body="Check the placement and mark the task resolved when both systems agree. Nothing was changed automatically.",

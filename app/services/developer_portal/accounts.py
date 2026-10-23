@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Developer accounts (Epic 74, story 74.1, spec 0.2): sign-up (no enumeration), email verification, sign-in with the
 P1 lockout, mandatory TOTP MFA (enrolment forced on the first sign-in, replay refused through ``mfa_last_step``,
 hashed recovery codes), password reset (revokes every session) and the ``tos_developer`` sessions

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Phase 3 read-model guards (Epic 52 A4, AD-1 read-model exception; see ``common`` / ``p2tables``).
 
 Every Phase 3 table a dashboard tile reads is registered here as a lightweight ``sqlalchemy.table()`` projection in

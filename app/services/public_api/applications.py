@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Public Applications (Epic 67, spec A4): ``pipeline.common.visible_applications`` (demand scope) for reads,
 ``pipeline.applications.add_candidates`` / ``transition`` for writes. ★ targets (every stage in
 ``human_only_transitions()["application"]``: shortlist, submit, select, offer, hire, reject, withdraw) are refused with

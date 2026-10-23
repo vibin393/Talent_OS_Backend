@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Rediscovery with Pools, pins and add-to-pipeline (Epic 38 story 38.5, FR-194, FR-195).
 
 ``pools_section`` is registered as the ``pools`` section of ``matching.rediscovery`` (from ``hooks.py``): the

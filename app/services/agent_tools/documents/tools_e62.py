@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Documents tool for the Onboarding Agent (Epic 62 A4): ``documents.list_my_signature_requests`` (read, thread-bound:
 the asker's pending eSign request titles and expiry dates; no document content or links)."""
 

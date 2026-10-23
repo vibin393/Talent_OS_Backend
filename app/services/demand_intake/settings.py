@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Demand Agent settings (Epic 55, A1): the per-tenant ``demand_agent_settings`` row, intake settings (mode, mailbox,
 fallback owner, sender checks), verified sender domains and the agent thresholds / JD template / scan owner.
 
@@ -102,7 +102,7 @@ async def _mailbox_status(db: AsyncSession, user_id: uuid.UUID | None) -> str | 
     return "connected"
 
 
-async def get_intake_settings(ctx: RequestContext, db: AsyncSession) -> IntakeSettingsOut:  # noqa: ARG001
+async def get_intake_settings(ctx: RequestContext, db: AsyncSession) -> IntakeSettingsOut:  # ruff: ignore[unused-function-argument]
     s = await row(db)
     warnings: list[str] = []
     status = await _mailbox_status(db, s.mailbox_user_id) if s.intake_mode == "connected_mailbox" else None
@@ -220,7 +220,7 @@ async def _domain_out(db: AsyncSession, rows: list[DemandIntakeSenderDomain]) ->
     return out
 
 
-async def list_sender_domains(ctx: RequestContext, db: AsyncSession) -> list[SenderDomainOut]:  # noqa: ARG001
+async def list_sender_domains(ctx: RequestContext, db: AsyncSession) -> list[SenderDomainOut]:  # ruff: ignore[unused-function-argument]
     rows = list(
         (
             await db.execute(select(DemandIntakeSenderDomain).order_by(DemandIntakeSenderDomain.domain))
@@ -267,7 +267,7 @@ async def add_sender_domain(ctx: RequestContext, db: AsyncSession, data: SenderD
     return (await _domain_out(db, [row_]))[0]
 
 
-async def remove_sender_domain(ctx: RequestContext, db: AsyncSession, domain_id: uuid.UUID) -> None:  # noqa: ARG001
+async def remove_sender_domain(ctx: RequestContext, db: AsyncSession, domain_id: uuid.UUID) -> None:  # ruff: ignore[unused-function-argument]
     found = await db.get(DemandIntakeSenderDomain, domain_id)
     if found is None:
         raise NotFound("Sender domain not found")
@@ -276,7 +276,7 @@ async def remove_sender_domain(ctx: RequestContext, db: AsyncSession, domain_id:
 
 
 # ================================================================ agent settings
-async def get_agent_settings(ctx: RequestContext, db: AsyncSession) -> AgentSettingsOut:  # noqa: ARG001
+async def get_agent_settings(ctx: RequestContext, db: AsyncSession) -> AgentSettingsOut:  # ruff: ignore[unused-function-argument]
     s = await row(db)
     warnings: list[str] = []
     if s.sla_scan_owner_id is None:

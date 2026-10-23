@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Onboarding Q&A encryption at rest (Epic 78, story 78.4, FR-404, AD-90).
 
 The only module of ``knowledge`` that imports ``vault_service`` (listed ``p5-below`` exception, D-22). Message text and

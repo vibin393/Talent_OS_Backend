@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Assessments, internal API (Epic 40, FR-202..FR-208): ``/api/v1/assessment-items``, ``/assessments``,
 ``/assessment-invitations``, ``/assessment-reviews``, ``/attempt-answers``, ``/attempts``, ``/assessment-settings``,
 ``/candidates/{id}/assessment-results``, ``/applications/assessment-badges``, ``/submissions/{id}/assessment-shares``.

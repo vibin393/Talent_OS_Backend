@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Candidate-facing projection of a Screening Conversation (Epic 57 A7): Candidate Portal chat and the Secure-Link chat.
 
 Never carries confidence, review state, flags, summaries, run ids or internal names beyond the recruiter's display name.

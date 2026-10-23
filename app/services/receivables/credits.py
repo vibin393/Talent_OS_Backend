@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Client credits and Credit Note application (FR-150, FR-153).
 
 ``client_credits`` are signed, append-only rows; the balance is their sum. The ``CreditNoteIssued`` handler is
@@ -42,7 +42,7 @@ async def balance(db: AsyncSession, client_id: uuid.UUID, *, legal_entity_id: uu
     return Decimal((await db.execute(stmt)).scalar() or 0)
 
 
-async def balances_for_client(ctx: RequestContext, db: AsyncSession, client_id: uuid.UUID) -> list[CreditBalanceOut]:  # noqa: ARG001
+async def balances_for_client(ctx: RequestContext, db: AsyncSession, client_id: uuid.UUID) -> list[CreditBalanceOut]:  # ruff: ignore[unused-function-argument]
     rows = (
         await db.execute(
             select(ClientCredit.legal_entity_id, ClientCredit.currency, func.sum(ClientCredit.amount))

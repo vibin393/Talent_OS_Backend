@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """HRMS sync (Epic 71, stories 71.1-71.3, FR-365..FR-367; migration ``<date>_505_01_hrms_sync``). Owner:
 ``app.services.hrms_sync``.
 

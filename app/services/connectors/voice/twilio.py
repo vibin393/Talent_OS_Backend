@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Twilio telephony adapter (Epic 76, spec A2; key ``twilio``).
 
 * Bridged call: ``POST /2010-04-01/Accounts/{sid}/Calls.json`` rings the recruiter (``To``) from the caller ID
@@ -140,7 +140,7 @@ class TwilioTelephony(LiveTelephonyBase):
     async def fetch_recording(self, recording_ref: str) -> RecordingDTO | None:
         return await self._download(self._url(f"/Recordings/{recording_ref}.wav"))
 
-    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # noqa: ARG002
+    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         form = parse_form(body)
         call_sid = form.get("CallSid", "")
         if form.get("RecordingSid"):

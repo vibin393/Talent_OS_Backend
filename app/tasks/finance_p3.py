@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Phase 3 finance carry-overs (Epic 51) Celery tasks. Every task starts with ``tenant_id`` (except fan-outs).
 
 * ``finance_p3.dsc_sign(tenant_id, kind, doc_id)`` (``connectors``): render once, sign through the ``dsc`` port.

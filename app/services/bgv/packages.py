@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """BGV configuration (Epic 20 A1/A3, ``bgv:configure``): packages, providers, reference questionnaires, settings.
 
 * ``criminal_record`` / ``drug_test`` checks need a lawful-basis attestation by the configuring user (PRD §8.3):
@@ -61,7 +61,7 @@ def _lawful(checks: list[dict[str, Any]]) -> bool:
 
 
 async def list_packages(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     include_archived: bool = False,
 ) -> list[PackageOut]:
@@ -136,7 +136,7 @@ async def update_package(
     return PackageOut.model_validate(row)
 
 
-async def archive_package(ctx: RequestContext, db: AsyncSession, package_id: uuid.UUID) -> PackageOut:  # noqa: ARG001
+async def archive_package(ctx: RequestContext, db: AsyncSession, package_id: uuid.UUID) -> PackageOut:  # ruff: ignore[unused-function-argument]
     row = await get_package(db, package_id)
     if row.archived_at is None:
         row.archived_at = now()
@@ -146,7 +146,7 @@ async def archive_package(ctx: RequestContext, db: AsyncSession, package_id: uui
 
 
 # ================================================================ providers
-async def list_providers(ctx: RequestContext, db: AsyncSession) -> list[ProviderOut]:  # noqa: ARG001
+async def list_providers(ctx: RequestContext, db: AsyncSession) -> list[ProviderOut]:  # ruff: ignore[unused-function-argument]
     rows = (await db.execute(select(BgvProvider).order_by(BgvProvider.name))).scalars()
     return [ProviderOut.model_validate(p) for p in rows]
 
@@ -160,7 +160,7 @@ async def create_provider(ctx: RequestContext, db: AsyncSession, data: ProviderI
 
 
 async def update_provider(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     provider_id: uuid.UUID,
     data: ProviderUpdate,
@@ -178,7 +178,7 @@ async def update_provider(
 
 
 # ================================================================ reference questionnaires
-async def list_questionnaires(ctx: RequestContext, db: AsyncSession) -> list[QuestionnaireOut]:  # noqa: ARG001
+async def list_questionnaires(ctx: RequestContext, db: AsyncSession) -> list[QuestionnaireOut]:  # ruff: ignore[unused-function-argument]
     rows = (await db.execute(select(ReferenceQuestionnaire).order_by(ReferenceQuestionnaire.name))).scalars()
     return [QuestionnaireOut.model_validate(q) for q in rows]
 
@@ -208,7 +208,7 @@ async def create_questionnaire(
 
 
 async def update_questionnaire(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     questionnaire_id: uuid.UUID,
     data: QuestionnaireUpdate,

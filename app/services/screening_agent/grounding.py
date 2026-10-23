@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Grounded Answers (Epic 57 A3, FR-274 / coordinator decision 3).
 
 * ``posting_fields`` -- the published posting fields of the conversation's Demand (only when the posting is live).
@@ -73,7 +73,7 @@ def check_reply_text(text: str) -> str | None:
     return found.group(0) if found else None
 
 
-async def grounded_checker(ctx: RequestContext, db: AsyncSession, conversation_id: uuid.UUID) -> bool:  # noqa: ARG001
+async def grounded_checker(ctx: RequestContext, db: AsyncSession, conversation_id: uuid.UUID) -> bool:  # ruff: ignore[unused-function-argument]
     row = (
         await db.execute(
             select(ScreeningConversation.status).where(ScreeningConversation.id == conversation_id)

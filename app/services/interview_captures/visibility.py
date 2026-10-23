@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Who may see the assistant's outputs (Epic 60, story 60.3).
 
 * A draft is visible only to the interviewer it belongs to (``drafts.mine``).

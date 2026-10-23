@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Compliance requirements and credentials (Epic 21, branch ``p2_compliance``, migrations ``20261005_208_01..03``).
 
 * Configuration (internal only): ``credential_types``, ``compliance_requirements``, ``compliance_settings``.

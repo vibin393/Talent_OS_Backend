@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """SMS / WhatsApp messaging (Phase 2 Epic 33, FR-172/173): channel templates, sends through the AD-29 connector
 ports, opt-outs, WhatsApp consent, inbound webhooks, the manual queue and recipient self-service.
 

@@ -74,7 +74,7 @@ class FakeWhatsAppProvider(ChannelAdapter):
         given = {k.lower(): v for k, v in headers.items()}.get("x-fake-signature", "")
         return hmac.compare_digest(given, fake_signature(secret, body))
 
-    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # noqa: ARG002
+    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         return parse_fake_events(body)
 
 

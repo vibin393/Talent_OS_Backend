@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Demand insights endpoints (Epic 55, A6): the "AI assist" tab, suggestions, flags. ``/demands/flags`` is mounted
 before the P1 demands router. Mutations are human-only (API keys read only)."""
 

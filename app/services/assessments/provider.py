@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Provider-delivered assessments (Epic 40 A10, FR-207, AD-49, NFR-43). Executed coding tests run ONLY at a provider.
 
 * **Invite** -- ``queue_invite`` stores a ``connector_jobs`` row keyed ``assessment:invite:assessment_invitation:<id>:<n>``

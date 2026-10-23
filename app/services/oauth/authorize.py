@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Authorize + consent (Epic 67, story 67.3; spec 0.4) and the code exchange.
 
 * ``check_query`` validates the raw RFC 6749 query in order: client and exact redirect (failure -> error page, never

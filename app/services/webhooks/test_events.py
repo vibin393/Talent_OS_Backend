@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Test events (Epic 68, story 68.5): a signed sample of any subscribed type (``spec.example`` or a sample built from
 the thin ``data_model``; random ids, never a real record), ``livemode=false``, ``TalentOS-Test: true``. Sent at once
 (the result carries the response code and latency); 10 per minute per Subscription."""

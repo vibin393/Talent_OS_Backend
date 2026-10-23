@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Candidate messages into a conversation (Epic 57 A3; portal chat, Secure-Link chat, email replies, WhatsApp).
 
 Order (spec): store the turn (+ transcript) -> consent keywords while consent is pending (email / WhatsApp, no model

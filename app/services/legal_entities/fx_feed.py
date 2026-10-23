@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Live FX feed (Epic 51, Story 51.3, FR-255; AD-20, AD-29, AD-49).
 
 * ``fetch`` pulls reference rates through the ``fx`` connector port (Manual adapter -> ``[]`` -> an ``ok`` run
@@ -115,7 +115,7 @@ async def update_settings(ctx: RequestContext, db: AsyncSession, data: FxFeedSet
     return await get_settings(ctx, db)
 
 
-async def list_runs(ctx: RequestContext, db: AsyncSession, limit: int = 60) -> list[FxFeedRunOut]:  # noqa: ARG001
+async def list_runs(ctx: RequestContext, db: AsyncSession, limit: int = 60) -> list[FxFeedRunOut]:  # ruff: ignore[unused-function-argument]
     rows = (
         await db.execute(
             select(FxFeedRun).order_by(FxFeedRun.on_date.desc(), FxFeedRun.started_at.desc()).limit(limit)

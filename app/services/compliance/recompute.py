@@ -1,4 +1,4 @@
-# ruff: noqa: ARG001, E501
+# ruff: file-ignore[unused-function-argument, line-too-long]
 """Daily expiry recompute and alerts (Epic 21 A6, P2-8.3, FR-115).
 
 ``run(ctx, db, at)`` runs once per tenant-local date (``compliance_recompute_runs`` UNIQUE ``run_date``) when the

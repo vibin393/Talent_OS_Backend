@@ -86,7 +86,7 @@ async def start_route(ctx: RequestContext, db: AsyncSession, ts: Timesheet, acto
         await _approve(db, ts, ActorRef("system", None), auto=True)
 
 
-async def on_step_decided(ctx: RequestContext, db: AsyncSession, decision: StepDecision) -> None:  # noqa: ARG001
+async def on_step_decided(ctx: RequestContext, db: AsyncSession, decision: StepDecision) -> None:  # ruff: ignore[unused-function-argument]
     ts = await get_timesheet(db, decision.subject_id, lock=True)
     if decision.outcome == "approved" and not decision.is_final and ts.status == "submitted":
         transition_timesheet(ts, "in_approval", decision.actor)
@@ -106,7 +106,7 @@ async def on_step_decided(ctx: RequestContext, db: AsyncSession, decision: StepD
     )
 
 
-async def on_final_decided(ctx: RequestContext, db: AsyncSession, decision: FinalDecision) -> None:  # noqa: ARG001
+async def on_final_decided(ctx: RequestContext, db: AsyncSession, decision: FinalDecision) -> None:  # ruff: ignore[unused-function-argument]
     ts = await get_timesheet(db, decision.subject_id, lock=True)
     if ts.status not in ("submitted", "in_approval"):
         return

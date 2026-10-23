@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Per-principal portal Copilot question limit (Epic 77 A4): a Redis fixed window
 ``pcopilot:rl:<tenant>:<principal_type>:<principal_id>:<yyyymmddhh>`` (INCR + EXPIRE 3,600). 30 / hour for Client
 and Vendor Users, 15 / hour for Candidates by default. Fails open when Redis is down (as P4); the AI budget and the

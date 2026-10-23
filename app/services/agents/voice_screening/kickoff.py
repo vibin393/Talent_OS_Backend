@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Default kickoff of the Voice Screening Agent (Epic 58). The domain always starts runs with an explicit kickoff
 (``voice_session_id``, ``application_id``, ``mode``, ``provider_key``, ``stage``, questionnaire); a run started without one
 (an event delivered to the runtime first, or the workflow action) is told to look the session up by its Application."""

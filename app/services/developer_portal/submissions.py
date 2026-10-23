@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Listing drafts and submissions (Epic 74, story 74.5): wrappers over Epic 69's partner functions (which take the
 ``DeveloperContext``) adding the org role, the org audit log and the conformance-run rule: ``submit`` needs a
 ``passed`` run of the **same** ``manifest_sha256`` finished within 30 days, whose signed report is attached."""

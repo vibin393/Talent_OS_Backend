@@ -1,4 +1,4 @@
-# ruff: noqa: D401, E501, TC003
+# ruff: file-ignore[non-imperative-mood, line-too-long, typing-only-standard-library-import]
 """Epic 54's own Copilot capabilities (``core.agentic.register_copilot_capability``) and the conversation modes.
 
 A capability's tools join the Copilot allow-list when the capability is on (C-4: the owning agent's AI feature is on for

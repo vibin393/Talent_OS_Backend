@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Timesheet flag evaluation and reads (Epic 63 A1, FR-312).
 
 * ``evaluate(db, timesheet_id)`` -- on every ``TimesheetSubmitted`` (task ``timesheet_flags.evaluate``, queue
@@ -211,7 +211,7 @@ async def _timesheet(db: AsyncSession, timesheet_id: uuid.UUID) -> Timesheet:
 
 
 async def list_for_timesheet(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     timesheet_id: uuid.UUID,
     *,
@@ -226,7 +226,7 @@ async def list_for_timesheet(
 
 
 async def list_flags(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     status: str | None = None,
@@ -305,7 +305,7 @@ async def review(ctx: RequestContext, db: AsyncSession, flag_id: uuid.UUID, data
 
 
 async def set_explanations(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     timesheet_id: uuid.UUID,
     items: list[FlagExplanationIn],

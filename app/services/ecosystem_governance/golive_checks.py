@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Go-live checks (Epic 79 story 79.8, FR-414, spec A9).
 
 * ``plaintext_free(db)`` -- the plaintext-free gate: 66's ``500_06_p5_vault_drop`` dropped the legacy Fernet secret
@@ -48,7 +48,7 @@ async def plaintext_free(db: AsyncSession) -> dict[str, Any]:
     return {"ok": not findings, "findings": findings}
 
 
-async def golive_readiness(ctx: RequestContext, db: AsyncSession) -> dict[str, Any]:  # noqa: ARG001
+async def golive_readiness(ctx: RequestContext, db: AsyncSession) -> dict[str, Any]:  # ruff: ignore[unused-function-argument]
     """Everything-external-off summary. Reported, not enforced (migrated tenants may already have some on)."""
     async def _count(sql: str) -> int:
         try:
@@ -74,7 +74,7 @@ def _burn_in_guard() -> Any:
     is None (the row is created after the guard passes), so the burn-in check reads prior successful Fake sync jobs for
     the connector in this tenant via ``connector_sync_state``."""
 
-    async def guard(ctx: Any, db: AsyncSession, installation_id: Any, connector_key: str, mode: str) -> None:  # noqa: ARG001
+    async def guard(ctx: Any, db: AsyncSession, installation_id: Any, connector_key: str, mode: str) -> None:  # ruff: ignore[unused-function-argument]
         from sqlalchemy import text
 
         from app.core.errors import ValidationFailed

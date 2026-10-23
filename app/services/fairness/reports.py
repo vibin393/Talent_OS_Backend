@@ -1,4 +1,4 @@
-# ruff: noqa: E501, RUF001
+# ruff: file-ignore[line-too-long, ambiguous-unicode-character-string]
 """Adverse-impact report runs (Epic 49 A5, FR-247).
 
 ``create_run`` stores a ``queued`` row and enqueues ``fairness.run_report`` (queue ``analytics``, per-tenant
@@ -127,7 +127,7 @@ async def create_run(ctx: RequestContext, db: AsyncSession, data: RunCreate) -> 
     return run_out(run)
 
 
-async def list_runs(ctx: RequestContext, db: AsyncSession) -> list[RunSummaryOut]:  # noqa: ARG001
+async def list_runs(ctx: RequestContext, db: AsyncSession) -> list[RunSummaryOut]:  # ruff: ignore[unused-function-argument]
     rows = (
         await db.execute(select(FairnessRun).order_by(FairnessRun.created_at.desc()).limit(200))
     ).scalars()
@@ -141,7 +141,7 @@ async def load(db: AsyncSession, run_id: uuid.UUID) -> FairnessRun:
     return run
 
 
-async def get_run(ctx: RequestContext, db: AsyncSession, run_id: uuid.UUID) -> RunOut:  # noqa: ARG001
+async def get_run(ctx: RequestContext, db: AsyncSession, run_id: uuid.UUID) -> RunOut:  # ruff: ignore[unused-function-argument]
     run = await load(db, run_id)
     audit.record(
         "fairness.run_viewed", "fairness_run", run.id, session=db, selection_point=run.selection_point

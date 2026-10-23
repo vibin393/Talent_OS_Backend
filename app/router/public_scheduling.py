@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Secure-Link self-scheduling page (Epic 59 A6): ``/api/v1/public/slot-pick/{token}`` (purpose ``slot_pick``).
 
 No session cookie: the token is the credential and is never logged. Rate-limited per IP. Viewing never consumes the

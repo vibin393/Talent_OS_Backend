@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Predictive analytics (Epic 48, branch ``p3_analytics``, migrations ``20261006_312_01..02``; FR-241..245, AD-45).
 
 * ``analytics_settings`` -- one row per tenant: enabled kinds, thresholds (only raisable above the platform

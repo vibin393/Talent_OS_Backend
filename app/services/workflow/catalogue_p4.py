@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Phase 4 workflow catalogue (Epic 53 contract, spec 0.15): the ``agents.start_run`` action key ("Start agent run",
 FR-273). Imported at the end of ``catalogue`` so the key joins ``ACTION_CATALOGUE``. The ``ActionDef`` itself is
 registered from ``services/agent_runtime/hooks.py`` with a callable -- ``workflow`` never imports Phase 4."""

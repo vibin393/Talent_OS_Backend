@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Voluntary self-identification (Epic 49 A2/A3, FR-246, NFR-38).
 
 * Store: ``demographic_self_ids`` (one sealed answer document per Candidate, key purpose ``demographic``). The
@@ -126,7 +126,7 @@ async def _portal_enabled(db: AsyncSession) -> bool:
     return bool(s.self_id_enabled and s.self_id_in_portal)
 
 
-async def portal_get(ctx: RequestContext, db: AsyncSession, candidate_id: uuid.UUID) -> SelfIdOut:  # noqa: ARG001
+async def portal_get(ctx: RequestContext, db: AsyncSession, candidate_id: uuid.UUID) -> SelfIdOut:  # ruff: ignore[unused-function-argument]
     """Return the signed-in Candidate's own answers (the only individual read path; ``db`` is the Candidate's
     worker-scoped session, so RLS returns their row only)."""
     enabled = await _portal_enabled(db)
@@ -181,7 +181,7 @@ async def apply_form(slug: str) -> SelfIdFormOut:
         return form
 
 
-async def upsert_from_apply(slug: str, data: PublicSelfIdIn, ip: str | None = None) -> None:  # noqa: ARG001
+async def upsert_from_apply(slug: str, data: PublicSelfIdIn, ip: str | None = None) -> None:  # ruff: ignore[unused-function-argument]
     """Apply success step: the apply token must belong to a submitted, unexpired session of this tenant; one
     submission per apply session. Written under ``app.fairness_access = 'apply_write'``."""
     from app.services.portal.careers import resolve_site

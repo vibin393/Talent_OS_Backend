@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Read contracts for the Phase 4 Collections Agent (Epic 63, additive; FR-156 stays human-driven).
 
 * ``collectible_documents`` -- a Client's issued invoices / debit notes with a due date and their open and disputed

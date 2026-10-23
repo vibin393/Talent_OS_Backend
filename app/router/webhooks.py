@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Webhooks for tenant users (Epic 68, spec A4): ``/api/v1/webhooks/*``. Reads need ``webhook:manage`` or
 ``integration:view``; every mutation needs ``webhook:manage`` and a person (403 ``human_only_action`` for API keys and
 automated actors, FR-413)."""

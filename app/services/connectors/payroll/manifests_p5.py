@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Connector Manifests of the payroll twins of the HRMS connectors (Epic 71, spec A3/A6): ``darwinbox_payroll`` and
 ``keka_payroll`` (separate installs; the Tenant may use one without the other). Registered by
 ``app.services.hrms_sync.hooks``.
@@ -28,7 +28,7 @@ class FakePayrollPush(FakePayrollProvider):
     """The P2 payroll Fake behind a manifest context (auth failure when ``api_key == "invalid"``)."""
 
     provider_key = "fake"
-    script: dict[str, Any] = {}  # noqa: RUF012 - test hook: {"rate_limit_ops": [...]}
+    script: dict[str, Any] = {}  # ruff: ignore[mutable-class-default] - test hook: {"rate_limit_ops": [...]}
 
     def __init__(self, ctx: AdapterContext | None = None) -> None:
         super().__init__(None)
@@ -52,7 +52,7 @@ class FakePayrollPush(FakePayrollProvider):
         self._guard("push_export")
         return await super().push_export(export_id, file, media_type)
 
-    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # noqa: ARG002
+    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # ruff: ignore[unused-method-argument]
         return False
 
 

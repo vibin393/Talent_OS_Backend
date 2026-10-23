@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Pure slot engine (Epic 59 story 59.1, FR-297). No I/O, no clock: every input is passed in, so equal inputs give
 equal outputs (hypothesis-tested).
 

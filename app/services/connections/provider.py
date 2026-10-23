@@ -58,11 +58,11 @@ class ProviderAuthError(ProviderError):
 
 
 # Epic 10's comms ``deliver`` falls back to the platform mailer on an exception of this name.
-class ConnectionExpired(ProviderAuthError):  # noqa: N818 - name fixed by the Epic 10 interface
+class ConnectionExpired(ProviderAuthError):  # ruff: ignore[error-suffix-on-exception-name] - name fixed by the Epic 10 interface
     pass
 
 
-class SyncTokenInvalid(ProviderError):  # noqa: N818 - name fixed by the Epic 72 spec
+class SyncTokenInvalid(ProviderError):  # ruff: ignore[error-suffix-on-exception-name] - name fixed by the Epic 72 spec
     """Epic 72: the provider invalidated the delta / sync token (Google 410, Graph ``syncStateNotFound``)."""
 
 

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Shared helpers of the Epic 59 scheduling tools (``agent_tools.scheduling`` and ``agent_tools.interviews``).
 
 Every request-scoped tool takes ``request_id``; the request must belong to the run's subject (the Application), else

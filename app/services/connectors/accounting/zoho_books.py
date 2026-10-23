@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Zoho Books adapter (Epic 71, spec A7; key ``zoho_books``; India data centre). Live mode only; tests use recorded
 fixtures (``httpx.MockTransport``), never the network.
 
@@ -144,16 +144,16 @@ class ZohoBooks:
         return _check(resp, what)
 
     # ----------------------------------------------------------------------------------------- ConnectorPort
-    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # noqa: ARG002
+    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         if op == "health":
             await self._call("GET", "/organizations", "organisations")
             return {"ok": True}
         raise NotImplementedError(op)
 
-    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # noqa: ARG002
+    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # ruff: ignore[unused-method-argument]
         return False
 
-    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # noqa: ARG002
+    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         return {}
 
     async def export(self, rows: Sequence[Mapping[str, Any]], template: Mapping[str, Any]) -> bytes:

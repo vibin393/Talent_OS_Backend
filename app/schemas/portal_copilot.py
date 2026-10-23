@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Portal Copilot DTOs (Epic 77, spec A4 / A5). Message content is returned only to the owning portal principal; the
 admin usage read model carries metadata only (counts, tokens, cost, ratings)."""
 

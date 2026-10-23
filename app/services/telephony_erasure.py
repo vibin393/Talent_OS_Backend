@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Telephony erasure handler ``telephony.calls`` (order 71), Epic 76 (spec A10, FR-395).
 
 On Candidate erasure (merged ids included): the Candidate's ``stt_jobs`` rows are deleted; ``voice_calls`` keep their

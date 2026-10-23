@@ -69,7 +69,7 @@ _tenants = table("tenants", column("id"), column("status"))
 OFFBOARDING_PURPOSES: frozenset[str] = frozenset({"tenant_export"})
 
 
-class LinkGone(DomainError):  # noqa: N818 - mirrors HTTP 410
+class LinkGone(DomainError):  # ruff: ignore[error-suffix-on-exception-name] - mirrors HTTP 410
     status_code = 410
     code = "link_expired"
     default_message = "This link is no longer valid"

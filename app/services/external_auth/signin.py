@@ -360,7 +360,7 @@ async def issue_client_link(
             text=(
                 f"Hello {cu.display_name},\n\n{intro}\n\n{client_sign_in_url(tenant.slug, token)}\n\n"
                 f"Or enter this code on the sign-in page: {code}\n\n"
-                f"The link and code work once and expire in {lifetime}. If you did not ask for them, ignore this email.\n"  # noqa: E501
+                f"The link and code work once and expire in {lifetime}. If you did not ask for them, ignore this email.\n"  # ruff: ignore[line-too-long]
             ),
             tenant_id=tenant.id,
             kind=kind,
@@ -510,7 +510,7 @@ async def send_vendor_invitation(db: AsyncSession, tenant: Tenant, vu: VendorUse
             to=str(vu.email),
             subject=f"You are invited to the {tenant.name} vendor portal",
             text=(
-                f"Hello {vu.display_name},\n\nYou have been invited to the {tenant.name} vendor portal. Set your "  # noqa: E501
+                f"Hello {vu.display_name},\n\nYou have been invited to the {tenant.name} vendor portal. Set your "  # ruff: ignore[line-too-long]
                 f"password and authenticator app here:\n{vendor_invite_url(tenant.slug, token)}\n\n"
                 "The invitation expires in 7 days.\n"
             ),
@@ -649,8 +649,8 @@ async def _send_vendor_reset(slug: str, email: str) -> None:
                     to=str(vu.email),
                     subject=f"Reset your {tenant.name} vendor portal password",
                     text=(
-                        f"Hello {vu.display_name},\n\nReset your password here (valid for 1 hour, single use):\n"  # noqa: E501
-                        f"{vendor_reset_url(tenant.slug, token)}\n\nIf you did not ask for this, ignore this email.\n"  # noqa: E501
+                        f"Hello {vu.display_name},\n\nReset your password here (valid for 1 hour, single use):\n"  # ruff: ignore[line-too-long]
+                        f"{vendor_reset_url(tenant.slug, token)}\n\nIf you did not ask for this, ignore this email.\n"  # ruff: ignore[line-too-long]
                     ),
                     tenant_id=tenant.id,
                     kind="vendor_password_reset",
@@ -660,7 +660,7 @@ async def _send_vendor_reset(slug: str, email: str) -> None:
         logger.exception("Vendor password reset request failed")
 
 
-async def confirm_vendor_reset(ctx: RequestContext, data: PortalPasswordResetConfirmIn) -> PortalStatusOut:  # noqa: ARG001
+async def confirm_vendor_reset(ctx: RequestContext, data: PortalPasswordResetConfirmIn) -> PortalStatusOut:  # ruff: ignore[unused-function-argument]
     auth_service.validate_password_strength(data.password)
     try:
         link = await secure_links.resolve(data.token, (VENDOR_PASSWORD_RESET,))

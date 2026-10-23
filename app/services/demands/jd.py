@@ -225,7 +225,7 @@ async def bias_check(
     return BiasCheckOut(matches=await bias_matches(db, row.content))
 
 
-async def list_biased_terms(ctx: RequestContext, db: AsyncSession) -> list[BiasedTermOut]:  # noqa: ARG001
+async def list_biased_terms(ctx: RequestContext, db: AsyncSession) -> list[BiasedTermOut]:  # ruff: ignore[unused-function-argument]
     rows = {str(r.term).lower(): r for r in (await db.execute(select(BiasedTerm))).scalars()}
     out: list[BiasedTermOut] = []
     for term, category in bias.DEFAULT_BIASED_TERMS:
@@ -265,7 +265,7 @@ async def upsert_biased_term(ctx: RequestContext, db: AsyncSession, data: Biased
     )
 
 
-async def delete_biased_term(ctx: RequestContext, db: AsyncSession, term_id: uuid.UUID) -> None:  # noqa: ARG001
+async def delete_biased_term(ctx: RequestContext, db: AsyncSession, term_id: uuid.UUID) -> None:  # ruff: ignore[unused-function-argument]
     row = await db.get(BiasedTerm, term_id)
     if row is None:
         raise NotFound("Term not found")

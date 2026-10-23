@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Connector Manifests of the real telephony providers (Epic 76, spec A2): Exotel, Twilio and Plivo. Registered by
 ``app.services.telephony.hooks`` (``register_connector``); listed in the marketplace by Epic 69.
 

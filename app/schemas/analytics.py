@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Predictive analytics API schemas (Epic 48). Decimals are strings (Phase 3: no floats).
 
 Internal-only: none of these models is ever a Client / Vendor / Worker portal schema; the portal field guard

@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Training-set snapshots (Epic 48 A3 / A8).
 
 The training set (subject id, ``candidate_id`` where applicable, ``as_of``, outcome date, features, label) is

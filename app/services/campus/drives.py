@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Campus drives (Epic 43 story 43.1, FR-217): Institutions, Demands, batch, schedule, form, eligibility,
 assessment, interview template and offer template.
 

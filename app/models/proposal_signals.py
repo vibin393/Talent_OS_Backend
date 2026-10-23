@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Proposal review signals (Epic 65, story 65.2, SM-C14; branch ``p4_governance``, band 412).
 
 ``proposal_review_signals`` -- how a person reviewed an agent Proposal: first opened, open count, decision, the time

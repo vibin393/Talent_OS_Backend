@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Recording Policy settings (Epic 58, story 58.2; FR-294) on the foundation table ``recording_policies``.
 
 ``list_rules``, ``upsert_rule`` (country + optional state/region; the India seed can be edited or deleted),
@@ -30,7 +30,7 @@ async def _out(db: AsyncSession, row: RecordingPolicy) -> RecordingPolicyOut:
     )  # fmt: skip
 
 
-async def list_rules(ctx: RequestContext, db: AsyncSession) -> list[RecordingPolicyOut]:  # noqa: ARG001
+async def list_rules(ctx: RequestContext, db: AsyncSession) -> list[RecordingPolicyOut]:  # ruff: ignore[unused-function-argument]
     rows = (
         (
             await db.execute(
@@ -103,7 +103,7 @@ async def upsert_rule(
     return await _out(db, row)
 
 
-async def delete_rule(ctx: RequestContext, db: AsyncSession, rule_id: uuid.UUID) -> None:  # noqa: ARG001
+async def delete_rule(ctx: RequestContext, db: AsyncSession, rule_id: uuid.UUID) -> None:  # ruff: ignore[unused-function-argument]
     row = await db.get(RecordingPolicy, rule_id)
     if row is None:
         raise NotFound("Rule not found")
@@ -116,7 +116,7 @@ async def delete_rule(ctx: RequestContext, db: AsyncSession, rule_id: uuid.UUID)
 
 
 async def evaluate(
-    ctx: RequestContext, db: AsyncSession, country: str | None, region: str | None  # noqa: ARG001
+    ctx: RequestContext, db: AsyncSession, country: str | None, region: str | None  # ruff: ignore[unused-function-argument]
 ) -> PolicyEvaluationOut:
     from app.services.recording_policy.gate import normalize_country, normalize_region
 

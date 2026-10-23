@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Recruitment events: setup, stations, registration, check-in (Epic 43 story 43.5, FR-220).
 
 * Events (``recruitment_events``): ``draft -> open`` (issues the public registration link / QR, purpose

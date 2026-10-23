@@ -1,4 +1,4 @@
-# ruff: noqa: D401
+# ruff: file-ignore[non-imperative-mood]
 """Reads over the generic SLA clocks (Epic 32): per-subject clocks and status counts for dashboards (Epic 34)
 and Vendor performance (FR-99). Writes stay in the foundation ``service`` (``start_clock`` / ``stop_clock`` /
 ``cancel_clock``), which domains call inside their own transactions."""
@@ -34,7 +34,7 @@ def view(clock: SlaClock) -> SlaClockView:
 
 
 async def list_clocks(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     subject_type: str,
     subject_id: uuid.UUID | None = None,
@@ -48,7 +48,7 @@ async def list_clocks(
 
 
 async def summary(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     subject_type: str,

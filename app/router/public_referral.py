@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Public referee page (Epic 42, FR-214): ``/api/v1/public/links/{token}/referral`` (Secure Link purpose
 ``referral_link``). No session -- the token is the credential and is never logged; responses are ``no-store``,
 ``no-referrer``, ``noindex``; per-IP rate limit on every call (the share submit adds the bot challenge and a

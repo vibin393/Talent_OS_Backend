@@ -42,8 +42,7 @@ from app.core.errors import DomainError, Forbidden, Unauthorized
 from app.dependencies.auth import CurrentUserDep, TenantDBSessionDep
 from app.models.identity import User
 from app.services import access_service as access
-from app.services import central_token
-from app.services import entitlements
+from app.services import central_token, entitlements
 
 router = APIRouter(prefix="/modules", tags=["modules"])
 
@@ -67,6 +66,7 @@ class ModuleTimeout(DomainError):
 def _upstream_error(exc: Exception) -> DomainError:
     """Map an httpx transport failure to a clear gateway error (504 on timeout, else 502)."""
     return ModuleTimeout() if isinstance(exc, httpx.TimeoutException) else ModuleUnavailable()
+
 
 # module -> {base URL (compose DNS), its central-sso path, its API prefix}
 _MODULES: dict[str, dict[str, str]] = {

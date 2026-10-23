@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 56 Sourcing Agent read tools of the ``matching`` domain (coordinator decision C-8: distinct from the Copilot's
 ``matching.rank``).
 

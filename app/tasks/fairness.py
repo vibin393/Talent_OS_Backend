@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Bias audit Celery tasks (Epic 49). Queue ``analytics`` (AD-54); the publication reminder runs on ``maintenance``.
 
 * ``fairness.run_report(tenant_id, run_id)`` -- builds one aggregate-only snapshot (``services.fairness.reports``);

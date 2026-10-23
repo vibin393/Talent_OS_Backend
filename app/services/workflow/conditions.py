@@ -23,7 +23,7 @@ from pydantic import BaseModel, ConfigDict, ValidationError
 from app.core.errors import ValidationFailed
 
 Op = Literal[
-    "eq", "ne", "in", "not_in", "gt", "gte", "lt", "lte", "contains", "not_contains", "is_empty", "is_not_empty",  # noqa: E501
+    "eq", "ne", "in", "not_in", "gt", "gte", "lt", "lte", "contains", "not_contains", "is_empty", "is_not_empty",  # ruff: ignore[line-too-long]
     "starts_with",
 ]  # fmt: skip
 FieldType = Literal["str", "int", "decimal", "date", "bool", "enum", "uuid", "list"]
@@ -245,7 +245,7 @@ def _apply(op: str, ftype: str, actual: Any, value: Any) -> bool:
 def evaluate(
     cond: Mapping[str, Any] | None, snapshot: Mapping[str, Any], fields: Mapping[str, FieldDef]
 ) -> tuple[bool, list[dict[str, Any]]]:
-    """``(matched, trace)``; pure and exception-free for any stored condition."""  # noqa: D401
+    """``(matched, trace)``; pure and exception-free for any stored condition."""  # ruff: ignore[non-imperative-mood]
     trace: list[dict[str, Any]] = []
     if not cond:
         return True, trace

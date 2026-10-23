@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Tenant app policy checks (Epic 69, spec A4 step 2 / A5). Storage is the foundation's ``ecosystem_settings.app_policy``
 (written through ``ecosystem_service.set_app_policy``); a policy change never widens or silently removes a grant --
 ``describe`` lists the Installations the current policy would not allow (shown, never removed)."""

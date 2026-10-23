@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long]
 """Triggers of the ``demand`` agent (Epic 55, spec 0.1). Dedup keys: ``intake:{message_id}:{attempt}``,
 ``draft:{demand_id}``, ``opened:{demand_id}``, ``sla:{demand_id}:{milestone}:{status}``; schedule keys come from the
 foundation (``sched:daily_sla_scan:<minute>``). ``on_active="drop"`` for all.
@@ -26,7 +26,7 @@ async def intake_owner(ctx: Any, db: Any, subject: tuple[str, uuid.UUID] | None)
     return await demand_intake_service.accountable_owner(ctx, db, subject)
 
 
-async def demand_owner(ctx: Any, db: Any, subject: tuple[str, uuid.UUID] | None) -> uuid.UUID | None:  # noqa: ARG001
+async def demand_owner(ctx: Any, db: Any, subject: tuple[str, uuid.UUID] | None) -> uuid.UUID | None:  # ruff: ignore[unused-function-argument]
     if subject is None or subject[0] != "demand":
         return None
     from app.services import entity_refs
@@ -34,7 +34,7 @@ async def demand_owner(ctx: Any, db: Any, subject: tuple[str, uuid.UUID] | None)
     return await entity_refs.entity_owner_id(db, "demand", subject[1])
 
 
-async def scan_owner(ctx: Any, db: Any, subject: tuple[str, uuid.UUID] | None) -> uuid.UUID | None:  # noqa: ARG001
+async def scan_owner(ctx: Any, db: Any, subject: tuple[str, uuid.UUID] | None) -> uuid.UUID | None:  # ruff: ignore[unused-function-argument]
     from app.services import demand_intake_service
 
     return (await demand_intake_service.settings_row(db)).sla_scan_owner_id

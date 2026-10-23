@@ -32,13 +32,13 @@ class ManualHrms:
     def __init__(self, ctx: AdapterContext | None = None) -> None:
         self.ctx = ctx
 
-    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # noqa: ARG002
+    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         raise ManualActionRequired(f"hrms: complete {op} manually", {"op": op})
 
-    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # noqa: ARG002
+    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # ruff: ignore[unused-method-argument]
         return False
 
-    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # noqa: ARG002
+    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         return {}
 
     async def push_hire(self, hire: HireDTO) -> HrmsResultDTO:
@@ -63,8 +63,8 @@ class ManualHrms:
 
     async def pull_status(
         self,
-        since: datetime | None,  # noqa: ARG002
-        cursor: str | None,  # noqa: ARG002
+        since: datetime | None,  # ruff: ignore[unused-method-argument]
+        cursor: str | None,  # ruff: ignore[unused-method-argument]
     ) -> tuple[Sequence[HrmsStatusDTO], str | None]:
         return (), None
 

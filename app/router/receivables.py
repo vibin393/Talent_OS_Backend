@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Receivables, collections, statements, accounting export and reconciliation (Epic 30, FR-153..FR-160):
 ``/api/v1/receivables`` and ``/api/v1/reconciliation``.
 

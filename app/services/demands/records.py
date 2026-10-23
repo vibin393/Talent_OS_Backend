@@ -650,7 +650,7 @@ async def count_for_client(ctx: RequestContext, db: AsyncSession, client_id: uui
 
 # ================================================================ hooks for later epics (actor system)
 async def record_pipeline_counts(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     demand_id: uuid.UUID,
     *,

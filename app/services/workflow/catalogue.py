@@ -1,4 +1,4 @@
-# ruff: noqa: D401, E501
+# ruff: file-ignore[non-imperative-mood, line-too-long]
 """Phase 2 workflow catalogue (Epic 32, story 19.4, FR-167): the binding contract of trigger, action and
 notification keys, the snapshot-loader registry and the human-only transition registry (FR-181).
 
@@ -208,5 +208,5 @@ def register_catalogue() -> None:
 # Epic 53 (spec 0.15): the Phase 4 action key lives in ``catalogue_p4``.
 from app.services.workflow import (
     catalogue_p3,
-    catalogue_p4,  # noqa: F401
+    catalogue_p4,  # ruff: ignore[unused-import]
 )

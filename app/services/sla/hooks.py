@@ -1,4 +1,4 @@
-# ruff: noqa: ARG001, E501
+# ruff: file-ignore[unused-function-argument, line-too-long]
 """Registrations of the ``sla`` domain (autodiscovered, Epic 32).
 
 * Notification types ``sla_clock_at_risk``, ``sla_clock_breached`` and ``escalation_raised`` (group "SLA",

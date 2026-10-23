@@ -1,4 +1,4 @@
-# ruff: noqa: D401, E501
+# ruff: file-ignore[non-imperative-mood, line-too-long]
 """Headcount slots (Epic 44, FR-224, PRD 5.6): creation on approval, cancel, and the event handlers.
 
 Lifecycle: ``open -> requisitioned -> filled``; ``open -> cancelled`` (reason, ``workforce_plan:write``). A converted

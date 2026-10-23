@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Billing integrity checks (A11, NFR-25): registered as ``billing.*`` reconciliation checks (Epic 30's runner) and
 run nightly. Each returns ``Finding`` rows; zero findings = consistent.
 

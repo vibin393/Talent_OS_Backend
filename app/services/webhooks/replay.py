@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Replay (Epic 68, story 68.5, FR-352/353): a new ``kind='replay'`` row with the SAME event id (``TalentOS-Replay:
 true``); single or a ``failed|held`` range (<= 30 days, <= 10,000 rows, ascending ``event_seq``, task in chunks of
 500). Only ``active`` Subscriptions (409 ``subscription_not_active``) and events inside the 30-day window (409

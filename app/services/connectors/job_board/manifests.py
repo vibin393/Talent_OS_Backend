@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Connector Manifests of the job boards (Epic 70, spec A2): ``naukri``, ``linkedin``, ``indeed`` and ``job_feed``.
 Registered by ``app.services.job_distribution.hooks`` (``register_connector``); Epic 69 syncs the listings.
 

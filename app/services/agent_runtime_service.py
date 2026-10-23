@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Agent runtime facade (Epic 53, spec 0.8, AD-72). The only runtime entry point for agents, the Copilot, routers,
 tasks and other Phase 4 epics (``agents.*`` / ``copilot`` may import this facade and nothing else of the runtime).
 

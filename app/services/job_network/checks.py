@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Automated listing checks (Epic 75, spec A5). Deterministic, no LLM. Any finding holds the listing with the
 finding codes; the Tenant sees the reasons and excerpts on the admin page.
 

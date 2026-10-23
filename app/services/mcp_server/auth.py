@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Authorisation responses and the per-token gate cache (Epic 73, spec 0.2; FR-376). Pure.
 
 Gate order (performed by the facade): bearer (401) -> tenant MCP enabled (401) / ``agent_mcp`` + ``agentic`` + no AI
@@ -34,7 +34,7 @@ def www_authenticate(*, error: str | None = None, description: str | None = None
     return "Bearer " + ", ".join(parts)
 
 
-class GateRefusal(Exception):  # noqa: N818 - protocol name
+class GateRefusal(Exception):  # ruff: ignore[error-suffix-on-exception-name] - protocol name
     """An HTTP-level refusal with a JSON-RPC error body (``-32001``)."""
 
     def __init__(self, status: int, code: str, message: str, *, www: str | None = None) -> None:

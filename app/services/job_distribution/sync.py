@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D400, D415
+# ruff: file-ignore[line-too-long, missing-trailing-period, missing-terminal-punctuation]
 """Job board sync handlers (Epic 70, spec A3 / A5), registered with
 ``integrations_service.register_sync_handler("job_board", <job>, fn)``:
 
@@ -162,7 +162,7 @@ async def _close_one(db: AsyncSession, adapter: Any, bp: BoardPosting, reason: s
     return "closed"
 
 
-async def close(ctx: RequestContext, db: AsyncSession, run: SyncRun) -> SyncResult:  # noqa: ARG001
+async def close(ctx: RequestContext, db: AsyncSession, run: SyncRun) -> SyncResult:  # ruff: ignore[unused-function-argument]
     closed = 0
     if run.subject is not None and run.subject[0] == "board_posting":
         bp = await _subject_posting(db, run)
@@ -195,7 +195,7 @@ async def close(ctx: RequestContext, db: AsyncSession, run: SyncRun) -> SyncResu
 
 
 # ================================================================ mark out of date
-async def mark_out_of_date(ctx: RequestContext, db: AsyncSession, run: SyncRun) -> SyncResult:  # noqa: ARG001
+async def mark_out_of_date(ctx: RequestContext, db: AsyncSession, run: SyncRun) -> SyncResult:  # ruff: ignore[unused-function-argument]
     if run.subject is None or run.subject[0] != "demand":
         return SyncResult(skipped=1)
     return SyncResult(updated=await refresh_revisions(db, run.subject[1], run.installation_id))
@@ -222,7 +222,7 @@ async def refresh_revisions(db: AsyncSession, demand_id: uuid.UUID, installation
 
 
 # ================================================================ status
-async def status(ctx: RequestContext, db: AsyncSession, run: SyncRun) -> SyncResult:  # noqa: ARG001
+async def status(ctx: RequestContext, db: AsyncSession, run: SyncRun) -> SyncResult:  # ruff: ignore[unused-function-argument]
     rows = list(
         (
             await db.execute(
@@ -290,7 +290,7 @@ def _notify_failed(bp: BoardPosting) -> None:
         })  # fmt: skip
 
 
-async def on_job_outcome(ctx: RequestContext, db: AsyncSession, job: Any, outcome: str, exc: BaseException | None) -> None:  # noqa: ARG001
+async def on_job_outcome(ctx: RequestContext, db: AsyncSession, job: Any, outcome: str, exc: BaseException | None) -> None:  # ruff: ignore[unused-function-argument]
     if job.op not in PUSH_OPS or outcome not in ("dead", "permanent", "auth_failed"):
         return
     payload = dict(job.payload or {})

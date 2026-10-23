@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Shared helpers of the Voice Screening domain (Epic 58): constants, clock, settings row, loaders, consent states,
 error helpers, system contexts, the session projection and the notification / timeline helpers."""
 
@@ -55,7 +55,7 @@ def set_clock(fn: Callable[[], datetime] | None) -> None:
     _clock = fn
 
 
-class TooLarge(DomainError):  # noqa: N818 - mirrors HTTP 413 like the core errors
+class TooLarge(DomainError):  # ruff: ignore[error-suffix-on-exception-name] - mirrors HTTP 413 like the core errors
     status_code = 413
     code = "file_too_large"
     default_message = "The file is too large"

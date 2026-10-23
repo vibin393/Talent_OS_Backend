@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Onboarding Agent tools (Epic 62 A4; ``owner_epic="62"``, ``version=1``).
 
 Every tool is bound to the run subject ``("onboarding_qa_thread", thread_id)``: any other thread id is ``not_found`` and
@@ -146,7 +146,7 @@ async def _reply_intent(tctx: Any, args: ReplyIn) -> SendIntent:
     )  # fmt: skip
 
 
-async def _reply_preview(tctx: Any, args: ReplyIn) -> ProposalPreview:  # noqa: ARG001
+async def _reply_preview(tctx: Any, args: ReplyIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
     return ProposalPreview(
         title="Answer an onboarding question", summary=args.answer[:4000],
         fields=(("Citations", ", ".join(args.citations)), ("Topic", args.topic)), renderer="onboarding.reply_grounded",
@@ -171,7 +171,7 @@ async def _hand_off(tctx: Any, args: HandOffIn) -> ToolOutcome:
     return _outcome(HandOffOut(task_id=task_id), thread, f"handed off ({args.reason})")
 
 
-async def _hand_off_preview(tctx: Any, args: HandOffIn) -> ProposalPreview:  # noqa: ARG001
+async def _hand_off_preview(tctx: Any, args: HandOffIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
     return ProposalPreview(
         title="Hand the question to the coordinator",
         summary=f"Reason: {args.reason}; topic: {args.topic}.",

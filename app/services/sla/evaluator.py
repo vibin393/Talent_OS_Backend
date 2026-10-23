@@ -1,4 +1,4 @@
-# ruff: noqa: TC003
+# ruff: file-ignore[typing-only-standard-library-import]
 """SLA clock evaluator (Epic 32, story 19.1): beat ``sla.evaluate_clocks`` per tenant.
 
 Open clocks whose status is behind the clock (``at_risk_at`` / ``due_at`` passed) are locked in batches with

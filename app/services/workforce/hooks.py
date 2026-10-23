@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Registrations of the ``workforce`` domain (autodiscovered by ``core.hooks``; Epic 44, spec A2 / A3 / A6).
 
 * Approval subject ``workforce_plan`` (permission ``workforce_plan:approve``) and the human-only (★) transition

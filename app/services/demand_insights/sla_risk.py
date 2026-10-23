@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401, D400, D415
+# ruff: file-ignore[line-too-long, non-imperative-mood, missing-trailing-period, missing-terminal-punctuation]
 """SLA risk (Epic 55, spec 0.6, FR-284). Read-only on demands: **no Demand field ever changes.**
 
 ``assess(ctx, db, demand_id)``:

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """ "How was this calculated?" (Epic 64 story 64.3, FR-318) -- a **pure** function of the Definition, the catalogue labels
 and the tenant's financial year (April - March). The model's narrative is separate and can never replace this text, so
 the explanation stays correct even when the model's prose is wrong.

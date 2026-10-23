@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Candidate Portal screening chats (Epic 57 A7): ``/api/v1/portal/screening-chats``.
 
 ``Depends(current_candidate)`` authenticates the ``tos_candidate`` cookie (+ CSRF on mutations). Every endpoint is scoped

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """An alternative-process request stops agent screening (Epic 65 story 65.6, FR-323, P3 FR-249; C-18).
 
 * ``on_alternative_requested`` -- ``AlternativeRequested``: cancel the Application's active ``screening`` /

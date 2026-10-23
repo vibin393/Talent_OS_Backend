@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Public Event registry (Epic 66, AD-79, FR-334/350). Pure plumbing: imports nothing from ``app.services`` or ``app.models``.
 
 ``register_public_event(spec)`` maps an internal domain event class to a versioned Public Event type and subscribes an

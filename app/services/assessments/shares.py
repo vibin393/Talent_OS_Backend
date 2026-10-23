@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Assessment results in Submissions (Epic 40 A9, FR-208).
 
 The Recruiter chooses, per Submission, which results to include (``PUT /submissions/{id}/assessment-shares``; only
@@ -30,7 +30,7 @@ async def _submission(db: AsyncSession, submission_id: uuid.UUID) -> Any:
     return sub
 
 
-async def get_shares(ctx: RequestContext, db: AsyncSession, submission_id: uuid.UUID) -> SharesOut:  # noqa: ARG001
+async def get_shares(ctx: RequestContext, db: AsyncSession, submission_id: uuid.UUID) -> SharesOut:  # ruff: ignore[unused-function-argument]
     await _submission(db, submission_id)
     rows = (
         await db.execute(

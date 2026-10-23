@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Human override of the Collections Agent (Epic 63 A4, FR-315): pause per Client or document, take over a document
 thread, release. ``collections:write``; audited (``AuditedMixin``); emits ``CollectionsAgentHoldChanged`` and writes the
 collection log (``held`` / ``takeover`` / ``released``). ``is_held`` / ``assert_not_held`` guard every agent send
@@ -102,14 +102,14 @@ async def release(ctx: RequestContext, db: AsyncSession, hold_id: uuid.UUID) -> 
     return HoldOut.model_validate(row)
 
 
-async def list_holds(ctx: RequestContext, db: AsyncSession, client_id: uuid.UUID, *, include_released: bool = False) -> list[HoldOut]:  # noqa: ARG001
+async def list_holds(ctx: RequestContext, db: AsyncSession, client_id: uuid.UUID, *, include_released: bool = False) -> list[HoldOut]:  # ruff: ignore[unused-function-argument]
     stmt = select(CollectionAgentHold).where(CollectionAgentHold.client_id == client_id)
     if not include_released:
         stmt = stmt.where(CollectionAgentHold.released_at.is_(None))
     return [HoldOut.model_validate(r) for r in (await db.execute(stmt.order_by(CollectionAgentHold.created_at.desc()))).scalars()]
 
 
-async def state(ctx: RequestContext, db: AsyncSession, client_id: uuid.UUID) -> AgentStateOut:  # noqa: ARG001
+async def state(ctx: RequestContext, db: AsyncSession, client_id: uuid.UUID) -> AgentStateOut:  # ruff: ignore[unused-function-argument]
     rows = await active_holds(db, client_id)
     client_paused = any(r.document_id is None for r in rows)
     value = "paused" if client_paused else ("taken_over" if any(r.mode == "takeover" for r in rows) else "active")

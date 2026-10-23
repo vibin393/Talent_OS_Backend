@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Agent principals and Effective Rights (Epic 53, AD-60, FR-265, NFR-46).
 
 * ``ensure_agent_principal`` -- the tenant's non-human identity for an agent key (lazily created; identity only).
@@ -40,7 +40,7 @@ def register_candidate_rights(fn: CandidateRights) -> None:
     _candidate_rights[:] = [fn]
 
 
-class OwnerUnavailable(Exception):  # noqa: N818 - domain name
+class OwnerUnavailable(Exception):  # ruff: ignore[error-suffix-on-exception-name] - domain name
     """The Accountable Owner is missing or inactive (the run fails ``owner_unavailable`` + fallback)."""
 
 

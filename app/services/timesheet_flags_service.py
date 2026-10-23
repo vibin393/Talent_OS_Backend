@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Facade of the ``timesheet_flags`` domain (Epic 63, FR-311 / FR-312). Routers, tools, agents and tasks call these,
 never the package internals."""
 
@@ -26,7 +26,7 @@ from app.services.timesheet_flags.ticks import nudge_tick, start_flag_run, start
 
 
 async def timesheet_owner(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     subject: tuple[str, uuid.UUID] | None,
 ) -> uuid.UUID | None:

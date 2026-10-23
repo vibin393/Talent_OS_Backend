@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Manual uploads (Epic 58, stories 58.1 / 58.3; FR-293, FR-294).
 
 * **Transcript** (TXT, VTT, SRT, DOCX; <= 5 MB): needs ``voice_screening`` consent (409 ``voice_consent_missing``) and

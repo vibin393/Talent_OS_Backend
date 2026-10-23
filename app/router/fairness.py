@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Bias audit (Epic 49, FR-246..FR-249): ``/api/v1/fairness/*``. Internal Users only.
 
 Aggregate-only by construction: no endpoint here returns an individual's self-ID answers (an OpenAPI scan in
@@ -12,7 +12,7 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends, Path, Response, status
 
-import app.models.fairness  # noqa: F401  - fairness tables on Base.metadata at app start (AD-47)
+import app.models.fairness  # ruff: ignore[unused-import]  - fairness tables on Base.metadata at app start (AD-47)
 from app.core.context import get_context
 from app.core.permissions import Principal, require, require_any
 from app.dependencies.auth import TenantDBSessionDep

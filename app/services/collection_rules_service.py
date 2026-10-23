@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Facade of the ``collection_rules`` domain (Epic 63, FR-313..FR-315). Routers, tools, agents and tasks call these,
 never the package internals."""
 
@@ -41,7 +41,7 @@ from app.services.collection_rules.ticks import (
 
 
 async def plan_for(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     client_id: uuid.UUID,
     *,
@@ -67,7 +67,7 @@ async def balance_version(db: AsyncSession, client_id: uuid.UUID) -> str:
 
 
 async def collections_owner_for(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     subject: tuple[str, uuid.UUID] | None,
 ) -> uuid.UUID | None:
@@ -78,7 +78,7 @@ async def collections_owner_for(
 
 
 async def billing_owner_for(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     subject: tuple[str, uuid.UUID] | None,
 ) -> uuid.UUID | None:

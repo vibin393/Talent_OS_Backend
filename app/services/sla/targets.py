@@ -1,4 +1,4 @@
-# ruff: noqa: ARG001, E501
+# ruff: file-ignore[unused-function-argument, line-too-long]
 """Generic (Phase 2) SLA targets and the milestone catalogue (Epic 32, story 19.1, FR-168).
 
 Targets live in the Phase 1 ``sla_targets`` table (foundation R14); rows with ``subject_type='demand'`` stay

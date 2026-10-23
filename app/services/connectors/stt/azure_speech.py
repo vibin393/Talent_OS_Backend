@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Azure AI Speech adapter (Epic 76, spec A5; key ``azure_speech``; coordinator decision D-6: Central India, ``en-IN``
 and ``hi-IN``).
 
@@ -89,15 +89,15 @@ class AzureSpeechToText:
             f"?api-version={self._cfg.api_version}"
         )
 
-    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # noqa: ARG002
+    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         if op == "health":
             return {"ok": True, "languages": list(LANGUAGES)}
         raise ManualActionRequired(f"stt: {op} is not an operation of this provider", {"op": op})
 
-    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # noqa: ARG002
+    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # ruff: ignore[unused-method-argument]
         return False
 
-    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # noqa: ARG002
+    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         return {}
 
     async def languages(self) -> tuple[str, ...]:

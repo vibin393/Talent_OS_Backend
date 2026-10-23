@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Collection plan (Epic 63 A4, FR-314). Pure: ``collection_plan(facts) -> CollectionPlan(items, excluded)``.
 
 Per document (issued invoice / debit note with a due date): ``days_overdue = today - due_date`` (negative before the

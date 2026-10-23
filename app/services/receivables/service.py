@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Receivables contract (Epic 30): open balances, aging and DSO read functions.
 
 Epic 13 contract layer (AD-36): ``open_balance`` keeps its FINAL signature (``tests/contracts/signatures.json``).
@@ -17,7 +17,7 @@ from app.schemas.receivables import AgingOut
 
 
 async def open_balance(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     document_kind: Literal["invoice", "debit_note"],
     document_id: uuid.UUID,

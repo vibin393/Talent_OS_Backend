@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Portal Copilot persistence (Epic 77 A1): conversations, sealed messages, feedback.
 
 Every function takes an **internal** tenant session (the vault data key is internal-only) and filters by the owning

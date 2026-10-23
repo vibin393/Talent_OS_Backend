@@ -28,10 +28,14 @@ class SlaClockOut(BaseModel):
 
 
 # ================================================================ Epic 32: targets, clocks, escalations
-from decimal import Decimal  # noqa: E402
-from typing import Annotated, Any, Literal  # noqa: E402
+from decimal import Decimal  # ruff: ignore[module-import-not-at-top-of-file]
+from typing import Annotated, Any, Literal  # ruff: ignore[module-import-not-at-top-of-file]
 
-from pydantic import Field, StringConstraints, model_validator  # noqa: E402
+from pydantic import (  # ruff: ignore[module-import-not-at-top-of-file]
+    Field,
+    StringConstraints,
+    model_validator,
+)
 
 ClockStatus = Literal["healthy", "at_risk", "breached", "met", "cancelled"]
 Calendar = Literal["business", "calendar"]

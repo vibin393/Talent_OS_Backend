@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Erasure handler ``screening_agent.conversations`` (Epic 57, order 66; FR-326).
 
 For a candidate subject (+ merged ids): delete the conversation turns and the extracted answers (text and voice), and

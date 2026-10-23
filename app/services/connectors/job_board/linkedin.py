@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """LinkedIn Jobs adapter (Epic 70, spec A2; D-3 platform OAuth app, D-4 posting only -- apply on the careers site).
 
 API (LinkedIn Talent Solutions Job Posting API, versioned REST; recorded fixtures pin the shape):
@@ -166,7 +166,7 @@ class LinkedInAdapter(LiveJobBoardBase):
     async def publish(self, posting: JobPostingDTO) -> BoardRefDTO:
         return await self._post(posting, "CREATE")
 
-    async def update(self, board_ref: str, posting: JobPostingDTO) -> BoardRefDTO:  # noqa: ARG002 - LinkedIn keys by externalJobPostingId
+    async def update(self, board_ref: str, posting: JobPostingDTO) -> BoardRefDTO:  # ruff: ignore[unused-method-argument] - LinkedIn keys by externalJobPostingId
         return await self._post(posting, "UPDATE")
 
     async def close(self, board_ref: str) -> BoardRefDTO:

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Seed Pool templates (Epic 38 story 38.4, FR-193). Disabled by default: nothing is created automatically.
 
 ``TEMPLATES`` is code-defined (section 0.6 field keys). Enabling one (``pool:manage``) creates a tenant-visible
@@ -149,7 +149,7 @@ def _filters(t: Template, batch: str | None) -> dict[str, Any]:
     return {**t.filters, "value": batch}
 
 
-async def list_templates(ctx: RequestContext, db: AsyncSession) -> list[TemplateOut]:  # noqa: ARG001
+async def list_templates(ctx: RequestContext, db: AsyncSession) -> list[TemplateOut]:  # ruff: ignore[unused-function-argument]
     rows = (
         await db.execute(
             select(TalentPool.template_key, TalentPool.id).where(

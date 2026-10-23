@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Chasing tasks (Epic 62). Queue ``maintenance``.
 
 * ``chasing.compliance_tick`` / ``chasing.bgv_tick`` (beats, hourly) -- deterministic run starters at the tenant's

@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Drive registration form schema and answer validation (Epic 43 story 43.2, FR-218).
 
 ``{fields: [{key, label, type, required, options?, min?, max?, help?}]}``. The standard keys are always present and

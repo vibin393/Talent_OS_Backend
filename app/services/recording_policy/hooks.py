@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Registrations of the ``recording_policy`` domain (autodiscovered by ``core.hooks``), Epic 53: seed the default
 Recording Policy (``IN`` / ``candidate_consent``) for every new tenant (coordinator decision 9)."""
 
@@ -9,7 +9,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.provisioning import register_tenant_provisioner
 
 
-async def _seed_recording_policy(db: AsyncSession, tenant: Any) -> None:  # noqa: ARG001
+async def _seed_recording_policy(db: AsyncSession, tenant: Any) -> None:  # ruff: ignore[unused-function-argument]
     from app.services.recording_policy.gate import seed_tenant_defaults
 
     await seed_tenant_defaults(db)

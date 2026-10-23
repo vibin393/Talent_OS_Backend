@@ -1,4 +1,4 @@
-# ruff: noqa: D401, E501
+# ruff: file-ignore[non-imperative-mood, line-too-long]
 """Shared Public API adapter helpers (Epic 67, spec 0.6).
 
 * ``page`` / ``one``: keyset lists on ``(updated_at | created_at, id)`` (ascending, ``order=desc`` reverses) and

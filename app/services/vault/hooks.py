@@ -18,7 +18,7 @@ def _register_retention() -> None:
     from app.models.vault import VaultAccessLog
     from app.services.privacy.retention_classes import register_retention_binding, retention_bindings
 
-    async def _no_subject(db: AsyncSession, row_id: uuid.UUID, *_: Any, **__: Any) -> None:  # noqa: ARG001
+    async def _no_subject(db: AsyncSession, row_id: uuid.UUID, *_: Any, **__: Any) -> None:  # ruff: ignore[unused-function-argument]
         return None
 
     async def _anchor(db: AsyncSession, row_id: uuid.UUID, *_: Any, **__: Any) -> Any:
@@ -26,7 +26,7 @@ def _register_retention() -> None:
             await db.execute(select(VaultAccessLog.at).where(VaultAccessLog.id == row_id))
         ).scalar_one_or_none()
 
-    async def _expire(db: AsyncSession, ids: Sequence[uuid.UUID], action: str = "delete") -> dict[str, int]:  # noqa: ARG001
+    async def _expire(db: AsyncSession, ids: Sequence[uuid.UUID], action: str = "delete") -> dict[str, int]:  # ruff: ignore[unused-function-argument]
         result = await db.execute(delete(VaultAccessLog).where(VaultAccessLog.id.in_(list(ids))))
         return {"deleted": int(getattr(result, "rowcount", 0) or 0)}
 

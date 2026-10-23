@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Skills graph settings (Epic 37 A1): one ``skill_graph_settings`` row per tenant, created lazily.
 
 ``match_depth`` / ``min_weight`` are what matching passes to ``expand``; search uses depth 2 and ``min_weight``.

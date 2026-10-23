@@ -86,12 +86,12 @@ def _register_notifications() -> None:
         ).scalars()
         return {ns.Recipient("vendor_user", uid) for uid in rows}
 
-    async def _reviewers(db: AsyncSession, payload: Mapping[str, Any]) -> set[uuid.UUID]:  # noqa: ARG001
+    async def _reviewers(db: AsyncSession, payload: Mapping[str, Any]) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
         from app.services import identity_bridge
 
         return {u["id"] for u in await identity_bridge.users_with_permission(db, "vendor_submission:review")}
 
-    async def _nobody(db: AsyncSession, payload: Mapping[str, Any]) -> set[uuid.UUID]:  # noqa: ARG001
+    async def _nobody(db: AsyncSession, payload: Mapping[str, Any]) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
         return set()
 
     async def _render_release(db: AsyncSession, payload: Mapping[str, Any]) -> Any:
@@ -107,11 +107,11 @@ def _register_notifications() -> None:
             title=f"New requirement released to you: {title or ''}"[:300], link_path=f"/vendor/releases/{rid}"
         )
 
-    async def _render_received(db: AsyncSession, payload: Mapping[str, Any]) -> Any:  # noqa: ARG001
+    async def _render_received(db: AsyncSession, payload: Mapping[str, Any]) -> Any:  # ruff: ignore[unused-function-argument]
         return ns.Content(title="A vendor submitted a candidate for review", link_path="/vendors/review")
 
     def _render_plain(label: str) -> Any:
-        async def render(db: AsyncSession, payload: Mapping[str, Any]) -> Any:  # noqa: ARG001
+        async def render(db: AsyncSession, payload: Mapping[str, Any]) -> Any:  # ruff: ignore[unused-function-argument]
             return ns.Content(title=str(payload.get("title") or label))
 
         return render
@@ -193,7 +193,7 @@ def _register_workflow() -> None:
     from app.services.workflow.registry import TRIGGERS, FieldDef, Trigger, register_trigger
 
     async def _snapshot(
-        ctx: RequestContext,  # noqa: ARG001
+        ctx: RequestContext,  # ruff: ignore[unused-function-argument]
         db: AsyncSession,
         submission_id: uuid.UUID,
     ) -> dict[str, Any] | None:
@@ -244,7 +244,7 @@ def _register_workflow() -> None:
             ),
         )
 
-    def _validate(params: Any, entity_type: str, path: str) -> None:  # noqa: ARG001
+    def _validate(params: Any, entity_type: str, path: str) -> None:  # ruff: ignore[unused-function-argument]
         if entity_type != "demand":
             raise actions._invalid(path, "only for demand triggers")
 

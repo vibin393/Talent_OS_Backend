@@ -192,10 +192,10 @@ def _unresolved(step: str) -> ValidationFailed:
 
 
 async def _resolve_user(
-    ctx: RequestContext,  # noqa: ARG001
-    db: AsyncSession,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
+    db: AsyncSession,  # ruff: ignore[unused-function-argument]
     ref: Mapping[str, Any],
-    facts: Mapping[str, Any],  # noqa: ARG001
+    facts: Mapping[str, Any],  # ruff: ignore[unused-function-argument]
 ) -> ResolvedApprover:
     user_id = _uuid(ref.get("user_id"))
     if user_id is None:
@@ -204,10 +204,10 @@ async def _resolve_user(
 
 
 async def _resolve_role(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     ref: Mapping[str, Any],
-    facts: Mapping[str, Any],  # noqa: ARG001
+    facts: Mapping[str, Any],  # ruff: ignore[unused-function-argument]
 ) -> ResolvedApprover:
     role_id = _uuid(ref.get("role_id"))
     if role_id is None and ref.get("role_key"):
@@ -218,10 +218,10 @@ async def _resolve_role(
 
 
 async def _resolve_finance_role(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     ref: Mapping[str, Any],
-    facts: Mapping[str, Any],  # noqa: ARG001
+    facts: Mapping[str, Any],  # ruff: ignore[unused-function-argument]
 ) -> ResolvedApprover:
     role_id = await directory.role_id_by_key(db, str(ref.get("role_key") or "finance_admin"))
     if role_id is None:
@@ -361,7 +361,7 @@ async def _write_steps(ctx: RequestContext, db: AsyncSession, chain: ApprovalCha
     await db.flush()
 
 
-async def list_chains(ctx: RequestContext, db: AsyncSession) -> list[ChainOut]:  # noqa: ARG001
+async def list_chains(ctx: RequestContext, db: AsyncSession) -> list[ChainOut]:  # ruff: ignore[unused-function-argument]
     chains = (
         await db.execute(select(ApprovalChain).order_by(ApprovalChain.subject_type, ApprovalChain.created_at))
     ).scalars()
@@ -375,7 +375,7 @@ async def _get_chain(db: AsyncSession, chain_id: uuid.UUID) -> ApprovalChain:
     return chain
 
 
-async def get_chain(ctx: RequestContext, db: AsyncSession, chain_id: uuid.UUID) -> ChainOut:  # noqa: ARG001
+async def get_chain(ctx: RequestContext, db: AsyncSession, chain_id: uuid.UUID) -> ChainOut:  # ruff: ignore[unused-function-argument]
     return await _chain_out(db, await _get_chain(db, chain_id))
 
 
@@ -422,7 +422,7 @@ async def update_chain(ctx: RequestContext, db: AsyncSession, chain_id: uuid.UUI
     return await _chain_out(db, chain)
 
 
-async def delete_chain(ctx: RequestContext, db: AsyncSession, chain_id: uuid.UUID) -> None:  # noqa: ARG001
+async def delete_chain(ctx: RequestContext, db: AsyncSession, chain_id: uuid.UUID) -> None:  # ruff: ignore[unused-function-argument]
     chain = await _get_chain(db, chain_id)
     await db.delete(chain)
     await db.flush()
@@ -637,7 +637,7 @@ def _complete(db: AsyncSession, request: ApprovalRequest, status: str) -> None:
 
 
 async def cancel_open(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     subject_type: str,
     subject_id: uuid.UUID,

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Recording Policy settings API (Epic 58, story 58.2; FR-294) on the foundation table ``recording_policies``.
 
 | Method + path | Permission |

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Finance agent run starters (Epic 63 A3 / A4); hourly beats on ``maintenance``, deterministic, no model call when
 nothing is due.
 

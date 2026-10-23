@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Copilot Celery tasks (Epic 54). Every task starts with ``tenant_id`` (beat fan-outs excepted).
 
 * queue ``conversations``: ``copilot.on_run_finished`` (store the answer, publish ``turn.completed|failed``, then the
@@ -40,7 +40,7 @@ def on_draft_created(tenant_id: str, run_id: str, proposal_id: str) -> None:
 
 
 @celery_app.task(name="copilot.on_draft_decided", queue=QUEUE, acks_late=True)  # type: ignore[misc,untyped-decorator,unused-ignore]
-def on_draft_decided(tenant_id: str, run_id: str, proposal_id: str, outcome: str | None = None) -> None:  # noqa: ARG001
+def on_draft_decided(tenant_id: str, run_id: str, proposal_id: str, outcome: str | None = None) -> None:  # ruff: ignore[unused-function-argument]
     from app.services import copilot_service
 
     tid = uuid.UUID(str(tenant_id))

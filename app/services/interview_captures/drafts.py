@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Draft scorecards (Epic 60, story 60.5; FR-304, NFR-52).
 
 * ``save`` -- one private draft per internal interviewer who must score (``scorecard_required``): one suggested rating

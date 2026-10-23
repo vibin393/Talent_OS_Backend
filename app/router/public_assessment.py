@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Secure Link assessment page (Epic 40 A6): ``/api/v1/public/links/{token}/assessment`` (purpose
 ``assessment_attempt``; actor ``secure_link``).
 

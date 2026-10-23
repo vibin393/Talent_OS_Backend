@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Phase 4 shared DTOs (Epic 53, spec 0.7 / 0.8): gateway step request / result and the agent runtime facade DTOs.
 Imported by ``ai.loop``, ``agent_runtime`` and agent packages; no service imports."""
 

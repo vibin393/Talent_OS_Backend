@@ -1,4 +1,4 @@
-# ruff: noqa: D401, E501
+# ruff: file-ignore[non-imperative-mood, line-too-long]
 """App runtime status (Epic 66 core) and App management (Epic 67, story 67.1; spec A3).
 
 * ``create_app`` / ``update_app`` / ``rotate_secret`` keep the frozen 66 signatures. Private Apps
@@ -512,7 +512,7 @@ async def _load_for_manage_read(ctx: RequestContext, pdb: AsyncSession, app_id: 
     return row
 
 
-async def list_private_apps(ctx: RequestContext, db: AsyncSession) -> list[AppOut]:  # noqa: ARG001
+async def list_private_apps(ctx: RequestContext, db: AsyncSession) -> list[AppOut]:  # ruff: ignore[unused-function-argument]
     principal = ctx.principal
     if not isinstance(principal, Principal) or ctx.tenant_id is None:
         return []
@@ -527,13 +527,13 @@ async def list_private_apps(ctx: RequestContext, db: AsyncSession) -> list[AppOu
         return [app_out(r) for r in rows]
 
 
-async def get_private_app(ctx: RequestContext, db: AsyncSession, app_id: uuid.UUID) -> AppOut:  # noqa: ARG001
+async def get_private_app(ctx: RequestContext, db: AsyncSession, app_id: uuid.UUID) -> AppOut:  # ruff: ignore[unused-function-argument]
     async with platform_session() as pdb:
         return app_out(await _load_for_manage_read(ctx, pdb, app_id))
 
 
 async def set_app_status(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     app_id: uuid.UUID,
     status: AppStatus,

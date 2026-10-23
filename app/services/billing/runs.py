@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Invoice Runs (FR-145, AD-23): pull approved, unposted items through ``postings.load_unposted``, group them per
 Billing Rule and currency, price them (``pricing``), preview tax (``tax``) and insert one draft per group, each
 in its own savepoint with ``postings.reserve`` (a concurrently reserved item is skipped with an exception).

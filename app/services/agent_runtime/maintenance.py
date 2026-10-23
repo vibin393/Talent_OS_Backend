@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Runtime beat jobs per tenant (Epic 53, AD-58): reaper, proposal expiry, budget alerts, payload purge.
 
 Epic 66 (§0.15): ``origin='external'`` (MCP) sessions hold no lease and are never touched by ``reap``;

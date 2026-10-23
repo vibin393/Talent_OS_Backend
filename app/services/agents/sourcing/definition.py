@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The ``sourcing`` AgentSpec (Epic 56, spec §A4; FR-285..FR-288).
 
 * Subject: the Demand; Accountable Owner: the Demand's owner (primary recruiter). No owner -> no run and the
@@ -61,7 +61,7 @@ class SourcingResult(BaseModel):
     suppressed: int = Field(default=0, ge=0, le=100)
 
 
-async def demand_owner(ctx: Any, db: Any, subject: tuple[str, uuid.UUID] | None) -> uuid.UUID | None:  # noqa: ARG001
+async def demand_owner(ctx: Any, db: Any, subject: tuple[str, uuid.UUID] | None) -> uuid.UUID | None:  # ruff: ignore[unused-function-argument]
     """Return the Demand's ``owner_id`` (primary recruiter): a read-only lookup through the shared ``entity_refs`` helper
     (the agent package never imports models or the database, AD-56)."""
     if subject is None or subject[0] != "demand":

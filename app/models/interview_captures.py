@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Interview capture tables.
 
 * ``interview_captures`` -- the hub (Epic 53 contract layer, AD-65; migration ``20261008_400_03_p4_hubs``), ALTERed by

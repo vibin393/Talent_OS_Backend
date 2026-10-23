@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The playground token calls (Epic 74, stories 74.3 / 74.4, spec 0.5). The pasted client secret is used once,
 in-process, against Epic 67's token endpoint function (``oauth_service.token`` -- the same code path as
 ``POST /api/oauth/token``, no network), and discarded: it is never stored, cached or logged. Only Sandbox Tenants are

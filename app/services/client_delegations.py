@@ -45,7 +45,7 @@ async def acting_for(
 
 
 async def delegate_resolver(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     principal_id: uuid.UUID,
     on_date: date,

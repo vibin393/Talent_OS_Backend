@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Usage metering and Rate Tiers (Epic 66, AD-78, FR-338, NFR-71/74). Informational only (D-12): no billing objects.
 Facade: ``app.services.metering_service``.
 

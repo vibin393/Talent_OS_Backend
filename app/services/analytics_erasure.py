@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Predictive analytics erasure handler ``analytics.predictions`` (48), Epic 48 A8 (FR-258, AD-45).
 
 On erasure of a Candidate:

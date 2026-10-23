@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 78 read tools of the ``campaign_copy`` agent (AD-91, FR-401). Risk ``read``, permission ``campaign:read``.
 
 The run's copy request is resolved from the run id (``campaign_copy_requests.agent_run_id``); the tools take no ids.
@@ -104,7 +104,7 @@ async def _reachable(tctx: Any, channel: str, source: dict[str, Any]) -> int | N
     return int(counts.get(channel, 0))
 
 
-async def _brief(tctx: Any, args: NoArgs) -> ToolOutcome:  # noqa: ARG001
+async def _brief(tctx: Any, args: NoArgs) -> ToolOutcome:  # ruff: ignore[unused-function-argument]
     req = await _request(tctx)
     brief = dict(req.brief or {})
     segments = []
@@ -124,7 +124,7 @@ async def _brief(tctx: Any, args: NoArgs) -> ToolOutcome:  # noqa: ARG001
     return ToolOutcome(out, summary=f"brief with {len(segments)} segments")
 
 
-async def _postings(tctx: Any, args: NoArgs) -> ToolOutcome:  # noqa: ARG001
+async def _postings(tctx: Any, args: NoArgs) -> ToolOutcome:  # ruff: ignore[unused-function-argument]
     from app.models.demands import Demand, DemandPosting, JdVersion
     from app.services.campaigns import tokens
 
@@ -162,7 +162,7 @@ async def _postings(tctx: Any, args: NoArgs) -> ToolOutcome:  # noqa: ARG001
     return ToolOutcome(PostingsOut(postings=out), summary=f"{len(out)} postings")
 
 
-async def _templates(tctx: Any, args: NoArgs) -> ToolOutcome:  # noqa: ARG001
+async def _templates(tctx: Any, args: NoArgs) -> ToolOutcome:  # ruff: ignore[unused-function-argument]
     from app.models.comms import ChannelTemplate
     from app.services.comms.merge_fields import MERGE_FIELDS
 
@@ -189,7 +189,7 @@ async def _templates(tctx: Any, args: NoArgs) -> ToolOutcome:  # noqa: ARG001
     return ToolOutcome(TemplatesOut(channel=req.channel, template=template, merge_fields=fields, rules=rules), summary="templates and rules")
 
 
-async def _style(tctx: Any, args: NoArgs) -> ToolOutcome:  # noqa: ARG001
+async def _style(tctx: Any, args: NoArgs) -> ToolOutcome:  # ruff: ignore[unused-function-argument]
     from app.models.campaigns import MarketingSettings
     from app.services import entity_refs
     from app.services.agent_runtime.sanitize import allowed_hosts

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Dashboard tile providers (Epic 79 story 79.3, FR-407). Read-only over owner facades and guarded reporting
 projections; each provider degrades to an empty tile when its source is absent. ``available(ctx)`` gates a tile by
 permission. Platform-table tiles (Job Network) come through ``job_network_service.tenant_stats`` (AD-87)."""

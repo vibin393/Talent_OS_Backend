@@ -1,4 +1,4 @@
-# ruff: noqa: E501, N812
+# ruff: file-ignore[line-too-long, lowercase-imported-as-non-lowercase]
 """Delivery dashboard tiles (Epic 34, A3): bench, vendor performance, early terminations, roll-offs."""
 
 from datetime import timedelta

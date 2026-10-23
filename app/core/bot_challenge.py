@@ -26,7 +26,7 @@ class BotChallengeVerifier(Protocol):
 
 
 class NoopVerifier:
-    async def verify(self, token: str | None, remote_ip: str) -> bool:  # noqa: ARG002
+    async def verify(self, token: str | None, remote_ip: str) -> bool:  # ruff: ignore[unused-method-argument]
         return True
 
 

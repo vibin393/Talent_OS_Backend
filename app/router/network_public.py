@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Anonymous Job Network site API (Epic 75, spec A6; prefix ``/api/v1/public/network``). No session, no CSRF. Reads are
 rate limited (120/min per IP) and cached (``public, max-age=60, s-maxage=300``). Responses never carry ``tenant_id`` /
 ``member_id`` / ``posting_ref`` (except inside the already-public ``apply_url``) / hold reasons / report counts / stats."""

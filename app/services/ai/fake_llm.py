@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Scripted Fake LLM (Epic 53, AD-57, FR-272, NFR-54): implements the Anthropic client surface the gateway uses
 (``messages.create`` / ``messages.stream``) from a script of turns. Tests, CI, demos and keyless non-production
 environments use it; it is never selected in production (settings refuse ``AI_PROVIDER=fake`` there).
@@ -217,7 +217,7 @@ class FakeLLM:
             def stream(self, **kwargs: Any) -> _Stream:
                 return _Stream(fake._respond(kwargs))
 
-        def make(api_key: str) -> Any:  # noqa: ARG001 - the fake needs no key
+        def make(api_key: str) -> Any:  # ruff: ignore[unused-function-argument] - the fake needs no key
             return SimpleNamespace(messages=_Messages())
 
         return make
@@ -274,7 +274,7 @@ def keyless_factory() -> ClientFactory:
         def stream(self, **kwargs: Any) -> _Stream:
             return _Stream(respond(kwargs))
 
-    def make(api_key: str) -> Any:  # noqa: ARG001
+    def make(api_key: str) -> Any:  # ruff: ignore[unused-function-argument]
         return SimpleNamespace(messages=_Messages())
 
     return make

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Copilot settings rules and the availability decision (Epic 54 A1 / A5 ``status``). Pure: no I/O.
 
 Turning the Copilot on or off is the foundation's ``PUT /agents/copilot/enabled`` (AI feature ``agent_copilot``);

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Phase 2 Epic 33 endpoints (communication extensions). Internal users only -- external cookies get 401.
 
 * ``/comms/*`` -- SMS / WhatsApp: channel settings, templates, eligibility + send (``Idempotency-Key``),

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Analytics answers maintenance (Epic 64, A8). Beat (queue ``maintenance``): ``analytics_answers.purge_expired`` daily --
 deletes answers past ``expires_at`` (90 days) and answers whose Copilot conversation no longer exists."""
 

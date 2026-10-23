@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Answer documents (Epic 76, spec A3): TwiML for Twilio, Plivo XML for Plivo. The recording notice is spoken and
 recording requested **only** when ``recording_requested`` (the dial-time gate result); otherwise the candidate is
 dialled without any record attribute. Exotel is flow-based (no answer document)."""

@@ -98,7 +98,7 @@ async def transition_contract(
     actor: ActorRef,
     reason: str | None = None,
 ) -> Contract:
-    """The only writer of ``contracts.status`` (AD-4)."""  # noqa: D401
+    """The only writer of ``contracts.status`` (AD-4)."""  # ruff: ignore[non-imperative-mood]
     from_status = contract.status
     check_transition(from_status, to, actor)
     contract.status = to
@@ -175,7 +175,7 @@ def _summary(row: Contract) -> ContractSummary:
 
 
 async def list_contracts(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     client_id: uuid.UUID | None = None,
@@ -210,7 +210,7 @@ async def list_contracts(
     ]
 
 
-async def get_contract_out(ctx: RequestContext, db: AsyncSession, contract_id: uuid.UUID) -> ContractOut:  # noqa: ARG001
+async def get_contract_out(ctx: RequestContext, db: AsyncSession, contract_id: uuid.UUID) -> ContractOut:  # ruff: ignore[unused-function-argument]
     return await _out(db, await get_row(db, contract_id), detail=True)
 
 
@@ -330,7 +330,7 @@ async def create_contract(ctx: RequestContext, db: AsyncSession, data: ContractC
 async def create_contract_draft(
     ctx: RequestContext, db: AsyncSession, data: ContractDraftIn
 ) -> ContractSummary:
-    """Contract-layer stub (CRM Won conversion): a ``draft`` linked to its opportunity, with draft documents."""  # noqa: E501
+    """Contract-layer stub (CRM Won conversion): a ``draft`` linked to its opportunity, with draft documents."""  # ruff: ignore[line-too-long]
     actor = actor_from_ctx(ctx)
     if _actor_kind(actor) not in ("user", "system"):
         actor = ActorRef("system", None)
@@ -514,7 +514,7 @@ async def on_final_decided(ctx: RequestContext, db: AsyncSession, decision: Any)
         await transition_contract(ctx, db, row, "draft", ActorRef("user", actor.id), reason=decision.comment)
 
 
-async def describe(ctx: RequestContext, db: AsyncSession, ids: list[uuid.UUID]) -> dict[uuid.UUID, Any]:  # noqa: ARG001
+async def describe(ctx: RequestContext, db: AsyncSession, ids: list[uuid.UUID]) -> dict[uuid.UUID, Any]:  # ruff: ignore[unused-function-argument]
     from app.schemas.approvals import SubjectSummary
 
     rows = (await db.execute(select(Contract).where(Contract.id.in_(ids)))).scalars()
@@ -539,7 +539,7 @@ def _doc_out(doc: ContractDocument, name: str | None) -> ContractDocumentOut:
 
 
 async def list_documents(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     contract_id: uuid.UUID,
 ) -> list[ContractDocumentOut]:
@@ -638,7 +638,7 @@ async def request_signature(
     signers: Sequence[dict[str, Any]],
     document_file_id: uuid.UUID | None,
 ) -> ContractOut:
-    """AD-28: delegate to ``documents_service`` when the documents epic has filled it; else 409 ``esign_unavailable``."""  # noqa: E501
+    """AD-28: delegate to ``documents_service`` when the documents epic has filled it; else 409 ``esign_unavailable``."""  # ruff: ignore[line-too-long]
     from app.schemas.documents import SignatureRequestCreateIn, SignerSpec
     from app.services import documents_service
 
@@ -721,7 +721,7 @@ async def _document_for_file(
     db: AsyncSession, file_id: uuid.UUID | None, contract_id: uuid.UUID
 ) -> uuid.UUID | None:
     """This contract's documents-epic ``documents`` row carrying ``file_id`` (feature-detected: None until it
-    exists)."""  # noqa: D401
+    exists)."""  # ruff: ignore[non-imperative-mood]
     if file_id is None:
         return None
     from sqlalchemy import text
@@ -776,7 +776,7 @@ async def on_signature_completed(
     return await try_system_activation(ctx, db, row)
 
 
-async def history(ctx: RequestContext, db: AsyncSession, contract_id: uuid.UUID) -> list[ContractHistoryItem]:  # noqa: ARG001
+async def history(ctx: RequestContext, db: AsyncSession, contract_id: uuid.UUID) -> list[ContractHistoryItem]:  # ruff: ignore[unused-function-argument]
     await get_row(db, contract_id)
     rows = (
         await db.execute(
@@ -794,7 +794,7 @@ async def history(ctx: RequestContext, db: AsyncSession, contract_id: uuid.UUID)
     ]
 
 
-# ================================================================ public helpers (placements / billing / extensions)  # noqa: E501
+# ================================================================ public helpers (placements / billing / extensions)  # ruff: ignore[line-too-long]
 def _active_on(on_date: date) -> Any:
     return and_(
         Contract.status == "active",
@@ -804,13 +804,13 @@ def _active_on(on_date: date) -> Any:
 
 
 async def active_contract_for(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     client_id: uuid.UUID,
     legal_entity_id: uuid.UUID,
     on_date: date,
 ) -> ContractSummary | None:
-    """The Active MSA / SOW of the client + LE on ``on_date`` (SOW preferred, then the latest start)."""  # noqa: D401
+    """The Active MSA / SOW of the client + LE on ``on_date`` (SOW preferred, then the latest start)."""  # ruff: ignore[non-imperative-mood]
     rows = (
         await db.execute(
             select(Contract)
@@ -829,7 +829,7 @@ async def active_contract_for(
 
 
 async def assert_contract_active(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     contract_id: uuid.UUID,
     client_id: uuid.UUID,
@@ -852,7 +852,7 @@ async def assert_contract_active(
     return _summary(row)
 
 
-async def get_contract(ctx: RequestContext, db: AsyncSession, contract_id: uuid.UUID) -> ContractFacts:  # noqa: ARG001
+async def get_contract(ctx: RequestContext, db: AsyncSession, contract_id: uuid.UUID) -> ContractFacts:  # ruff: ignore[unused-function-argument]
     row = await get_row(db, contract_id)
     days = None
     if row.payment_terms_id is not None:
@@ -883,7 +883,7 @@ async def get_contract(ctx: RequestContext, db: AsyncSession, contract_id: uuid.
     )
 
 
-async def shares_bgv_outcome(ctx: RequestContext, db: AsyncSession, contract_id: uuid.UUID) -> bool:  # noqa: ARG001
+async def shares_bgv_outcome(ctx: RequestContext, db: AsyncSession, contract_id: uuid.UUID) -> bool:  # ruff: ignore[unused-function-argument]
     found = (
         await db.execute(select(Contract.share_bgv_outcome).where(Contract.id == contract_id))
     ).scalar_one_or_none()
@@ -912,7 +912,7 @@ async def expire_due(ctx: RequestContext, db: AsyncSession, at: Any = None) -> i
     return count
 
 
-async def renewal_reminders(ctx: RequestContext, db: AsyncSession, at: Any = None) -> int:  # noqa: ARG001
+async def renewal_reminders(ctx: RequestContext, db: AsyncSession, at: Any = None) -> int:  # ruff: ignore[unused-function-argument]
     """One reminder per (contract, end_date, lead day) when the end is within the lead window."""
     from sqlalchemy.dialects.postgresql import insert
 

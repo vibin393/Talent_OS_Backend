@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Internal applications (Epic 41 A3, FR-210): a P1 Application with ``source='internal'`` plus a
 ``mobility_applications`` overlay (link = ``application_id`` UNIQUE + ``applications.source_ref``).
 

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The Copilot ``AgentSpec`` (Epic 54 A4, FR-276..FR-280, NFR-45/46/48).
 
 * Owner = the signed-in user (explicit ``owner_user_id`` per turn); Effective Rights = user ∩ ``permission_ceiling``,

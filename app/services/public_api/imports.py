@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Public bulk import (Epic 67, spec A4 "Bulk import", NFR-65).
 
 ``POST /imports`` (multipart ``file`` + ``resource`` + ``format``): size / row caps (``public_api_bulk_max_rows``; the

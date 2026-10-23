@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 70 (spec A3): MCP exposures of the job board tools. Publishing through MCP is always a Proposal
 (``mcp:propose``); no internal AgentSpec lists ``job_boards.publish`` (agents never publish, P4 FR-281 card)."""
 

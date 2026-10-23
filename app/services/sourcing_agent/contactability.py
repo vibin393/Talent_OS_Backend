@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Per-channel contactability (Epic 56, FR-288). The SAME rules as the P3 marketing governance
 (``campaigns.governance.bulk_preview``) are evaluated **before** drafting; suppressed Candidates get no draft, and the
 send re-runs ``governance.check`` at execution.

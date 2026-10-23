@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Skills graph & proficiency endpoints (Epic 37, FR-187..FR-191). New Phase 3 routes only; the P1 catalogue routes
 (``/skills``) stay in ``router/candidates.py``. Each endpoint calls exactly one ``skills_service`` function.
 

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Sales CRM (Epic 15, FR-83..FR-87): leads, duplicate detection, CSV import, lead conversion, opportunities and
 the pipeline, the one-step Won conversion and the sales dashboard. Import through ``app.services.crm_service``.
 

@@ -133,7 +133,7 @@ def claimable(placement: Placement) -> bool:
 
 
 async def create_claim(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     placement_id: uuid.UUID,
     *,

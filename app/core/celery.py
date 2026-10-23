@@ -36,7 +36,7 @@ def queue_for(task: Any) -> str | None:
     return declared if isinstance(declared, str) else None
 
 
-def route_task(name: str, args: Any, kwargs: Any, options: Any, task: Any = None, **kw: Any) -> dict[str, str]:  # noqa: ARG001
+def route_task(name: str, args: Any, kwargs: Any, options: Any, task: Any = None, **kw: Any) -> dict[str, str]:  # ruff: ignore[unused-function-argument]
     queue = queue_for(task) if task is not None else None
     if queue is None and name in celery_app.tasks:
         queue = queue_for(celery_app.tasks[name])

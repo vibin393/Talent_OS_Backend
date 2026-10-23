@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001, N812
+# ruff: file-ignore[line-too-long, unused-function-argument, lowercase-imported-as-non-lowercase]
 """Phase 2 list kinds (Epic 34, A4, FR-178): drill-down lists and export sources over Phase 2 tables.
 
 Registered into the P1 ``lists`` registry (``register_list_kind``), so ``GET /reports/lists/{kind}`` and the

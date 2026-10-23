@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 67 registrations (spec A1 / A7): the 67 scopes (none sensitive, resource ``api``), the notification types
 (``oauth_client_secret_expiring``) and the settings-hub entry for private Apps. Imported from ``oauth/hooks.py``."""
 

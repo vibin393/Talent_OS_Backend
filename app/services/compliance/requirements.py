@@ -1,4 +1,4 @@
-# ruff: noqa: ARG001, E501
+# ruff: file-ignore[unused-function-argument, line-too-long]
 """Configuration (Epic 21 A1/A3, P2-8.1, FR-116): credential types, compliance requirements and settings.
 
 CRUD is audited (``AuditedMixin`` + explicit events). Item refs into other epics' tables (``bgv_package_id``,

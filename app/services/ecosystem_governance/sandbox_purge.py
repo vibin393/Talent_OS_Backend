@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Sandbox purge (Epic 79 story 79.8, spec A9).
 
 Tenants with ``mode = 'sandbox'`` inactive for ``sandbox_inactive_purge_days`` (90) get a 14-day warning, then deletion

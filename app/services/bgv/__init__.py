@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Background verification and reference checks (Epic 20, FR-110..FR-114).
 
 Modules: ``packages`` (configuration), ``cases`` (creation, start, cancel, reads, document review), ``status``

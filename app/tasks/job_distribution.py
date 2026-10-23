@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Job board distribution tasks (Epic 70), queue ``ecosystem``. Every task starts with ``tenant_id`` (beat fan-outs
 excepted).
 

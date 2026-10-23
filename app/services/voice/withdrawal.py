@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Withdrawal, sweep and retention of voice sessions (Epic 58, A5; FR-294, FR-326).
 
 * ``ConsentWithdrawn(call_recording)`` -> task ``voice.purge_recordings`` (immediately): every recording of the
@@ -137,7 +137,7 @@ async def sweep(db: AsyncSession) -> int:
 
 # ================================================================ retention (conversation_records)
 async def expire_summaries(
-    db: AsyncSession, ids: Sequence[uuid.UUID], action: str = "delete"  # noqa: ARG001
+    db: AsyncSession, ids: Sequence[uuid.UUID], action: str = "delete"  # ruff: ignore[unused-function-argument]
 ) -> dict[str, int]:
     ids = list(ids)
     for sid in ids:

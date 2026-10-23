@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Submission packs (Epic 61, FR-305..FR-307). Fills the Epic 53 contract stub ``prepare_pack`` (signature pinned by
 ``tests/contracts/signatures.json``).
 
@@ -584,7 +584,7 @@ async def discard_for_application(db: AsyncSession, application_id: uuid.UUID, r
 
 
 async def link_submission(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     submission_id: uuid.UUID,
 ) -> SubmissionPack | None:
@@ -748,7 +748,7 @@ async def pack_context(ctx: RequestContext, db: AsyncSession, application_id: uu
 
 
 async def application_owner(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     subject: tuple[str, uuid.UUID] | None,
 ) -> uuid.UUID | None:
@@ -764,7 +764,7 @@ async def application_owner(
     return demand.owner_id if demand is not None else None
 
 
-async def agent_status(ctx: RequestContext, db: AsyncSession) -> dict[str, bool]:  # noqa: ARG001
+async def agent_status(ctx: RequestContext, db: AsyncSession) -> dict[str, bool]:  # ruff: ignore[unused-function-argument]
     """``{enabled, paused}``: the Submission Agent's feature switches and the kill switches (for the panel buttons)."""
     from app.services.agent_runtime_service import agentic_state
     from app.services.ai import gateway as ai_gateway

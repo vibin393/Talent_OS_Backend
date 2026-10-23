@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Submission pack follow-ups (Epic 61). Every task starts with ``tenant_id``. Queue ``maintenance``.
 
 * ``submission_packs.link_submission`` -- a person created a Submission: the open pack becomes ``used`` (+ diff).

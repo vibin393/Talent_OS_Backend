@@ -1,4 +1,4 @@
-# ruff: noqa: ARG001, B903, D401, E501
+# ruff: file-ignore[unused-function-argument, class-as-data-structure, non-imperative-mood, line-too-long]
 """Escalations (Epic 32, story 19.2, FR-170): policies, watches and the ``sla.evaluate_escalations`` beat.
 
 * **Policies** live in the foundation ``escalation_policies`` table. Reusable ones are ``owner_kind='library'``;

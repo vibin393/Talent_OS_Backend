@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Disputes (FR-157): operational, audited. The open disputed amount shows separately in aging and is excluded
 from auto-allocation and reminders. Resolution by Credit Note links the CN (raised in billing)."""
 
@@ -56,7 +56,7 @@ async def open_dispute(ctx: RequestContext, db: AsyncSession, data: DisputeIn) -
     return out(d)
 
 
-async def resolve(ctx: RequestContext, db: AsyncSession, dispute_id: uuid.UUID, data: DisputeResolveIn) -> DisputeOut:  # noqa: ARG001
+async def resolve(ctx: RequestContext, db: AsyncSession, dispute_id: uuid.UUID, data: DisputeResolveIn) -> DisputeOut:  # ruff: ignore[unused-function-argument]
     d = (await db.execute(select(Dispute).where(Dispute.id == dispute_id).with_for_update())).scalar_one_or_none()
     if d is None:
         raise NotFound("Dispute not found")
@@ -77,7 +77,7 @@ async def resolve(ctx: RequestContext, db: AsyncSession, dispute_id: uuid.UUID, 
     return out(d)
 
 
-async def list_disputes(ctx: RequestContext, db: AsyncSession, *, client_id: uuid.UUID | None = None, status: str | None = None) -> list[DisputeOut]:  # noqa: ARG001
+async def list_disputes(ctx: RequestContext, db: AsyncSession, *, client_id: uuid.UUID | None = None, status: str | None = None) -> list[DisputeOut]:  # ruff: ignore[unused-function-argument]
     stmt = select(Dispute)
     if client_id:
         stmt = stmt.where(Dispute.client_id == client_id)

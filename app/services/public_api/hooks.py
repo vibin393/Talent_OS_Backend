@@ -1,4 +1,4 @@
-# ruff: noqa: E501, RUF028
+# ruff: file-ignore[line-too-long, invalid-formatter-suppression-comment]
 """Public API registrations (Epic 67, spec A7): the import kick-off (``PublicImportQueued`` -> ``public_api.start_import``
 after commit), the ``bulk_import.completed`` public event and the notification types ``api_deprecated_usage`` and
 ``public_import_finished``."""
@@ -84,7 +84,7 @@ def _register_notifications() -> None:
         out.update(r[0] for r in rows)
         return out
 
-    async def deprecated_render(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG001
+    async def deprecated_render(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
         return ns.Content(
             title="Your integration uses an API that is being retired",
             body=f"{payload.get('route_template')} was called {payload.get('call_count')} times last month. It stops working on {payload.get('sunset')}.",
@@ -98,7 +98,7 @@ def _register_notifications() -> None:
         user = (await db.execute(select(PublicImportJob.acting_user_id).where(PublicImportJob.id == uuid.UUID(str(payload["import_id"]))))).scalar_one_or_none()
         return {user} if user else set()
 
-    async def import_render(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG001
+    async def import_render(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
         return ns.Content(
             title="Your bulk import finished",
             body=f"{payload.get('created', 0)} created, {payload.get('duplicates', 0)} possible duplicates, {payload.get('failed', 0)} failed.",
@@ -110,14 +110,14 @@ def _register_notifications() -> None:
             ns.NotificationType("Your integration uses an API that is being retired", "Integrations", "both", False,
                                 deprecated_recipients, deprecated_render, internal_only=True),  # fmt: skip
         )
-        ns.register_event_source(PublicApiDeprecatedUsage, lambda p: "api_deprecated_usage")  # noqa: ARG005
+        ns.register_event_source(PublicApiDeprecatedUsage, lambda p: "api_deprecated_usage")  # ruff: ignore[unused-lambda-argument]
     if "public_import_finished" not in ns.NOTIFICATION_TYPES:
         ns.register_notification_type(
             "public_import_finished",
             ns.NotificationType("Bulk import finished", "Integrations", "both", False, import_recipients, import_render,
                                 internal_only=True),  # fmt: skip
         )
-        ns.register_event_source(PublicImportCompleted, lambda p: "public_import_finished")  # noqa: ARG005
+        ns.register_event_source(PublicImportCompleted, lambda p: "public_import_finished")  # ruff: ignore[unused-lambda-argument]
 
 
 _register_notifications()

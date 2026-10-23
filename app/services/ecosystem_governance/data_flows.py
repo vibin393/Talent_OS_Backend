@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Data-flow register (Epic 79 stories 79.1 / 79.5, FR-405 / FR-408, NFR-69).
 
 One row per (Installation, direction, entity, field set, purpose, destination country) from the current

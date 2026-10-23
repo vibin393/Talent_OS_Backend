@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Marketing dashboard tiles (Epic 52 A4; Epic 39 data). Campaign data is tenant-wide within ``campaign:read`` (the
 owner's list rule). The funnel comes from ``campaigns_service.funnel`` (the owner's aggregate SQL); opens are counted
 only where the ``tracking`` consent allowed a pixel, so they are shown apart from the funnel as approximate."""

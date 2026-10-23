@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Phase 4 header search groups (Epic 65 story 65.8, FR-329). Registered from ``ai_governance.hooks``.
 
 | Group | Label | Permission | Source |

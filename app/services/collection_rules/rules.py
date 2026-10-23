@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Collection rules CRUD (Epic 63 A4, FR-314). Per-client rules need ``collections:write``; the tenant default needs
 ``billing:configure``. Every change is audited (``AuditedMixin``). The escalation Contact must belong to the Client
 (422 ``escalation_contact_other_client``); only a templated pre-due courteous / friendly step to billing contacts may
@@ -143,7 +143,7 @@ async def _get(db: AsyncSession, rule_id: uuid.UUID, *, lock: bool = False) -> C
     return rule
 
 
-async def list_rules(ctx: RequestContext, db: AsyncSession, client_id: uuid.UUID | None = None) -> list[RuleOut]:  # noqa: ARG001
+async def list_rules(ctx: RequestContext, db: AsyncSession, client_id: uuid.UUID | None = None) -> list[RuleOut]:  # ruff: ignore[unused-function-argument]
     stmt = select(CollectionRule)
     if client_id is not None:
         stmt = stmt.where(CollectionRule.client_id == client_id)
@@ -151,7 +151,7 @@ async def list_rules(ctx: RequestContext, db: AsyncSession, client_id: uuid.UUID
     return [await _out(db, r) for r in rows]
 
 
-async def get_rule(ctx: RequestContext, db: AsyncSession, rule_id: uuid.UUID) -> RuleOut:  # noqa: ARG001
+async def get_rule(ctx: RequestContext, db: AsyncSession, rule_id: uuid.UUID) -> RuleOut:  # ruff: ignore[unused-function-argument]
     return await _out(db, await _get(db, rule_id))
 
 

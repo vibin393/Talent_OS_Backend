@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Secure-Link screening chat (Epic 57 A7): ``/api/v1/public/screening-chat/{token}`` (purpose ``agent_conversation``).
 
 No session cookie: the token is the credential and is never logged. Rate-limited per IP and (messages) per link.

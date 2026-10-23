@@ -165,7 +165,7 @@ async def _stamp(
 
 
 async def record_first_activity(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     demand_id: uuid.UUID,
     user_id: uuid.UUID,
@@ -175,7 +175,7 @@ async def record_first_activity(
 
 
 async def record_first_application(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     demand_id: uuid.UUID,
     user_id: uuid.UUID,

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Copy drafts (Epic 78 A4/A5, FR-403): projection, first-open marker (SM-C23), edits (checks re-run; an approved
 draft becomes ``edited`` and loses its approval), warning acknowledgement and discard."""
 

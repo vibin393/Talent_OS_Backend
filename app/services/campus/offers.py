@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Campus offers, joining and reneging (Epic 43 story 43.6, FR-221).
 
 * ``bulk_create`` -- registrations must be ``interviewed`` with their Application at ``selected``; an ``OfferCreate``

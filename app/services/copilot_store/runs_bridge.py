@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Copilot <-> agent runtime bridge (Epic 54 §0.2). With coordinator decision C-2 the foundation exposes
 ``RunOut.related_refs`` / ``RunOut.candidate_ids`` and ``agent_runtime_service.purge_run_content``, so this module only
 calls the runtime facade -- no direct runtime table access for refs or content purge."""

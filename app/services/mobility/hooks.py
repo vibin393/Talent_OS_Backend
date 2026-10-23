@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Registrations of the ``mobility`` domain (autodiscovered by ``core.hooks``), Epic 41.
 
 * Approval subject ``internal_application`` (explicit steps; no subject permission -- the resolved manager decides)
@@ -112,7 +112,7 @@ async def _submitted_recipients(db: AsyncSession, payload: Any) -> set[Any]:
     return out
 
 
-async def _employee_recipients(db: AsyncSession, payload: Any) -> set[Any]:  # noqa: ARG001
+async def _employee_recipients(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument]
     return _employee(payload)
 
 

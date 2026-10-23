@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Constants of the Cross-tenant Job Network (Epic 75)."""
 
 # Listing terms version a Tenant must accept to join (spec A2). Bump when the terms change.

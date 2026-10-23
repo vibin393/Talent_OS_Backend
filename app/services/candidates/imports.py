@@ -443,7 +443,7 @@ async def get_import(
     )
 
 
-async def import_item_access(ctx: RequestContext, db: AsyncSession, item_id: uuid.UUID, write: bool) -> bool:  # noqa: ARG001
+async def import_item_access(ctx: RequestContext, db: AsyncSession, item_id: uuid.UUID, write: bool) -> bool:  # ruff: ignore[unused-function-argument]
     """File access for import items (before a resume exists): whoever may see the batch."""
     item = await db.get(ImportItem, item_id)
     if item is None:

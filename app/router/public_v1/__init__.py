@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Public API v1 routers (Epic 66 conventions, AD-77). Mounted at ``/api/public/v1`` (served as ``/public/v1``).
 Every router is built with ``core.public_api.public_router(<resource>)``; Epic 67 adds the resources (FR-346) and
 Epic 68 ``webhooks`` / ``events``: append them to ``get_public_v1_routers`` (additive)."""

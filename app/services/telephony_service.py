@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Facade of the Phase 5 telephony package (Epic 76, D-21). Routers and other domains call these, never the package
 internals.
 
@@ -32,7 +32,7 @@ from app.services.telephony.user_phones import verify as verify_phone
 
 
 async def usage(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     date_from: date | None = None,

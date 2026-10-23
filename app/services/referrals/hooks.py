@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Registrations of the ``referrals`` domain (autodiscovered by ``core.hooks``), Epic 42 A7.
 
 * Consent notice ``referral`` (English default; lazily seeded per tenant by the foundation mechanism).
@@ -157,7 +157,7 @@ def _referrer_recipient(kind: str | None, rid: Any) -> set[Any]:
     return {ident} if kind == "user" else {Recipient("candidate", ident)}
 
 
-async def _referrer_recipients(db: AsyncSession, payload: Any) -> set[Any]:  # noqa: ARG001
+async def _referrer_recipients(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument]
     return _referrer_recipient(payload.get("referrer_kind"), payload.get("referrer_id"))
 
 
@@ -190,7 +190,7 @@ async def _recruiters(db: AsyncSession, payload: Any) -> set[Any]:
     return out
 
 
-async def _approvers(db: AsyncSession, payload: Any) -> set[Any]:  # noqa: ARG001
+async def _approvers(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument]
     from app.services import identity_bridge
 
     return {u["id"] for u in await identity_bridge.users_with_permission(db, "referral_reward:approve")}
@@ -336,7 +336,7 @@ def _register_notifications() -> None:
 
 
 # ---------------------------------------------------------------- workflow trigger + snapshot
-async def _snapshot(ctx: RequestContext, db: AsyncSession, entity_id: uuid.UUID) -> dict[str, Any] | None:  # noqa: ARG001
+async def _snapshot(ctx: RequestContext, db: AsyncSession, entity_id: uuid.UUID) -> dict[str, Any] | None:  # ruff: ignore[unused-function-argument]
     from app.models.referrals import Referral
 
     r = await db.get(Referral, entity_id)

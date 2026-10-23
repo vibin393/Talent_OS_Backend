@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001, N812
+# ruff: file-ignore[line-too-long, unused-function-argument, lowercase-imported-as-non-lowercase]
 """Registrations of the ``reporting`` domain (autodiscovered, Epic 34).
 
 * Global search groups ``vendor``, ``placement``, ``worker``, ``invoice`` (A5) over read-only projections

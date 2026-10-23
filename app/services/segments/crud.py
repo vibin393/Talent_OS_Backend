@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Segment CRUD, versions and preview (Epic 38 story 38.1, FR-192).
 
 * Reading needs ``pool:read``; a segment is visible to its owner, to members of its team (``team``), to everyone

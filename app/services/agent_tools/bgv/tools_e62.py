@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """BGV Agent tools (Epic 62 A4; ``owner_epic="62"``, ``version=1``).
 
 | Key | Risk | Notes |
@@ -324,7 +324,7 @@ async def _docs(tctx: Any, args: DocsIn) -> ToolOutcome:
     )
 
 
-async def _docs_preview(tctx: Any, args: DocsIn) -> ProposalPreview:  # noqa: ARG001
+async def _docs_preview(tctx: Any, args: DocsIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
     from app.services.bgv.common import doc_label
 
     labels = ", ".join(doc_label(k)[0] for k in args.document_keys)
@@ -383,7 +383,7 @@ async def _post_summary(tctx: Any, args: PostSummaryIn) -> ToolOutcome:
     )
 
 
-async def _post_summary_preview(tctx: Any, args: PostSummaryIn) -> ProposalPreview:  # noqa: ARG001
+async def _post_summary_preview(tctx: Any, args: PostSummaryIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
     return ProposalPreview(
         title="Post a BGV pending summary for the case owner",
         summary=args.summary[:4000],

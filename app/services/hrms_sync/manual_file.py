@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The Manual HRMS import file (Epic 71, story 71.1, spec A3): "Download HRMS import file" builds a CSV (UTF-8 with
 BOM) with one row per eligible ``pending`` / ``blocked`` record of the Installation x Legal Entity, columns = the
 mapped HRMS field keys in schema order (custom keys after), using the same mapping (sensitive fields only when

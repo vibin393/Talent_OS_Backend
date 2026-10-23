@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """SMS / WhatsApp sending (Epic 33, FR-172/173, AD-29).
 
 ``send`` (API ``POST /comms/messages/send``, ``messaging:send``; and the workflow actions) checks each
@@ -480,7 +480,7 @@ class MessagingGate:
             )
 
 
-async def job_failed(ctx: RequestContext, db: AsyncSession, message_id: uuid.UUID) -> bool:  # noqa: ARG001
+async def job_failed(ctx: RequestContext, db: AsyncSession, message_id: uuid.UUID) -> bool:  # ruff: ignore[unused-function-argument]
     """``ConnectorJobFailed`` (all attempts used): the queued message becomes ``failed``."""
     message = (
         await db.execute(select(ChannelMessage).where(ChannelMessage.id == message_id).with_for_update())
@@ -518,7 +518,7 @@ def _age(message: ChannelMessage) -> int:
     return max(int((_now() - (message.created_at or _now())).total_seconds()), 0)
 
 
-async def manual_queue(ctx: RequestContext, db: AsyncSession) -> list[ManualQueueItemOut]:  # noqa: ARG001
+async def manual_queue(ctx: RequestContext, db: AsyncSession) -> list[ManualQueueItemOut]:  # ruff: ignore[unused-function-argument]
     rows = list(
         (
             await db.execute(
@@ -633,7 +633,7 @@ async def list_messages(
     return await _messages_out(db, rows)
 
 
-async def unmatched_inbound(ctx: RequestContext, db: AsyncSession) -> list[ChannelMessageOut]:  # noqa: ARG001
+async def unmatched_inbound(ctx: RequestContext, db: AsyncSession) -> list[ChannelMessageOut]:  # ruff: ignore[unused-function-argument]
     rows = list(
         (
             await db.execute(
@@ -722,6 +722,6 @@ def log_safe(message_id: uuid.UUID, status: str) -> None:
 
 
 # Epic 33: the job adapters call back through this gate (also installed by ``messaging.hooks``).
-from app.services.connectors.sms.channel import register_send_gate as _register_gate  # noqa: E402
+from app.services.connectors.sms.channel import register_send_gate as _register_gate
 
 _register_gate(MessagingGate())

@@ -459,7 +459,7 @@ async def load_version(
 
 
 async def list_versions(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     period_id: uuid.UUID | None = None,
@@ -472,7 +472,7 @@ async def list_versions(
     return [version_out(v) for v in (await db.execute(stmt)).scalars()]
 
 
-async def get_version(ctx: RequestContext, db: AsyncSession, version_id: uuid.UUID) -> VersionOut:  # noqa: ARG001
+async def get_version(ctx: RequestContext, db: AsyncSession, version_id: uuid.UUID) -> VersionOut:  # ruff: ignore[unused-function-argument]
     return version_out(await load_version(db, version_id))
 
 
@@ -502,7 +502,7 @@ def row_out(r: PayrollExportRow, name: str | None = None) -> RowOut:
     return RowOut(**data, worker_name=name)
 
 
-async def list_rows(ctx: RequestContext, db: AsyncSession, version_id: uuid.UUID) -> list[RowOut]:  # noqa: ARG001
+async def list_rows(ctx: RequestContext, db: AsyncSession, version_id: uuid.UUID) -> list[RowOut]:  # ruff: ignore[unused-function-argument]
     await load_version(db, version_id)
     rows = await version_rows(db, version_id)
     names = await worker_names(db, [r.candidate_id for r in rows])
@@ -510,7 +510,7 @@ async def list_rows(ctx: RequestContext, db: AsyncSession, version_id: uuid.UUID
 
 
 async def list_items(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     version_id: uuid.UUID,
     row_id: uuid.UUID,
@@ -763,7 +763,7 @@ async def generate_preview(
     return version_out(v)
 
 
-async def delete_preview(ctx: RequestContext, db: AsyncSession, version_id: uuid.UUID) -> None:  # noqa: ARG001
+async def delete_preview(ctx: RequestContext, db: AsyncSession, version_id: uuid.UUID) -> None:  # ruff: ignore[unused-function-argument]
     v = await load_version(db, version_id, lock=True)
     if v.kind != "preview":
         raise ConflictError("Only a preview can be deleted", code="document_immutable")

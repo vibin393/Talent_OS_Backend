@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Push notification ingress (Epic 72 story 72.3, spec A4). Public endpoint ``/api/v1/hooks/calendar/{channel_id}``.
 
 * ``?validationToken=`` (Graph handshake / lifecycle validation) -> 200 ``text/plain`` echo, nothing else.
@@ -76,7 +76,7 @@ async def handle(channel_id: uuid.UUID, headers: Mapping[str, str], query: Mappi
 
 
 async def _handle_tenant(
-    tenant_id: uuid.UUID, channel_id: uuid.UUID, headers: Mapping[str, str], query: Mapping[str, str], body: bytes  # noqa: ARG001
+    tenant_id: uuid.UUID, channel_id: uuid.UUID, headers: Mapping[str, str], query: Mapping[str, str], body: bytes  # ruff: ignore[unused-function-argument]
 ) -> IngressResult:
     from app.services import ecosystem_service
 

@@ -239,7 +239,7 @@ async def _on_returned(
 
 
 async def _describe(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     ids: list[uuid.UUID],
 ) -> dict[uuid.UUID, SubjectSummary]:

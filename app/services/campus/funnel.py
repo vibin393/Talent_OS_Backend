@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Campus funnel by Institution (Epic 43 story 43.6, FR-221; consumed by Epic 52's campus tile).
 
 Per Institution, the number of registrations whose milestone timestamp is set: registered, eligible, assessed,

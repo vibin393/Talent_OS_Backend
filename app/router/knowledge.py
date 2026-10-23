@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Knowledge Sources admin, FAQ gaps and the coordinators' onboarding question inbox (Epic 62 A8). Internal principals;
 API keys may read only (writes are human-only).
 

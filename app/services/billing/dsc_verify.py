@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Pure DSC verifier (Epic 51, FR-253): proves an externally signed PDF is OUR stored render plus a valid PAdES
 signature, without trusting the uploader. Verification only -- Talent OS never holds DSC private keys and there is
 no signing code here (PRD 8.1). With ``connectors/dsc/*`` this is the only module importing pyHanko.

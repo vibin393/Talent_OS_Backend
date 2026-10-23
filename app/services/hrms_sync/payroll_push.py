@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Payroll push (Epic 71, story 71.1, spec A6; P2 FR-142): the ``payroll_push`` sync job of ``darwinbox_payroll`` /
 ``keka_payroll`` uploads a finalised Payroll Export through ``PayrollPushPort.push_export`` and records the provider
 status through the P2 facade (``payroll_service.set_provider_status``). ``ManualActionRequired`` -> the version stays

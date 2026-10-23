@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Operations behind the Voice Screening Agent's tools (Epic 58 Part B). The tools pass the run subject: a session of
 another Application is ``not_found``. No operation accepts or analyses audio; answers come only from candidate-speaker
 transcript lines through Epic 57's shared ``extract_answers(source="voice")``."""

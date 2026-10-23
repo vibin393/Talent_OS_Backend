@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Enablement checklist registry (Epic 65 story 65.3, FR-330).
 
 ``register_enablement_check(agent_key, key, fn, blocking=...)`` -- ``agent_key="*"`` applies to every agent. Each
@@ -66,7 +66,7 @@ async def evaluate(ctx: RequestContext, db: AsyncSession, agent_key: str) -> Che
         get_agent(agent_key)
     except KeyError as exc:
         raise NotFound("Agent not found") from exc
-    from app.services.ai_governance import checks  # noqa: F401 - registers the checks
+    from app.services.ai_governance import checks  # ruff: ignore[unused-import] - registers the checks
 
     items: list[CheckItemOut] = []
     ready = True

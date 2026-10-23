@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Sensitive-install approvals (Epic 69, spec A4 step 7 / A5): the ``installation_grant`` approval subject on the P2
 engine (human approvers only -- the engine refuses every automated actor). The chain is the one named by
 ``app_policy.sensitive_approval_chain_id``; its steps are snapshotted as explicit steps.

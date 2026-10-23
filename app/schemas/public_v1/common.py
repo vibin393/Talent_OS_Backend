@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Public API v1 shared shapes (Epic 67, spec A4): the frozen contract. Outputs list explicit fields; inputs forbid
 unknown fields. Enums are documented as open (``x-extensible-enum``): values may be added within v1."""
 

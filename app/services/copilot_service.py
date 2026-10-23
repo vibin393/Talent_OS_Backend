@@ -1,4 +1,4 @@
-# ruff: noqa: D401, E501
+# ruff: file-ignore[non-imperative-mood, line-too-long]
 """Recruitment Copilot facade (Epic 54, AD-64, FR-276..FR-280). The router and the ``copilot.*`` tasks call only this.
 
 Turn orchestration lives in ``services/copilot`` (no SQL) and persistence in ``copilot_store``; this facade adds what
@@ -63,7 +63,7 @@ EVENT_MESSAGES = {
 
 
 # ================================================================ turns (facade over services/copilot/turns)
-async def _capability_text(ctx: Any, db: AsyncSession, principal: Principal) -> str | None:  # noqa: ARG001
+async def _capability_text(ctx: Any, db: AsyncSession, principal: Principal) -> str | None:  # ruff: ignore[unused-function-argument]
     """Static prompt sections of the capabilities that are on (C-4), passed as trusted kickoff text: the runtime's
     system prompt is static per agent version, so capability sections ride with the turn (Known gap noted)."""
     from app.services import ai

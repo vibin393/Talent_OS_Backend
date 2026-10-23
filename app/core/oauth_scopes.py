@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """OAuth scope catalogue (Epic 66, AD-75/AD-76, FR-332). Pure: imports nothing from ``app.services``.
 
 A scope maps to internal ``CATALOG`` permissions (``permissions_for``). Sensitive scopes (``pii.*``, ``documents:read``,

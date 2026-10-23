@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Apply approved copy (Epic 78 A5, FR-403): only approved drafts, only to a ``draft`` Campaign (or a draft / paused
 Sequence's editable step), always through the P3 services as the signed-in person. The applied P3 content hash is
 recorded on each draft (``approved_sha256``) so the P3 submit / activation guards can demand re-approval after any

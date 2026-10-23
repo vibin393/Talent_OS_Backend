@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """HRMS eligibility (Epic 71, story 71.2, spec A4; rule A3): only Workers on the Tenant's own payroll for the Legal
 Entity are pushed. Vendor-supplied Workers never; ``include_override`` (per Placement) wins for own-payroll payees."""
 

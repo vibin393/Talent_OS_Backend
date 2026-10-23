@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The Talent OS field catalogue for HRMS mappings (Epic 71, spec A3): key -> label -> source. Sensitive keys (PAN,
 bank account number / IFSC, Aadhaar reference) are sent only when a Finance user enabled the mapping with a purpose.
 

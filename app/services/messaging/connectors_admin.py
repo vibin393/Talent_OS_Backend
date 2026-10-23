@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """SMS / WhatsApp connector administration (Epic 33 A4; ``messaging:configure``): a per-category wrapper of the
 foundation config CRUD (credentials are write-only) plus "Send test"."""
 
@@ -58,7 +58,7 @@ async def update_connector(
     )
 
 
-async def send_test(ctx: RequestContext, db: AsyncSession, config_id: uuid.UUID, to_e164: str) -> StatusOut:  # noqa: ARG001
+async def send_test(ctx: RequestContext, db: AsyncSession, config_id: uuid.UUID, to_e164: str) -> StatusOut:  # ruff: ignore[unused-function-argument]
     row = await _own(db, config_id)
     adapter: Any = registry.build(row.category, await registry.load_config(db, row))
     spec = SendSpec(

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """CRM erasure handler ``crm.leads`` (Epic 15 A8, AD-34).
 
 A Lead's contact person may be the erasure subject (matched by the subject's email addresses). Their contact

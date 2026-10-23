@@ -1,4 +1,4 @@
-# ruff: noqa: E501, N812
+# ruff: file-ignore[line-too-long, lowercase-imported-as-non-lowercase]
 """Phase 3 dashboards (Epic 52, A4, FR-260): marketing, referrals, campus, mobility, skills, projects, immigration,
 predictions.
 
@@ -11,7 +11,9 @@ User session). Prediction tiles carry the "Supporting signal" badge (NFR-37); no
 from typing import Any
 
 from app.core.permissions import Principal
-from app.services.reporting import p3tables as _P3  # noqa: F401 - registers the optional-table guards
+from app.services.reporting import (
+    p3tables as _P3,  # ruff: ignore[unused-import] - registers the optional-table guards
+)
 from app.services.reporting.dashboards import DashboardDef, TileDef, TileFn
 from app.services.reporting.metrics import campus as _CA
 from app.services.reporting.metrics import immigration as _IM

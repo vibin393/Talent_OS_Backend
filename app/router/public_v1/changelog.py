@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """``GET /public/v1/changelog`` (Epic 67, spec A5): the machine-readable v1 changelog. Public, no auth, cached 1 h.
 Not a ``public:*`` resource route (it carries no data and needs no scope), so it is kept out of the pinned contract."""
 

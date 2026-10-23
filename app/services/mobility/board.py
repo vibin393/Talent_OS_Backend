@@ -1,4 +1,4 @@
-# ruff: noqa: D401, E501
+# ruff: file-ignore[non-imperative-mood, line-too-long]
 """Internal openings (Epic 41 A2, FR-209): the ``internal_openings`` projection, eligibility rules per Demand and the
 Employee board.
 

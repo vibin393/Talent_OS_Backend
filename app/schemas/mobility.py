@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Internal mobility API schemas (Epic 41, FR-209..FR-212). Worker-safe shapes live in ``schemas/mobility_portal``.
 
 Board payloads never carry a client name, rates / compensation or the hiring-manager contact.

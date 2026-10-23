@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Outer state machine of an Immigration Case (Epic 46 A2, FR-233, AD-52). Declared table, no I/O.
 
 ``open -> in_stage`` (first stage move), ``in_stage -> in_stage`` (any stage key of the pinned version; a reason

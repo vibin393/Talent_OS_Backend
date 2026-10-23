@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Copilot capability registry (Epic 53 contract, AD-64). Epic 54 registers the base capability and Epic 64 the
 ``analytics`` one, so 64 builds in parallel with 54 without importing Copilot code."""
 

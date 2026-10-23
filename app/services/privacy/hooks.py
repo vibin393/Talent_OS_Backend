@@ -8,7 +8,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.provisioning import register_tenant_provisioner
 
 
-async def _seed_retention_classes(db: AsyncSession, tenant: Any) -> None:  # noqa: ARG001
+async def _seed_retention_classes(db: AsyncSession, tenant: Any) -> None:  # ruff: ignore[unused-function-argument]
     from app.services.privacy.retention_classes import seed_defaults, seed_system_classes
 
     await seed_defaults(db)

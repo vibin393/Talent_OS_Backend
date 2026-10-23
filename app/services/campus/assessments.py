@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Drive assessments (Epic 43 story 43.4, FR-219): bulk invite through ``assessments_service.invite`` and the
 assessment event handlers.
 

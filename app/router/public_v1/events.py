@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """``/public/v1/event_types`` and ``/public/v1/events`` (Epic 68, story 68.2): the public catalogue (``internal`` types
 never listed) and the 30-day event read model for backfill, filtered to the types the caller's scopes allow."""
 

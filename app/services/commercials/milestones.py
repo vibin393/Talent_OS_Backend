@@ -48,7 +48,7 @@ def _out(row: ContractMilestone, billed: bool) -> MilestoneOut:
 
 
 async def list_milestones(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     contract_id: uuid.UUID | None = None,
     *,
@@ -124,7 +124,7 @@ async def _get(db: AsyncSession, milestone_id: uuid.UUID) -> ContractMilestone:
 
 
 async def update_milestone(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     milestone_id: uuid.UUID,
     data: MilestoneUpdate,

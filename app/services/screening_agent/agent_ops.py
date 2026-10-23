@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Operations behind the Screening Agent tools (Epic 57 Part B). Tools (``agent_tools/screening``) call these through
 the ``screening_agent_service`` facade.
 

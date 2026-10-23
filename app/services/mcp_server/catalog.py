@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """MCP tool listing from the exposure registry (Epic 73, spec 0.3; FR-377). Pure: the registry only.
 
 The session's callable set = ``exposures("mcp")`` ∩ the tenant's enabled groups ∩ tools whose ``mcp_scope`` the token

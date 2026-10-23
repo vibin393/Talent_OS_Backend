@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Enablement checks (Epic 65 story 65.3, spec A3 table). Read-only; each runs inside a savepoint (``checklist``).
 
 Owner tables are read with plain counts through ``text()`` -- read-only probes of the owners' published tables, so a

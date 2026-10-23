@@ -57,7 +57,7 @@ async def _notify(db: AsyncSession, sub: VendorSubmission, label: str) -> None:
 
 
 async def on_stage_changed(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     application_id: uuid.UUID,
     to_key: str,
@@ -79,7 +79,7 @@ async def on_stage_changed(
     return True
 
 
-async def on_interview_changed(ctx: RequestContext, db: AsyncSession, application_id: uuid.UUID) -> bool:  # noqa: ARG001
+async def on_interview_changed(ctx: RequestContext, db: AsyncSession, application_id: uuid.UUID) -> bool:  # ruff: ignore[unused-function-argument]
     """Recompute the next interview (date / time only; never interviewer names)."""
     sub = await _by_application(db, application_id)
     if sub is None:
@@ -101,7 +101,7 @@ async def on_interview_changed(ctx: RequestContext, db: AsyncSession, applicatio
 
 
 async def on_placement(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     placement_id: uuid.UUID,
     *,

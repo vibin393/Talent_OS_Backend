@@ -12,6 +12,7 @@ from typing import Annotated
 from fastapi import APIRouter, BackgroundTasks, Cookie, Depends, Path, Request, Response, status
 
 from app.core.context import get_context
+from app.core.errors import Unauthorized, ValidationFailed
 from app.core.permissions import require
 from app.core.security import (
     MFA_COOKIE,
@@ -23,6 +24,7 @@ from app.core.security import (
     set_session_cookie,
 )
 from app.dependencies.auth import CurrentUserDep, TenantDBSessionDep
+from app.models.identity import User
 from app.schemas.identity import (
     AuthOut,
     InvitationAccept,
@@ -40,8 +42,6 @@ from app.schemas.identity import (
     TenantSecurityUpdate,
     UserLogin,
 )
-from app.core.errors import Unauthorized, ValidationFailed
-from app.models.identity import User
 from app.services import access_service as access
 from app.services import auth_service as service
 from app.services import central_token

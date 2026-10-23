@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Transcript DTOs (Epic 53, AD-66, spec 0.13). No router in Epic 53: Epics 57 / 58 / 60 expose transcripts."""
 
 import uuid

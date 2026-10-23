@@ -1,4 +1,4 @@
-# ruff: noqa: D401, E501
+# ruff: file-ignore[non-imperative-mood, line-too-long]
 """Plan line import (Epic 44, FR-222) and the go-live importer (foundation 0.7, FR-263).
 
 ``import_lines``: a CSV or XLSX file (header-mapped columns ``role, skills, headcount, type, location, start_month,

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Change handling and conflict rules (Epic 72 stories 72.1 / 72.2, spec A5). Deterministic; echoes first.
 
 Talent OS is the source of truth: inbound data changes only ``interview_participants.response_status``. A move or a

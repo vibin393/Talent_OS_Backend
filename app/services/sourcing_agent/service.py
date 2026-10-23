@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Sourcing domain service (Epic 56, FR-285): settings, Demand facts and the candidate set.
 
 ``build_candidate_set`` gathers known talent from the Tenant's own data only (never job boards / social / third

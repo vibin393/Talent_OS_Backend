@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Endpoint verification handshake (Epic 68, §0.3, FR-349). A signed ``webhook.verification`` envelope carries a
 challenge; a 2xx within 10 s whose body is ``{"challenge": "<same>"}`` or the plain-text challenge activates the
 Subscription. Automatic retries at 1 min, 10 min and 1 h, then a manual "Verify again"; the creator is notified

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Facade of the ``calendar_sync`` domain (Epic 72). Routers, tasks and other domains call these, never the internals.
 
 * settings: ``get_settings`` / ``update_settings``; my sync: ``mine``, ``resync_mine``, ``set_optout``;

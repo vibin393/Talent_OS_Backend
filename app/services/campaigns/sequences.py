@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Nurture Sequences (Epic 39 A7, FR-199, story 39.5; PRD 5.3).
 
 Steps are versioned: the editable draft is ``current_version + 1``; ``publish`` validates the graph (<= 20 steps;

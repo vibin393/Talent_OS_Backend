@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Scheduled reports (Epic 47 story 47.4, FR-239, NFR-40).
 
 * CRUD ``/report-schedules`` (``report:schedule``, the report's owner only). Recipients are active internal

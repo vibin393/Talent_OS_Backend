@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Side-effect-free invoice run preview (Epic 63 A3, additive; FR-313). ``preview_run`` answers "what would
 ``runs.create_run`` + ``build_run`` produce now" without writing anything: the same ``postings.load_unposted`` items,
 grouping, line pricing (``runs._line_for``) and group checks (``runs._group_ok``: supply / FX / billing profile / PO),

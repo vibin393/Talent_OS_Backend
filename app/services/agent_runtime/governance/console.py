@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """AI governance console read models (Epic 65 story 65.1, FR-319, NFR-47, NFR-56).
 
 * ``list_runs`` -- the run explorer (foundation filters + trigger, multi-status, tainted, with violations).

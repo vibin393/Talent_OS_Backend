@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """OAuth 2.1 protocol endpoints (Epic 67, spec 0.2-0.5): ``/api/oauth/*`` (served as ``/oauth/*`` through the Next.js
 rewrite) and ``/.well-known/oauth-authorization-server``. Not under ``/api/v1``.
 

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 77 Vendor Portal Copilot tools (``portal_vendor.*``, FR-398). Each wraps ``vendors.portal`` acting as the
 Vendor User (org RLS ``vendor``: only the Vendor's own releases, submissions, placements and statements; another
 Vendor's ids are not found). Needs ``portal_copilot:use`` plus the portal permission of the wrapped endpoint.
@@ -81,7 +81,7 @@ def _release(r: Any) -> ReleaseOut:
     )  # fmt: skip
 
 
-async def _list_releases(tctx: Any, args: EmptyIn) -> ToolOutcome:  # noqa: ARG001
+async def _list_releases(tctx: Any, args: EmptyIn) -> ToolOutcome:  # ruff: ignore[unused-function-argument]
     act = await acting(tctx, KIND)
     async with session(tctx, act) as db:
         rows = await vendor_portal.list_releases(act.ctx, db, act.principal)
@@ -172,7 +172,7 @@ class PlacementsOut(Out):
     total: int
 
 
-async def _list_placements(tctx: Any, args: EmptyIn) -> ToolOutcome:  # noqa: ARG001
+async def _list_placements(tctx: Any, args: EmptyIn) -> ToolOutcome:  # ruff: ignore[unused-function-argument]
     act = await acting(tctx, KIND)
     async with session(tctx, act) as db:
         rows = await vendor_portal.list_placements(act.ctx, db, act.principal)
@@ -198,7 +198,7 @@ class StatementsOut(Out):
     total: int
 
 
-async def _list_statements(tctx: Any, args: EmptyIn) -> ToolOutcome:  # noqa: ARG001
+async def _list_statements(tctx: Any, args: EmptyIn) -> ToolOutcome:  # ruff: ignore[unused-function-argument]
     act = await acting(tctx, KIND)
     async with session(tctx, act) as db:
         rows = await vendor_portal.list_statements(act.ctx, db, act.principal)

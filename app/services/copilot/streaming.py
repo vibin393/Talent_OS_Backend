@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Copilot turn streams (Epic 54 §0.4, AD-64). The runtime's step task writes ``text.delta`` to the Redis Stream
 ``agents:stream:<run_id>`` (MAXLEN ~2000, TTL 15 min); the Copilot adds ``turn.started``, ``tool.finished``,
 ``draft.created`` and ``turn.completed`` / ``turn.failed``, and serves the stream as SSE (the Redis entry id is the SSE

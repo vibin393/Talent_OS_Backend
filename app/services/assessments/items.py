@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Item bank (Epic 40 A3, FR-202): CRUD, immutable versions, per-kind validation.
 
 Each edit inserts a new ``assessment_item_versions`` row and bumps ``current_version``; existing versions never
@@ -294,7 +294,7 @@ async def load(db: AsyncSession, item_id: uuid.UUID) -> AssessmentItem:
 
 
 async def list_items(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     q: str | None = None,
@@ -325,12 +325,12 @@ async def list_items(
     return [_out(i, v, usage.get(i.id, 0)) for i, v in rows]
 
 
-async def get_item(ctx: RequestContext, db: AsyncSession, item_id: uuid.UUID) -> ItemOut:  # noqa: ARG001
+async def get_item(ctx: RequestContext, db: AsyncSession, item_id: uuid.UUID) -> ItemOut:  # ruff: ignore[unused-function-argument]
     item = await load(db, item_id)
     return _out(item, await _current_version(db, item), (await _usage(db, [item.id])).get(item.id, 0))
 
 
-async def list_versions(ctx: RequestContext, db: AsyncSession, item_id: uuid.UUID) -> list[ItemVersionOut]:  # noqa: ARG001
+async def list_versions(ctx: RequestContext, db: AsyncSession, item_id: uuid.UUID) -> list[ItemVersionOut]:  # ruff: ignore[unused-function-argument]
     await load(db, item_id)
     rows = (
         await db.execute(
@@ -404,7 +404,7 @@ async def update_item(ctx: RequestContext, db: AsyncSession, item_id: uuid.UUID,
     return _out(item, version, (await _usage(db, [item.id])).get(item.id, 0))
 
 
-async def archive_item(ctx: RequestContext, db: AsyncSession, item_id: uuid.UUID) -> ItemOut:  # noqa: ARG001
+async def archive_item(ctx: RequestContext, db: AsyncSession, item_id: uuid.UUID) -> ItemOut:  # ruff: ignore[unused-function-argument]
     item = await load(db, item_id)
     if item.archived_at is None:
         item.archived_at = now()

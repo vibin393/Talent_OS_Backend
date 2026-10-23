@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Proposal review signals (Epic 65 story 65.2, SM-C14): how Proposals were reviewed, never what they said.
 
 * ``mark_opened`` -- ``POST /ai-governance/proposals/{id}/opened`` (human only): upsert (proposal, user),

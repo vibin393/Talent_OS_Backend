@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 54 Copilot read tool ``sla.at_risk`` (FR-277): open demands you can see whose SLA is at risk (or breached),
 with the worst open clock -- built on ``demands.list`` (scope = the user's)."""
 

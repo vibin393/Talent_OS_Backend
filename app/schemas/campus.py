@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Campus hiring & recruitment events (Epic 43): internal ``/api/v1/campus/*`` schemas. Public registration pages
 use ``schemas/campus_public.py``. Decimals serialise as strings (AD-12)."""
 

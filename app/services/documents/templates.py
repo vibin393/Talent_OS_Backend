@@ -82,7 +82,7 @@ async def get_template_row(db: AsyncSession, template_id: uuid.UUID) -> Document
 
 
 async def list_templates(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     kind: str | None = None,
@@ -96,7 +96,7 @@ async def list_templates(
     return [await _out(db, t) for t in (await db.execute(stmt)).scalars()]
 
 
-async def get_template(ctx: RequestContext, db: AsyncSession, template_id: uuid.UUID) -> TemplateOut:  # noqa: ARG001
+async def get_template(ctx: RequestContext, db: AsyncSession, template_id: uuid.UUID) -> TemplateOut:  # ruff: ignore[unused-function-argument]
     return await _out(db, await get_template_row(db, template_id), with_versions=True)
 
 
@@ -194,7 +194,7 @@ async def publish_version(ctx: RequestContext, db: AsyncSession, version_id: uui
     return await get_template(ctx, db, template.id)
 
 
-async def preview_version(ctx: RequestContext, db: AsyncSession, version_id: uuid.UUID) -> bytes:  # noqa: ARG001
+async def preview_version(ctx: RequestContext, db: AsyncSession, version_id: uuid.UUID) -> bytes:  # ruff: ignore[unused-function-argument]
     """PDF of the version rendered with ``SAMPLE_CONTEXT`` (422 on unknown fields)."""
     v = await _version(db, version_id)
     template = await get_template_row(db, v.template_id)
@@ -208,7 +208,7 @@ async def preview_version(ctx: RequestContext, db: AsyncSession, version_id: uui
 
 
 async def resolve_template(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     kind: str,
     legal_entity_id: uuid.UUID | None,

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The anonymous XML job feed (Epic 70, spec A6): ``GET /api/v1/public/job-feed/{tenant_slug}/{feed_token}.xml``.
 404 unless the tenant site is active, the feed enabled and the token matches; ``IP_ANON``-style limit 60/min;
 ``Cache-Control: public, max-age=900``; ETag / ``If-None-Match``."""

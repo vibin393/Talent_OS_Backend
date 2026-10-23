@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Client Portal and Secure Link side of Epic 31 (reconciliation decision 3: these endpoints are owned here; Epic 18's
 hub links to them through ``client_extension_summary`` / ``client_offboarding_summary``).
 

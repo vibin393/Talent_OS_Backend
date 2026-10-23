@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 54 Copilot-owned draft tools (FR-278). ``risk="low"``; in a Copilot run every non-read tool is a Draft Action
 (policy ``copilot_draft``) the user confirms with one click, executed as that user.
 
@@ -71,7 +71,7 @@ async def _propose_slots(tctx: Any, args: ProposeSlotsIn) -> ToolOutcome:
     )
 
 
-async def _slots_preview(tctx: Any, args: ProposeSlotsIn) -> ProposalPreview:  # noqa: ARG001
+async def _slots_preview(tctx: Any, args: ProposeSlotsIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
     return ProposalPreview(
         title="Propose interview slots",
         summary=(
@@ -127,7 +127,7 @@ async def _prepare_pack(tctx: Any, args: PreparePackIn) -> ToolOutcome:
     )
 
 
-async def _pack_preview(tctx: Any, args: PreparePackIn) -> ProposalPreview:  # noqa: ARG001
+async def _pack_preview(tctx: Any, args: PreparePackIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
     return ProposalPreview(
         title="Prepare a submission pack",
         summary="Assemble a draft submission pack and run the pre-send checks. Sending it to the client stays with you.",

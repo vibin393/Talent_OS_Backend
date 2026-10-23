@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The only skills-graph traversal (Epic 37 A1, AD-41). ``service.expand`` and ``explain_paths`` call ``traverse``.
 
 For an input ref R the satisfying set is: ``R parent_of C`` -> C; ``X implies R`` -> X; ``R related_to Y`` or

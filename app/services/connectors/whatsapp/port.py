@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """``whatsapp`` provider port (AD-29, Epic 33 A4; owned by Epic 33 after the foundation, R16).
 
 Template messages only (no free-form text). The config is bound by the adapter factory. Webhooks use the generic

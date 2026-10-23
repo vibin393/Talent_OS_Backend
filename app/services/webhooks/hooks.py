@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Webhooks registrations (Epic 68): the outbox sink, the ``webhooks:manage`` scope (app-only, D-24), the partitioned
 delivery log (66 partition job, 30-day retention), notification types, the settings hub entry, audit actions and the
 after-commit handlers (verification kick, ``InstallationChanged``, kill-switch lift)."""

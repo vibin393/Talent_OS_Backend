@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Fake ``bgv`` connector for tests (AD-29): records calls, returns deterministic references and reports, verifies
 webhooks with HMAC-SHA256 of the body (``X-Fake-Signature``) using the configured webhook secret. Registered as
 provider ``fake`` outside production."""
@@ -53,7 +53,7 @@ class FakeBgvProvider:
         expected = hmac.new(secret.encode(), body, hashlib.sha256).hexdigest()
         return hmac.compare_digest(given, expected)
 
-    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # noqa: ARG002
+    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         try:
             data = json.loads(body or b"{}")
         except ValueError:

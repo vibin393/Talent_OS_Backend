@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The ``copilot_client`` ``AgentSpec`` (Epic 77 A2, FR-396..FR-400, AD-89): fills the Epic 66 placeholder.
 
 * Origin ``portal``: the run is owned by the signed-in portal principal (``OwnerRef``); Effective Rights = this

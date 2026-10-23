@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Quarterly access reviews (Epic 79 story 79.2, FR-406).
 
 A review holds one item per active Installation grant, active delegated authorisation and active API key. ``stale`` is

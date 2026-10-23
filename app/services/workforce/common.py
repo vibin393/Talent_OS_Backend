@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Shared helpers of the ``workforce`` domain (Epic 44): tenant / clock / errors / scoping / loaders."""
 
 import uuid

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 77 Candidate Copilot tools (``portal_candidate.*``, FR-399). Each wraps the candidate self-service
 (``portal.self_service``, ``onboarding.portal``, P4 knowledge search, the tenant's careers search) acting as the
 Candidate (org RLS ``worker`` = the Candidate's own rows only). Rights are the implicit Candidate rights
@@ -102,7 +102,7 @@ def _application(a: Any) -> ApplicationOut:
     )  # fmt: skip
 
 
-async def _list_applications(tctx: Any, args: EmptyIn) -> ToolOutcome:  # noqa: ARG001
+async def _list_applications(tctx: Any, args: EmptyIn) -> ToolOutcome:  # ruff: ignore[unused-function-argument]
     act = await acting(tctx, KIND)
     async with session(tctx, act) as db:
         rows = await candidate_self.list_applications(candidate_principal(act), db)
@@ -149,7 +149,7 @@ class InterviewsOut(Out):
     total: int
 
 
-async def _upcoming_interviews(tctx: Any, args: EmptyIn) -> ToolOutcome:  # noqa: ARG001
+async def _upcoming_interviews(tctx: Any, args: EmptyIn) -> ToolOutcome:  # ruff: ignore[unused-function-argument]
     act = await acting(tctx, KIND)
     async with session(tctx, act) as db:
         rows = await candidate_self.list_interviews(act.ctx, candidate_principal(act), db, upcoming=True)
@@ -165,7 +165,7 @@ class DocumentsOut(Out):
     url: str
 
 
-async def _requested_documents(tctx: Any, args: EmptyIn) -> ToolOutcome:  # noqa: ARG001
+async def _requested_documents(tctx: Any, args: EmptyIn) -> ToolOutcome:  # ruff: ignore[unused-function-argument]
     act = await acting(tctx, KIND)
     async with session(tctx, act) as db:
         cases = await onboarding_portal.list_cases(db, act.principal.id)
@@ -194,7 +194,7 @@ class OffersOut(Out):
     guidance: str
 
 
-async def _offer_status(tctx: Any, args: EmptyIn) -> ToolOutcome:  # noqa: ARG001
+async def _offer_status(tctx: Any, args: EmptyIn) -> ToolOutcome:  # ruff: ignore[unused-function-argument]
     act = await acting(tctx, KIND)
     async with session(tctx, act) as db:
         rows = await candidate_self.list_offers(act.ctx, candidate_principal(act), db)

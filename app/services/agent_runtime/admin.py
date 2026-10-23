@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Enablement, agent configuration, action policies and kill switches (Epic 53, stories 53.5 / 53.7, FR-268/271/272).
 
 * ``acknowledge_enablement`` -- the tenant's master switch ``agentic`` goes on only with the current enablement-notice
@@ -53,7 +53,7 @@ async def _settings_row(db: AsyncSession, tenant_id: uuid.UUID) -> AITenantSetti
     return await gateway._settings_row(db, tenant_id)
 
 
-async def agentic_state(ctx: RequestContext, db: AsyncSession) -> AgenticStateOut:  # noqa: ARG001
+async def agentic_state(ctx: RequestContext, db: AsyncSession) -> AgenticStateOut:  # ruff: ignore[unused-function-argument]
     g = await state.gates(db)
     row = g.settings
     return AgenticStateOut(

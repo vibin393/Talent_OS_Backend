@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Client statements (FR-159): opening balance, chronological lines from the dated facts, closing balance.
 
 Balance at ``d`` = sum(document totals issued <= d, not IRN-cancelled by d) - sum(settlement facts <= d) -
@@ -37,7 +37,7 @@ CREDIT_LABELS = {
 }
 
 
-class StatementMismatch(RuntimeError):  # noqa: N818 - domain name
+class StatementMismatch(RuntimeError):  # ruff: ignore[error-suffix-on-exception-name] - domain name
     pass
 
 
@@ -50,7 +50,7 @@ async def _balance(db: AsyncSession, docs: list[DocRow], client_id: uuid.UUID, l
 
 
 async def build(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     client_id: uuid.UUID,
     currency: str,

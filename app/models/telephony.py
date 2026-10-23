@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Real telephony and speech-to-text (Epic 76, FR-391..FR-395; migrations ``20261010_510_01_telephony`` and
 ``20261010_510_02_stt_jobs``). Owner: ``app.services.telephony``.
 

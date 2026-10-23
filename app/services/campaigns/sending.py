@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Marketing delivery (Epic 39 A4/A5/A7): claim -> throttle -> governance -> render -> hand to P1 comms / P2 messaging.
 
 ``send_batch(db, message_ids)`` claims each ``campaign_messages`` row with ``SELECT ... FOR UPDATE SKIP LOCKED`` where

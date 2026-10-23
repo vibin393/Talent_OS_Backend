@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Worker Portal projection of Onboarding help (Epic 62 B7; ``/portal/work/help``).
 
 Never carries run ids, outcomes, topics, internal notes or other people's data: only the asker's own messages, the

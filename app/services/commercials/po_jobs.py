@@ -39,7 +39,7 @@ async def _once(db: AsyncSession, po: PurchaseOrder, kind: str, threshold: int, 
     return created is not None
 
 
-async def run_daily(ctx: RequestContext, db: AsyncSession, at: datetime | None = None) -> dict[str, int]:  # noqa: ARG001
+async def run_daily(ctx: RequestContext, db: AsyncSession, at: datetime | None = None) -> dict[str, int]:  # ruff: ignore[unused-function-argument]
     settings = await settings_mod.get_row(db)
     rows = (
         await db.execute(

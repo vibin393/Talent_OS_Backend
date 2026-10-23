@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D400, D415
+# ruff: file-ignore[line-too-long, missing-trailing-period, missing-terminal-punctuation]
 """Secure-Link pages of the Interview Assistant (Epic 60, A8):
 
 * ``/api/v1/public/interview-recording-consent/{token}`` (purpose ``interview_recording_consent``): the Candidate
@@ -58,5 +58,5 @@ async def ack_view(token: PublicToken) -> Any:
 
 
 @router.post("/interview-capture-ack/{token}", response_model=CaptureAckView)
-async def ack(token: PublicToken, body: CaptureAckIn) -> Any:  # noqa: ARG001 - agree is always True
+async def ack(token: PublicToken, body: CaptureAckIn) -> Any:  # ruff: ignore[unused-function-argument] - agree is always True
     return await svc.external_ack(token)

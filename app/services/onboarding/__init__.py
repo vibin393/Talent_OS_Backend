@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Facade of the ``onboarding`` domain (Epic 23, Digital Onboarding). Routers, tasks and hooks import from here.
 
 Sibling domains (compliance, BGV) are reached by events only (AD-32); sensitive values go through placements

@@ -1,4 +1,4 @@
-# ruff: noqa: D401
+# ruff: file-ignore[non-imperative-mood]
 """Report visibility and sharing (Epic 47 story 47.3, FR-238, NFR-33).
 
 * The owner always sees the report. Anyone else needs ``report:read`` AND a ``report_shares`` row matching

@@ -18,7 +18,7 @@ def main(argv: list[str] | None = None) -> int:
     reindex.add_argument("--tenant", required=True, type=uuid.UUID)
     args = parser.parse_args(argv)
     if args.command == "reindex":
-        import app.services.search  # noqa: F401 - registers handlers / models
+        import app.services.search  # ruff: ignore[unused-import] - registers handlers / models
 
         count = asyncio.run(reindex_async(args.tenant))
         print(f"reindexed {count} candidate(s) for tenant {args.tenant}")

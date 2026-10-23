@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Demand intake endpoints (Epic 55, A6). Mounted **before** the P1 demands router (``/demands/{id}`` would capture
 ``/demands/intake-messages``).
 

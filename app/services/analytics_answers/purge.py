@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D400, D415
+# ruff: file-ignore[line-too-long, missing-trailing-period, missing-terminal-punctuation]
 """Retention of analytics answers (Epic 64, A8). Daily on ``maintenance`` (``analytics_answers.purge_expired``):
 
 * answers past ``expires_at`` (created + 90 days) are deleted;

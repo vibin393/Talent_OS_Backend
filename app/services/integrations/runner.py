@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Connector sync runner (Epic 66, spec 0.10, AD-81).
 
 Every sync / push of an installed connector runs as a ``connector_jobs`` row (``installation_id`` set, op
@@ -138,7 +138,7 @@ async def installation_configs(db: AsyncSession, installation_id: uuid.UUID) -> 
 
 
 async def enqueue_sync(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     installation: AppInstallation,
     manifest: ConnectorManifest,
@@ -355,7 +355,7 @@ async def mark_healthy(db: AsyncSession, inst: AppInstallation) -> None:
 
 
 async def on_job_outcome(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     job: ConnectorJob,
     outcome: str,

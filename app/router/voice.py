@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Voice Screening API (Epic 58, Part C).
 
 | Method + path | Permission |

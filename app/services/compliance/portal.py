@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Worker "My Work" credentials (Epic 21 A7). Runs in the worker org scope (credentials / checklist rows of other
 Workers are invisible) and checks ownership explicitly (another Worker's credential is a 404). The output omits
 verifier ids, rejection-note internals and requirement ids."""

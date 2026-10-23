@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Custom report builder & scheduled reports (Epic 47, FR-237..FR-240).
 
 ``/reports/custom/*`` (definitions, preview / run / export, shares, pins, run log, settings), ``/me/report-pins``,

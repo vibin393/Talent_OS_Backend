@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Assessments (Epic 36 hub tables, AD-39; owner Epic 40, branch ``p3_assessments``).
 
 * ``assessments``: tenant RLS only (the candidate portal reads the name through its own invitation).

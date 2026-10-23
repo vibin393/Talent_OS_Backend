@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Vault key rotation (Epic 66, spec 0.11, FR-336).
 
 * ``rewrap_tenant(tenant_id)`` -- a new master (KEK) version: unwrap every DEK of the tenant and wrap it again with

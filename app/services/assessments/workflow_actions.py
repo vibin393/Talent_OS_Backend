@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Workflow action ``assessments.invite`` (Epic 40 A9, foundation 0.7).
 
 Params ``{assessment_id, deadline_days, gating}``; trigger entity types ``application`` (context ``application``) and

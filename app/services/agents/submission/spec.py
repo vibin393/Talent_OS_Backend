@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """The ``submission`` AgentSpec (Epic 61, spec A4; FR-305..FR-307).
 
 Prepares an internal draft submission pack for a shortlisted Application: ``submissions.prepare_pack`` (deterministic:

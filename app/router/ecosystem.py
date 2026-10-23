@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Ecosystem controls (Epic 66, spec 0.18): state, the Ecosystem Kill Switch, the app policy, MCP enablement storage and
 usage meters. Every mutation is human-only (403 ``human_only_action`` for API keys and automated actors)."""
 

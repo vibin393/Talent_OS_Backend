@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Screening Agent, internal API (Epic 57 A7): questionnaire versions / bindings, conversations, review, settings.
 
 Permissions: ``screening:conduct`` (questionnaires, start / pause / resume / take over / cancel, recruiter messages,

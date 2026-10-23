@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Receivables DTOs (Epic 13 contract layer; filled by Epic 30). ``open_balance`` returns a Decimal.
 
 Money is a decimal string in JSON (AD-12). Collection activities never appear in portal schemas

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Ledger sync API (Epic 71, spec A11), prefix ``/ledger``.
 
 | Method + path | Permission |

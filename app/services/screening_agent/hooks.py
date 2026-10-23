@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Registrations of the ``screening_agent`` domain (autodiscovered by ``core.hooks``), Epic 57.
 
 * Grounded-conversation checker ``screening`` (FR-274).

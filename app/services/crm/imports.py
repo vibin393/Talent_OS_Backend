@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Lead CSV import (FR-83, A3; story 2.1).
 
 ``start_import`` (request): size / row-count guards (422 ``import_too_large``), SHA-256 dedupe through the

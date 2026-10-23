@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Projects contract (Epic 45; Epic 36 stub, AD-39) and the domain's public functions.
 
 ``project_context`` keeps the FINAL signature of the foundation stub (``tests/contracts/signatures.json``);

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Employee referrals (Epic 42, FR-213..FR-216, AD-50): ``/api/v1``.
 
 * ``/referral-programs``, ``/referral-settings`` -- ``referral:configure``.

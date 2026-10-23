@@ -113,7 +113,7 @@ def text_violations(text: str) -> list[str]:
     return sorted({t for t in tokens(text) if t in banned})
 
 
-class DenylistViolation(ValueError):  # noqa: N818 - domain name
+class DenylistViolation(ValueError):  # ruff: ignore[error-suffix-on-exception-name] - domain name
     pass
 
 

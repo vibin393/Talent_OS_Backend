@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Marketing settings (Epic 39 A1) and recipient time zones.
 
 User decisions (2026-10-06, binding): frequency cap 3 per rolling 7 days (a tenant may only lower the count); send

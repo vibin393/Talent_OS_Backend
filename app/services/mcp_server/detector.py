@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Bulk-extraction detector (Epic 73, spec 0.6; FR-380). Pure decision over the limits counters.
 
 After every executed call the candidate ids it touched (``ExternalCallOut.candidate_ids``, D-25(b)) are added to the

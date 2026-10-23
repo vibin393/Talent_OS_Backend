@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Employee self-service (Epic 41): internal Users on ``/mobility/*`` and Workers on ``/portal/work/opportunities*``.
 
 No permission key: any active internal User, any Worker (a Candidate with a non-terminal Placement); the board

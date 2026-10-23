@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Permits (Epic 46 A4, FR-235, AD-52/AD-35).
 
 * ``record`` -- inside the * Approved outcome or as an amendment / renewal of an approved Case: validates the
@@ -251,7 +251,7 @@ async def unmask(ctx: RequestContext, db: AsyncSession, permit_id: uuid.UUID) ->
 
 
 async def permits_for(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     candidate_id: uuid.UUID,
     on_date: date,

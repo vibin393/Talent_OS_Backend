@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 55 ``skills.normalise`` (read, FR-282): map free-text skill labels to the tenant / platform catalogue through
 aliases and slugs (``candidates.skills.resolve_skill(..., create_pending=False)`` -- **never creates** a skill) and,
 with ``expand``, list related skills from the skills graph (``skills_service.explain_paths``)."""

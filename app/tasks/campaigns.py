@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Recruitment marketing Celery tasks (Epic 39). Queue ``campaigns`` (AD-54). Every task starts with ``tenant_id``
 (except the beat fan-outs).
 

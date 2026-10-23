@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Attrition extractor (Epic 48 A3, FR-243). Sensitive: reads are gated by ``prediction:read_attrition``.
 
 * Subjects scored: Placements ``active``.

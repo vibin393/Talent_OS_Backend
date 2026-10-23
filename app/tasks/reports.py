@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Report builder Celery tasks (Epic 47; queue ``reports``, AD-54). Every tenant task starts with ``tenant_id``.
 
 * ``reports.evaluate_schedules`` (beat, every 5 minutes) -> ``reports.evaluate_tenant(tenant_id)``: due schedules

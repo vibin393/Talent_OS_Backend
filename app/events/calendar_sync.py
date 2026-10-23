@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Calendar Sync domain events (Epic 72; dispatched after commit). Ids and enums only -- no PII, no event content."""
 
 import dataclasses

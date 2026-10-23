@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Voice session hub table (Epic 53 contract layer, AD-65; migration ``20261008_400_03_p4_hubs``). Owner: Epic 58, which
 ALTERs it in its own branch (``20261020_405_01_voice_sessions``): human id, requester / owner, the consent link, the
 confirmed location, call times, the questionnaire, transcript source, recording deletion / withdrawal, the AI summary

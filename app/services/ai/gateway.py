@@ -67,10 +67,10 @@ ClientFactory = Callable[[str], Any]
 
 
 async def _default_consent_checker(
-    ctx: RequestContext,  # noqa: ARG001
-    db: AsyncSession,  # noqa: ARG001
-    feature: str,  # noqa: ARG001
-    subject: Subject | None,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
+    db: AsyncSession,  # ruff: ignore[unused-function-argument]
+    feature: str,  # ruff: ignore[unused-function-argument]
+    subject: Subject | None,  # ruff: ignore[unused-function-argument]
 ) -> ConsentDecision:
     # Until Epic 12 (privacy) registers the real check: allow, and mark the basis so later audits can find
     # every pre-privacy AI processing.
@@ -231,7 +231,7 @@ async def tokens_used_this_month(db: AsyncSession) -> int:
     return int((await db.execute(stmt)).scalar_one() or 0)
 
 
-async def get_settings_out(ctx: RequestContext, db: AsyncSession) -> AISettingsOut:  # noqa: ARG001
+async def get_settings_out(ctx: RequestContext, db: AsyncSession) -> AISettingsOut:  # ruff: ignore[unused-function-argument]
     row = await _tenant_settings(db)
     s = get_settings()
     return AISettingsOut(
@@ -528,7 +528,7 @@ async def record_decision(ctx: RequestContext, db: AsyncSession, action_id: uuid
 
 
 async def list_actions(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     subject_type: str,
     subject_id: uuid.UUID | list[uuid.UUID],

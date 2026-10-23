@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Registration links, QR codes and posters (Epic 43 story 43.1, FR-217).
 
 * One P1 Secure Link per drive-Institution (purpose ``campus_registration``, subject ``drive_institution``,

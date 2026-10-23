@@ -613,7 +613,7 @@ async def on_final_decided(ctx: RequestContext, db: AsyncSession, decision: Fina
     )
 
 
-async def on_step_decided(ctx: RequestContext, db: AsyncSession, decision: StepDecision) -> None:  # noqa: ARG001
+async def on_step_decided(ctx: RequestContext, db: AsyncSession, decision: StepDecision) -> None:  # ruff: ignore[unused-function-argument]
     return None
 
 

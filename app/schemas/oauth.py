@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """OAuth / App DTOs (Epic 66 foundation; Epic 67 extends the protocol and App-management models additively)."""
 
 import uuid

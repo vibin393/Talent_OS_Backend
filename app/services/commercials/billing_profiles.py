@@ -142,7 +142,7 @@ def _addr_dict(a: BillingAddress) -> dict[str, Any]:
 
 # ================================================================ profile
 async def get_profile(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     client_id: uuid.UUID,
 ) -> BillingProfileOut | None:
@@ -152,7 +152,7 @@ async def get_profile(
 
 
 async def put_profile(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     client_id: uuid.UUID,
     data: BillingProfileIn,
@@ -196,7 +196,7 @@ async def _clear_default(db: AsyncSession, profile_id: uuid.UUID, keep: uuid.UUI
 
 
 async def add_address(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     client_id: uuid.UUID,
     data: BillingAddressIn,
@@ -231,7 +231,7 @@ async def _address(db: AsyncSession, address_id: uuid.UUID) -> BillingAddress:
 
 
 async def update_address(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     address_id: uuid.UUID,
     data: BillingAddressUpdate,
@@ -261,7 +261,7 @@ async def update_address(
     return BillingAddressOut.model_validate(row)
 
 
-async def archive_address(ctx: RequestContext, db: AsyncSession, address_id: uuid.UUID) -> BillingAddressOut:  # noqa: ARG001
+async def archive_address(ctx: RequestContext, db: AsyncSession, address_id: uuid.UUID) -> BillingAddressOut:  # ruff: ignore[unused-function-argument]
     row = await _address(db, address_id)
     if row.archived_at is not None:
         return BillingAddressOut.model_validate(row)
@@ -300,7 +300,7 @@ async def archive_address(ctx: RequestContext, db: AsyncSession, address_id: uui
 
 
 async def put_contacts(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     client_id: uuid.UUID,
     data: BillingContactsIn,
@@ -343,7 +343,7 @@ async def put_contacts(
 
 # ================================================================ read API for billing / receivables
 async def get_billing_profile(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     client_id: uuid.UUID,
 ) -> BillingProfileFacts:
@@ -388,7 +388,7 @@ async def get_billing_profile(
     )
 
 
-async def assert_invoiceable(ctx: RequestContext, db: AsyncSession, client_id: uuid.UUID) -> None:  # noqa: ARG001
+async def assert_invoiceable(ctx: RequestContext, db: AsyncSession, client_id: uuid.UUID) -> None:  # ruff: ignore[unused-function-argument]
     profile = await _profile(db, client_id)
     if profile is None or not await _addresses(db, profile.id):
         raise _incomplete()

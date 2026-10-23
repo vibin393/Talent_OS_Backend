@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Platform console for the developer portal (Epic 74, spec A4; ``/api/v1/platform/developers``). Platform operator +
 MFA. Verification decisions need the platform role ``marketplace_reviewer`` (403 ``platform_role_required``);
 approve / reject are ★ (human platform operators only; ``app`` / ``api_key`` principals never reach this router)."""

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Scheduling agent contract DTOs (Epic 53 contract layer, spec 0.12; filled by Epic 59). Frozen; field sets pinned
 by ``tests/contracts/signatures.json``."""
 
@@ -41,9 +41,13 @@ class SlotProposalOut(BaseModel):
 
 
 # ================================================================ Epic 59 (additive: the API and agent DTOs)
-from typing import Annotated, Any, Literal  # noqa: E402
+from typing import Annotated, Any, Literal  # ruff: ignore[module-import-not-at-top-of-file]
 
-from pydantic import Field, StringConstraints, field_validator  # noqa: E402
+from pydantic import (  # ruff: ignore[module-import-not-at-top-of-file]
+    Field,
+    StringConstraints,
+    field_validator,
+)
 
 RequestStatus = Literal[
     "open", "slots_offered", "picked", "booked", "counter_proposed", "handed_off", "cancelled", "expired"

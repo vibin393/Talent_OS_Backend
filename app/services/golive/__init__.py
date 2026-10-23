@@ -2,7 +2,7 @@
 
 from app.services.golive import (
     owners,
-    p3_imports,  # noqa: F401 - Epic 52: registers the Phase 3 kinds
+    p3_imports,  # ruff: ignore[unused-import] - Epic 52: registers the Phase 3 kinds
     parsing,
     templates,
 )

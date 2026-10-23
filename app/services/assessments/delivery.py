@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Delivery serialiser (Epic 40 A6, NFR-35): what a Candidate sees of an item, and nothing more.
 
 ``DeliveryItem = {position, section_key, kind, stem, options (shuffled, opaque per-attempt ids), code?, language?,

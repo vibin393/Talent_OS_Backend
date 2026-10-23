@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Immigration dashboard tiles (Epic 52 A4; Epic 46 data). Every number comes from the owner's data-scoped
 dashboard read (``immigration.dashboard.summary`` / ``at_risk``: ``immigration:read`` on owner / BU), so tiles equal
 the owner's ``/immigration`` page and its list filters."""

@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """P1 / P2 report sources (Epic 47 story 47.1, FR-237, AD-33) -- the ONLY place they are registered.
 
 Called from ``builder.hooks.register()`` at startup. Every field declares type, label, ``pii_class``, operators,
@@ -241,7 +241,7 @@ def _demand() -> None:
 
 
 def _application() -> None:
-    did: Expr = lambda a: a.demand_id  # noqa: E731
+    did: Expr = lambda a: a.demand_id  # ruff: ignore[lambda-assignment]
     fields = {
         "id": FieldDef(
             "uuid", "Application id", "none", lambda a: a.id, _ID, aggs=frozenset({"count_distinct"})
@@ -286,7 +286,7 @@ def _application() -> None:
 
 
 def _submission() -> None:
-    did: Expr = lambda s: s.demand_id  # noqa: E731
+    did: Expr = lambda s: s.demand_id  # ruff: ignore[lambda-assignment]
     fields = {
         "id": FieldDef(
             "uuid", "Submission id", "none", lambda s: s.id, _ID, aggs=frozenset({"count_distinct"})
@@ -326,7 +326,7 @@ def _submission() -> None:
 
 
 def _interview() -> None:
-    did: Expr = lambda i: i.demand_id  # noqa: E731
+    did: Expr = lambda i: i.demand_id  # ruff: ignore[lambda-assignment]
     fields = {
         "id": FieldDef(
             "uuid", "Interview id", "none", lambda i: i.id, _ID, aggs=frozenset({"count_distinct"})
@@ -356,7 +356,7 @@ def _interview() -> None:
 
 
 def _offer() -> None:
-    did: Expr = lambda o: o.demand_id  # noqa: E731
+    did: Expr = lambda o: o.demand_id  # ruff: ignore[lambda-assignment]
     fields = {
         "id": FieldDef("uuid", "Offer id", "none", lambda o: o.id, _ID, aggs=frozenset({"count_distinct"})),
         "human_id": _ident("Offer number", lambda o: o.human_id),
@@ -443,7 +443,7 @@ def _placement() -> None:
 
 
 def _timesheet() -> None:
-    tid: Expr = lambda e: e.timesheet_id  # noqa: E731
+    tid: Expr = lambda e: e.timesheet_id  # ruff: ignore[lambda-assignment]
 
     def ts(column: str) -> Expr:
         return (
@@ -545,7 +545,7 @@ def _credit_note() -> None:
 
 
 def _payment() -> None:
-    tds = lambda p: (  # noqa: E731
+    tds = lambda p: (  # ruff: ignore[lambda-assignment]
         select(func.coalesce(func.sum(TdsDeduction.inr_amount), 0))
         .where(TdsDeduction.payment_id == p.id)
         .scalar_subquery()

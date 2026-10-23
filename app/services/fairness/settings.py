@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Fairness settings (Epic 49 A1): one row per tenant, created lazily with the defaults; edits audited (the model is
 ``AuditedMixin``). Category label edits create a new category set version."""
 
@@ -66,11 +66,11 @@ async def out(db: AsyncSession) -> FairnessSettingsOut:
     )
 
 
-async def get(ctx: RequestContext, db: AsyncSession) -> FairnessSettingsOut:  # noqa: ARG001
+async def get(ctx: RequestContext, db: AsyncSession) -> FairnessSettingsOut:  # ruff: ignore[unused-function-argument]
     return await out(db)
 
 
-async def patch(ctx: RequestContext, db: AsyncSession, data: FairnessSettingsPatch) -> FairnessSettingsOut:  # noqa: ARG001
+async def patch(ctx: RequestContext, db: AsyncSession, data: FairnessSettingsPatch) -> FairnessSettingsOut:  # ruff: ignore[unused-function-argument]
     s = await current(db)
     values: dict[str, Any] = data.model_dump(exclude_unset=True)
     for key, value in values.items():
@@ -86,7 +86,7 @@ async def patch(ctx: RequestContext, db: AsyncSession, data: FairnessSettingsPat
 
 
 async def update_category_set(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     data: CategorySetIn,
 ) -> FairnessSettingsOut:

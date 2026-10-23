@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Vault envelope primitives (Epic 66, AD-82). PURE: no database, no settings, no service imports.
 
 Imported by the migration ``20261009_500_05_p5_vault_move``: keep it dependency-free (``cryptography`` only).

@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Registrations of the ``campaigns`` domain (autodiscovered by ``core.hooks``), Epic 39.
 
 * Category gates ``marketing`` into P1 ``comms_service.deliver`` and the P2 messaging send gate, and the

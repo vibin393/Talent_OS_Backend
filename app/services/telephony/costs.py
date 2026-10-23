@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Costs, metering and the daily cost cap (Epic 76, story 76.5, spec A6).
 
 * ``today`` -- Sigma ``voice_calls.cost_estimate_minor`` of calls requested today (Tenant timezone) + reservations of the

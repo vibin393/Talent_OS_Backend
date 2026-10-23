@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The Collections Agent log (Epic 63 A4, FR-315): append-only rows behind the Invoice / Client collection timeline.
 
 ``write`` also records an audit event on the log row (``collections_agent.<event>``) so the P2 record timelines pick

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Membership, settings and per-demand opt-in (Epic 75, stories 75.1 / 75.5; FR-386).
 
 Tenant settings / choices live in a ``tenant_session`` (RLS); the network's view of the agency (``network_members``)
@@ -222,7 +222,7 @@ async def update_settings(ctx: RequestContext, db: AsyncSession, data: NetworkSe
     return await _settings_out(row, member, await tenancy.is_sandbox(tenant_id))
 
 
-async def leave(ctx: RequestContext, db: AsyncSession, *, reason: str | None) -> NetworkSettingsOut:  # noqa: ARG001 - reason reserved for an audit note
+async def leave(ctx: RequestContext, db: AsyncSession, *, reason: str | None) -> NetworkSettingsOut:  # ruff: ignore[unused-function-argument] - reason reserved for an audit note
     require_human(actor_from_ctx(ctx))
     tenant_id = _tenant_id(ctx)
     row = await get_or_create_settings(db, tenant_id)
@@ -326,7 +326,7 @@ async def set_choice(ctx: RequestContext, db: AsyncSession, demand_id: uuid.UUID
     return ListingStatusOut(status=("pending_checks" if include else "unlisted"))
 
 
-async def my_listings(ctx: RequestContext, db: AsyncSession, q: MyListingsQuery) -> MyListingsPage:  # noqa: ARG001 - listings live on the platform index (own session)
+async def my_listings(ctx: RequestContext, db: AsyncSession, q: MyListingsQuery) -> MyListingsPage:  # ruff: ignore[unused-function-argument] - listings live on the platform index (own session)
     tenant_id = _tenant_id(ctx)
     async with platform_session() as pdb:
         stmt = select(NetworkListing).where(NetworkListing.tenant_id == tenant_id)
@@ -359,7 +359,7 @@ async def my_listings(ctx: RequestContext, db: AsyncSession, q: MyListingsQuery)
     return MyListingsPage(items=items, total=total, page=q.page, page_size=q.page_size)
 
 
-async def request_review(ctx: RequestContext, db: AsyncSession, listing_id: uuid.UUID, note: str) -> ListingStatusOut:  # noqa: ARG001 - db kept for signature symmetry
+async def request_review(ctx: RequestContext, db: AsyncSession, listing_id: uuid.UUID, note: str) -> ListingStatusOut:  # ruff: ignore[unused-function-argument] - db kept for signature symmetry
     """Request a moderator re-check of a held listing. The listing surfaces in the moderator held-listings queue and
     the note is recorded; returns the current listing status (404 if it is not this Tenant's listing)."""
     tenant_id = _tenant_id(ctx)

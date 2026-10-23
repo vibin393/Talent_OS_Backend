@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Registrations of the ``workflow`` domain (autodiscovered, Epic 32).
 
 * The Phase 2 trigger catalogue (``catalogue.register_catalogue``; ``subscribe_optional`` on the contract-layer
@@ -35,7 +35,7 @@ async def _rule_owner(db: AsyncSession, payload: Mapping[str, Any]) -> set[uuid.
     return {owner} if owner else set()
 
 
-async def _render_failed(db: AsyncSession, payload: Mapping[str, Any]) -> notifications.Content:  # noqa: ARG001
+async def _render_failed(db: AsyncSession, payload: Mapping[str, Any]) -> notifications.Content:  # ruff: ignore[unused-function-argument]
     return notifications.Content(
         title=f"A workflow run ended {str(payload.get('status', 'failed')).replace('_', ' ')}",
         entity_type="workflow_execution",

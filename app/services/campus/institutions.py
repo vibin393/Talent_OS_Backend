@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Institutions and placement-officer contacts (Epic 43 story 43.1, FR-217; coordinator decision 13).
 
 Placement officers follow the P1 Contact rules: no login, citext email unique per Institution, E.164 phone

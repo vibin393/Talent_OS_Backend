@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Rediscovery summary registry (Epic 38, FR-194, decision 11; AD-40 registry pattern).
 
 When a Demand opens, the Recruiter starts from the P1 match funnel plus *sections* registered by other domains:

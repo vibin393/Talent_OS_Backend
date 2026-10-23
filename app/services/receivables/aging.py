@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """AR aging and DSO (FR-155, AD-33): pure queries over facts dated <= ``as_of`` -- aging of any past date is
 reproducible. Buckets by ``as_of - due_date`` with the tenant buckets (plus Not Due); totals in document currency
 and INR (open INR at the document ``fx_rate``); unallocated credits and disputed amounts as separate columns."""
@@ -63,7 +63,7 @@ async def _client_names(db: AsyncSession, ids: set[uuid.UUID]) -> dict[uuid.UUID
 
 
 async def query(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     legal_entity_id: uuid.UUID,
     as_of: date,
@@ -127,7 +127,7 @@ async def ar_open_inr(db: AsyncSession, legal_entity_id: uuid.UUID, as_of: date)
     return q2(sum((q2(b.open * b.doc.fx) for b in bals.values() if b.open > 0), ZERO))
 
 
-async def dso(ctx: RequestContext, db: AsyncSession, legal_entity_id: uuid.UUID, period_start: date, period_end: date) -> DsoOut:  # noqa: ARG001
+async def dso(ctx: RequestContext, db: AsyncSession, legal_entity_id: uuid.UUID, period_start: date, period_end: date) -> DsoOut:  # ruff: ignore[unused-function-argument]
     ar = await ar_open_inr(db, legal_entity_id, period_end)
     docs = [d for d in await documents(db, legal_entity_id=legal_entity_id, as_of=period_end) if d.doc_date and d.doc_date >= period_start and not d.cancelled_by(period_end)]
     sales = sum((d.inr_document_total for d in docs), ZERO)

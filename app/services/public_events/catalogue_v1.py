@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Public Event catalogue v1 (Epic 66, AD-79, spec §0.8; registered from ``hooks.py``).
 
 Every ``build`` reads only fields present on the domain event (``_present``): a field the event lacks is omitted from

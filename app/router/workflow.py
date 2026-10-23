@@ -3,7 +3,7 @@
 * ``GET/POST /workflow/rules``, ``GET/PATCH /workflow/rules/{id}``, ``POST /workflow/rules/{id}/activate|
   deactivate|archive``, ``POST /workflow/rules/{id}/dry-run``, ``GET /workflow/rules/{id}/executions``
 * ``POST /workflow/dry-run`` (unsaved rule), ``GET /workflow/executions/{id}``, ``GET /workflow/registry``
-"""  # noqa: E501
+"""  # ruff: ignore[line-too-long]
 
 import uuid
 from typing import Annotated, Any, Literal

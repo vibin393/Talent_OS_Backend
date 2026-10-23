@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Apps, Installations and the OAuth 2.1 token store (Epic 66, AD-75/AD-76; migration ``20261009_500_02_p5_oauth``).
 
 Platform tables (no tenant personal data; ``core.tenancy.PLATFORM_TABLES``): ``partner_orgs`` (Epic 74 ALTERs it),

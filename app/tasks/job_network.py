@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Job Network tasks (Epic 75, spec A3 / A5 / A8). Sync tasks on the ``ecosystem`` queue (AD-92); sweeps / flush /
 purge on ``maintenance``."""
 

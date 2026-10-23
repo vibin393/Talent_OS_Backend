@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Phase 2 read-model projections (Epic 34, AD-1 read-model exception; see ``common``).
 
 Every Phase 2 table reporting reads is a lightweight ``sqlalchemy.table()`` projection registered in

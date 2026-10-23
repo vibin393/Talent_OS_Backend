@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Public API v1 deprecations (Epic 67, FR-347, spec A5): ``route template -> since, sunset, replacement``.
 
 Routes apply ``core.public_api.deprecate(**DEPRECATIONS[route])``; the request log marks the call ``deprecated`` and the

@@ -151,7 +151,7 @@ def start_run(tenant_id: str, demand_id: str, trigger: str) -> str | None:
 
 
 @celery_app.task(name="matching.tasks.run_for_demand", acks_late=True)  # type: ignore[misc,untyped-decorator,unused-ignore]
-def run_for_demand(tenant_id: str, demand_id: str, run_id: str) -> str:  # noqa: ARG001 - demand id kept for tracing
+def run_for_demand(tenant_id: str, demand_id: str, run_id: str) -> str:  # ruff: ignore[unused-function-argument] - demand id kept for tracing
     tid, rid = uuid.UUID(str(tenant_id)), uuid.UUID(str(run_id))
     last_error: BaseException | None = None
     for attempt in range(1, RUN_ATTEMPTS + 1):

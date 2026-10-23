@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Delivery scheduling (Epic 68, §0.5/§0.7, AD-79, NFR-66).
 
 * ``pump(tenant_id)`` -- serialised per tenant (transaction advisory lock): due rows (``pending|retrying`` and
@@ -47,7 +47,7 @@ def jittered(seconds: int, *, rng: random.Random | None = None) -> float:
     return max(1.0, seconds * (1 + r))
 
 
-def plan_next(attempt: int, status_code: int | None, error: str | None, retry_after: int | None) -> tuple[str, float | None]:  # noqa: ARG001
+def plan_next(attempt: int, status_code: int | None, error: str | None, retry_after: int | None) -> tuple[str, float | None]:  # ruff: ignore[unused-function-argument]
     """After ``attempt`` (1-based) failed: ``("retrying", delay_seconds)`` or ``("failed", None)``."""
     s = get_settings()
     delays = list(s.webhook_retry_delays_seconds)

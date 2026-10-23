@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 31 registrations, called once from ``placements/hooks.py`` (autodiscovered).
 
 * Approval subjects ``placement_extension`` and ``extension_exception`` (human deciders, AD-24).
@@ -90,11 +90,11 @@ def _subscribe() -> None:
 
 
 # ---------------------------------------------------------------- notifications
-async def _listed(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # noqa: ARG001
+async def _listed(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
     return {u for u in (_uuid(x) for x in payload.get("recipient_ids") or []) if u}
 
 
-async def _owner(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # noqa: ARG001
+async def _owner(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
     oid = _uuid(payload.get("owner_id"))
     return {oid} if oid else set()
 

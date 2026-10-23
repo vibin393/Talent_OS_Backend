@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Shared webhook helpers (Epic 68): the §0.1 type/scope rule, the §0.2 filters, owner resolution, row loading, the
 DTO mapping, the echo-URL test and the deduplicated after-commit pump kick."""
 

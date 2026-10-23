@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Submission pack erasure handler ``submission_packs.packs`` (order 61), Epic 61 (FR-326, AD-34).
 
 On Candidate erasure the subject's (and merged ids') packs keep their facts (ids, status, lifecycle, dates) for the

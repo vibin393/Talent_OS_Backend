@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Worker "My Work" BGV (Epic 20 A4/A6/A7; ``/api/v1/portal/work``). Runs in the worker session
 (``OrgScope.of("worker", candidate_id)``): another candidate's case is invisible (org RLS) -> 404. Needs no
 Placement (BGV can start at *Selected*).
@@ -347,7 +347,7 @@ async def _relabel(db: AsyncSession, case: BgvCase, key: str, declared: dict[str
 
 
 async def submit_documents(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     candidate_id: uuid.UUID,
     case_id: uuid.UUID,

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 79 (Phase 5 Governance) API schemas: console read models, data-flow rows, violations, access reviews,
 data recipients and go-live readiness. All read models are masked (no secrets, no payloads, no subject ids)."""
 

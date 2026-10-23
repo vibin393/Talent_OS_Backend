@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Job Network wiring (Epic 75), autodiscovered by ``core.hooks``.
 
 * the outbox sink ``job_network`` (index sync over ``posting.published|closed|updated`` and ``demand.status_changed``);

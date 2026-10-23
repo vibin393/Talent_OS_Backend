@@ -37,12 +37,12 @@ async def get_row(db: AsyncSession) -> CommercialsSettings:
     return (await db.execute(select(CommercialsSettings))).scalar_one()
 
 
-async def get_settings(ctx: RequestContext, db: AsyncSession) -> CommercialsSettingsOut:  # noqa: ARG001
+async def get_settings(ctx: RequestContext, db: AsyncSession) -> CommercialsSettingsOut:  # ruff: ignore[unused-function-argument]
     return CommercialsSettingsOut.model_validate(await get_row(db))
 
 
 async def update_settings(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     data: CommercialsSettingsUpdate,
 ) -> CommercialsSettingsOut:

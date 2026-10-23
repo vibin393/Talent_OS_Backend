@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Domain-local BGV events (Epic 20; not in the frozen foundation catalogue). Ids only, no PII; dispatched after
 commit. They drive the ``bgv_*`` / ``reference_requested`` notification types."""
 

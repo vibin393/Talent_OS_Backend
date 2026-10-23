@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """26AS / AIS TDS reconciliation (Epic 51, FR-254): ``/receivables/tds-recon/*``.
 
 Reads need ``receivables:read``; runs, decisions and TAN mappings ``tds_recon:write``. Match decisions are

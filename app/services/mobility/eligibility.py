@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Eligibility of an Employee for an internal opening (Epic 41 A2). ``evaluate`` is pure; ``load_rules`` reads the
 per-Demand rules. Reasons are user-facing strings.
 

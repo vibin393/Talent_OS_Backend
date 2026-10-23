@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Registrations of the ``receivables`` domain (autodiscovered by ``core.hooks``; Epic 30).
 
 * Approval subjects ``write_off`` (``invoice:write_off``) and ``period_reopen`` (``period:reopen``); callbacks run
@@ -114,7 +114,7 @@ async def _render_recon_ready(db: Any, payload: Any) -> Any:
     )
 
 
-async def _recon_file_access(ctx: Any, db: Any, entity_id: Any, write: bool) -> bool:  # noqa: ARG001
+async def _recon_file_access(ctx: Any, db: Any, entity_id: Any, write: bool) -> bool:  # ruff: ignore[unused-function-argument]
     principal = ctx.principal
     if principal is None:
         return True

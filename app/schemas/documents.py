@@ -60,11 +60,11 @@ class SignatureRequestSummary(_Frozen):
 
 # ====================================================================== Epic 22 API schemas
 # (The four contract DTOs above are frozen by ``tests/contracts/signatures.json``.)
-from datetime import date  # noqa: E402
-from typing import Literal  # noqa: E402
+from datetime import date  # ruff: ignore[module-import-not-at-top-of-file]
+from typing import Literal  # ruff: ignore[module-import-not-at-top-of-file]
 
-from pydantic import ConfigDict as _ConfigDict  # noqa: E402
-from pydantic import Field  # noqa: E402
+from pydantic import ConfigDict as _ConfigDict  # ruff: ignore[module-import-not-at-top-of-file]
+from pydantic import Field  # ruff: ignore[module-import-not-at-top-of-file]
 
 TemplateKind = Literal[
     "employment_agreement",

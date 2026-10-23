@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Submission pack contract DTOs (Epic 53 contract layer, spec 0.12; filled by Epic 61). Frozen; field sets pinned
 by ``tests/contracts/signatures.json``.
 

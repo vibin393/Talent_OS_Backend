@@ -131,7 +131,7 @@ async def convert_lead(
 
 
 async def related_activity_refs(
-    ctx: RequestContext,  # noqa: ARG001 - provider signature
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument] - provider signature
     db: AsyncSession,
     entity_type: str,
     entity_id: uuid.UUID,

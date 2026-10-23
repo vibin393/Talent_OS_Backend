@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D400, D415, ARG001
+# ruff: file-ignore[line-too-long, missing-trailing-period, missing-terminal-punctuation, unused-function-argument]
 """Marketplace registrations (Epic 69), autodiscovered:
 
 * the ``installation_grant`` approval subject (P2 engine; human approvers only);

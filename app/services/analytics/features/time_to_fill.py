@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Time-to-fill extractor (Epic 48 A3, FR-241).
 
 * Subjects scored: Demands ``open``.

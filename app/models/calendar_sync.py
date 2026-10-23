@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Calendar Sync (Epic 72, AD-81, FR-371..FR-374; migration ``20261010_506_01``). Owner: ``app.services.calendar_sync``.
 
 Tenant tables (RLS + internal-only org RLS):

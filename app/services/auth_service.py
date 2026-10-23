@@ -724,7 +724,7 @@ async def _invitation_tenant(token: str) -> Tenant:
     return tenant
 
 
-async def get_invitation(ctx: RequestContext, token: str) -> InvitationOut:  # noqa: ARG001
+async def get_invitation(ctx: RequestContext, token: str) -> InvitationOut:  # ruff: ignore[unused-function-argument]
     """Public preview of a pending invitation (tenant name + invited email) for the accept page."""
     tenant = await _invitation_tenant(token)
     async with tenant_session(tenant.id) as db:
@@ -1122,7 +1122,7 @@ async def deliver_email(message: EmailMessage) -> None:
 
 
 async def request_password_reset(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     data: PasswordResetRequest,
     background: BackgroundTasks,
 ) -> None:
@@ -1199,7 +1199,7 @@ async def request_password_reset(
         background.add_task(deliver_email, message)
 
 
-async def confirm_password_reset(ctx: RequestContext, data: PasswordResetConfirm) -> None:  # noqa: ARG001
+async def confirm_password_reset(ctx: RequestContext, data: PasswordResetConfirm) -> None:  # ruff: ignore[unused-function-argument]
     """Consume the reset link, set the new password, clear lockout and revoke all the user's sessions."""
     validate_password_strength(data.password)
     tenant = await active_tenant(parse_tenant_token(data.token))

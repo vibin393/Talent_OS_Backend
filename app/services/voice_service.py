@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Facade of the ``voice`` domain (Epic 58, Voice Screening; FR-293..FR-296). Routers, tools and the agent definition
 call these, never the package internals.
 
@@ -36,7 +36,7 @@ from app.services.voice.uploads import upload_recording, upload_transcript
 
 
 async def application_owner(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     subject: tuple[str, uuid.UUID] | None,
 ) -> uuid.UUID | None:

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Predictive analytics (Epic 48, FR-241..245): ``/api/v1``. Internal Users only (no portal router exists).
 
 * ``GET /predictions`` / ``GET /predictions/batch`` -- ``prediction:read`` (time-to-fill, offer-drop) and / or
@@ -77,7 +77,7 @@ async def list_model_cards(
 @router.post(
     "/analytics/models/{kind}/train", response_model=TrainQueuedOut, status_code=status.HTTP_202_ACCEPTED
 )
-async def retrain_now(_: Manage, kind: ModelKind) -> TrainQueuedOut:  # noqa: ARG001 - every enabled kind retrains
+async def retrain_now(_: Manage, kind: ModelKind) -> TrainQueuedOut:  # ruff: ignore[unused-function-argument] - every enabled kind retrains
     from app.tasks import analytics as tasks
     from app.tasks.runtime import enqueue
 

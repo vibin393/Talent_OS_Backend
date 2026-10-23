@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Partner emails (Epic 74, spec A5). Developer accounts are not tenant users, so these are templated platform emails
 through ``core.mailer`` (outbox in tests), never tenant notification types. ``partner_submission_status`` is fed by
 Epic 69's ``register_partner_notifier`` hook (registered in ``hooks.py``)."""

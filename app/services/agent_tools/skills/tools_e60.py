@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Interview Assistant tool of the ``skills`` domain (Epic 60 Part B; ``owner_epic="60"``, ``version=1``).
 
 ``skills.suggest_evidence`` (low, default auto after burn-in): P3 skill suggestions of source ``interview`` (C-10) with

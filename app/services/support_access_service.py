@@ -246,7 +246,7 @@ async def start_session(ctx: RequestContext, grant_id: uuid.UUID) -> tuple[Suppo
 
 
 # ================================================================ tenant side
-async def list_for_tenant(ctx: RequestContext, db: AsyncSession) -> list[SupportGrantOut]:  # noqa: ARG001
+async def list_for_tenant(ctx: RequestContext, db: AsyncSession) -> list[SupportGrantOut]:  # ruff: ignore[unused-function-argument]
     rows = list(
         (
             await db.execute(select(SupportAccessGrant).order_by(SupportAccessGrant.created_at.desc()))

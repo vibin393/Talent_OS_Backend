@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Mobility erasure handler ``mobility.records`` (56), Epic 41 A6 (FR-258, AD-34).
 
 The subject's rows are deleted: internal transfers, internal application overlays, the Employee link (a User linked

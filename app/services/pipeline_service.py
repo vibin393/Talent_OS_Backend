@@ -6,5 +6,10 @@ Re-exports the facade of the ``app.services.pipeline`` package so other domains 
 ``HUMAN_ONLY`` ...
 """
 
-from app.services.pipeline import *  # noqa: F403
-from app.services.pipeline import HUMAN_ONLY, TRANSITIONS, PipelineGateway, register  # noqa: F401
+from app.services.pipeline import *  # ruff: ignore[undefined-local-with-import-star]
+from app.services.pipeline import (  # ruff: ignore[unused-import]
+    HUMAN_ONLY,
+    TRANSITIONS,
+    PipelineGateway,
+    register,
+)

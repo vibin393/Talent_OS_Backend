@@ -82,8 +82,11 @@ async def get_ai_action(action_id: uuid.UUID, _: AILogRead, db: TenantDBSessionD
 
 
 # ================================================================ Epic 35 (FR-182): commercial document extraction
-from app.core.permissions import require_any  # noqa: E402
-from app.schemas.ai import CommercialExtractIn, CommercialExtractOut  # noqa: E402
+from app.core.permissions import require_any  # ruff: ignore[module-import-not-at-top-of-file]
+from app.schemas.ai import (  # ruff: ignore[module-import-not-at-top-of-file]
+    CommercialExtractIn,
+    CommercialExtractOut,
+)
 
 CommercialWrite = Annotated[Principal, Depends(require_any("contract:write", "po:write"))]
 

@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Onboarding task kinds (Epic 23 A5, P2-10.2, FR-122 / FR-123): one handler per kind.
 
 Each Worker kind implements ``submit`` (validate the payload, write sensitive values through placements /

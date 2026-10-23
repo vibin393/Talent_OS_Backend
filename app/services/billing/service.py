@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Billing contract (Epic 29): settlement facts and receivable documents, plus the public helpers Epic 30 / 35 use.
 
 Epic 13 contract layer (AD-36): ``lock_for_settlement`` / ``get_receivable_document`` keep their FINAL signatures

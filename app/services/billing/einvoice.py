@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """E-invoice manual capture (FR-151, AD-29): no live GSP. Finance downloads the INV-01 JSON of ``pending_irn``
 documents, registers them on the IRP portal and records the IRN / Ack / signed QR manually or by importing the
 portal's response file (sha256-deduped preview -> apply). Capture only touches allow-listed columns, so the content

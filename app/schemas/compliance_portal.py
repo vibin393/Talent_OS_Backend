@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Worker "My Work" credential DTOs (Epic 21 A7). No verifier ids, no rejection-note internals, no requirement
 ids: the Worker sees their own credentials (last 4 digits only) and the labels of what current Placements need."""
 

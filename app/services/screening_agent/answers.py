@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Extracted answers (Epic 57 A4 / story 57.5): normalisation, flags and the supersede-on-re-extraction upsert.
 
 * Values are normalised with the P1 ``normalize_answers`` per question type; an invalid value keeps the verbatim text,

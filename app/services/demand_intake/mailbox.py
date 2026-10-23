@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Connected-mailbox intake (Epic 55, spec 0.3, coordinator decision C-3).
 
 ``poll_connected_mailbox(ctx, db)`` -- every 2 minutes per tenant with ``intake_mode=connected_mailbox``: the

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Recruitment Copilot tables (Epic 54, AD-64; migrations ``20261008_401_01_copilot_convs`` / ``…_401_02_copilot_settings``).
 Owner: ``copilot_store`` (the only Copilot code that runs SQL).
 

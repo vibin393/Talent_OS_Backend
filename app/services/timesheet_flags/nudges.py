@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Timesheet nudge plan (Epic 63 A2, FR-311) -- a pure planner plus its loader; no table of its own.
 
 P2 stays the engine: P2 reminds Workers on its ``reminder_offsets`` (days 0 and 1 after the period end), flags missing

@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Phase 4 agentic contract types (Epic 53, spec 0.5, AD-59/AD-61). Pure: imports nothing from ``app.services``.
 
 Risk classes are ``read | low | high``; ``forbidden`` exists only as the class ``register_tool`` refuses (★ actions are
@@ -165,7 +165,7 @@ class ToolSpec:
     scope: ScopeRule
     handler: ToolHandler
     risk_fn: Callable[[Any], RiskClass] | None = None
-    idempotency: IdempotencyRule = IdempotencyRule()  # noqa: RUF009 - frozen value object
+    idempotency: IdempotencyRule = IdempotencyRule()
     untrusted_output: frozenset[str] = frozenset()
     untrusted_input: frozenset[str] = frozenset()
     egress: bool = False

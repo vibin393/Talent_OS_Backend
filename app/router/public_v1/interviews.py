@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """``/public/v1/interviews`` (Epic 67, spec A4): read only, scope ``interviews:read``. Generated shape; see ``services/public_api/delivery.py``."""
 
 import uuid

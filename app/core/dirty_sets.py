@@ -17,7 +17,7 @@ from app.core.settings import get_settings
 _client = None
 
 
-def _redis():  # type: ignore[no-untyped-def]  # noqa: ANN202 - redis client typing is loose
+def _redis():  # type: ignore[no-untyped-def]  # ruff: ignore[missing-return-type-private-function] - redis client typing is loose
     global _client  # process-wide lazy client
     if _client is None:
         import redis

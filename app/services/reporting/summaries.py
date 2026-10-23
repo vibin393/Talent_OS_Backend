@@ -1,4 +1,4 @@
-# ruff: noqa: E501, N812
+# ruff: file-ignore[line-too-long, lowercase-imported-as-non-lowercase]
 """Rebuildable monthly summaries, reconciliation and the executive grid (Epic 34, A2/A3, AD-33, FR-177).
 
 * ``rebuild(db, legal_entity_id, month)`` -- delete + re-insert one (LE, month) key of
@@ -37,7 +37,7 @@ def has_billing(avail: frozenset[str]) -> bool:
 
 
 # ================================================================ AR bridge (Epic 30 owner functions)
-class NotAvailable(Exception):  # noqa: N818 - a state, not an error
+class NotAvailable(Exception):  # ruff: ignore[error-suffix-on-exception-name] - a state, not an error
     """An owner function / table this figure needs is not there yet: the figure is 'not available'."""
 
 

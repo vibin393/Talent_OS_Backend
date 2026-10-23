@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """OAuth facade (Epic 66, spec 0.6; frozen signatures). Minting, authentication, revocation and the delegated
 authorisation store are the foundation's; App management and the protocol endpoints are Epic 67's (same signatures)."""
 

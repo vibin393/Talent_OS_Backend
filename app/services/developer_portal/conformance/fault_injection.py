@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The fault resolver behind ``core.middleware.sandbox_faults`` (Epic 74, spec 0.6). Run state lives in the short-lived
 store under ``sbx:conf:<installation>`` (+ an index ``sbx:conf:index`` of tenant -> installations with a running run,
 so production traffic costs one cache read and no DB query).

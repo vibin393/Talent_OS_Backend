@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Sealing of self-ID answers (Epic 49 A2).
 
 A thin wrapper over the foundation ``EncryptedJSON`` helpers with the dedicated ``demographic`` key purpose. ``Sealed`` never prints or serialises."""

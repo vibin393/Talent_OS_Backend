@@ -23,10 +23,14 @@ class PoolSummary(BaseModel):
 
 
 # ---------------------------------------------------------------- Epic 38 API DTOs (not part of the contract)
-from decimal import Decimal  # noqa: E402
-from typing import Annotated, Any, Literal  # noqa: E402
+from decimal import Decimal  # ruff: ignore[module-import-not-at-top-of-file]
+from typing import Annotated, Any, Literal  # ruff: ignore[module-import-not-at-top-of-file]
 
-from pydantic import Field, StringConstraints, field_serializer  # noqa: E402
+from pydantic import (  # ruff: ignore[module-import-not-at-top-of-file]
+    Field,
+    StringConstraints,
+    field_serializer,
+)
 
 Visibility = Literal["private", "team", "tenant"]
 PoolName = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=200)]

@@ -20,7 +20,7 @@ Epic 13 (AD-31): the types, event sources and recipient directories are registri
 recipient_id)``: resolvers return user ids (``set[UUID]``) or ``Recipient(kind, id)`` values; external
 recipients (candidate / client_user / vendor_user) get the type's ``external_default_channel`` (preferences are
 for users only) and their email address from the recipient directory.
-"""  # noqa: E501
+"""  # ruff: ignore[line-too-long]
 
 import dataclasses
 import json
@@ -153,7 +153,7 @@ def _ids(payload: Payload, *keys: str) -> set[uuid.UUID]:
 
 
 def _pick(*keys: str) -> Resolver:
-    async def resolve(db: AsyncSession, payload: Payload) -> set[uuid.UUID]:  # noqa: ARG001
+    async def resolve(db: AsyncSession, payload: Payload) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
         return _ids(payload, *keys)
 
     return resolve
@@ -223,7 +223,7 @@ async def _demand_assignees(db: AsyncSession, payload: Payload) -> set[uuid.UUID
     return await demand_facts.assignee_user_ids(db, demand_id)
 
 
-async def _workflow_admins(db: AsyncSession, payload: Payload) -> set[uuid.UUID]:  # noqa: ARG001
+async def _workflow_admins(db: AsyncSession, payload: Payload) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
     from app.services import identity_bridge
 
     return {row["id"] for row in await identity_bridge.users_with_permission(db, "workflow:manage")}
@@ -334,7 +334,7 @@ async def _render_task_reminder(db: AsyncSession, payload: Payload) -> Content:
     return await _render_task(db, payload, "Reminder")
 
 
-async def _render_custom(db: AsyncSession, payload: Payload) -> Content:  # noqa: ARG001
+async def _render_custom(db: AsyncSession, payload: Payload) -> Content:  # ruff: ignore[unused-function-argument]
     etype = str(payload.get("entity_type") or "") or None
     eid = _uuid(payload.get("entity_id"))
     return Content(
@@ -360,19 +360,19 @@ _P1_TYPES: dict[str, NotificationType] = {
     "approval_requested": _t(
         "Approval requested", "Approvals", "both", True, _approvers, _render_approval_requested
     ),
-    "approval_decided": _t("Approval decided", "Approvals", "in_app", False, _requester, _render_approval_decided),  # noqa: E501
-    "mention": _t("Mentioned in a note", "Activity", "both", True, _pick("mentioned_user_id"), _render_mention),  # noqa: E501
+    "approval_decided": _t("Approval decided", "Approvals", "in_app", False, _requester, _render_approval_decided),  # ruff: ignore[line-too-long]
+    "mention": _t("Mentioned in a note", "Activity", "both", True, _pick("mentioned_user_id"), _render_mention),  # ruff: ignore[line-too-long]
     "sla_at_risk": _t("SLA at risk", "Demands", "both", True, _pick("recipient_ids"), _render_sla),
     "sla_breached": _t("SLA breached", "Demands", "both", True, _pick("recipient_ids"), _render_sla),
     "client_feedback": _t(
         "Client feedback received", "Pipeline", "both", False,
         _plus_primary("application_owner_id", "owner_id", "primary_recruiter_id"),
-        _renderer("Client feedback received ({decision})", "application", "application_id", label_title=False),  # noqa: E501
+        _renderer("Client feedback received ({decision})", "application", "application_id", label_title=False),  # ruff: ignore[line-too-long]
     ),
     "screening_answered": _t(
         "AI screening answered", "Pipeline", "in_app", False,
         _pick("application_owner_id", "owner_id"),
-        _renderer("A candidate answered the AI screening", "application", "application_id", label_title=False),  # noqa: E501
+        _renderer("A candidate answered the AI screening", "application", "application_id", label_title=False),  # ruff: ignore[line-too-long]
     ),
     "scorecard_due": _t(
         "Scorecard due", "Interviews", "both", False,
@@ -405,17 +405,17 @@ _P1_TYPES: dict[str, NotificationType] = {
     ),
     "email_bounced": _t(
         "Email bounced", "Email", "in_app", False, _pick("sender_user_id"),
-        _renderer("An email you sent bounced ({bounce_type})", "email_message", "message_id", label_title=False),  # noqa: E501
+        _renderer("An email you sent bounced ({bounce_type})", "email_message", "message_id", label_title=False),  # ruff: ignore[line-too-long]
     ),
     "workflow_failed": _t(
         "Workflow rule failed", "Workflow", "in_app", False, _workflow_admins,
-        _renderer("A workflow rule failed ({status})", "workflow_execution", "execution_id", label_title=False),  # noqa: E501
+        _renderer("A workflow rule failed ({status})", "workflow_execution", "execution_id", label_title=False),  # ruff: ignore[line-too-long]
     ),
     "export_ready": _t(
         "Export ready", "Reports", "in_app", False, _pick("requested_by", "user_id", "created_by"),
         _renderer("Your export is ready", "export", "export_id", label_title=False),
     ),
-    "workflow_notice": _t("Workflow notification", "Workflow", "in_app", False, _pick("recipient_ids"), _render_custom),  # noqa: E501
+    "workflow_notice": _t("Workflow notification", "Workflow", "in_app", False, _pick("recipient_ids"), _render_custom),  # ruff: ignore[line-too-long]
 }  # fmt: skip
 
 _types: Registry[str, NotificationType] = Registry("notification type")
@@ -593,7 +593,7 @@ def event_payload(event: object) -> dict[str, Any]:
 
 def event_id_for(event_name: str, payload: Mapping[str, Any], now: datetime | None = None) -> str:
     """The event's own id when it has one, else a deterministic id (same event, same hour = same id), so a
-    re-delivered event never notifies twice."""  # noqa: D401
+    re-delivered event never notifies twice."""  # ruff: ignore[non-imperative-mood]
     if payload.get("event_id"):
         return str(payload["event_id"])
     bucket = (now or _now()).strftime("%Y%m%d%H")
@@ -860,7 +860,7 @@ async def fan_out(db: AsyncSession, type_key: str, payload: Payload) -> int:
 
 
 async def notify_custom(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     recipients: Iterable[uuid.UUID],
@@ -869,7 +869,7 @@ async def notify_custom(
     entity_id: uuid.UUID | None = None,
     event_id: str | None = None,
 ) -> list[uuid.UUID]:
-    """Workflow ``notify`` action: a free-text notification (type ``workflow_notice``) in the caller's session."""  # noqa: E501
+    """Workflow ``notify`` action: a free-text notification (type ``workflow_notice``) in the caller's session."""  # ruff: ignore[line-too-long]
     content = Content(
         title=message[:300],
         entity_type=entity_type,

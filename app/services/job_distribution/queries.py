@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Read helpers: a Board Posting's applicants (ingest rows, no personal data) and a board's field schema."""
 
 import uuid

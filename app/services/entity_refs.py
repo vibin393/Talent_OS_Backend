@@ -144,7 +144,7 @@ def is_access_checked(entity_type: str) -> bool:
 
 
 async def can_read(ctx: RequestContext, db: AsyncSession, entity_type: str, entity_id: uuid.UUID) -> bool:
-    """True when the context's principal may see the record (unregistered entity types: False)."""  # noqa: D401
+    """True when the context's principal may see the record (unregistered entity types: False)."""  # ruff: ignore[non-imperative-mood]
     from app.services import activity_service
 
     _load_access_checkers()
@@ -163,7 +163,7 @@ async def require_readable(
 
 
 async def principal_for_user(db: AsyncSession, tenant_id: uuid.UUID, user_id: uuid.UUID) -> Principal | None:
-    """The user's principal (roles, teams, BU resolved) or None when the user is missing or inactive."""  # noqa: D401
+    """The user's principal (roles, teams, BU resolved) or None when the user is missing or inactive."""  # ruff: ignore[non-imperative-mood]
     from app.services import access_service as access
 
     row = (

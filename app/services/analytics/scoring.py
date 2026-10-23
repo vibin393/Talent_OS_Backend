@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401, RUF001
+# ruff: file-ignore[line-too-long, non-imperative-mood, ambiguous-unicode-character-string]
 """Scoring (Epic 48 A5, FR-241..243). An LLM never produces or adjusts a score.
 
 ``score(db, kind, subject_ids=None, subject_kind=None)`` loads the active model and the extractor output with

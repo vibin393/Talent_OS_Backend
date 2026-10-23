@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Talent pools and segments (Epic 36 hub table, AD-39; owner Epic 38, branch ``p3_pools``).
 
 ``talent_pools`` is created by the foundation (migration ``20261007_300_02_p3_hubs``); Epic 38 adds the FK to

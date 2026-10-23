@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Speech-to-text jobs (Epic 76, story 76.3, spec A5; D-6 Azure AI Speech).
 
 * ``enqueue`` -- for a stored call recording (``voice_call``) or a P4 upload (``voice_upload``, through the transcription
@@ -119,7 +119,7 @@ async def stt_config(db: AsyncSession) -> ProviderConnectorConfig | None:
 
 
 async def enqueue(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     source_kind: str,
@@ -172,7 +172,7 @@ class SttJobProvider:
         )  # fmt: skip
 
 
-async def resolver(ctx: RequestContext, db: AsyncSession) -> Any | None:  # noqa: ARG001
+async def resolver(ctx: RequestContext, db: AsyncSession) -> Any | None:  # ruff: ignore[unused-function-argument]
     """Registered with P4 ``voice.uploads.register_transcription_resolver``."""
     from app.services.telephony import settings as settings_mod
 

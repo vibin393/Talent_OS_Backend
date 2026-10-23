@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 31 Celery tasks (AD-9; idempotent, tenant-scoped).
 
 * ``placements_exit.daily_all`` (beat) -> ``placements_exit.daily(tenant_id)`` (queue ``maintenance``): end-date

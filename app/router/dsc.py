@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """DSC-signed invoice / credit-note PDFs (Epic 51, FR-253).
 
 * ``/dsc/policies`` -- policies per GST Registration and Client (``dsc:configure``; read also with ``billing:read``).

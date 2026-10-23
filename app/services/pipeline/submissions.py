@@ -731,7 +731,7 @@ async def cancel(ctx: RequestContext, db: AsyncSession, submission_id: uuid.UUID
 
 
 # ================================================================ approvals callbacks
-async def _on_approved(ctx: RequestContext, db: AsyncSession, submission_id: uuid.UUID) -> None:  # noqa: ARG001
+async def _on_approved(ctx: RequestContext, db: AsyncSession, submission_id: uuid.UUID) -> None:  # ruff: ignore[unused-function-argument]
     sub = await db.get(Submission, submission_id, with_for_update=True)
     if sub is None or sub.status != "pending_approval":
         return
@@ -740,11 +740,11 @@ async def _on_approved(ctx: RequestContext, db: AsyncSession, submission_id: uui
 
 
 async def _on_returned(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     submission_id: uuid.UUID,
-    outcome: str,  # noqa: ARG001
-    comment: str,  # noqa: ARG001
+    outcome: str,  # ruff: ignore[unused-function-argument]
+    comment: str,  # ruff: ignore[unused-function-argument]
 ) -> None:
     sub = await db.get(Submission, submission_id, with_for_update=True)
     if sub is None or sub.status != "pending_approval":
@@ -754,7 +754,7 @@ async def _on_returned(
 
 
 async def _describe(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     ids: list[uuid.UUID],
 ) -> dict[uuid.UUID, SubjectSummary]:

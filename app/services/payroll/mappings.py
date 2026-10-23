@@ -147,7 +147,7 @@ async def resolve(
     return le_default or await ensure_default(db)
 
 
-async def list_mappings(ctx: RequestContext, db: AsyncSession) -> list[MappingOut]:  # noqa: ARG001
+async def list_mappings(ctx: RequestContext, db: AsyncSession) -> list[MappingOut]:  # ruff: ignore[unused-function-argument]
     await ensure_default(db)
     rows = await db.execute(
         select(PayrollExportMapping).order_by(PayrollExportMapping.name, PayrollExportMapping.id)
@@ -155,7 +155,7 @@ async def list_mappings(ctx: RequestContext, db: AsyncSession) -> list[MappingOu
     return [_out(m) for m in rows.scalars()]
 
 
-async def create_mapping(ctx: RequestContext, db: AsyncSession, data: MappingIn) -> MappingOut:  # noqa: ARG001
+async def create_mapping(ctx: RequestContext, db: AsyncSession, data: MappingIn) -> MappingOut:  # ruff: ignore[unused-function-argument]
     validate_columns(data.columns)
     m = PayrollExportMapping(
         id=uuid.uuid4(),

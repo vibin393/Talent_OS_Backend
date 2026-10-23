@@ -56,7 +56,7 @@ EXPORT_LINK_USES = 5
 MIN_REASON = 10
 
 
-class TenantExportRequested:  # noqa: B903 - slotted event, same shape as the other domain events
+class TenantExportRequested:  # ruff: ignore[class-as-data-structure] - slotted event, same shape as the other domain events
     """Event: an offboarding export was queued (the handler enqueues ``export_tenant``)."""
 
     __slots__ = ("export_id", "tenant_id")

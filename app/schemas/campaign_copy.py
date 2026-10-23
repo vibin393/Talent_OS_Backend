@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """AI campaign copy DTOs (Epic 78, FR-401..FR-403). The agent result model ``CampaignCopyResult`` is the
 ``emit_result`` schema of the ``campaign_copy`` agent (``extra="forbid"``)."""
 

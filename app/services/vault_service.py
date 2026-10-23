@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Secrets Vault facade (Epic 66, AD-82, FR-336, NFR-63; spec 0.11 -- frozen signatures).
 
 Envelope encryption: a per-tenant data key (DEK) in ``vault_data_keys`` wrapped by the KMS port (``core.kms``);
@@ -113,7 +113,7 @@ async def put(
     return _meta(row)
 
 
-async def delete(ctx: RequestContext, db: AsyncSession, ref: SecretRef) -> bool:  # noqa: ARG001
+async def delete(ctx: RequestContext, db: AsyncSession, ref: SecretRef) -> bool:  # ruff: ignore[unused-function-argument]
     store.check_ref(ref.owner_type, ref.name)
     names = await store.remove(db, ref.owner_type, ref.owner_id, ref.name)
     if names:
@@ -124,7 +124,7 @@ async def delete(ctx: RequestContext, db: AsyncSession, ref: SecretRef) -> bool:
     return bool(names)
 
 
-async def delete_owner(ctx: RequestContext, db: AsyncSession, owner_type: str, owner_id: uuid.UUID) -> int:  # noqa: ARG001
+async def delete_owner(ctx: RequestContext, db: AsyncSession, owner_type: str, owner_id: uuid.UUID) -> int:  # ruff: ignore[unused-function-argument]
     store.check_ref(owner_type, "-")
     names = await store.remove(db, owner_type, owner_id)
     if names:
@@ -136,7 +136,7 @@ async def delete_owner(ctx: RequestContext, db: AsyncSession, owner_type: str, o
 
 
 async def meta(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     owner_type: str,
     owner_id: uuid.UUID,

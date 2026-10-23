@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """MCP methods (Epic 73, spec 0.5): ``initialize``, ``ping``, ``tools/list``, ``tools/call``, ``resources/list``,
 ``resources/read``, ``resources/templates/list``. ``prompts/*``, ``completion/*``, ``logging/*`` and sampling are not
 declared -> ``-32601``. Every text here is static and platform-authored."""

@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D400, D415
+# ruff: file-ignore[line-too-long, missing-trailing-period, missing-terminal-punctuation]
 """Pre-send checks of a submission pack (Epic 61 A2, FR-306). Deterministic: never a model call, so consent re-checks
 and the checks-only fallback work with AI off. Every check reuses the P1 / P2 rule exactly:
 

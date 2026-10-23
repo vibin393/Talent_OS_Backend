@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Public campus pages (Epic 43, AD-53): ``/api/v1/public/campus/r/{token}`` (drive registration, Secure Link purpose
 ``campus_registration``) and ``/api/v1/public/campus/e/{token}`` (recruitment event registration or a personal
 check-in pass, purpose ``event_checkin``). Never returns other registrants' data."""

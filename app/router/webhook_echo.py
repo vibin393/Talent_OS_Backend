@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The sandbox Echo receiver (Epic 68, story 68.5): ``POST /api/v1/webhook-echo/{token}``. No authentication; the
 token (``<tenant hex>.<random>``) selects a Sandbox Tenant and is matched by its hash (unknown -> 404)."""
 

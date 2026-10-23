@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Tenant admin for the Job Network (Epic 75, spec A9; prefix ``/api/v1``). ``join`` / ``leave`` / per-posting opt-in
 need ``network:manage`` or ``posting:publish_external`` and are user actions (API keys / Apps are refused by
 ``require_human`` in the service); reads also allow ``report:read`` for analytics."""

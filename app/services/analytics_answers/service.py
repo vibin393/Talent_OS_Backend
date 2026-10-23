@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Analytics answers: run, validate, store and re-preview governed questions (Epic 64, FR-316..FR-318, NFR-46).
 
 The model controls only a foundation ``Definition`` + a report ``VizSpec`` + short labels. Pipeline of ``run_question``:
@@ -108,7 +108,7 @@ def explain(defn: Definition) -> str:
 
 
 # ================================================================ catalogue / validate
-async def compact_catalogue(ctx: RequestContext, db: AsyncSession, source_key: str | None) -> CatalogueOut:  # noqa: ARG001
+async def compact_catalogue(ctx: RequestContext, db: AsyncSession, source_key: str | None) -> CatalogueOut:  # ruff: ignore[unused-function-argument]
     return cat.compact(_principal(ctx), source_key)
 
 

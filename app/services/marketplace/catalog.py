@@ -1,4 +1,4 @@
-# ruff: noqa: E501, RUF028
+# ruff: file-ignore[line-too-long, invalid-formatter-suppression-comment]
 """Marketplace catalogue read model (Epic 69, spec A3, FR-354).
 
 One list of: platform connectors (listing rows, falling back to the in-code manifests when the rows are missing),

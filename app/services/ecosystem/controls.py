@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Ecosystem Kill Switch, platform suspensions, MCP enablement storage and the app policy (Epic 66, AD-86, FR-340/375).
 
 * ``set_kill_switch`` (``ecosystem:kill_switch``): on -> App tokens and API keys on the Public API get 403

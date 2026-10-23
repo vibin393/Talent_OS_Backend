@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Application attribution (Epic 39 A6, FR-198): last touch within 30 days (user decision, fixed in Phase 3).
 
 ``ApplicationCreated``: ``source='campaign'`` uses ``source_ref`` (the campaign message id set by the careers apply

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Kickoff of the ``submission`` agent (Epic 61). Trusted ids / labels only -- no untrusted text: screening, interview
 and match text arrives through ``submissions.get_pack_context`` (untrusted output, the run is tainted then). The word
 limit and the administrator's write-up guidance are per Client: the agent reads them from the same tool (``rules``).

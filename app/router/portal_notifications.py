@@ -31,8 +31,8 @@ def _build(
     id_of: Callable[[Any], uuid.UUID],
 ) -> APIRouter:
     router = APIRouter(prefix=f"{prefix}/notifications", tags=[tag])
-    Principal = Annotated[Any, Depends(principal_dep)]  # noqa: N806
-    DB = Annotated[AsyncSession, Depends(db_dep)]  # noqa: N806
+    Principal = Annotated[Any, Depends(principal_dep)]  # ruff: ignore[non-lowercase-variable-in-function]
+    DB = Annotated[AsyncSession, Depends(db_dep)]  # ruff: ignore[non-lowercase-variable-in-function]
 
     @router.get("", response_model=PortalInboxOut)
     async def list_notifications(principal: Principal, db: DB, unread_only: bool = False) -> PortalInboxOut:

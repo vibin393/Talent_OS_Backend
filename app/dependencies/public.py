@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Public API dependencies (Epic 66, AD-77, spec 0.6 / 0.7).
 
 ``public_principal`` accepts ``Authorization: Bearer``:

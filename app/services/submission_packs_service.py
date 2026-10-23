@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Facade of the ``submission_packs`` domain (Epic 53 contract layer, spec 0.12; filled by Epic 61). Other domains call
 these, never the package internals.
 

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Facade of the ``campus`` domain (Epic 43, FR-217..FR-221). Other domains and Epic 52 import from here.
 
 Owner functions consumed by Epic 52 (foundation 0.7): ``funnel`` (campus tile), ``quick_search_drives`` /
@@ -57,7 +57,7 @@ async def quick_search_events(ctx: RequestContext, db: AsyncSession, q: str, lim
 
 
 async def import_institution(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     data: InstitutionImportIn,
     *,

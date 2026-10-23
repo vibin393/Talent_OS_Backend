@@ -31,7 +31,7 @@ def _invalid(path: str, reason: str) -> ValidationFailed:
     )
 
 
-def _validate(params: Any, entity_type: str, path: str) -> None:  # noqa: ARG001
+def _validate(params: Any, entity_type: str, path: str) -> None:  # ruff: ignore[unused-function-argument]
     if entity_type not in ENTITY_TYPES:
         raise _invalid(path, "only for candidate or application triggers")
 

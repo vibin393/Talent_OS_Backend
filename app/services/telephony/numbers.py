@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Caller IDs (Epic 76, story 76.1): the Tenant's registered virtual numbers per legal entity (NULL = tenant default),
 one active per entity. Numbers are bought in the provider console and registered here with the regulatory reference
 (ExoPhone KYC id, Twilio bundle SID, Plivo compliance id) and the admin-entered per-minute rate."""
@@ -23,12 +23,12 @@ async def _get(db: AsyncSession, number_id: uuid.UUID) -> TelephonyNumber:
     return row
 
 
-async def list_numbers(ctx: RequestContext, db: AsyncSession) -> list[TelephonyNumberOut]:  # noqa: ARG001
+async def list_numbers(ctx: RequestContext, db: AsyncSession) -> list[TelephonyNumberOut]:  # ruff: ignore[unused-function-argument]
     rows = (await db.execute(select(TelephonyNumber).order_by(TelephonyNumber.created_at))).scalars()
     return [TelephonyNumberOut.model_validate(r) for r in rows]
 
 
-async def create(ctx: RequestContext, db: AsyncSession, data: TelephonyNumberIn) -> TelephonyNumberOut:  # noqa: ARG001
+async def create(ctx: RequestContext, db: AsyncSession, data: TelephonyNumberIn) -> TelephonyNumberOut:  # ruff: ignore[unused-function-argument]
     inst = (
         await db.execute(select(AppInstallation).where(AppInstallation.id == data.installation_id))
     ).scalar_one_or_none()
@@ -64,7 +64,7 @@ async def create(ctx: RequestContext, db: AsyncSession, data: TelephonyNumberIn)
 
 
 async def update(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     number_id: uuid.UUID,
     data: TelephonyNumberUpdate,
@@ -84,7 +84,7 @@ async def update(
     return TelephonyNumberOut.model_validate(row)
 
 
-async def deactivate(ctx: RequestContext, db: AsyncSession, number_id: uuid.UUID) -> None:  # noqa: ARG001
+async def deactivate(ctx: RequestContext, db: AsyncSession, number_id: uuid.UUID) -> None:  # ruff: ignore[unused-function-argument]
     row = await _get(db, number_id)
     row.status = "inactive"
     await db.flush()

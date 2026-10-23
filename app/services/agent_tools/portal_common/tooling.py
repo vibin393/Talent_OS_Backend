@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Shared plumbing of the ``portal_*`` agent tools (Epic 77 A3). Not a tool module.
 
 ``acting(tctx, kind)`` resolves who the tool acts for:
@@ -122,7 +122,7 @@ async def acting(tctx: Any, kind: str) -> Acting:
 
 
 @contextlib.asynccontextmanager
-async def session(tctx: Any, act: Acting) -> AsyncIterator[AsyncSession]:  # noqa: ARG001 - kept for the call signature
+async def session(tctx: Any, act: Acting) -> AsyncIterator[AsyncSession]:  # ruff: ignore[unused-function-argument] - kept for the call signature
     """The org-scoped session for the wrapped portal call."""
     # Always a session of its own scoped to the owner's organisation: a Draft preview runs on the runtime's internal
     # session, so the tool never trusts ``tctx.db`` for scope (fail closed).

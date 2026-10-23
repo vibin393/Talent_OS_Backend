@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Registry errors of ``app.core.agentic`` (raised at import / startup, never to API callers)."""
 
 

@@ -68,7 +68,7 @@ def _attrs(ts: Timesheet, category: str, bill: dict[str, Any], pay: dict[str, An
 
 
 async def load_entries(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     query: SourceQuery,
     *,
@@ -102,7 +102,7 @@ async def load_entries(
 
 
 async def load_adjustments(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     query: SourceQuery,
     *,
@@ -132,7 +132,7 @@ async def load_adjustments(
 
 
 async def load_rate_adjustments(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     query: SourceQuery,
 ) -> list[SourceItem]:

@@ -20,19 +20,19 @@ class ManualPayrollProvider:
     async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:
         raise ManualActionRequired(f"payroll: complete {op} manually", {"op": op})
 
-    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # noqa: ARG002
+    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # ruff: ignore[unused-method-argument]
         return False
 
-    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # noqa: ARG002
+    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         return {}
 
-    async def push_export(self, export_id: uuid.UUID, file: bytes, media_type: str) -> Mapping[str, Any]:  # noqa: ARG002
+    async def push_export(self, export_id: uuid.UUID, file: bytes, media_type: str) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         raise ManualActionRequired(
             "payroll: upload the export file to the payroll provider by hand",
             {"op": "push_export", "export_id": str(export_id), "media_type": media_type},
         )
 
-    async def get_status(self, external_ref: str) -> Any:  # noqa: ARG002
+    async def get_status(self, external_ref: str) -> Any:  # ruff: ignore[unused-method-argument]
         raise ManualActionRequired("payroll: get_status is handled manually", {"op": "get_status"})
 
 

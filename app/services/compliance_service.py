@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Facade of the ``compliance`` domain (Epic 13 contract layer; filled by Epic 21). Other domains import from here.
 
 ``worker_compliance(ctx, db, candidate_id, on_date) -> WorkerComplianceStatus`` keeps its frozen signature

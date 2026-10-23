@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Voice Screening Agent tools (Epic 58 Part B; ``owner_epic="58"``, ``version=1``).
 
 Every tool takes the ``voice_session_id``; the session must belong to the run subject (the Application), else
@@ -63,7 +63,7 @@ def _outcome(data: BaseModel, row: Any, summary: str) -> ToolOutcome:
 
 
 def _preview(title: str, summary_fn: Any = None) -> Any:
-    async def preview(tctx: Any, args: Any) -> ProposalPreview:  # noqa: ARG001
+    async def preview(tctx: Any, args: Any) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
         summary = summary_fn(args) if summary_fn is not None else title
         return ProposalPreview(
             title=title, summary=summary[:4000], fields=(("Voice session", str(args.voice_session_id)),)

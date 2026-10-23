@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Portal Copilot tables (Epic 77, AD-89; migration ``20261010_511_01_portal_copilot``). Owner: ``portal_copilot``.
 
 * ``portal_copilot_conversations`` -- one private conversation of one portal principal (Client User, Vendor User or

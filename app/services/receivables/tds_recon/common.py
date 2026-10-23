@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Pure shared helpers of the 26AS / AIS reconciliation (Epic 51, FR-254): parsed-statement types, date /
 amount parsing, FY / quarter arithmetic and the normalised ``line_hash``."""
 

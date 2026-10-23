@@ -24,13 +24,13 @@ from app.services.notifications_service import (
 JIT_TYPE = "sso.user_jit_provisioned"
 
 
-async def _sso_admins(db: AsyncSession, payload: dict[str, Any]) -> set[uuid.UUID]:  # noqa: ARG001
+async def _sso_admins(db: AsyncSession, payload: dict[str, Any]) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
     from app.services import identity_bridge
 
     return {row["id"] for row in await identity_bridge.users_with_permission(db, "sso:manage")}
 
 
-async def _render(db: AsyncSession, payload: dict[str, Any]) -> Content:  # noqa: ARG001
+async def _render(db: AsyncSession, payload: dict[str, Any]) -> Content:  # ruff: ignore[unused-function-argument]
     raw = payload.get("user_id")
     user_id = uuid.UUID(str(raw)) if raw else None
     return Content(
@@ -96,7 +96,7 @@ def _client_link(payload: dict[str, Any]) -> tuple[uuid.UUID | None, str]:
     return client_id, (f"/clients/{client_id}?tab=single-sign-on" if client_id else "/clients")
 
 
-async def _render_config(db: AsyncSession, payload: dict[str, Any]) -> Content:  # noqa: ARG001
+async def _render_config(db: AsyncSession, payload: dict[str, Any]) -> Content:  # ruff: ignore[unused-function-argument]
     client_id, link = _client_link(payload)
     change = str(payload.get("change") or "updated").replace("_", " ")
     return Content(
@@ -108,7 +108,7 @@ async def _render_config(db: AsyncSession, payload: dict[str, Any]) -> Content: 
     )
 
 
-async def _render_client_jit(db: AsyncSession, payload: dict[str, Any]) -> Content:  # noqa: ARG001
+async def _render_client_jit(db: AsyncSession, payload: dict[str, Any]) -> Content:  # ruff: ignore[unused-function-argument]
     client_id, link = _client_link(payload)
     return Content(
         title="A client portal user was created through single sign-on",

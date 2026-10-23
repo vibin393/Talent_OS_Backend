@@ -41,12 +41,12 @@ async def settings_out(db: AsyncSession, row: PipelineSettings) -> PipelineSetti
     )
 
 
-async def get_settings(ctx: RequestContext, db: AsyncSession) -> PipelineSettingsOut:  # noqa: ARG001
+async def get_settings(ctx: RequestContext, db: AsyncSession) -> PipelineSettingsOut:  # ruff: ignore[unused-function-argument]
     return await settings_out(db, await settings_row(db))
 
 
 async def update_settings(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     data: PipelineSettingsUpdate,
 ) -> PipelineSettingsOut:

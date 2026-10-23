@@ -35,7 +35,7 @@ class StorageConfigError(RuntimeError):
     """The configured storage backend cannot be used (missing library, bucket, ...)."""
 
 
-class InvalidStorageKey(ValueError):  # noqa: N818 - domain name
+class InvalidStorageKey(ValueError):  # ruff: ignore[error-suffix-on-exception-name] - domain name
     pass
 
 
@@ -92,7 +92,7 @@ class LocalStorage:
             raise InvalidStorageKey(msg)
         return path
 
-    async def put(self, key: str, data: bytes, content_type: str) -> None:  # noqa: ARG002
+    async def put(self, key: str, data: bytes, content_type: str) -> None:  # ruff: ignore[unused-method-argument]
         path = self._path(key)
         path.parent.mkdir(parents=True, exist_ok=True)
         tmp = path.with_suffix(".part")
@@ -105,7 +105,7 @@ class LocalStorage:
             raise FileNotFoundError(key)
         return path.read_bytes()
 
-    async def signed_url(self, key: str, ttl: int) -> str | None:  # noqa: ARG002
+    async def signed_url(self, key: str, ttl: int) -> str | None:  # ruff: ignore[unused-method-argument]
         self._path(key)
         return None  # local files are only served through the permission-checked download endpoint
 

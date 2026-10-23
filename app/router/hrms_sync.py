@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """HRMS sync API (Epic 71, spec A11), prefix ``/hrms``.
 
 | Method + path | Permission |

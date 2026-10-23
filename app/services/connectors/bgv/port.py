@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """``bgv`` provider port (AD-29, Epic 20 A5). Owned by Epic 20 after the foundation (R16).
 
 Every adapter also implements the generic ``ConnectorPort`` (``handle`` / ``verify_webhook`` / ``parse_webhook``).

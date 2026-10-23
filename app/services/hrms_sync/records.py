@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """HRMS sync records, settings and actions (Epic 71, spec A4/A11): the sync queue, the Placement panel, retry / skip /
 include, "Pull status now" and the tenant settings."""
 
@@ -30,11 +30,11 @@ from app.services.hrms_sync.push import ensure_record, find_record
 __all__ = ["get_settings", "include", "list_records", "placement_panel", "pull_now", "put_settings", "retry", "skip"]
 
 
-async def get_settings(ctx: RequestContext, db: AsyncSession) -> HrmsSettingsOut:  # noqa: ARG001
+async def get_settings(ctx: RequestContext, db: AsyncSession) -> HrmsSettingsOut:  # ruff: ignore[unused-function-argument]
     return HrmsSettingsOut.model_validate(await get_settings_row(db))
 
 
-async def put_settings(ctx: RequestContext, db: AsyncSession, data: HrmsSettingsIn) -> HrmsSettingsOut:  # noqa: ARG001
+async def put_settings(ctx: RequestContext, db: AsyncSession, data: HrmsSettingsIn) -> HrmsSettingsOut:  # ruff: ignore[unused-function-argument]
     row = await get_settings_row(db)
     for key, value in data.model_dump(exclude_unset=True).items():
         if value is not None:
@@ -55,7 +55,7 @@ async def _outs(db: AsyncSession, rows: list[HrmsSyncRecord]) -> list[HrmsRecord
 
 
 async def list_records(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     status: str | None = None,
@@ -83,7 +83,7 @@ async def _record(db: AsyncSession, record_id: uuid.UUID) -> HrmsSyncRecord:
     return rec
 
 
-async def placement_panel(ctx: RequestContext, db: AsyncSession, placement_id: uuid.UUID) -> PlacementPanelOut:  # noqa: ARG001
+async def placement_panel(ctx: RequestContext, db: AsyncSession, placement_id: uuid.UUID) -> PlacementPanelOut:  # ruff: ignore[unused-function-argument]
     p = await db.get(Placement, placement_id)
     if p is None:
         raise NotFound("Placement not found")
@@ -128,7 +128,7 @@ async def retry(ctx: RequestContext, db: AsyncSession, record_id: uuid.UUID) -> 
     return out
 
 
-async def skip(ctx: RequestContext, db: AsyncSession, record_id: uuid.UUID, reason: str) -> HrmsRecordOut:  # noqa: ARG001
+async def skip(ctx: RequestContext, db: AsyncSession, record_id: uuid.UUID, reason: str) -> HrmsRecordOut:  # ruff: ignore[unused-function-argument]
     rec = await _record(db, record_id)
     rec.status, rec.skip_reason = "skipped", reason[:40]
     await db.flush()

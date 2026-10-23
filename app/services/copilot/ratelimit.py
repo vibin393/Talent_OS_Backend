@@ -1,4 +1,4 @@
-# ruff: noqa: D401, E501
+# ruff: file-ignore[non-imperative-mood, line-too-long]
 """Per-user Copilot question rate limit (Epic 54, FR-280): a Redis fixed window
 ``copilot:rl:<tenant>:<user>:<yyyymmddhh>`` (INCR + EXPIRE 3,600). Fails open when Redis is unavailable (the runtime's
 token budget and caps still apply)."""

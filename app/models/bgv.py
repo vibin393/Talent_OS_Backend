@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Background verification and reference checks (Epic 20, branch ``p2_bgv``, migrations ``20261005_207_01..03``).
 
 * Configuration (internal only): ``bgv_settings`` (one row per tenant), ``bgv_packages``, ``bgv_providers``,

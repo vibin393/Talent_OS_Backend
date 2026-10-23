@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 54 Copilot read tools on candidates (FR-277, NFR-46; coordinator decision C-8: Copilot owns
 ``candidates.search``, distinct from Epic 56's ``search.search_candidates``).
 

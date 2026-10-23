@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Erasure handler ``analytics_answers.records`` (Epic 64, A8; FR-326).
 
 For a candidate subject:

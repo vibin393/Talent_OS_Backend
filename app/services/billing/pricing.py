@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Pure pricing (AD-20, FR-147): no DB, no I/O, no clock. Day counting lives only in ``time/calendar.py``; this
 module multiplies and applies the last-segment remainder rule.
 

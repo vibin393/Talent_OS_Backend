@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Referee acceptance (Epic 42 story 42.2, FR-214, FR-21) and the public referee page (Secure Link purpose
 ``referral_link``). No session: the token is the credential and is never logged.
 

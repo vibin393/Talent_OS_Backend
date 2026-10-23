@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Eligibility rules and overrides (Epic 43 story 43.3, FR-218, AD-42).
 
 The drive's rule is an AD-42 definition over ``campus.registration`` (validated on save with the editor's

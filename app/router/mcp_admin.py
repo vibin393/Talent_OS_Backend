@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """MCP administration and self-service (Epic 73, spec A4): ``/api/v1/mcp/*``. People only: API keys and App tokens are
 refused (403 ``human_only_action``); every mutation is audited."""
 

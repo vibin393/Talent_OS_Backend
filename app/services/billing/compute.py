@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Pure document arithmetic (AD-19 / AD-20): line pricing -> tax components -> INR snapshot -> totals, plus the
 preview fingerprint and the canonical content hash. No DB, no I/O, no clock; re-running it on stored inputs is
 byte-identical (property-tested)."""

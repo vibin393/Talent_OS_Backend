@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Analytics answers facade (Epic 64). Used by the ``agent_tools.reporting`` tools, the ``/analytics/answers`` router and
 the maintenance task."""
 

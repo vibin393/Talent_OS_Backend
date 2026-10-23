@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Darwinbox adapter (Epic 71, spec A3; key ``darwinbox``). Live mode only; tests use recorded fixtures.
 
 Darwinbox exposes client-specific REST APIs enabled by the Darwinbox account team (spec Known gap 1): field ids are

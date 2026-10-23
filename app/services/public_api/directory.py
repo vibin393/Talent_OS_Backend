@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Public directory reads (Epic 67, spec A4): Clients and Contacts (``clients_service`` scope: the client owner under
 ``client:read`` / ``contact:read``), Users (directory fields only; email is contact data), Talent Pools
 (``talent_pools.common.visible``) with members, and the platform Skills catalogue."""

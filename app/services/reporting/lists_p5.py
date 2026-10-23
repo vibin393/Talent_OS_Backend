@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Phase 5 export lists (Epic 79 story 79.4, FR-413, spec A6).
 
 Three export kinds over the Phase 5 read-model projections (``p5tables``), for kinds the foundation already allows:

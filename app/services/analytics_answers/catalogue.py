@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The compact semantic catalogue the model sees (Epic 64 story 64.1, ``semantic.catalogue``).
 
 Built from ``core.semantic.catalogue_for`` / ``source_catalogue`` for the caller's principal (the Effective Rights): a

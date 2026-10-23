@@ -1,4 +1,4 @@
-# ruff: noqa: E501, N812
+# ruff: file-ignore[line-too-long, lowercase-imported-as-non-lowercase]
 """Phase 2 dashboards (Epic 34, A1/A3): finance, account_ops, onboarding, compliance, delivery, executive.
 
 Registered into the P1 ``DASHBOARDS`` registry (same tile mechanics: independent tiles, Redis cache, statement

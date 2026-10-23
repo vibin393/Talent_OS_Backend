@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Attempt scoring and results (Epic 40 A7, FR-205).
 
 * ``score_attempt`` (on submit / auto-submit): every answer is scored by the pure ``scoring.score_answer`` (responses

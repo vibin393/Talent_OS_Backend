@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """26AS / AIS reconciliation runs, proposals, human decisions and TAN mappings (Epic 51, Story 51.2, FR-254).
 
 * ``create_run`` (API): validates the Legal Entity PAN, FY and quarter; an upload is parsed once synchronously to
@@ -544,7 +544,7 @@ async def run_out(db: AsyncSession, run: TdsReconRun, counts: dict[str, int] | N
 
 
 async def list_runs(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     legal_entity_id: uuid.UUID | None = None,
@@ -658,7 +658,7 @@ async def lines_out(db: AsyncSession, lines: list[TdsStatementLine]) -> list[Tds
     return out
 
 
-async def run_detail(ctx: RequestContext, db: AsyncSession, run_id: uuid.UUID) -> TdsReconRunDetailOut:  # noqa: ARG001
+async def run_detail(ctx: RequestContext, db: AsyncSession, run_id: uuid.UUID) -> TdsReconRunDetailOut:  # ruff: ignore[unused-function-argument]
     run = await get_run(db, run_id)
     lines = list(
         (
@@ -676,7 +676,7 @@ async def run_detail(ctx: RequestContext, db: AsyncSession, run_id: uuid.UUID) -
     )
 
 
-async def candidates(ctx: RequestContext, db: AsyncSession, line_id: uuid.UUID) -> list[TdsCandidateOut]:  # noqa: ARG001
+async def candidates(ctx: RequestContext, db: AsyncSession, line_id: uuid.UUID) -> list[TdsCandidateOut]:  # ruff: ignore[unused-function-argument]
     line, run = await _line(db, line_id)
     taken = await confirmed_deduction_ids(db)
     tans = await tan_map(db)
@@ -902,7 +902,7 @@ async def acknowledge(ctx: RequestContext, db: AsyncSession, line_id: uuid.UUID,
 
 
 # ---------------------------------------------------------------- TAN mappings
-async def list_tans(ctx: RequestContext, db: AsyncSession) -> list[TdsDeductorTanOut]:  # noqa: ARG001
+async def list_tans(ctx: RequestContext, db: AsyncSession) -> list[TdsDeductorTanOut]:  # ruff: ignore[unused-function-argument]
     rows = list((await db.execute(select(TdsDeductorTan).order_by(TdsDeductorTan.tan))).scalars())
     names = await client_names(db, {r.client_id for r in rows})
     return [
@@ -953,7 +953,7 @@ async def create_tan(ctx: RequestContext, db: AsyncSession, data: TdsDeductorTan
     )
 
 
-async def delete_tan(ctx: RequestContext, db: AsyncSession, tan_id: uuid.UUID) -> None:  # noqa: ARG001
+async def delete_tan(ctx: RequestContext, db: AsyncSession, tan_id: uuid.UUID) -> None:  # ruff: ignore[unused-function-argument]
     row = await db.get(TdsDeductorTan, tan_id)
     if row is None:
         raise NotFound("TAN mapping not found")

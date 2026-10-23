@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401, D400, D415
+# ruff: file-ignore[line-too-long, non-imperative-mood, missing-trailing-period, missing-terminal-punctuation]
 """Sender matching (Epic 55, spec 0.4, FR-281). **Never by display name.**
 
 1. **Contact address** -- exact, case-insensitive ``From`` = an active Contact's email -> that Contact and Client

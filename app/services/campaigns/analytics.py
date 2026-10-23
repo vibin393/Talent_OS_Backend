@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Marketing analytics (Epic 39 A8, FR-198): funnel counts and rates from ``campaign_messages`` +
 ``engagement_events`` (aggregate SQL), per Campaign (and A/B variant), per Sequence (and step) and tenant-wide.
 Opens are approximate (pixel only with ``tracking`` consent). ``funnel`` is exposed to Epic 52's dashboard tile."""

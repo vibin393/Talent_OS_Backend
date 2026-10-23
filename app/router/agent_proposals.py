@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """AI agent Proposals (Epic 53, spec 0.16, FR-268/FR-269/FR-325). Deciding is ★ human only: API keys, workflow, agent
 and system actors get 403 ``human_only_action``. Copilot drafts are confirmed / discarded by their own user only.
 Epic 65 builds the inbox UI on these endpoints."""

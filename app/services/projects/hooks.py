@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Registrations of the ``projects`` domain (autodiscovered by ``core.hooks``; Epic 45, spec A6).
 
 * Human-only ★ transition ``deliverable -> accepted`` (FR-257; enforced by ``deliverables.accept``).

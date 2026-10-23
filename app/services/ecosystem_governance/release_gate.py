@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Release-gate read model (Epic 79 story 79.7, FR-405 / FR-414).
 
 ``latest_for_tenant`` returns the latest Conformance Kit / red-team / STT results for the platform Listings a Tenant

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Finance document -> ``LedgerDocumentDTO`` (Epic 71, story 71.5, spec A8).
 
 Only ``issued`` invoices / notes are built (``cancelled`` ones only to void what was pushed). The payload is

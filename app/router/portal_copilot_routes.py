@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Route builder shared by the three portal Copilot routers (Epic 77 A5). Not a router module itself.
 
 ``build(kind, prefix, principal_dep, use_dep, guard)`` returns an ``APIRouter`` with ``GET /status``,
@@ -63,8 +63,8 @@ async def _remember(key: str, body: dict[str, Any]) -> None:
 
 def build(kind: str, prefix: str, principal_dep: Any, use_dep: Any, route_class: Any) -> APIRouter:
     router = APIRouter(prefix=prefix, tags=[f"{kind}-portal-copilot"], route_class=route_class)
-    Who = Annotated[Any, Depends(principal_dep)]  # noqa: N806
-    User = Annotated[Any, Depends(use_dep)] if use_dep is not None else Who  # noqa: N806
+    Who = Annotated[Any, Depends(principal_dep)]  # ruff: ignore[non-lowercase-variable-in-function]
+    User = Annotated[Any, Depends(use_dep)] if use_dep is not None else Who  # ruff: ignore[non-lowercase-variable-in-function]
 
     @router.get("/status", response_model=PortalCopilotStatusOut)
     async def copilot_status(principal: Who) -> Any:

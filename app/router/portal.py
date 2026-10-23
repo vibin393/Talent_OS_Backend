@@ -71,7 +71,7 @@ async def me(principal: CandidateDep) -> PortalMe:
 
 
 @router.get("/csrf", status_code=status.HTTP_204_NO_CONTENT, response_class=Response)
-async def reissue_csrf(principal: CandidateDep, request: Request) -> Response:  # noqa: ARG001
+async def reissue_csrf(principal: CandidateDep, request: Request) -> Response:  # ruff: ignore[unused-function-argument]
     """Epic 14 (FR-82): re-issue ``tos_csrf`` for the candidate session (the client retries once)."""
     from app.core.security import CANDIDATE_COOKIE, csrf_token_from_request, set_csrf_cookie
     from app.core.settings import get_settings
@@ -142,7 +142,7 @@ async def list_applications(principal: CandidateDep, db: CandidateDBDep) -> list
 
 
 @router.get("/withdraw-reasons", response_model=list[PortalWithdrawReason])
-async def withdraw_reasons(principal: CandidateDep, db: CandidateDBDep) -> list[PortalWithdrawReason]:  # noqa: ARG001
+async def withdraw_reasons(principal: CandidateDep, db: CandidateDBDep) -> list[PortalWithdrawReason]:  # ruff: ignore[unused-function-argument]
     return await svc.withdraw_reasons(db)
 
 

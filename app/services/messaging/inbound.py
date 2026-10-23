@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Inbound SMS / WhatsApp webhooks (Epic 33, FR-172/173), run by ``connectors.process_inbound`` in the tenant of
 the verified config (``/api/v1/hooks/{sms|whatsapp}/<config_id>``) -- a payload can only touch that tenant's rows.
 

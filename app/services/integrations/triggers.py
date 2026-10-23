@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The ``connector_triggers`` outbox sink (Epic 66, spec 0.8 / 0.10).
 
 ``connector_triggers_sink(ctx, db, rows)`` matches outbox rows (public and internal) against every active connector

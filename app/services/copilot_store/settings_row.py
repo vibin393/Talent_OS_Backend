@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Tenant Copilot settings row (Epic 54, ``copilot_settings``) and the availability inputs of ``status`` (features,
 kill switches, monthly AI allowance). Defaults apply until an administrator saves the settings."""
 

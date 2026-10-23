@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Skills dashboard tiles (Epic 52 A4; Epic 37 data, ``skills_insight:read``). Supply / demand comes from the owner's
 ``skills_service.skill_insights`` (graph-expanded through ``skills_service.expand``, scoped by the caller's demand /
 candidate read permissions)."""

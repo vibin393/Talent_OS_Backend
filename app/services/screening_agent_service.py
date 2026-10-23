@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401, ARG001
+# ruff: file-ignore[line-too-long, non-imperative-mood, unused-function-argument]
 """Facade of the ``screening_agent`` domain (Epic 53 contract layer, spec 0.12; filled by Epic 57). Other domains call
 these, never the package internals.
 

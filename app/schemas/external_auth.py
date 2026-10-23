@@ -17,11 +17,11 @@ class ExternalMeOut(BaseModel):
 
 
 # ================================================================ Epic 14: internal access administration
-from datetime import datetime  # noqa: E402
+from datetime import datetime  # ruff: ignore[module-import-not-at-top-of-file]
 
-from pydantic import ConfigDict, Field  # noqa: E402
+from pydantic import ConfigDict, Field  # ruff: ignore[module-import-not-at-top-of-file]
 
-from app.schemas.identity import Email  # noqa: E402
+from app.schemas.identity import Email  # ruff: ignore[module-import-not-at-top-of-file]
 
 ClientPortalPermission = Literal[
     "submissions:review",

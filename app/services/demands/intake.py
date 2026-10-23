@@ -201,7 +201,7 @@ async def read_file_bytes(upload: Any) -> bytes:
     return data
 
 
-async def _store_text(ctx: RequestContext, db: AsyncSession, demand: Demand, text: str) -> DemandDocument:  # noqa: ARG001
+async def _store_text(ctx: RequestContext, db: AsyncSession, demand: Demand, text: str) -> DemandDocument:  # ruff: ignore[unused-function-argument]
     data = text.encode("utf-8")
     result = await scanning.scan(data, "intake.txt")
     if result.status in ("infected", "error"):

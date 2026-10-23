@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Resource timeline (Epic 45, FR-229): role gaps and Worker over-allocation over a date window.
 
 The core (``role_segments`` / ``worker_segments``) is pure: it cuts the window into maximal intervals with a

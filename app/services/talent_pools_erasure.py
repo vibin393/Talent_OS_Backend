@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Talent pool erasure handler ``talent_pools.members`` (40), Epic 38 A10 (FR-258, AD-34).
 
 On Candidate erasure the subject's ``talent_pool_members`` rows (active and historical) are deleted and the

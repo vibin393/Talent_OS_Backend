@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Internal outbox event types owned by Epic 71 (spec A4; visibility ``internal``: connector triggers only, never
 webhooks or docs, FR-334): ``placement.joined``, ``placement.changed`` and ``payroll_export.finalized``."""
 

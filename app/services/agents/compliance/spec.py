@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The ``compliance`` AgentSpec (Epic 62 A6, FR-308).
 
 Owner = the Placement's onboarding owner -> ``onboarding_settings.default_hr_owner_id`` -> an ``hr_onboarding`` user ->

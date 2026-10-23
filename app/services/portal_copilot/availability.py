@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Portal Copilot availability (Epic 77 A4 / A6): whether a portal principal may ask a question now, and why not.
 
 Order: kill switches (global / platform / tenant, P4) -> agentic master switch -> portal enablement (tenant setting and

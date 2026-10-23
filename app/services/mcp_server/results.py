@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """``ExternalCallOut`` -> MCP ``CallToolResult`` (Epic 73, spec 0.4). Pure.
 
 * A defence-in-depth redaction pass after the runtime's masking: Aadhaar, PAN, passport, IFSC and bank account
@@ -66,7 +66,7 @@ class Redactor:
             self.count += 1
             return REDACTED
 
-        def sub(m: re.Match[str]) -> str:  # noqa: ARG001
+        def sub(m: re.Match[str]) -> str:  # ruff: ignore[unused-function-argument]
             self.count += 1
             return REDACTED
 

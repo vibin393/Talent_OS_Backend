@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Review queue (Epic 40 A7, FR-205).
 
 * ``GET /assessment-reviews?status=pending`` lists answers waiting for a human (free-form / essay, low-confidence

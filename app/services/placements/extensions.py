@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Extensions (FR-163, PRD §5.15, AD-4). ``status`` is written only through ``_transition`` against ``TRANSITIONS``.
 
 * Propose: run the checks; an open offboarding case is 409 ``offboarding_in_progress``; a second open extension is
@@ -264,7 +264,7 @@ async def propose(
     return out(ext)
 
 
-async def on_extension_decided(ctx: RequestContext, db: AsyncSession, decision: Any) -> None:  # noqa: ARG001
+async def on_extension_decided(ctx: RequestContext, db: AsyncSession, decision: Any) -> None:  # ruff: ignore[unused-function-argument]
     ext = (
         await db.execute(select(Extension).where(Extension.id == decision.subject_id).with_for_update())
     ).scalar_one_or_none()
@@ -274,7 +274,7 @@ async def on_extension_decided(ctx: RequestContext, db: AsyncSession, decision: 
     await _transition(db, ext, to, SYSTEM)
 
 
-async def on_exception_decided(ctx: RequestContext, db: AsyncSession, decision: Any) -> None:  # noqa: ARG001
+async def on_exception_decided(ctx: RequestContext, db: AsyncSession, decision: Any) -> None:  # ruff: ignore[unused-function-argument]
     ext = (
         await db.execute(select(Extension).where(Extension.id == decision.subject_id).with_for_update())
     ).scalar_one_or_none()
@@ -284,7 +284,7 @@ async def on_exception_decided(ctx: RequestContext, db: AsyncSession, decision: 
     await db.flush()
 
 
-async def describe(ctx: RequestContext, db: AsyncSession, ids: list[uuid.UUID]) -> dict[uuid.UUID, Any]:  # noqa: ARG001
+async def describe(ctx: RequestContext, db: AsyncSession, ids: list[uuid.UUID]) -> dict[uuid.UUID, Any]:  # ruff: ignore[unused-function-argument]
     from app.schemas.approvals import SubjectSummary
 
     rows = (
@@ -550,7 +550,7 @@ async def confirm(
 
 
 async def decline(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     extension_id: uuid.UUID,
     actor: ActorRef,

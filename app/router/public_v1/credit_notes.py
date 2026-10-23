@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """``/public/v1/credit_notes`` (Epic 67, spec A4): read only, scope ``invoices:read``. Generated shape; see ``services/public_api/finance.py``."""
 
 import uuid

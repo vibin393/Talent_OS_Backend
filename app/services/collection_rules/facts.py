@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Loader of the collection plan facts and of the Client's message recipients (Epic 63 A4).
 
 Recipients come from records only: the billing profile's Contacts (``billing_profile_contacts``, roles ``to`` / ``cc``;

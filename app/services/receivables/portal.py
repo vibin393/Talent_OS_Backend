@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Client Portal view of receivables: the Client User's own statement and the Payment Status of its documents
 (org RLS ``client`` + ``invoices:view``). Another client's id is a 404."""
 

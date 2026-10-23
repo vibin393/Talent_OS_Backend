@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Calendar Connector Manifests (Epic 72, spec A2; registered by ``app.services.calendar_sync.hooks``).
 
 * ``google_calendar`` / ``microsoft_calendar`` -- listing-only (``auth="user_connection"``: personal connections are
@@ -55,7 +55,7 @@ class FakeOrgFreeBusy(FakeAdapterBase):
 
     category = "calendar"
     provider_key = "google_calendar_org"
-    busy: dict[str, list[tuple[datetime, datetime]]] = {}  # noqa: RUF012 - shared test fixture state
+    busy: dict[str, list[tuple[datetime, datetime]]] = {}  # ruff: ignore[mutable-class-default] - shared test fixture state
 
     async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:
         if op != "free_busy":

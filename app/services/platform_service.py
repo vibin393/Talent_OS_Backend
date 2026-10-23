@@ -158,7 +158,7 @@ def _is_admin(principal: Any) -> bool:
     return bool(principal is not None and principal.has("user:manage"))
 
 
-async def notices_for(ctx: RequestContext, db: AsyncSession) -> list[PlatformNoticeOut]:  # noqa: ARG001
+async def notices_for(ctx: RequestContext, db: AsyncSession) -> list[PlatformNoticeOut]:  # ruff: ignore[unused-function-argument]
     """Unexpired notices for the caller's tenant, filtered by audience (admins see admin notices)."""
     principal = ctx.principal
     tenant_id = ctx.tenant_id
@@ -477,7 +477,7 @@ async def email_sub_processor_notice(tenant_id: uuid.UUID, sub_id: uuid.UUID) ->
 
 
 # ================================================================ Epic 33 (FR-174, AD-38): custom Career Portal domains
-from app.services.custom_domains import (  # noqa: E402, F401 - re-exported
+from app.services.custom_domains import (  # ruff: ignore[module-import-not-at-top-of-file, unused-import] - re-exported
     add_custom_domain,
     check_domains,
     get_custom_domain,

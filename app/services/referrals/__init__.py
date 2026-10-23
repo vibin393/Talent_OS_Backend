@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Employee referrals (Epic 42, FR-213..FR-216, AD-50).
 
 Modules: ``programs`` (programs + settings), ``eligibility`` (pure rules + loaders), ``submit`` (openings, upload

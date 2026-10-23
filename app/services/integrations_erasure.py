@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Integrations erasure handler ``integrations.links`` (70, Epic 66, spec 0.17): the external-id map
 ``connector_links`` rows of the erased candidate are unlinked and their ``external_url`` nulled. Receivers learn about
 the erasure through the ``subject.erased`` Public Event (D-11)."""

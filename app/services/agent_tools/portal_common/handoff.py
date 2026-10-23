@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Hand-offs to a person (Epic 77 A3 / A6): the write side of the portal "message" and "ask your recruiter" drafts.
 
 Runs only when the portal principal confirms the Draft. Each creates an internal Task (owner = the Account Manager,

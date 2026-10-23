@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Manifest -> listing sync (Epic 69, spec A3; AD-81). Every registered Connector Manifest gets a platform listing
 (``kind='connector'``, or ``calendar`` for listing-only calendar manifests) and, when its ``manifest_sha256`` changes, a
 new ``published`` version (platform-authored: no partner review). The previous published version is ``superseded``.

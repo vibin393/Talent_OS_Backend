@@ -138,8 +138,8 @@ async def worker_out(db: AsyncSession, claim: ExpenseClaim) -> WorkerClaimOut:
 
 
 async def worker_settings(
-    ctx: RequestContext,  # noqa: ARG001
-    wdb: AsyncSession,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
+    wdb: AsyncSession,  # ruff: ignore[unused-function-argument]
     tenant_id: uuid.UUID,
 ) -> WorkerExpenseSettings:
     async with tenant_session(tenant_id) as db:
@@ -152,7 +152,7 @@ async def worker_settings(
 
 
 async def my_claims(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     wdb: AsyncSession,
     tenant_id: uuid.UUID,
     candidate_id: uuid.UUID,
@@ -178,8 +178,8 @@ async def my_claims(
 
 
 async def claimable_placements(
-    ctx: RequestContext,  # noqa: ARG001
-    wdb: AsyncSession,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
+    wdb: AsyncSession,  # ruff: ignore[unused-function-argument]
     tenant_id: uuid.UUID,
     candidate_id: uuid.UUID,
 ) -> list[WorkerClaimablePlacement]:
@@ -210,7 +210,7 @@ async def claimable_placements(
 
 async def create(
     ctx: RequestContext,
-    wdb: AsyncSession,  # noqa: ARG001
+    wdb: AsyncSession,  # ruff: ignore[unused-function-argument]
     tenant_id: uuid.UUID,
     candidate_id: uuid.UUID,
     placement_id: uuid.UUID,
@@ -222,7 +222,7 @@ async def create(
 
 
 async def my_claim(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     wdb: AsyncSession,
     tenant_id: uuid.UUID,
     candidate_id: uuid.UUID,
@@ -280,7 +280,7 @@ async def preview(
 
 async def upload_receipt(
     ctx: RequestContext,
-    wdb: AsyncSession,  # noqa: ARG001
+    wdb: AsyncSession,  # ruff: ignore[unused-function-argument]
     tenant_id: uuid.UUID,
     candidate_id: uuid.UUID,
     data: bytes,
@@ -292,7 +292,7 @@ async def upload_receipt(
 
 async def read_receipt(
     ctx: RequestContext,
-    wdb: AsyncSession,  # noqa: ARG001
+    wdb: AsyncSession,  # ruff: ignore[unused-function-argument]
     tenant_id: uuid.UUID,
     candidate_id: uuid.UUID,
     file_id: uuid.UUID,
@@ -302,8 +302,8 @@ async def read_receipt(
 
 
 async def download_receipt(
-    ctx: RequestContext,  # noqa: ARG001
-    wdb: AsyncSession,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
+    wdb: AsyncSession,  # ruff: ignore[unused-function-argument]
     tenant_id: uuid.UUID,
     candidate_id: uuid.UUID,
     file_id: uuid.UUID,

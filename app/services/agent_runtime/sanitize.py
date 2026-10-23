@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Output checks and log redaction (Epic 53, AD-63, NFR-47).
 
 * ``outbound(text, *, allowed_hosts, max_len)`` -- removes ``<untrusted_document>`` / internal tag names, strips links

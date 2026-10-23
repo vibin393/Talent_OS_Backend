@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Visa Type definition rules (Epic 46 A1, AD-52). Shared by the platform templates and tenant versions.
 
 Pure functions: no I/O. Error codes: ``visa_definition_invalid`` (shape), ``visa_stage_category_invalid``,

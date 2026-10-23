@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Referral Celery tasks (Epic 42). Queue ``maintenance`` (AD-54). Every task starts with ``tenant_id`` (except
 the beat fan-outs).
 

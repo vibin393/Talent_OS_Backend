@@ -21,13 +21,13 @@ class ManualAccountingExporter:
     async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:
         raise ManualActionRequired(f"accounting: complete {op} manually", {"op": op})
 
-    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # noqa: ARG002
+    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # ruff: ignore[unused-method-argument]
         return False
 
-    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # noqa: ARG002
+    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         return {}
 
-    async def export(self, rows: Sequence[Mapping[str, Any]], template: Mapping[str, Any]) -> bytes:  # noqa: ARG002
+    async def export(self, rows: Sequence[Mapping[str, Any]], template: Mapping[str, Any]) -> bytes:  # ruff: ignore[unused-method-argument]
         raise ManualActionRequired("accounting: export is handled manually", {"op": "export"})
 
     # ---------------------------------------------------------------- AccountingSyncPort (Epic 66 stubs; Epic 71)

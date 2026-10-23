@@ -1,4 +1,4 @@
-# ruff: noqa: E501, RUF028
+# ruff: file-ignore[line-too-long, invalid-formatter-suppression-comment]
 """Public API tables (Epic 67, spec A2; migration ``20261010_501_01_public_api``). Owner: ``app.services.public_api``.
 
 * ``public_import_jobs``: the public wrapper around a P1 bulk import batch (``POST /public/v1/imports``).

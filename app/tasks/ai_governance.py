@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 65 tasks (AI governance). Every tenant task starts with ``tenant_id``. Queue ``maintenance``.
 
 * ``ai_governance.on_proposal_decided`` -- SM-C14 review signal of the decider (``ProposalDecided``).

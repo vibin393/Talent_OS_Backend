@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Chunking of Knowledge Source text (Epic 62 A1; pure, hypothesis-tested).
 
 Markdown headings start sections; a section's paragraphs are packed into chunks of about ``target`` characters (never

@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """``mcp_settings`` (one row per tenant; Epic 73, spec A2)."""
 
 import uuid

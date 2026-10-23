@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Demand intake (Epic 55, story 55.1; migration ``20261008_402_01_demand_intake``). Owner: ``demand_intake``.
 
 * ``demand_agent_settings`` -- one row per tenant: intake mode, mailbox, fallback owner, thresholds, JD template.

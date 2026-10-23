@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """SDK publication content (Epic 69, spec A8; consumed by Epic 74's docs generator): the JSON Schema of a Connector
 Manifest and of an App manifest, and the category port method signatures (capabilities -> methods)."""
 

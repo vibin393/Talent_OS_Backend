@@ -1,4 +1,4 @@
-# ruff: noqa: D401, E501
+# ruff: file-ignore[non-imperative-mood, line-too-long]
 """Workflow v2 graphs (Epic 32, story 19.3, FR-169, AD-31): schema, save-time validation, Phase 1 <-> graph
 conversion and the human-readable outline (the form-based equivalent of the canvas).
 

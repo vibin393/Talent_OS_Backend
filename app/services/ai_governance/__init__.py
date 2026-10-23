@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Phase 4 governance glue (Epic 65, spec-p4-governance; ``p4-dag`` layer 1 next to ``copilot | agents``).
 
 Enablement checklist, global-search wrappers, AEDT / alternative-process glue, notifications, evaluation results for

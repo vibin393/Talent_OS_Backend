@@ -1,4 +1,4 @@
-# ruff: noqa: E501, C416
+# ruff: file-ignore[line-too-long, unnecessary-comprehension]
 """Shared row types and read-only, set-based loaders (Epic 48 A3).
 
 The loaders are this epic's own read-only query functions over the P1 / P2 models (spec contract: "where a

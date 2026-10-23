@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Candidate-facing assessment models (Epic 40 A6, NFR-35): the Candidate Portal (``/portal/assessments``) and the
 Secure Link page (``/public/links/{token}/assessment``).
 

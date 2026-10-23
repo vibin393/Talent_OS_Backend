@@ -1,4 +1,4 @@
-# ruff: noqa: E501, RUF028
+# ruff: file-ignore[line-too-long, invalid-formatter-suppression-comment]
 """Accounting Period close / reopen orchestration (FR-161, AD-22) on top of ``legal_entities/periods.py``.
 
 * Checklist: every ``register_close_check``; ``blocking`` -> severity ``blocker`` (refuses the close, 409
@@ -57,7 +57,7 @@ async def _period(db: AsyncSession, period_id: uuid.UUID, *, lock: bool = False)
     return p
 
 
-async def list_periods(ctx: RequestContext, db: AsyncSession, legal_entity_id: uuid.UUID, year: int | None) -> list[PeriodOut]:  # noqa: ARG001
+async def list_periods(ctx: RequestContext, db: AsyncSession, legal_entity_id: uuid.UUID, year: int | None) -> list[PeriodOut]:  # ruff: ignore[unused-function-argument]
     stmt = select(AccountingPeriod).where(AccountingPeriod.legal_entity_id == legal_entity_id)
     if year is not None:
         stmt = stmt.where(AccountingPeriod.year == year)
@@ -160,7 +160,7 @@ async def on_final_decided(ctx: RequestContext, db: AsyncSession, decision: Any)
     await db.flush()
 
 
-async def report(ctx: RequestContext, db: AsyncSession, legal_entity_id: uuid.UUID, year: int | None = None) -> PeriodReportOut:  # noqa: ARG001
+async def report(ctx: RequestContext, db: AsyncSession, legal_entity_id: uuid.UUID, year: int | None = None) -> PeriodReportOut:  # ruff: ignore[unused-function-argument]
     stmt = select(PeriodCloseEvent).where(PeriodCloseEvent.legal_entity_id == legal_entity_id)
     if year is not None:
         stmt = stmt.where(PeriodCloseEvent.year == year)
@@ -181,7 +181,7 @@ async def report(ctx: RequestContext, db: AsyncSession, legal_entity_id: uuid.UU
 
 
 # ---------------------------------------------------------------- close checks registered by this domain
-async def unallocated_payments_check(ctx: RequestContext, db: AsyncSession, legal_entity_id: uuid.UUID, start: date, end: date) -> Any:  # noqa: ARG001
+async def unallocated_payments_check(ctx: RequestContext, db: AsyncSession, legal_entity_id: uuid.UUID, start: date, end: date) -> Any:  # ruff: ignore[unused-function-argument]
     from app.services.legal_entities.periods import CloseCheckResult
 
     count = (
@@ -195,7 +195,7 @@ async def unallocated_payments_check(ctx: RequestContext, db: AsyncSession, lega
     return CloseCheckResult("receivables.unallocated_payments", "Payments not fully allocated", False, int(count), "/receivables/payments?status=unallocated")
 
 
-async def unapplied_bank_rows_check(ctx: RequestContext, db: AsyncSession, legal_entity_id: uuid.UUID, start: date, end: date) -> Any:  # noqa: ARG001
+async def unapplied_bank_rows_check(ctx: RequestContext, db: AsyncSession, legal_entity_id: uuid.UUID, start: date, end: date) -> Any:  # ruff: ignore[unused-function-argument]
     from app.services.legal_entities.periods import CloseCheckResult
 
     count = (

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """``SecretBag``: the lazy, logged view of one owner's secrets (Epic 66, spec 0.11, NFR-63).
 
 * ``get(name)`` decrypts on demand, adds one ``vault_access_log`` row (caller = the calling module, purpose, actor
@@ -112,7 +112,7 @@ class SecretBag:
 
     @classmethod
     def __get_pydantic_core_schema__(cls, source: Any, handler: Any) -> core_schema.CoreSchema:
-        def _refuse(value: Any) -> Any:  # noqa: ARG001
+        def _refuse(value: Any) -> Any:  # ruff: ignore[unused-function-argument]
             msg = "SecretBag values are never serialised"
             raise TypeError(msg)
 

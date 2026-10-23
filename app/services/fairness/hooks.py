@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Registrations of the ``fairness`` domain (autodiscovered by ``core.hooks``, a dynamic import -- not a static edge
 for the ``fairness-isolation`` contract), Epic 49.
 
@@ -93,7 +93,7 @@ def _subscribe() -> None:
 
 
 # ---------------------------------------------------------------- notifications
-async def _requester(db: Any, payload: Any) -> set[Any]:  # noqa: ARG001
+async def _requester(db: Any, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument]
     uid = _uuid(payload.get("user_id"))
     return {uid} if uid else set()
 
@@ -110,7 +110,7 @@ async def _demand_owner(db: Any, payload: Any) -> set[Any]:
     return {owner} if owner else set()
 
 
-async def _compliance(db: Any, payload: Any) -> set[Any]:  # noqa: ARG001
+async def _compliance(db: Any, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument]
     from app.services import entity_refs
 
     return set(await entity_refs.role_user_ids(db, "compliance")) | set(
@@ -118,7 +118,7 @@ async def _compliance(db: Any, payload: Any) -> set[Any]:  # noqa: ARG001
     )
 
 
-async def _render_run(db: Any, payload: Any) -> Any:  # noqa: ARG001
+async def _render_run(db: Any, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
     from app.services.notifications_service import Content
 
     rid = _uuid(payload.get("run_id"))
@@ -129,7 +129,7 @@ async def _render_run(db: Any, payload: Any) -> Any:  # noqa: ARG001
     )
 
 
-async def _render_alt(db: Any, payload: Any) -> Any:  # noqa: ARG001
+async def _render_alt(db: Any, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
     from app.services.notifications_service import Content
 
     return Content(
@@ -139,7 +139,7 @@ async def _render_alt(db: Any, payload: Any) -> Any:  # noqa: ARG001
     )
 
 
-async def _render_due(db: Any, payload: Any) -> Any:  # noqa: ARG001
+async def _render_due(db: Any, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
     from app.services.notifications_service import Content
 
     return Content(

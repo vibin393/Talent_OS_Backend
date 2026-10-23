@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Portal Copilot facade (Epic 77, FR-396..FR-400, AD-89). The three portal routers, the admin router and the
 ``portal_copilot.*`` tasks call only this. One Copilot stack: the P4 runtime, streaming and Fake LLM are reused; the
 portal agents ``copilot_client`` / ``copilot_vendor`` / ``copilot_candidate`` act only as the signed-in portal

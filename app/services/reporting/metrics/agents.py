@@ -1,4 +1,4 @@
-# ruff: noqa: E501, N806
+# ruff: file-ignore[line-too-long, non-lowercase-variable-in-function]
 """ "AI agents" dashboard tiles (Epic 65 A4, FR-321, NFR-53). Gate ``ai:govern``; tenant-wide (RLS) and narrowed by
 ``?agent_key=``. Read through the ``p4tables`` projections only: ids, statuses, counts, tokens and cost -- never
 Proposal content or conversation text. Cost is USD (``ai_prices``), no FX.

@@ -49,7 +49,7 @@ def check_transition(from_status: str, to_status: str, actor_kind: str) -> None:
 
 
 async def transition_placement(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     placement: Placement,
     to: str,

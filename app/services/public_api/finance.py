@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Public finance reads (Epic 67, spec A4). Money is ``{amount, currency}`` with decimal strings; no PDF bytes, notes
 or receipts in v1. Scope predicates: timesheets and expense claims follow their placement (recruiter / account manager
 under ``timesheet:read`` / ``expense:read``); invoices, credit notes and payments follow the client owner under

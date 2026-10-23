@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """MSG91 ``sms`` adapter (Flow API with India DLT fields; Epic 33 A4). The only file that knows MSG91 specifics.
 
 Config (``provider_connector_configs``): credentials ``{"auth_key"}``; settings ``{"flow_id"?, "base_url"?}``;
@@ -133,7 +133,7 @@ class Msg91SmsProvider(ChannelAdapter):
         expected = hmac.new(secret.encode(), body, hashlib.sha256).hexdigest()
         return hmac.compare_digest(given, expected)
 
-    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # noqa: ARG002
+    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         try:
             data = json.loads(body or b"{}")
         except ValueError:

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Scheduling agent contract (Epic 53 contract layer, AD-55, spec 0.12) -- filled by Epic 59 (story 59.1).
 
 ``propose(ctx, db, req)`` computes realistic interview slots from the participants' free/busy (connected calendars),

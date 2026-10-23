@@ -216,7 +216,7 @@ async def find_duplicates(ctx: RequestContext, db: AsyncSession, cand: Candidate
     return hits
 
 
-async def link_by_exact_email(ctx: RequestContext, db: AsyncSession, email: str) -> uuid.UUID | None:  # noqa: ARG001
+async def link_by_exact_email(ctx: RequestContext, db: AsyncSession, email: str) -> uuid.UUID | None:  # ruff: ignore[unused-function-argument]
     """Existing candidate with exactly this email (Epic 9 applications link to it). Oldest live one wins."""
     from app.services.candidates.common import normalize_email
 

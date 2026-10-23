@@ -44,7 +44,7 @@ class SemanticError(ValidationFailed):
         self.path = path
 
 
-class SemanticTimeout(DomainError):  # noqa: N818 - public name fixed by the contract (0.6)
+class SemanticTimeout(DomainError):  # ruff: ignore[error-suffix-on-exception-name] - public name fixed by the contract (0.6)
     status_code = 503
     code = "query_timeout"
     default_message = "The query took too long and was cancelled"

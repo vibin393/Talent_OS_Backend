@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Platform intake address (Epic 55, spec 0.3, ``platform_address`` mode).
 
 ``POST /api/v1/inbound/demand-intake`` receives raw RFC 822 from the inbound email provider:

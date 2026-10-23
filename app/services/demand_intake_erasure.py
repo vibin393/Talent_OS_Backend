@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Erasure handler ``demand_intake.messages`` (order 68), Epic 55 (A8, FR-326).
 
 Intake messages hold Client-contact data (sender address / name, free text) -- never candidate data. For a

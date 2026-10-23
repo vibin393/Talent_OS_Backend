@@ -1,4 +1,4 @@
-# ruff: noqa: D400, D415, E501
+# ruff: file-ignore[missing-trailing-period, missing-terminal-punctuation, line-too-long]
 """Copilot wiring (Epic 54), autodiscovered by ``core.hooks``:
 
 * Epic 54's own Copilot capabilities (``schedule_proposal``, ``submission_pack``);

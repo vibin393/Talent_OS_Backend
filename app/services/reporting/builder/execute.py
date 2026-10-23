@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Viewer-scoped report execution (Epic 47 story 47.2, FR-237, NFR-39).
 
 ``run_definition(ctx, db, ...)`` -- every run executes **as the viewer** (``ctx.principal``; for scheduled

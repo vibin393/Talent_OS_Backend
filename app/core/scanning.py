@@ -55,7 +55,7 @@ async def _clamd_instream(host: str, port: int, data: bytes) -> ScanResult:
     return ScanResult("error", text[:200] or "empty reply")
 
 
-async def scan(data: bytes, filename: str) -> ScanResult:  # noqa: ARG001 - kept for scanners that use it
+async def scan(data: bytes, filename: str) -> ScanResult:  # ruff: ignore[unused-function-argument] - kept for scanners that use it
     s = get_settings()
     if not s.clamav_host:
         if s.app_env in {"development", "test"}:

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """After-commit event handlers (Epic 76): queue the telephony tasks on ``telephony`` and react to withdrawals.
 
 * ``TelephonyRecordingReady`` -> ``telephony.fetch_recording``; ``TelephonyProviderDeleteQueued`` ->

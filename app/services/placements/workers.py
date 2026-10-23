@@ -48,7 +48,7 @@ def _tenant(db: AsyncSession) -> uuid.UUID:
 
 
 async def ensure_worker_profile(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     candidate_id: uuid.UUID,
     *,
@@ -176,10 +176,10 @@ async def request_bank_change(
 
 
 async def activate_bank_details(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     bank_account_id: uuid.UUID,
-    actor: Any = None,  # noqa: ARG001
+    actor: Any = None,  # ruff: ignore[unused-function-argument]
 ) -> WorkerBankAccount:
     row = (
         await db.execute(
@@ -267,7 +267,7 @@ async def confirm_pan(
     db: AsyncSession,
     candidate_id: uuid.UUID,
     *,
-    actor: Any = None,  # noqa: ARG001
+    actor: Any = None,  # ruff: ignore[unused-function-argument]
 ) -> WorkerProfileOut:
     """HR records the name-match check (``pan_status = hr_checked``)."""
     profile = await _profile(db, candidate_id)

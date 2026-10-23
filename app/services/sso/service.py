@@ -212,7 +212,7 @@ async def assert_break_glass_preserved(db: AsyncSession, losing_user_id: uuid.UU
         raise _break_glass_required()
 
 
-async def list_break_glass(ctx: RequestContext, db: AsyncSession) -> list[BreakGlassAdminOut]:  # noqa: ARG001
+async def list_break_glass(ctx: RequestContext, db: AsyncSession) -> list[BreakGlassAdminOut]:  # ruff: ignore[unused-function-argument]
     rows = (
         await db.execute(
             select(User)
@@ -236,7 +236,7 @@ async def list_break_glass(ctx: RequestContext, db: AsyncSession) -> list[BreakG
 
 
 async def set_break_glass(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     user_id: uuid.UUID,
     break_glass: bool,
@@ -270,7 +270,7 @@ async def set_break_glass(
 
 
 # ================================================================ identity providers
-async def list_providers(ctx: RequestContext, db: AsyncSession) -> list[IdentityProviderOut]:  # noqa: ARG001
+async def list_providers(ctx: RequestContext, db: AsyncSession) -> list[IdentityProviderOut]:  # ruff: ignore[unused-function-argument]
     rows = (
         (await db.execute(select(IdentityProvider).where(INTERNAL).order_by(IdentityProvider.name)))
         .scalars()
@@ -279,7 +279,7 @@ async def list_providers(ctx: RequestContext, db: AsyncSession) -> list[Identity
     return [await _out(db, r) for r in rows]
 
 
-async def get_provider(ctx: RequestContext, db: AsyncSession, idp_id: uuid.UUID) -> IdentityProviderOut:  # noqa: ARG001
+async def get_provider(ctx: RequestContext, db: AsyncSession, idp_id: uuid.UUID) -> IdentityProviderOut:  # ruff: ignore[unused-function-argument]
     return await _out(db, await _get(db, idp_id))
 
 
@@ -322,7 +322,7 @@ async def create_provider(
 
 
 async def update_provider(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     idp_id: uuid.UUID,
     data: IdentityProviderUpdate,
@@ -404,7 +404,7 @@ def _assert_activatable(row: IdentityProvider) -> None:
         )
 
 
-async def delete_provider(ctx: RequestContext, db: AsyncSession, idp_id: uuid.UUID) -> None:  # noqa: ARG001
+async def delete_provider(ctx: RequestContext, db: AsyncSession, idp_id: uuid.UUID) -> None:  # ruff: ignore[unused-function-argument]
     """Delete when no User is linked; otherwise disable (links keep history)."""
     row = await _get(db, idp_id, lock=True)
     linked = (await db.execute(select(UserIdentity.id).where(UserIdentity.idp_id == row.id).limit(1))).first()
@@ -425,7 +425,7 @@ async def delete_provider(ctx: RequestContext, db: AsyncSession, idp_id: uuid.UU
 
 
 async def set_group_roles(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     idp_id: uuid.UUID,
     mappings: list[GroupRoleIn],
@@ -458,7 +458,7 @@ async def test_login_url(ctx: RequestContext, db: AsyncSession, idp_id: uuid.UUI
     return TestLoginOut(url=f"/api/v1/auth/sso/{row.id}/start?tenant={tenant.slug}&test=1")
 
 
-async def sp_metadata(ctx: RequestContext, db: AsyncSession, idp_id: uuid.UUID) -> str:  # noqa: ARG001
+async def sp_metadata(ctx: RequestContext, db: AsyncSession, idp_id: uuid.UUID) -> str:  # ruff: ignore[unused-function-argument]
     from app.services.sso import saml
 
     row = await _get(db, idp_id)

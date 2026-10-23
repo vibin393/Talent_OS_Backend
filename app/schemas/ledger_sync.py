@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Ledger sync API DTOs (Epic 71, spec A11). Records carry ids, statuses, external ids and sanitised messages only."""
 
 import uuid

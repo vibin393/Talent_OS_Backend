@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """AI governance wiring (Epic 65), autodiscovered by ``core.hooks``.
 
 * events (after commit -> ``ai_governance.*`` tasks): ``ProposalDecided`` -> SM-C14 review signal;
@@ -56,12 +56,12 @@ def _subscribe() -> None:
 def _register_notifications() -> None:
     from app.services import notifications_service as ns
 
-    async def recipients(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # noqa: ARG001
+    async def recipients(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
         from app.services.agent_runtime.hooks import _holders
 
         return await _holders(db, "ai:agent_configure", "ai:govern")
 
-    async def render(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG001
+    async def render(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
         return ns.Content(
             title=f"AI agent {payload.get('agent_key')} fell below its evaluation threshold",
             body="Review the latest evaluation results before relying on this agent.",
@@ -96,7 +96,7 @@ def _register_retention() -> None:
     from app.models.proposal_signals import ProposalReviewSignal
     from app.services.privacy.retention_classes import register_retention_binding, retention_bindings
 
-    async def _subject(db: AsyncSession, row_id: uuid.UUID, *_: Any, **__: Any) -> uuid.UUID | None:  # noqa: ARG001
+    async def _subject(db: AsyncSession, row_id: uuid.UUID, *_: Any, **__: Any) -> uuid.UUID | None:  # ruff: ignore[unused-function-argument]
         return None  # staff telemetry, no data subject
 
     async def _anchor(db: AsyncSession, row_id: uuid.UUID, *_: Any, **__: Any) -> Any:

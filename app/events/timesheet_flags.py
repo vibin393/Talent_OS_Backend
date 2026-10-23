@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Timesheet flag domain events (Epic 63; dispatched after commit). Ids / scalars only.
 
 * ``TimesheetFlagsRaised`` -- a submitted timesheet version has at least one rule flag (Timesheet Agent trigger

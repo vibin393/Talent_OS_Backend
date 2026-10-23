@@ -4,7 +4,7 @@
 Epic 66 (FR-340): lifting the Ecosystem Kill Switch (``EcosystemKillSwitchChanged(on=False)``) queues
 ``connectors.release_held`` for the tenant (held inbound webhooks are processed in arrival order)."""
 
-import app.services.connectors  # noqa: F401
+import app.services.connectors  # ruff: ignore[unused-import]
 from app.core.events import subscribe
 from app.events.ecosystem import EcosystemKillSwitchChanged
 

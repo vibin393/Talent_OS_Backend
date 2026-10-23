@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Outbound send policy (Epic 53, story 53.8, FR-274, NFR-45). Runs before every egress tool call.
 
 * Every recipient must be an existing record the run legitimately reached: the run subject, a record surfaced by an

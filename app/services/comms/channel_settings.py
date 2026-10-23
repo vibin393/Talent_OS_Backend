@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Per-tenant communication channel settings (Epic 33, A1): one ``comms_channel_settings`` row, created lazily.
 
 ``GET/PATCH /api/v1/comms/channel-settings`` (``messaging:configure``). Quiet hours apply to SMS only.
@@ -45,7 +45,7 @@ def _out(row: CommsChannelSettings) -> ChannelSettingsOut:
     )
 
 
-async def get_settings(ctx: RequestContext, db: AsyncSession) -> ChannelSettingsOut:  # noqa: ARG001
+async def get_settings(ctx: RequestContext, db: AsyncSession) -> ChannelSettingsOut:  # ruff: ignore[unused-function-argument]
     return _out(await get_row(db))
 
 

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Domain-local events of the Scheduling Agent (Epic 59). ``SlotPicked`` is the foundation's (``app.events.scheduling``).
 Frozen, slotted; ids and scalars only; dispatched after commit."""
 

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Submission packs (Epic 61, FR-305..FR-307; migration ``20261008_408_01_sub_packs``). Owner:
 ``app.services.submission_packs`` (the agent package never touches these tables, AD-56).
 

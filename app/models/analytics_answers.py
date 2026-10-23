@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Analytics answers (Epic 64, FR-316..FR-318; branch ``p4_analytics_agent``, band 411).
 
 ``analytics_answers`` -- one row per ``semantic.run`` tool call of the Analytics agent (or the Copilot ``analytics``

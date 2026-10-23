@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Candidate Portal self-scheduling (Epic 59 A6): ``/api/v1/portal/scheduling`` and the reschedule request.
 
 ``Depends(current_candidate)`` authenticates the ``tos_candidate`` cookie (+ CSRF on mutations). Every endpoint is scoped

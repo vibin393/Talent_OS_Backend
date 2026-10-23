@@ -223,7 +223,7 @@ async def _out(db: AsyncSession, row: IdentityProvider) -> ClientIdentityProvide
 
 # ================================================================ identity providers
 async def list_providers(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     client_id: uuid.UUID,
 ) -> list[ClientIdentityProviderOut]:
@@ -243,7 +243,7 @@ async def list_providers(
 
 
 async def get_provider(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     client_id: uuid.UUID,
     idp_id: uuid.UUID,
@@ -297,7 +297,7 @@ async def create_provider(
 
 
 async def update_provider(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     client_id: uuid.UUID,
     idp_id: uuid.UUID,
@@ -345,7 +345,7 @@ async def update_provider(
 
 
 async def delete_provider(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     client_id: uuid.UUID,
     idp_id: uuid.UUID,
@@ -407,7 +407,7 @@ async def import_metadata(
 
 
 async def test_login_url(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     client_id: uuid.UUID,
     idp_id: uuid.UUID,
@@ -423,7 +423,7 @@ async def test_login_url(
 
 
 async def sp_metadata(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     client_id: uuid.UUID,
     idp_id: uuid.UUID,
@@ -491,7 +491,7 @@ async def _settings_out(db: AsyncSession, client_id: uuid.UUID) -> ClientSsoSett
     )
 
 
-async def get_settings(ctx: RequestContext, db: AsyncSession, client_id: uuid.UUID) -> ClientSsoSettingsOut:  # noqa: ARG001
+async def get_settings(ctx: RequestContext, db: AsyncSession, client_id: uuid.UUID) -> ClientSsoSettingsOut:  # ruff: ignore[unused-function-argument]
     await _assert_client(db, client_id)
     return await _settings_out(db, client_id)
 
@@ -532,7 +532,7 @@ async def put_settings(
 
 
 async def list_exemptions(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     client_id: uuid.UUID,
 ) -> list[ClientSsoExemptionOut]:
@@ -595,7 +595,7 @@ async def add_exemption(
 
 
 async def remove_exemption(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     client_id: uuid.UUID,
     client_user_id: uuid.UUID,

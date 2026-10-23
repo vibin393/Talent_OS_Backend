@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Phase 3 global-search groups (Epic 52 A5, FR-262), registered from ``reporting.hooks``.
 
 Each group delegates to the owner's ``quick_search(ctx, db, q, limit)`` (foundation 0.7), which applies the owner's
@@ -48,7 +48,7 @@ def _owner(module: str, name: str) -> OwnerFn | None:
 
 
 def _wrap(key: str, fn: OwnerFn) -> Callable[..., Awaitable[list[QuickHit]]]:
-    async def search(ctx: RequestContext, db: AsyncSession, q: str, kind: str, limit: int) -> list[QuickHit]:  # noqa: ARG001
+    async def search(ctx: RequestContext, db: AsyncSession, q: str, kind: str, limit: int) -> list[QuickHit]:  # ruff: ignore[unused-function-argument]
         hits: list[QuickHit] = []
         for hit in await fn(ctx, db, q, limit):
             h = hit if isinstance(hit, QuickHit) else QuickHit.model_validate(hit)

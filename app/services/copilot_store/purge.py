@@ -1,4 +1,4 @@
-# ruff: noqa: D401, E501, TC003
+# ruff: file-ignore[non-imperative-mood, line-too-long, typing-only-standard-library-import]
 """Delete / purge Copilot conversations (Epic 54, FR-279): discard pending drafts (as the owner), purge the turns' run
 content through the runtime facade (C-2), then delete the rows (messages cascade; feedback survives)."""
 

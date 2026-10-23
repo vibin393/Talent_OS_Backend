@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Adjudication (Epic 20 A6, PRD §8.3, FR-113 / FR-181), the ``bgv`` start-gate resolver and the client status.
 
 * ★ ``adjudicate`` is human-only (``bgv:adjudicate``): ``clear`` only from ``under_review``; ``failed`` from
@@ -98,7 +98,7 @@ async def adjudicate(
 GATE_STATUS = {"clear": "met", "failed": "failed", "cancelled": "not_required"}
 
 
-async def gate_resolver(ctx: RequestContext, db: AsyncSession, placement_id: uuid.UUID) -> list:  # type: ignore[type-arg]  # noqa: ARG001
+async def gate_resolver(ctx: RequestContext, db: AsyncSession, placement_id: uuid.UUID) -> list:  # type: ignore[type-arg]  # ruff: ignore[unused-function-argument]
     from app.services.placements.registry import GateState
 
     rows = (await db.execute(select(BgvCase).where(BgvCase.placement_id == placement_id))).scalars()

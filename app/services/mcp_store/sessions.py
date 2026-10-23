@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """``mcp_sessions`` rows (Epic 73, spec A2 / A3)."""
 
 import uuid

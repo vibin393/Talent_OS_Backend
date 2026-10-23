@@ -1,4 +1,4 @@
-# ruff: noqa: E501, N812, RUF001, RUF028
+# ruff: file-ignore[line-too-long, lowercase-imported-as-non-lowercase, ambiguous-unicode-character-string, invalid-formatter-suppression-comment]
 """Finance dashboard tiles (Epic 34, A3). Figures come only from posted facts (``facts``) and the receivables
 owner functions; WIP is the only estimate and is labelled as such."""
 
@@ -14,7 +14,7 @@ from app.services.reporting import p2tables as T
 from app.services.reporting.metrics import TileContext, TileData
 from app.services.reporting.metrics.p2common import client_scope, comp, le_cond, le_link, names, need
 
-I = T.invoices.c  # noqa: E741
+I = T.invoices.c  # ruff: ignore[ambiguous-variable-name]
 
 
 async def _monitor_rows(t: TileContext, *, status: str | None = None) -> list[Any]:

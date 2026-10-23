@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Developer session dependencies (Epic 74, spec 0.1 / A4).
 
 * ``tos_developer`` (httpOnly session cookie, ``tos_dev_<token>``) is **not** in ``core.security.SESSION_COOKIES``:

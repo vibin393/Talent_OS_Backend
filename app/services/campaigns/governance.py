@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Send governance (Epic 39 A3, FR-201, AD-43): the ONLY module that decides marketing suppression.
 
 ``check`` runs immediately before every marketing delivery: in ``sending.send_batch`` and again through the category

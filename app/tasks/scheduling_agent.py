@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Scheduling Agent tasks (Epic 59). Every task starts with ``tenant_id`` (beat fan-outs excepted). Queue ``maintenance``.
 
 * ``scheduling_agent.run_needed`` -- a pick / counter-proposal: resume the waiting run or start a continuation run (C-12);

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """AEDT score suppressor (Epic 49 A8, coordinator decision 15).
 
 Registered into P1 ``matching.ports`` from ``hooks.py``. For ``(candidate_id, demand_id)`` pairs it returns:

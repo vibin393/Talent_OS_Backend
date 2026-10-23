@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Needs-repair bookkeeping (Epic 47 story 47.5, FR-240).
 
 * ``flag(db, report, issues)`` -- ``status='needs_repair'`` + ``repair_issues``; active schedules pause with

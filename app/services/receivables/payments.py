@@ -1,4 +1,4 @@
-# ruff: noqa: E501, RUF028
+# ruff: file-ignore[line-too-long, invalid-formatter-suppression-comment]
 """Payments, allocations and reversals (FR-153, §5.13).
 
 Record: period open on ``payment_date`` -> lock the targets (``lock_for_settlement``, uuid order) -> TDS facts ->
@@ -330,7 +330,7 @@ async def _payment_out(db: AsyncSession, p: Payment) -> dict[str, Any]:
     return out
 
 
-async def get_payment(ctx: RequestContext, db: AsyncSession, payment_id: uuid.UUID) -> PaymentDetailOut:  # noqa: ARG001
+async def get_payment(ctx: RequestContext, db: AsyncSession, payment_id: uuid.UUID) -> PaymentDetailOut:  # ruff: ignore[unused-function-argument]
     p = await _payment(db, payment_id)
     tds_rows = (
         await db.execute(
@@ -346,7 +346,7 @@ async def get_payment(ctx: RequestContext, db: AsyncSession, payment_id: uuid.UU
 
 
 async def list_payments(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     client_id: uuid.UUID | None = None,

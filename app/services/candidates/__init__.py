@@ -14,7 +14,10 @@ from app.services.candidates.skills import resolve_skill
 access.register()
 
 # Epic 5: candidate change events (flush listener) + thin read port for search / ai / matching.
-from app.services.candidates import change_events, search_port  # noqa: E402
+from app.services.candidates import (  # ruff: ignore[module-import-not-at-top-of-file]
+    change_events,
+    search_port,
+)
 
 change_events.register()
 
@@ -35,6 +38,6 @@ __all__ = [
 __all__ += ["change_events", "search_port"]
 
 # Epic 35 (FR-185): go-live Worker import (find by email / phone, else create with ``engagement`` consent).
-from app.services.candidates.golive_import import find_or_create_for_import  # noqa: E402
+from app.services.candidates.golive_import import find_or_create_for_import
 
 __all__ += ["find_or_create_for_import"]

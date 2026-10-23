@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Phase 4 agentic contract layer (Epic 53, AD-59 / AD-72): tool, agent, trigger and Copilot-capability registries and
 their types. ``app.core.agentic`` imports nothing from ``app.services`` (contract ``core-below-services``)."""
 

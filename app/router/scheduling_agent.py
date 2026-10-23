@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Scheduling Agent, internal API (Epic 59 A6).
 
 Permissions: ``interview:schedule`` (start / cancel requests), ``interview:read`` (reads), a participant of the

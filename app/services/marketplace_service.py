@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Marketplace facade (Epic 66 stub with a working minimal body, spec 0.6 "Install contract"; Epic 69 fills the bodies
 with the same signatures and adds the catalogue, policy, processor, health, partner submission and review functions
 (spec §C)). Epic 74 calls the partner functions with a ``DeveloperContext``; Epic 79 registers its live-mode guard."""

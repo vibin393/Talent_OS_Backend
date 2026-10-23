@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Report builder governance (Epic 47 story 47.5, FR-240, NFR-39/40).
 
 * Limits: ``report_builder_settings`` (one row per tenant, lazily defaulted). A tenant may *lower* the platform

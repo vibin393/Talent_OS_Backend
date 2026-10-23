@@ -11,7 +11,7 @@ from app.core.passwords import common_passwords
 
 
 @asynccontextmanager
-async def lifespan(app: FastAPI) -> AsyncIterator[Any]:  # noqa: ARG001
+async def lifespan(app: FastAPI) -> AsyncIterator[Any]:  # ruff: ignore[unused-function-argument]
     """
     To handles startup and shutdown events.
     """

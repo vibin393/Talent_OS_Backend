@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 54 Copilot read tool ``matching.rank`` (FR-277; coordinator decision C-8: Copilot owns ``matching.rank``,
 distinct from Epic 56's ``matching.list_ranked_matches``).
 

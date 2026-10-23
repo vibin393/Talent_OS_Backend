@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Pure transcript parsers (Epic 53, spec 0.13): TXT, WebVTT, SRT and DOCX (python-docx, text only).
 
 * VTT / SRT: cue timestamps -> ``start_ms`` / ``end_ms``; the speaker comes from a ``<v Name>`` voice tag or a

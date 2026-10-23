@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Internal mobility dashboard tiles (Epic 52 A4; Epic 41 data, ``mobility:manage``)."""
 
 from sqlalchemy import func, select

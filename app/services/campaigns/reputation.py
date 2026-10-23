@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Sender reputation guard (Epic 39 A4, NFR-34): beat every 15 minutes per tenant.
 
 Over the last 7 days of marketing email: complaint rate = complaints / delivered, hard-bounce rate = hard bounces /

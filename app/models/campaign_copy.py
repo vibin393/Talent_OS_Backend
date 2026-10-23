@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """AI campaign copy (Epic 78, FR-401..FR-403, AD-91; migration ``20261010_512_01_copy_drafts``).
 Owner: ``app.services.campaign_copy``.
 

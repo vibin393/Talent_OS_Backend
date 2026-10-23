@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Consent and notices of the portal Copilot (Epic 77 A6).
 
 * Candidates: the P4 ``ai_agent_communication`` consent is required before the first question; the panel shows the

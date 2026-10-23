@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Small-cell and complementary suppression (Epic 49 A6) -- pure, no I/O.
 
 Input: tables of cells (``applicants``, ``selected`` and, for score-based selection points, ``above`` = scoring

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Sourcing & Matching Agent domain events (Epic 56; dispatched after commit). Ids / scalars only.
 
 * ``AgentShortlistSaved`` -- a new agent shortlist version (notification ``sourcing_shortlist_ready``).

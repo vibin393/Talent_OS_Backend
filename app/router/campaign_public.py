@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Public marketing links (Epic 39 A6): ``/api/v1/public/m/{token}/*``. No session: the signed token is the credential
 (``campaigns.tokens``; a bad / forged token or one of another tenant is always 404, never 401). Rate-limited per IP
 (``campaign_public`` 120/min). Responses are ``no-store`` / ``no-referrer`` / ``noindex``; tokens are never logged.

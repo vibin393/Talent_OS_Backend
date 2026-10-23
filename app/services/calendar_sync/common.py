@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Shared helpers of the calendar sync domain: clock, tenant, settings row, system context, Tasks."""
 
 import uuid

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Secrets Vault (Epic 66, AD-82, FR-336; migration ``20261009_500_03_p5_platform``). Owner: ``app.services.vault``.
 
 * ``vault_data_keys`` (tenant): the tenant data key (DEK) wrapped by a KEK from the KMS port (``kek_id`` ``local:v1``).

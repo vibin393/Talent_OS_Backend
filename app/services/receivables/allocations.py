@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Allocation / TDS fact writers with the per-allocation FX rule (AD-20, review M8).
 
 * ``inr_at_payment = quantize(amount x payment.fx_rate)``; the payment's final allocation takes the payment-INR
@@ -110,7 +110,7 @@ async def write_allocation(
 
 
 async def write_tds(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     bal: Balance,
     *,

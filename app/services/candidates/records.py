@@ -115,8 +115,8 @@ CHILD_LISTS = ("emails", "phones", "links", "employment", "education", "certific
 
 PARSE_LABELS = {
     "parsed": "Parsed",
-    "failed_manual": "Parse failed – manual entry",  # noqa: RUF001
-    "unavailable": "AI unavailable – fill manually",  # noqa: RUF001
+    "failed_manual": "Parse failed – manual entry",  # ruff: ignore[ambiguous-unicode-character-string]
+    "unavailable": "AI unavailable – fill manually",  # ruff: ignore[ambiguous-unicode-character-string]
     "skipped_disabled": "AI parsing disabled",
     "skipped_consent": "AI parsing not permitted (consent)",
 }

@@ -17,19 +17,19 @@ from app.schemas.vendors import VendorSourcing, VendorSummary
 from app.services.vendors.common import conflict, get_vendor
 
 
-async def get_vendor_summary(ctx: RequestContext, db: AsyncSession, vendor_id: uuid.UUID) -> VendorSummary:  # noqa: ARG001
+async def get_vendor_summary(ctx: RequestContext, db: AsyncSession, vendor_id: uuid.UUID) -> VendorSummary:  # ruff: ignore[unused-function-argument]
     v = await get_vendor(db, vendor_id)
     return VendorSummary(id=v.id, human_id=v.human_id, legal_name=v.legal_name, status=v.status)
 
 
-async def assert_vendor_can_submit(ctx: RequestContext, db: AsyncSession, vendor_id: uuid.UUID) -> None:  # noqa: ARG001
+async def assert_vendor_can_submit(ctx: RequestContext, db: AsyncSession, vendor_id: uuid.UUID) -> None:  # ruff: ignore[unused-function-argument]
     v = await get_vendor(db, vendor_id)
     if v.status != "active":
         raise conflict("vendor_not_active", "The vendor is not active", status=v.status)
 
 
 async def sourcing_for_application(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     application_id: uuid.UUID,
 ) -> VendorSourcing | None:
@@ -53,7 +53,7 @@ async def sourcing_for_application(
 
 
 async def candidate_vendor_owner(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     candidate_id: uuid.UUID,
     client_id: uuid.UUID,

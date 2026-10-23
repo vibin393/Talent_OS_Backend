@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Default kickoff of the Onboarding Agent (Epic 62). Q&A runs always pass an explicit kickoff from ``knowledge.qa``
 (thread id, audience, tenant name + the question as untrusted text); a run started without one (e.g. an eval) is bound
 to its subject thread."""

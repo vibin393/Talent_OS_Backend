@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Client Portal projects (Epic 45, FR-231): ``/api/v1/client-portal/projects`` and deliverable decisions.
 
 Client session (org RLS ``client``) + the ``projects:view`` portal permission to read, ``deliverables:accept`` to

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 73 (Governed MCP Server, spec 0.3; FR-377): MCP exposures of the ``core`` tools. Loaded by the domain's
 ``hooks.py`` through ``agent_tools._loader`` (``exposure_*.py``); validated post-discovery (``validate_exposures``)."""
 

@@ -10,7 +10,7 @@ from app.schemas.screening_agent import ScreeningAgentSettingsIn, ScreeningAgent
 from app.services.screening_agent.common import DEFAULT_STOP_WORDS, settings_row, user_id_of
 
 
-def _out(row) -> ScreeningAgentSettingsOut:  # noqa: ANN001
+def _out(row) -> ScreeningAgentSettingsOut:  # ruff: ignore[missing-type-function-argument]
     return ScreeningAgentSettingsOut(
         expiry_days=row.expiry_days,
         reminder_after_hours=row.reminder_after_hours,
@@ -24,7 +24,7 @@ def _out(row) -> ScreeningAgentSettingsOut:  # noqa: ANN001
     )
 
 
-async def get(ctx: RequestContext, db: AsyncSession) -> ScreeningAgentSettingsOut:  # noqa: ARG001
+async def get(ctx: RequestContext, db: AsyncSession) -> ScreeningAgentSettingsOut:  # ruff: ignore[unused-function-argument]
     return _out(await settings_row(db))
 
 

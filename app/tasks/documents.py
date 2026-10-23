@@ -97,7 +97,7 @@ def esign_expiry_tenant(tenant_id: str) -> int:
 
 @celery_app.task(name="documents.purge_otps_tenant", acks_late=True)  # type: ignore[misc,untyped-decorator,unused-ignore]
 def purge_otps_tenant(tenant_id: str) -> int:
-    async def _work(ctx: RequestContext, db: AsyncSession) -> int:  # noqa: ARG001
+    async def _work(ctx: RequestContext, db: AsyncSession) -> int:  # ruff: ignore[unused-function-argument]
         from app.services.documents import esign
 
         return await esign.purge_otps(db)

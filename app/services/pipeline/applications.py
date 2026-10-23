@@ -491,7 +491,7 @@ async def add_candidate(
 
 
 async def candidate_ids_for_demand(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     demand_id: uuid.UUID,
 ) -> set[uuid.UUID]:
@@ -852,7 +852,7 @@ async def candidate_applications(
 
 
 async def demand_progress_counts(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     demand_ids: list[uuid.UUID],
 ) -> dict[uuid.UUID, DemandProgressCounts]:
@@ -890,7 +890,7 @@ async def demand_progress_counts(
 
 
 async def workflow_snapshot(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     application_id: uuid.UUID,
 ) -> dict[str, Any]:

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Domain-local events of the Screening Agent (Epic 57). ``ScreeningConversationCompleted`` is the foundation's
 (``app.events.conversations``). Frozen, slotted; ids and scalars only."""
 

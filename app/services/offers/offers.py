@@ -83,12 +83,12 @@ def _settings_out(row: Any) -> OfferSettingsOut:
     )
 
 
-async def get_settings(ctx: RequestContext, db: AsyncSession) -> OfferSettingsOut:  # noqa: ARG001
+async def get_settings(ctx: RequestContext, db: AsyncSession) -> OfferSettingsOut:  # ruff: ignore[unused-function-argument]
     return _settings_out(await settings_row(db))
 
 
 async def update_settings(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     data: OfferSettingsUpdate,
 ) -> OfferSettingsOut:
@@ -680,7 +680,7 @@ async def _on_returned(
 
 
 async def _describe(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     ids: list[uuid.UUID],
 ) -> dict[uuid.UUID, SubjectSummary]:

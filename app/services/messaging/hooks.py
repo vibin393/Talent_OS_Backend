@@ -110,7 +110,7 @@ def _action(channel: str) -> ActionDef:
             raise ActionError(ev.reason, f"{label} would be refused: {ev.reason}")
         return f"Would queue a {label} message to the {ac.params.to}"
 
-    def validate(params: Any, entity_type: str, path: str) -> None:  # noqa: ARG001
+    def validate(params: Any, entity_type: str, path: str) -> None:  # ruff: ignore[unused-function-argument]
         return None
 
     return ActionDef(f"Send {label} (template)", SendChannelParams, validate, run, dry)
@@ -134,13 +134,13 @@ register_trigger(
 
 
 # ================================================================ notifications
-async def _messaging_admins(db: AsyncSession, payload: dict[str, Any]) -> set[uuid.UUID]:  # noqa: ARG001
+async def _messaging_admins(db: AsyncSession, payload: dict[str, Any]) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
     from app.services import identity_bridge
 
     return {row["id"] for row in await identity_bridge.users_with_permission(db, "messaging:configure")}
 
 
-async def _render_failing(db: AsyncSession, payload: dict[str, Any]) -> Content:  # noqa: ARG001
+async def _render_failing(db: AsyncSession, payload: dict[str, Any]) -> Content:  # ruff: ignore[unused-function-argument]
     channel = sending.LABEL.get(str(payload.get("channel")), "Messaging")
     return Content(
         title=f"{channel} messages are failing: the provider could not be reached after every retry",

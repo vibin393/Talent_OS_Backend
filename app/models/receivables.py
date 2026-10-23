@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Receivables, collections and period close tables (Epic 30, FR-153..FR-161). Branch ``p2_receivables``,
 migrations ``20261005_217_01..03``.
 

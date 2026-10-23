@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Internal mobility (Epic 41, branch ``p3_mobility``, migrations ``20261007_305_01..02``; FR-209..212, AD-50).
 
 * ``mobility_settings`` -- one row per tenant (board switches, screening step, fallback approver role, default

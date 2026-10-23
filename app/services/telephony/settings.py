@@ -26,7 +26,7 @@ def out(r: TelephonySettings) -> TelephonySettingsOut:
     return TelephonySettingsOut.model_validate(r)
 
 
-async def get(ctx: RequestContext, db: AsyncSession) -> TelephonySettingsOut:  # noqa: ARG001
+async def get(ctx: RequestContext, db: AsyncSession) -> TelephonySettingsOut:  # ruff: ignore[unused-function-argument]
     return out(await row(db))
 
 

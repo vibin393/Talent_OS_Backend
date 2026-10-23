@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Mobility settings (Epic 41 A1): ``GET/PATCH /api/v1/mobility/settings`` (``mobility:manage``)."""
 
 from sqlalchemy.ext.asyncio import AsyncSession

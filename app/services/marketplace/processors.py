@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Processor view and data-flow read model (Epic 69, spec A6). ``list_processors``: the platform sub-processors (P1,
 unchanged) plus every non-uninstalled Installation ("Installed by your organisation"). ``data_flows``: one row per data
 flow of each live Installation's current grant -- the read model Epic 79's data-flow register and FR-408 consume."""

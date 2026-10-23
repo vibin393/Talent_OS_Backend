@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Registrations of the ``scheduling_agent`` domain (autodiscovered by ``core.hooks``), Epic 59.
 
 * P1 reminder owner (coordinator C-11): ``interviews.invites.register_reminder_owner(reminders.owns_reminders)``.

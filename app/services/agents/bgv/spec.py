@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The ``bgv`` AgentSpec (Epic 62 A6, FR-309). Owner = the BGV case owner. Triggers: ``check_overdue`` (P2
 ``BgvCheckOverdue``), ``daily_follow_up`` (started by ``chasing.bgv_tick``), ``discrepancy`` (``BgvDiscrepancyRaised`` ->
 summary only), ``manual``. ★ never: adjudicate, waive, record results, send candidate documents."""

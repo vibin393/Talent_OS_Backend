@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Per-Client submission rules (Epic 61 A2). One optional row per Client; absent = defaults. ``effective_rules``
 merges the row with the tenant pipeline settings (duplicate window, consent mode) so the pack and the P1 dialog never
 disagree."""
@@ -94,7 +94,7 @@ async def _out(db: AsyncSession, client_id: uuid.UUID) -> ClientSubmissionRulesO
 
 
 async def get_client_rules(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     client_id: uuid.UUID,
 ) -> ClientSubmissionRulesOut:

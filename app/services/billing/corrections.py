@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Hours / rate corrections (FR-150, AD-23): unposted negative ``adjustment_entry`` items and every
 ``rate_adjustment`` become draft Credit Notes (negative deltas) and Debit Notes (positive deltas) on the Invoice
 that billed the original work. The original line is found through the ledger (``postings.targets_for`` of the

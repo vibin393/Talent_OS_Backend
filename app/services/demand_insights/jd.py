@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """JD preview and save wrappers (Epic 55, story 55.3, FR-282).
 
 * ``preview`` -- the P1 generation inputs (``demands.jd._generation_inputs``) + **``demands_jd_generate.v2``** (adds

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Client Portal hiring forecasts (Epic 44, FR-226).
 
 Runs in the Client session (org RLS ``client`` on ``workforce_plans.client_id``; lines inherit the plan's client):

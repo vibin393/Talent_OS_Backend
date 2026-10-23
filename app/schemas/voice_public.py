@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Voice Screening consent page DTOs (Epic 58, Secure Link purpose ``voice_consent``). No ids or emails beyond what
 the page needs."""
 

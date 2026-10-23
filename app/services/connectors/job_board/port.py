@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """``job_board`` port (Epic 66 contract, spec 0.9; Epic 70 fills real adapters, FR-360). Every adapter also implements
 the generic ``ConnectorPort``. DTOs are frozen, slotted dataclasses; signatures are frozen.
 """

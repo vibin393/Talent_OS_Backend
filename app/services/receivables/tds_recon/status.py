@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Per Client and quarter reconciliation status (Epic 51, FR-254): ``reconciled | partially_reconciled |
 exceptions | not_started`` with counts and amounts, for one FY (all Legal Entities, or one)."""
 
@@ -46,7 +46,7 @@ def classify(has_run: bool, recorded: int, matched: int, open_lines: int, statem
 
 
 async def status(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     fy: str,
     legal_entity_id: uuid.UUID | None = None,

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Evaluation results for tenants and regression notices (Epic 65 story 65.5, FR-322).
 
 * ``latest_for_tenant`` -- per registered non-placeholder agent with an evaluation set: the latest offline and live
@@ -89,7 +89,7 @@ def _row(key: str, spec: Any, latest: dict[tuple[str, str, str], Any]) -> EvalRo
     )  # fmt: skip
 
 
-async def latest_for_tenant(ctx: RequestContext, db: AsyncSession) -> list[EvalRowOut]:  # noqa: ARG001
+async def latest_for_tenant(ctx: RequestContext, db: AsyncSession) -> list[EvalRowOut]:  # ruff: ignore[unused-function-argument]
     specs = _eval_agents()
     latest = await _latest(db, list(specs))
     return [_row(k, s, latest) for k, s in specs.items()]

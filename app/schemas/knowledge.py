@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Knowledge contract DTOs (Epic 53 contract layer, spec 0.12; filled by Epic 62). Frozen; field sets pinned by
 ``tests/contracts/signatures.json``."""
 
@@ -24,11 +24,11 @@ __all__ = ["KnowledgeHit"]
 
 # ================================================================ Epic 62: Knowledge Sources (internal API)
 # (``KnowledgeHit`` above stays frozen; the DTOs below are the Knowledge Sources admin and Onboarding Q&A internals.)
-from datetime import date as _date  # noqa: E402
-from datetime import datetime as _datetime  # noqa: E402
-from typing import Literal as _Literal  # noqa: E402
+from datetime import date as _date  # ruff: ignore[module-import-not-at-top-of-file]
+from datetime import datetime as _datetime  # ruff: ignore[module-import-not-at-top-of-file]
+from typing import Literal as _Literal  # ruff: ignore[module-import-not-at-top-of-file]
 
-from pydantic import Field as _Field  # noqa: E402
+from pydantic import Field as _Field  # ruff: ignore[module-import-not-at-top-of-file]
 
 SourceKind = _Literal["article", "file", "onboarding_template", "policy_document"]
 Audience = _Literal["worker", "candidate", "both", "internal"]

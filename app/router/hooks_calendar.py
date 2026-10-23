@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Calendar push endpoint (Epic 72, spec A4): ``POST /api/v1/hooks/calendar/{channel_id}``.
 
 Public (no session / CSRF; the global anonymous IP limit applies). Mounted BEFORE ``connector_hooks`` so the generic

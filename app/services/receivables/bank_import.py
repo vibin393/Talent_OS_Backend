@@ -1,4 +1,4 @@
-# ruff: noqa: E501, RUF028
+# ruff: file-ignore[line-too-long, invalid-formatter-suppression-comment]
 """Bank CSV import (FR-153): parse -> preview (matched / unmatched / soft duplicate) -> apply selected rows.
 
 * The file batch is recorded in ``file_import_batches`` (sha256 dedupe): the same file returns the same batch.

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """``/public/v1/demands`` (Epic 67, spec A4): reads and draft create only (no submit / approve / open)."""
 
 import uuid

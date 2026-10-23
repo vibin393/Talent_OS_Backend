@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The per-tenant XML job feed (Epic 70, spec A6; Indeed XML feed conventions).
 
 ``GET /api/v1/public/job-feed/{tenant_slug}/{feed_token}.xml``: 404 unless the tenant is active, its careers site is

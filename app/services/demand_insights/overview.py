@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Demand page read models (Epic 55, B3): the "AI assist" tab (field sources, suggestions, flags, SLA risk, last
 run) and the compact summary the agent reads (``demands.get_for_review``)."""
 

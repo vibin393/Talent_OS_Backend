@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Provider jobs (Epic 58, story 58.1; FR-293): the ``voice`` port with the Fake and Manual adapters only.
 
 * ``schedule`` -- ``schedule_call(CallSessionRequestDTO(record=recording_allowed, script_ref, ...))``. Manual raises
@@ -52,7 +52,7 @@ async def _phone(db: AsyncSession, candidate_id: uuid.UUID) -> str:
 
 
 async def schedule(
-    ctx: RequestContext, db: AsyncSession, row: VoiceSession, at: Any = None  # noqa: ARG001
+    ctx: RequestContext, db: AsyncSession, row: VoiceSession, at: Any = None  # ruff: ignore[unused-function-argument]
 ) -> dict[str, Any]:
     from app.services.connectors.base import ManualActionRequired
     from app.services.connectors.voice.port import CallSessionRequestDTO

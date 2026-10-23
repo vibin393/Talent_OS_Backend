@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401, ARG001
+# ruff: file-ignore[line-too-long, non-imperative-mood, unused-function-argument]
 """DSC-signed invoice / credit-note PDFs (Epic 51, Story 51.1, FR-253; AD-21, AD-29, AD-49).
 
 Flow (``InvoiceIssued`` / ``CreditNoteIssued`` after commit -> task ``finance_p3.dsc_sign``):

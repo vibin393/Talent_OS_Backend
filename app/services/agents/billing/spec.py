@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The ``billing`` AgentSpec (Epic 63 A6; FR-313).
 
 Previews the invoice run of a Legal Entity and period, lists the exceptions (a note per client and kind) and PROPOSES
@@ -59,7 +59,7 @@ async def owner(ctx: Any, db: Any, subject: tuple[str, uuid.UUID] | None) -> uui
     return await collection_rules_service.billing_owner_for(ctx, db, subject)
 
 
-def fallback_link(subject: tuple[str, uuid.UUID] | None) -> str:  # noqa: ARG001
+def fallback_link(subject: tuple[str, uuid.UUID] | None) -> str:  # ruff: ignore[unused-function-argument]
     return "/billing/runs"
 
 

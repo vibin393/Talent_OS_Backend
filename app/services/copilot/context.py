@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Copilot turn kickoff (Epic 54 §0.1, AD-64). One run per user question; the conversation is the context.
 
 * ``Kickoff.inputs`` (trusted -- the user is both owner and instruction source): ``question`` (<= 4,000 chars),

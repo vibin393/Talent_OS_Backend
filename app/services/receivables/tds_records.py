@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """TDS / GST-TDS facts (FR-154): sections (platform seed + tenant copies), certificate tracking, reversals and the
 TDS receivable report (outstanding certificates by client and quarter, GST-TDS separately)."""
 
@@ -24,12 +24,12 @@ from app.services.receivables import settlement
 from app.services.receivables.common import assert_open, conflict, is_closed, target_of, tenant_of, today
 
 
-async def list_sections(ctx: RequestContext, db: AsyncSession) -> list[TdsSectionOut]:  # noqa: ARG001
+async def list_sections(ctx: RequestContext, db: AsyncSession) -> list[TdsSectionOut]:  # ruff: ignore[unused-function-argument]
     stmt = select(TdsSection).where(or_(TdsSection.tenant_id.is_(None), TdsSection.tenant_id == tenant_of(db)))
     return [TdsSectionOut.model_validate(r) for r in (await db.execute(stmt.order_by(TdsSection.kind, TdsSection.code))).scalars()]
 
 
-async def create_section(ctx: RequestContext, db: AsyncSession, data: TdsSectionIn) -> TdsSectionOut:  # noqa: ARG001
+async def create_section(ctx: RequestContext, db: AsyncSession, data: TdsSectionIn) -> TdsSectionOut:  # ruff: ignore[unused-function-argument]
     row = TdsSection(id=uuid.uuid4(), tenant_id=tenant_of(db), **data.model_dump())
     db.add(row)
     await db.flush()
@@ -44,7 +44,7 @@ async def _get(db: AsyncSession, tds_id: uuid.UUID) -> TdsDeduction:
     return row
 
 
-async def update_certificate(ctx: RequestContext, db: AsyncSession, tds_id: uuid.UUID, data: CertificateIn) -> TdsOut:  # noqa: ARG001
+async def update_certificate(ctx: RequestContext, db: AsyncSession, tds_id: uuid.UUID, data: CertificateIn) -> TdsOut:  # ruff: ignore[unused-function-argument]
     from app.services.receivables.payments import tds_out
 
     row = await _get(db, tds_id)
@@ -74,7 +74,7 @@ async def reverse(ctx: RequestContext, db: AsyncSession, tds_id: uuid.UUID, data
 
 
 async def list_deductions(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     quarter: str | None = None,
@@ -98,7 +98,7 @@ async def list_deductions(
 
 
 async def receivable(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     quarter: str | None = None,

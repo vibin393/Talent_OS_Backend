@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Static Pool members and the members page (Epic 38 story 38.2, FR-192).
 
 * Manual adds / removals are for static Pools only (409 ``pool_is_dynamic``): dynamic membership is

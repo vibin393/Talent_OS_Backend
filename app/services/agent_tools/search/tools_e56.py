@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 56 Sourcing Agent read tool ``search.search_candidates`` (coordinator decision C-8; the Copilot owns
 ``candidates.search``). A structured search of the Tenant's own Candidates (``search.candidate_search``) under the
 Accountable Owner's data scope: an own-scope recruiter only finds their own records. ``text`` may not name a protected

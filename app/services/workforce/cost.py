@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Committed cost arithmetic (Epic 44, FR-225). Pure: no I/O, ``Decimal`` only (AD-14 / AD-20).
 
 * ``months_remaining(start, period_end)``: months from ``start`` to the end of the plan period; the start month is

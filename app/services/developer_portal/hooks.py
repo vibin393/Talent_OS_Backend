@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Developer Portal registrations (Epic 74, AD-31 autodiscovery): Epic 69's partner notifier (submission status emails +
 org audit rows), the conformance fault resolver of ``core.middleware.sandbox_faults`` and the Celery kicks (sandbox
 create / reset / delete on ``ecosystem``; run finalisation 2 minutes after "Finish run"). In eager mode (tests) the

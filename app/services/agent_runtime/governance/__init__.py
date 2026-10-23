@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """AI governance console read models (Epic 65, spec-p4-governance A1-A3, A8).
 
 Deviation recorded: the spec names this package ``agent_runtime/admin/``, but the foundation already ships the

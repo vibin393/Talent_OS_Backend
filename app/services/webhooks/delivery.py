@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """One HTTP attempt (Epic 68, §0.5, AD-80): ``SafeHttpClient`` with no redirects, a 64 KB read cap, 5 s connect /
 10 s total; the Egress Guard runs on every connection. Sandbox echo URLs are delivered in-process (no network loop).
 

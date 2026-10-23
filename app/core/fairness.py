@@ -22,7 +22,7 @@ _local: dict[str, dict[str, float]] = {}
 _lock = threading.Lock()
 
 
-class SlotUnavailable(Exception):  # noqa: N818 - control-flow signal
+class SlotUnavailable(Exception):  # ruff: ignore[error-suffix-on-exception-name] - control-flow signal
     pass
 
 

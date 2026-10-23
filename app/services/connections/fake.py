@@ -104,7 +104,7 @@ class FakeProvider:
             params["scope"] = " ".join((*FAKE_SCOPES, *extra_scopes))
         return "https://auth.fake/authorize?" + urlencode(params)
 
-    async def exchange_code(self, code: str, redirect_uri: str) -> TokenSet:  # noqa: ARG002
+    async def exchange_code(self, code: str, redirect_uri: str) -> TokenSet:  # ruff: ignore[unused-method-argument]
         self.calls.append("exchange_code")
         if code == "bad":
             raise ProviderAuthError("invalid_grant")
@@ -161,7 +161,7 @@ class FakeProvider:
         self._touch(row)
         return EventResult(event_id, url or event.meeting_url, row.etag)
 
-    async def cancel_event(self, token_set: TokenSet, provider_event_id: str) -> None:  # noqa: ARG002
+    async def cancel_event(self, token_set: TokenSet, provider_event_id: str) -> None:  # ruff: ignore[unused-method-argument]
         self.calls.append("cancel_event")
         if self.fail_upsert:
             raise ProviderAuthError("unauthorized")
@@ -172,7 +172,7 @@ class FakeProvider:
 
     async def free_busy(
         self,
-        token_set: TokenSet,  # noqa: ARG002 - provider interface
+        token_set: TokenSet,  # ruff: ignore[unused-method-argument] - provider interface
         emails: list[str],
         start_utc: datetime,
         end_utc: datetime,
@@ -184,7 +184,7 @@ class FakeProvider:
             out[email.lower()] = blocks
         return out
 
-    async def send_mail(self, token_set: TokenSet, message: EmailMessage) -> SentRef:  # noqa: ARG002
+    async def send_mail(self, token_set: TokenSet, message: EmailMessage) -> SentRef:  # ruff: ignore[unused-method-argument]
         self.calls.append("send_mail")
         if self.fail_send:
             raise ProviderAuthError("unauthorized")
@@ -224,7 +224,7 @@ class FakeProvider:
         return message
 
     async def list_thread_messages(
-        self, token_set: TokenSet, thread_ref: str, since_ref: str | None  # noqa: ARG002
+        self, token_set: TokenSet, thread_ref: str, since_ref: str | None  # ruff: ignore[unused-method-argument]
     ) -> list[InboundMessage]:
         self.calls.append(f"list_thread_messages:{thread_ref}")
         if self.fail_threads:
@@ -250,7 +250,7 @@ class FakeProvider:
 
     async def list_folder_messages(
         self,
-        token_set: TokenSet,  # noqa: ARG002
+        token_set: TokenSet,  # ruff: ignore[unused-method-argument]
         folder: str,
         since_ref: str | None,
         limit: int = 50,
@@ -270,7 +270,7 @@ class FakeProvider:
         self.change_log.append((self._seq, event.id))
 
     def move_event(
-        self, event_id: str, new_start: datetime, new_end: datetime, by_email: str | None = None  # noqa: ARG002
+        self, event_id: str, new_start: datetime, new_end: datetime, by_email: str | None = None  # ruff: ignore[unused-method-argument]
     ) -> None:
         """Simulate a drag in the calendar (the private extended properties survive, as in Google)."""
         event = self.events[event_id]
@@ -343,7 +343,7 @@ class FakeProvider:
         }  # fmt: skip
         return ChannelRef(channel_id, resource_id, expires)
 
-    async def renew_watch(self, token_set: TokenSet, ref: ChannelRef, ttl_seconds: int) -> ChannelRef:  # noqa: ARG002
+    async def renew_watch(self, token_set: TokenSet, ref: ChannelRef, ttl_seconds: int) -> ChannelRef:  # ruff: ignore[unused-method-argument]
         self.calls.append("renew_watch")
         if self.fail_watch or ref.channel_id not in self.channels:
             raise ProviderError("fake renew failed")
@@ -351,7 +351,7 @@ class FakeProvider:
         self.channels[ref.channel_id]["expires_at"] = expires
         return ChannelRef(ref.channel_id, ref.resource_id, expires)
 
-    async def stop_watch(self, token_set: TokenSet, ref: ChannelRef) -> None:  # noqa: ARG002
+    async def stop_watch(self, token_set: TokenSet, ref: ChannelRef) -> None:  # ruff: ignore[unused-method-argument]
         self.calls.append("stop_watch")
         self.channels.pop(ref.channel_id, None)
         self.stopped_channels.append(ref.channel_id)

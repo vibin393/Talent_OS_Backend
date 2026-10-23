@@ -1,4 +1,4 @@
-# ruff: noqa: E501, RUF028, D401
+# ruff: file-ignore[line-too-long, invalid-formatter-suppression-comment, non-imperative-mood]
 """Platform review of partner versions and listing operations (Epic 69, spec A7). Every action needs a human platform
 operator (automated actors -> 403 ``human_only_action``) holding the ``marketplace_reviewer`` role (403
 ``platform_role_required``); approve, reject, suspend, reinstate and delist are ★. Every action writes a

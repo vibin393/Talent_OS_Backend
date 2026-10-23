@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Naukri RMS adapter (Epic 70, spec A2; live mode only behind configuration and a signed partner agreement, D-13).
 
 API shape (Naukri RMS job-posting / response APIs, partner documentation; recorded fixtures pin it): base

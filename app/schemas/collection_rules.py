@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Collection rules, holds, plan and log DTOs (Epic 63, FR-314 / FR-315). Internal only."""
 
 import uuid

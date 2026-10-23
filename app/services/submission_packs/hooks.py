@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Registrations of the ``submission_packs`` domain (Epic 61), autodiscovered by ``core.hooks``.
 
 * events (after commit; each enqueues a ``submission_packs.*`` / ``agents.*`` task):
@@ -249,7 +249,7 @@ def _register_retention() -> None:
     async def _expire(
         db: AsyncSession,
         ids: Sequence[uuid.UUID],
-        action: str = "anonymize",  # noqa: ARG001
+        action: str = "anonymize",  # ruff: ignore[unused-function-argument]
     ) -> dict[str, int]:
         result = await db.execute(
             update(SubmissionPack)

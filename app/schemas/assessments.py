@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Assessment DTOs (Epic 40; Epic 36 contract, AD-39).
 
 ``AssessmentInviteIn`` / ``AssessmentInvitationSummary`` are FROZEN (contract): changing a field needs a spine

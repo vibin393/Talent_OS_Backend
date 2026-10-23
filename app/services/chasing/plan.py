@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Deterministic chase cadence of the Compliance Agent (Epic 62 A3, FR-308; pure, hypothesis-tested).
 
 ``due_chases(facts, today, cfg)`` returns the items to remind today and whether to escalate:

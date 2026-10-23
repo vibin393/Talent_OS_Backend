@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Transcripts (Epic 53, AD-66, spec 0.13). Owner of ``transcripts`` / ``transcript_segments``.
 
 * ``create`` opens a ``pending`` transcript; ``append_segments`` appends (``final`` -> ``ready`` + ``TranscriptReady``).

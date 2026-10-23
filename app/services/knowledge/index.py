@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Chunk index of Knowledge Sources (Epic 62 A1).
 
 * ``build_chunks`` -- chunks a new version (inactive until published); embeds with the local

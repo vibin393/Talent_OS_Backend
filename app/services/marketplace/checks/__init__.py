@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Automated checks for partner versions and private Apps (Epic 69, spec A7 / A4 step 4, FR-358).
 
 ``run_manifest_checks`` (pure, private Apps at install) covers ``manifest_schema``, ``scope_reasons``,
@@ -125,7 +125,7 @@ def check_redirect_uris(app: Any) -> CheckResult:
     return CheckResult("redirect_uris", True)
 
 
-def run_manifest_checks(app: Any, *, kind: str = "private") -> list[CheckResult]:  # noqa: ARG001 - same set today
+def run_manifest_checks(app: Any, *, kind: str = "private") -> list[CheckResult]:  # ruff: ignore[unused-function-argument] - same set today
     return [
         check_manifest_schema(app),
         check_scope_reasons(app),

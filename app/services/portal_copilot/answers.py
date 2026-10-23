@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Run completion of portal Copilot turns (Epic 77 A4). Subscribed to the P4 ``AgentRunFinished`` / ``AgentRunFailed``
 events filtered by ``agent_key in {copilot_client, copilot_vendor, copilot_candidate}`` (the P4 Copilot handler only
 takes origin ``copilot`` agents, so the two never overlap). Seals and stores the assistant message (text, links,

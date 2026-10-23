@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Proposals (Epic 53, story 53.5, AD-62 as reconciled: no approvals engine; FR-268/FR-269/FR-325).
 
 * ``create`` -- a suggest-mode write (agent) or a Copilot Draft Action: preview, target + version, routing (action policy

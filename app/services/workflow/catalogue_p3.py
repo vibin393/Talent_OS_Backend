@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Phase 3 workflow catalogue (Epic 36 contract, spec 0.7): action keys and the ``analytics.prediction_band_changed``
 trigger. Imported at the end of ``catalogue`` so the keys join ``ACTION_CATALOGUE`` on import;
 ``catalogue.register_catalogue`` registers ``P3_TRIGGER_CATALOGUE`` beside the Phase 2 triggers.

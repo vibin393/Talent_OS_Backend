@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Key-management port for the Secrets Vault (Epic 66, AD-82, D-14). Pure: never imports ``app.services``.
 
 * ``Kms.wrap(plaintext_key, context) -> (wrapped, kek_id)`` / ``Kms.unwrap(wrapped, kek_id, context) -> bytes``.

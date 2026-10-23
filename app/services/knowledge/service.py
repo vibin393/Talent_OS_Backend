@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Knowledge search (Epic 53 contract stub, filled by Epic 62 A1; the signature is pinned by
 ``tests/contracts/signatures.json``).
 

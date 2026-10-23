@@ -316,7 +316,7 @@ def _clear_other_defaults(rows: Iterable[OfferTemplate], keep: OfferTemplate, ty
 
 
 async def list_templates(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     include_archived: bool = False,
 ) -> list[OfferTemplateOut]:
@@ -327,7 +327,7 @@ async def list_templates(
     return [OfferTemplateOut.model_validate(r) for r in (await db.execute(stmt)).scalars()]
 
 
-async def create_template(ctx: RequestContext, db: AsyncSession, data: OfferTemplateIn) -> OfferTemplateOut:  # noqa: ARG001
+async def create_template(ctx: RequestContext, db: AsyncSession, data: OfferTemplateIn) -> OfferTemplateOut:  # ruff: ignore[unused-function-argument]
     validate_template(data.body_md)
     row = OfferTemplate(
         id=uuid.uuid4(),
@@ -351,7 +351,7 @@ async def create_template(ctx: RequestContext, db: AsyncSession, data: OfferTemp
 
 
 async def update_template(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     template_id: uuid.UUID,
     data: OfferTemplateUpdate,
@@ -384,7 +384,7 @@ async def update_template(
 
 
 async def archive_template(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     template_id: uuid.UUID,
 ) -> OfferTemplateOut:

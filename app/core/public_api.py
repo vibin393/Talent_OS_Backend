@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401, N818
+# ruff: file-ignore[line-too-long, non-imperative-mood, error-suffix-on-exception-name]
 """Public API conventions (Epic 66, AD-77, FR-333/FR-347; spec 0.7). Pure core: imports nothing from ``app.services``.
 
 * Served to callers at ``/public/v1/...`` (Next.js rewrite) and mounted at ``PUBLIC_PREFIX`` = ``/api/public/v1``.

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Immigration Cases (Epic 46 A2, FR-233, AD-52): open, list, stage moves, key dates, receipt, * outcome,
 withdraw, timeline, dependants.
 

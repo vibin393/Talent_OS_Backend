@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Copilot admin usage aggregates (Epic 54 A6, ``ai:govern``): per day -- conversations, turns, active users, tokens,
 cost, helpful %, failures by reason code; plus feedback comments. Metadata only: no question or answer text is read.
 

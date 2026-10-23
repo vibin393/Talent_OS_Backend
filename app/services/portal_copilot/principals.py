@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Portal principals of the portal Copilot (Epic 77 A2, FR-396, NFR-60).
 
 ``actor_for(principal)`` turns the signed-in portal principal (``ClientDep`` / ``VendorDep`` ``Principal`` or the
@@ -112,7 +112,7 @@ async def candidate_consented(db: AsyncSession, candidate_id: uuid.UUID) -> bool
     return await has_active_consent(db, candidate_id, CANDIDATE_CONSENT_PURPOSE)
 
 
-async def candidate_rights(db: AsyncSession, tenant_id: uuid.UUID, candidate_id: uuid.UUID) -> frozenset[str]:  # noqa: ARG001
+async def candidate_rights(db: AsyncSession, tenant_id: uuid.UUID, candidate_id: uuid.UUID) -> frozenset[str]:  # ruff: ignore[unused-function-argument]
     """Implicit rights of a Candidate owner (runtime hook): enablement + active consent, read on an internal
     session of its own (the caller's session may be org-scoped)."""
     async with tenant_session(tenant_id) as idb:

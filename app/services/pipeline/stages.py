@@ -177,7 +177,7 @@ def stage_out(row: PipelineStage) -> StageOut:
 
 
 # ================================================================ API: stages
-async def list_stages(ctx: RequestContext, db: AsyncSession, include_transitions: bool = False) -> StagesOut:  # noqa: ARG001
+async def list_stages(ctx: RequestContext, db: AsyncSession, include_transitions: bool = False) -> StagesOut:  # ruff: ignore[unused-function-argument]
     rows = await all_stages(db)
     transitions: list[StageTransitionOut] | None = None
     if include_transitions:
@@ -220,7 +220,7 @@ async def _custom_stages(db: AsyncSession) -> list[PipelineStage]:
     return list(rows.scalars())
 
 
-async def create_stage(ctx: RequestContext, db: AsyncSession, data: StageCreate) -> StageOut:  # noqa: ARG001
+async def create_stage(ctx: RequestContext, db: AsyncSession, data: StageCreate) -> StageOut:  # ruff: ignore[unused-function-argument]
     await ensure_default_stages(db)
     key = data.key or _slug(data.label)
     if key in ANCHORED_STAGE_KEYS:
@@ -255,7 +255,7 @@ async def _renumber(db: AsyncSession, ordered: list[PipelineStage]) -> None:
 
 
 async def update_stage(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     stage_id: uuid.UUID,
     data: StageUpdate,
@@ -323,7 +323,7 @@ async def delete_stage(ctx: RequestContext, db: AsyncSession, stage_id: uuid.UUI
 
 # ================================================================ reason codes
 async def list_reason_codes(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     kind: str | None = None,
     include_archived: bool = False,
@@ -337,7 +337,7 @@ async def list_reason_codes(
     return [ReasonCodeOut.model_validate(r) for r in (await db.execute(stmt)).scalars()]
 
 
-async def create_reason_code(ctx: RequestContext, db: AsyncSession, data: ReasonCodeCreate) -> ReasonCodeOut:  # noqa: ARG001
+async def create_reason_code(ctx: RequestContext, db: AsyncSession, data: ReasonCodeCreate) -> ReasonCodeOut:  # ruff: ignore[unused-function-argument]
     await ensure_default_stages(db)
     existing = (
         await db.execute(
@@ -370,7 +370,7 @@ async def _reason(db: AsyncSession, reason_id: uuid.UUID) -> PipelineReasonCode:
 
 
 async def update_reason_code(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     reason_id: uuid.UUID,
     data: ReasonCodeUpdate,
@@ -382,7 +382,7 @@ async def update_reason_code(
     return ReasonCodeOut.model_validate(row)
 
 
-async def archive_reason_code(ctx: RequestContext, db: AsyncSession, reason_id: uuid.UUID) -> ReasonCodeOut:  # noqa: ARG001
+async def archive_reason_code(ctx: RequestContext, db: AsyncSession, reason_id: uuid.UUID) -> ReasonCodeOut:  # ruff: ignore[unused-function-argument]
     row = await _reason(db, reason_id)
     if row.archived_at is None:
         row.archived_at = now()

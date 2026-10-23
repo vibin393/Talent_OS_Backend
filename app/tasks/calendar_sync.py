@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Calendar Sync tasks (Epic 72, AD-92), queue ``ecosystem``. Every task starts with ``tenant_id`` (beats excepted).
 
 * ``calendar_sync.ensure_channel(tenant_id, connection_id)`` / ``ensure_for_interview(tenant_id, interview_id)`` /
@@ -25,7 +25,7 @@ QUEUE = "ecosystem"
 
 
 async def _in_tenant(tid: uuid.UUID, work: Callable[[AsyncSession], Awaitable[Any]]) -> Any:
-    from app.services import connections_service, interviews_service  # noqa: F401 - wiring
+    from app.services import connections_service, interviews_service  # ruff: ignore[unused-import] - wiring
 
     async with tenant_session(tid) as db:
         audit.set_actor(db, "system", None)

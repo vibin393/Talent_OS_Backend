@@ -24,19 +24,19 @@ class BuiltinEsignProvider:
     async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:
         return {"ok": True, "op": op, "builtin": True, "payload_keys": sorted(payload)}
 
-    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # noqa: ARG002
+    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # ruff: ignore[unused-method-argument]
         return False
 
-    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # noqa: ARG002
+    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         return {}
 
     async def create_request(self, req: EsignRequestDTO) -> str:
         return str(req.request_id)
 
-    async def get_status(self, external_ref: str) -> EsignStatusDTO:  # noqa: ARG002
+    async def get_status(self, external_ref: str) -> EsignStatusDTO:  # ruff: ignore[unused-method-argument]
         return EsignStatusDTO(status="unknown")
 
-    async def fetch_signed(self, external_ref: str) -> bytes | None:  # noqa: ARG002
+    async def fetch_signed(self, external_ref: str) -> bytes | None:  # ruff: ignore[unused-method-argument]
         return None
 
     async def handle_webhook(self, headers: Mapping[str, str], body: bytes) -> EsignWebhookDTO:

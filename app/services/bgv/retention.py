@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Evidence retention (Epic 20 A8, AD-34): ``bgv_evidence`` class, 12 months after adjudication by default.
 
 ``purge_due`` (daily beat ``bgv.purge_evidence``, queue ``maintenance``; also the ``expire_fn`` of the

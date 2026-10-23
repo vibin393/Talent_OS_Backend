@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 77 (spec A3; build plan §4 exposure-file rule): the ``portal_candidate``-surface exposures of the ``portal_candidate.*``
 tools. Loaded by the package's ``hooks.py`` (``agent_tools._loader``); ``validate_exposures`` refuses a tool without the
 ``portal_`` key prefix on a portal surface. Portal tools are never MCP-exposed (Epic 73)."""

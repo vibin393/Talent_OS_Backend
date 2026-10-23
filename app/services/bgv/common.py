@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Shared helpers of the BGV domain (Epic 20): settings, loaders, working days, consent, timeline, documents."""
 
 import uuid
@@ -224,7 +224,7 @@ async def candidate_names(db: AsyncSession, ids: set[uuid.UUID]) -> dict[uuid.UU
     if not ids:
         return {}
     rows = await db.execute(select(Candidate.id, Candidate.full_name).where(Candidate.id.in_(ids)))
-    return {cid: name for cid, name in rows.all()}  # noqa: C416
+    return {cid: name for cid, name in rows.all()}  # ruff: ignore[unnecessary-comprehension]
 
 
 def short_name(full_name: str | None) -> str | None:

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Skills graph Celery tasks (Epic 37). Every task starts with ``tenant_id``; queue ``maintenance`` (AD-54) except
 ``skills.infer_ai`` (queue ``ai``).
 

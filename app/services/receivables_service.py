@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Facade of the ``receivables`` domain (Epic 13 contract layer; filled by Epic 30).
 
 Epic 63 (additive): the Collections Agent's read contracts (``agent_reads``) and the human-driven P2

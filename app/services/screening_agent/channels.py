@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Channel delivery of conversation turns and invitations (Epic 57 A3, AD-70 one send path).
 
 * ``portal_chat`` / ``link_chat``: the stored turn IS the delivery (the Candidate reads it in the portal / on the

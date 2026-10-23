@@ -417,7 +417,7 @@ async def public_submit(link: secure_links.ResolvedLink, data: PublicScorecardIn
     return "submitted"
 
 
-class _system:  # noqa: N801 - tiny context manager
+class _system:  # ruff: ignore[invalid-class-name] - tiny context manager
     """Attribute audit rows of a public (no principal) action to ``secure_link``."""
 
     def __init__(self, db: AsyncSession) -> None:

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Developer identity contract (Epic 66, D-25(c); used by Epics 69 and 74).
 
 A ``DeveloperContext`` is the authenticated caller of the developer portal (``tos_developer`` session, Epic 74). It is a

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Selection points (Epic 49 A5, FR-247): public read queries of pipeline, matching, screenings and the Epic 40
 assessment hub. Each returns, for the date range and filters, one ``Point(candidate_id, selected, score)`` per
 (candidate, demand) -- ids stay in the task's memory only and never reach the snapshot.
@@ -130,7 +130,7 @@ async def ai_match_threshold(
 
 async def ai_screening_pass(
     db: AsyncSession,
-    params: dict[str, Any],  # noqa: ARG001
+    params: dict[str, Any],  # ruff: ignore[unused-function-argument]
     lo: datetime,
     hi: datetime,
     filters: dict[str, Any],
@@ -194,7 +194,10 @@ SELECTORS = {
 }
 
 # Epic 65 (FR-323, C-16): the Phase 4 agent selection points, implemented in ``aedt_p4`` (projections only).
-from app.services.fairness.aedt_p4 import DEFINITIONS_P4, SELECTORS_P4  # noqa: E402
+from app.services.fairness.aedt_p4 import (  # ruff: ignore[module-import-not-at-top-of-file]
+    DEFINITIONS_P4,
+    SELECTORS_P4,
+)
 
 SELECTORS.update(SELECTORS_P4)
 DEFINITIONS.update(DEFINITIONS_P4)

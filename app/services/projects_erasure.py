@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Projects erasure handler ``projects.assignments`` (59), Epic 45 A6 (AD-34).
 
 ``project_assignments`` hold no personal data beyond the denormalised ``candidate_id``: the handler nulls it and

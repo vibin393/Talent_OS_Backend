@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Compliance chasing and BGV provider follow-ups (Epic 62, FR-308 / FR-309; migration ``20261008_409_03_chases``).
 Owner: ``chasing``.
 

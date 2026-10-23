@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Registrations of the ``talent_pools`` domain (autodiscovered by ``core.hooks``), Epic 38 A8.
 
 * Rediscovery section ``pools`` (``matching.rediscovery.register_rediscovery_section``; matching never imports us).
@@ -36,7 +36,7 @@ def _register_rediscovery() -> None:
 
 
 # ---------------------------------------------------------------- workflow
-async def _snapshot(ctx: RequestContext, db: AsyncSession, entity_id: uuid.UUID) -> dict[str, Any] | None:  # noqa: ARG001
+async def _snapshot(ctx: RequestContext, db: AsyncSession, entity_id: uuid.UUID) -> dict[str, Any] | None:  # ruff: ignore[unused-function-argument]
     from app.models.talent_pools import TalentPool
 
     pool = await db.get(TalentPool, entity_id)
@@ -100,17 +100,17 @@ async def _pool_name(db: AsyncSession, payload: Any) -> tuple[uuid.UUID | None, 
     return pid, (pool.name if pool is not None else "Talent pool")
 
 
-async def _owner(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # noqa: ARG001
+async def _owner(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
     uid = _uuid(payload.get("owner_id"))
     return {uid} if uid else set()
 
 
-async def _subscriber(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # noqa: ARG001
+async def _subscriber(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
     uid = _uuid(payload.get("user_id"))
     return {uid} if uid else set()
 
 
-async def _render_digest(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG001
+async def _render_digest(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
     from app.services.notifications_service import Content
 
     pools = list(payload.get("pools") or [])

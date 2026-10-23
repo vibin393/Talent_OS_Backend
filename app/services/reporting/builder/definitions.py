@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Report Definitions CRUD (Epic 47 story 47.2, FR-237).
 
 * Create / edit your own (``report:build``); every definition or viz change appends a

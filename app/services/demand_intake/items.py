@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401, ARG001
+# ruff: file-ignore[line-too-long, non-imperative-mood, unused-function-argument]
 """The intake inbox (Epic 55, story 55.1 / 55.2): list, read, assign a Client, retry, discard, the agent reads
 (``get_for_agent`` / ``match_of``), the Accountable Owner, the run outcome write-back and the 180-day purge.
 

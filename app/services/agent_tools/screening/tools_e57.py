@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Screening Agent tools (Epic 57 Part B; ``owner_epic="57"``, ``version=1``).
 
 Every tool takes the ``conversation_id`` and nothing else that names a person: the conversation's Candidate is the
@@ -82,7 +82,7 @@ async def _intent(
 
 
 def _preview(title: str, summary_fn: Any = None) -> Any:
-    async def preview(tctx: Any, args: Any) -> ProposalPreview:  # noqa: ARG001
+    async def preview(tctx: Any, args: Any) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
         fields: list[tuple[str, str]] = [("Conversation", str(args.conversation_id))]
         summary = summary_fn(args) if summary_fn is not None else title
         return ProposalPreview(title=title, summary=summary[:4000], fields=tuple(fields))

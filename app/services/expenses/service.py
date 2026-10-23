@@ -32,7 +32,7 @@ SYSTEM = ActorRef("system", None)
 
 
 async def list_claims(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     status: str | None = None,
@@ -119,7 +119,7 @@ async def _settle(
 
 
 async def mark_reimbursed(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     line_ids: Sequence[uuid.UUID],
     export_version_id: uuid.UUID | None,
@@ -148,7 +148,7 @@ async def mark_reimbursed(
 
 
 async def mark_stated(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     line_ids: Sequence[uuid.UUID],
     vendor_statement_id: uuid.UUID | None,

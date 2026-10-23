@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Payout export and mark-paid for rewards not paid through payroll (Epic 42 A6): User referrers and Workers
 without a payroll Placement. ``referral:manage`` + ``report:export``; the P1 export writer (``XlsxWriter`` writes
 string cells, ``csv_cell`` prefixes formula-like values with ``'``)."""

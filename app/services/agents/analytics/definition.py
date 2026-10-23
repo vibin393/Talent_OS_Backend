@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The ``analytics`` AgentSpec (Epic 64, FR-316..FR-318). A Copilot mode ("Ask about your data", origin ``copilot``):
 started by the Copilot surface with the user as Accountable Owner; every tool is ``read``."""
 

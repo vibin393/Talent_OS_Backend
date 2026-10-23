@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Booking through the P1 scheduler (Epic 59 stories 59.3 / 59.4; spec A3).
 
 ``book`` re-checks free/busy for the picked slot (or a Candidate-proposed window) and books through

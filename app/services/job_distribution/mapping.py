@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Careers posting -> ``JobPostingDTO`` (Epic 70, spec A3 step 3): the approved JD version of a live posting, the
 posting's visibility flags honoured for every board, taxonomy mappings, then the user's board fields; required schema
 fields still empty -> ``blocked_fields``. The DTO is rebuilt from the database for every push (never from a job

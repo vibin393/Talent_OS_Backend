@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Autonomy policy resolution (Epic 53, AD-61, FR-268). ONE pure function -- no DB, no I/O -- decides every tool call.
 
 Order (first match wins for ``off``): global kill -> tenant / platform kill -> features -> allow-list -> Effective Rights.

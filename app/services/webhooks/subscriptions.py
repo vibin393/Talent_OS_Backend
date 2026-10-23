@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Subscriptions (Epic 68, story 68.1, §0.1/§0.2): CRUD, the scope and filter rules, the 25 / 100 limits and the
 Egress Guard at save (syntax only; ``SafeHttpClient`` re-checks every connection). Public callers (App principals)
 own Installation Subscriptions and only ever see their own (others -> 404). Secrets are returned once."""

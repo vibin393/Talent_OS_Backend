@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Tenant workspace of the developer portal (Epic 74, spec A4; ``/api/v1/developer-tenant``): Tenant Developers on the
 normal ``tos_session`` with ``app:develop`` (human users only): the Tenant's own sandboxes (``owner_kind='tenant'``,
 at most 2), the playground and conformance runs of its private Apps. App CRUD stays on Epic 67's ``/api/v1/apps``."""

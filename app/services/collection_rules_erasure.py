@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Erasure handler ``collection_rules.log`` (Epic 63, order 67; FR-326).
 
 ``collection_agent_log`` stores no amounts and no Contact PII by design; on a Contact subject's erasure, the log rows

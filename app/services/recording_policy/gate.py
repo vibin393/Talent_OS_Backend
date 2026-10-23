@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Recording Policy gate (FR-294, coordinator decision 9; Epic 53 spec 0.13). Epic 58 owns the settings UI / API.
 
 Rules:

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Facts the checks and the agent's read tools see (Epic 78): linked postings' PUBLIC fields, the chosen template, the
 Tenant's allowed link hosts and aggregate segment counts. Never a recipient record."""
 

@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Webhooks facade (Epic 68, AD-79/AD-80, FR-349..FR-353). Routers, the Developer portal (74), the marketplace (69) and
 governance (79) call only this module. ``enqueue_delivery`` fills the Epic 66 stub with its frozen signature."""
 

@@ -258,8 +258,8 @@ def endpoint_exists(endpoint: str) -> bool:
 
 def _registry_entries() -> list[dict[str, Any]]:
     from app.services import (
-        settings_catalog_p2,  # noqa: F401 - registers the Phase 2 entries
-        settings_catalog_p3,  # noqa: F401 - Epic 52: Phase 3 entries no owner registered
+        settings_catalog_p2,  # ruff: ignore[unused-import] - registers the Phase 2 entries
+        settings_catalog_p3,  # ruff: ignore[unused-import] - Epic 52: Phase 3 entries no owner registered
     )
 
     return [

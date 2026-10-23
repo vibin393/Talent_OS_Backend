@@ -49,18 +49,18 @@ async def _resolve_user(db: AsyncSession, facts: Mapping[str, Any], col: str, la
 
 
 async def _account_manager(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
-    approver_ref: Mapping[str, Any],  # noqa: ARG001
+    approver_ref: Mapping[str, Any],  # ruff: ignore[unused-function-argument]
     facts: Mapping[str, Any],
 ) -> ResolvedApprover:
     return await _resolve_user(db, facts, "account_manager_user_id", "account manager")
 
 
 async def _manager(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
-    approver_ref: Mapping[str, Any],  # noqa: ARG001
+    approver_ref: Mapping[str, Any],  # ruff: ignore[unused-function-argument]
     facts: Mapping[str, Any],
 ) -> ResolvedApprover:
     return await _resolve_user(db, facts, "manager_user_id", "placement manager")
@@ -166,21 +166,21 @@ _subscribe()
 
 
 # ---------------------------------------------------------------- notifications
-async def _recruiter(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # noqa: ARG001
+async def _recruiter(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
     rid = _uuid(payload.get("recruiter_user_id"))
     return {rid} if rid else set()
 
 
-async def _listed(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # noqa: ARG001
+async def _listed(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
     return {u for u in (_uuid(x) for x in payload.get("recipient_ids") or []) if u}
 
 
-async def _owner(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # noqa: ARG001
+async def _owner(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
     oid = _uuid(payload.get("owner_id"))
     return {oid} if oid else set()
 
 
-async def _worker(db: AsyncSession, payload: Any) -> set[Any]:  # noqa: ARG001
+async def _worker(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument]
     from app.services.notifications_service import Recipient
 
     cid = _uuid(payload.get("candidate_id"))
@@ -244,7 +244,7 @@ async def _render_question(db: AsyncSession, payload: Any) -> Any:
     return _content(f"{await _human(db, pid)}: the worker has a question about joining", pid)
 
 
-async def _render_bank_requested(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG001
+async def _render_bank_requested(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
     from app.services.notifications_service import Content
 
     return Content(

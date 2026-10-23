@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Plan vs actual (Epic 44, FR-225).
 
 Rows by effective line (``group_by=line``) or by planned start month (``group_by=month``; every month of the plan

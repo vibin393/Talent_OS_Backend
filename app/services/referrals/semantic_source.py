@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Semantic sources ``referrals.referral`` and ``referrals.reward`` (Epic 42 A7, FR-237 "Referrals"), registered
 from ``hooks.py``.
 

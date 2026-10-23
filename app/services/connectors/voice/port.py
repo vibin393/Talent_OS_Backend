@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """``voice`` port (FR-293 "call session + transcription"; Epic 53 contract 0.13, owned by Epic 58). ``manual``
 asks the user to call outside Talent OS; ``fake`` scripts a deterministic session. Every adapter also implements
 the generic ``ConnectorPort``. ``TranscriptionProvider`` is a capability: only the fake implements it in Phase 4.

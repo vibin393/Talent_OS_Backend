@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D400, D415
+# ruff: file-ignore[line-too-long, missing-trailing-period, missing-terminal-punctuation]
 """Collections Agent sends (Epic 63 A4, FR-314). Both paths re-plan first (``for_send``), then refuse:
 
 * a hold / takeover -> ``ConflictError collections_agent_paused``;

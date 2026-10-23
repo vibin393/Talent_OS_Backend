@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Registrations of the ``assessments`` domain (autodiscovered by ``core.hooks``), Epic 40 A11.
 
 * Consent notice ``assessment`` (lists the logged proctoring signals; lazily seeded per tenant by the foundation).
@@ -74,7 +74,7 @@ async def _name(db: AsyncSession, inv: Any) -> str:
     return a.name if a is not None else "Assessment"
 
 
-async def _candidate_recipients(db: AsyncSession, payload: Any) -> set[Any]:  # noqa: ARG001
+async def _candidate_recipients(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument]
     from app.services.notifications_service import Recipient
 
     cid = _uuid(payload.get("candidate_id"))
@@ -160,7 +160,7 @@ def _register_notifications() -> None:
 
 
 # ---------------------------------------------------------------- workflow
-async def _snapshot(ctx: RequestContext, db: AsyncSession, entity_id: uuid.UUID) -> Any:  # noqa: ARG001
+async def _snapshot(ctx: RequestContext, db: AsyncSession, entity_id: uuid.UUID) -> Any:  # ruff: ignore[unused-function-argument]
     from app.models.assessments import AssessmentInvitation
 
     inv = await db.get(AssessmentInvitation, entity_id)

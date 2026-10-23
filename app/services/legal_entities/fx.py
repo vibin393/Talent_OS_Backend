@@ -84,7 +84,7 @@ async def upsert_rate(ctx: RequestContext, db: AsyncSession, data: FxRateIn) -> 
 
 
 async def list_rates(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     from_currency: str | None = None,
@@ -101,7 +101,7 @@ async def list_rates(
 
 
 async def rate_for(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     from_ccy: str,
     to_ccy: str,

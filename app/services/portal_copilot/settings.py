@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Tenant portal Copilot settings (Epic 77 A1 / A5): one ``portal_copilot_settings`` row per tenant (internal-only org
 RLS -- always read on an internal session). Defaults apply until an administrator saves them."""
 

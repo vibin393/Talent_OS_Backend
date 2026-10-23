@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Knowledge tasks (Epic 62). Queue ``maintenance``.
 
 * ``knowledge.reindex`` -- embed chunks without an embedding (local model; never a Claude call).

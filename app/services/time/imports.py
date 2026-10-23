@@ -230,7 +230,7 @@ async def preview(
     return _out(batch)
 
 
-async def get_batch(ctx: RequestContext, db: AsyncSession, batch_id: uuid.UUID) -> ImportPreviewOut:  # noqa: ARG001
+async def get_batch(ctx: RequestContext, db: AsyncSession, batch_id: uuid.UUID) -> ImportPreviewOut:  # ruff: ignore[unused-function-argument]
     batch = (
         await db.execute(
             select(FileImportBatch).where(FileImportBatch.id == batch_id, FileImportBatch.kind == KIND)

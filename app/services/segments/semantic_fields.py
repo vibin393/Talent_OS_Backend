@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Fields Epic 38 adds to the base semantic sources (decision 11, spec A3), via ``extend_semantic_source``.
 
 * ``candidates.candidate.days_since_last_placement`` (int; ``gt`` / ``lt`` / ``is_null``; permission

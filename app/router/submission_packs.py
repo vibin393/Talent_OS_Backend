@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Submission packs API (Epic 61, spec §A6). Internal principals; API keys may read only (writes are human-only).
 
 | Method + path | Permission |

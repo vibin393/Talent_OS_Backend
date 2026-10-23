@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Usage metering reads (Epic 66, AD-78, FR-338 / FR-385). Informational only (D-12): no billing objects."""
 
 import uuid

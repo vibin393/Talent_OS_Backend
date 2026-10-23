@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Shared helpers of the ``scheduling_agent`` domain (Epic 59): constants, clock, the tenant settings row, contexts,
 gates and errors."""
 

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Call and recording consent (Epic 58, story 58.3; FR-294, NFR-51).
 
 * ``send_request`` -- the templated consent request (system email template ``voice_consent_request``, coordinator C-11)

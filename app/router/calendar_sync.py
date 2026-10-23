@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Calendar Sync API (Epic 72, spec A9), prefix ``/api/v1/calendar-sync``.
 
 | Method + path | Permission |

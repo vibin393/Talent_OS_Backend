@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """SAC codes and effective-dated GST rates (FR-146): seeded per tenant on first use (18 %), non-overlapping per SAC
 (EXCLUDE gist). ``rates_for`` resolves the rate of each SAC for a document date (422 ``tax_rate_missing``)."""
 

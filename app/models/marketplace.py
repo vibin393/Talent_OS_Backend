@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Integration Marketplace (Epic 69, AD-81/AD-83; migrations ``20261010_503_01_marketplace`` / ``503_02_mkt_tenant``).
 
 Platform tables (``core.tenancy.PLATFORM_TABLES``; no Tenant data -- ``owner_tenant_id`` of a private listing is the only

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Transactional outbox (Epic 66, AD-79, FR-334; migration ``20261009_500_03_p5_platform``). Owner:
 ``app.services.public_events``.
 

@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Daily new-member digest and the tenant-local beat schedule (Epic 38 story 38.3, FR-194).
 
 * ``send_digest``: **one** ``pool_new_members`` notification per subscriber listing each subscribed Pool with

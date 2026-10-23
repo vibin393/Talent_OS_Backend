@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Interview Assistant API (Epic 60, spec A8).
 
 | Method + path | Permission |

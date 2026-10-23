@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Campus hiring & recruitment events (Epic 43, branch ``p3_campus``, migrations ``20261007_307_01..04``;
 FR-217..FR-221).
 

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Voice screening tenant settings (Epic 58, Part C): default call method (``manual``; ``fake`` refused in
 production), consent link validity (1..14 days), consent channel order and the recording upload limit (<= 200 MB)."""
 
@@ -28,11 +28,11 @@ def _out(row: VoiceSettings) -> VoiceSettingsOut:
     )
 
 
-async def get_settings_out(ctx: RequestContext, db: AsyncSession) -> VoiceSettingsOut:  # noqa: ARG001
+async def get_settings_out(ctx: RequestContext, db: AsyncSession) -> VoiceSettingsOut:  # ruff: ignore[unused-function-argument]
     return _out(await common.settings_row(db))
 
 
-async def update_settings(ctx: RequestContext, db: AsyncSession, data: VoiceSettingsIn) -> VoiceSettingsOut:  # noqa: ARG001
+async def update_settings(ctx: RequestContext, db: AsyncSession, data: VoiceSettingsIn) -> VoiceSettingsOut:  # ruff: ignore[unused-function-argument]
     row = await common.settings_row(db)
     if data.default_provider == "fake" and not _fake_available():
         raise common.invalid("provider_not_available", "Demo calls are not available here")

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Graph-rule executor (Epic 32, story 19.3, AD-31). Rules with ``graph IS NULL`` never come here: the P1
 engine runs them byte-for-byte.
 

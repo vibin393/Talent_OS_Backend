@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Candidate-facing chat (Epic 57 A7): the Candidate Portal (signed-in Candidate) and the Secure-Link chat (purpose
 ``agent_conversation``). Both work on one conversation the caller is entitled to (another Candidate's conversation is
 indistinguishable from a missing one) and return the ``PortalScreeningChat`` projection only.

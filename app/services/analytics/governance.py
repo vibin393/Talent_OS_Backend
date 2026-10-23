@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Analytics settings, model enablement and model cards (Epic 48 A1 / A4 / A6, FR-244, PRD OQ7).
 
 * ``analytics_settings`` (one row per tenant, lazily created, audited): thresholds can only be **raised** above

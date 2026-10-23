@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Telephony API (Epic 76, spec A8).
 
 | Method + path | Permission |

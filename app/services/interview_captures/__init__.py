@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Interview Assistant domain (Epic 60, FR-301..FR-304). Phase 4 domain package ("p4 domains" layer): consent and
 Recording Policy gating of interview captures, uploads, the assistant's outputs and private draft scorecards, interview
 skill suggestions, withdrawal and retention. The ``interview_assist`` agent package never touches models (AD-56); it

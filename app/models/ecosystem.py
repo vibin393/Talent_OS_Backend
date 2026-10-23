@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Ecosystem controls and exposure tracking (Epic 66, AD-85/AD-86, D-11; migrations ``500_02`` / ``500_03``).
 
 * ``ecosystem_settings`` (tenant, one row per tenant, lazily created, audited): the tenant Ecosystem Kill Switch, the

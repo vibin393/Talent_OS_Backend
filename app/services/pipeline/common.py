@@ -41,7 +41,7 @@ DEFAULT_REJECTION_BODY = (
 )
 
 
-class ServiceUnavailable(DomainError):  # noqa: N818 - mirrors HTTP 503
+class ServiceUnavailable(DomainError):  # ruff: ignore[error-suffix-on-exception-name] - mirrors HTTP 503
     status_code = 503
     code = "service_unavailable"
     default_message = "The service is temporarily unavailable"

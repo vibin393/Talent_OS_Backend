@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Fake ``voice`` connector for tests (AD-29, spec 0.13): a scripted, deterministic session lifecycle
 (``scheduled`` -> ``started`` -> ``ended`` plus ``recording_ready`` / ``transcript_ready`` events), a scripted
 transcript per ``script_ref``, a WAV of silence for the recording and a fake ``TranscriptionProvider``. Records
@@ -92,7 +92,7 @@ class FakeVoiceProvider:
         expected = hmac.new(secret.encode(), body, hashlib.sha256).hexdigest()
         return hmac.compare_digest(given, expected)
 
-    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # noqa: ARG002
+    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         try:
             data = json.loads(body or b"{}")
         except ValueError:

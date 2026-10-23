@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Scheduling Agent settings, interviewer preferences and the request read models (Epic 59 A6)."""
 
 import uuid
@@ -91,7 +91,7 @@ async def get_prefs(db: AsyncSession, user_id: uuid.UUID) -> SchedulingPrefsOut:
 
 
 async def put_prefs(
-    ctx: RequestContext,  # noqa: ARG001 - audit reads the session actor
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument] - audit reads the session actor
     db: AsyncSession,
     user_id: uuid.UUID,
     data: SchedulingPrefsIn,

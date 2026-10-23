@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Deterministic dunning policy (Epic 63 A4). Pure: runs at proposal time (the tool preview) and again at execution,
 so an edited Proposal cannot slip anything through.
 

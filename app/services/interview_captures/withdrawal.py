@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Withdrawal, sweep and retention of interview captures (Epic 60, A7).
 
 ``ConsentWithdrawn(purpose="interview_recording")`` or an interviewer's acknowledgement revocation -> task

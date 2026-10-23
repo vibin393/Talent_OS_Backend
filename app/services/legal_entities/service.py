@@ -124,16 +124,16 @@ async def _get(db: AsyncSession, legal_entity_id: uuid.UUID, *, lock: bool = Fal
     return entity
 
 
-async def list_entities(ctx: RequestContext, db: AsyncSession) -> list[LegalEntityOut]:  # noqa: ARG001
+async def list_entities(ctx: RequestContext, db: AsyncSession) -> list[LegalEntityOut]:  # ruff: ignore[unused-function-argument]
     rows = (await db.execute(select(LegalEntity).order_by(LegalEntity.name))).scalars()
     return [LegalEntityOut.model_validate(r) for r in rows]
 
 
-async def get_entity(ctx: RequestContext, db: AsyncSession, legal_entity_id: uuid.UUID) -> LegalEntityOut:  # noqa: ARG001
+async def get_entity(ctx: RequestContext, db: AsyncSession, legal_entity_id: uuid.UUID) -> LegalEntityOut:  # ruff: ignore[unused-function-argument]
     return LegalEntityOut.model_validate(await _get(db, legal_entity_id))
 
 
-async def create_entity(ctx: RequestContext, db: AsyncSession, data: LegalEntityIn) -> LegalEntityOut:  # noqa: ARG001
+async def create_entity(ctx: RequestContext, db: AsyncSession, data: LegalEntityIn) -> LegalEntityOut:  # ruff: ignore[unused-function-argument]
     await _check_reference(
         db, state_code=data.state_code, currency=data.default_currency, timezone=data.timezone
     )
@@ -153,7 +153,7 @@ async def create_entity(ctx: RequestContext, db: AsyncSession, data: LegalEntity
 
 
 async def update_entity(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     legal_entity_id: uuid.UUID,
     data: LegalEntityUpdate,
@@ -190,7 +190,7 @@ async def _active_count(db: AsyncSession) -> int:
 
 
 async def deactivate(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     legal_entity_id: uuid.UUID,
     reason: str | None = None,
@@ -213,7 +213,7 @@ async def deactivate(
     return LegalEntityOut.model_validate(entity)
 
 
-async def activate(ctx: RequestContext, db: AsyncSession, legal_entity_id: uuid.UUID) -> LegalEntityOut:  # noqa: ARG001
+async def activate(ctx: RequestContext, db: AsyncSession, legal_entity_id: uuid.UUID) -> LegalEntityOut:  # ruff: ignore[unused-function-argument]
     entity = await _get(db, legal_entity_id, lock=True)
     if entity.status != "active":
         entity.status = "active"
@@ -239,7 +239,7 @@ async def _in_use(db: AsyncSession, legal_entity_id: uuid.UUID) -> list[str]:
     return used
 
 
-async def delete_entity(ctx: RequestContext, db: AsyncSession, legal_entity_id: uuid.UUID) -> None:  # noqa: ARG001
+async def delete_entity(ctx: RequestContext, db: AsyncSession, legal_entity_id: uuid.UUID) -> None:  # ruff: ignore[unused-function-argument]
     entity = await _get(db, legal_entity_id, lock=True)
     used = await _in_use(db, legal_entity_id)
     if await _closed_periods(db, legal_entity_id):
@@ -330,7 +330,7 @@ async def _principal_registration(db: AsyncSession, legal_entity_id: uuid.UUID) 
 
 
 async def assert_accepts_new_documents(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     legal_entity_id: uuid.UUID,
     *,
@@ -353,7 +353,7 @@ async def assert_accepts_new_documents(
 
 
 async def default_registration_for(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     legal_entity_id: uuid.UUID,
     state_code: str | None,
@@ -379,7 +379,7 @@ async def default_registration_for(
 
 # ================================================================ GST registrations / LUTs
 async def list_registrations(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     legal_entity_id: uuid.UUID,
 ) -> list[GstRegistrationOut]:
@@ -408,7 +408,7 @@ async def _clear_principal(db: AsyncSession, legal_entity_id: uuid.UUID, keep: u
 
 
 async def create_registration(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     legal_entity_id: uuid.UUID,
     data: GstRegistrationIn,
@@ -464,7 +464,7 @@ async def _registration(
 
 
 async def update_registration(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     gst_registration_id: uuid.UUID,
     data: GstRegistrationUpdate,
@@ -490,7 +490,7 @@ async def update_registration(
 
 
 async def get_gst_registration(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     gst_registration_id: uuid.UUID,
 ) -> GstRegistrationOut:
@@ -498,7 +498,7 @@ async def get_gst_registration(
 
 
 async def add_lut(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     gst_registration_id: uuid.UUID,
     data: LutIn,
@@ -525,7 +525,7 @@ async def add_lut(
 
 
 async def get_lut(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     gst_registration_id: uuid.UUID,
     fiscal_year: str,
@@ -561,7 +561,7 @@ def _bank_out(row: LegalEntityBankAccount) -> BankAccountOut:
 
 
 async def list_bank_accounts(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     legal_entity_id: uuid.UUID,
 ) -> list[BankAccountOut]:
@@ -577,7 +577,7 @@ async def list_bank_accounts(
 
 
 async def create_bank_account(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     legal_entity_id: uuid.UUID,
     data: BankAccountIn,
@@ -611,7 +611,7 @@ async def create_bank_account(
 
 
 async def bank_account_for_documents(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     legal_entity_id: uuid.UUID,
     currency: str,
@@ -661,7 +661,7 @@ def _series_out(row: DocumentSeries, preview: str | None = None) -> DocumentSeri
 
 
 async def list_series(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     legal_entity_id: uuid.UUID,
 ) -> list[DocumentSeriesOut]:
@@ -684,7 +684,7 @@ def _check_config(prefix: str, fy_format: str, separator: str, pad: int) -> None
 
 
 async def create_series(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     legal_entity_id: uuid.UUID,
     data: DocumentSeriesIn,
@@ -723,7 +723,7 @@ async def create_series(
 
 
 async def update_series(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     series_id: uuid.UUID,
     data: DocumentSeriesUpdate,
@@ -757,7 +757,7 @@ async def update_series(
 
 
 async def series_for(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     legal_entity_id: uuid.UUID,
@@ -787,7 +787,7 @@ async def series_for(
 
 # ================================================================ periods (read)
 async def list_entity_periods(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     legal_entity_id: uuid.UUID,
     year: int | None,
@@ -959,7 +959,7 @@ async def readiness(
 
 
 async def set_registration_status(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     gst_registration_id: uuid.UUID,
     *,
@@ -987,7 +987,7 @@ async def set_registration_status(
 
 
 async def list_luts(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     gst_registration_id: uuid.UUID,
 ) -> list[LutOut]:
@@ -1003,7 +1003,7 @@ async def list_luts(
 
 
 async def put_lut(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     gst_registration_id: uuid.UUID,
     fiscal_year: str,
@@ -1055,7 +1055,7 @@ async def _bank_account(
 
 
 async def update_bank_account(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     bank_account_id: uuid.UUID,
     data: BankAccountUpdate,
@@ -1095,7 +1095,7 @@ async def update_bank_account(
 
 
 async def unmask_bank_account(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     bank_account_id: uuid.UUID,
 ) -> BankAccountUnmaskedOut:
@@ -1125,11 +1125,11 @@ async def upload_logo(
     return LegalEntityOut.model_validate(entity)
 
 
-async def list_gst_states(ctx: RequestContext, db: AsyncSession) -> list[GstStateOut]:  # noqa: ARG001
+async def list_gst_states(ctx: RequestContext, db: AsyncSession) -> list[GstStateOut]:  # ruff: ignore[unused-function-argument]
     rows = (await db.execute(select(GstState).order_by(GstState.name))).scalars()
     return [GstStateOut.model_validate(r) for r in rows]
 
 
-async def list_currencies(ctx: RequestContext, db: AsyncSession) -> list[CurrencyOut]:  # noqa: ARG001
+async def list_currencies(ctx: RequestContext, db: AsyncSession) -> list[CurrencyOut]:  # ruff: ignore[unused-function-argument]
     rows = (await db.execute(select(Currency).order_by(Currency.code))).scalars()
     return [CurrencyOut.model_validate(r) for r in rows]

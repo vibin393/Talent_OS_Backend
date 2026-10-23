@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Shared helpers of the telephony package (Epic 76): errors, clock, phone normalisation, the tenant timezone and the
 calling user's id. No phone number, token or recording URL is ever logged."""
 

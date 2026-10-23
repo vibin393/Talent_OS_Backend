@@ -23,7 +23,7 @@ QUEUE = "interactive"  # Epic 13 (AD-37): the queue of every task in this module
 
 
 async def _in_tenant(tenant_id: uuid.UUID, work: Callable[[AsyncSession], Awaitable[Any]]) -> Any:
-    from app.services import (  # noqa: F401 - wiring
+    from app.services import (  # ruff: ignore[unused-import] - wiring
         connections_service,
         interviews_service,
         notifications_service,

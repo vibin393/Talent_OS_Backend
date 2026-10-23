@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Interview Assistant service (Epic 60): settings, manual re-runs, the agent's Accountable Owner and the operations
 behind the agent tools (``agent_ops``-style functions take the tool context's request + db and the run subject).
 
@@ -30,7 +30,7 @@ def _settings_out(row: Any) -> AssistantSettingsOut:
     )  # fmt: skip
 
 
-async def get_settings(ctx: RequestContext, db: AsyncSession) -> AssistantSettingsOut:  # noqa: ARG001
+async def get_settings(ctx: RequestContext, db: AsyncSession) -> AssistantSettingsOut:  # ruff: ignore[unused-function-argument]
     return _settings_out(await common.settings_row(db))
 
 
@@ -64,7 +64,9 @@ async def capture_owner(
 
 def kickoff_for(capture: InterviewCapture, interview: Any) -> Kickoff:
     kit = common.kit_of(interview)
-    from app.services.interview_captures.common import interviewers  # noqa: F401 - documented below
+    from app.services.interview_captures.common import (
+        interviewers,  # ruff: ignore[unused-import] - documented below
+    )
 
     return Kickoff(
         inputs={

@@ -58,7 +58,7 @@ class WorkerApplicationOut(BaseModel):
 
 # Epic 52 (phase-close gap, tests/portal/test_field_visibility.py): Worker portal response models of the internal
 # job board are registered under the worker field-visibility rules.
-from app.core.field_visibility import register_portal_schema  # noqa: E402
+from app.core.field_visibility import register_portal_schema  # ruff: ignore[module-import-not-at-top-of-file]
 
 for _model in (WorkerOpeningOut, WorkerOpeningDetailOut, WorkerOpeningPage, WorkerApplicationOut):
     register_portal_schema("worker")(_model)

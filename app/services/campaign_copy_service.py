@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """AI campaign copy facade (Epic 78, FR-401..FR-403, AD-91). The ``campaign_copy`` agent drafts copy from the brief,
 the aggregate segment definitions, linked postings' public fields and the Tenant's templates -- never recipient
 records. Drafts are checked deterministically, edited, approved by a person (★ ``campaign:copy_approve``) and only

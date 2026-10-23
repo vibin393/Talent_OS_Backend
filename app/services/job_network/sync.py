@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Index sync orchestration (Epic 75, spec A3). Opens a ``tenant_session`` to project the careers-public data, then a
 ``platform_session`` to write the index; runs the automated checks on a changed listing. Idempotent."""
 

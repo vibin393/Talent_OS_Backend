@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Deterministic grounding check of an onboarding answer (Epic 62 A2; pure, hypothesis-tested).
 
 ``check_answer(answer, cited_texts, record_facts)`` extracts the factual claims a model could invent -- amounts of

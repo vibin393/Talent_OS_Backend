@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Offer-drop extractor (Epic 48 A3, FR-242).
 
 * Subjects scored: Offers ``accepted`` without a Placement yet (subject ``offer``), and Placements ``pre_joining``

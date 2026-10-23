@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Phase 3 settings hub catalogue (Epic 52 A5, FR-261).
 
 Most Phase 3 owners register their own hub entry from ``hooks.py`` (``REQUIRED_P3_SETTINGS`` lists them with the

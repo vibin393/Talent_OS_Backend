@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The ``timesheet`` AgentSpec (Epic 63 A6; FR-311 / FR-312).
 
 Nudge runs (subject ``user`` = the Account Manager, owner = the AM): read the plan, send ONE templated reminder call

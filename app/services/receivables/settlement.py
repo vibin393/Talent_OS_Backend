@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Settlement core (AD-32, FR-153): open balances computed in SQL from dated facts, the settlement lock and the
 ``invoice_balances`` read cache.
 
@@ -188,7 +188,7 @@ async def rebuild_cache(db: AsyncSession) -> int:
     return len(docs)
 
 
-async def has_settlements(ctx: RequestContext, db: AsyncSession, document_kind: str, document_id: uuid.UUID) -> bool:  # noqa: ARG001
+async def has_settlements(ctx: RequestContext, db: AsyncSession, document_kind: str, document_id: uuid.UUID) -> bool:  # ruff: ignore[unused-function-argument]
     """Settlement probe registered with billing (IRN-cancel guard): any live allocation, TDS or write-off."""
     f = facts_union()
     total = (await db.execute(select(func.count()).select_from(f).where(f.c.doc_id == document_id))).scalar() or 0

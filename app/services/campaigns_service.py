@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Facade of the ``campaigns`` domain (Epic 39, recruitment marketing). Other domains (Epic 52 global search and
 the marketing funnel tile) call only these; ``campaigns.governance.check`` is the single suppression decision."""
 

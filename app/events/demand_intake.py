@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Demand Agent events (Epic 55, owner 55; dispatched after commit). Ids, codes and scalars only -- no PII.
 
 ``DemandIntakeMatched`` is a subclass of ``DemandIntakeReceived`` emitted instead of it when the message is

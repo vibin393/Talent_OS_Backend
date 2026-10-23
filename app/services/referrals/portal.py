@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Referrer self-service (Epic 42): internal Users on ``/me/referrals`` and Workers on ``/portal/work/referrals``.
 
 No permission key: any active internal User, any Worker (a Candidate with a Placement); program eligibility is the

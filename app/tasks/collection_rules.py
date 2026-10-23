@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 63 Billing / Collections Agent tasks: the hourly ``collection_rules.daily_tick`` and
 ``collection_rules.billing_prep_tick`` (``maintenance``), ``collection_rules.ptp_broken`` and the collection log rows of
 collections Proposals (``proposal_created`` / ``proposal_decided``).

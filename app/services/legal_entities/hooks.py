@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Registrations of the ``legal_entities`` domain (autodiscovered by ``core.hooks``).
 
 * Tenant provisioning: the default Legal Entity (+ open periods) for every new tenant (AD-17).
@@ -23,13 +23,13 @@ register_tenant_provisioner("legal_entities.default_entity", _provision, order=1
 
 
 # ---------------------------------------------------------------- Epic 51 (FR-255): live FX feed alerts + settings
-async def _fx_admins(db: AsyncSession, payload: Any) -> set[Any]:  # noqa: ARG001
+async def _fx_admins(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument]
     from app.services import identity_bridge
 
     return {u["id"] for u in await identity_bridge.users_with_permission(db, "fx_feed:configure")}
 
 
-async def _render_fx_failed(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG001
+async def _render_fx_failed(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
     from app.services.notifications_service import Content
 
     days = int(payload.get("consecutive_days") or 1)

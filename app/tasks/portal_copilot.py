@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Portal Copilot Celery tasks (Epic 77). Every task starts with ``tenant_id`` (beat fan-outs excepted).
 
 * queue ``conversations``: ``portal_copilot.on_run_finished`` (store the answer, publish ``turn.completed|failed``),

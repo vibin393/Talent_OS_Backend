@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401, ARG001
+# ruff: file-ignore[line-too-long, non-imperative-mood, unused-function-argument]
 """One-off Campaigns (Epic 39 A5, FR-197, story 39.3; PRD 5.2 state machine).
 
 ``draft -> pending_approval`` (recipients after the suppression preview >= ``approval_threshold``) or ``draft ->

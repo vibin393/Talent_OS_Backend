@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """AI agents (Epic 53, spec 0.16): enablement, kill switch, agent catalogue / configuration, runs and payload reads.
 
 Permissions (FR-328): ``ai:govern`` (console reads), ``ai:agent_configure`` (enable, modes, routing, budgets),

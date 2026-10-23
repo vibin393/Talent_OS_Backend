@@ -1,4 +1,4 @@
-"""Communication events (Epic 10, dispatched after commit). Ids and codes only -- never addresses or bodies."""  # noqa: E501
+"""Communication events (Epic 10, dispatched after commit). Ids and codes only -- never addresses or bodies."""  # ruff: ignore[line-too-long]
 
 import dataclasses
 import uuid

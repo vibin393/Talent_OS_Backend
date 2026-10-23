@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """``metering.reconcile`` (daily, ``maintenance``; NFR-71): yesterday's metered ``api_request`` count
 (``usage_counters``) against the ``api_request_log`` rows, per tenant; drift above 0.1 % logs an alert."""
 

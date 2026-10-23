@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Registrations of the ``chasing`` domain (autodiscovered by ``core.hooks``), Epic 62.
 
 * Notification types ``compliance_chase_reminder`` (Worker portal, in-app + email), ``compliance_chase_escalation``

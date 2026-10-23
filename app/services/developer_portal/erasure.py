@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Developer account erasure (Epic 74, spec A3; platform subject, Known gap 3). Self-service "Delete account" and the
 platform operator action "Erase" both run ``erase_account``: anonymise the account, delete its sessions, email tokens
 and recovery codes, remove org memberships and null the IP of its org audit rows."""

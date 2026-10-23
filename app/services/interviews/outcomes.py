@@ -237,7 +237,7 @@ async def interview_summary(
 
 # ================================================================ pipeline board badges (Epic 6 calls this)
 async def board_badges(
-    ctx: RequestContext | None,  # noqa: ARG001 - pipeline board port signature
+    ctx: RequestContext | None,  # ruff: ignore[unused-function-argument] - pipeline board port signature
     db: AsyncSession,
     application_ids: Sequence[uuid.UUID],
 ) -> dict[uuid.UUID, BoardBadge]:

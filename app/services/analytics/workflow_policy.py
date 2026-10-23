@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Workflow signals of predictions (Epic 48 A6, AD-45): notify-only.
 
 * The trigger ``analytics.prediction_band_changed`` is registered by the foundation catalogue (entity
@@ -50,7 +50,7 @@ async def owner_of_subject(
     return (row[0], row[1]) if row else (None, None)
 
 
-async def snapshot(ctx: RequestContext, db: AsyncSession, entity_id: uuid.UUID) -> dict[str, Any] | None:  # noqa: ARG001
+async def snapshot(ctx: RequestContext, db: AsyncSession, entity_id: uuid.UUID) -> dict[str, Any] | None:  # ruff: ignore[unused-function-argument]
     from app.models.analytics import MlPrediction
 
     p = await db.get(MlPrediction, entity_id)

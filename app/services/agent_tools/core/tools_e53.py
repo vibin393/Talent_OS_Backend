@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Core foundation tools (Epic 53, spec 0.11, FR-266). ``owner_epic="53"``, ``version=1``.
 
 Data-scope checks run with ``agent_runtime_service.scope_context`` (Effective Rights presented as the Accountable Owner);
@@ -122,7 +122,7 @@ async def _task_handler(tctx: Any, args: TaskCreateIn) -> ToolOutcome:
     )
 
 
-async def _task_preview(tctx: Any, args: TaskCreateIn) -> ProposalPreview:  # noqa: ARG001
+async def _task_preview(tctx: Any, args: TaskCreateIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
     return ProposalPreview(
         title=f"Create task: {args.title}"[:200],
         summary=f"Create a {args.priority} priority task due in {args.due_in_hours} hours on the {args.entity_type}.",
@@ -164,7 +164,7 @@ async def _note_handler(tctx: Any, args: NoteIn) -> ToolOutcome:
     )
 
 
-async def _note_preview(tctx: Any, args: NoteIn) -> ProposalPreview:  # noqa: ARG001
+async def _note_preview(tctx: Any, args: NoteIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
     return ProposalPreview(
         title=f"Add an internal note to the {args.entity_type}", summary=_clean(args.body, 4000)
     )
@@ -210,7 +210,7 @@ async def _flag_handler(tctx: Any, args: FlagIn) -> ToolOutcome:
     )
 
 
-async def _flag_preview(tctx: Any, args: FlagIn) -> ProposalPreview:  # noqa: ARG001
+async def _flag_preview(tctx: Any, args: FlagIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
     return ProposalPreview(
         title=f"Raise a {args.severity} {args.flag} flag", summary=_clean(args.message, 500)
     )
@@ -253,7 +253,7 @@ async def _nudge_handler(tctx: Any, args: NudgeIn) -> ToolOutcome:
     )
 
 
-async def _nudge_preview(tctx: Any, args: NudgeIn) -> ProposalPreview:  # noqa: ARG001
+async def _nudge_preview(tctx: Any, args: NudgeIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
     return ProposalPreview(title="Send an in-app reminder to a colleague", summary=_clean(args.message, 500))
 
 
@@ -327,7 +327,7 @@ async def _draft_handler(tctx: Any, args: DraftIn) -> ToolOutcome:
     )  # fmt: skip
 
 
-async def _draft_preview(tctx: Any, args: DraftIn) -> ProposalPreview:  # noqa: ARG001
+async def _draft_preview(tctx: Any, args: DraftIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
     return ProposalPreview(
         title=f"Draft a {args.channel} message",
         summary=_clean(args.body, 4000),
@@ -486,7 +486,7 @@ async def _templated_handler(tctx: Any, args: SendTemplatedIn) -> ToolOutcome:
     )
 
 
-async def _templated_preview(tctx: Any, args: SendTemplatedIn) -> ProposalPreview:  # noqa: ARG001
+async def _templated_preview(tctx: Any, args: SendTemplatedIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
     return ProposalPreview(
         title=f"Send a templated {args.channel} message",
         summary="Template "
@@ -538,7 +538,7 @@ async def _send_handler(tctx: Any, args: SendIn) -> ToolOutcome:
     )
 
 
-async def _send_preview(tctx: Any, args: SendIn) -> ProposalPreview:  # noqa: ARG001
+async def _send_preview(tctx: Any, args: SendIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
     return ProposalPreview(
         title=f"Send {args.channel}: {args.subject or 'message'}"[:200],
         summary=_clean(args.body, 4000),

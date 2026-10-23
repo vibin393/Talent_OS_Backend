@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Chase facts of a Worker (Epic 62 A3): everything ``plan.due_chases`` needs, read from the P2 records (no writes).
 
 * Items: mandatory checklist items of open Placements (``pre_joining`` / ``joining_confirmed`` / ``active``) and the
@@ -126,7 +126,7 @@ async def coordinator_for(
     return next((c for c in candidates if c in active), None)
 
 
-async def gather(db: AsyncSession, candidate_id: uuid.UUID, today: date, now: datetime) -> FactsBundle:  # noqa: ARG001
+async def gather(db: AsyncSession, candidate_id: uuid.UUID, today: date, now: datetime) -> FactsBundle:  # ruff: ignore[unused-function-argument]
     from app.models.compliance import (
         ComplianceSettings,
         Credential,

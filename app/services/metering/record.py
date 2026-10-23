@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Metering hot path (Epic 66, AD-78, NFR-71): ``record`` never raises and never waits on a database.
 
 Redis: one pipeline of ``HINCRBY`` / ``HINCRBYFLOAT`` on ``usage:{tenant}:{yyyymmdd}`` (fields

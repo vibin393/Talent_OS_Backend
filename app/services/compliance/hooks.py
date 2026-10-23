@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Registrations of the ``compliance`` domain (autodiscovered by ``core.hooks``), Epic 21 A8.
 
 * Event subscriptions -> Celery tasks: ``PlacementCreated`` (evaluate), ``ApplicationStageChanged`` to
@@ -29,7 +29,9 @@ from app.services.compliance.common import (
 
 # ---------------------------------------------------------------- events -> tasks
 def _subscribe() -> None:
-    from app.events.compliance import PlacementComplianceChanged  # noqa: F401  (catalogue import check)
+    from app.events.compliance import (
+        PlacementComplianceChanged,  # ruff: ignore[unused-import]  (catalogue import check)
+    )
     from app.events.onboarding import PolicyAcknowledged
     from app.events.pipeline import ApplicationStageChanged
     from app.events.placements import PlacementCreated, PlacementDropped
@@ -131,7 +133,7 @@ async def _expired_recipients(db: AsyncSession, payload: Any) -> set[Any]:
     return out | await _account_managers(db, _uuid(payload.get("candidate_id")))
 
 
-async def _worker_only(db: AsyncSession, payload: Any) -> set[Any]:  # noqa: ARG001
+async def _worker_only(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument]
     from app.services.notifications_service import Recipient
 
     cid = _uuid(payload.get("candidate_id"))
@@ -323,7 +325,7 @@ _register_provisioning()
 
 
 # ---------------------------------------------------------------- Worker 360 / placement filter
-async def _worker_section(ctx: Any, db: AsyncSession, candidate_id: uuid.UUID) -> Any:  # noqa: ARG001
+async def _worker_section(ctx: Any, db: AsyncSession, candidate_id: uuid.UUID) -> Any:  # ruff: ignore[unused-function-argument]
     from app.services.compliance import credentials
 
     return [

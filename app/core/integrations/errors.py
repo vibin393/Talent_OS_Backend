@@ -37,7 +37,7 @@ class ConnectorAuthError(ConnectorError):
     code = "auth_failed"
 
 
-class ConnectorRateLimited(ConnectorError):  # noqa: N818 - public name fixed by the spec
+class ConnectorRateLimited(ConnectorError):  # ruff: ignore[error-suffix-on-exception-name] - public name fixed by the spec
     code = "rate_limited"
 
     def __init__(self, retry_after: float = 60.0, message: str | None = None) -> None:
@@ -55,7 +55,7 @@ class ConnectorPermanentError(ConnectorError):
         super().__init__(message or code)
 
 
-class ManualActionRequired(Exception):  # noqa: N818 - domain name fixed by the spec
+class ManualActionRequired(Exception):  # ruff: ignore[error-suffix-on-exception-name] - domain name fixed by the spec
     """The operation needs a human (Manual connector): the job ends ``succeeded`` with ``{"manual": true}``.
 
     ``app.services.connectors.base.ManualActionRequired`` is this class (one type, caught everywhere)."""

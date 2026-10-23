@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Visa Types (Epic 46 A1, FR-232, AD-52): adopt platform templates, create, version, patch, archive.
 
 * Adopting copies the template definition into a tenant ``visa_types`` row + version 1 (409 ``visa_type_exists``
@@ -46,7 +46,7 @@ def credential_type_key(visa_key: str) -> str:
 
 
 # ================================================================ templates
-async def list_templates(ctx: RequestContext, db: AsyncSession) -> list[VisaTemplateOut]:  # noqa: ARG001
+async def list_templates(ctx: RequestContext, db: AsyncSession) -> list[VisaTemplateOut]:  # ruff: ignore[unused-function-argument]
     rows = (await db.execute(select(VisaTypeTemplate).order_by(VisaTypeTemplate.name))).scalars().all()
     adopted = dict(
         (
@@ -258,7 +258,7 @@ def _out(vt: VisaType, version_no: int | None, reviewed: dict[str, Any], open_ca
 
 
 async def list_types(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     include_archived: bool = False,
@@ -288,7 +288,7 @@ async def list_types(
     ]
 
 
-async def detail(ctx: RequestContext, db: AsyncSession, visa_type_id: uuid.UUID) -> VisaTypeDetailOut:  # noqa: ARG001
+async def detail(ctx: RequestContext, db: AsyncSession, visa_type_id: uuid.UUID) -> VisaTypeDetailOut:  # ruff: ignore[unused-function-argument]
     vt = await load(db, visa_type_id)
     versions = list(
         (

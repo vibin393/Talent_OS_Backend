@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """MCP persistence (Epic 73, spec layout): the only MCP code that runs SQL. ``services/mcp_server`` (no SQL, contract
 ``p5-mcp-via-runtime``) never imports it; the ``mcp_service`` facade does. Imports ``sqlalchemy``, ``app.models.mcp``
 and ``app.core`` only. Every function runs in the tenant session it is given."""

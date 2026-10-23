@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Ledger sync wiring (Epic 71), autodiscovered by ``core.hooks``.
 
 * the Connector Manifests ``zoho_books`` and ``tally_xml`` (accounting);
@@ -46,7 +46,7 @@ def _star() -> None:
 def _job_listener() -> None:
     from app.services.connectors.registry import register_job_listener
 
-    async def on_outcome(ctx: Any, db: AsyncSession, job: Any, outcome: str, exc: BaseException | None) -> None:  # noqa: ARG001
+    async def on_outcome(ctx: Any, db: AsyncSession, job: Any, outcome: str, exc: BaseException | None) -> None:  # ruff: ignore[unused-function-argument]
         if outcome not in ("dead", "permanent", "auth_failed") or job.op != "sync:push_document" or job.category != "accounting":
             return
         payload = dict(job.payload or {})
@@ -75,19 +75,19 @@ def _job_listener() -> None:
 def _notifications() -> None:
     from app.services import notifications_service as ns
 
-    async def finance(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # noqa: ARG001
+    async def finance(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
         from app.services.identity_bridge import users_with_permission
 
         return {u["id"] for u in await users_with_permission(db, "ledger:sync")}
 
-    async def failed(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG001
+    async def failed(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
         return ns.Content(
             title="A document couldn't be pushed to the accounting system",
             body="Open Ledger sync to see the message, fix the mapping and retry.",
             entity_type=None, entity_id=None, link_path="/finance/ledger-sync",
         )  # fmt: skip
 
-    async def waiting(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG001
+    async def waiting(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
         n = int(payload.get("count") or 0)
         return ns.Content(
             title=f"{n} payment{'s' if n != 1 else ''} from Zoho Books to review",
@@ -95,7 +95,7 @@ def _notifications() -> None:
             entity_type=None, entity_id=None, link_path="/finance/ledger-sync?tab=suggestions",
         )  # fmt: skip
 
-    async def missing(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG001
+    async def missing(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
         return ns.Content(
             title="A ledger mapping is missing", body="Map the ledger before the next sync.",
             entity_type=None, entity_id=None, link_path="/settings/ledger",

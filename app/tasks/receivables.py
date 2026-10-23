@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Receivables (Epic 30) Celery tasks. Every per-tenant task starts with ``tenant_id``.
 
 * ``receivables.apply_credit_note`` / ``receivables.refresh_balance`` (``interactive``): event handlers.

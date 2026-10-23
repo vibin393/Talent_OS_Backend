@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Engagement capture (Epic 39 A6, FR-198, story 39.4).
 
 Sources: P1 comms events (``EmailSent`` / ``EmailFailed`` / ``EmailBounced`` / ``EmailReplyReceived``), P2 messaging

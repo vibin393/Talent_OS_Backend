@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Fairness erasure handler ``fairness.self_id`` (order 54), Epic 49 A4 (NFR-38, FR-68).
 
 On Candidate erasure: the sealed self-ID row (under ``app.fairness_access = 'erasure'``), the alternative-process
@@ -11,7 +11,7 @@ from typing import Any
 from sqlalchemy import delete, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-import app.models.fairness  # noqa: F401  - tables on Base.metadata for the erasure-coverage guard
+import app.models.fairness  # ruff: ignore[unused-import]  - tables on Base.metadata for the erasure-coverage guard
 from app.models.fairness import AedtAlternativeRequest, SelfIdApplyUse
 from app.services.candidates_erasure import subject_ids
 from app.services.fairness import self_id

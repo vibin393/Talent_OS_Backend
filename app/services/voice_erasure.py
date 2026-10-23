@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Voice Screening erasure handler ``voice.sessions`` (order 67), Epic 58 (FR-326, AD-34).
 
 On Candidate erasure (merged ids included): the AI summary / gaps, the confirmed location and the Fake script ref of

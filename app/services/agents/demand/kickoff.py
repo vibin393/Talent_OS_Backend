@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Kickoff of the ``demand`` agent (Epic 55, spec 0.1). Deterministic, ids only -- no untrusted text: the model reads
 the email body and documents through tools, whose output is untrusted (the run is tainted then).
 

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Governed MCP Server administration DTOs (Epic 73, spec A3 / A4). The protocol endpoint speaks JSON-RPC (no DTOs)."""
 
 import uuid

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Field provenance (Epic 55, story 55.2): the verbatim source quote of every AI-extracted demand field.
 
 The UI shows a quote only while its field is still in ``demands.ai_extracted_fields`` (P1 semantics: editing or

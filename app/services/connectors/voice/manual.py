@@ -25,13 +25,13 @@ class ManualVoiceProvider:
     def __init__(self, config: ConnectorConfig | None = None) -> None:
         self.config = config
 
-    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # noqa: ARG002
+    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         raise ManualActionRequired(f"voice: complete {op} manually", {"op": op})
 
-    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # noqa: ARG002
+    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # ruff: ignore[unused-method-argument]
         return False
 
-    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # noqa: ARG002
+    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         return {}
 
     async def schedule_call(self, req: CallSessionRequestDTO) -> CallSessionDTO:
@@ -45,10 +45,10 @@ class ManualVoiceProvider:
     async def end_call(self, external_ref: str) -> CallSessionDTO:
         return CallSessionDTO(external_ref=external_ref, status="manual")
 
-    async def fetch_recording(self, recording_ref: str) -> RecordingDTO | None:  # noqa: ARG002
+    async def fetch_recording(self, recording_ref: str) -> RecordingDTO | None:  # ruff: ignore[unused-method-argument]
         return None
 
-    async def fetch_transcript(self, transcript_ref: str) -> TranscriptDTO | None:  # noqa: ARG002
+    async def fetch_transcript(self, transcript_ref: str) -> TranscriptDTO | None:  # ruff: ignore[unused-method-argument]
         return None
 
 

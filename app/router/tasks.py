@@ -1,5 +1,5 @@
 """Task endpoints (Epic 10, story 10.2): ``/tasks`` CRUD, complete / reopen, summary, and the generic
-``GET /{entity}/{id}/tasks`` (mounted before the activity router). Each endpoint calls one service function."""  # noqa: E501
+``GET /{entity}/{id}/tasks`` (mounted before the activity router). Each endpoint calls one service function."""  # ruff: ignore[line-too-long]
 
 import uuid
 from typing import Annotated, Any

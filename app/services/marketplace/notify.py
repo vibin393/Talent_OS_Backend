@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Marketplace notification types (Epic 69, Part B): ``installation_pending_approval`` (approvers; in-app + email),
 ``installation_degraded`` (accountable user + ``integration:manage`` holders; in-app + email) and
 ``installation_test_failed`` (installer; in-app). Delivered directly in the caller's session."""
@@ -73,7 +73,7 @@ async def _accountable(db: AsyncSession, payload: Any) -> set[uuid.UUID]:
     return out
 
 
-async def _installer(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # noqa: ARG001
+async def _installer(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
     user = _uuid(payload.get("user_id"))
     return {user} if user else set()
 
@@ -88,7 +88,7 @@ def _content(title: str, payload: Any, body: str | None = None) -> Any:
     )  # fmt: skip
 
 
-async def _render_pending(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG001
+async def _render_pending(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
     scopes = ", ".join(payload.get("sensitive_scopes") or [])
     return _content(
         f"Approve installing {payload.get('name') or 'an integration'}",
@@ -97,7 +97,7 @@ async def _render_pending(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG00
     )
 
 
-async def _render_degraded(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG001
+async def _render_degraded(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
     return _content(
         f"{payload.get('name') or 'An integration'} needs attention",
         payload,
@@ -105,7 +105,7 @@ async def _render_degraded(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG0
     )
 
 
-async def _render_test_failed(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG001
+async def _render_test_failed(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
     return _content(
         f"We couldn't connect {payload.get('name') or 'an integration'}", payload, payload.get("message")
     )

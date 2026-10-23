@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Won conversion (FR-86, A6; story 2.4).
 
 ``won_preview`` proposes the records (no writes). ``win_opportunity`` runs in ONE transaction (the router adds

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 63 Billing Agent tools (``owner_epic="63"``, ``version=1``). Issuing, cancelling, crediting or sending an
 invoice, assigning numbers, editing lines or rates and recording payments are ★ and have no tool (``billing.issue`` /
 ``billing.notes`` / ``billing.einvoice`` are never imported).
@@ -277,7 +277,7 @@ async def _flag(tctx: Any, args: FlagIn) -> ToolOutcome:
     return ToolOutcome(FlagOut(activity_id=out.id), target=("client", args.client_id), summary=f"exception noted: {args.kind}")
 
 
-async def _flag_preview(tctx: Any, args: FlagIn) -> ProposalPreview:  # noqa: ARG001
+async def _flag_preview(tctx: Any, args: FlagIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
     return ProposalPreview(
         title=f"Note on the client: {EXCEPTION_LABELS[args.kind]}", summary=args.details[:4000],
         fields=(("Exception", EXCEPTION_LABELS[args.kind]),), renderer="billing.flag_exception",

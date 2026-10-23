@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """New-hire, change and exit push (Epic 71, story 71.2, spec A4).
 
 Sync handlers (``register_sync_handler("hrms", "push_hire" | "push_change" | "push_exit" | "manual_push", fn)``) run as

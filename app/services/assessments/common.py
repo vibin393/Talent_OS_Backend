@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Shared helpers of the ``assessments`` domain (Epic 40): permission keys, errors, clock, tenant / actor access."""
 
 import uuid

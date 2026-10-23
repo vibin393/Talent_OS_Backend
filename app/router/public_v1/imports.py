@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """``/public/v1/imports`` (Epic 67, spec A4): asynchronous bulk import of candidates or applications (CSV / JSONL)."""
 
 import uuid

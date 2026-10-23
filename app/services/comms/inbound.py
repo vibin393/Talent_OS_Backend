@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Inbound email capture (Phase 2 Epic 33, FR-171): replies to Talent OS-originated threads only.
 
 * ``record_thread`` -- called by ``comms_service.deliver`` after a mailbox send: when the message is filed under
@@ -259,7 +259,7 @@ async def _sync_group(
     return counts
 
 
-async def sync_threads(ctx: RequestContext, db: AsyncSession, now: datetime | None = None) -> dict[str, int]:  # noqa: ARG001
+async def sync_threads(ctx: RequestContext, db: AsyncSession, now: datetime | None = None) -> dict[str, int]:  # ruff: ignore[unused-function-argument]
     """One reply-sync cycle for the session's tenant."""
     now = now or _now()
     totals = {"threads": 0, "replies": 0, "errors": 0, "stopped": 0}

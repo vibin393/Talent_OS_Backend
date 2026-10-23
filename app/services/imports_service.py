@@ -56,7 +56,7 @@ async def enforce_sandbox_cap(tenant_id: uuid.UUID | None, rows: int) -> None:
 
 
 async def register_preview(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     kind: str,
     file_id: uuid.UUID | None,
@@ -132,7 +132,7 @@ async def mark_applied(
     return ImportBatchOut.model_validate(batch)
 
 
-async def mark_failed(ctx: RequestContext, db: AsyncSession, batch_id: uuid.UUID, *, reason: str | None = None) -> ImportBatchOut:  # noqa: ARG001
+async def mark_failed(ctx: RequestContext, db: AsyncSession, batch_id: uuid.UUID, *, reason: str | None = None) -> ImportBatchOut:  # ruff: ignore[unused-function-argument]
     batch = await _batch(db, batch_id)
     batch.status = "failed"
     if reason:
@@ -141,7 +141,7 @@ async def mark_failed(ctx: RequestContext, db: AsyncSession, batch_id: uuid.UUID
     return ImportBatchOut.model_validate(batch)
 
 
-async def discard(ctx: RequestContext, db: AsyncSession, batch_id: uuid.UUID) -> ImportBatchOut:  # noqa: ARG001
+async def discard(ctx: RequestContext, db: AsyncSession, batch_id: uuid.UUID) -> ImportBatchOut:  # ruff: ignore[unused-function-argument]
     batch = await _batch(db, batch_id)
     if batch.status == "applied":
         raise ConflictError("An applied import cannot be discarded", code="import_state", details={"status": batch.status})

@@ -138,7 +138,7 @@ def _settings_out(row: PayrollSettings) -> PayrollSettingsOut:
     )
 
 
-async def get_settings(ctx: RequestContext, db: AsyncSession) -> PayrollSettingsOut:  # noqa: ARG001
+async def get_settings(ctx: RequestContext, db: AsyncSession) -> PayrollSettingsOut:  # ruff: ignore[unused-function-argument]
     return _settings_out(await get_settings_row(db))
 
 
@@ -176,7 +176,7 @@ def _cal_out(row: PayCalendar | None, le: LegalEntity) -> PayCalendarOut:
     )
 
 
-async def get_calendar(ctx: RequestContext, db: AsyncSession, legal_entity_id: uuid.UUID) -> PayCalendarOut:  # noqa: ARG001
+async def get_calendar(ctx: RequestContext, db: AsyncSession, legal_entity_id: uuid.UUID) -> PayCalendarOut:  # ruff: ignore[unused-function-argument]
     le = await legal_entity(db, legal_entity_id)
     return _cal_out(await _calendar(db, legal_entity_id), le)
 
@@ -211,7 +211,7 @@ def _human_id(le: LegalEntity, end: date) -> str:
 
 
 async def ensure_pay_periods(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     legal_entity_id: uuid.UUID | None = None,
@@ -331,7 +331,7 @@ def period_out(p: PayPeriod, counts: dict[str, int] | None = None) -> PayPeriodO
 
 
 async def list_periods(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     legal_entity_id: uuid.UUID | None = None,
@@ -347,7 +347,7 @@ async def list_periods(
     return [period_out(p, counts.get(p.id)) for p in rows]
 
 
-async def get_period(ctx: RequestContext, db: AsyncSession, period_id: uuid.UUID) -> PayPeriodOut:  # noqa: ARG001
+async def get_period(ctx: RequestContext, db: AsyncSession, period_id: uuid.UUID) -> PayPeriodOut:  # ruff: ignore[unused-function-argument]
     p = await load_period(db, period_id)
     return period_out(p, (await _version_counts(db, [p.id])).get(p.id))
 
@@ -364,7 +364,7 @@ async def period_views(db: AsyncSession, legal_entity_id: uuid.UUID) -> list[Per
 
 
 async def pay_period_for(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     legal_entity_id: uuid.UUID,
     on_date: date,

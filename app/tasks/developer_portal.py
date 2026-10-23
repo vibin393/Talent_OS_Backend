@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Developer Portal tasks (Epic 74, spec layout): ``developer.create_sandbox`` / ``reset_sandbox`` / ``delete_sandbox``
 and ``developer.finalize_conformance`` on ``ecosystem``; ``developer.purge_unverified``, ``developer.expire_invitations``,
 ``developer.expire_verifications`` and ``developer.expire_conformance_runs`` on ``maintenance`` (daily / hourly beat)."""

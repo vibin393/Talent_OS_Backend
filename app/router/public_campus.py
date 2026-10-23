@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Public campus pages (Epic 43, FR-218 / FR-220, AD-53): ``/api/v1/public/campus/*``. No session -- the Secure Link
 token is the credential and is never logged; responses are ``no-store``, ``no-referrer``, ``noindex``.
 

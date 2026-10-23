@@ -84,7 +84,7 @@ class EncryptedStr(TypeDecorator[Sealed]):
     impl = Text
     cache_ok = True
 
-    def process_bind_param(self, value: Any, dialect: "Dialect") -> str | None:  # noqa: ARG002
+    def process_bind_param(self, value: Any, dialect: "Dialect") -> str | None:  # ruff: ignore[unused-method-argument]
         if value is None:
             return None
         if not isinstance(value, Sealed):
@@ -92,7 +92,7 @@ class EncryptedStr(TypeDecorator[Sealed]):
             raise TypeError(msg)
         return value.token
 
-    def process_result_value(self, value: Any, dialect: "Dialect") -> Sealed | None:  # noqa: ARG002
+    def process_result_value(self, value: Any, dialect: "Dialect") -> Sealed | None:  # ruff: ignore[unused-method-argument]
         return None if value is None else Sealed(str(value))
 
 
@@ -108,7 +108,7 @@ class EncryptedJSON(TypeDecorator[Sealed]):
     impl = Text
     cache_ok = True
 
-    def process_bind_param(self, value: Any, dialect: "Dialect") -> str | None:  # noqa: ARG002
+    def process_bind_param(self, value: Any, dialect: "Dialect") -> str | None:  # ruff: ignore[unused-method-argument]
         if value is None:
             return None
         if not isinstance(value, Sealed):
@@ -116,7 +116,7 @@ class EncryptedJSON(TypeDecorator[Sealed]):
             raise TypeError(msg)
         return value.token
 
-    def process_result_value(self, value: Any, dialect: "Dialect") -> Sealed | None:  # noqa: ARG002
+    def process_result_value(self, value: Any, dialect: "Dialect") -> Sealed | None:  # ruff: ignore[unused-method-argument]
         return None if value is None else Sealed(str(value))
 
 

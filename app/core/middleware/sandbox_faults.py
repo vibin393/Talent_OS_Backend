@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Conformance-run fault injection (Epic 74, story 74.4, spec 0.6). Pure core: the decision is made by a resolver that
 Epic 74's ``developer_portal`` registers (``register_fault_resolver``); without one this middleware is a no-op.
 

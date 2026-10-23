@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The ``demand`` AgentSpec (Epic 55, spec A4; FR-281..FR-284).
 
 * Run kinds (``kickoff.inputs.mode``): ``intake`` (subject = an intake message; owner = the matched Client's Account

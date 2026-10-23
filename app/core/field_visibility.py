@@ -167,7 +167,7 @@ def scan_payload(
     return hits
 
 
-class ForbiddenFieldLeak(RuntimeError):  # noqa: N818 - a programming error, not a domain error
+class ForbiddenFieldLeak(RuntimeError):  # ruff: ignore[error-suffix-on-exception-name] - a programming error, not a domain error
     """Raised by the dev/test response guard when a portal response carries a forbidden field."""
 
 

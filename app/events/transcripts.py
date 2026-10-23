@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Transcript events (Epic 53, spec 0.4). Emitted by ``transcripts`` when a transcript becomes ``ready``;
 consumed by Epics 57, 58 and 60.
 

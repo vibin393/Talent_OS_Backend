@@ -406,16 +406,16 @@ async def compute_tile(
 
 
 # Epic 34: merge the Phase 2 dashboards into the registry (module defined after this one's classes).
-from app.services.reporting.dashboards_p2 import P2_DASHBOARDS  # noqa: E402
+from app.services.reporting.dashboards_p2 import P2_DASHBOARDS
 
 DASHBOARDS.update(P2_DASHBOARDS)
 
 # Epic 52: merge the Phase 3 dashboards.
-from app.services.reporting.dashboards_p3 import P3_DASHBOARDS  # noqa: E402
+from app.services.reporting.dashboards_p3 import P3_DASHBOARDS
 
 DASHBOARDS.update(P3_DASHBOARDS)
 
 # Epic 65: merge the Phase 4 dashboards.
-from app.services.reporting.dashboards_p4 import P4_DASHBOARDS  # noqa: E402
+from app.services.reporting.dashboards_p4 import P4_DASHBOARDS
 
 DASHBOARDS.update(P4_DASHBOARDS)

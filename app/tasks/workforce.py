@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Workforce planning Celery tasks (Epic 44; queue ``maintenance``, AD-54). Every task starts with ``tenant_id``.
 
 Slot status follows P1 / P2 events (``services/workforce/hooks.py`` enqueues after commit):

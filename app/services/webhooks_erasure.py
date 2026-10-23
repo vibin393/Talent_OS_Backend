@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Webhooks erasure handler ``webhooks.deliveries`` (72), Epic 68 spec A7.
 
 Deletes the erased subject's ``webhook_deliveries`` (``candidate_id`` or the candidate / worker subject) -- except the
@@ -45,7 +45,7 @@ class WebhooksHandler:
         await db.flush()
         return {"deliveries": int(getattr(r, "rowcount", 0) or 0), "keys": keys}
 
-    async def export(self, db: AsyncSession, ctx: ErasureContext) -> dict[str, Any] | None:  # noqa: ARG002
+    async def export(self, db: AsyncSession, ctx: ErasureContext) -> dict[str, Any] | None:  # ruff: ignore[unused-method-argument]
         return None  # delivery metadata only (ids, types, statuses): nothing personal to export
 
     async def verify(self, db: AsyncSession, ctx: ErasureContext) -> list[str]:

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Public API v1 resource shapes (Epic 67, spec A4). One class per resource; ``object`` is the resource name."""
 
 import uuid

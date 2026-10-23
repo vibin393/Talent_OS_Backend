@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Projects and project roles (Epic 36 hub tables, AD-39; owner Epic 45, branch ``p3_projects``).
 
 Client org RLS on ``client_id``: a Client User session sees only its own client's projects and roles.

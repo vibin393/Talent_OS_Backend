@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Rate Tier enforcement for Public API / MCP callers (Epic 66, AD-78, FR-338).
 
 * App principals (``type="app"``): burst ``tier:sec:{tenant}:{installation}`` (1 s), ``tier:min:{tenant}:{installation}``
@@ -111,7 +111,7 @@ async def _day_quota(tenant_id: uuid.UUID, limit: int) -> None:
         raise quota_exceeded(limit, seconds_until_utc_midnight(now))
 
 
-async def enforce(principal: Any, route_group: str = "") -> None:  # noqa: ARG001 - route_group reserved (per-group limits)
+async def enforce(principal: Any, route_group: str = "") -> None:  # ruff: ignore[unused-function-argument] - route_group reserved (per-group limits)
     """Apply the caller's Rate Tier. Raises 429 ``rate_limited`` / ``quota_exceeded``."""
     if not get_settings().rate_limit_enabled:
         return

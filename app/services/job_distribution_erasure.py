@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Job distribution erasure handlers (Epic 70, spec A4). A top-level module so ``privacy`` never imports the Phase 5
 package.
 
@@ -35,10 +35,10 @@ class JobBoardSuppressHandler:
         await db.flush()
         return {"suppressed": total}
 
-    async def export(self, db: AsyncSession, ctx: ErasureContext) -> dict[str, Any] | None:  # noqa: ARG002
+    async def export(self, db: AsyncSession, ctx: ErasureContext) -> dict[str, Any] | None:  # ruff: ignore[unused-method-argument]
         return None
 
-    async def verify(self, db: AsyncSession, ctx: ErasureContext) -> list[str]:  # noqa: ARG002
+    async def verify(self, db: AsyncSession, ctx: ErasureContext) -> list[str]:  # ruff: ignore[unused-method-argument]
         return []
 
 

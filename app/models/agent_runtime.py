@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Agent runtime tables (Epic 53, AD-58..AD-62; migration ``20261008_400_02_p4_runtime``). Owner: ``agent_runtime``.
 
 * ``agent_principals`` -- one non-human identity per (tenant, agent key). Rights are computed per run (Effective Rights =

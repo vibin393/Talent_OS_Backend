@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Public API of the ``immigration`` domain (Epic 46; facade ``app.services.immigration_service``).
 
 * ``permits_for(ctx, db, candidate_id, on_date)`` -- a Candidate's permits valid on a date (no numbers).

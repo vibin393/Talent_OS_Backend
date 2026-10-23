@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Conformance checks (Epic 74, story 74.4, spec 0.6): pure evaluation of a run's observations into the seven
 required checks of ``talentos.conformance/1`` (69 §A8). Observations are platform records only: the calls the fault
 middleware saw (time, method, path, status, token grant, Idempotency-Key, the route's required scopes), the injected

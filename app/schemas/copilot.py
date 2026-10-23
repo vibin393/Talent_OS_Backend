@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Recruitment Copilot DTOs (Epic 54, AD-64). Admin usage DTOs carry metadata only -- never question or answer text
 (coordinator decision 6 / C-14)."""
 

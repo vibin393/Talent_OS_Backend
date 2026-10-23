@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Draft demands from intake, draft updates and approved JD / skill updates (Epic 55, stories 55.2 / 55.3).
 
 * ``create_draft`` (``demands.create_draft``, low): **intake values come from the stored extraction** (spec 0.2). The

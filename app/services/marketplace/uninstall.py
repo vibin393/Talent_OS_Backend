@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D400, D415
+# ruff: file-ignore[line-too-long, missing-trailing-period, missing-terminal-punctuation]
 """Uninstall extras (Epic 69, spec A4 "uninstall" steps 2-4, FR-355 / FR-410):
 
 * queued / failed ``connector_jobs`` of the Installation -> ``dead`` (``last_error='uninstalled'``);

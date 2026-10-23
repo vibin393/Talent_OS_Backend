@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Projects & SOW delivery (Epic 45, FR-227..FR-231): ``/api/v1/projects`` and friends.
 
 Permissions: ``project:read`` / ``project:write`` (data-scoped on the project's owner / business unit; 404 outside

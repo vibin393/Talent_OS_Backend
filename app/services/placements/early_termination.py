@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Early termination (FR-166): a client termination or worker resignation creates the offboarding case with the
 Contract's ``notice_period_days`` snapshot, ``notice_shortfall_days`` (recorded only; the commercial consequence is
 a PRD open item) and ``early_attrition``."""

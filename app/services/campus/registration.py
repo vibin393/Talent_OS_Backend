@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Campus registrations (Epic 43 story 43.2, FR-218): the status machine, reads, withdraw and the public
 registration page (Secure Link purpose ``campus_registration``, AD-53).
 

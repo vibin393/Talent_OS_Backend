@@ -166,7 +166,7 @@ async def assert_clear_for_update(
         )
 
 
-async def list_gates(ctx: RequestContext, db: AsyncSession, placement_id: uuid.UUID) -> list[StartGateOut]:  # noqa: ARG001
+async def list_gates(ctx: RequestContext, db: AsyncSession, placement_id: uuid.UUID) -> list[StartGateOut]:  # ruff: ignore[unused-function-argument]
     await get_placement(db, placement_id)
     rows = (
         await db.execute(
@@ -247,7 +247,7 @@ async def list_overrides(
     return [GateOverrideOut.model_validate(r) for r in rows]
 
 
-async def on_override_decided(ctx: RequestContext, db: AsyncSession, decision: Any) -> None:  # noqa: ARG001
+async def on_override_decided(ctx: RequestContext, db: AsyncSession, decision: Any) -> None:  # ruff: ignore[unused-function-argument]
     """Apply the final decision of ``start_gate_override`` (runs in the decision transaction)."""
     row = (
         await db.execute(

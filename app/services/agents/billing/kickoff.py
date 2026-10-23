@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Kickoff of the Billing Agent (Epic 63): ids only -- ``{legal_entity_id, period_start, period_end, client_id}``. The
 "Prepare invoice run" endpoint and the billing-day tick pass them explicitly; a bare manual start (foundation
 ``POST /agent-runs``, which takes no kickoff inputs -- spec Known gaps 5) prepares the previous calendar month."""

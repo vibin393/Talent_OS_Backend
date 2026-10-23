@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Reference checks (Epic 20 A7, P2-7.5, FR-114).
 
 * ``request`` (``reference_check:request``): ``requested`` + candidate notification. Linked to a ``reference``
@@ -103,7 +103,7 @@ async def request(
 
 
 async def list_for_candidate(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     candidate_id: uuid.UUID,
 ) -> list[ReferenceCheckOut]:
@@ -117,7 +117,7 @@ async def list_for_candidate(
     return [await _out(db, r) for r in rows]
 
 
-async def detail(ctx: RequestContext, db: AsyncSession, reference_check_id: uuid.UUID) -> ReferenceCheckOut:  # noqa: ARG001
+async def detail(ctx: RequestContext, db: AsyncSession, reference_check_id: uuid.UUID) -> ReferenceCheckOut:  # ruff: ignore[unused-function-argument]
     return await _out(db, await get_reference_check(db, reference_check_id))
 
 
@@ -137,7 +137,7 @@ async def review(
 
 
 async def responses(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     reference_check_id: uuid.UUID,
 ) -> ReferenceResponsesOut:

@@ -1,4 +1,4 @@
-# ruff: noqa: E501, RUF001
+# ruff: file-ignore[line-too-long, ambiguous-unicode-character-string]
 """Bias audit API models (Epic 49). No model here ever carries an individual's self-ID answers except
 ``SelfIdOut`` (the signed-in Candidate's own Portal view) -- ``tests/modules/fairness/test_access.py`` scans the
 OpenAPI document to prove no internal endpoint returns it."""

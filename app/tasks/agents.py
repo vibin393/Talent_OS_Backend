@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Agent runtime Celery tasks (Epic 53, AD-58 / AD-68). Every task starts with ``tenant_id`` (beat fan-outs excepted).
 
 * ``agents.run_step(tenant_id, run_id, step_no, attempt=0)`` -- one step; dispatched with ``apply_async(queue=...)`` on

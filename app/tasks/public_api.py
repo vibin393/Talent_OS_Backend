@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Public API tasks (Epic 67, spec A5 / A4).
 
 * ``public_api.start_import`` (queue ``interactive``) -- replay a public bulk import job (``public_api_service``).

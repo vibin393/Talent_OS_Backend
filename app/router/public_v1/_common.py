@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Shared Public API v1 router dependencies (Epic 67, spec A4 / 0.6): scopes, list params, ``Idempotency-Key`` on every
 POST (24 h, the request's own public session) and ``If-Match`` on every PATCH (428 / 412)."""
 

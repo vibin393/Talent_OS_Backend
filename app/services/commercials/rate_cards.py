@@ -4,7 +4,7 @@ Publishing supersedes the client's current published card of the same scope (cli
 one transaction: the current card ends the day before the new one starts. Published cards never overlap
 (EXCLUDE gist) and are never edited (DB trigger); a change is a new version. Existing placements' rate
 segments are never touched by a rate card change.
-"""  # noqa: E501
+"""  # ruff: ignore[line-too-long]
 
 import csv
 import hashlib
@@ -144,7 +144,7 @@ async def _new_card(db: AsyncSession, **values: Any) -> RateCard:
 
 
 # ================================================================ CRUD
-async def list_client_cards(ctx: RequestContext, db: AsyncSession, client_id: uuid.UUID) -> list[RateCardOut]:  # noqa: ARG001
+async def list_client_cards(ctx: RequestContext, db: AsyncSession, client_id: uuid.UUID) -> list[RateCardOut]:  # ruff: ignore[unused-function-argument]
     await require_client(db, client_id)
     rows = (
         await db.execute(
@@ -156,7 +156,7 @@ async def list_client_cards(ctx: RequestContext, db: AsyncSession, client_id: uu
     return [await _out(db, r) for r in rows]
 
 
-async def create_card(ctx: RequestContext, db: AsyncSession, data: RateCardIn) -> RateCardOut:  # noqa: ARG001
+async def create_card(ctx: RequestContext, db: AsyncSession, data: RateCardIn) -> RateCardOut:  # ruff: ignore[unused-function-argument]
     await require_client(db, data.client_id)
     await _check_contract(db, data.client_id, data.contract_id)
     row = await _new_card(
@@ -171,12 +171,12 @@ async def create_card(ctx: RequestContext, db: AsyncSession, data: RateCardIn) -
     return await _out(db, row, with_lines=True)
 
 
-async def get_card(ctx: RequestContext, db: AsyncSession, card_id: uuid.UUID) -> RateCardOut:  # noqa: ARG001
+async def get_card(ctx: RequestContext, db: AsyncSession, card_id: uuid.UUID) -> RateCardOut:  # ruff: ignore[unused-function-argument]
     return await _out(db, await get_row(db, card_id), with_lines=True)
 
 
 async def update_card(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     card_id: uuid.UUID,
     data: RateCardUpdate,
@@ -231,7 +231,7 @@ async def _replace_lines(db: AsyncSession, row: RateCard, lines: list[RateCardLi
 
 
 async def put_lines(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     card_id: uuid.UUID,
     lines: list[RateCardLineIn],
@@ -329,7 +329,7 @@ async def publish(ctx: RequestContext, db: AsyncSession, card_id: uuid.UUID) -> 
     return await _out(db, row, with_lines=True)
 
 
-async def archive(ctx: RequestContext, db: AsyncSession, card_id: uuid.UUID) -> RateCardOut:  # noqa: ARG001
+async def archive(ctx: RequestContext, db: AsyncSession, card_id: uuid.UUID) -> RateCardOut:  # ruff: ignore[unused-function-argument]
     row = await get_row(db, card_id, lock=True)
     if row.status == "archived":
         return await _out(db, row)
@@ -344,7 +344,7 @@ async def archive(ctx: RequestContext, db: AsyncSession, card_id: uuid.UUID) -> 
     return await _out(db, row)
 
 
-async def new_version(ctx: RequestContext, db: AsyncSession, card_id: uuid.UUID) -> RateCardOut:  # noqa: ARG001
+async def new_version(ctx: RequestContext, db: AsyncSession, card_id: uuid.UUID) -> RateCardOut:  # ruff: ignore[unused-function-argument]
     source = await get_row(db, card_id)
     if source.is_template or source.client_id is None:
         raise invalid("rate_card_template", "Copy a template to a client instead")
@@ -431,7 +431,7 @@ async def effective_lines(db: AsyncSession, card: RateCard) -> list[Line]:
 
 
 async def get_effective(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     client_id: uuid.UUID,
     on_date: date,
@@ -443,7 +443,7 @@ async def get_effective(
 
 
 # ================================================================ templates
-async def list_templates(ctx: RequestContext, db: AsyncSession) -> list[RateCardOut]:  # noqa: ARG001
+async def list_templates(ctx: RequestContext, db: AsyncSession) -> list[RateCardOut]:  # ruff: ignore[unused-function-argument]
     rows = (
         await db.execute(
             select(RateCard)
@@ -454,20 +454,20 @@ async def list_templates(ctx: RequestContext, db: AsyncSession) -> list[RateCard
     return [await _out(db, r) for r in rows]
 
 
-async def create_template(ctx: RequestContext, db: AsyncSession, data: RateCardTemplateIn) -> RateCardOut:  # noqa: ARG001
+async def create_template(ctx: RequestContext, db: AsyncSession, data: RateCardTemplateIn) -> RateCardOut:  # ruff: ignore[unused-function-argument]
     row = await _new_card(db, client_id=None, contract_id=None, is_template=True, name=data.name, version=1)
     return await _out(db, row, with_lines=True)
 
 
 async def copy_rate_card_template(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     template_id: uuid.UUID,
     client_id: uuid.UUID,
     contract_id: uuid.UUID | None,
     effective_from: date,
 ) -> uuid.UUID:
-    """A **draft** client card copied from a template (used by the CRM Won conversion)."""  # noqa: D401
+    """A **draft** client card copied from a template (used by the CRM Won conversion)."""  # ruff: ignore[non-imperative-mood]
     template = await get_row(db, template_id)
     if not template.is_template:
         raise invalid("rate_card_not_template", "This rate card is not a template")

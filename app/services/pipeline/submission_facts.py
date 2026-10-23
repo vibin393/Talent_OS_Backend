@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Read-only submission facts (Epic 61 A2, additive; no behaviour change).
 
 The P1 rules that the Submission dialog applies, extracted from ``pipeline.submissions`` (a human-only module that

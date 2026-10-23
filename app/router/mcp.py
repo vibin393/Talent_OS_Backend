@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """MCP protocol endpoint (Epic 73, spec A4): ``/api/mcp`` (served as ``{frontend}/mcp``) and the RFC 9728 Protected
 Resource Metadata ``/.well-known/oauth-protected-resource[/mcp]``. Mounted by ``app.main`` outside ``/api/v1``.
 Bearer-only: no cookie is read and no CSRF applies."""

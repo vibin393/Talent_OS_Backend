@@ -149,9 +149,9 @@ async def upload_image(
 
 async def career_site_access(
     ctx: RequestContext,
-    db: AsyncSession,  # noqa: ARG001 - files access hook signature
+    db: AsyncSession,  # ruff: ignore[unused-function-argument] - files access hook signature
     entity_id: uuid.UUID,
-    write: bool,  # noqa: ARG001 - files access hook signature
+    write: bool,  # ruff: ignore[unused-function-argument] - files access hook signature
 ) -> bool:
     """Files access hook: career-site images belong to the tenant (served publicly by the careers API)."""
     return ctx.tenant_id == entity_id

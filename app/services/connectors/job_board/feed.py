@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """XML job feed "board" (``job_feed``, Epic 70 spec A2 / A6): no outbound call. ``publish`` / ``close`` only toggle
 inclusion -- the Board Posting row is the flag; the public route renders the feed. Deterministic, no network, so it
 serves as the manifest's ``fake`` adapter too (a feed has no live mode to egress from)."""
@@ -40,8 +40,8 @@ class JobFeedAdapter(FakeAdapterBase):
 
     async def fetch_applicants(
         self,
-        since: datetime | None,  # noqa: ARG002
-        cursor: str | None,  # noqa: ARG002
+        since: datetime | None,  # ruff: ignore[unused-method-argument]
+        cursor: str | None,  # ruff: ignore[unused-method-argument]
     ) -> tuple[Sequence[BoardApplicantDTO], str | None]:
         return (), None
 

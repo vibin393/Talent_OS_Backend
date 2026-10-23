@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Onboarding notifications (Epic 23 A8). Delivered in the caller's transaction; a delivery failure never rolls
 back the business change (savepoint)."""
 

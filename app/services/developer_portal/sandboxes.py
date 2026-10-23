@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Self-serve Sandbox Tenants (Epic 74, story 74.3, spec 0.4).
 
 Create (``developer`` / ``owner``; a partner org holds at most ``partner_sandboxes_max`` = 3, a Tenant

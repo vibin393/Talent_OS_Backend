@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Exact decimal-string serialisation of model parameters (Epic 48 A4: no floats persisted, reproducible bytes).
 
 ``dec(x)`` is ``repr(float(x))`` -- the shortest string that round-trips the IEEE-754 double exactly, so

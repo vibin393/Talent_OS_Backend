@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Voice Screening tasks (Epic 58). Every task starts with ``tenant_id`` (the beat fan-out excepted).
 
 * ``voice.run_fake_call`` (``connectors``) -- play the Fake adapter's deterministic call lifecycle.

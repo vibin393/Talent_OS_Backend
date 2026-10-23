@@ -471,7 +471,7 @@ def _order(stmt: Select[Any], kind: str, sort: str | None, entity_id: Any) -> Se
 
 # ================================================================ per-kind base queries
 async def _applications(
-    ctx: RequestContext,  # noqa: ARG001 - common list-query signature
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument] - common list-query signature
     principal: Principal,
     f: ApplicationListFilters,
     tz: ZoneInfo,
@@ -511,7 +511,7 @@ async def _applications(
 
 
 async def _submissions(
-    ctx: RequestContext,  # noqa: ARG001 - common list-query signature
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument] - common list-query signature
     principal: Principal,
     f: SubmissionListFilters,
     tz: ZoneInfo,

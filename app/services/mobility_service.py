@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Facade of the ``mobility`` domain (Epic 41, FR-209..FR-212). Other domains import from here.
 
 Provided (foundation 0.5 / Epic 52): ``internal_fill_rate(ctx, db, from, to)`` for the mobility tile; approval

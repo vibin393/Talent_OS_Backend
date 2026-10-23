@@ -82,7 +82,7 @@ async def _latest_active(db: AsyncSession, placement_id: uuid.UUID) -> RateSegme
     ).scalar_one_or_none()
 
 
-async def activate(ctx: RequestContext, db: AsyncSession, segment: RateSegment) -> RateSegment:  # noqa: ARG001
+async def activate(ctx: RequestContext, db: AsyncSession, segment: RateSegment) -> RateSegment:  # ruff: ignore[unused-function-argument]
     placement = await get_placement(db, segment.placement_id, lock=True)
     previous = await _latest_active(db, placement.id)
     superseded: tuple[tuple[uuid.UUID, Any, Any], ...] = ()

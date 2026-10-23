@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Recordings: retrieval and provider deletion (Epic 76, story 76.4, spec A4).
 
 * ``fetch`` (task ``telephony.fetch_recording``): only when the dial-time gate requested recording **and** the Recording

@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401, ARG001
+# ruff: file-ignore[line-too-long, non-imperative-mood, unused-function-argument]
 """Facade of the ``payroll`` domain (Epic 13 contract layer; filled by Epic 28).
 
 Epic 71 (D-18, additive): ``export_file_bytes`` (the approved export file as generated for the default mapping,

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Check processing (Epic 20 A5, P2-7.3, FR-112, AD-29): assign, start, record, waive, evidence, packet, overdue.
 
 * **Start** needs an active ``bgv`` consent (409 ``bgv_consent_missing``; re-checked on every call). Internal
@@ -296,7 +296,7 @@ async def upload_evidence(
     return await check_out(db, check)
 
 
-async def packet(ctx: RequestContext, db: AsyncSession, check_id: uuid.UUID) -> tuple[bytes, str]:  # noqa: ARG001
+async def packet(ctx: RequestContext, db: AsyncSession, check_id: uuid.UUID) -> tuple[bytes, str]:  # ruff: ignore[unused-function-argument]
     """Build the minimal check packet (ZIP: the check's own files + ``declarations.json``), audited."""
     from app.services import files_service
 

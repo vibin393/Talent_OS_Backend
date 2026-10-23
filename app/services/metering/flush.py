@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """``metering.flush`` (beat every 60 s, queue ``maintenance``): Redis hashes + the in-process buffer ->
 ``usage_counters`` (``ON CONFLICT ON CONSTRAINT uq_usage_counters_key`` increments), one tenant session per tenant.
 

@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Returning-Worker reuse (Epic 23 A4, FR-124, UJ-14).
 
 A ``reusable`` task is inserted as ``approved`` (``decided_by_kind='system'``, ``reused_from_task_id``) when the

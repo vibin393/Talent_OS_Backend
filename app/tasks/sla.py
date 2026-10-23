@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """SLA and escalation Celery tasks (Epic 32; AD-9 tenant-scoped and idempotent, AD-37 queue ``maintenance``).
 
 * ``sla.evaluate_clocks(tenant_id)`` / beat ``sla.evaluate_clocks_all`` (every ``SLA_EVAL_INTERVAL_SECONDS``);

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Plan revisions (Epic 44, FR-223, PRD 5.6).
 
 ``approved -> revision_draft`` copies the effective lines into revision ``r`` (``change_kind='unchanged'``,

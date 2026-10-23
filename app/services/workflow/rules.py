@@ -1,4 +1,4 @@
-# ruff: noqa: D401, E501
+# ruff: file-ignore[non-imperative-mood, line-too-long]
 """Workflow rule administration (FR-58/FR-59): CRUD, activation (<= 100 active per tenant), executions,
 dry runs and the registry the rule builder renders. New rules are always created inactive.
 
@@ -529,7 +529,7 @@ async def dry_run_draft(ctx: RequestContext, db: AsyncSession, data: DraftDryRun
 
 
 # ================================================================ registry
-async def registry_for(ctx: RequestContext, db: AsyncSession) -> RegistryOut:  # noqa: ARG001
+async def registry_for(ctx: RequestContext, db: AsyncSession) -> RegistryOut:  # ruff: ignore[unused-function-argument]
     """The builder registry plus the tenant's library escalation policies (Epic 32)."""
     from app.services.sla import escalations
 

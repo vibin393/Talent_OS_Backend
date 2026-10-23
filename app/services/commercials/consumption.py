@@ -9,7 +9,7 @@
 * After the insert every newly crossed alert threshold (upwards) emits ``PoConsumptionThresholdReached`` once
   per crossing (deduped in ``po_alerts``); reaching zero remaining emits ``PoValidityChanged("exhausted")``.
 No external I/O happens here.
-"""  # noqa: E501
+"""  # ruff: ignore[line-too-long]
 
 import uuid
 from decimal import Decimal
@@ -67,7 +67,7 @@ def _insufficient(po: PurchaseOrder, rem_a: Decimal | None, rem_h: Decimal | Non
 
 
 async def record_po_consumption(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     po_id: uuid.UUID,
     source_doc_kind: str,
@@ -247,6 +247,6 @@ async def request_po_exception(
     return result.request_id
 
 
-async def on_po_exception_decided(ctx: RequestContext, db: AsyncSession, decision: object) -> None:  # noqa: ARG001
+async def on_po_exception_decided(ctx: RequestContext, db: AsyncSession, decision: object) -> None:  # ruff: ignore[unused-function-argument]
     """Nothing to write: ``record_po_consumption`` reads the approved request itself."""
     return

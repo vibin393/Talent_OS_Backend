@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Extension checks (FR-163, PRD §5.15): ``run(ctx, db, placement, proposal) -> list[CheckResult]``.
 
 Checks: ``rate_card`` (commercials ``validate_rate`` with ``subject_kind='extension'``), ``margin`` (tenant

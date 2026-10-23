@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Worker "My Work" onboarding (Epic 23 A7, ``/api/v1/portal/work/onboarding``). Worker dependency + worker org
 scope; calls only ``services/onboarding/portal.py``. Another Worker's case or task, and internal tasks, are 404."""
 

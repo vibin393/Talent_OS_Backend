@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Phase 4 AEDT coverage inside ``fairness`` (Epic 65 story 65.6, FR-323, NFR-52, AD-47, AD-71).
 
 * ``SEED_P4`` / ``ensure_seed_p4`` -- inventory entries for the agents that assist selection, ``inactive`` until

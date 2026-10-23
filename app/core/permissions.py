@@ -1053,7 +1053,7 @@ _STAR_CANDIDATES = (
 STAR_PERMISSIONS: frozenset[str] = frozenset(p for p in _STAR_CANDIDATES if p in CATALOG)
 
 
-class InvalidGrant(ValueError):  # noqa: N818 - domain name
+class InvalidGrant(ValueError):  # ruff: ignore[error-suffix-on-exception-name] - domain name
     def __init__(self, permission: str, reason: str) -> None:
         self.permission = permission
         self.reason = reason

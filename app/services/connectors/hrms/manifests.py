@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Connector Manifests of the real HRMS connectors (Epic 71, spec A3): Darwinbox and Keka. Registered by
 ``app.services.hrms_sync.hooks``; listed in the marketplace by Epic 69.
 

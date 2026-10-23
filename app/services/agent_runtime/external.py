@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """External (MCP) sessions on the agent runtime (Epic 66, spec §0.15, AD-84). Epic 73's MCP server drives them.
 
 * ``open_external_session`` -- one ``agent_runs`` row per MCP session: agent ``mcp``, origin / trigger ``external``,
@@ -308,7 +308,7 @@ async def execute_external_call(
     return out
 
 
-def _out(call: _Call, principal: Principal, run: AgentRun) -> ExternalCallOut:  # noqa: ARG001
+def _out(call: _Call, principal: Principal, run: AgentRun) -> ExternalCallOut:  # ruff: ignore[unused-function-argument]
     outcome = call.outcome
     if outcome == "executed":
         tool = call.tool

@@ -1,4 +1,4 @@
-# ruff: noqa: ARG001, E501
+# ruff: file-ignore[unused-function-argument, line-too-long]
 """Per-Placement compliance checklist (Epic 21 A4/A6, P2-8.1/8.3, FR-110/115/116).
 
 * ``evaluate_subject`` (handlers of ``PlacementCreated`` and, when configured, ``ApplicationStageChanged`` to

@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Tenant / platform state the runtime reads (Epic 53): kill switches, features, agent config, action policies, limits,
 monthly usage; and the concrete ``ToolContext``."""
 

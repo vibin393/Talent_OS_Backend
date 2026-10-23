@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Scope catalogue v1 (Epic 66, spec 0.5, FR-332/FR-376). Registered from ``oauth/hooks.py``. Later epics add scopes
 only through ``core.oauth_scopes.register_scope`` from their own ``hooks.py`` (e.g. 68 ``webhooks:manage``).
 

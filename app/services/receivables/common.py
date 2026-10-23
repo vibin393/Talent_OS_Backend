@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Shared helpers of the receivables domain: errors, dates / periods, document reads, FX quantization."""
 
 import uuid

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Retention (Epic 68, spec A7; task ``webhooks.purge``, daily, ``maintenance``). The delivery log itself is purged by
 the 66 partition job (``register_partitioned_table("webhook_deliveries", retention_days=30)``: whole months dropped,
 older rows deleted). Here: keys older than 31 days, echo receipts older than 7 days, and soft-deleted Subscriptions

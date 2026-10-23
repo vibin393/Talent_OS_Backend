@@ -65,7 +65,7 @@ _DEFAULT_MESSAGES: dict[str, str] = {
 }
 
 
-class EgressRefused(DomainError):  # noqa: N818 - public name fixed by the architecture
+class EgressRefused(DomainError):  # ruff: ignore[error-suffix-on-exception-name] - public name fixed by the architecture
     """An outbound call refused by the Egress Guard. ``details.reason`` says why; never carries an address."""
 
     status_code = 422

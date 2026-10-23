@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The ``voice_screening`` AgentSpec (Epic 58, spec A6; FR-293..FR-296).
 
 Runs are short and stage-driven: ``requested`` (the recruiter asked for a voice screen -> send the templated consent

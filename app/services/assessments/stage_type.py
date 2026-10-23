@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Assessment interview stages (Epic 40 A9): stage-plan validation and the scheduling guard.
 
 The foundation added ``interview_stages.kind = 'assessment'`` and ``assessment_id`` (CHECK ``assessment_id IS NULL OR
@@ -22,7 +22,7 @@ from app.models.assessments import Assessment
 from app.services.assessments.common import conflict, invalid
 
 
-async def validate_plan(ctx: RequestContext, db: AsyncSession, stages: list[Any]) -> None:  # noqa: ARG001
+async def validate_plan(ctx: RequestContext, db: AsyncSession, stages: list[Any]) -> None:  # ruff: ignore[unused-function-argument]
     for i, stage in enumerate(stages):
         assessment_id = getattr(stage, "assessment_id", None)
         if stage.kind != "assessment":
@@ -42,7 +42,7 @@ async def validate_plan(ctx: RequestContext, db: AsyncSession, stages: list[Any]
             )
 
 
-async def schedule_guard(db: AsyncSession, stage: Any) -> None:  # noqa: ARG001
+async def schedule_guard(db: AsyncSession, stage: Any) -> None:  # ruff: ignore[unused-function-argument]
     if getattr(stage, "kind", None) == "assessment":
         raise conflict(
             "stage_is_assessment", "This stage is an assessment: invite the candidate instead of scheduling"

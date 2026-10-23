@@ -15,7 +15,7 @@ Public API for other domains (names fixed by their specs; import through ``app.s
   ``request_po_exception``;
 * portal: ``portal.client_po_consumption`` (mounted by the Client Portal epic);
 * Epic 45: ``mark_milestone_billable(ctx, db, milestone_id, *, actor) -> MilestoneOut`` (Deliverable acceptance).
-"""  # noqa: E501
+"""  # ruff: ignore[line-too-long]
 
 from app.services.commercials import (
     billing_profiles,

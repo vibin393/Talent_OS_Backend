@@ -134,12 +134,12 @@ async def _out(db: AsyncSession, batch: FileImportBatch) -> dict[str, Any]:
     }
 
 
-async def get_import(ctx: RequestContext, db: AsyncSession, batch_id: uuid.UUID) -> dict[str, Any]:  # noqa: ARG001
+async def get_import(ctx: RequestContext, db: AsyncSession, batch_id: uuid.UUID) -> dict[str, Any]:  # ruff: ignore[unused-function-argument]
     return await _out(db, await _batch(db, batch_id))
 
 
 async def list_imports(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     kind: str | None = None,
 ) -> list[dict[str, Any]]:
@@ -151,7 +151,7 @@ async def list_imports(
 
 
 async def list_rows(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     batch_id: uuid.UUID,
     status: str | None = None,
@@ -193,7 +193,7 @@ async def _file_rows(db: AsyncSession, batch: FileImportBatch, k: templates.Kind
     return parsing.parse(data, k, max_rows=get_settings().golive_max_rows)
 
 
-async def errors_csv(ctx: RequestContext, db: AsyncSession, batch_id: uuid.UUID) -> str:  # noqa: ARG001
+async def errors_csv(ctx: RequestContext, db: AsyncSession, batch_id: uuid.UUID) -> str:  # ruff: ignore[unused-function-argument]
     batch = await _batch(db, batch_id)
     k = templates.kind_def(batch.kind.removeprefix(PREFIX))
     rows = (

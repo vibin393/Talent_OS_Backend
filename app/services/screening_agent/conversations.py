@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Screening conversations (Epic 57 stories 57.2-57.4, 57.6; spec A3).
 
 Lifecycle: ``invited`` -> (disclosure + consent) ``consented`` -> ``in_progress`` -> ``completed`` (then ``reviewed``)

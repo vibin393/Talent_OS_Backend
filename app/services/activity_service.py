@@ -437,7 +437,7 @@ async def add_system_entry(
 
 
 async def reassign_entity(
-    ctx: RequestContext,  # noqa: ARG001 - uniform service signature
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument] - uniform service signature
     db: AsyncSession,
     entity_type: str,
     from_id: uuid.UUID,
@@ -458,7 +458,7 @@ async def reassign_entity(
 
 
 async def reassign_activities(
-    ctx: RequestContext,  # noqa: ARG001 - uniform service signature
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument] - uniform service signature
     db: AsyncSession,
     entity_type: str,
     activity_ids: Sequence[uuid.UUID],

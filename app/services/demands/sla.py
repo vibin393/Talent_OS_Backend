@@ -30,7 +30,7 @@ OPEN_MILESTONES: tuple[str, ...] = ("assignment", "first_submission", "first_int
 SEVERITY: dict[str, int] = {"met": 0, "healthy": 1, "at_risk": 2, "breached": 3}
 
 
-async def calendar_for(ctx: RequestContext, db: AsyncSession) -> tuple[business_hours.Calendar, str]:  # noqa: ARG001
+async def calendar_for(ctx: RequestContext, db: AsyncSession) -> tuple[business_hours.Calendar, str]:  # ruff: ignore[unused-function-argument]
     """Delegates to ``core.business_hours.tenant_calendar`` (Epic 13)."""
     return await business_hours.tenant_calendar(db)
 
@@ -113,7 +113,7 @@ async def start_open_clocks(ctx: RequestContext, db: AsyncSession, demand: Deman
 
 
 async def complete_sla_clock(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     demand_id: uuid.UUID,
     milestone: str,

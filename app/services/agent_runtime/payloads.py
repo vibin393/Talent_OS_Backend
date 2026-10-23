@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Encrypted payload store (Epic 53, story 53.6, NFR-47). Full prompts, model outputs and tool payloads live only here,
 encrypted with the tenant's ``agent_payload`` key; logs and log columns hold redacted summaries.
 

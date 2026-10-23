@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Installation health (Epic 69, spec A4 "Health"): connection tests with a log row per check, the hourly sweep, the
 3-consecutive-failures -> ``degraded`` rule and recovery. Health never changes ``suspended``, ``reconsent_required``,
 ``pending_approval`` or ``uninstalled`` Installations' status; ``pending_consent`` connectors are promoted to ``active``

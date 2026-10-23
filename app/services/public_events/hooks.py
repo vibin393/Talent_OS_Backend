@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Public events hooks (Epic 66, AD-79): install the outbox row factory and the after-commit relay kick in
 ``core.public_events``, register the catalogue v1, the retention binding of ``outbox_events`` (class ``public_events``)
 and the post-discovery catalogue validation (errors are logged; ``tests/public_events`` asserts an empty list)."""
@@ -29,7 +29,7 @@ def _register_retention() -> None:
     if "outbox_events" in retention_bindings():
         return
 
-    async def _no_subject(db: AsyncSession, row_id: uuid.UUID, *_: Any, **__: Any) -> None:  # noqa: ARG001
+    async def _no_subject(db: AsyncSession, row_id: uuid.UUID, *_: Any, **__: Any) -> None:  # ruff: ignore[unused-function-argument]
         return None
 
     async def _anchor(db: AsyncSession, row_id: uuid.UUID, *_: Any, **__: Any) -> Any:
@@ -37,7 +37,7 @@ def _register_retention() -> None:
             await db.execute(select(OutboxEvent.occurred_at).where(OutboxEvent.id == row_id))
         ).scalar_one_or_none()
 
-    async def _expire(db: AsyncSession, ids: Sequence[uuid.UUID], action: str = "delete") -> dict[str, int]:  # noqa: ARG001
+    async def _expire(db: AsyncSession, ids: Sequence[uuid.UUID], action: str = "delete") -> dict[str, int]:  # ruff: ignore[unused-function-argument]
         result = await db.execute(
             delete(OutboxEvent).where(
                 OutboxEvent.id.in_(list(ids)), OutboxEvent.dispatch_status == "dispatched"

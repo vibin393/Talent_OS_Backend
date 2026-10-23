@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Telephony tasks (Epic 76, AD-92), queue ``telephony`` (worker ``worker-telephony``, concurrency 4). Every task starts
 with ``tenant_id`` (the beat fan-outs excepted).
 

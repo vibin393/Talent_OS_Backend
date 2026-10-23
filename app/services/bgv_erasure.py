@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """BGV erasure handler ``bgv.cases`` (58), Epic 20 A10 (AD-34).
 
 * Rows inside the ``bgv_evidence`` retention window (``evidence_purge_after`` in the future, or in

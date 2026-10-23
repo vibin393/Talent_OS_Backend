@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Client Portal hiring forecasts (Epic 44, FR-226 / FR-80): ``/api/v1/client-portal/forecasts``.
 
 Whitelisted by construction: no budget, bill rate, approval chain, owner or internal note ever appears. A Client's

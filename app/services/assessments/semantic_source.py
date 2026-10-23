@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Semantic source ``assessments.result`` (Epic 40 A11, FR-237 "Assessment results"), registered from ``hooks.py``.
 
 Root ``assessment_invitations`` (erased, anonymous rows excluded); subject = the Candidate; scope ``assessment:read``

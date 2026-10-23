@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Skills graph contract (Epic 37; Epic 36 stub, AD-39). The ``expand`` signature is FINAL
 (``tests/contracts/signatures.json``).
 
@@ -151,7 +151,7 @@ async def explain_paths(
     ]
 
 
-async def graph_version(ctx: RequestContext, db: AsyncSession) -> str:  # noqa: ARG001
+async def graph_version(ctx: RequestContext, db: AsyncSession) -> str:  # ruff: ignore[unused-function-argument]
     """Stable hash of the tenant's effective graph (platform seed + tenant edges + legacy parents + settings)."""
     return await graph_mod.graph_version(db)
 
@@ -212,7 +212,7 @@ def _settings_out(cfg: settings_mod.GraphSettings, version: str) -> SkillGraphSe
     )
 
 
-async def get_settings(ctx: RequestContext, db: AsyncSession) -> SkillGraphSettingsOut:  # noqa: ARG001
+async def get_settings(ctx: RequestContext, db: AsyncSession) -> SkillGraphSettingsOut:  # ruff: ignore[unused-function-argument]
     return _settings_out(await settings_mod.current(db), await graph_mod.graph_version(db))
 
 
@@ -254,7 +254,7 @@ async def expand_preview(ctx: RequestContext, db: AsyncSession, data: ExpandPrev
 
 
 # ================================================================ proficiency and evidence
-async def recompute(ctx: RequestContext, db: AsyncSession, candidate_skill_id: uuid.UUID) -> None:  # noqa: ARG001
+async def recompute(ctx: RequestContext, db: AsyncSession, candidate_skill_id: uuid.UUID) -> None:  # ruff: ignore[unused-function-argument]
     """The only writer of ``candidate_skills.proficiency`` / ``verification`` (AD-41)."""
     await recompute_mod.recompute(db, candidate_skill_id)
 

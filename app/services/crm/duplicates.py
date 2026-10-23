@@ -36,7 +36,7 @@ def _client_domain_expr() -> object:
 
 
 async def find_duplicates(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     company_name: str | None,
     website: str | None,

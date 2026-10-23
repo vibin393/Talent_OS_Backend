@@ -64,24 +64,40 @@ __all__ += [
 ]
 
 # Epic 5: local embeddings (AD-7) and the vector index port.
-from app.services.ai import embedding_store, embeddings, vector_index  # noqa: E402
-from app.services.ai.embeddings import embed  # noqa: E402
-from app.services.ai.vector_index import VectorIndex, get_vector_index  # noqa: E402
+from app.services.ai import (  # ruff: ignore[module-import-not-at-top-of-file]
+    embedding_store,
+    embeddings,
+    vector_index,
+)
+from app.services.ai.embeddings import embed  # ruff: ignore[module-import-not-at-top-of-file]
+from app.services.ai.vector_index import (  # ruff: ignore[module-import-not-at-top-of-file]
+    VectorIndex,
+    get_vector_index,
+)
 
 __all__ += ["VectorIndex", "embed", "embedding_store", "embeddings", "get_vector_index", "vector_index"]
 
 # Epic 53 (AD-57): per-step agent calls, the scripted Fake LLM, model tiers and pricing.
-from app.services.ai import fake_llm, loop, model_tiers, pricing  # noqa: E402
-from app.services.ai.fake_llm import FakeLLM, FakeTurn, install_fake  # noqa: E402
-from app.services.ai.fake_llm import fake_llm as fake_llm_installed  # noqa: E402
-from app.services.ai.loop import (  # noqa: E402
+from app.services.ai import (  # ruff: ignore[module-import-not-at-top-of-file]
+    fake_llm,
+    loop,
+    model_tiers,
+    pricing,
+)
+from app.services.ai.fake_llm import (  # ruff: ignore[module-import-not-at-top-of-file]
+    FakeLLM,
+    FakeTurn,
+    install_fake,
+)
+from app.services.ai.fake_llm import fake_llm as fake_llm_installed
+from app.services.ai.loop import (  # ruff: ignore[module-import-not-at-top-of-file]
     run_agent_step,
     stream_agent_step,
     tool_result_block,
     wrap_tool_result,
 )
-from app.services.ai.model_tiers import model_for  # noqa: E402
-from app.services.ai.pricing import cost_micros  # noqa: E402
+from app.services.ai.model_tiers import model_for  # ruff: ignore[module-import-not-at-top-of-file]
+from app.services.ai.pricing import cost_micros  # ruff: ignore[module-import-not-at-top-of-file]
 
 __all__ += [
     "FakeLLM",

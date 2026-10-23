@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Usage metering (Epic 66, AD-78, FR-338, NFR-71/74; migration ``20261009_500_03_p5_platform``). Owner:
 ``app.services.metering``.
 

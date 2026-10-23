@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Availability inputs of the slot engine (Epic 59 story 59.1).
 
 * Free/busy only, through ``connections_service.free_busy`` (P1: own connected calendars, <= 50 users, <= 14 days per

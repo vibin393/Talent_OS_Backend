@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Candidate Portal self-identification and alternative-process requests (Epic 49 A3/A8):
 ``/api/v1/portal/self-id`` and ``/api/v1/portal/alternative-requests``.
 
@@ -11,7 +11,7 @@ from typing import Any
 
 from fastapi import APIRouter, Response, status
 
-import app.models.fairness  # noqa: F401  - fairness tables on Base.metadata at app start (AD-47)
+import app.models.fairness  # ruff: ignore[unused-import]  - fairness tables on Base.metadata at app start (AD-47)
 from app.core.context import get_context
 from app.dependencies.candidate import CandidateDBDep, CandidateDep
 from app.schemas.fairness import AlternativeRequestIn, AlternativeRequestOut, SelfIdIn, SelfIdOut

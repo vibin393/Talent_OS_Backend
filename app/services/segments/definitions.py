@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Segment definitions on the semantic layer (spec A3, AD-42, NFR-33).
 
 A Segment stores a ``core.semantic`` ``Definition`` restricted to ``{definition_version, source, filters}``:

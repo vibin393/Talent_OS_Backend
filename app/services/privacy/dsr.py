@@ -170,7 +170,7 @@ def _filtered(filters: DsrFilters) -> Select[tuple[DsrRequest]]:
     return stmt.order_by(DsrRequest.due_at.asc(), DsrRequest.id)
 
 
-async def list_dsrs(ctx: RequestContext, db: AsyncSession, filters: DsrFilters, params: PageParams) -> Page[DsrOut]:  # noqa: ARG001
+async def list_dsrs(ctx: RequestContext, db: AsyncSession, filters: DsrFilters, params: PageParams) -> Page[DsrOut]:  # ruff: ignore[unused-function-argument]
     page = await paginate(db, _filtered(filters), params)
     rows = list(page.items)
     ids = await _human_ids(db, rows)
@@ -189,7 +189,7 @@ async def _timeline(db: AsyncSession, row: DsrRequest) -> list[TimelineEntry]:
     ]
 
 
-async def get_dsr(ctx: RequestContext, db: AsyncSession, dsr_id: uuid.UUID) -> DsrDetailOut:  # noqa: ARG001
+async def get_dsr(ctx: RequestContext, db: AsyncSession, dsr_id: uuid.UUID) -> DsrDetailOut:  # ruff: ignore[unused-function-argument]
     row = await _get(db, dsr_id)
     run = (
         await db.execute(
@@ -416,7 +416,7 @@ async def open_dsr_candidates(db: AsyncSession) -> set[uuid.UUID]:
     return set(rows.scalars())
 
 
-async def list_holds(ctx: RequestContext, db: AsyncSession, active_only: bool = True) -> list[LegalHoldOut]:  # noqa: ARG001
+async def list_holds(ctx: RequestContext, db: AsyncSession, active_only: bool = True) -> list[LegalHoldOut]:  # ruff: ignore[unused-function-argument]
     stmt = select(LegalHold)
     if active_only:
         stmt = stmt.where(LegalHold.released_at.is_(None))

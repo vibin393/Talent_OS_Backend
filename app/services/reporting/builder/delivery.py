@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Render and deliver report files (Epic 47 story 47.4, FR-239).
 
 * XLSX / CSV through the P1 export writer (``XlsxWriter``; ``csv_line`` / ``csv_cell`` formula escaping, UTF-8

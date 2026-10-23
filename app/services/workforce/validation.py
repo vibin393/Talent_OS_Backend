@@ -1,4 +1,4 @@
-# ruff: noqa: D401, E501
+# ruff: file-ignore[non-imperative-mood, line-too-long]
 """Plan line validation (Epic 44, FR-222): pure parsers plus the catalogue / project loaders.
 
 A line is validated from a normalised ``dict`` (the API's ``LineIn`` dump or an import row parsed by

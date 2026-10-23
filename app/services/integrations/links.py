@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The external-id map ``connector_links`` (Epic 66, spec 0.10): local entity <-> provider id per Installation, unique
 both ways. ``link`` upserts by the local side; an external id already linked to another local entity -> 409
 ``link_conflict``. ``unlink_candidate`` serves the erasure handler (unlink + null ``external_url``)."""

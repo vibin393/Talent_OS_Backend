@@ -37,13 +37,13 @@ class DomainError(Exception):
         super().__init__(self.message)
 
 
-class Unauthorized(DomainError):  # noqa: N818 - public names fixed by the architecture
+class Unauthorized(DomainError):  # ruff: ignore[error-suffix-on-exception-name] - public names fixed by the architecture
     status_code = 401
     code = "unauthorized"
     default_message = "Authentication required"
 
 
-class Forbidden(DomainError):  # noqa: N818 - public names fixed by the architecture
+class Forbidden(DomainError):  # ruff: ignore[error-suffix-on-exception-name] - public names fixed by the architecture
     """403. Epic 14 (FR-82): optional ``action`` (human label), ``required_permission`` and ``ask`` (who can grant
     it: ``tenant_admin`` for Users, ``account_manager`` for portal principals) go into ``details``; when
     ``ask`` is omitted the error handler derives it from the calling principal."""
@@ -87,7 +87,7 @@ def _with_ask(exc: "DomainError") -> dict[str, Any]:
     return {**details, "ask": "account_manager" if kind in _PORTAL_PRINCIPALS else "tenant_admin"}
 
 
-class NotFound(DomainError):  # noqa: N818 - public names fixed by the architecture
+class NotFound(DomainError):  # ruff: ignore[error-suffix-on-exception-name] - public names fixed by the architecture
     status_code = 404
     code = "not_found"
     default_message = "Resource not found"
@@ -99,7 +99,7 @@ class ConflictError(DomainError):
     default_message = "The request conflicts with the current state of the resource"
 
 
-class Gone(DomainError):  # noqa: N818 - mirrors HTTP 410
+class Gone(DomainError):  # ruff: ignore[error-suffix-on-exception-name] - mirrors HTTP 410
     """A single-use / expiring link (invitation, password reset) that can no longer be used."""
 
     status_code = 410
@@ -107,13 +107,13 @@ class Gone(DomainError):  # noqa: N818 - mirrors HTTP 410
     default_message = "This link is no longer valid"
 
 
-class ValidationFailed(DomainError):  # noqa: N818 - public names fixed by the architecture
+class ValidationFailed(DomainError):  # ruff: ignore[error-suffix-on-exception-name] - public names fixed by the architecture
     status_code = 422
     code = "validation_failed"
     default_message = "Validation failed"
 
 
-class RateLimited(DomainError):  # noqa: N818 - public names fixed by the architecture
+class RateLimited(DomainError):  # ruff: ignore[error-suffix-on-exception-name] - public names fixed by the architecture
     status_code = 429
     code = "rate_limited"
     default_message = "Too many requests"
@@ -211,7 +211,7 @@ def register_exception_handlers(app: FastAPI) -> None:
 
 
 # ================================================================ field errors (Epic 13)
-import dataclasses  # noqa: E402
+import dataclasses  # ruff: ignore[module-import-not-at-top-of-file]
 
 
 @dataclasses.dataclass(frozen=True, slots=True)

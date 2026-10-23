@@ -65,7 +65,7 @@ async def reference_view(token: str) -> Any:
 
 
 @router.post("/{token}/reference", response_model=PublicActionOut)
-async def reference_submit(token: str, data: ReferenceSubmitIn, request: Request) -> Any:  # noqa: ARG001
+async def reference_submit(token: str, data: ReferenceSubmitIn, request: Request) -> Any:  # ruff: ignore[unused-function-argument]
     ctx = get_context()
     ip_hash = hashlib.sha256(ctx.ip.encode()).hexdigest()[:32] if ctx.ip else None
     return PublicActionOut(status=await references.public_submit(token, data.answers, ip_hash))

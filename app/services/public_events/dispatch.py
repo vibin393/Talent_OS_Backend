@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Outbox relay (Epic 66, AD-79): ``dispatch`` hands pending rows to every sink, ``sweep_tenant`` recovers stalled rows,
 ``kick`` (after commit) enqueues ``public_events.dispatch`` deduplicated per tenant for 2 s."""
 
@@ -96,7 +96,7 @@ _local_until: dict[str, float] = {}
 _redis_client = None
 
 
-def _redis():  # type: ignore[no-untyped-def]  # noqa: ANN202 - redis client typing is loose
+def _redis():  # type: ignore[no-untyped-def]  # ruff: ignore[missing-return-type-private-function] - redis client typing is loose
     global _redis_client  # process-wide lazy client
     if _redis_client is None:
         import redis

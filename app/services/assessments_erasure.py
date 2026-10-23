@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Assessments erasure handler ``assessments.attempts`` (order 45), Epic 40 A13 (FR-258, AD-34).
 
 On Candidate erasure: attempts and their children (answers, proctoring signals and annotations, review scores) and

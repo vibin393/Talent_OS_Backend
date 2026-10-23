@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D400, D401, D415
+# ruff: file-ignore[line-too-long, missing-trailing-period, non-imperative-mood, missing-terminal-punctuation]
 """Board applicant ingest (Epic 70, story 70.3; spec A4). Naukri responses (poll) and Indeed Apply (webhook) both land
 in ``ingest_one``:
 

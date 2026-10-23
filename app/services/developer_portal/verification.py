@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Verified Partner applications (Epic 74, story 74.1, spec 0.3).
 
 Owners save a draft and submit it (``partner_orgs.verification_status = 'pending'``). A platform reviewer (human

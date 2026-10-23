@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Demand insights DTOs (Epic 55, stories 55.2-55.5): agent tool inputs (``extra='forbid'``), field sources,
 suggestions, flags, similarity and SLA risk. Hand-mirrored in ``Frontend/src/features/agents/demand/types.ts``."""
 

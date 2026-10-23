@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Placement-officer list import (Epic 43 story 43.2, FR-218).
 
 CSV / XLSX (``email``, ``name`` / ``full_name`` and optional standard answers ``program``, ``branch``, ``cgpa``,

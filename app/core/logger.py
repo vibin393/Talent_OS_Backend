@@ -92,7 +92,7 @@ logging.basicConfig(handlers=[InterceptHandler()], level=logging.INFO)
 
 
 # ================================================================ secret redaction (Epic 12 A10)
-import re  # noqa: E402
+import re  # ruff: ignore[module-import-not-at-top-of-file]
 
 REDACTED = "[redacted]"
 _REDACTIONS: tuple[tuple[re.Pattern[str], str], ...] = (
@@ -117,7 +117,7 @@ _REDACTIONS: tuple[tuple[re.Pattern[str], str], ...] = (
 )
 
 # Epic 66 (NFR-63): secret values read through the vault in this request / task are masked in every log line.
-from contextvars import ContextVar  # noqa: E402
+from contextvars import ContextVar  # ruff: ignore[module-import-not-at-top-of-file]
 
 _MIN_SECRET_LEN = 6
 _MAX_SECRET_VALUES = 64
@@ -191,6 +191,6 @@ def install_redaction() -> None:
             target.addFilter(RedactingFilter())
 
 
-from typing import Any  # noqa: E402
+from typing import Any  # ruff: ignore[module-import-not-at-top-of-file]
 
 install_redaction()

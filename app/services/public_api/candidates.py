@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Public Candidates (Epic 67, spec A4): the domain filter builder ``candidates.records.list_stmt`` (its scope predicate
 ``read_condition``) for lists, ``create_candidate`` / ``update_candidate`` / ``parsing.upload_resume`` for writes.
 Contact fields need ``pii.contact:read``; compensation ``pii.financial:read`` (and the user's ``compensation:view``)."""

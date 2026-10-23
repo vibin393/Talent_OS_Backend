@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Platform moderation (Epic 75, spec A5; FR-389). Every action requires a human platform operator (``require_human``;
 automated actors -> 403 ``human_only_action``) holding the ``network_moderator`` role (else 403
 ``platform_role_required``). Verify, reject, suspend, reinstate, remove, release-hold, uphold / dismiss report are ★.

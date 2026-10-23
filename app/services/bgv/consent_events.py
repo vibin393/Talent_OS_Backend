@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Consent withdrawal (Epic 20 A4): the ``ConsentWithdrawn(purpose='bgv')`` handler.
 
 Sets ``consent_withdrawn_at`` on the candidate's open cases, halts every ``in_progress`` check

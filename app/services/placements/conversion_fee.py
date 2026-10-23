@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Conversion fee (FR-164), pure and Decimal-only (AD-20).
 
 ``compute(rule, offered_compensation, *, months_served=None) -> Decimal | None``:

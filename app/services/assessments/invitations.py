@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Invitations (Epic 40 A5, FR-203): invite (the AD-39 stub), bulk, extend, cancel, the star (human-only) decision,
 reminders, expiry and the internal read models (Candidate 360 results, pipeline badges).
 

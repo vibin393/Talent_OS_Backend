@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Workforce planning (Epic 36 hub ``workforce_plan_lines``, AD-39; owner Epic 44, branch ``p3_workforce``).
 
 * ``workforce_plans`` (308_01): a plan with its period, currency, lifecycle and origin (``internal`` or a Client

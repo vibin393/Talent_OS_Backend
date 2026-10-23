@@ -1,4 +1,4 @@
-# ruff: noqa: D401, E501
+# ruff: file-ignore[non-imperative-mood, line-too-long]
 """Public API v1 contract pin (Epic 67, FR-347, spec A5). Pure: no ``app.services`` imports.
 
 * ``contract_document(app)`` = the public OpenAPI document plus ``x-required-scopes`` on every operation (from the

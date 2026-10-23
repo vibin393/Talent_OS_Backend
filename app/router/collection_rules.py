@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Collection rules, Collections Agent holds, plan and log API (Epic 63, spec A8) and the "Prepare invoice run" start.
 Internal principals only.
 

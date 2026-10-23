@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 31 Client Portal and Secure Link schemas. No pay rate, bill rate, vendor rate or margin (frozen Never)."""
 
 import uuid

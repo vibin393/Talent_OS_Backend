@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """DTOs for the Cross-tenant Job Network (Epic 75).
 
 Public DTOs (``NetworkJob*``, ``NetworkAgency``) deliberately expose **no** ``tenant_id`` / ``member_id`` /

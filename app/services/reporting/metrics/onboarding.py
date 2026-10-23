@@ -1,4 +1,4 @@
-# ruff: noqa: N812
+# ruff: file-ignore[lowercase-imported-as-non-lowercase]
 """Onboarding dashboard tiles (Epic 34, A3)."""
 
 from datetime import timedelta

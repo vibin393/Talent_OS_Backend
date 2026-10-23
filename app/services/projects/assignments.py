@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Project assignments (Epic 45, FR-229): Placements staffed on project roles.
 
 Starting an assignment links the Placement through ``placements_service.link_project`` (the only writer of the

@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401, B903, ARG001
+# ruff: file-ignore[line-too-long, non-imperative-mood, class-as-data-structure, unused-function-argument]
 """Install contract (Epic 66 minimal body, R-2; Epic 69 fills the bodies with the SAME signatures, spec A4).
 
 * ``install`` (★ ``require_human`` + ``integration:manage``): availability (``app_unavailable`` / ``app_private``), the

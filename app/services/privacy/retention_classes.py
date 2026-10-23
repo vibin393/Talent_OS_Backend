@@ -182,7 +182,7 @@ async def get_class(db: AsyncSession, key: str) -> RetentionClassOut:
     return _out(row)
 
 
-async def list_classes(ctx: RequestContext, db: AsyncSession) -> list[RetentionClassOut]:  # noqa: ARG001
+async def list_classes(ctx: RequestContext, db: AsyncSession) -> list[RetentionClassOut]:  # ruff: ignore[unused-function-argument]
     rows = (await db.execute(select(RetentionClass).order_by(RetentionClass.key))).scalars()
     return [_out(r) for r in rows]
 
@@ -262,7 +262,7 @@ async def _row(db: AsyncSession, class_id: uuid.UUID, *, lock: bool = False) -> 
 
 
 async def list_classes_v2(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     include_archived: bool = False,
@@ -293,7 +293,7 @@ async def create_class(ctx: RequestContext, db: AsyncSession, data: Any) -> Any:
     return class_out(row)
 
 
-async def update_class(ctx: RequestContext, db: AsyncSession, class_id: uuid.UUID, data: Any) -> Any:  # noqa: ARG001
+async def update_class(ctx: RequestContext, db: AsyncSession, class_id: uuid.UUID, data: Any) -> Any:  # ruff: ignore[unused-function-argument]
     from app.core.errors import ValidationFailed
 
     row = await _row(db, class_id, lock=True)
@@ -327,7 +327,7 @@ async def update_class(ctx: RequestContext, db: AsyncSession, class_id: uuid.UUI
     return class_out(row)
 
 
-async def archive_class(ctx: RequestContext, db: AsyncSession, class_id: uuid.UUID) -> Any:  # noqa: ARG001
+async def archive_class(ctx: RequestContext, db: AsyncSession, class_id: uuid.UUID) -> Any:  # ruff: ignore[unused-function-argument]
     from datetime import UTC, datetime
 
     from app.core.errors import ConflictError

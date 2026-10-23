@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Reminders and scorecard nudges (Epic 59 story 59.5, FR-300; spec A5).
 
 * ``InterviewScheduled`` / ``InterviewRescheduled`` -> one ``before_interview`` row per participant (candidate, internal
@@ -177,7 +177,7 @@ async def on_scorecard_submitted(
 
 
 # ================================================================ P1 suppression hook (C-11)
-async def owns_reminders(db: AsyncSession, tenant_id: uuid.UUID, kind: str) -> bool:  # noqa: ARG001
+async def owns_reminders(db: AsyncSession, tenant_id: uuid.UUID, kind: str) -> bool:  # ruff: ignore[unused-function-argument]
     """True while the Scheduling Agent sends this tenant's reminders (``reminder``) / nudges (``scorecard``)."""
     try:
         return await agent_active(db, "reminders" if kind == "reminder" else "scorecard_nudges")

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Conversion / contract-to-hire (FR-164). ``record`` runs in one transaction: validate the date, snapshot the
 Contract's ``conversion_fee_rule``, compute the fee (``conversion_fee``, pure), initiate the offboarding case
 (``converted``, never bench-eligible), create the row and emit ``PlacementConverted`` -- billing turns it into a

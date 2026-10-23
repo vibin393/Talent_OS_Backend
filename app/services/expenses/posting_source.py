@@ -39,7 +39,7 @@ def _attrs(line: ExpenseLine, claim: ExpenseClaim) -> dict[str, Any]:
     }
 
 
-async def load_lines(ctx: RequestContext, db: AsyncSession, query: SourceQuery) -> list[SourceItem]:  # noqa: ARG001
+async def load_lines(ctx: RequestContext, db: AsyncSession, query: SourceQuery) -> list[SourceItem]:  # ruff: ignore[unused-function-argument]
     stmt = (
         select(ExpenseLine, ExpenseClaim)
         .join(ExpenseClaim, ExpenseClaim.id == ExpenseLine.claim_id)

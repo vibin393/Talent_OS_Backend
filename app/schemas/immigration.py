@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Immigration DTOs (Epic 46, FR-232..FR-236, AD-52).
 
 ``VisaTypeDefinition`` is shared by the platform templates and the tenant versions. Field-level shapes are checked

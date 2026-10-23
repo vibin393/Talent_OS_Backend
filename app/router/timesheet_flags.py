@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Timesheet flags API (Epic 63, spec A8). Internal principals only (flags are never Client-visible); API keys may
 read and review like any internal principal holding the permission.
 

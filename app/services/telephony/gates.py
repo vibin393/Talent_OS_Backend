@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """The pre-call gate (Epic 76, story 76.2, spec A3). Every check runs in Talent OS before anything is sent to the
 provider; the first failure wins. Callback content never decides consent or policy.
 

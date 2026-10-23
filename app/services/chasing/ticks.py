@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Deterministic run starters (Epic 62 A3): hourly beats on ``maintenance`` that act at the tenant's local run hour.
 
 * ``compliance_tick`` -- one Compliance Agent run per Worker with an item due today (dedup ``daily:{candidate}:{date}``).

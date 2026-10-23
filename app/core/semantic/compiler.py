@@ -45,7 +45,7 @@ from sqlalchemy.orm import aliased
 from app.core.context import RequestContext
 from app.core.errors import Forbidden
 from app.core.permissions import COMPENSATION_VIEW, Principal, forbidden, scope_condition
-from app.core.semantic import errors as E  # noqa: N812
+from app.core.semantic import errors as E  # ruff: ignore[lowercase-imported-as-non-lowercase]
 from app.core.semantic.errors import SemanticError
 from app.core.semantic.operators import coerce_value, expand_skills, predicate
 from app.core.semantic.registry import get_source

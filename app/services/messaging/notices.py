@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The ``whatsapp`` consent notice (Epic 33; purpose widened by the foundation, R12). Seeded per tenant by
 migration ``20261003_220_02`` and lazily here for tenants provisioned later (Epic 35 seeds the other purposes)."""
 

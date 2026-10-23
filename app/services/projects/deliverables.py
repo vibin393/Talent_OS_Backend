@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Deliverables and their acceptance (Epic 45, FR-228, PRD 5.7).
 
 AD-4 transitions (``TRANSITIONS``): ``planned -> in_progress`` (start), ``in_progress -> submitted`` (submit),

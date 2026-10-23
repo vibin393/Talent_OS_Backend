@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Echo detection (Epic 72 spec A5): a change is Talent OS's own write coming back when its etag equals the one we
 stored after the write, or it carries our current version tag at the Interview's times and is not deleted."""
 

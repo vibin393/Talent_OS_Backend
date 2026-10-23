@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Exception lists of a 26AS reconciliation (Epic 51, FR-254), for the latest ready run of LE / FY / quarter.
 
 * *Deducted, not recorded*: statement lines without an active confirmed match and not acknowledged (incl. lines
@@ -68,7 +68,7 @@ async def decided(db: AsyncSession, run_id: uuid.UUID) -> list[tuple[TdsReconMat
 
 
 async def exceptions(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     legal_entity_id: uuid.UUID,
     fy: str,

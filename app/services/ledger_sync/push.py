@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Finance document push (Epic 71, story 71.5, spec A8).
 
 * Event sync job ``push_document`` (``invoice.issued``, internal ``credit_note.issued`` / ``debit_note.issued`` /

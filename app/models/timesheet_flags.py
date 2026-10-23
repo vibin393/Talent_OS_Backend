@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Timesheet anomaly flags (Epic 63, FR-312; migration ``20261009_410_01_ts_flags``). Owner:
 ``app.services.timesheet_flags`` (the agent package never touches this table, AD-56).
 

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """``/public/v1/postings`` (Epic 67, spec A4): careers-site postings; publish and close (job boards belong to Epic 70)."""
 
 import uuid

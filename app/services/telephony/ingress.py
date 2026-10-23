@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Call lifecycle from provider callbacks (Epic 76, stories 76.2 / 76.4, spec A3).
 
 Callbacks arrive at the foundation ingress ``/api/v1/hooks/voice/{config_id}`` (manifest-driven verification,
@@ -169,7 +169,7 @@ def _mmss(seconds: int | None) -> str:
     return f"{s // 60:02d}:{s % 60:02d}"
 
 
-async def _activity(ctx: RequestContext, db: AsyncSession, call: VoiceCall) -> None:  # noqa: ARG001
+async def _activity(ctx: RequestContext, db: AsyncSession, call: VoiceCall) -> None:  # ruff: ignore[unused-function-argument]
     """The ``call`` entry of the communication history (Candidate and Application); never a phone number."""
     from app.services import activity_service
 

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Refresh-token rotation with reuse detection (Epic 67, story 67.4; spec 0.3).
 
 Every use rotates: the old refresh token gets ``rotated_at`` and a new access + refresh pair is minted in the same

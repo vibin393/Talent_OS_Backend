@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 63 Timesheet Agent tasks: ``timesheet_flags.evaluate`` / ``supersede`` (queue ``interactive``; deterministic
 flags, AI on or off), ``timesheet_flags.start_flag_run`` and the hourly ``timesheet_flags.nudge_tick`` (``maintenance``).
 """

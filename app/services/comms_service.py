@@ -94,7 +94,7 @@ def platform_address() -> str:
 
 
 # ================================================================ mailbox hook (Epic 7)
-class ConnectionExpired(Exception):  # noqa: N818
+class ConnectionExpired(Exception):  # ruff: ignore[error-suffix-on-exception-name]
     """Raised by a mailbox provider when the user's OAuth connection can no longer send."""
 
 
@@ -503,7 +503,7 @@ async def render_template(
     """The tenant's active template for ``key`` rendered with ``context`` (``candidate_id``, ``demand_id``,
     ``contact_id``, ``client_id``, ``interview_id``, ``offer_id``, ``task_id``, ``link_url``,
     ``sender_user_id``, ``recipient`` (entity_type, entity_id)). None when the tenant has no such template, so
-    callers fall back to their built-in text."""  # noqa: D401
+    callers fall back to their built-in text."""  # ruff: ignore[non-imperative-mood]
     template = await active_template(db, key)
     if template is None:
         return None
@@ -617,7 +617,7 @@ async def _address_statuses(db: AsyncSession, addresses: Iterable[str]) -> dict[
 
 
 async def queue_email(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     origin: str,
@@ -1184,7 +1184,7 @@ async def _emails_out(db: AsyncSession, messages: Sequence[Email]) -> list[Email
 
 
 async def get_email(ctx: RequestContext, db: AsyncSession, message_id: uuid.UUID) -> EmailDetailOut:
-    """The sender, or anyone who can read a related / recipient entity."""  # noqa: D401
+    """The sender, or anyone who can read a related / recipient entity."""  # ruff: ignore[non-imperative-mood]
     principal = _principal(ctx)
     message = await db.get(Email, message_id)
     if message is None:

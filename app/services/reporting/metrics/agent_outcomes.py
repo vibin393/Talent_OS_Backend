@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401, N806, ARG001, N812
+# ruff: file-ignore[line-too-long, non-imperative-mood, non-lowercase-variable-in-function, unused-function-argument, lowercase-imported-as-non-lowercase]
 """ "Agent outcomes" dashboard tiles (Epic 65 A4; SM-30..SM-39, SM-C14..SM-C18). Gate ``report:read`` (internal
 Users). Phase 4 tables are row-scoped by ``owner_user_id`` under the caller's ``report:read`` scope; P1-P3 facts use
 the owners' scope helpers (``scoped_demand_ids`` / ``scoped_placements``). Baselines need

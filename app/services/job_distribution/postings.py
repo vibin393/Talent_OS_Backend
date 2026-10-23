@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Board Postings: preview, multi-post, update, refresh, close, retry, abandon and the manual path (Epic 70, stories
 70.2 / 70.5; spec A3, A6).
 

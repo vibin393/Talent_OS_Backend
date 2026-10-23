@@ -146,7 +146,7 @@ async def create_key(ctx: RequestContext, db: AsyncSession, data: ApiKeyCreate) 
     return ApiKeyCreated(**_out(row).model_dump(), key=key)
 
 
-async def list_keys(ctx: RequestContext, db: AsyncSession) -> list[ApiKeyOut]:  # noqa: ARG001
+async def list_keys(ctx: RequestContext, db: AsyncSession) -> list[ApiKeyOut]:  # ruff: ignore[unused-function-argument]
     rows = (await db.execute(select(ApiKey).order_by(ApiKey.created_at.desc()))).scalars()
     return [_out(r) for r in rows]
 
@@ -194,7 +194,7 @@ async def revoke_key(ctx: RequestContext, db: AsyncSession, key_id: uuid.UUID) -
     return _out(row)
 
 
-async def usage(ctx: RequestContext, db: AsyncSession, key_id: uuid.UUID) -> ApiKeyUsageOut:  # noqa: ARG001
+async def usage(ctx: RequestContext, db: AsyncSession, key_id: uuid.UUID) -> ApiKeyUsageOut:  # ruff: ignore[unused-function-argument]
     if await db.get(ApiKey, key_id) is None:
         raise NotFound("API key not found")
     since = _now() - timedelta(hours=24)

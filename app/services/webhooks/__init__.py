@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Webhooks domain (Epic 68, AD-79/AD-80, FR-349..FR-353). Callers use ``app.services.webhooks_service`` only.
 
 * ``subscriptions`` -- CRUD, scope / filter validation, limits; ``verification`` -- the signed challenge handshake;

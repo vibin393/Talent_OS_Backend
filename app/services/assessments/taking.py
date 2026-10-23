@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Test taking (Epic 40 A6, FR-204, NFR-35), shared by the Candidate Portal (``/portal/assessments``) and the Secure
 Link page (``/public/links/{token}/assessment``).
 

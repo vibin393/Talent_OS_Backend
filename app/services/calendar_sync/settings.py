@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Tenant settings, my channels, opt-out, interview sync health and admin views (Epic 72 spec A6 / A8 / A9)."""
 
 import uuid
@@ -49,7 +49,7 @@ async def org_installed(db: AsyncSession) -> bool:
         return False
 
 
-async def get(ctx: RequestContext, db: AsyncSession) -> CalendarSyncSettingsOut:  # noqa: ARG001
+async def get(ctx: RequestContext, db: AsyncSession) -> CalendarSyncSettingsOut:  # ruff: ignore[unused-function-argument]
     row = await settings_row(db)
     opted = (await db.execute(select(func.count()).select_from(CalendarFreeBusyOptout))).scalar_one()
     return CalendarSyncSettingsOut(
@@ -232,7 +232,7 @@ async def dismiss(ctx: RequestContext, db: AsyncSession, interview_id: uuid.UUID
     return "dismissed"
 
 
-async def list_channels(ctx: RequestContext, db: AsyncSession, status: str | None) -> list[ChannelAdminOut]:  # noqa: ARG001
+async def list_channels(ctx: RequestContext, db: AsyncSession, status: str | None) -> list[ChannelAdminOut]:  # ruff: ignore[unused-function-argument]
     stmt = select(CalendarChannel).order_by(CalendarChannel.created_at.desc()).limit(500)
     if status:
         stmt = stmt.where(CalendarChannel.status == status)

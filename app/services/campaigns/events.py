@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Domain-local events of the ``campaigns`` domain (Epic 39).
 
 They live here, not in ``app/events/campaigns.py``: that module is frozen by the Epic 36 contract snapshot

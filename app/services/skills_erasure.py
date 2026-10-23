@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Skills erasure handler ``skills.evidence`` (8), Epic 37 A6 (AD-34).
 
 Deletes the erased candidate's ``candidate_skill_evidence`` and ``skill_suggestions`` (both also cascade with

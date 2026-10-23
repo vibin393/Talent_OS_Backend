@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Plivo telephony adapter (Epic 76, spec A2; key ``plivo``).
 
 * Bridged call: ``POST /v1/Account/{auth_id}/Call/`` rings the recruiter (``to``) from the caller ID (``from``); the
@@ -126,7 +126,7 @@ class PlivoTelephony(LiveTelephonyBase):
     async def fetch_recording(self, recording_ref: str) -> RecordingDTO | None:
         return await self._download(f"https://{MEDIA_HOST}/v1/Account/{self._id}/Recording/{recording_ref}.wav")
 
-    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # noqa: ARG002
+    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         form = parse_form(body)
         ref = form.get("RequestUUID") or form.get("CallUUID", "")
         if form.get("RecordingID"):

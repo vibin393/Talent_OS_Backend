@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The single GST function of the code base (AD-19, FR-146). Pure: no DB, no I/O, no clock.
 
 ``determine_supply`` decides place of supply, supply type, intra/inter state, UTGST, zero rating (LUT) and

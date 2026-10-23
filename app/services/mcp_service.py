@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Governed MCP Server facade (Epic 73, AD-84, FR-375..FR-380). Routers and tasks call only this module.
 
 * ``handle(request)`` -- the whole ``/api/mcp`` exchange: ``mcp_server.transport`` (protocol, no I/O) driven against
@@ -656,7 +656,7 @@ def _tool_rows() -> list[McpToolOut]:
     ]
 
 
-async def tool_catalogue(ctx: RequestContext, db: AsyncSession) -> list[McpToolOut]:  # noqa: ARG001
+async def tool_catalogue(ctx: RequestContext, db: AsyncSession) -> list[McpToolOut]:  # ruff: ignore[unused-function-argument]
     return _tool_rows()
 
 
@@ -710,7 +710,7 @@ def _hold_out(row: Any, names: Mapping[uuid.UUID, str]) -> McpHoldOut:
     )  # fmt: skip
 
 
-async def list_holds(ctx: RequestContext, db: AsyncSession) -> list[McpHoldOut]:  # noqa: ARG001
+async def list_holds(ctx: RequestContext, db: AsyncSession) -> list[McpHoldOut]:  # ruff: ignore[unused-function-argument]
     rows = [r for r in await holds.list_open(db) if r.auto_release_at is None or r.auto_release_at > _now()]
     names = await directory_service.user_names(db, {r.user_id for r in rows})
     return [_hold_out(r, names) for r in rows]
@@ -847,10 +847,10 @@ def register_hooks() -> None:
     for key, desc in AUDIT_ACTIONS:
         audit.register_audit_action(key, desc)
 
-    async def _none(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # noqa: ARG001 - delivered directly
+    async def _none(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument] - delivered directly
         return set()
 
-    async def _render(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG001
+    async def _render(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
         return ns.Content(title=str(payload.get("title") or "AI assistant access"))
 
     defs = {

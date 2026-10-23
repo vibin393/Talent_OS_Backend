@@ -24,13 +24,13 @@ class ManualAssessmentProvider:
     def __init__(self, config: ConnectorConfig | None = None) -> None:
         self.config = config
 
-    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # noqa: ARG002
+    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         raise ManualActionRequired(f"assessment: complete {op} manually", {"op": op})
 
-    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # noqa: ARG002
+    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # ruff: ignore[unused-method-argument]
         return False
 
-    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # noqa: ARG002
+    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         return {}
 
     async def list_tests(self) -> Sequence[ProviderTestDTO]:
@@ -42,10 +42,10 @@ class ManualAssessmentProvider:
             {"op": "invite", "invitation_id": str(req.invitation_id)},
         )
 
-    async def fetch_result(self, external_ref: str) -> ProviderResultDTO | None:  # noqa: ARG002
+    async def fetch_result(self, external_ref: str) -> ProviderResultDTO | None:  # ruff: ignore[unused-method-argument]
         return None
 
-    async def handle_webhook(self, headers: Mapping[str, str], body: bytes) -> ProviderWebhookDTO:  # noqa: ARG002
+    async def handle_webhook(self, headers: Mapping[str, str], body: bytes) -> ProviderWebhookDTO:  # ruff: ignore[unused-method-argument]
         raise ManualActionRequired(
             "assessment: the manual connector receives no webhooks", {"op": "handle_webhook"}
         )

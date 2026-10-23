@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Workforce planning (Epic 44, FR-222..FR-225): ``/api/v1/workforce/*``.
 
 Permissions: ``workforce_plan:read`` / ``write`` (data-scoped on the plan's owner / BU; 404 outside the scope);

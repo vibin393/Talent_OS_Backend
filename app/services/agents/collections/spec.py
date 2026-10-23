@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The ``collections`` AgentSpec (Epic 63 A6; FR-314 / FR-315).
 
 Applies the Client's collection rule to open invoices: templated pre-due reminders (``low``, default ``suggest``: auto

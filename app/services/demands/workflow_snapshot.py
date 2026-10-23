@@ -19,7 +19,7 @@ _SLA_RANK = {"met": 0, "healthy": 1, "at_risk": 2, "breached": 3}
 
 
 async def workflow_snapshot(
-    ctx: RequestContext, db: AsyncSession, demand_id: uuid.UUID  # noqa: ARG001
+    ctx: RequestContext, db: AsyncSession, demand_id: uuid.UUID  # ruff: ignore[unused-function-argument]
 ) -> dict[str, Any] | None:
     demand = await db.get(Demand, demand_id)
     if demand is None:

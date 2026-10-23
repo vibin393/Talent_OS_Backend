@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Proficiency / verification recompute (Epic 37 A2, FR-188, AD-41).
 
 ``derive(evidence)`` is the single, pure rule:

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 54 Copilot read tool ``pipeline.list`` (FR-277): applications of one demand or one candidate you can see,
 optionally by stage keys and idleness ("interviewed but not followed up": ``idle_days`` = no stage move for N days;
 the pipeline has no separate last-activity column, so ``stage_entered_at`` is the activity marker).

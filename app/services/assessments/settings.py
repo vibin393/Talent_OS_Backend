@@ -40,11 +40,11 @@ def _out(s: Settings) -> SettingsOut:
     return SettingsOut(**dataclasses.asdict(s))
 
 
-async def get(ctx: RequestContext, db: AsyncSession) -> SettingsOut:  # noqa: ARG001
+async def get(ctx: RequestContext, db: AsyncSession) -> SettingsOut:  # ruff: ignore[unused-function-argument]
     return _out(await current(db))
 
 
-async def update(ctx: RequestContext, db: AsyncSession, data: SettingsIn) -> SettingsOut:  # noqa: ARG001
+async def update(ctx: RequestContext, db: AsyncSession, data: SettingsIn) -> SettingsOut:  # ruff: ignore[unused-function-argument]
     tenant_id: uuid.UUID = tenant_of(db)
     await db.execute(
         insert(AssessmentSettings)

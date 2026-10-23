@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Deterministic timesheet anomaly rules (Epic 63 A1, FR-312). Pure: plain dataclasses in, ``FlagHit`` out; no I/O,
 no AI. Flags never block approval and never change hours.
 

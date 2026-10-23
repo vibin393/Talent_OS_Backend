@@ -7,7 +7,7 @@
 | Offer release | ``offer`` / offer id | demand title | offer version location (else demand) | candidate ``total_experience_months`` / 12 | offer version ``bill_rate`` / ``bill_currency`` / ``bill_rate_unit`` |
 
 Records without a bill rate (or currency / unit) skip validation. ``on_date`` is today in the tenant timezone.
-"""  # noqa: E501, D400, D415
+"""  # ruff: ignore[line-too-long, missing-trailing-period, missing-terminal-punctuation]
 
 import uuid
 from datetime import date

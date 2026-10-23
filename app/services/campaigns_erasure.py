@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Marketing erasure handler ``campaigns.marketing`` (order 55), Epic 39 A9 (FR-258, AD-34).
 
 Deletes the subject's audience list entries, snapshot memberships, campaign messages, engagement events, attributions

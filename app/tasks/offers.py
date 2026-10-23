@@ -58,7 +58,7 @@ def finalize_accepted_offer(tenant_id: str, offer_id: str) -> bool:
 
 @celery_app.task(name="offers.ensure_defaults", acks_late=True)  # type: ignore[misc,untyped-decorator,unused-ignore]
 def ensure_defaults(tenant_id: str) -> int:
-    async def _work(ctx: RequestContext, db: AsyncSession) -> int:  # noqa: ARG001
+    async def _work(ctx: RequestContext, db: AsyncSession) -> int:  # ruff: ignore[unused-function-argument]
         from app.services.offers import templates
 
         return await templates.ensure_default_templates(db, _uid(tenant_id))

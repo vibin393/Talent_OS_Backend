@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Demand insights wiring (Epic 55), autodiscovered by ``core.hooks``: the notification types
 ``demand_duplicate_flagged`` (in-app) and ``demand_sla_digest`` (in-app + email digest, default on) and the workflow
 trigger ``demand.duplicate_flagged`` (entity ``demand``) through the P2 ``register_trigger``."""
@@ -11,10 +11,10 @@ from sqlalchemy.ext.asyncio import AsyncSession
 def _notifications() -> None:
     from app.services import notifications_service as ns
 
-    async def nobody(db: AsyncSession, payload: Any) -> set[Any]:  # noqa: ARG001 - explicit recipients
+    async def nobody(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument] - explicit recipients
         return set()
 
-    async def render(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG001
+    async def render(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
         return ns.Content(
             title=str(payload.get("title") or "Demand Agent"), link_path=payload.get("link_path")
         )

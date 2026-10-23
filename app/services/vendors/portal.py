@@ -139,7 +139,7 @@ async def _used(db: AsyncSession, release_ids: list[uuid.UUID]) -> dict[uuid.UUI
 
 
 async def list_releases(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     principal: Principal,
 ) -> list[PortalReleaseOut]:
@@ -166,7 +166,7 @@ async def _release(db: AsyncSession, release_id: uuid.UUID, *, lock: bool = Fals
 
 
 async def get_release(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     principal: Principal,
     release_id: uuid.UUID,
@@ -347,7 +347,7 @@ async def _submission_out(
 
 
 async def list_submissions(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     principal: Principal,
     *,
@@ -380,7 +380,7 @@ async def _submission(db: AsyncSession, submission_id: uuid.UUID, *, lock: bool 
 
 
 async def get_submission(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     principal: Principal,
     submission_id: uuid.UUID,
@@ -437,7 +437,7 @@ async def revise_resume(
 
 # ================================================================ placements, documents, statements, files
 async def list_placements(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     principal: Principal,
 ) -> list[PortalPlacementOut]:
@@ -475,7 +475,7 @@ async def list_placements(
 
 
 async def list_documents(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     principal: Principal,
 ) -> list[PortalDocumentOut]:
@@ -533,7 +533,7 @@ async def list_documents(
 
 
 async def upload_document(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     principal: Principal,
     *,
@@ -618,7 +618,7 @@ async def upload_document(
 
 
 async def list_statements(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     principal: Principal,
 ) -> list[PortalStatementOut]:
@@ -664,7 +664,7 @@ async def statement_download(
     return await _read_file(ctx, db, file_id)
 
 
-async def _read_file(ctx: RequestContext, db: AsyncSession, file_id: uuid.UUID) -> files_service.Download:  # noqa: ARG001
+async def _read_file(ctx: RequestContext, db: AsyncSession, file_id: uuid.UUID) -> files_service.Download:  # ruff: ignore[unused-function-argument]
     f = (await db.execute(select(StoredFile).where(StoredFile.id == file_id))).scalar_one_or_none()
     if f is None or f.deleted_at is not None or f.scan_status not in files_service.DOWNLOADABLE_SCAN_STATUSES:
         raise NotFound("File not found")
@@ -716,7 +716,7 @@ async def download_file(
 
 
 # ================================================================ dashboard, scorecard
-async def dashboard(ctx: RequestContext, db: AsyncSession, principal: Principal) -> PortalDashboardOut:  # noqa: ARG001
+async def dashboard(ctx: RequestContext, db: AsyncSession, principal: Principal) -> PortalDashboardOut:  # ruff: ignore[unused-function-argument]
     v = await _vendor(db, principal)
     open_releases = int(
         (
@@ -757,8 +757,8 @@ async def dashboard(ctx: RequestContext, db: AsyncSession, principal: Principal)
 
 
 async def scorecard(
-    ctx: RequestContext,  # noqa: ARG001
-    db: AsyncSession,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
+    db: AsyncSession,  # ruff: ignore[unused-function-argument]
     principal: Principal,
     period_from: date | None = None,
     period_to: date | None = None,

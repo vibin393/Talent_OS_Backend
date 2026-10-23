@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Shared helpers of the Developer Portal (Epic 74): clock, platform contexts, the org role matrix (spec 0.1), the
 short-lived key-value store (Redis db 2; in-process when ``RATE_LIMIT_BACKEND=memory``, as Epic 67's authorize cache)."""
 

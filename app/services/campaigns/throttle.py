@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Per-(tenant, channel) token bucket + daily counter (Epic 39 A4, NFR-34, AD-54).
 
 Redis keys ``mkt:tb:<tenant>:<channel>`` (bucket: tokens + last refill, rate = tenant ``rate_per_minute``, burst =

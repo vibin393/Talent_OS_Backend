@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The ``interview_assist`` AgentSpec (Epic 60, spec A5; FR-301..FR-304).
 
 * Subject: the Interview; Accountable Owner: the uploader of the capture (explicit for manual re-runs).

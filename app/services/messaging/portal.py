@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Recipient self-service for SMS / WhatsApp (Epic 33, FR-172/173).
 
 * Candidate portal "Messages" (``/api/v1/portal/messages``): the signed-in candidate / Worker toggles their own

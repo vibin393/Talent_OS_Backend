@@ -1,4 +1,4 @@
-# ruff: noqa: ARG001
+# ruff: file-ignore[unused-function-argument]
 """Onboarding task operations (Epic 23 A5 / A6): drafts, submission, uploads, policy acknowledgement, eSign
 requests, and the handlers of connector / sibling events (signature, credential, P1 task, bank approval).
 

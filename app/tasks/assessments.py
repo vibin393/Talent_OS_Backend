@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Assessment Celery tasks (Epic 40). Every task starts with ``tenant_id`` (except the beat fan-outs).
 
 * ``assessments.reminders_all`` (beat, hourly) -> ``assessments.reminders(tenant_id)``: one reminder per open invitation

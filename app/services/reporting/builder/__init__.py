@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Custom report builder & scheduled reports (Epic 47, FR-237..FR-240) -- facade ``reporting.builder``.
 
 Extends the P1 ``services/reporting`` package (a top-layer reader, AD-40). Every report query compiles through

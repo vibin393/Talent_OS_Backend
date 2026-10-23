@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Approval and the issue transaction (FR-148, FR-144; AD-18 / AD-19 / AD-21 / AD-23).
 
 ``issue_invoice`` runs in ONE transaction, in this order: lock the invoice -> resolve ``doc_date`` + period check

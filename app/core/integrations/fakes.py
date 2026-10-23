@@ -138,7 +138,7 @@ class FakeAdapterBase:
             FAKE_WEBHOOK.scheme, secret.encode(), headers, body, signature_header=FAKE_WEBHOOK.signature_header
         )
 
-    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # noqa: ARG002
+    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         try:
             data = json.loads(body or b"{}")
         except ValueError:

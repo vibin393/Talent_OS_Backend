@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Voice Screening DTOs (Epic 58): sessions, uploads, playback, speaker labels, the Recording Policy admin and the
 tenant voice settings. No transcript text and no audio ever appear here (the review reuses Epic 57's answer DTOs)."""
 

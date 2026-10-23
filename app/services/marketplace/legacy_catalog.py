@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Legacy P2-P4 connector listings (Epic 69, spec A3; data only). Each entry opens the existing screen (``manage_path``);
 its install state is derived from ``provider_connector_configs`` (an active row in the category -> "Configured"). Kept
 until Epic 79 adopts the legacy configs into ``app_installations`` (D-19, Known gap 1)."""

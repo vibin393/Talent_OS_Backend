@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Public summaries (Epic 49 A7, FR-248): impact ratios and the unknown count copied from a completed snapshot
 (suppressed cells stay suppressed), listed on the Career Portal (``GET /public/fairness/{slug}/summary``)."""
 
@@ -58,7 +58,7 @@ def _out(p: FairnessPublication, aedt_name: str) -> PublicationOut:
     )
 
 
-async def list_publications(ctx: RequestContext, db: AsyncSession) -> list[PublicationOut]:  # noqa: ARG001
+async def list_publications(ctx: RequestContext, db: AsyncSession) -> list[PublicationOut]:  # ruff: ignore[unused-function-argument]
     rows = (
         await db.execute(
             select(FairnessPublication, AedtInventory.name)
@@ -92,7 +92,7 @@ async def publish(ctx: RequestContext, db: AsyncSession, data: PublicationIn) ->
     return _out(row, aedt.name)
 
 
-async def unpublish(ctx: RequestContext, db: AsyncSession, publication_id: uuid.UUID) -> PublicationOut:  # noqa: ARG001
+async def unpublish(ctx: RequestContext, db: AsyncSession, publication_id: uuid.UUID) -> PublicationOut:  # ruff: ignore[unused-function-argument]
     row = await db.get(FairnessPublication, publication_id)
     if row is None:
         raise not_found("Publication")

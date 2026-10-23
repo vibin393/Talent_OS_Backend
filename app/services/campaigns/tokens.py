@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Signed public marketing tokens (Epic 39 A6): ``<tenant_id_b32>.<message_id_b32>.<hmac16>``.
 
 The HMAC-SHA256 is computed over ``(tenant_id, message_id, token_nonce)`` with a key HKDF-derived from the ``audit``

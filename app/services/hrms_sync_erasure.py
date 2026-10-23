@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """HRMS sync erasure handler ``hrms_sync.records`` (order 73), Epic 71 (spec A10, FR-410).
 
 ``hrms_sync_records`` hold ids, statuses and sanitised messages only. On a Worker's erasure the employee code and the

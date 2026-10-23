@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 55 Demand Agent read tools on clients (A3): ``clients.match_sender`` (the stored deterministic sender match;
 never matched anew from arguments), ``contracts.for_client`` and ``rate_cards.lookup`` (names only -- no rates)."""
 

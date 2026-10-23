@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Partner organisations (Epic 74, story 74.1, spec 0.1 / 0.3): create (owner membership; at most 3 owned per account),
 members and roles (the last owner can never leave or be demoted -> 409 ``last_owner``), invitations (one-time link,
 7 days, same email, at most 25 open per org) and the org audit log."""

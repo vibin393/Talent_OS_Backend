@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Holdout metrics against the naive baseline (Epic 48 A4).
 
 * Classification: AUC, Brier score and a 10-bin calibration table; the baseline predicts the training base rate

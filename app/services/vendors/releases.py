@@ -221,7 +221,7 @@ async def _start_first_submission_clock(ctx: RequestContext, db: AsyncSession, r
         return
 
 
-async def list_for_demand(ctx: RequestContext, db: AsyncSession, demand_id: uuid.UUID) -> list[ReleaseOut]:  # noqa: ARG001
+async def list_for_demand(ctx: RequestContext, db: AsyncSession, demand_id: uuid.UUID) -> list[ReleaseOut]:  # ruff: ignore[unused-function-argument]
     await _demand(db, demand_id)
     rows = (
         await db.execute(
@@ -235,7 +235,7 @@ async def list_for_demand(ctx: RequestContext, db: AsyncSession, demand_id: uuid
     return [release_out(r, vendor_name=name, used=used.get(r.id, 0)) for r, name in rows]
 
 
-async def list_for_vendor(ctx: RequestContext, db: AsyncSession, vendor_id: uuid.UUID) -> list[ReleaseOut]:  # noqa: ARG001
+async def list_for_vendor(ctx: RequestContext, db: AsyncSession, vendor_id: uuid.UUID) -> list[ReleaseOut]:  # ruff: ignore[unused-function-argument]
     rows = list(
         (
             await db.execute(
@@ -275,7 +275,7 @@ async def _move(db: AsyncSession, row: VendorRelease, to: str, actor_kind: str) 
 
 
 async def change_status(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     release_id: uuid.UUID,
     action: str,
@@ -298,7 +298,7 @@ async def change_status(
 
 
 # ================================================================ after-commit handlers (system)
-async def close_for_demand(ctx: RequestContext, db: AsyncSession, demand_id: uuid.UUID) -> int:  # noqa: ARG001
+async def close_for_demand(ctx: RequestContext, db: AsyncSession, demand_id: uuid.UUID) -> int:  # ruff: ignore[unused-function-argument]
     rows = (
         (
             await db.execute(
@@ -315,7 +315,7 @@ async def close_for_demand(ctx: RequestContext, db: AsyncSession, demand_id: uui
     return len(rows)
 
 
-async def refresh_snapshots(ctx: RequestContext, db: AsyncSession, demand_id: uuid.UUID) -> int:  # noqa: ARG001
+async def refresh_snapshots(ctx: RequestContext, db: AsyncSession, demand_id: uuid.UUID) -> int:  # ruff: ignore[unused-function-argument]
     d = (await db.execute(select(Demand).where(Demand.id == demand_id))).scalar_one_or_none()
     if d is None:
         return 0

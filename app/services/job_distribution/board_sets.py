@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Job board settings, default board sets and taxonomy mappings (Epic 70, spec A3 / A7)."""
 
 import uuid

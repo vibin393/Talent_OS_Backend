@@ -24,7 +24,7 @@ from app.services import directory_service as directory
 from app.services.demands.common import READ, demand_settings, get_for, tenant_of
 
 
-async def list_sla_targets(ctx: RequestContext, db: AsyncSession) -> list[SlaTargetOut]:  # noqa: ARG001
+async def list_sla_targets(ctx: RequestContext, db: AsyncSession) -> list[SlaTargetOut]:  # ruff: ignore[unused-function-argument]
     rows = (
         await db.execute(
             select(SlaTarget)

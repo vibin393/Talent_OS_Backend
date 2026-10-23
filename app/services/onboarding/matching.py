@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Template matching (Epic 23 A3, FR-122) -- pure.
 
 A template matches when each of its non-NULL match columns equals the Placement fact. The most specific wins

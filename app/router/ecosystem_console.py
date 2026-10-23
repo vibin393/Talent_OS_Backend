@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Ecosystem console (Epic 79 story 79.1 / 79.2, FR-405 / FR-406). Reads need ``integration:view`` or
 ``integration:manage``; mutations need ``integration:manage`` and are human-only (403 ``human_only_action`` for API
 keys / automated actors). Never returns secrets, webhook payloads or Copilot / portal conversation text."""

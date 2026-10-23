@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Deterministic copy checks (Epic 78 A4, FR-403). PURE: no database, no LLM; re-run on every edit.
 
 ``run(draft, context) -> list[Finding]`` where ``draft`` carries ``channel, subject, preheader, body_html,

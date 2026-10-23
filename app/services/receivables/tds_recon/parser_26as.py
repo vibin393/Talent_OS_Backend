@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Pure parser of the TRACES Form 26AS text export (``^``-delimited) -- Epic 51, FR-254.
 
 Layout (anonymised, real-shaped):

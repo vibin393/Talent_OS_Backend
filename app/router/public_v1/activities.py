@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """``/public/v1/activities`` (Epic 67, spec A4): logged calls, meetings and emails (never sends anything)."""
 
 import uuid

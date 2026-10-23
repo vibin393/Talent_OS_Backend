@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Demand Agent Celery tasks (Epic 55, A7). Every per-tenant task starts with ``tenant_id``.
 
 * ``demand_intake.poll_mailboxes`` (beat, every 2 min, queue ``connectors``) -- per tenant with

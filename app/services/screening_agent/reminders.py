@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Reminders and expiry (Epic 57 story 57.6; beat every 15 minutes on ``maintenance``).
 
 * Expiry: an open conversation past ``expires_at`` -> ``expired``, run cancelled, recruiter Task,
@@ -45,7 +45,7 @@ async def _mode(db: AsyncSession, conv: ScreeningConversation) -> str:
     return decision.mode
 
 
-def _waiting_since(conv: ScreeningConversation):  # noqa: ANN202
+def _waiting_since(conv: ScreeningConversation):  # ruff: ignore[missing-return-type-private-function]
     last_out = conv.last_outbound_at or conv.invited_at
     if last_out is None:
         return None

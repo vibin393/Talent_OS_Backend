@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Internal talent matches (Epic 41 A5, FR-212).
 
 * ``internal_candidate_ids`` -- the matching section ``internal`` (registered from ``hooks.py``): eligible internal
@@ -41,7 +41,7 @@ def fit_of(overall: Any, evidence: list[dict[str, Any]] | None, missing: list[st
 
 
 async def fit_for_employee(
-    ctx: RequestContext | None,  # noqa: ARG001 - contract signature
+    ctx: RequestContext | None,  # ruff: ignore[unused-function-argument] - contract signature
     db: AsyncSession,
     candidate_id: uuid.UUID | None,
     demand_ids: Iterable[uuid.UUID],

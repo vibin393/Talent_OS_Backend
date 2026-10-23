@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """``extract_answers`` (Epic 57 A4; foundation contract stub filled -- signature and DTOs frozen by Epic 53, used by 57 and
 Epic 58 voice screening).
 

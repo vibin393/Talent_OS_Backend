@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Campaign copy wiring (Epic 78), autodiscovered by ``core.hooks``.
 
 * notification types ``campaign_copy_ready`` (requester + ``campaign:copy_approve`` holders; in-app + email) and
@@ -23,10 +23,10 @@ from app.services.campaign_copy.common import AGENT_KEY
 def _notifications() -> None:
     from app.services import notifications_service as ns
 
-    async def nobody(db: AsyncSession, payload: Any) -> set[Any]:  # noqa: ARG001 - delivered with explicit recipients
+    async def nobody(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument] - delivered with explicit recipients
         return set()
 
-    async def render(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG001
+    async def render(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
         return ns.Content(title=str(payload.get("title") or "AI campaign copy"), link_path=payload.get("link_path"))
 
     defs = {

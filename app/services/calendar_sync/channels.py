@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Push channel lifecycle (Epic 72 story 72.3, spec A4): create, renew, stop and the fallback polling schedule.
 
 * ``ensure_channel(db, connection_id)`` -- when the tenant turned sync on, the connection is active and its user

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Platform visa type templates (Epic 46 A1): ``data/visa_type_templates.yaml`` -> ``visa_type_templates``.
 
 ``sync_seed(conn)`` is an idempotent upsert by ``key`` that bumps ``template_version`` when a template's content

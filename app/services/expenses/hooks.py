@@ -104,7 +104,7 @@ except Exception:  # pragma: no cover - never block other registrations
 
 
 # ---------------------------------------------------------------- workflow, SLA, offboarding, files
-async def _snapshot(ctx: RequestContext, db: AsyncSession, claim_id: uuid.UUID) -> dict[str, Any] | None:  # noqa: ARG001
+async def _snapshot(ctx: RequestContext, db: AsyncSession, claim_id: uuid.UUID) -> dict[str, Any] | None:  # ruff: ignore[unused-function-argument]
     from app.models.expenses import ExpenseClaim
 
     claim = (await db.execute(select(ExpenseClaim).where(ExpenseClaim.id == claim_id))).scalar_one_or_none()
@@ -121,7 +121,7 @@ async def _snapshot(ctx: RequestContext, db: AsyncSession, claim_id: uuid.UUID) 
     }
 
 
-async def _receipt_access(ctx: RequestContext, db: AsyncSession, entity_id: uuid.UUID, write: bool) -> bool:  # noqa: ARG001
+async def _receipt_access(ctx: RequestContext, db: AsyncSession, entity_id: uuid.UUID, write: bool) -> bool:  # ruff: ignore[unused-function-argument]
     principal = ctx.principal
     return bool(
         not write and principal is not None and hasattr(principal, "has") and principal.has("expense:read")

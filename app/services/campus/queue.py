@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Server-side interview queue of a recruitment event (Epic 43 story 43.5, FR-220, AD-15: no websocket).
 
 * ``queue_view`` -- active entries in position order with ``eta = ceil(ahead / open stations) x median`` where the

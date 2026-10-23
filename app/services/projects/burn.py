@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Budget burn read model (Epic 45, FR-230; AD-33 / AD-51 / AD-20).
 
 Only posted facts count:

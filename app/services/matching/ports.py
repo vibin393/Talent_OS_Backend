@@ -5,7 +5,7 @@ Epic 6 (pipeline) implements ``PipelineGateway`` and registers it with
 add-to-pipeline answer 409 ``pipeline_unavailable`` and excludes nobody from the matching pool.
 """
 
-# ruff: noqa: ARG002  (the default gateway ignores its arguments by design)
+# ruff: file-ignore[unused-method-argument]  (the default gateway ignores its arguments by design)
 
 import uuid
 from collections.abc import Awaitable, Callable, Iterable, Mapping, Sequence

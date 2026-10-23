@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 70 job board tools (spec A3, "Agents and MCP").
 
 | Key | Risk | Notes |
@@ -76,7 +76,7 @@ async def _publish(tctx: Any, args: PublishToolIn) -> ToolOutcome:
     return ToolOutcome(data, target=("demand", args.demand_id), summary=f"sent to {len(data.published)} board(s)")
 
 
-async def _publish_preview(tctx: Any, args: PublishToolIn) -> ProposalPreview:  # noqa: ARG001
+async def _publish_preview(tctx: Any, args: PublishToolIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
     return ProposalPreview(
         title="Publish the job to external job boards",
         summary="Publishes the approved careers posting to: " + ", ".join(args.board_keys),

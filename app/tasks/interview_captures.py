@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Interview Assistant tasks (Epic 60). Every task starts with ``tenant_id`` (the beat fan-out excepted). Queue
 ``maintenance``.
 

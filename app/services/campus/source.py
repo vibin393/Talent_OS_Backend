@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Semantic source ``campus.registration`` (owned by Epic 43, AD-42) and the campus fields added to the base
 ``candidates.candidate`` source (foundation 0.6 deviation note: "Campus batch is added by 43").
 

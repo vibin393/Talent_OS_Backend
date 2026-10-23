@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Step executor (Epic 53, AD-58, stories 53.4 / 53.5 / 53.7 / 53.8 / 53.9). One Celery task per step.
 
 ``run_step(tenant_id, run_id, step_no, worker_id)``:
@@ -480,7 +480,7 @@ async def _execute_tool(
     call: _Call,
     args: BaseModel,
     ctx: RequestContext,
-    step_no: int,  # noqa: ARG001 - kept for log context
+    step_no: int,  # ruff: ignore[unused-function-argument] - kept for log context
 ) -> None:
     tool = call.tool
     assert tool is not None

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Private Apps and Connected apps (Epic 67, spec A6; ``/api/v1``). User sessions only: API keys and app tokens get
 403 ``human_session_required`` (app tokens are refused earlier by the resolver: ``app_token_not_allowed``)."""
 

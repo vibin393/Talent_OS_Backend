@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Shared helpers of the ledger sync domain (Epic 71): settings, the active accounting Installation / config of a Legal
 Entity, sanitised messages and fix-it Tasks (``ledger_sync`` and ``hrms_sync`` are independent siblings in ``p5-dag``,
 so these helpers are kept per package). Adapters are reached only through ``integrations_service.adapter_for``."""

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """HRMS field mappings per Installation x Legal Entity (Epic 71, story 71.1, spec A3).
 
 * ``get`` returns the HRMS schema fields with their mapping, ``required`` and the Talent OS catalogue.
@@ -175,7 +175,7 @@ async def enable_sensitive(ctx: RequestContext, db: AsyncSession, mapping_id: uu
     return _out(row)
 
 
-async def disable_sensitive(ctx: RequestContext, db: AsyncSession, mapping_id: uuid.UUID) -> MappingOut:  # noqa: ARG001
+async def disable_sensitive(ctx: RequestContext, db: AsyncSession, mapping_id: uuid.UUID) -> MappingOut:  # ruff: ignore[unused-function-argument]
     row = await _mapping(db, mapping_id)
     row.sensitive, row.purpose, row.enabled_by, row.enabled_at = False, None, None, None
     await db.flush()

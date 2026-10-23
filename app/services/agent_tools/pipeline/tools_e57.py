@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 57 tool ``postings.get`` (read): the published posting fields of a screening conversation's Demand, the only
 source of Grounded Answers. Field values are third-party text (``untrusted_output``). Pay / rates are never returned."""
 

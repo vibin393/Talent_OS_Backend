@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Kickoff of the Compliance Agent (Epic 62): ids only -- the plan is read through ``compliance.get_chase_plan``."""
 
 from collections.abc import Mapping

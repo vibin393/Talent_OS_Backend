@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Shared job plumbing of the ``sms`` and ``whatsapp`` adapters (Epic 33, AD-29).
 
 ``connector_jobs`` call ``adapter.handle("send", {"tenant_id", "channel_message_id", ...})``. Before any provider
@@ -80,7 +80,7 @@ class ChannelAdapter:
     async def _deliver(self, spec: SendSpec) -> SendResult:
         raise NotImplementedError
 
-    async def _other(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # noqa: ARG002
+    async def _other(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         msg = f"{self.category}: unsupported operation {op!r}"
         raise ValueError(msg)
 

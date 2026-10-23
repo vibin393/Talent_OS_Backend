@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """One-time sign-in into a sandbox (Epic 74, story 74.3, spec 0.4). ``open_sandbox`` stores a single-use token (hashed,
 60 s, bound to the developer and the sandbox) and returns ``/developers/sandbox/enter#t=...``; ``consume_handoff``
 pops it and opens a normal ``tos_session`` for the developer's sandbox user (the developer's MFA covers it)."""

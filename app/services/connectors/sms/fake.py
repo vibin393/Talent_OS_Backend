@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Fake ``sms`` connector (dev / tests, AD-29): records every send in memory, returns deterministic ids, prints a
 masked line when ``CONNECTOR_FAKE_ECHO=true`` and verifies webhooks with HMAC-SHA256 of the body
 (``X-Fake-Signature``) using the configured webhook secret. Registered as provider ``fake`` outside production.
@@ -110,7 +110,7 @@ class FakeSmsProvider(ChannelAdapter):
         given = {k.lower(): v for k, v in headers.items()}.get("x-fake-signature", "")
         return hmac.compare_digest(given, fake_signature(secret, body))
 
-    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # noqa: ARG002
+    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         return parse_fake_events(body)
 
 

@@ -1,4 +1,4 @@
-# ruff: noqa: D401, E501
+# ruff: file-ignore[non-imperative-mood, line-too-long]
 """Shared helpers of the ``mobility`` domain (Epic 41): permission keys, errors, clock, the tenant settings row,
 system contexts and the pipeline-guard bypass used by mobility's own Application moves."""
 

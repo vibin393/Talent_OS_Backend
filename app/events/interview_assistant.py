@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Interview Assistant domain-local events (Epic 60). ``DraftRatingsDecided`` records how an interviewer used the
 draft's suggested ratings when submitting their own scorecard (FR-323 selection data for Epic 65).
 

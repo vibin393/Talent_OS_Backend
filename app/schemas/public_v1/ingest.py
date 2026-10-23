@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Public API v1 inbound data-loop contracts (unified platform hub ingest).
 
 * ``POST /public/v1/assessments`` (Croar -> ATS): ``AssessmentIngestIn`` -> ``AssessmentOut``.

@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Facade of the ``scheduling_agent`` domain (Epic 53 contract layer, spec 0.12; filled by Epic 59). Other domains call
 these, never the package internals.
 
@@ -26,7 +26,7 @@ from app.services.scheduling_agent.service import propose
 
 
 async def application_owner(
-    ctx: RequestContext,  # noqa: ARG001 - AgentSpec.owner signature
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument] - AgentSpec.owner signature
     db: AsyncSession,
     subject: tuple[str, uuid.UUID] | None,
 ) -> uuid.UUID | None:

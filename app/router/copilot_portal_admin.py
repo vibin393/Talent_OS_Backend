@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Portal Copilot administration (Epic 77 A5): ``/api/v1/copilot/portal-admin`` (internal users). Settings read needs
 ``ai:govern`` or ``ai:agent_configure``; ``PUT /settings`` needs ``ai:agent_configure`` and a human (API keys and Apps
 are refused); usage needs ``ai:govern`` and carries metadata only (never conversation text)."""

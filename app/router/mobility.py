@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Internal mobility (Epic 41, FR-209..FR-212): ``/api/v1/mobility/*``.
 
 * Board / self-service -- **no permission key**: any active internal User (``board_enabled``): ``/mobility/openings*``,

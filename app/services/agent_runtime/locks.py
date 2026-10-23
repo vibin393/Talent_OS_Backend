@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Run concurrency semaphores (Epic 53, AD-58, story 53.9).
 
 Two counting semaphores per running run: ``agents:sem:<tenant>`` (<= ``agent_max_concurrent_runs_per_tenant``) and

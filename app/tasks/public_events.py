@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Outbox relay tasks (Epic 66, AD-79), queue ``webhooks``: ``public_events.dispatch`` / ``sweep``; ``public_events.purge`` on ``maintenance``.
 
 * ``public_events.dispatch(tenant_id)`` -- enqueued after commit (deduplicated per tenant for 2 s); re-enqueues itself

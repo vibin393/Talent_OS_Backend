@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Registrations of the ``knowledge`` domain (autodiscovered by ``core.hooks``), Epic 62.
 
 * Grounded-conversation checker ``onboarding_qa`` (FR-274, coordinator decision 3).

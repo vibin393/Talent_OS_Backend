@@ -256,7 +256,7 @@ class PgVectorIndex(_BaseIndex):
     async def search(
         self,
         db: AsyncSession,
-        tenant_id: uuid.UUID,  # noqa: ARG002 - RLS scopes the session
+        tenant_id: uuid.UUID,  # ruff: ignore[unused-method-argument] - RLS scopes the session
         vector: Sequence[float],
         candidate_ids_filter: Sequence[uuid.UUID] | None,
         k: int,

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Exotel telephony adapter (Epic 76, spec A2; key ``exotel``; India DC).
 
 * Bridged call: ``POST https://{subdomain}/v1/Accounts/{sid}/Calls/connect.json`` (``From`` = recruiter, ``To`` =
@@ -124,10 +124,10 @@ class ExotelTelephony(LiveTelephonyBase):
             recording_channels=2 if call.get("RecordingUrl") else None,
         ).to_mapping()
 
-    async def hangup(self, external_ref: str) -> Mapping[str, Any]:  # noqa: ARG002
+    async def hangup(self, external_ref: str) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         return {"ok": False, "unsupported": True}  # Exotel has no hang-up API for connect calls
 
-    async def delete_recording(self, recording_ref: str) -> Mapping[str, Any]:  # noqa: ARG002
+    async def delete_recording(self, recording_ref: str) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         return {"status": "unsupported", "retention_days": self._cfg.account_recording_retention_days}
 
     async def fetch_recording(self, recording_ref: str) -> RecordingDTO | None:
@@ -145,7 +145,7 @@ class ExotelTelephony(LiveTelephonyBase):
             return False
         return hmac.compare_digest(given.strip(), relay_signature(token, body))
 
-    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # noqa: ARG002
+    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         form = parse_form(body)
         sid = form.get("CallSid", "")
         status = form.get("Status") or form.get("CallStatus") or ""

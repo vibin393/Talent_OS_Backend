@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Shared helpers of the ``compliance`` domain (Epic 21): permissions, settings, tenant clock, local events."""
 
 import dataclasses

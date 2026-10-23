@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 55 SLA-risk tools (A3, FR-284): ``sla.status`` (one demand; the PRD's ``predictions.time_to_fill`` folded
 in), ``sla.risk_scan`` (at-risk open demands visible to the scan owner) and ``sla.send_digest`` (one digest per
 recipient, filtered by each recipient's own access; internal only). None changes a Demand field."""
@@ -109,7 +109,7 @@ async def _digest(tctx: Any, args: DigestIn) -> ToolOutcome:
     return ToolOutcome(DigestOut(digests_sent=sent, flags_raised=raised), summary=f"{sent} digest(s) sent")
 
 
-async def _digest_preview(tctx: Any, args: DigestIn) -> ProposalPreview:  # noqa: ARG001
+async def _digest_preview(tctx: Any, args: DigestIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
     return ProposalPreview(
         title=f"Send the daily SLA risk digest ({len(args.items)} demands)",
         summary="One in-app / email digest per recipient (primary recruiter and the business-unit managers), listing only demands each recipient can see.",

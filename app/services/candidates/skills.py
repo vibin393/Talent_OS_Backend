@@ -125,7 +125,7 @@ def _like(term: str) -> str:
 
 
 async def search_skills(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     q: str | None,
     *,
@@ -284,7 +284,7 @@ async def add_alias(
     return target
 
 
-async def list_pending(ctx: RequestContext, db: AsyncSession, params: PageParams) -> Page[PendingSkillOut]:  # noqa: ARG001
+async def list_pending(ctx: RequestContext, db: AsyncSession, params: PageParams) -> Page[PendingSkillOut]:  # ruff: ignore[unused-function-argument]
     usage = (
         select(func.count())
         .select_from(CandidateSkill)
@@ -320,7 +320,7 @@ async def _pending_skill(db: AsyncSession, skill_id: uuid.UUID) -> TenantSkill:
     return row
 
 
-async def approve_skill(ctx: RequestContext, db: AsyncSession, skill_id: uuid.UUID) -> SkillOut:  # noqa: ARG001
+async def approve_skill(ctx: RequestContext, db: AsyncSession, skill_id: uuid.UUID) -> SkillOut:  # ruff: ignore[unused-function-argument]
     row = await _pending_skill(db, skill_id)
     if row.status == "rejected":
         raise ConflictError("A rejected skill cannot be approved", code="skill_rejected")

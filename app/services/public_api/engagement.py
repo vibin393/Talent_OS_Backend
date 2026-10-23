@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Public Notes, Activities and Tasks (Epic 67, spec A4).
 
 * Notes / activities: the record must be readable (``activity_service.require_entity``: the owner's checker); private

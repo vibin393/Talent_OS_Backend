@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Compliance chasing and BGV follow-ups API (Epic 62 A8). Internal principals; reads only ("Chase now" / "Follow up
 now" use the foundation's ``POST /agent-runs``).
 

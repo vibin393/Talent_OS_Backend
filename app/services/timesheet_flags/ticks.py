@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Timesheet Agent run starters (Epic 63 A2). Beat ``timesheet_flags.nudge_tick`` (hourly, queue ``maintenance``) acts
 at 10:00 tenant-local time: one ``timesheet`` run per Account Manager with a non-empty nudge plan
 (``trigger_key="daily_nudges"``, subject ``("user", am)``, owner = the AM, dedup ``nudges:{am}:{date}``). No model call

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """``/public/v1/pools`` (Epic 67, spec A4): talent pools the caller can see and their members (candidate ids)."""
 
 import uuid

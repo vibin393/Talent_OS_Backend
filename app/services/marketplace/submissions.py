@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Partner submissions (Epic 69, spec A7; consumed by Epic 74's developer portal with a ``DeveloperContext``).
 
 draft -> submitted (snapshot of ``apps.manifest`` + scope reasons; the content is immutable from here) ->

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Scheduling Agent (Epic 59, FR-297..FR-300; migrations ``20261008_406_01_sched_offers`` / ``_406_02_sched_prefs`` /
 ``_406_03_sched_remind``). Owner: ``scheduling_agent``.
 

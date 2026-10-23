@@ -88,7 +88,7 @@ DEFAULT_TEMPLATES: dict[str, dict[str, str]] = {
         "subject": "Feedback on {{ candidate.full_name }} for {{ demand.title }}",
         "body_html": (
             "<p>Dear {{ contact.first_name }},</p>"
-            "<p>Could you share your feedback on {{ candidate.full_name }} for the {{ demand.title }} role?</p>"  # noqa: E501
+            "<p>Could you share your feedback on {{ candidate.full_name }} for the {{ demand.title }} role?</p>"  # ruff: ignore[line-too-long]
             '<p><a href="{{ link.url }}">Give feedback</a></p>'
             "<p>{{ sender.name }}</p>"
         ),

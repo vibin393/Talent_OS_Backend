@@ -43,7 +43,7 @@ def _like(term: str) -> str:
 
 
 # ================================================================ tags
-async def list_tags(ctx: RequestContext, db: AsyncSession, q: str | None, params: PageParams) -> Page[TagOut]:  # noqa: ARG001
+async def list_tags(ctx: RequestContext, db: AsyncSession, q: str | None, params: PageParams) -> Page[TagOut]:  # ruff: ignore[unused-function-argument]
     stmt = select(Tag)
     if q and q.strip():
         stmt = stmt.where(Tag.name.ilike(_like(q), escape="\\"))

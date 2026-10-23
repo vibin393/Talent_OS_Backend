@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Sourcing & Matching Agent facade (Epic 56; AD-1 naming). The entry point of the ``sourcing_agent`` domain for the
 router, tasks and the Epic 56 agent tools (``agent_tools.{matching,search,talent_pools,pipeline,campaigns,sourcing}``).
 Epic 61 may read ``get_current`` (soft dependency)."""

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Job board distribution DTOs (Epic 70, spec A8)."""
 
 import uuid

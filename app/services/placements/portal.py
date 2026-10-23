@@ -280,7 +280,7 @@ async def client_placement_detail(ctx: RequestContext, db: AsyncSession, placeme
     )
 
 
-import typing  # noqa: E402
+import typing  # ruff: ignore[module-import-not-at-top-of-file]
 
 if typing.TYPE_CHECKING:
     from app.schemas.client_hub_portal import ClientPlacementDetail, ClientPlacementOut

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Webhook events (Epic 68, spec A5).
 
 Contract layer (AD-36): frozen, slotted dataclasses; ``tenant_id`` first; ids and scalars only (no PII); dispatched

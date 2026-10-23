@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Proctoring-lite (Epic 40 A8, FR-206): append-only signals, annotations, display.
 
 * Signals (``tab_switch``, ``focus_loss``, ``copy``, ``paste``, ``fullscreen_exit`` from the client;
@@ -27,7 +27,7 @@ from app.services.assessments.common import not_found, now, user_id
 MAX_DETAIL_BYTES = 512
 
 
-class AppendOnlyViolation(RuntimeError):  # noqa: N818
+class AppendOnlyViolation(RuntimeError):  # ruff: ignore[error-suffix-on-exception-name]
     pass
 
 
@@ -98,7 +98,7 @@ async def _attempt(db: AsyncSession, attempt_id: uuid.UUID) -> Attempt:
     return att
 
 
-async def list_signals(ctx: RequestContext, db: AsyncSession, attempt_id: uuid.UUID) -> SignalsOut:  # noqa: ARG001
+async def list_signals(ctx: RequestContext, db: AsyncSession, attempt_id: uuid.UUID) -> SignalsOut:  # ruff: ignore[unused-function-argument]
     att = await _attempt(db, attempt_id)
     rows = list(
         (

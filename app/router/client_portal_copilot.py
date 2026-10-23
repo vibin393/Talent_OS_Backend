@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Client Portal Copilot (Epic 77, FR-396 / FR-397): ``/api/v1/client-portal/copilot``. Client session (``ClientDep``;
 the Copilot's tools run on the Client User's org-scoped session) + ``portal_copilot:use`` on every route except
 ``GET /status``. FR-80 guarded."""

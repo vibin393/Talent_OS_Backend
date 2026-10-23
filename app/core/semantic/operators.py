@@ -59,10 +59,10 @@ class SkillMatch:
 
 # ---------------------------------------------------------------- skill expander
 async def _identity_expander(
-    ctx: RequestContext,  # noqa: ARG001
-    db: AsyncSession,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
+    db: AsyncSession,  # ruff: ignore[unused-function-argument]
     refs: Sequence[SkillKey],
-    depth: int,  # noqa: ARG001
+    depth: int,  # ruff: ignore[unused-function-argument]
 ) -> list[ExpandedSkill]:
     return [ExpandedSkill(key=r, root=r, weight=Decimal("1.00"), depth=0, via=None) for r in refs]
 

@@ -1,4 +1,4 @@
-# ruff: noqa: E501, RUF001
+# ruff: file-ignore[line-too-long, ambiguous-unicode-character-string]
 """Adverse-impact tables (Epic 49 A5, FR-247) -- pure, no I/O.
 
 ``build_snapshot(records, dimensions, intersections, k, score_based)``:

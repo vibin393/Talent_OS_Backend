@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Projects dashboard tiles (Epic 52 A4; Epic 45 data). Projects are scoped like ``GET /projects``
 (``projects.common.scoped``: owner / BU). Burn is the owner's ``project_burn`` projection, computed from posted facts
 only (AD-33); money is shown only with ``compensation:view`` (counts stay)."""

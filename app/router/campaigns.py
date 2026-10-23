@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Recruitment marketing (Epic 39, FR-196..FR-201): ``/api/v1/marketing/*``.
 
 Permissions: ``campaign:read`` (lists, previews, analytics), ``campaign:write`` (audiences, campaign drafts, submit),

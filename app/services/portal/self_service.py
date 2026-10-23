@@ -285,9 +285,9 @@ async def _interview_rows(db: AsyncSession, candidate_id: uuid.UUID) -> list[dic
 
 # ================================================================ offers (Epic 8, guarded read model)
 async def list_offers(
-    ctx: RequestContext,  # noqa: ARG001 - portal service signature
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument] - portal service signature
     principal: CandidatePrincipal,
-    db: AsyncSession,  # noqa: ARG001 - portal service signature
+    db: AsyncSession,  # ruff: ignore[unused-function-argument] - portal service signature
 ) -> list[PortalOffer]:
     """Epic 8 ``offers_service.list_for_candidate(tenant_id, candidate_id)`` if present (used by the export);
     the offer endpoints themselves are Epic 8's ``/portal/offers`` routes."""

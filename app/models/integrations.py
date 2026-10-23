@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Connector runtime state (Epic 66, AD-81, FR-335; migration ``20261009_500_03_p5_platform``). Owner:
 ``app.services.integrations``.
 

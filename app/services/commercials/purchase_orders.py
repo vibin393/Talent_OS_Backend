@@ -199,12 +199,12 @@ async def create_po(ctx: RequestContext, db: AsyncSession, data: PurchaseOrderIn
     return await _out(db, po, (ZERO, ZERO))
 
 
-async def get_po(ctx: RequestContext, db: AsyncSession, po_id: uuid.UUID) -> PurchaseOrderOut:  # noqa: ARG001
+async def get_po(ctx: RequestContext, db: AsyncSession, po_id: uuid.UUID) -> PurchaseOrderOut:  # ruff: ignore[unused-function-argument]
     return await _out(db, await get_row(db, po_id))
 
 
 async def list_pos(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     client_id: uuid.UUID | None = None,
@@ -336,7 +336,7 @@ async def attach_file(
 
 
 async def list_consumptions(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     po_id: uuid.UUID,
 ) -> list[PoConsumptionOut]:
@@ -351,7 +351,7 @@ async def list_consumptions(
     return [PoConsumptionOut.model_validate(r) for r in rows]
 
 
-async def list_placements(ctx: RequestContext, db: AsyncSession, po_id: uuid.UUID) -> list[PoPlacementOut]:  # noqa: ARG001
+async def list_placements(ctx: RequestContext, db: AsyncSession, po_id: uuid.UUID) -> list[PoPlacementOut]:  # ruff: ignore[unused-function-argument]
     """Read-only projection of ``placements.po_id`` (the column arrives with the placements epic)."""
     await get_row(db, po_id)
     try:
@@ -359,7 +359,7 @@ async def list_placements(ctx: RequestContext, db: AsyncSession, po_id: uuid.UUI
             rows = (
                 await db.execute(
                     text(
-                        "SELECT id, human_id, status FROM placements WHERE po_id = :po ORDER BY created_at DESC"  # noqa: E501
+                        "SELECT id, human_id, status FROM placements WHERE po_id = :po ORDER BY created_at DESC"  # ruff: ignore[line-too-long]
                     ),
                     {"po": po_id},
                 )
@@ -369,8 +369,8 @@ async def list_placements(ctx: RequestContext, db: AsyncSession, po_id: uuid.UUI
     return [PoPlacementOut(placement_id=r[0], human_id=r[1], status=r[2]) for r in rows]
 
 
-# ================================================================ read API (placements / billing / extensions)  # noqa: E501
-async def po_balance(ctx: RequestContext, db: AsyncSession, po_id: uuid.UUID) -> PoBalance:  # noqa: ARG001
+# ================================================================ read API (placements / billing / extensions)  # ruff: ignore[line-too-long]
+async def po_balance(ctx: RequestContext, db: AsyncSession, po_id: uuid.UUID) -> PoBalance:  # ruff: ignore[unused-function-argument]
     po = await get_row(db, po_id)
     amount, hours = await consumed(db, po.id)
     return balance(po, amount, hours)
@@ -403,7 +403,7 @@ def _check(
 
 
 async def validate_po(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     po_id: uuid.UUID | None,
     on_date: date,
@@ -420,7 +420,7 @@ async def validate_po(
 
 
 async def default_po(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     client_id: uuid.UUID,
     legal_entity_id: uuid.UUID,
@@ -458,7 +458,7 @@ async def default_po(
 
 
 async def check_po_headroom(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     po_id: uuid.UUID,
     amount: Decimal,

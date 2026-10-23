@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Reconciliation (Epic 76, spec "Queues"): calls stuck non-terminal for longer than ``max_call_minutes + 10`` are
 checked with ``OP_CALL_STATUS``; a terminal provider status is applied, otherwise the call ends ``failed``
 (``failure_code='stale'``) so its cost reservation is released."""

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Digital onboarding (Epic 23, AD-27 / AD-35). Migrations ``20261005_210_01..02`` (branch ``p2_onboarding``).
 
 * ``onboarding_settings`` / ``onboarding_templates`` / ``onboarding_template_tasks`` -- tenant configuration

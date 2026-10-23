@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Erasure handler ``timesheet_flags.flags`` (Epic 63, order 67; C-15, FR-326).
 
 Timesheets are financial records and stay; on a candidate subject's erasure (+ merged ids) the Worker's anomaly flags

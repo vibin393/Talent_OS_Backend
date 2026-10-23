@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Secure-Link consent page of Voice Screening (Epic 58, story 58.3; purpose ``voice_consent``):
 ``/api/v1/public/voice-consent/{token}``. The Candidate confirms where they are and agrees (or not) to the screening call
 and, separately, to its recording.

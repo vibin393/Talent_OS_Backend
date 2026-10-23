@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Partner App credentials (Epic 74, story 74.4): thin wrappers over Epic 67's ``oauth_service`` adding the org role
 check, MFA (the router requires it) and the org audit log. Calls run from a platform context (``tenant_id`` None) with
 ``Publisher(kind="partner")``; Apps start in ``development``; secrets are shown once."""

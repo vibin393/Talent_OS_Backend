@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Invoice / Client collection timelines (Epic 63 A4, FR-315 on top of P2 FR-183).
 
 ``register_timeline_source("invoice", ...)`` and ``("client", ...)``: the subject's record timeline merges the audit rows

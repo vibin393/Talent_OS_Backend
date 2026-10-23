@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Segments (Epic 38 story 38.1, FR-192): ``/api/v1/segments``.
 
 Reading needs ``pool:read``; writing needs ``segment:write`` (definitions are validated against the author's field

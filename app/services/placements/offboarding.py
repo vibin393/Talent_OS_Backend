@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Offboarding Cases (FR-165, PRD §5.16, AD-4). ``status`` is written only through ``_transition``.
 
 * ``initiate`` (one transaction): lock the placement, refuse a second open case, snapshot ``previous_end_date``
@@ -371,7 +371,7 @@ async def _settle_status(db: AsyncSession, case: OffboardingCase, items: list[Of
         await _transition(db, case, "in_progress", SYSTEM)
 
 
-async def refresh_case(ctx: RequestContext, db: AsyncSession, case: OffboardingCase) -> bool:  # noqa: ARG001
+async def refresh_case(ctx: RequestContext, db: AsyncSession, case: OffboardingCase) -> bool:  # ruff: ignore[unused-function-argument]
     if case.status not in CASE_OPEN:
         return False
     items = await _items(db, case.id)
@@ -520,7 +520,7 @@ async def waive_item(
 
 
 async def on_signature_completed(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     item_id: uuid.UUID,
     document_id: uuid.UUID,
@@ -539,7 +539,7 @@ async def on_signature_completed(
 
 
 async def client_confirm(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     case_id: uuid.UUID,
     actor: ActorRef,
@@ -777,7 +777,7 @@ async def list_cases(ctx: RequestContext, db: AsyncSession, status: str = "open"
     return [await _case_out(db, r) for r in rows]
 
 
-async def exit_facts(ctx: RequestContext, db: AsyncSession, placement_id: uuid.UUID) -> Any:  # noqa: ARG001
+async def exit_facts(ctx: RequestContext, db: AsyncSession, placement_id: uuid.UUID) -> Any:  # ruff: ignore[unused-function-argument]
     """Read API for FR-99 / FR-176 reports: the latest non-cancelled case of the placement."""
     from app.schemas.placements_exit import ExitFacts
 

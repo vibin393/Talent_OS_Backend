@@ -320,9 +320,9 @@ class GoogleProvider:
 
     async def renew_watch(
         self,
-        token_set: TokenSet,  # noqa: ARG002
-        ref: ChannelRef,  # noqa: ARG002
-        ttl_seconds: int,  # noqa: ARG002
+        token_set: TokenSet,  # ruff: ignore[unused-method-argument]
+        ref: ChannelRef,  # ruff: ignore[unused-method-argument]
+        ttl_seconds: int,  # ruff: ignore[unused-method-argument]
     ) -> ChannelRef:
         raise ProviderError("google channels cannot be extended; watch a new channel")
 

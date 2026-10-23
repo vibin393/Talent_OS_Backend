@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Governed MCP Server (Epic 73, AD-84, FR-375..FR-380; migration ``20261010_507_01``). Owner: ``app.services.mcp_store``.
 
 Tenant tables (RLS + internal-only org RLS):

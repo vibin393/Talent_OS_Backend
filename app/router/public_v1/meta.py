@@ -60,5 +60,5 @@ async def meta(principal: PublicPrincipalDep) -> MetaOut:
 
 
 @router.get("/openapi.json")
-async def openapi(request: Request, principal: PublicPrincipalDep) -> dict[str, Any]:  # noqa: ARG001
+async def openapi(request: Request, principal: PublicPrincipalDep) -> dict[str, Any]:  # ruff: ignore[unused-function-argument]
     return public_openapi(request.app)

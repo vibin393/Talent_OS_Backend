@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Worker "My Work" immigration DTOs (Epic 46 A3, AD-26). No owner remarks, counsel details, receipt or permit
 numbers, outcome notes or internal ids beyond the Worker's own case / request ids. Also the public counsel /
 no-portal Candidate upload page (purpose ``immigration_upload``): case reference (human id) and requested items

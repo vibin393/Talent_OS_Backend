@@ -169,7 +169,7 @@ class CandidateMergesHandler:
         await db.flush()
         return {"candidate_merges": len(merges), "candidate_duplicates": len(dups)}
 
-    async def export(self, db: AsyncSession, ctx: ErasureContext) -> dict[str, Any] | None:  # noqa: ARG002
+    async def export(self, db: AsyncSession, ctx: ErasureContext) -> dict[str, Any] | None:  # ruff: ignore[unused-method-argument]
         return None  # merge-undo snapshots duplicate the profile export
 
     async def verify(self, db: AsyncSession, ctx: ErasureContext) -> list[str]:

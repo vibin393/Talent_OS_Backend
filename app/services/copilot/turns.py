@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Copilot conversations and turns (Epic 54 A5, AD-64). No SQL here (contract ``p4-agents-isolation``): persistence is
 ``copilot_store``, runs go through ``agent_runtime_service``. Every function takes the request context and session.
 

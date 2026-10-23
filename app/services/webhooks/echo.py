@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """The sandbox Echo endpoint (Epic 68, story 68.5, Known gap 4). Only Sandbox Tenants can create one (others: 404).
 
 Token format ``<tenant_uuid_hex>.<random>`` lets the unauthenticated receiver open the right tenant session; only the

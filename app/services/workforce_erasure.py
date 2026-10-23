@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 44 erasure handler ``workforce.client_refs`` (FR-68; Epic 35 DSR subject ``client_user``).
 
 Workforce plans hold no candidate personal data. When a Client User is erased, the reference to them on the

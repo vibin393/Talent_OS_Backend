@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Registrations of the ``analytics`` domain (autodiscovered by ``core.hooks``), Epic 48.
 
 * Workflow: the ``prediction`` snapshot loader and the notify / create-task restriction of
@@ -40,7 +40,7 @@ def _uuid(v: Any) -> uuid.UUID | None:
 _redis_client = None
 
 
-def _redis():  # type: ignore[no-untyped-def]  # noqa: ANN202
+def _redis():  # type: ignore[no-untyped-def]  # ruff: ignore[missing-return-type-private-function]
     global _redis_client  # process-wide lazy client
     if _redis_client is None:
         import redis
@@ -165,7 +165,7 @@ async def _recipients(db: AsyncSession, payload: Any) -> set[Any]:
 LINKS = {"demand": "/demands/{id}", "offer": "/offers?offer={id}", "placement": "/placements/{id}"}
 
 
-async def _render(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG001
+async def _render(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
     from app.services.analytics.features.specs import KIND_LABELS
     from app.services.notifications_service import Content
 

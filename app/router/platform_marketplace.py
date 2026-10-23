@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Platform marketplace review (Epic 69, Part C platform; ``/api/v1/platform/marketplace``). Platform operator + MFA;
 role ``marketplace_reviewer`` for every decision (403 ``platform_role_required``). Approve, reject, suspend, reinstate
 and delist are ★ (human platform operators only)."""

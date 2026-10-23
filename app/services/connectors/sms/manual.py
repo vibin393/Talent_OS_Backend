@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Manual ``sms`` connector: the complete human workflow without a provider (AD-29, NFR-31). A send becomes
 ``manual_pending`` in the operator queue (``GET /comms/manual-queue``); an operator sends it by hand and marks it
 sent / failed. No webhooks."""
@@ -16,7 +16,7 @@ class ManualSmsProvider(ChannelAdapter):
     category = "sms"
     provider_key = "manual"
 
-    async def _deliver(self, spec: SendSpec) -> SendResult:  # noqa: ARG002
+    async def _deliver(self, spec: SendSpec) -> SendResult:  # ruff: ignore[unused-method-argument]
         raise ManualActionRequired("sms: send this message by hand from the manual queue", {"op": "send"})
 
     async def send(
@@ -32,13 +32,13 @@ class ManualSmsProvider(ChannelAdapter):
             SendSpec("sms", to_e164, body, dlt_template_id, list(variables), "en", sender_id, dlt_entity_id)
         )
 
-    async def _other(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # noqa: ARG002
+    async def _other(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         raise ManualActionRequired(f"sms: complete {op} manually", {"op": op})
 
-    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # noqa: ARG002
+    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # ruff: ignore[unused-method-argument]
         return False
 
-    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # noqa: ARG002
+    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         return {"events": []}
 
 

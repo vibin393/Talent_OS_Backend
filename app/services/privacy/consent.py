@@ -104,7 +104,7 @@ async def get_basis(db: AsyncSession) -> str:
     return await ai.processing_basis(db)
 
 
-async def basis_out(ctx: RequestContext, db: AsyncSession) -> AIBasisOut:  # noqa: ARG001
+async def basis_out(ctx: RequestContext, db: AsyncSession) -> AIBasisOut:  # ruff: ignore[unused-function-argument]
     return AIBasisOut(
         basis=await get_basis(db),  # type: ignore[arg-type]
         pending_count=await candidates.count_with_state(db, "pending"),
@@ -176,9 +176,9 @@ async def recompute_ai_consent_state(db: AsyncSession, candidate_ids: list[uuid.
 
 
 async def ai_consent_checker(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
-    feature: str,  # noqa: ARG001
+    feature: str,  # ruff: ignore[unused-function-argument]
     subject: tuple[str, uuid.UUID] | None,
 ) -> ai.ConsentDecision:
     if subject is None or subject[0] != "candidate":
@@ -213,7 +213,7 @@ async def has_active_consent(
     return (await db.execute(stmt.limit(1))).first() is not None
 
 
-async def list_consents(ctx: RequestContext, db: AsyncSession, candidate_id: uuid.UUID) -> list[ConsentOut]:  # noqa: ARG001
+async def list_consents(ctx: RequestContext, db: AsyncSession, candidate_id: uuid.UUID) -> list[ConsentOut]:  # ruff: ignore[unused-function-argument]
     rows = (
         await db.execute(
             select(Consent).where(Consent.candidate_id == candidate_id).order_by(Consent.created_at.desc())
@@ -548,7 +548,7 @@ async def create_notice(ctx: RequestContext, db: AsyncSession, data: NoticeCreat
     return NoticeOut.model_validate(row)
 
 
-async def activate_notice(ctx: RequestContext, db: AsyncSession, notice_id: uuid.UUID) -> NoticeOut:  # noqa: ARG001
+async def activate_notice(ctx: RequestContext, db: AsyncSession, notice_id: uuid.UUID) -> NoticeOut:  # ruff: ignore[unused-function-argument]
     row = await db.get(ConsentNotice, notice_id)
     if row is None:
         raise NotFound("Notice not found")

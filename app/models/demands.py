@@ -346,7 +346,7 @@ class DemandAssignment(UUIDPk, TenantMixin, Timestamps, AuditedMixin, Base):
 
 # ================================================================ SLA
 # ``SlaTarget`` moved to ``app.models.sla`` (Epic 13, R14); re-exported here for Phase 1 imports.
-from app.models.sla import SlaTarget as SlaTarget  # noqa: E402
+from app.models.sla import SlaTarget as SlaTarget  # ruff: ignore[module-import-not-at-top-of-file]
 
 
 class DemandSlaClock(UUIDPk, TenantMixin, Timestamps, AuditedMixin, Base):

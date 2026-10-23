@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001, C416
+# ruff: file-ignore[line-too-long, unused-function-argument, unnecessary-comprehension]
 """Ledger mappings per Installation x Legal Entity (Epic 71, story 71.5, spec A8): revenue (billing line category or
 ``*``), GST output (``<component>:<rate>``, e.g. ``cgst:9``), TDS receivable, round-off, customers
 (``<client_id>`` or ``<client_id>:<billing_profile_id>``), items (SAC or ``*``), bank accounts and discount.

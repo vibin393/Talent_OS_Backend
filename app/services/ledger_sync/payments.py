@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401, ARG001
+# ruff: file-ignore[line-too-long, non-imperative-mood, unused-function-argument]
 """Payment suggestions (Epic 71, story 71.6, spec A9).
 
 * ``pull_payments`` sync job (Zoho Books): each ``LedgerPaymentDTO`` not yet suggested and not linked to a Talent OS

@@ -159,7 +159,7 @@ async def vendor_scorecard(
 
 
 async def scorecard(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     vendor_id: uuid.UUID,
     period_from: date | None = None,
@@ -171,7 +171,7 @@ async def scorecard(
 
 
 async def league(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     period_from: date | None = None,
     period_to: date | None = None,

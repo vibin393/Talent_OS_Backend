@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Signing secrets and request headers (Epic 68, §0.4, FR-351, NFR-63). The secret is ``whsec_<token>``, shown once,
 stored in the vault (owner ``webhook_subscription``); rotation keeps ``signing_secret__previous`` for 24 h and every
 delivery in the overlap carries both ``v1`` signatures. No credential, cookie or token is ever sent."""

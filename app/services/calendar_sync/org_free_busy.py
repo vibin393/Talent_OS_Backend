@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Organisation free/busy source (Epic 72 story 72.4, spec A7), registered as the ``connections_service`` free/busy
 fallback. Only for users without a usable personal connection who did not opt out; free/busy only (never event
 details); the installed ``google_calendar_org`` / ``microsoft_calendar_org`` connector is reached through
@@ -52,7 +52,7 @@ async def _installed_source(db: AsyncSession, emails: list[str], start: datetime
 
 
 async def lookup(
-    db: AsyncSession, tenant_id: uuid.UUID, user_ids: list[uuid.UUID], start: datetime, end: datetime  # noqa: ARG001
+    db: AsyncSession, tenant_id: uuid.UUID, user_ids: list[uuid.UUID], start: datetime, end: datetime  # ruff: ignore[unused-function-argument]
 ) -> dict[uuid.UUID, list[BusyBlock]]:
     from app.models.identity import User
     from app.services import connections_service

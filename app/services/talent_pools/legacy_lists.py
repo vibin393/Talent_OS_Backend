@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """P1 saved lists as static Pools (decision 11, spec A4).
 
 Migration ``302_02`` turned every ``candidate_lists`` row into a private static Pool (``legacy_list_id``). The

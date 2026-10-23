@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Category sets (Epic 49 A1, FR-246): the platform default set (gender, age band, disability -- never caste, religion
 or race/ethnicity), lazy per-tenant seeding, label edits (a new set version) and answer validation.
 

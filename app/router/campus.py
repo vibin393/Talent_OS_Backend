@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Campus hiring & recruitment events (Epic 43, FR-217..FR-221): ``/api/v1/campus/*`` (internal Users only; external
 principals are refused by ``require``). Each endpoint calls one service function.
 

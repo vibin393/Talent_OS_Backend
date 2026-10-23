@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Registrations of the ``collection_rules`` domain (Epic 63), autodiscovered by ``core.hooks``.
 
 * events (after commit; each enqueues a task):

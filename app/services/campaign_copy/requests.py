@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Copy requests (Epic 78 A2, FR-401 / FR-402): limits, template and target rules, budget, one open request per
 target, then a ``campaign_copy`` agent run (queue ``agents``). Human only (``campaign:write`` / ``sequence:write``)."""
 
@@ -205,7 +205,7 @@ async def get_request(ctx: RequestContext, db: AsyncSession, request_id: uuid.UU
 
 
 async def list_requests(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     campaign_id: uuid.UUID | None = None,

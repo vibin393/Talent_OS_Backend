@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Worker "My Work" referrals (Epic 42, ``/api/v1/portal/work/referrals``): openings to refer for, refer a friend
 (resume upload), personal share links and My referrals. Any Worker (a Candidate with a Placement); referrer-safe
 payloads only (four status labels, own reward). The list runs in the Worker's org-scoped session (another Worker's

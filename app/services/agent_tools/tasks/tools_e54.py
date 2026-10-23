@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 54 Copilot read tool ``tasks.list`` (FR-277): tasks you can see (``tasks_service.list_tasks``). It never
 completes, reassigns or deletes a task (``tasks.create`` drafts are a separate, confirmed tool)."""
 

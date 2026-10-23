@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """The outbox sink (Epic 68, §0.6), registered as ``register_sink("webhooks", on_rows)``. Runs inside the relay's
 SAVEPOINT: an exception leaves the whole outbox batch pending (66). Idempotent: ``webhook_delivery_keys`` holds one
 row per (subscription, event); a delivery row is inserted only with a fresh key."""

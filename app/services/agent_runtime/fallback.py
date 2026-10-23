@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Manual fallback (Epic 53, story 53.8, FR-275): when a run fails, stops or is blocked, the Accountable Owner gets a
 Task linking the manual screen (or the run). Idempotent per run (``agent_runs.fallback_task_id``)."""
 

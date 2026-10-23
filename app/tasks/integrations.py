@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Connector sync runner tasks (Epic 66, AD-81), queue ``ecosystem``: ``integrations.run_sync_job`` (one attempt of a
 ``sync:`` connector job; retries re-queue with the job's back-off) and ``integrations.fire_schedules`` (beat, 60 s)."""
 

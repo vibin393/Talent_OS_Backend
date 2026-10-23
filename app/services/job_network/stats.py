@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Per-listing daily aggregate counters (Epic 75, spec A8; FR-390). Counts only -- **no IP, user agent, cookie,
 referrer or session id is stored anywhere**. Impressions / views / apply clicks are accumulated into
 ``network_listing_stats`` (one row per listing per day). Applications are never stored here: each Tenant counts its
@@ -66,7 +66,7 @@ async def flush_stats() -> int:
 
 async def analytics(
     ctx: RequestContext, db: AsyncSession, *, date_from: date | None, date_to: date | None,
-    demand_id: uuid.UUID | None = None,  # noqa: ARG001 - accepted for API symmetry; network_listings has no demand_id to filter on
+    demand_id: uuid.UUID | None = None,  # ruff: ignore[unused-function-argument] - accepted for API symmetry; network_listings has no demand_id to filter on
 ) -> NetworkAnalyticsOut:
     """Per-listing stats for **the caller's own** tenant only (``ctx.tenant_id``; never a request parameter). Platform
     session reads ``network_listing_stats`` filtered by the tenant's listings; ``applications`` come from the tenant's

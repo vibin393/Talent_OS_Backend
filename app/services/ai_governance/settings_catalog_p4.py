@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Phase 4 settings hub catalogue (Epic 65 story 65.8, FR-329/FR-330).
 
 Owners register their own hub entries from ``hooks.py``; this module adds only the entries no owner registered (an

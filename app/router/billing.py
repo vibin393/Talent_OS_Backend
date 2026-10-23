@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Billing & GST invoicing (Epic 29, FR-143..FR-152): ``/api/v1/billing``.
 
 Permissions: ``billing:read`` (lists, details, PDFs), ``billing:write`` (rules, manual items, runs, drafts),

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Summary by competency and question-response mapping (Epic 60, story 60.3; FR-302, FR-303).
 
 ``save`` validates the assistant's output against the Interview's kit snapshot (competency and question keys), the

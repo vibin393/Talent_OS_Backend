@@ -1,4 +1,4 @@
-# ruff: noqa: D401, E501
+# ruff: file-ignore[non-imperative-mood, line-too-long]
 """Copilot messages persistence (Epic 54). ``seq`` is per conversation; the user message of a turn carries the turn's
 ``run_id`` (the conversation <-> run join, coordinator decision C-1); the assistant message carries it too."""
 

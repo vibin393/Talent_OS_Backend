@@ -206,7 +206,7 @@ def _with_extras(snapshot: Mapping[str, Any] | None, extras: Mapping[str, Any] |
 async def _claim_window(
     db: AsyncSession, tenant_id: uuid.UUID, rule_id: uuid.UUID, entity_id: uuid.UUID
 ) -> bool:
-    """True when this rule may fire for this entity now (at most once per entity per minute)."""  # noqa: D401
+    """True when this rule may fire for this entity now (at most once per entity per minute)."""  # ruff: ignore[non-imperative-mood]
     key = f"wf:{tenant_id}:{rule_id}:{entity_id}"
     try:
         from redis.asyncio import Redis

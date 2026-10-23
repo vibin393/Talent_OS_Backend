@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Internal service-to-service API (unified platform), mounted at ``/api/v1/internal``.
 
 NOT a user / tenant-session surface and NOT a Public API route: it is called backend-to-backend on the compose

@@ -1,4 +1,4 @@
-# ruff: noqa: ARG001, E501
+# ruff: file-ignore[unused-function-argument, line-too-long]
 """Workflow waits (Epic 32, story 19.3): delay / approval parking of graph runs.
 
 * Approval decisions: subject ``workflow_step`` (``register_approval_subject``). ``on_decided`` runs inside the

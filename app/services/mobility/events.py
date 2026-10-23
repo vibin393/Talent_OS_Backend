@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Domain-local mobility events (Epic 41; the frozen contract event ``InternalTransferConfirmed`` lives in
 ``app/events/mobility.py``). Ids and short labels only, dispatched after commit; they drive the notification types
 ``internal_application_submitted`` / ``internal_application_decided``."""

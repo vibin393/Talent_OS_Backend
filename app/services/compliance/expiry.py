@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Credential expiry status (spec §5.7, Epic 21 A5/A6). Pure functions: no I/O.
 
 * ``status_for(expires_on, today, offsets)``: ``expired`` when ``today > expires_on``; ``expiring_soon`` when

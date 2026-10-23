@@ -1,4 +1,4 @@
-# ruff: noqa: D401, E501
+# ruff: file-ignore[non-imperative-mood, line-too-long]
 """Credentials (Epic 21 A5, P2-8.2, FR-115, §5.7): record, renew, verify, redaction review, unmask, lists.
 
 * Numbers: ``encrypted`` types are validated by format (Indian passport ``^[A-Z][0-9]{7}$``, PAN, otherwise <= 30
@@ -221,7 +221,7 @@ async def _apply_fields(
 
 # ================================================================ record / renew
 async def record(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     candidate_id: uuid.UUID,
     data: CredentialIn,
@@ -273,7 +273,7 @@ async def record(
 
 
 async def renew(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     credential_id: uuid.UUID,
     data: RenewIn,

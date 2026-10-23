@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Sourcing triggers and run follow-ups (Epic 56 stories 56.1 / 56.5).
 
 * ``demand_opened`` -- a runtime event trigger on the P1 ``RediscoveryCompleted`` (declared on the AgentSpec).

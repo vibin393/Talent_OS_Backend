@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Project 360 (Epic 45, FR-231) for the Delivery Manager: header, SOW, roles, assignments, timeline summary,
 milestones, deliverables, budgets / burn, invoices and risks.
 

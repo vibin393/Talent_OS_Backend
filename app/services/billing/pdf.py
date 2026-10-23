@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Invoice / note PDFs (FR-149, Rule 46 of the CGST Rules) rendered through ``documents.render`` (template
 ``invoice.v1`` / ``credit_note.v1`` / ``debit_note.v1``). Rendering is deterministic for a document version and
 never changes the document (only ``pdf_render_version`` moves on IRN capture)."""

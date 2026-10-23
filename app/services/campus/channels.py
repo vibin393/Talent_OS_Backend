@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """SMS / WhatsApp notices through P2 messaging (Epic 43 A5 / A6): campus slot reminders and queue turn notices.
 
 Uses the tenant's registered transactional template with purpose ``interview_reminder`` for the channel. P2

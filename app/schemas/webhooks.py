@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Webhook DTOs (Epic 68, spec A3/A4). Secrets are returned ONCE (``SubscriptionCreated`` / ``SecretRotated``); every
 other shape carries only ``SigningSecretMeta`` (fingerprint, rotation times)."""
 

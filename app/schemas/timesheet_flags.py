@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Timesheet flag and nudge-plan DTOs (Epic 63, FR-311 / FR-312). Internal only: no client-portal schema contains
 flags."""
 

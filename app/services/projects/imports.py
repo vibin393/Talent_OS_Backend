@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Go-live importers of the ``projects`` domain (Epic 45; foundation 0.7, FR-263).
 
 ``import_project`` (SOW by contract human id, client by name, owner by email), ``import_project_role`` (project
@@ -87,7 +87,7 @@ async def import_project(
 
 
 async def import_project_role(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     data: ProjectRoleImportIn,
     *,

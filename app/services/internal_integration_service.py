@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Per-tenant spoke -> hub integration credentials (unified platform).
 
 Backs ``GET /api/v1/internal/tenant-ats-key`` (``app.router.internal``). The Portal / Croar / Feedback IQ

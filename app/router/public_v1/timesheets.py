@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """``/public/v1/timesheets`` (Epic 67, spec A4): read only, scope ``timesheets:read``. Generated shape; see ``services/public_api/finance.py``."""
 
 import uuid

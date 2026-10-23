@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D400, D415
+# ruff: file-ignore[line-too-long, missing-trailing-period, missing-terminal-punctuation]
 """Conformance report verification (Epic 69, spec A8). Reports are produced by Epic 74's sandbox runner and signed with
 the platform secret ``conformance_report_signing`` (``vault_service.platform_get``):
 

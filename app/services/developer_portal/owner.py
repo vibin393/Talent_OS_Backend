@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The owner of workspace resources (spec A3 "dctx_or_ctx"): a partner org selected by a ``DeveloperContext``, or a
 Tenant whose human user holds ``app:develop`` (Tenant Developers, normal session). Partners see only their org's
 sandboxes, Apps and runs; Tenant Developers only their Tenant's private Apps and ``owner_kind='tenant'`` sandboxes."""

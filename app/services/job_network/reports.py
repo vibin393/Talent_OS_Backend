@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Visitor reports (Epic 75, spec A5; FR-389). Anonymous: the reporter's identity is never collected. ``ip_hash`` is an
 HMAC of the IP with a monthly-rotated platform key, used only for rate limiting, purged after 30 days. 3 open reports on
 one listing within 7 days hold the listing pending moderator review. Always 202 (no enumeration)."""

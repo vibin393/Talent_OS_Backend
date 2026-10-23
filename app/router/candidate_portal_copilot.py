@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Candidate Copilot (Epic 77, FR-396 / FR-399): ``/api/v1/portal/copilot`` (Candidate and Worker portals share it).
 Candidate session (``CandidateDep``); the tenant must enable the candidate Copilot and the Candidate must hold the
 ``ai_agent_communication`` consent (``POST /consent``) before the first question. FR-80 guarded (worker)."""

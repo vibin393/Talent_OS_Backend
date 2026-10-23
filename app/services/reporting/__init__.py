@@ -38,8 +38,8 @@ from app.services.reporting import (
     filters,
     lists,
     lists_p2,
-    lists_p3,  # noqa: F401 - Epic 52: registers the Phase 3 list kinds
-    lists_p4,  # noqa: F401 - Epic 65: registers the Phase 4 list kinds (agent runs / Proposals)
+    lists_p3,  # ruff: ignore[unused-import] - Epic 52: registers the Phase 3 list kinds
+    lists_p4,  # ruff: ignore[unused-import] - Epic 65: registers the Phase 4 list kinds (agent runs / Proposals)
     summaries,
 )
 from app.services.reporting.common import principal_of, tenant_tz

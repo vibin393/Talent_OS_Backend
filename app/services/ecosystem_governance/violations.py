@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Policy violations (Epic 79 story 79.1, FR-405).
 
 Composes existing sources (no new write path in owner code): ``egress_refused`` (webhook deliveries / connector jobs),
@@ -27,7 +27,7 @@ if TYPE_CHECKING:
 
 
 async def list_violations(
-    ctx: RequestContext, db: AsyncSession, *, kind: str | None = None, from_: dt.datetime | None = None, to: dt.datetime | None = None  # noqa: ARG001
+    ctx: RequestContext, db: AsyncSession, *, kind: str | None = None, from_: dt.datetime | None = None, to: dt.datetime | None = None  # ruff: ignore[unused-function-argument]
 ) -> list[ViolationRow]:
     out: list[ViolationRow] = []
     out.extend(await _refresh_reuse(ctx, db))

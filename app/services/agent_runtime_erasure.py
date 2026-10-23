@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Erasure handler ``agent_runtime.runs`` (Epic 53, order 62; FR-326 / AD-66).
 
 For a candidate subject: delete the encrypted payloads of runs whose subject is the candidate or whose

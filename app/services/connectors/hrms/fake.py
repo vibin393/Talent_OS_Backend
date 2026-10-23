@@ -82,7 +82,7 @@ class FakeHrms(FakeAdapterBase):
 
     async def pull_status(
         self,
-        since: datetime | None,  # noqa: ARG002
+        since: datetime | None,  # ruff: ignore[unused-method-argument]
         cursor: str | None,
     ) -> tuple[Sequence[HrmsStatusDTO], str | None]:
         self._check("pull_status", cursor)

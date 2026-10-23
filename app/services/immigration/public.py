@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Public upload page for counsel and Candidates without the Worker portal (Epic 46 A3; Secure Link purpose
 ``immigration_upload``). No session: the token is the credential and is never logged.
 

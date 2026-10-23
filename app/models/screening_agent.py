@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Screening Agent (Epic 57, FR-289..FR-292; migrations ``20261008_404_01_screen_qnrs`` / ``20261008_404_02_screen_convos``).
 Owner: ``screening_agent``.
 

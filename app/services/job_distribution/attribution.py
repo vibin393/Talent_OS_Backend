@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Careers attribution resolvers (Epic 70, spec A6; D-18): ``src=<board>&bp=<board posting id>`` on the careers apply
 link -> ``(source="job_board", source_ref=<board posting id>)`` when ``bp`` is a Board Posting of this Tenant on that
 board (open or closed); anything else is ignored (the application stays ``career_portal``)."""

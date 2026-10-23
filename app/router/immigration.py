@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Immigration (Epic 46, FR-232..FR-236, AD-52): ``/api/v1/immigration`` and the public counsel / Candidate upload
 page ``/api/v1/public/links/{token}/immigration-upload`` (purpose ``immigration_upload``).
 

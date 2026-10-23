@@ -1,4 +1,4 @@
-# ruff: noqa: N812
+# ruff: file-ignore[lowercase-imported-as-non-lowercase]
 """Account operations dashboard tiles (Epic 34, A3): AM view, placement scope applies."""
 
 from datetime import timedelta

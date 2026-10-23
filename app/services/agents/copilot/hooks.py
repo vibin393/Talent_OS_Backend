@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Registers the Copilot ``AgentSpec`` (replaces the foundation placeholder; autodiscovered by ``core.hooks``)."""
 
 from app.core.agentic import register_agent

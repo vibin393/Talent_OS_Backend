@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Board ingest suppression (Epic 70, spec A4 step 3): HMAC-SHA256 hashes of erased, consent-withdrawn and
 Do-Not-Contact emails / phones, so a board applicant who asked to be forgotten is never re-created. Holds no
 reversible personal data. Key: HMAC of ``core.security.key_material("identity")`` with the label

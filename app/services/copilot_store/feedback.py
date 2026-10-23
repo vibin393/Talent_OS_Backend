@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Copilot feedback persistence (Epic 54): one rating per (run, user), upserted. Feedback is not a decision: no
 ``ai_actions.decision`` write-back (Epic 65 reports it)."""
 

@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Shared helpers of the Interview Assistant domain (Epic 60): clock, settings row, loaders, the kit view and the
 participants split (internal Users vs external interviewers)."""
 

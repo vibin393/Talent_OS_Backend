@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Onboarding Q&A sealing backfill (Epic 78, story 78.4, FR-404). Queue ``maintenance``.
 
 ``knowledge.seal_backfill`` (beat every 15 min): per tenant, batches of ``qa_sealing_batch_size`` (500) through

@@ -278,7 +278,7 @@ async def get_run(db: AsyncSession, run_id: uuid.UUID) -> ErasureRun | None:
     return await db.get(ErasureRun, run_id)
 
 
-async def run_out(ctx: RequestContext, db: AsyncSession, run_id: uuid.UUID) -> ErasureRunOut:  # noqa: ARG001
+async def run_out(ctx: RequestContext, db: AsyncSession, run_id: uuid.UUID) -> ErasureRunOut:  # ruff: ignore[unused-function-argument]
     run = await db.get(ErasureRun, run_id)
     if run is None:
         from app.core.errors import NotFound

@@ -12,7 +12,7 @@
 Contact erasure: billing-contact links reference ``contacts`` with ``ON DELETE CASCADE`` and copy no PII; the
 P1 DSR pipeline is candidate-only, so no erasure handler is registered (``billing_profiles.erase_contact_links``
 is available for a future contact DSR).
-"""  # noqa: E501
+"""  # ruff: ignore[line-too-long]
 
 import uuid
 from decimal import Decimal
@@ -60,7 +60,7 @@ _register_rate_gates()
 
 
 # ---------------------------------------------------------------- posting source (AD-23)
-async def _milestone_loader(ctx: RequestContext, db: AsyncSession, query: Any) -> list[Any]:  # noqa: ARG001
+async def _milestone_loader(ctx: RequestContext, db: AsyncSession, query: Any) -> list[Any]:  # ruff: ignore[unused-function-argument]
     from app.models.commercials import Contract, ContractMilestone
     from app.services.postings import SourceItem
 
@@ -186,7 +186,7 @@ async def _po_recipients(db: AsyncSession, payload: Any) -> set[uuid.UUID]:
     return out
 
 
-async def _contract_owner(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # noqa: ARG001
+async def _contract_owner(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
     owner = _uuid(payload.get("owner_id"))
     return {owner} if owner else set()
 

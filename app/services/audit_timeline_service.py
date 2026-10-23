@@ -27,7 +27,9 @@ from app.core.audit import ENC, ERASED, AuditLog
 from app.core.encrypted import EncryptedStr
 from app.core.errors import NotFound, ValidationFailed
 from app.core.models import Base
-from app.services import audit_timeline_sources  # noqa: F401 - registers the fallback sources / resolvers
+from app.services import (
+    audit_timeline_sources,  # ruff: ignore[unused-import] - registers the fallback sources / resolvers
+)
 
 MASK = "••••"
 MAX_LIMIT = 200

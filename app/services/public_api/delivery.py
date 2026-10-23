@@ -1,4 +1,4 @@
-# ruff: noqa: D400, D415, E501
+# ruff: file-ignore[missing-trailing-period, missing-terminal-punctuation, line-too-long]
 """Public delivery reads (Epic 67, spec A4). Scope predicates (recorded per resource):
 
 * Submissions: applications visible under ``submission:read`` (``pipeline.common.visible_applications``).

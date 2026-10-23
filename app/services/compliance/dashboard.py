@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Compliance dashboard and worker compliance (Epic 21 A7, P2-8.4, FR-116; AD-36 ``worker_compliance``).
 
 The BGV "open cases by age" tile is composed by the frontend from the BGV list API: ``compliance`` never imports
@@ -27,7 +27,7 @@ _clients = table("clients", column("id"), column("name"))
 
 
 async def dashboard(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     client_id: uuid.UUID | None = None,
@@ -145,7 +145,7 @@ async def dashboard(
 
 
 async def worker_compliance(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     candidate_id: uuid.UUID,
     on_date: date,

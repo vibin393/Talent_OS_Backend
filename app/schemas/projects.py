@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Project / SOW DTOs (Epic 45; Epic 36 contract, AD-39).
 
 The first block (``ProjectRoleRef``, ``ProjectContext``) is the frozen contract layer: changing a field needs a

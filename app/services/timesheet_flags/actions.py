@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Timesheet Agent actions (Epic 63 A2 / A5): the reminder send (P2 ``remind`` only) and the approval escalation Task.
 
 * ``send_reminders`` -- every id must be in the Account Manager's plan today (else ``skipped: not_in_plan``); calls

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Shared helpers of the ``billing`` domain: tenant / clock access, settings, document kinds and error builders."""
 
 import uuid

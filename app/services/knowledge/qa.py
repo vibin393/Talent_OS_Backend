@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Onboarding Q&A (Epic 62 A2, story 62.5, FR-310).
 
 **Portal** (the signed-in Worker / pre-joining Candidate; another person's thread is indistinguishable from a missing
@@ -502,7 +502,7 @@ async def _fallback_owner(db: AsyncSession) -> uuid.UUID | None:
 
 
 async def hand_off(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     thread: OnboardingQaThread,
     reason: str,
@@ -695,7 +695,7 @@ def _record_facts(case: Any, tasks: list[Any], placement: Any) -> list[str]:
 
 
 async def reply_grounded(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     thread: OnboardingQaThread,
     answer: str,
@@ -783,7 +783,7 @@ async def _notify_answer(db: AsyncSession, thread: OnboardingQaThread) -> None:
         logger.exception("onboarding_answer_ready could not be delivered for thread {}", thread.id)
 
 
-async def grounded_conversation(ctx: RequestContext, db: AsyncSession, conversation_id: uuid.UUID) -> bool:  # noqa: ARG001
+async def grounded_conversation(ctx: RequestContext, db: AsyncSession, conversation_id: uuid.UUID) -> bool:  # ruff: ignore[unused-function-argument]
     """``onboarding_qa`` checker: the thread exists, is open / answered, was started by its candidate and the asker
     accepted ``knowledge_assistant``."""
     thread = await db.get(OnboardingQaThread, conversation_id)
@@ -939,7 +939,7 @@ __all__ = [
 
 
 async def thread_owner(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     subject: tuple[str, uuid.UUID] | None,
 ) -> uuid.UUID | None:

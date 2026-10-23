@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Shared helpers of the ``submission_packs`` domain (Epic 61).
 
 Access: a pack follows its Application. Reads need ``submission:read`` on the Application's Demand scope (else 404);

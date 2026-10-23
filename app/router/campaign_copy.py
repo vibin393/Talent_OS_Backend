@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """AI campaign copy (Epic 78, FR-401..FR-403): ``/api/v1/campaign-copy/*``.
 
 Permissions: ``campaign:read`` (reads), ``campaign:write`` / ``sequence:write`` by target (request, cancel, edit,

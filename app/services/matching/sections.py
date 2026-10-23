@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Match list section registry (Epic 41, FR-212; AD-40 registry pattern).
 
 Other domains register *sections* rendered above the P1 match list: Epic 41 registers ``internal`` (order 20; a

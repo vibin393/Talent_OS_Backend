@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Alternative selection process requests (Epic 49 A8, FR-249).
 
 A Candidate asks for an alternative to the AEDT for an LL144-flagged Demand, from the apply success step (apply

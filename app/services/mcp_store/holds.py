@@ -1,4 +1,4 @@
-# ruff: noqa: D401
+# ruff: file-ignore[non-imperative-mood]
 """``mcp_access_holds`` rows (Epic 73, spec 0.6): a user's MCP access paused until released."""
 
 import uuid

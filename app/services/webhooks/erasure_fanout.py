@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The ``subject.erased`` fan-out (Epic 68, D-11, §0.6 step 3). Every Installation that received the subject
 (``subject_exposures``) gets the thin event, WHATEVER its scopes: each active Subscription of the Installation that
 subscribes to ``subject.erased`` or ``*``; else its oldest active Subscription; with none, the audit records
@@ -32,7 +32,7 @@ def targets(installation_id: Any, subs: Sequence[WebhookSubscription]) -> list[W
 
 
 async def fan_out(
-    ctx: RequestContext,  # noqa: ARG001 - sink signature
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument] - sink signature
     db: AsyncSession,
     row: Any,
     subs: Sequence[WebhookSubscription],

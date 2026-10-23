@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Slot -> draft Demand conversion (Epic 44, FR-224).
 
 ``POST /workforce/slots/convert`` (``workforce_plan:write`` and ``demand:create``): one draft Demand per open,

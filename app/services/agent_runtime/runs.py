@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Runs: start, resume, cancel, reads, payload reads and purge (Epic 53, spec 0.8 / 0.9, stories 53.2 / 53.6 / 53.9)."""
 
 import dataclasses

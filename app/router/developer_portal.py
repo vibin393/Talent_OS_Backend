@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Developer workspace API (Epic 74, spec A4; ``/api/v1/developer``). Developer sessions only (``tos_developer`` +
 CSRF on mutations; MFA mandatory for every workspace route). Org routes need a live membership of ``{org_id}`` /
 ``X-Partner-Org`` and the role of the §0.1 matrix. Nothing here accepts a tenant id from the request except the
@@ -144,7 +144,7 @@ async def logout(dctx: DeveloperDep, response: Response, everywhere: bool = Fals
 
 
 @router.get("/csrf")
-async def csrf(dctx: DeveloperDep, request: Request, response: Response) -> dict[str, str]:  # noqa: ARG001
+async def csrf(dctx: DeveloperDep, request: Request, response: Response) -> dict[str, str]:  # ruff: ignore[unused-function-argument]
     token = csrf_token_for(request.cookies.get(DEV_COOKIE) or "")
     set_csrf_cookie(response, token, 12 * 3600)
     return {"csrf_token": token}
@@ -298,12 +298,12 @@ async def submissions(org_id: uuid.UUID, dctx: DeveloperDep) -> list[dict[str, A
 
 # ================================================================ sandboxes + playground (partner owner)
 @router.get("/orgs/{org_id}/sandboxes", response_model=list[SandboxOut])
-async def list_sandboxes(org_id: uuid.UUID, dctx: DeveloperDep) -> list[SandboxOut]:  # noqa: ARG001
+async def list_sandboxes(org_id: uuid.UUID, dctx: DeveloperDep) -> list[SandboxOut]:  # ruff: ignore[unused-function-argument]
     return await dev.list_sandboxes(await dev.partner_owner(dctx))
 
 
 @router.post("/orgs/{org_id}/sandboxes", response_model=SandboxOut, status_code=status.HTTP_201_CREATED)
-async def create_sandbox(org_id: uuid.UUID, body: SandboxCreate, dctx: DeveloperDep) -> SandboxOut:  # noqa: ARG001
+async def create_sandbox(org_id: uuid.UUID, body: SandboxCreate, dctx: DeveloperDep) -> SandboxOut:  # ruff: ignore[unused-function-argument]
     return await dev.create_sandbox(await dev.partner_owner(dctx), body)
 
 

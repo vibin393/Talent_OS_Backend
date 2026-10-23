@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Header search group ``agent_proposal`` (Epic 65 story 65.8, FR-329). Agent Proposals the caller can see: assigned
 to them, owned by them, in a role queue they belong to, or every agent Proposal for ``ai:govern`` at tenant scope.
 Copilot drafts are never returned. ``PRP-`` exact matches are pinned first. Titles only (no args / preview)."""

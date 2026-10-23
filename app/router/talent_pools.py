@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Talent pools & rediscovery (Epic 38, FR-192..FR-195): ``/api/v1/talent-pools`` and the Demand pins /
 add-to-pipeline endpoints.
 

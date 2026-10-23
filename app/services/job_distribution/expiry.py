@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Board posting expiry (Epic 70, story 70.4; spec A5): daily scan (beat 08:30 IST, queue ``ecosystem``).
 
 * ``live`` postings expiring within ``expiry_warning_days`` -> ``expiring`` + one Task per posting (entity

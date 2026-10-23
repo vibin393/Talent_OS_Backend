@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Invitation lifecycle (Epic 40 A5, spec section 5.1): ``TRANSITIONS[(from, to)] = allowed actor kinds``.
 
 Anything else -> 409 ``transition_not_allowed``. Gating Pass / Fail is human only (FR-257, marked with a star):

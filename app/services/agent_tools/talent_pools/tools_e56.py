@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 56 Sourcing Agent read tool ``pools.members`` (P3 talent pools, viewer data scope applied).
 
 With ``pool_id``: that Pool's current members (keyset cursor = the last candidate id). With ``demand_id``: the

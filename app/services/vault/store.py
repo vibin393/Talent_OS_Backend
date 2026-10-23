@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Vault persistence (Epic 66, AD-82): tenant data keys, secret rows, access-log rows, platform secrets.
 
 * ``active_dek`` lazily creates the tenant DEK (version 1, ``active``; ``INSERT .. ON CONFLICT DO NOTHING`` so racing
@@ -31,7 +31,7 @@ PLATFORM_CONTEXT = "platform"
 _dek_cache: dict[tuple[str, int, str], tuple[bytes, float]] = {}
 
 
-class SecretNotFound(LookupError):  # noqa: N818 - frozen facade name
+class SecretNotFound(LookupError):  # ruff: ignore[error-suffix-on-exception-name] - frozen facade name
     """No such platform secret."""
 
 

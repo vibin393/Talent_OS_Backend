@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Phase 5 header search groups (Epic 79 story 79.4, spec A6). Registered from ``ecosystem_governance.hooks``.
 
 | Group | Label | Permission | Source |
@@ -30,7 +30,7 @@ P5_SEARCH_GROUPS = {"installation": "Installations"}
 
 
 async def search_installations(
-    ctx: RequestContext, db: AsyncSession, q: str, kind: str, limit: int  # noqa: ARG001
+    ctx: RequestContext, db: AsyncSession, q: str, kind: str, limit: int  # ruff: ignore[unused-function-argument]
 ) -> list[QuickHit]:
     term = f"%{q.strip()}%"
     out: list[QuickHit] = []

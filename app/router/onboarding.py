@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Digital onboarding (Epic 23, FR-122..FR-124).
 
 Permissions: ``onboarding:configure`` (templates, settings, match preview), ``onboarding:read`` (board, unmatched,

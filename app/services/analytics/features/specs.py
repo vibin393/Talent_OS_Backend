@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Code-defined feature specs (Epic 48 A3, FR-244). One spec per model kind and version.
 
 A feature is ``{key, label, type numeric|binary|onehot, transform none|log1p|clip, clip?, categories?, source}``.

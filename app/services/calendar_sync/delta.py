@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Delta sync runner (Epic 72 spec A5): reads only Talent OS-linked events through ``provider.list_changes`` and
 applies the rules per change in its own savepoint. Provider sync tokens are used; a full (window) resync only when the
 provider invalidates the token. Metered as ``connector_job`` (route group ``calendar_sync``)."""

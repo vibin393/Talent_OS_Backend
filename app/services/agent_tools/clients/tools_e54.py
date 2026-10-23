@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 54 Copilot read tool ``clients.get`` (FR-277): a subset of the client 360 you can see
 (``clients_service.client_360``; contacts only with ``contact:read``) plus the active placement count
 (``placements.lists``, within your ``placement:read`` scope). It never changes a client."""

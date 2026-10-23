@@ -1,4 +1,4 @@
-# ruff: noqa: D401, E501
+# ruff: file-ignore[non-imperative-mood, line-too-long]
 """Employees (Epic 41 A1, AD-50 -- no new principal).
 
 * Worker = a ``candidate`` principal with a non-terminal Placement; its Candidate is the applicant.

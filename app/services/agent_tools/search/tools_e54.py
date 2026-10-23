@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 54 Copilot read tool ``search.global`` (FR-277): the global quick search, groups gated by the user's own
 permissions and scope (``search.global_search``)."""
 

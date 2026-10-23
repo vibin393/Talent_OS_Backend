@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 54 Copilot read tool ``placements.list`` (FR-277): placements you can see (``placements.lists``; scope =
 recruiter / account manager within ``placement:read``). No rates are returned. It never changes a placement."""
 

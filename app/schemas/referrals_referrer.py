@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Referrer-safe referral payloads (Epic 42 A5, FR-215): the only shapes a referrer -- an internal User on
 ``/me/referrals`` or a Worker on ``/portal/work/referrals`` -- ever receives.
 

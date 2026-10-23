@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Shared helpers of the ``screening_agent`` domain (Epic 57): constants, the tenant settings row, loaders, errors."""
 
 import uuid

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Per-tenant integration credentials (unified platform spoke -> hub).
 
 Platform table (no RLS, no tenant business data): one row per ``(tenant_id, service)`` holding the Fernet-

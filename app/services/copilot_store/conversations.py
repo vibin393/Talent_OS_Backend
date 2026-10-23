@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Copilot conversations persistence (Epic 54). Every read is filtered on the owner (``user_id``): a conversation of
 another user is "not found" -- admins included (coordinator decision 6)."""
 

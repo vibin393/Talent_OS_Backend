@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Retention of conversation records and recordings (Epic 53, spec 0.15).
 
 * ``conversation_records`` (6 months, delete) <- ``transcript_segments``: expiry deletes the segments and marks
@@ -24,7 +24,7 @@ from app.services import files_service
 async def expire_segments(
     db: AsyncSession,
     ids: Sequence[uuid.UUID],
-    action: str = "delete",  # noqa: ARG001
+    action: str = "delete",  # ruff: ignore[unused-function-argument]
 ) -> dict[str, int]:
     ids = list(ids)
     if not ids:
@@ -89,7 +89,7 @@ async def purge_capture_recordings(db: AsyncSession, ids: Sequence[uuid.UUID]) -
 async def expire_voice_recordings(
     db: AsyncSession,
     ids: Sequence[uuid.UUID],
-    action: str = "delete",  # noqa: ARG001
+    action: str = "delete",  # ruff: ignore[unused-function-argument]
 ) -> dict[str, int]:
     return {"deleted": await purge_voice_recordings(db, ids)}
 
@@ -97,7 +97,7 @@ async def expire_voice_recordings(
 async def expire_capture_recordings(
     db: AsyncSession,
     ids: Sequence[uuid.UUID],
-    action: str = "delete",  # noqa: ARG001
+    action: str = "delete",  # ruff: ignore[unused-function-argument]
 ) -> dict[str, int]:
     return {"deleted": await purge_capture_recordings(db, ids)}
 

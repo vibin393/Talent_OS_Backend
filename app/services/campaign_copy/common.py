@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Shared helpers of ``campaign_copy`` (Epic 78): human-only principal checks, content hashing, loaders."""
 
 import hashlib

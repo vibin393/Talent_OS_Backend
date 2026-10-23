@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """``/public/v1/tasks`` (Epic 67, spec A4): an app token (no user) must name ``assignee_id``."""
 
 import uuid

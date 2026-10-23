@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Shared helpers of the Epic 54 Copilot tools (not a tool module: the loader imports only ``tools_*.py``).
 
 Every read runs under ``agent_runtime_service.scope_context`` (Effective Rights presented as the Accountable Owner), so

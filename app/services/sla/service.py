@@ -106,7 +106,7 @@ def _completed(db: AsyncSession, clock: SlaClock) -> None:
 
 
 async def start_clock(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     subject_type: str,
     subject_id: uuid.UUID,
@@ -170,7 +170,7 @@ async def start_clock(
 
 
 async def stop_clock(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     subject_type: str,
     subject_id: uuid.UUID,
@@ -195,7 +195,7 @@ async def stop_clock(
 
 
 async def cancel_clock(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     subject_type: str,
     subject_id: uuid.UUID,
@@ -217,7 +217,7 @@ async def cancel_clock(
 
 
 async def clocks_for(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     subject_type: str,
     subject_ids: Sequence[uuid.UUID],
@@ -238,8 +238,8 @@ async def clocks_for(
 def compute_status(
     clock: SlaClockOut,
     at: datetime,
-    calendar: Calendar,  # noqa: ARG001 - due / at-risk instants are computed with the calendar at start
-    tz: str,  # noqa: ARG001
+    calendar: Calendar,  # ruff: ignore[unused-function-argument] - due / at-risk instants are computed with the calendar at start
+    tz: str,  # ruff: ignore[unused-function-argument]
 ) -> Literal["healthy", "at_risk", "breached", "met"]:
     if clock.completed_at is not None:
         return "breached" if clock.outcome == "breached" else "met"

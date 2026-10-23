@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Sourcing domain wiring (Epic 56), autodiscovered by ``core.hooks``.
 
 * event handlers (after commit, enqueue a ``sourcing_agent.*`` task): ``MatchRunCompleted`` -> re-rank trigger,
@@ -196,7 +196,7 @@ def _register_retention() -> None:
     async def _expire(
         db: AsyncSession,
         ids: Sequence[uuid.UUID],
-        action: str = "anonymize",  # noqa: ARG001
+        action: str = "anonymize",  # ruff: ignore[unused-function-argument]
     ) -> dict[str, int]:
         result = await db.execute(
             update(AgentShortlistEntry)

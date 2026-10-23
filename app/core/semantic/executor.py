@@ -18,7 +18,7 @@ from sqlalchemy.exc import DBAPIError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.fiscal import fiscal_year
-from app.core.semantic import errors as E  # noqa: N812
+from app.core.semantic import errors as E  # ruff: ignore[lowercase-imported-as-non-lowercase]
 from app.core.semantic.compiler import CompiledQuery, SemanticContext
 from app.core.semantic.compiler import compile as compile_definition
 from app.core.semantic.errors import SemanticError, SemanticTimeout

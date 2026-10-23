@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """App Principals and Effective Rights (Epic 66, AD-75, spec 0.5).
 
 * client credentials (resource ``api`` only): scopes = token.scopes ∩ installation.granted_scopes ∩ non-sensitive (D-7);
@@ -14,7 +14,7 @@ uninstalled Installation fail the next call within the window. Wrong resource ->
 """
 
 import time
-import uuid  # noqa: TC003
+import uuid  # ruff: ignore[typing-only-standard-library-import]
 from collections.abc import Mapping
 from datetime import UTC, datetime, timedelta
 from typing import Literal
@@ -149,7 +149,7 @@ async def _resolve(token: str, resource: str) -> Principal:
         )
 
 
-async def authenticate_bearer(request: Request, token: str, *, resource: Literal["api", "mcp"]) -> Principal:  # noqa: ARG001
+async def authenticate_bearer(request: Request, token: str, *, resource: Literal["api", "mcp"]) -> Principal:  # ruff: ignore[unused-function-argument]
     token = token.strip()
     if not token.startswith(ACCESS_PREFIX):
         raise invalid_token()

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Effective skills graph of a tenant (Epic 37 A1, FR-187, AD-41): platform edges + tenant edges + legacy tenant
 parents (``tenant_skills.parent_skill_id`` read as an implicit tenant ``parent_of`` edge at 0.80).
 
@@ -468,7 +468,7 @@ async def delete_edge(ctx: RequestContext, db: AsyncSession, edge_id: uuid.UUID)
 
 
 async def list_tenant_edges(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     key: str | None = None,

@@ -1,4 +1,4 @@
-# ruff: noqa: D401
+# ruff: file-ignore[non-imperative-mood]
 """Shared helpers of the report builder (Epic 47): principal, clock, JSON-safe values, permission keys."""
 
 import uuid

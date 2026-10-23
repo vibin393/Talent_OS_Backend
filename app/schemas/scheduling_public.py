@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Candidate-facing projection of a scheduling offer (Epic 59, Secure Link ``slot_pick`` and the Candidate Portal).
 
 No internal ids beyond the offer id (portal), no participant names or emails, no availability details: only the

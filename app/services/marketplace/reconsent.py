@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Re-consent (Epic 69, spec A4 "Re-consent", FR-355): when a connector's manifest changes, every Installation whose
 consented ``manifest_sha256`` differs is diffed (``core.integrations.manifest_diff`` against the consented snapshot in
 ``marketplace_listing_versions``). A widening diff -> ``pending_manifest_version`` + ``reconsent_required`` (system;
@@ -24,7 +24,7 @@ from app.services.marketplace import platform_catalog
 LIVE = ("pending_consent", "pending_approval", "active", "degraded", "reconsent_required", "suspended")
 
 
-async def apply_manifest_changes(ctx: RequestContext, db: AsyncSession) -> int:  # noqa: ARG001
+async def apply_manifest_changes(ctx: RequestContext, db: AsyncSession) -> int:  # ruff: ignore[unused-function-argument]
     """Tenant pass after ``platform_catalog.sync``; returns the number of Installations marked ``reconsent_required``."""
     rows = list(
         (
@@ -114,7 +114,7 @@ def _flows(flows: Any) -> list[DataFlowLineOut]:
     return out
 
 
-async def upgrade_diff(ctx: RequestContext, db: AsyncSession, installation_id: uuid.UUID) -> UpgradeDiffOut:  # noqa: ARG001
+async def upgrade_diff(ctx: RequestContext, db: AsyncSession, installation_id: uuid.UUID) -> UpgradeDiffOut:  # ruff: ignore[unused-function-argument]
     from app.core.database import platform_session
     from app.core.errors import NotFound
 

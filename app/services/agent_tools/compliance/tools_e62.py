@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Compliance Agent tools (Epic 62 A4; ``owner_epic="62"``, ``version=1``).
 
 | Key | Risk | Notes |

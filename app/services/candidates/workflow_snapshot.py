@@ -25,7 +25,7 @@ async def candidate_tag_names(db: AsyncSession, candidate_id: uuid.UUID) -> list
 
 
 async def workflow_snapshot(
-    ctx: RequestContext, db: AsyncSession, candidate_id: uuid.UUID  # noqa: ARG001
+    ctx: RequestContext, db: AsyncSession, candidate_id: uuid.UUID  # ruff: ignore[unused-function-argument]
 ) -> dict[str, Any] | None:
     cand = await db.get(Candidate, candidate_id)
     if cand is None:

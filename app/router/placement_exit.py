@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Extension, conversion & offboarding (Epic 31, FR-162..FR-166).
 
 Permissions: ``placement:read`` (reads, ending-soon, previews), ``extension:write`` (propose, recheck, exception,

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Referrals dashboard tiles (Epic 52 A4; Epic 42 data). Row scope is the owner's list rule
 (``referrals.common.scoped``: the Demand's owner / BU; general referrals need tenant scope), so counts equal
 ``GET /referrals`` totals. Referrer-safe columns only (no feedback, no compensation besides masked reward amounts)."""

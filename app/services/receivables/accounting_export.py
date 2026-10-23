@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Accounting export (FR-160, AD-29): a generic ledger (CSV / XLSX) of Invoices, Credit Notes, Debit Notes (tax and
 INR), payments, allocations with realized FX, TDS / GST-TDS, write-offs and reversals in a date range, each with
 its ``prior_period`` flag. Tenant mapping templates choose columns and map row kinds to ledger accounts. Rows of
@@ -37,12 +37,12 @@ from app.services.receivables.common import invalid, target_of, tenant_of, user_
 DEFAULT_COLUMNS = ["date", "row_kind", "reference", "document_number", "client_id", "currency", "amount", "inr_amount", "tax_amount", "realized_fx", "account", "prior_period", "previously_exported_in"]
 
 
-async def list_templates(ctx: RequestContext, db: AsyncSession) -> list[ExportTemplateOut]:  # noqa: ARG001
+async def list_templates(ctx: RequestContext, db: AsyncSession) -> list[ExportTemplateOut]:  # ruff: ignore[unused-function-argument]
     rows = (await db.execute(select(AccountingExportTemplate).where(AccountingExportTemplate.active.is_(True)).order_by(AccountingExportTemplate.name))).scalars()
     return [ExportTemplateOut.model_validate(r) for r in rows]
 
 
-async def create_template(ctx: RequestContext, db: AsyncSession, data: ExportTemplateIn) -> ExportTemplateOut:  # noqa: ARG001
+async def create_template(ctx: RequestContext, db: AsyncSession, data: ExportTemplateIn) -> ExportTemplateOut:  # ruff: ignore[unused-function-argument]
     unknown = [c for c in data.columns if c not in DEFAULT_COLUMNS]
     if unknown:
         raise invalid("unknown_columns", "Unknown export columns", columns=unknown)
@@ -142,14 +142,14 @@ async def create_export(ctx: RequestContext, db: AsyncSession, data: ExportIn) -
     return ExportOut.model_validate(export)
 
 
-async def list_exports(ctx: RequestContext, db: AsyncSession, legal_entity_id: uuid.UUID | None = None) -> list[ExportOut]:  # noqa: ARG001
+async def list_exports(ctx: RequestContext, db: AsyncSession, legal_entity_id: uuid.UUID | None = None) -> list[ExportOut]:  # ruff: ignore[unused-function-argument]
     stmt = select(AccountingExport)
     if legal_entity_id:
         stmt = stmt.where(AccountingExport.legal_entity_id == legal_entity_id)
     return [ExportOut.model_validate(e) for e in (await db.execute(stmt.order_by(AccountingExport.created_at.desc()).limit(200))).scalars()]
 
 
-async def download(ctx: RequestContext, db: AsyncSession, export_id: uuid.UUID) -> tuple[bytes, str, str]:  # noqa: ARG001
+async def download(ctx: RequestContext, db: AsyncSession, export_id: uuid.UUID) -> tuple[bytes, str, str]:  # ruff: ignore[unused-function-argument]
     export = (await db.execute(select(AccountingExport).where(AccountingExport.id == export_id))).scalar_one_or_none()
     if export is None:
         raise NotFound("Export not found")

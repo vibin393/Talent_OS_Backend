@@ -77,7 +77,7 @@ async def create_direct(ctx: RequestContext, db: AsyncSession, data: PlacementCr
 
 
 async def get_placement_summary(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     placement_id: uuid.UUID,
 ) -> PlacementSummary:
@@ -101,7 +101,7 @@ async def _active_on(db: AsyncSession, placement_id: uuid.UUID, on_date: date) -
 
 
 async def billing_context(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     placement_id: uuid.UUID,
     on_date: date,
@@ -128,7 +128,7 @@ async def billing_context(
 
 
 async def pay_context(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     placement_id: uuid.UUID,
     on_date: date,
@@ -157,7 +157,7 @@ async def pay_context(
 
 
 async def rate_segment_on(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     placement_id: uuid.UUID,
     on_date: date,
@@ -168,7 +168,7 @@ async def rate_segment_on(
 
 
 async def get_rate_segment(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     rate_segment_id: uuid.UUID,
 ) -> RateSegmentOut:
@@ -190,7 +190,7 @@ _CLOSED_STATUSES = frozenset({"ended", "dropped"})
 
 
 async def link_project(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     placement_id: uuid.UUID,
     *,

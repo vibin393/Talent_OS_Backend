@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Adapt a saved definition to one viewer's catalogue (Epic 47 story 47.2/47.3; pure, no I/O).
 
 ``viewer_definition(defn, viz, catalogue)``:

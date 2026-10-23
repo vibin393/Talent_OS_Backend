@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Click-to-call (Epic 76, story 76.2, spec A3): call options, ★ placement, hang-up, reads and Do-Not-Call.
 
 ``place_call`` (human only, ``voice:call``): resolve / create the Voice Session, take the tenant cost-cap advisory lock,
@@ -247,7 +247,7 @@ async def _adapter(ctx: RequestContext, db: AsyncSession, res: gates.GateResult)
     return await build_for(ctx, db, common.CATEGORY, res.config)
 
 
-async def _can_notice(ctx: RequestContext, db: AsyncSession, res: gates.GateResult) -> bool:  # noqa: ARG001
+async def _can_notice(ctx: RequestContext, db: AsyncSession, res: gates.GateResult) -> bool:  # ruff: ignore[unused-function-argument]
     if res.config is None:
         return False
     if res.config.provider_key != "exotel":

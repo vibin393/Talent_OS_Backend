@@ -29,7 +29,7 @@ SUBJECT = "vendor_submission"
 MAX_USES = 20
 
 
-async def issue_and_email(ctx: RequestContext, db: AsyncSession, submission_id: uuid.UUID) -> bool:  # noqa: ARG001
+async def issue_and_email(ctx: RequestContext, db: AsyncSession, submission_id: uuid.UUID) -> bool:  # ruff: ignore[unused-function-argument]
     from app.services import identity_bridge
 
     sub = (

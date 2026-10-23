@@ -169,7 +169,7 @@ def sample_data() -> dict[str, dict[str, str | None]]:
 
 
 def catalog_for(key: str | None) -> list[dict[str, object]]:
-    """Grouped catalog (for the editor's "Insert field" menu), limited to ``key``'s allowed groups."""  # noqa: D401
+    """Grouped catalog (for the editor's "Insert field" menu), limited to ``key``'s allowed groups."""  # ruff: ignore[non-imperative-mood]
     allowed = ALLOWED_GROUPS_BY_KEY.get(key or "custom", ALLOWED_GROUPS_BY_KEY["custom"])
     groups: dict[str, list[dict[str, str]]] = {}
     for path, field in MERGE_FIELDS.items():

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Manual-connector provider links (Epic 20 A5, AD-29): ``/api/v1/public/links/{token}/bgv-check``.
 
 * ``issue``: single-purpose Secure Link (``bgv_provider_check``, subject ``bgv_check``, TTL

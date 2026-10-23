@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Shared helpers of the real HRMS adapters (Epic 71, spec A3): error classification and the generic port surface.
 
 Adapters see only ``core.integrations``, ``core.net_safety``, their DTOs and their own package. Every HTTP call goes
@@ -72,14 +72,14 @@ class LiveHrmsBase:
     def __repr__(self) -> str:
         return f"{type(self).__name__}(mode={self.ctx.mode})"
 
-    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # noqa: ARG002
+    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         if op == "health":
             await self.field_schema()  # type: ignore[attr-defined]
             return {"ok": True}
         raise NotImplementedError(op)
 
-    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # noqa: ARG002
+    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # ruff: ignore[unused-method-argument]
         return False
 
-    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # noqa: ARG002
+    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         return {}

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Webhooks (Epic 68, AD-79/AD-80, FR-349..FR-353; migrations ``20261010_502_01..03``). Owner: ``app.services.webhooks``.
 
 Tenant tables (RLS + internal-only org RLS):

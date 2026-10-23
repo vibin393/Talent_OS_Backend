@@ -1,4 +1,4 @@
-# ruff: noqa: E501, RUF028
+# ruff: file-ignore[line-too-long, invalid-formatter-suppression-comment]
 """Collections (FR-156): human-driven (no AI).
 
 Activities with promises-to-pay, per-client settings (owner, do-not-remind), the overdue queue (disputed
@@ -57,7 +57,7 @@ async def _settings_map(db: AsyncSession, client_ids: set[uuid.UUID] | None = No
     return {s.client_id: s for s in (await db.execute(stmt)).scalars()}
 
 
-async def get_client_settings(ctx: RequestContext, db: AsyncSession, client_id: uuid.UUID) -> CollectionSettingsOut:  # noqa: ARG001
+async def get_client_settings(ctx: RequestContext, db: AsyncSession, client_id: uuid.UUID) -> CollectionSettingsOut:  # ruff: ignore[unused-function-argument]
     s = (await _settings_map(db, {client_id})).get(client_id)
     return CollectionSettingsOut(client_id=client_id, do_not_remind=bool(s and s.do_not_remind), owner_id=s.owner_id if s else None)
 
@@ -92,7 +92,7 @@ async def log_activity(ctx: RequestContext, db: AsyncSession, data: ActivityIn) 
     return ActivityOut.model_validate(row)
 
 
-async def list_activities(ctx: RequestContext, db: AsyncSession, client_id: uuid.UUID | None = None, ptp_status: str | None = None) -> list[ActivityOut]:  # noqa: ARG001
+async def list_activities(ctx: RequestContext, db: AsyncSession, client_id: uuid.UUID | None = None, ptp_status: str | None = None) -> list[ActivityOut]:  # ruff: ignore[unused-function-argument]
     stmt = select(CollectionActivity)
     if client_id:
         stmt = stmt.where(CollectionActivity.client_id == client_id)
@@ -102,7 +102,7 @@ async def list_activities(ctx: RequestContext, db: AsyncSession, client_id: uuid
 
 
 # ---------------------------------------------------------------- queue
-async def queue(ctx: RequestContext, db: AsyncSession, *, legal_entity_id: uuid.UUID | None = None, client_id: uuid.UUID | None = None, min_days: int = 1) -> list[QueueRow]:  # noqa: ARG001
+async def queue(ctx: RequestContext, db: AsyncSession, *, legal_entity_id: uuid.UUID | None = None, client_id: uuid.UUID | None = None, min_days: int = 1) -> list[QueueRow]:  # ruff: ignore[unused-function-argument]
     on = await today(db)
     docs = [d for d in await documents(db, legal_entity_id=legal_entity_id, client_id=client_id) if d.status == "issued" and d.due_date and (on - d.due_date).days >= min_days]
     bals = await settlement.balances(db, docs)
@@ -246,7 +246,7 @@ async def ptp_check(ctx: RequestContext, db: AsyncSession, on: date | None = Non
     return broken
 
 
-async def overdue_scan(ctx: RequestContext, db: AsyncSession, on: date | None = None) -> int:  # noqa: ARG001
+async def overdue_scan(ctx: RequestContext, db: AsyncSession, on: date | None = None) -> int:  # ruff: ignore[unused-function-argument]
     on = on or await today(db)
     docs = [d for d in await documents(db) if d.kind == "invoice" and d.status == "issued" and d.due_date and d.due_date < on]
     bals = await settlement.balances(db, docs, with_disputes=False)

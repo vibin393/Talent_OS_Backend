@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Recruiter calling phones (Epic 76, story 76.2, spec A8 / B2).
 
 The phone is sealed with the vault field encryption (``vault_service.seal_field``, context

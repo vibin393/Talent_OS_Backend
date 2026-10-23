@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Webhook tasks (Epic 68, AD-79/AD-92), queue ``webhooks`` (worker ``worker-webhooks``, egress-only network).
 
 * ``webhooks.pump(tenant_id)`` -- after-commit kick (deduplicated 1 s) and ``webhooks.pump_all`` (beat, 5 s);

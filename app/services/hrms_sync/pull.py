@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """HRMS status pull (Epic 71, story 71.3, spec A5): the daily ``pull_status`` sync job stores the employee code, HRMS
 status and exit date on the sync record and turns disagreements into one Task per record (assignee: the Placement's
 Account Manager, else its recruiter) with both values. Nothing in Talent OS changes from provider data."""

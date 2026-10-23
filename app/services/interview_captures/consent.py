@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Capture consent and Recording Policy gating (Epic 60, story 60.1; FR-301, NFR-51).
 
 A capture is offered only when:
@@ -559,7 +559,7 @@ def _fan_out(tenant_id: uuid.UUID, type_key: str, payload: dict[str, Any]) -> No
         logger.exception("Interview capture notification {} failed", type_key)
 
 
-async def _notify_blocked(db: AsyncSession, interview: Interview, capture: InterviewCapture) -> None:  # noqa: ARG001
+async def _notify_blocked(db: AsyncSession, interview: Interview, capture: InterviewCapture) -> None:  # ruff: ignore[unused-function-argument]
     if capture.requested_by is None:
         return
     _fan_out(interview.tenant_id, "interview_capture_blocked", {

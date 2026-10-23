@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Amounts in words (FR-149, Rule 46): Indian numbering (thousand / lakh / crore). Pure."""
 
 from decimal import Decimal

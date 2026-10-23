@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Partner / Tenant-developer App usage (Epic 74, story 74.5, FR-385): installs, active Installations, requests,
 the error rate, webhook attempts and success, deprecated-endpoint calls by day -- aggregated across Tenants without
 Tenant identities. Per-tenant rows are shown only for the owner's own sandboxes (Known gap 4: no Installation field

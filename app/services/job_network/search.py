@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Public network site reads (Epic 75, spec A6; FR-387). Anonymous: only ``status='listed'`` rows of ``active``
 members, no tenant boosting, no paid placement. Responses never carry ``tenant_id`` / ``member_id`` / ``posting_ref``
 (except embedded in the already-public ``apply_url``) / hold reasons / report counts / stats."""

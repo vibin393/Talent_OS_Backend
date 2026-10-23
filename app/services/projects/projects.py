@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Projects (Epic 45, FR-228/FR-231): create / edit / list / status transitions under a SOW.
 
 AD-4: ``projects.status`` changes only through ``transition`` against ``TRANSITIONS``; anything else is 409

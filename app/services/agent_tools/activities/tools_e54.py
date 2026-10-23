@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 54 Copilot read tool ``activities.list`` (FR-277): the activity timeline of one record you can see
 (``activity_service.timeline``; the entity's own read permission and the private-note rules apply unchanged). Note
 bodies are third-party text: they are wrapped as untrusted and taint the run."""

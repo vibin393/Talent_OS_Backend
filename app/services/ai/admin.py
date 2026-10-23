@@ -54,7 +54,7 @@ class AIActionFilters:
         }
 
 
-async def features(ctx: RequestContext, db: AsyncSession) -> dict[str, bool]:  # noqa: ARG001
+async def features(ctx: RequestContext, db: AsyncSession) -> dict[str, bool]:  # ruff: ignore[unused-function-argument]
     return await gateway.features_map(db)
 
 
@@ -199,7 +199,7 @@ class CsvExport:
     truncated: bool
 
 
-async def export_csv(ctx: RequestContext, db: AsyncSession, filters: AIActionFilters) -> CsvExport:  # noqa: ARG001
+async def export_csv(ctx: RequestContext, db: AsyncSession, filters: AIActionFilters) -> CsvExport:  # ruff: ignore[unused-function-argument]
     rows = list((await db.execute(_filtered(filters).limit(MAX_EXPORT_ROWS + 1))).scalars())
     truncated = len(rows) > MAX_EXPORT_ROWS
     rows = rows[:MAX_EXPORT_ROWS]

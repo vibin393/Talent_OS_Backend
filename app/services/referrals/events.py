@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Domain-local referral events (Epic 42; the frozen contract event ``ReferralHired`` lives in
 ``app/events/referrals.py``). Ids and labels only, dispatched after commit; they drive the notification types
 and the ``referrals.status_changed`` workflow trigger."""

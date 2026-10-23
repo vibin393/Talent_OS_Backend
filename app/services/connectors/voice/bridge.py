@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Bridged-call operations (Epic 76, spec A2; additive next to the frozen ``port.py``, frozen once merged).
 
 A bridged call rings the recruiter's verified phone first, then the Candidate, from the Tenant's caller ID. Real

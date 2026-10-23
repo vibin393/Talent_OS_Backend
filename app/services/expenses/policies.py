@@ -39,12 +39,12 @@ def _settings_out(row: ExpenseSettings) -> ExpenseSettingsOut:
     )
 
 
-async def get_settings(ctx: RequestContext, db: AsyncSession) -> ExpenseSettingsOut:  # noqa: ARG001
+async def get_settings(ctx: RequestContext, db: AsyncSession) -> ExpenseSettingsOut:  # ruff: ignore[unused-function-argument]
     return _settings_out(await settings_row(db))
 
 
 async def update_settings(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     data: ExpenseSettingsUpdate,
 ) -> ExpenseSettingsOut:
@@ -249,7 +249,7 @@ async def _get(db: AsyncSession, policy_id: uuid.UUID) -> ExpensePolicy:
     return row
 
 
-async def list_policies(ctx: RequestContext, db: AsyncSession) -> list[PolicyOut]:  # noqa: ARG001
+async def list_policies(ctx: RequestContext, db: AsyncSession) -> list[PolicyOut]:  # ruff: ignore[unused-function-argument]
     rows = list(
         (
             await db.execute(
@@ -266,7 +266,7 @@ async def list_policies(ctx: RequestContext, db: AsyncSession) -> list[PolicyOut
 
 
 async def get_policy(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     policy_id: uuid.UUID,
     version: int | None = None,

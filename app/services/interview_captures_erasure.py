@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Interview Assistant erasure handler ``interview_captures.records`` (order 69), Epic 60 (FR-326, AD-34).
 
 On Candidate erasure (merged ids included): the outputs, draft scorecards, suggestion decisions and per-interview

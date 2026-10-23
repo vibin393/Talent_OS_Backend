@@ -1,4 +1,4 @@
-# ruff: noqa: E501, ARG001
+# ruff: file-ignore[line-too-long, unused-function-argument]
 """Onboarding cases (Epic 23 A4 / A6, P2-10.1 / P2-10.3): creation from ``PlacementCreated``, the compliance
 merge, invite, cancel, progress recompute, the board and the start-gate resolver.
 

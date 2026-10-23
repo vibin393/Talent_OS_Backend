@@ -1,4 +1,4 @@
-# ruff: noqa: D401, E501
+# ruff: file-ignore[non-imperative-mood, line-too-long]
 """Workforce plans (Epic 44, FR-222/223): CRUD, copy and the simple transitions (AD-4).
 
 Transitions here: ``draft -> budgeted`` (every line has a budget; Client-forecast skill names must match the
@@ -59,7 +59,7 @@ def _check_period(start: date, end: date) -> None:
 
 
 async def _check_refs(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     *,
     client_id: uuid.UUID | None,

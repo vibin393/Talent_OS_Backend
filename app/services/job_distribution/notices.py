@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Applicant notice email and the daily applicant digest (Epic 70, spec A4 steps 7 / 9)."""
 
 import uuid

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Collection rules, agent holds and the Collections Agent log (Epic 63, FR-314 / FR-315; migrations
 ``20261009_410_02_coll_rules`` and ``20261009_410_03_coll_log``). Owner: ``app.services.collection_rules``.
 

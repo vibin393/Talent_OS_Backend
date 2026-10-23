@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Candidate skill evidence (Epic 37 A2, FR-188, AD-41).
 
 * ``add_evidence`` -- validates the kind / actor rule, inserts, recomputes. API kinds: ``recruiter`` (``skill:verify``

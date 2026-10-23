@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D400, D415
+# ruff: file-ignore[line-too-long, missing-trailing-period, missing-terminal-punctuation]
 """Validation of the assistant's writes (Epic 60, NFR-52):
 
 * **Language** (``summary_language``): AI-written text (summaries, rationales, note suggestions) may describe what was

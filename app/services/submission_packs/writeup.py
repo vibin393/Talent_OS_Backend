@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Write-up validation (Epic 61 A2, FR-305): plain text, ``sanitize.outbound`` (internal tags, foreign links), no
 e-mail addresses / phone numbers, the Client rule's word cap and a deterministic protected-term scan
 (``protected_terms.yaml``: protected attributes and compensation history). A hit raises ``ValidationFailed`` so the

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 77 Client Portal Copilot tools (``portal_client.*``, FR-396 / FR-397). Each wraps a client-portal service
 (``demands.portal``, ``pipeline.portal``, ``interviews.portal``, ``placements.portal``, ``client_portal.approvals``,
 ``billing.portal``) acting as the Client User: delegations (``client_user_scopes``), FR-80 projections and org RLS
@@ -193,7 +193,7 @@ class InterviewsOut(Out):
     total: int
 
 
-async def _list_interviews(tctx: Any, args: EmptyIn) -> ToolOutcome:  # noqa: ARG001
+async def _list_interviews(tctx: Any, args: EmptyIn) -> ToolOutcome:  # ruff: ignore[unused-function-argument]
     act = await acting(tctx, KIND)
     async with session(tctx, act) as db:
         rows = await interviews_portal.client_upcoming_interviews(act.ctx, db)
@@ -281,7 +281,7 @@ class ApprovalsOut(Out):
     guidance: str
 
 
-async def _pending_approvals(tctx: Any, args: EmptyIn) -> ToolOutcome:  # noqa: ARG001
+async def _pending_approvals(tctx: Any, args: EmptyIn) -> ToolOutcome:  # ruff: ignore[unused-function-argument]
     act = await acting(tctx, KIND)
     items: list[ApprovalOut] = []
     if any(act.has(p) for p in ("time:approve", "demands:approve", "deliverables:accept")):
@@ -327,7 +327,7 @@ class InvoicesOut(Out):
     total: int
 
 
-async def _list_invoices(tctx: Any, args: EmptyIn) -> ToolOutcome:  # noqa: ARG001
+async def _list_invoices(tctx: Any, args: EmptyIn) -> ToolOutcome:  # ruff: ignore[unused-function-argument]
     act = await acting(tctx, KIND)
     async with session(tctx, act) as db:
         rows = await billing_portal.client_list(act.ctx, db)

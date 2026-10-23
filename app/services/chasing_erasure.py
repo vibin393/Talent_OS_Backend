@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Erasure handler ``chasing.records`` (Epic 62, order 67; FR-326).
 
 For a candidate subject (+ merged ids): delete the compliance chases (item labels, channels, message refs) and the BGV

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Interactive runs: preview, run, export, download (Epic 47 stories 47.2 / 47.3 / 47.5).
 
 * ``preview`` -- unsaved definition (``report:build``), author-validated, <= ``preview_rows`` rows.

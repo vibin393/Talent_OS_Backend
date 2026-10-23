@@ -1,4 +1,4 @@
-# ruff: noqa: D401, E501
+# ruff: file-ignore[non-imperative-mood, line-too-long]
 """Manager approval of internal applications (Epic 41 A3, PRD 5.4) on the AD-24 engine (subject
 ``internal_application``, registered from ``hooks.py``; the engine is never edited).
 

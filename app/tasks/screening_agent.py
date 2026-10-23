@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Screening Agent tasks (Epic 57). Every task starts with ``tenant_id`` (beat fan-out excepted). Queue ``maintenance``.
 
 * ``screening_agent.channel_inbound`` / ``screening_agent.email_reply`` -- candidate replies on WhatsApp / email.
@@ -35,7 +35,11 @@ def channel_inbound(tenant_id: str, message_id: str) -> str | None:
     tid = uuid.UUID(str(tenant_id))
 
     async def job() -> str | None:
-        from app.services.screening_agent import conversations, inbound, reminders  # noqa: F401
+        from app.services.screening_agent import (  # ruff: ignore[unused-import]
+            conversations,
+            inbound,
+            reminders,
+        )
 
         async with tenant_session(tid) as db:
             return await inbound.on_channel_inbound(_ctx(tid), db, uuid.UUID(str(message_id)))
@@ -50,7 +54,11 @@ def email_reply(
     tid = uuid.UUID(str(tenant_id))
 
     async def job() -> str | None:
-        from app.services.screening_agent import conversations, inbound, reminders  # noqa: F401
+        from app.services.screening_agent import (  # ruff: ignore[unused-import]
+            conversations,
+            inbound,
+            reminders,
+        )
 
         async with tenant_session(tid) as db:
             return await inbound.on_email_reply(
@@ -69,7 +77,11 @@ def consent_withdrawn(tenant_id: str, candidate_id: str) -> int:
         from sqlalchemy import select
 
         from app.models.screening_agent import OPEN_STATUSES, ScreeningConversation
-        from app.services.screening_agent import conversations, inbound, reminders  # noqa: F401
+        from app.services.screening_agent import (  # ruff: ignore[unused-import]
+            conversations,
+            inbound,
+            reminders,
+        )
 
         async with tenant_session(tid) as db:
             rows = list(
@@ -99,7 +111,11 @@ def workflow_run(tenant_id: str, run_id: str) -> str:
         from app.core.errors import ConflictError
         from app.models.agent_runtime import AgentRun
         from app.services import agent_runtime_service as runtime
-        from app.services.screening_agent import conversations, inbound, reminders  # noqa: F401
+        from app.services.screening_agent import (  # ruff: ignore[unused-import]
+            conversations,
+            inbound,
+            reminders,
+        )
 
         async with tenant_session(tid) as db:
             row = await db.get(AgentRun, uuid.UUID(str(run_id)))
@@ -145,7 +161,11 @@ def run_failed(tenant_id: str, run_id: str, reason_code: str) -> str | None:
         from sqlalchemy import select
 
         from app.models.screening_agent import ScreeningConversation
-        from app.services.screening_agent import conversations, inbound, reminders  # noqa: F401
+        from app.services.screening_agent import (  # ruff: ignore[unused-import]
+            conversations,
+            inbound,
+            reminders,
+        )
 
         async with tenant_session(tid) as db:
             conv = (
@@ -175,7 +195,7 @@ def run_failed(tenant_id: str, run_id: str, reason_code: str) -> str | None:
 
 @celery_app.task(name="screening_agent.run_needed", acks_late=True, bind=True)  # type: ignore[misc,untyped-decorator,unused-ignore]
 def run_needed(
-    self: Any,  # noqa: ARG001
+    self: Any,  # ruff: ignore[unused-function-argument]
     tenant_id: str,
     conversation_id: str,
     payload: str,
@@ -184,7 +204,11 @@ def run_needed(
     tid = uuid.UUID(str(tenant_id))
 
     async def job() -> str | None:
-        from app.services.screening_agent import conversations, inbound, reminders  # noqa: F401
+        from app.services.screening_agent import (  # ruff: ignore[unused-import]
+            conversations,
+            inbound,
+            reminders,
+        )
         from app.services.screening_agent.common import conversation
 
         data = json.loads(payload or "{}")
@@ -213,7 +237,11 @@ def run_needed(
 @celery_app.task(name="screening_agent.sweep", queue=QUEUE)  # type: ignore[misc,untyped-decorator,unused-ignore]
 def sweep() -> dict[str, Any]:
     async def job(tid: uuid.UUID) -> Any:
-        from app.services.screening_agent import conversations, inbound, reminders  # noqa: F401
+        from app.services.screening_agent import (  # ruff: ignore[unused-import]
+            conversations,
+            inbound,
+            reminders,
+        )
 
         async with tenant_session(tid) as db:
             out = await reminders.sweep(db)

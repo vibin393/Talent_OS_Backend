@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Client Portal invoices (Epic 29, FR-149): ``/api/v1/client-portal/invoices``. Client session (org RLS
 ``client``) + the ``invoices:view`` portal permission. Issued documents with a registered (or not applicable) IRN
 only; no manual flags, postings or internal notes."""

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Background verification and reference checks -- internal API (Epic 20, FR-110..FR-114).
 
 Permissions: ``bgv:read`` (cases, checks, discrepancies, reasons), ``bgv:manage`` (start / cancel cases, assign /

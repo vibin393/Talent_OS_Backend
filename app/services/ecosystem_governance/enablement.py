@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Feature enablement checklist (Epic 79 story 79.7, FR-414, spec A9).
 
 A registry ``register_enablement_check(feature, fn)`` lets owners register their own checks; Epic 79 provides defaults
@@ -52,7 +52,7 @@ _DEFAULTS: dict[str, tuple[tuple[str, str], ...]] = {
 }
 
 
-async def _default_checks(feature: str, ctx: RequestContext, db: AsyncSession) -> list[EnablementCheckOut]:  # noqa: ARG001
+async def _default_checks(feature: str, ctx: RequestContext, db: AsyncSession) -> list[EnablementCheckOut]:  # ruff: ignore[unused-function-argument]
     return [
         EnablementCheckOut(key=key, label=label, status="warning", detail="Not verified in this environment yet.")
         for key, label in _DEFAULTS.get(feature, ())

@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Program eligibility, reward amount and exclusions (Epic 42 story 42.1, FR-213).
 
 The functions at the top are pure (``ProgramFacts`` / ``DemandFacts`` / ``Referrer`` in, decisions out); the

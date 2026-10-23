@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The ``screening`` AgentSpec (Epic 57, spec A5; FR-289..FR-292).
 
 A conversation is a chain of short runs (coordinator C-12): ``manual`` / ``stage_entry`` start it, ``reply`` (inbound,

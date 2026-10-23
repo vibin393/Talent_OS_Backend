@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Playback (Epic 58, story 58.5; FR-296): the recording is downloaded through ``files_service`` only by people with
 ``screening:conduct`` who can read the Application, and only while ``recording_file_id`` is set (a withdrawn recording
 is gone). The UI appends ``#t=<seconds>`` to start at an answer."""

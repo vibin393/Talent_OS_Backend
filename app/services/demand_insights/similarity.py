@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401, D400, D415
+# ruff: file-ignore[line-too-long, non-imperative-mood, missing-trailing-period, missing-terminal-punctuation]
 """Deterministic duplicate scoring (Epic 55, spec 0.5, FR-283). The model only explains; it never scores.
 
 ``score(a, b) -> SimilarityOut(score in [0, 1], reasons)`` over two ``DemandFacts``:

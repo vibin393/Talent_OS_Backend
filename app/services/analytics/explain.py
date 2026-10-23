@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """AI explanations of predictions (Epic 48 A6, FR-244, NFR-44). Claude only writes the explanation.
 
 ``explain(ctx, db, prediction_id)`` (lazy, cached on the prediction row):

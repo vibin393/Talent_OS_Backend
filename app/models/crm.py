@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Sales CRM (Epic 15, FR-83..FR-87): settings, reason codes, lead sources, leads, status history,
 opportunities + role lines and the Won-conversion record links.
 

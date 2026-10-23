@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Registrations of the ``crm`` domain (autodiscovered by ``core.hooks``; Epic 15 A8).
 
 * Activity entities ``lead`` / ``opportunity`` (notes, logged calls / meetings, emails, tasks, timelines) and the
@@ -106,7 +106,7 @@ def _uuid(value: Any) -> uuid.UUID | None:
 
 
 def _pick(key: str) -> Any:
-    async def resolve(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # noqa: ARG001
+    async def resolve(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
         value = _uuid(payload.get(key))
         return {value} if value else set()
 

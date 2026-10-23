@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Sourcing & Matching Agent DTOs (Epic 56). Hand-mirrored in ``Frontend/src/features/agents/sourcing/types.ts``."""
 
 import uuid

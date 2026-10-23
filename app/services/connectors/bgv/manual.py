@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Manual ``bgv`` connector: the Phase 2 workflow (AD-29). No vendor API is called.
 
 ``initiate_check`` raises ``ManualActionRequired``: the BGV domain then runs the manual path itself
@@ -29,10 +29,10 @@ class ManualBgvProvider:
             f"bgv: complete {op} manually", {"op": op, "check_id": payload.get("check_id")}
         )
 
-    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # noqa: ARG002
+    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # ruff: ignore[unused-method-argument]
         return False
 
-    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # noqa: ARG002
+    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         return {}
 
     async def initiate_check(self, job: BgvCheckJob) -> str:
@@ -44,10 +44,10 @@ class ManualBgvProvider:
     async def get_status(self, external_ref: str) -> BgvStatusDTO:
         return BgvStatusDTO(external_ref, "in_progress")
 
-    async def fetch_report(self, external_ref: str) -> BgvReportDTO | None:  # noqa: ARG002
+    async def fetch_report(self, external_ref: str) -> BgvReportDTO | None:  # ruff: ignore[unused-method-argument]
         return None
 
-    async def handle_webhook(self, headers: Mapping[str, str], body: bytes) -> BgvWebhookDTO:  # noqa: ARG002
+    async def handle_webhook(self, headers: Mapping[str, str], body: bytes) -> BgvWebhookDTO:  # ruff: ignore[unused-method-argument]
         raise ManualActionRequired("bgv: the manual connector has no webhooks", {"op": "handle_webhook"})
 
 

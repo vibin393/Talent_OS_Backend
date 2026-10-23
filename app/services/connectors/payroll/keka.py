@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Keka payroll adapter (Epic 71, spec A6; key ``keka_payroll``). ``push_export`` uploads the approved Payroll Export
 as pay inputs through the payroll-inputs import endpoint where the Tenant's Keka plan exposes it
 (``POST /payroll/payinputs/import``, multipart); a 404/405 (not on the plan) -> ``ManualActionRequired`` (download the
@@ -20,7 +20,7 @@ class KekaPayroll(KekaHrms):
     category = "payroll"  # type: ignore[assignment]
     provider_key = "keka_payroll"
 
-    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # noqa: ARG002
+    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         if op == "health":
             await self._auth()
             return {"ok": True}

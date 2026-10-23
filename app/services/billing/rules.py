@@ -1,4 +1,4 @@
-# ruff: noqa: ARG001
+# ruff: file-ignore[unused-function-argument]
 """Billing Rules, billing settings, Client billing settings, schedule / manual items and their posting sources
 (FR-143, FR-147). Rule edits bump ``version`` (drafts keep the values they were priced with)."""
 

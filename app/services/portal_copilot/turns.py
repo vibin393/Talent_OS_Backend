@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Portal Copilot conversations and turns (Epic 77 A4, AD-64 / AD-89).
 
 ``post_message`` order: availability (P4 kill switches / agentic / AI budget + portal enablement + consent) ->

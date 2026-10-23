@@ -1,4 +1,4 @@
-# ruff: noqa: N812, RUF001
+# ruff: file-ignore[lowercase-imported-as-non-lowercase, ambiguous-unicode-character-string]
 """Compliance dashboard tiles (Epic 34, A3): BGV, credentials and non-compliant placements."""
 
 from datetime import timedelta

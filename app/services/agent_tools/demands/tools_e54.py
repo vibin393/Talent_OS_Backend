@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 54 Copilot read tools on demands (FR-277, NFR-46): ``demands.list`` and ``demands.get`` through the demands
 records facade (scope = the user's; rates masked unless ``compensation:view``). An out-of-scope REQ is simply absent
 from a list and ``not found`` on a get -- byte-identical to a REQ that does not exist."""

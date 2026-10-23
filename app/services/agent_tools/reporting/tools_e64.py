@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Analytics tools (Epic 64, FR-316..FR-318, NFR-46). ``owner_epic="64"``, ``version=1``, every tool ``risk="read"``.
 
 The model never writes SQL: the only structured input it controls is a foundation ``Definition`` (closed operators,

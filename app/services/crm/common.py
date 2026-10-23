@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Shared helpers of the ``crm`` domain: principal / scope, user refs, status history, money formatting."""
 
 import uuid

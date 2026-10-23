@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Outbox sink for index sync (Epic 75, spec A3; AD-87). Registered from ``hooks.py`` with
 ``public_events_service.register_sink('job_network', on_rows, event_types={posting.published, posting.closed,
 posting.updated, demand.status_changed}, include_internal=True)``.
@@ -47,7 +47,7 @@ def _dedup(tenant_id: uuid.UUID, demand_id: uuid.UUID) -> bool:
         return True
 
 
-async def on_rows(ctx: RequestContext, db: AsyncSession, rows: Sequence[OutboxRow]) -> None:  # noqa: ARG001 - db is the tenant session; the sink never reads tenant data
+async def on_rows(ctx: RequestContext, db: AsyncSession, rows: Sequence[OutboxRow]) -> None:  # ruff: ignore[unused-function-argument] - db is the tenant session; the sink never reads tenant data
     if not rows:
         return
     tenant_id = rows[0].tenant_id

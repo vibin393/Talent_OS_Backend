@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Telephony API DTOs (Epic 76, spec A8). Responses never carry phone numbers (beyond the recruiter's ``last4`` and
 the Tenant's caller ID label), provider refs, recording URLs or answer tokens."""
 

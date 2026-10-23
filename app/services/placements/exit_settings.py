@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 31 shared helpers: exit settings, offboarding templates (default seeded per tenant on first use), the
 end-date history writer and owner resolution by role."""
 
@@ -208,7 +208,7 @@ async def create_template(ctx: RequestContext, db: AsyncSession, data: TemplateI
 
 
 async def update_template(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     template_id: uuid.UUID,
     data: TemplateUpdate,

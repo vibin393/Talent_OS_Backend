@@ -79,7 +79,7 @@ async def issue_touchpoint(
     db: AsyncSession,
     p: Placement,
     offset: int,
-    today: date,  # noqa: ARG001
+    today: date,  # ruff: ignore[unused-function-argument]
 ) -> EmailMessage | None:
     inserted = await db.execute(
         pg_insert(PlacementTouchpoint)

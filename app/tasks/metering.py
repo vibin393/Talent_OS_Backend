@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Usage metering tasks (Epic 66, AD-78), queue ``maintenance``.
 
 * ``metering.flush`` (beat every 60 s) -- Redis / buffer counters -> ``usage_counters``.

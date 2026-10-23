@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Public API inbound data loops (unified platform hub ingest).
 
 * ``create_assessment`` (Croar -> ATS): resolve the Candidate in the tenant silo (by id or external_id =

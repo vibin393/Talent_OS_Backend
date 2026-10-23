@@ -4,5 +4,5 @@ Re-exports the facade of the ``app.services.offers`` package: ``transition_offer
 ``create_offer``, ``release_offer``, ``CandidateResponder``, ``ensure_default_templates``, ``HUMAN_ONLY`` ...
 """
 
-from app.services.offers import *  # noqa: F403
-from app.services.offers import HUMAN_ONLY, TRANSITIONS, register  # noqa: F401
+from app.services.offers import *  # ruff: ignore[undefined-local-with-import-star]
+from app.services.offers import HUMAN_ONLY, TRANSITIONS, register  # ruff: ignore[unused-import]

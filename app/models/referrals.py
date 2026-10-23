@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Employee referrals (Epic 42, branch ``p3_referrals``, migrations ``20261006_306_01..03``; FR-213..216, AD-50).
 
 * ``referral_settings`` -- one row per tenant (duplicate window, link lifetimes, default owner, payout currency).

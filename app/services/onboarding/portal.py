@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Worker "My Work" onboarding (Epic 23 A7, P2-10.4, FR-123).
 
 Reads run in the Worker's org-scoped session (``OrgScope.of("worker", candidate_id)``): org RLS limits rows to the

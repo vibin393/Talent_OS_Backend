@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """OAuth token store: minting and revocation (Epic 66, AD-76, spec 0.6).
 
 Opaque tokens (``tos_at_`` access 60 min, ``tos_rt_`` refresh 30 d idle / 90 d absolute per family, ``tos_ac_`` codes,

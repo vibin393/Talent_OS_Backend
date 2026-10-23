@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The delivery log (Epic 68, story 68.5, FR-353): 30-day list / detail (attempts, response excerpts, the thin
 request envelope) and the CSV export (ids, type, status, attempts, codes, latency -- never bodies). Visible only to the
 owning Tenant (and, on the public surface, the owning App)."""

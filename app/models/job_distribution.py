@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Job board distribution (Epic 70, FR-360..FR-364; migration ``20261010_504_01_job_boards``). Owner:
 ``app.services.job_distribution``.
 

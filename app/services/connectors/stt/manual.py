@@ -21,16 +21,16 @@ class ManualSpeechToText:
     def __init__(self, ctx: AdapterContext | None = None) -> None:
         self.ctx = ctx
 
-    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # noqa: ARG002
+    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         raise ManualActionRequired(f"stt: complete {op} manually", {"op": op})
 
-    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # noqa: ARG002
+    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # ruff: ignore[unused-method-argument]
         return False
 
-    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # noqa: ARG002
+    def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         return {}
 
-    async def transcribe(self, audio: bytes, media_type: str, language_hint: str | None) -> TranscriptDTO:  # noqa: ARG002
+    async def transcribe(self, audio: bytes, media_type: str, language_hint: str | None) -> TranscriptDTO:  # ruff: ignore[unused-method-argument]
         raise ManualActionRequired(INSTRUCTIONS, {"op": "transcribe", "media_type": media_type})
 
     async def languages(self) -> tuple[str, ...]:

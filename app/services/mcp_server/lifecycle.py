@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Which sessions an event ends (Epic 73, spec 0.7; FR-380, AD-86). Pure: event -> ``EndRequest``.
 
 | Event | Sessions ended | ``end_reason`` |

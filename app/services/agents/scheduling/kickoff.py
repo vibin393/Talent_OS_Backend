@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Default kickoff of the Scheduling Agent (Epic 59). Domain runs (offer / picked / counter / reschedule / reminders /
 nudges) always pass an explicit kickoff (``scheduling_agent.requests.kickoff``); a run started without one (the workflow
 action "Start agent run") has no request, so it is told to finish at once -- the recruiter starts scheduling with

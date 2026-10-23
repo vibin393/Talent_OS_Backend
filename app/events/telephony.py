@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Telephony events (Epic 76, spec A9). Frozen, slotted dataclasses; ``tenant_id`` first; ids and scalars only (no
 phone numbers, no recording refs); dispatched after commit."""
 

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 63 Collections Agent tools (``owner_epic="63"``, ``version=1``). Recording or reversing payments, writing off,
 resolving disputes, closing periods and promising settlements are ★ and have no tool (``receivables.payments`` /
 ``write_offs`` / ``periods_close`` are never imported). Recipients are Contacts on record; no tool takes an address.
@@ -409,7 +409,7 @@ async def _note(tctx: Any, args: NoteIn) -> ToolOutcome:
     return ToolOutcome(NoteOut(collection_activity_id=act.id), target=("client", args.client_id), summary="collection note logged")
 
 
-async def _note_preview(tctx: Any, args: NoteIn) -> ProposalPreview:  # noqa: ARG001
+async def _note_preview(tctx: Any, args: NoteIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
     return ProposalPreview(title="Log a collections note", summary=args.body[:4000], renderer="receivables.log_collection_note")
 
 

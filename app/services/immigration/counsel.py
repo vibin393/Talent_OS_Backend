@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Immigration counsel directory (Epic 46 A2). Counsel are contacts, not users: P1 ``contacts`` require a Client,
 so counsel live in ``immigration_counsel`` (recorded deviation). Reads ``immigration:read``; writes
 ``immigration:configure``."""

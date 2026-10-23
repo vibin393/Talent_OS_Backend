@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Epic 79 (Phase 5 Governance) facade: the one import surface for routers and tests.
 
 Re-exports the ecosystem console read models, the data-flow register, violations, access reviews, erasure fan-out,

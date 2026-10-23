@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Internal outbox event types owned by Epic 71 (spec A7; visibility ``internal``: connector triggers only):
 ``credit_note.issued``, ``debit_note.issued`` and ``invoice.cancelled`` (``invoice.issued`` / ``payment.recorded`` are
 public foundation types)."""

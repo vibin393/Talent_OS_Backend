@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """SLA and escalation events (Epic 32; dispatched after commit). Ids / enums only, no PII."""
 
 import dataclasses

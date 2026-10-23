@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The ``campaign_copy`` AgentSpec (Epic 78 A3, AD-91, FR-401). Read tools only, no write tools: the run ends with
 ``emit_result`` validated against ``CampaignCopyResult`` (``extra="forbid"``); ``campaign_copy`` hooks turn it into
 drafts. The agent never sees recipient records and cannot apply, submit, schedule or send anything. Owner = the

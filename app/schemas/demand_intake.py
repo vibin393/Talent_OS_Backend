@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Demand intake DTOs (Epic 55, story 55.1 / 55.2). Hand-mirrored in ``Frontend/src/features/agents/demand/types.ts``."""
 
 import uuid

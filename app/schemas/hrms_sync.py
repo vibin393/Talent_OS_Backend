@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """HRMS sync API DTOs (Epic 71, spec A11). Records carry ids, statuses and sanitised messages only -- never field
 values; mapping rows carry catalogue keys and purposes, never personal data."""
 

@@ -194,7 +194,7 @@ async def close(
 
 
 async def reopen(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     legal_entity_id: uuid.UUID,
     year: int,

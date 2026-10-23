@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """``/public/v1/skills`` (Epic 67, spec A4): the skills catalogue (``skills:read``)."""
 
 from typing import Annotated, Any

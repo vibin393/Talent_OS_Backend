@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Collections Agent domain events (Epic 63; dispatched after commit). Ids / scalars only.
 
 * ``CollectionsAgentHoldChanged`` -- a person paused / took over (``active=True``) or released a hold.

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Erasure handler ``portal_copilot.candidate`` (Epic 77 A7, order 72).
 
 * Candidate subject: deletes the Candidate's own portal Copilot conversations, messages and feedback (rows whose
@@ -56,7 +56,7 @@ class PortalCopilotHandler:
         await db.flush()
         return counts
 
-    async def export(self, db: AsyncSession, ctx: ErasureContext) -> dict[str, Any] | None:  # noqa: ARG002
+    async def export(self, db: AsyncSession, ctx: ErasureContext) -> dict[str, Any] | None:  # ruff: ignore[unused-method-argument]
         # Sealed private assistant conversations; the Candidate reads them in the portal panel.
         return None
 

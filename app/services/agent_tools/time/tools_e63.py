@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Epic 63 Timesheet Agent tools (``owner_epic="63"``, ``version=1``). None of them approves, rejects or reopens a
 timesheet, edits hours or entries, creates a proxy entry, or adds / removes flags: those stay human (P2 FR-131 / the
 ``time.timesheets`` approval path is never imported).
@@ -285,7 +285,7 @@ async def _explanations(tctx: Any, args: ExplanationsIn) -> ToolOutcome:
     return ToolOutcome(ExplanationsOut(updated=n), target=("timesheet", ts.id), summary=f"{n} explanations saved")
 
 
-async def _explanations_preview(tctx: Any, args: ExplanationsIn) -> ProposalPreview:  # noqa: ARG001
+async def _explanations_preview(tctx: Any, args: ExplanationsIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
     return ProposalPreview(
         title="Save plain-English explanations of the timesheet flags",
         summary="\n".join(f"- {i.explanation}" for i in args.items)[:4000],

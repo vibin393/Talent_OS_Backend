@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Connector Manifests of the ledger connectors (Epic 71, spec A7): Zoho Books (OAuth, India DC) and the TallyPrime
 XML import file (D-5). Registered by ``app.services.ledger_sync.hooks``.
 
@@ -42,7 +42,7 @@ class FakeLedger(FakeAccountingExporter):
     def __repr__(self) -> str:
         return "FakeLedger()"
 
-    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # noqa: ARG002
+    def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # ruff: ignore[unused-method-argument]
         return False
 
 
@@ -54,13 +54,13 @@ class ManualLedger(ManualAccountingExporter):
     async def push_documents(self, docs: Sequence[LedgerDocumentDTO]) -> Sequence[LedgerResultDTO]:
         raise ManualActionRequired(_MANUAL, {"op": "push_documents", "documents": len(docs)})
 
-    async def document_status(self, refs: Sequence[str]) -> Sequence[LedgerResultDTO]:  # noqa: ARG002
+    async def document_status(self, refs: Sequence[str]) -> Sequence[LedgerResultDTO]:  # ruff: ignore[unused-method-argument]
         raise ManualActionRequired(_MANUAL, {"op": "document_status"})
 
-    async def pull_payments(self, since: datetime | None, cursor: str | None) -> tuple[Sequence[LedgerPaymentDTO], str | None]:  # noqa: ARG002
+    async def pull_payments(self, since: datetime | None, cursor: str | None) -> tuple[Sequence[LedgerPaymentDTO], str | None]:  # ruff: ignore[unused-method-argument]
         raise ManualActionRequired("Record client payments in Talent OS", {"op": "pull_payments"})
 
-    async def masters_sync(self, customers: Sequence[Mapping[str, Any]], ledgers: Sequence[Mapping[str, Any]]) -> Mapping[str, str]:  # noqa: ARG002
+    async def masters_sync(self, customers: Sequence[Mapping[str, Any]], ledgers: Sequence[Mapping[str, Any]]) -> Mapping[str, str]:  # ruff: ignore[unused-method-argument]
         raise ManualActionRequired(_MANUAL, {"op": "masters_sync"})
 
 

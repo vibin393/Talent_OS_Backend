@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Submission pack domain events (Epic 61; dispatched after commit). Ids / scalars only.
 
 * ``SubmissionPackReady`` -- a pack was (re)built and its status changed (notification ``submission_pack_ready``,

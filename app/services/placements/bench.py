@@ -638,7 +638,7 @@ async def on_placement_ended(
     return entry.id if entry is not None else None
 
 
-async def on_placement_activated(ctx: RequestContext, db: AsyncSession, payload: dict[str, Any]) -> bool:  # noqa: ARG001
+async def on_placement_activated(ctx: RequestContext, db: AsyncSession, payload: dict[str, Any]) -> bool:  # ruff: ignore[unused-function-argument]
     placement_id = uuid.UUID(str(payload["placement_id"]))
     entry = await open_entry_for(db, uuid.UUID(str(payload["candidate_id"])), lock=True)
     if entry is None or entry.source_placement_id == placement_id:
@@ -655,7 +655,7 @@ async def _application_candidate(db: AsyncSession, application_id: uuid.UUID) ->
     ).scalar_one_or_none()
 
 
-async def on_submission_created(ctx: RequestContext, db: AsyncSession, application_id: uuid.UUID) -> bool:  # noqa: ARG001
+async def on_submission_created(ctx: RequestContext, db: AsyncSession, application_id: uuid.UUID) -> bool:  # ruff: ignore[unused-function-argument]
     candidate_id = await _application_candidate(db, application_id)
     if candidate_id is None:
         return False
@@ -673,7 +673,7 @@ async def on_submission_created(ctx: RequestContext, db: AsyncSession, applicati
 
 
 async def on_application_closed(
-    ctx: RequestContext,  # noqa: ARG001
+    ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,
     application_id: uuid.UUID,
     candidate_id: uuid.UUID,

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Re-approval guards (Epic 78 A5, FR-403 "edits after approval need approval again"), registered in the P3 additive
 registries ``campaigns.register_submit_guard`` / ``sequences.register_step_activation_guard``.
 
@@ -32,7 +32,7 @@ async def _latest_used_for_campaign(db: AsyncSession, campaign_id: Any) -> Campa
     ).scalar_one_or_none()
 
 
-async def submit_guard(ctx: RequestContext, db: AsyncSession, campaign: Any) -> None:  # noqa: ARG001
+async def submit_guard(ctx: RequestContext, db: AsyncSession, campaign: Any) -> None:  # ruff: ignore[unused-function-argument]
     used = await _latest_used_for_campaign(db, campaign.id)
     if used is None:
         return
@@ -40,7 +40,7 @@ async def submit_guard(ctx: RequestContext, db: AsyncSession, campaign: Any) -> 
         raise conflict("copy_reapproval_required", REAPPROVAL_MESSAGE, draft_id=str(used.id), request_id=str(used.request_id))
 
 
-async def step_activation_guard(ctx: RequestContext, db: AsyncSession, seq: Any, steps: list[dict[str, Any]]) -> None:  # noqa: ARG001
+async def step_activation_guard(ctx: RequestContext, db: AsyncSession, seq: Any, steps: list[dict[str, Any]]) -> None:  # ruff: ignore[unused-function-argument]
     rows = list(
         (
             await db.execute(
@@ -65,7 +65,7 @@ async def step_activation_guard(ctx: RequestContext, db: AsyncSession, seq: Any,
             raise conflict("copy_reapproval_required", STEP_REAPPROVAL_MESSAGE, draft_id=str(d.id), step_position=position)
 
 
-async def campaign_status(ctx: RequestContext, db: AsyncSession, campaign_id: Any) -> CopyStatusOut:  # noqa: ARG001
+async def campaign_status(ctx: RequestContext, db: AsyncSession, campaign_id: Any) -> CopyStatusOut:  # ruff: ignore[unused-function-argument]
     from app.models.campaigns import Campaign
     from app.services import entity_refs
 

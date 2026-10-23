@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """The ``azure_speech`` Connector Manifest (Epic 76, spec A5; D-6). Registered by ``app.services.telephony.hooks``.
 Fake = the foundation ``FakeSpeechToText``; Manual = the foundation ``ManualSpeechToText`` (upload a transcript)."""
 

@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Agent registry (Epic 53, AD-72, FR-264). Owners register from ``app/services/agents/<key>/hooks.py``.
 
 The foundation registers the 15 shipped keys as disabled placeholders (``placeholder=True``); ``register_agent``
@@ -68,7 +68,7 @@ class AgentSpec:
     tools: tuple[str, ...] = ()
     permission_ceiling: Mapping[str, Scope] = dataclasses.field(default_factory=dict)
     default_mode: AutonomyMode = "suggest"
-    limits: RunLimits = RunLimits()  # noqa: RUF009 - frozen value object
+    limits: RunLimits = RunLimits()  # ruff: ignore[function-call-in-dataclass-default-argument] - frozen value object
     subject_type: str | None = None
     origin: RunOrigin = "agent"
     triggers: tuple[TriggerSpec, ...] = ()

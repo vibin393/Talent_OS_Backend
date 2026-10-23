@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401, ARG001
+# ruff: file-ignore[line-too-long, non-imperative-mood, unused-function-argument]
 """Questionnaire versions and bindings (Epic 57 story 57.1, FR-289; spec A2).
 
 * A version extends a P1 ``screening_questionnaires`` template with typed Agent Questions (stable ids across versions:

@@ -73,7 +73,7 @@ def purge_old_all() -> int:
 
 def _wire_handlers() -> None:
     """Worker processes: register the Epic 10 event handlers (the API registers them through its routers)."""
-    from app.services import comms_service, notifications_service, workflow  # noqa: F401
+    from app.services import comms_service, notifications_service, workflow  # ruff: ignore[unused-import]
 
 
 _wire_handlers()

@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Pure, deterministic 26AS line <-> TDS Deduction matching (Epic 51, FR-254).
 
 Candidates (filtered by the caller): deductions of the Legal Entity whose ``client_id`` is mapped to the line's

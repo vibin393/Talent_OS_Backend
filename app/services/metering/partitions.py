@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Monthly RANGE partitions (Epic 66, NFR-74): a small registry of partitioned tenant tables (``api_request_log``
 here; Epic 68 registers ``webhook_deliveries`` from its ``hooks.py``), ``ensure_monthly`` (``partitions.ensure_monthly``,
 daily) and the retention purge (``api_request_log.purge``, daily).

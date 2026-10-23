@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Sourcing & Matching Agent state (Epic 56, FR-285..FR-288; migration ``20261008_403_01_src_shortlists``).
 Owner: ``app.services.sourcing_agent`` (the agent package never touches these tables, AD-56).
 

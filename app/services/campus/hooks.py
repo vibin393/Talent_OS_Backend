@@ -1,4 +1,4 @@
-# ruff: noqa: E501
+# ruff: file-ignore[line-too-long]
 """Registrations of the ``campus`` domain (autodiscovered by ``core.hooks``), Epic 43 A8.
 
 * Semantic source ``campus.registration`` and the campus fields on ``candidates.candidate`` (``source.py``).
@@ -156,16 +156,16 @@ def _subscribe() -> None:
 
 
 # ---------------------------------------------------------------- notifications
-async def _owner(db: AsyncSession, payload: Any) -> set[Any]:  # noqa: ARG001
+async def _owner(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument]
     oid = _uuid(payload.get("owner_id"))
     return {oid} if oid else set()
 
 
-async def _interviewers(db: AsyncSession, payload: Any) -> set[Any]:  # noqa: ARG001
+async def _interviewers(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument]
     return {u for u in (_uuid(x) for x in payload.get("interviewer_user_ids") or ()) if u}
 
 
-async def _candidate(db: AsyncSession, payload: Any) -> set[Any]:  # noqa: ARG001
+async def _candidate(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument]
     from app.services.notifications_service import Recipient
 
     cid = _uuid(payload.get("candidate_id"))
@@ -192,7 +192,7 @@ async def _render_digest(db: AsyncSession, payload: Any) -> Any:
     )
 
 
-async def _render_slot(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG001
+async def _render_slot(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
     from app.services.notifications_service import Content
 
     iid = payload.get("interview_id")
@@ -203,7 +203,7 @@ async def _render_slot(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG001
     )
 
 
-async def _render_turn(db: AsyncSession, payload: Any) -> Any:  # noqa: ARG001
+async def _render_turn(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
     from app.services.notifications_service import Content
 
     return Content(title="It is your turn: please go to your interview station", link_path="/portal")

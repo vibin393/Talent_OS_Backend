@@ -1,4 +1,4 @@
-# ruff: noqa: E501, D401
+# ruff: file-ignore[line-too-long, non-imperative-mood]
 """Referral rewards (Epic 42 story 42.4, FR-216, AD-24, AD-50).
 
 ``pending_condition -> eligible -> approved* -> paid`` or ``void``.
@@ -265,7 +265,7 @@ async def mark_approved(db: AsyncSession, reward: ReferralReward, actor: ActorRe
     audit.record("referral.reward_approved", "referral_reward", reward.id, session=db)
 
 
-async def on_final_decided(ctx: RequestContext, db: AsyncSession, decision: Any) -> None:  # noqa: ARG001
+async def on_final_decided(ctx: RequestContext, db: AsyncSession, decision: Any) -> None:  # ruff: ignore[unused-function-argument]
     reward = await db.get(ReferralReward, decision.subject_id, with_for_update=True)
     if reward is None:
         return
@@ -280,7 +280,7 @@ async def on_final_decided(ctx: RequestContext, db: AsyncSession, decision: Any)
         await db.flush()
 
 
-async def describe(ctx: RequestContext, db: AsyncSession, ids: list[uuid.UUID]) -> dict[uuid.UUID, Any]:  # noqa: ARG001
+async def describe(ctx: RequestContext, db: AsyncSession, ids: list[uuid.UUID]) -> dict[uuid.UUID, Any]:  # ruff: ignore[unused-function-argument]
     from app.schemas.approvals import SubjectSummary
 
     rows = list(

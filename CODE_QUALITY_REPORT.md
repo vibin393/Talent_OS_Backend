@@ -7,10 +7,15 @@ _Generated 2026-10-23 · scope: `Backend/app/` · ruff 0.16.4 · bandit 1.9.4 ·
 | Tool | Purpose | Count |
 |---|---|---|
 | **Ruff** | lint / style | **7,104** total -> **5,621** auto-fixed (safe) -> **1483** remaining |
-| **mypy** (strict) | type checking | **1431** errors in **558** files |
+| **mypy** (strict) | type checking | original **1431** → **843** errors in **350** files (after Phase 1 + Phase 2) |
 | **Bandit** | security | **315** (2 HIGH / 18 MEDIUM / 295 LOW) |
 
 > **Auto-fix note:** `pyproject.toml` sets `[tool.ruff] fix = true`, so `ruff check` applied **5,621 safe fixes across ~1,639 files** automatically. Those are already applied and not listed individually; this report covers the **remaining** issues needing manual attention.
+
+> **Cleanup progress (type-only, no behavior change):**
+> - **Phase 1** — deleted **528** stale `# type: ignore` comments + 4 safe ruff fixes → mypy **1431 → 904**.
+> - **Phase 2** — `ErasureHandler` Protocol members made read-only `@property` (`app/services/privacy/registry.py`) → cleared **61** `arg-type` errors → mypy **904 → 843**. Verified: full app module graph still imports clean.
+> - Remaining **843** are tracked below by category; see the roadmap note at the end for which are safe-to-close vs. behavior-sensitive.
 
 ---
 
@@ -1644,38 +1649,40 @@ _Generated 2026-10-23 · scope: `Backend/app/` · ruff 0.16.4 · bandit 1.9.4 ·
 
 ## 2. mypy - type-check errors (strict)
 
+_Counts below are the **current** run (843 errors in 350 files), after Phase 1 (528 `unused-ignore` deleted) and Phase 2 (61 `arg-type` cleared via the ErasureHandler Protocol fix). The original pre-cleanup run was 1431._
+
 | Count | Category | Meaning |
 |---:|---|---|
-| 528 | `unused-ignore` | needless `# type: ignore` (safe to delete) |
-| 319 | `arg-type` | argument type mismatch |
+| 258 | `arg-type` | argument type mismatch |
 | 139 | `attr-defined` | attribute not defined on type |
 | 84 | `valid-type` | invalid type annotation |
-| 83 | `no-any-return` | returning Any from a typed function |
+| 84 | `no-any-return` | returning Any from a typed function |
 | 65 | `assignment` | incompatible assignment |
 | 50 | `misc` | miscellaneous |
 | 47 | `var-annotated` | variable needs a type annotation |
 | 21 | `unreachable` | unreachable code |
 | 16 | `union-attr` | attr on Optional/Union |
-| 10 | `index` | bad index type |
+| 11 | `str` | str-format / str-bytes-safe |
 | 10 | `operator` | bad operator operands |
-| 9 | `no-untyped-call` | call to untyped function |
+| 10 | `index` | bad index type |
 | 9 | `no-untyped-def` | function missing type annotations |
+| 9 | `no-untyped-call` | call to untyped function |
 | 7 | `type-arg` | missing/extra type parameter |
-| 7 | `return-value` |  |
-| 5 | `import-untyped` |  |
-| 4 | `has-type` |  |
-| 4 | `list-item` |  |
-| 3 | `call-overload` |  |
-| 2 | `no-redef` |  |
-| 2 | `call-arg` |  |
-| 2 | `name-defined` |  |
-| 1 | `typeddict-item` |  |
-| 1 | `comparison-overlap` |  |
-| 1 | `dict-item` |  |
-| 1 | `func-returns-value` |  |
-| 1 | `type-var` |  |
+| 7 | `return-value` | incompatible return value |
+| 5 | `import-untyped` | import of untyped module |
+| 4 | `list-item` | bad list element type |
+| 4 | `has-type` | cannot determine type |
+| 3 | `call-overload` | no matching overload |
+| 2 | `no-redef` | name redefined |
+| 2 | `name-defined` | name not defined |
+| 2 | `call-arg` | bad call arguments |
+| 1 | `typeddict-item` | bad TypedDict item |
+| 1 | `type-var` | type-var constraint |
+| 1 | `func-returns-value` | using value of None-returning func |
+| 1 | `dict-item` | bad dict item type |
+| 1 | `comparison-overlap` | non-overlapping comparison |
 
-**Total: 1431 errors in 558 files.** The biggest bucket, `unused-ignore` (528), is just stale `# type: ignore` comments - safe to delete in bulk. `arg-type` / `attr-defined` are the substantive ones.
+**Total: 843 errors in 350 files.** `arg-type` (258) and `attr-defined` (139) are the biggest substantive buckets. The original top bucket, `unused-ignore` (528 stale `# type: ignore`), was deleted in Phase 1 — the historical detail list is retained below for reference but **no longer applies**.
 
 <details><summary><b>unused-ignore</b> - needless `# type: ignore` (safe to delete) (528)</summary>
 
@@ -3641,3 +3648,25 @@ Most LOW findings are `B101 assert_used` (asserts, largely in tests/guards) and 
 4. **`B613` bidirectional unicode** (`app/services/submission_packs/writeup.py:19`) - remove the stray RTL control char.
 5. **Ruff non-E501** cleanups - mostly docstring/typing/unused-arg; safe to batch-fix.
 6. **`E501`** (line-too-long) - cosmetic; raise the line length or wrap, low priority.
+
+---
+
+## 5. Roadmap to "close all issues" (behavior-preserving boundary)
+
+Goal: drive every issue to closed. The hard boundary is **no functionality change** — so issues split into three tiers by whether they *can* be closed silently.
+
+**Tier A — safe to close now (type/style only, no behavior risk):**
+- ruff `E501` line-length + `RUF067`/`D401`/`ARG001`/`D400`/`D415` docstring & unused-arg rules — mechanical/batchable.
+- bandit `B101` (asserts), `B105`/`B106` hardcoded-string false positives — suppress with a one-line justification.
+- mypy clusters with a clean structural fix (like the ErasureHandler Protocol fix): `var-annotated` (47, add the annotation), `no-untyped-def` (9, add signatures), `type-arg` (7, add type params).
+
+**Tier B — closeable, but needs ONE decision each (then becomes type-only):**
+- `arg-type` sub-cluster: `model_construct` entity-type `Literal` — needs the **valid entity-type set** confirmed, then widen the `Literal`.
+- `arg-type` sub-cluster: FieldDef `frozenset[str]` vs `frozenset[Literal[...]]` — confirm the operator set is **fixed/closed**, then annotate the constants.
+- `arg-type` sub-cluster: `select(union)` collapsing to `Base` — decide whether a per-site `cast()` is acceptable (band-aid, no safety gain) or the query shape changes.
+
+**Tier C — cannot be closed without a per-item choice (behavior-sensitive):**
+- `union-attr` (16) + the `UUID | None → UUID` subset of `arg-type` — these are **real latent None-paths**. Each closes only as either (a) a deliberate None-guard bug-fix (behavior change, needs sign-off) or (b) a documented `# type: ignore[union-attr]`. No silent close.
+- bandit `B608` hardcoded SQL (14) + `B113` requests-timeout (4) — already reviewed: identifiers are server-controlled / the `requests` call is a local dict lookup, not HTTP. Close as **documented accepted-risk**, not code change.
+
+**Suggested order:** Tier A (no questions) → Tier B (one batch of questions, then apply) → Tier C (per-item sign-off). After each tier, re-run mypy/ruff/bandit and update the Summary counts above.

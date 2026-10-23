@@ -55,9 +55,14 @@ class ErasureContext:
 
 
 class ErasureHandler(Protocol):
-    name: str  # "pipeline.screenings"
-    order: int  # audit shred = 1000, always last
-    tables: tuple[str, ...]  # claimed tables (coverage guard)
+    # Read-only members: handlers declare these as plain class attributes. Properties (no setter) keep them
+    # covariant, so a handler's concrete ``tables`` (e.g. ``tuple[str, str]``) satisfies ``tuple[str, ...]``.
+    @property
+    def name(self) -> str: ...  # "pipeline.screenings"
+    @property
+    def order(self) -> int: ...  # audit shred = 1000, always last
+    @property
+    def tables(self) -> tuple[str, ...]: ...  # claimed tables (coverage guard)
 
     async def erase(self, db: AsyncSession, ctx: ErasureContext) -> dict[str, int]: ...
 

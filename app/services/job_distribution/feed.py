@@ -13,7 +13,9 @@ import hmac
 import secrets
 import uuid
 from email.utils import format_datetime
-from xml.sax.saxutils import escape  # nosec B406 - xml.sax.saxutils escape/quoteattr are output encoders, not parsers
+from xml.sax.saxutils import (
+    escape,  # nosec B406 - xml.sax.saxutils escape/quoteattr are output encoders, not parsers
+)
 
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession

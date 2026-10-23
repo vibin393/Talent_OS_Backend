@@ -211,8 +211,8 @@ def _code_fill(points: Decimal, key: Mapping[str, Any], response: Mapping[str, A
     blanks = key.get("blanks")
     if not isinstance(blanks, Mapping) or not blanks:
         return _result(points, ZERO)
-    _blanks = response.get("blanks")
-    given = _blanks if isinstance(_blanks, Mapping) else {}
+    blanks_raw = response.get("blanks")
+    given = blanks_raw if isinstance(blanks_raw, Mapping) else {}
     right = 0
     for n, spec in blanks.items():
         if not isinstance(spec, Mapping):
@@ -239,8 +239,8 @@ def _code_order(points: Decimal, key: Mapping[str, Any], response: Mapping[str, 
 def _find_bug(points: Decimal, key: Mapping[str, Any], response: Mapping[str, Any]) -> ScoreResult:
     raw_bug = key.get("bug_lines") if isinstance(key.get("bug_lines"), list) else []
     bug = {v for v in raw_bug if isinstance(v, int) and not isinstance(v, bool)}  # type: ignore[union-attr]
-    _lines = response.get("lines")
-    raw_sel = _lines if isinstance(_lines, list) else []
+    lines_raw = response.get("lines")
+    raw_sel = lines_raw if isinstance(lines_raw, list) else []
     selected = {v for v in raw_sel[:1000] if isinstance(v, int) and not isinstance(v, bool)}
     if not bug:
         return _result(points, ZERO)

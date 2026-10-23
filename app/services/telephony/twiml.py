@@ -3,7 +3,10 @@
 recording requested **only** when ``recording_requested`` (the dial-time gate result); otherwise the candidate is
 dialled without any record attribute. Exotel is flow-based (no answer document)."""
 
-from xml.sax.saxutils import escape, quoteattr  # nosec B406 - xml.sax.saxutils escape/quoteattr are output encoders, not parsers
+from xml.sax.saxutils import (  # nosec B406 - xml.sax.saxutils escape/quoteattr are output encoders, not parsers
+    escape,
+    quoteattr,
+)
 
 __all__ = ["render"]
 

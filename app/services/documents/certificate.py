@@ -12,7 +12,9 @@ import dataclasses
 import uuid
 from collections.abc import Sequence
 from datetime import UTC, datetime
-from xml.sax.saxutils import escape  # nosec B406 - xml.sax.saxutils escape/quoteattr are output encoders, not parsers
+from xml.sax.saxutils import (
+    escape,  # nosec B406 - xml.sax.saxutils escape/quoteattr are output encoders, not parsers
+)
 
 from reportlab.lib import colors
 from reportlab.lib.units import mm

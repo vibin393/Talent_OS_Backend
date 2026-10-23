@@ -531,7 +531,9 @@ async def waive(
 
 # ================================================================ start gate (registered in hooks)
 async def gate_resolver(ctx: RequestContext, db: AsyncSession, placement_id: uuid.UUID) -> list[Any]:
-    from app.services.placements.registry import GateStatus
+    from app.services.placements.registry import (
+        GateStatus,  # noqa: TC001 - local import avoids a circular import
+    )
     from app.services.placements_service import GateState
 
     rows = list(

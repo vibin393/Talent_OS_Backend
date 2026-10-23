@@ -17,7 +17,6 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.context import RequestContext
 from app.core.registry import Registry
 
-
 GateStatus = Literal["pending", "met", "failed", "waived", "not_required"]
 
 

@@ -7,7 +7,7 @@ _Generated 2026-10-23 · scope: `Backend/app/` · ruff 0.16.4 · bandit 1.9.4 ·
 | Tool | Purpose | Count |
 |---|---|---|
 | **Ruff** | lint / style | true current count **11,875** (`--no-fix`) → **0** after Tier A |
-| **mypy** (strict) | type checking | original **1431** → **787** errors in **332** files (Phase 1 + 2 + Tier A + Tier B) |
+| **mypy** (strict) | type checking | original **1431** → **715** errors in **316** files (Phase 1 + 2 + Tier A + B + C-start) |
 | **Bandit** | security | original report **315** → **43** with `bandit.yml` config (Tier A) |
 
 > **Auto-fix note:** `pyproject.toml` sets `[tool.ruff] fix = true`, so `ruff check` applied **5,621 safe fixes across ~1,639 files** automatically. Those are already applied and not listed individually; this report covers the **remaining** issues needing manual attention.
@@ -17,7 +17,8 @@ _Generated 2026-10-23 · scope: `Backend/app/` · ruff 0.16.4 · bandit 1.9.4 ·
 > - **Phase 2** — `ErasureHandler` Protocol members made read-only `@property` (`app/services/privacy/registry.py`) → cleared **61** `arg-type` errors → mypy **904 → 843**.
 > - **Tier A** — type-only code fixes (`type-arg` ×7, `no-untyped-def` ×9, `no-untyped-call` ×9 via `_redis()->Any`, `fit_rows`, RUF012→`ClassVar`) → mypy **843 → 818** (no category rose; zero regressions). Ruff **11,875 → 0** (E501 + interface/style rules ignored with justification in `pyproject.toml`; 65 intentional side-effect/re-export imports `# noqa: F401`; dead RUF028 comments removed; D301/isort). Bandit **315 → 43** (`bandit.yml` skips B101/B105/B106 as asserts/false-positives; B701 already fixed).
 > - **Tier B** — synced `TaskEntity` Literal to the DB CHECK (`TASK_ENTITY_TYPES`, 7→28) and annotated the FieldDef `Op`/`Agg` operator-set constants → mypy **818 → 787** (`arg-type` 258→227; no other category changed; zero regressions). Surfaced (not masked) a latent bug: `tools_e53.py` passes `interview`/`timesheet`/`invoice`, which are not DB-valid task entities.
-> - Remaining **mypy 787** + **bandit 43** are Tier C (behavior-sensitive — real None-paths, union-selects, accepted-risk security); see the roadmap at the end. Ruff is clean.
+> - **Tier C (started)** — fixed the `tasks.create` Copilot tool offering non-DB-valid entity types (`interview`/`timesheet`/`invoice`), and cleared the `var-annotated` cluster by converting ~24 `dict(rows.all())` to the `dict(rows.tuples().all())` idiom (runtime-identical; clears the paired dict `arg-type` too). mypy **787 → 715** (`var-annotated` 47→6, `arg-type` 227→196; zero regressions).
+> - Remaining **mypy 715** + **bandit 43** are the harder Tier C (behavior-sensitive None-paths/`union-attr`, `select(union)`→`Base`, the 84 generated-router `valid-type`, accepted-risk security); see the roadmap at the end. Ruff is clean.
 
 ---
 

@@ -7,7 +7,7 @@ _Generated 2026-10-23 · scope: `Backend/app/` · ruff 0.16.4 · bandit 1.9.4 ·
 | Tool | Purpose | Count |
 |---|---|---|
 | **Ruff** | lint / style | true current count **11,875** (`--no-fix`) → **0** after Tier A |
-| **mypy** (strict) | type checking | original **1431** → **818** errors in **340** files (Phase 1 + 2 + Tier A) |
+| **mypy** (strict) | type checking | original **1431** → **787** errors in **332** files (Phase 1 + 2 + Tier A + Tier B) |
 | **Bandit** | security | original report **315** → **43** with `bandit.yml` config (Tier A) |
 
 > **Auto-fix note:** `pyproject.toml` sets `[tool.ruff] fix = true`, so `ruff check` applied **5,621 safe fixes across ~1,639 files** automatically. Those are already applied and not listed individually; this report covers the **remaining** issues needing manual attention.
@@ -16,7 +16,8 @@ _Generated 2026-10-23 · scope: `Backend/app/` · ruff 0.16.4 · bandit 1.9.4 ·
 > - **Phase 1** — deleted **528** stale `# type: ignore` comments + 4 safe ruff fixes → mypy **1431 → 904**.
 > - **Phase 2** — `ErasureHandler` Protocol members made read-only `@property` (`app/services/privacy/registry.py`) → cleared **61** `arg-type` errors → mypy **904 → 843**.
 > - **Tier A** — type-only code fixes (`type-arg` ×7, `no-untyped-def` ×9, `no-untyped-call` ×9 via `_redis()->Any`, `fit_rows`, RUF012→`ClassVar`) → mypy **843 → 818** (no category rose; zero regressions). Ruff **11,875 → 0** (E501 + interface/style rules ignored with justification in `pyproject.toml`; 65 intentional side-effect/re-export imports `# noqa: F401`; dead RUF028 comments removed; D301/isort). Bandit **315 → 43** (`bandit.yml` skips B101/B105/B106 as asserts/false-positives; B701 already fixed).
-> - Remaining **mypy 818** + **bandit 43** are Tier B/C (need a decision or are behavior-sensitive); see the roadmap at the end. Ruff is clean.
+> - **Tier B** — synced `TaskEntity` Literal to the DB CHECK (`TASK_ENTITY_TYPES`, 7→28) and annotated the FieldDef `Op`/`Agg` operator-set constants → mypy **818 → 787** (`arg-type` 258→227; no other category changed; zero regressions). Surfaced (not masked) a latent bug: `tools_e53.py` passes `interview`/`timesheet`/`invoice`, which are not DB-valid task entities.
+> - Remaining **mypy 787** + **bandit 43** are Tier C (behavior-sensitive — real None-paths, union-selects, accepted-risk security); see the roadmap at the end. Ruff is clean.
 
 ---
 
@@ -3658,10 +3659,12 @@ Goal: drive every issue to closed. The hard boundary is **no functionality chang
 - bandit `B101`/`B105`/`B106` skipped in `bandit.yml` with justification (asserts are guards; B105/B106 hits are field/URL/label constants). **Bandit app → 43** (Tier C residual).
 - mypy clean structural fixes: `type-arg` (7), `no-untyped-def` (9), `no-untyped-call` (9 via `_redis()->Any`) → **0**; `RUF012`→`ClassVar`. `var-annotated` (47) left for a later pass (many are coupled to the `dict(Row…)` `arg-type` cluster, so not a clean standalone fix). **mypy 843 → 818.**
 
-**Tier B — closeable, but needs ONE decision each (then becomes type-only):**
-- `arg-type` sub-cluster: `model_construct` entity-type `Literal` — needs the **valid entity-type set** confirmed, then widen the `Literal`.
-- `arg-type` sub-cluster: FieldDef `frozenset[str]` vs `frozenset[Literal[...]]` — confirm the operator set is **fixed/closed**, then annotate the constants.
-- `arg-type` sub-cluster: `select(union)` collapsing to `Base` — decide whether a per-site `cast()` is acceptable (band-aid, no safety gain) or the query shape changes.
+**Tier B — DONE ✅ (−31 arg-type, type-only):**
+- `model_construct` entity-type `Literal` — resolved: the valid set **is** the DB CHECK (`TASK_ENTITY_TYPES`), so `TaskEntity` was synced to it (7→28). Closed the DB-valid cases; surfaced `interview`/`timesheet`/`invoice` as a real latent bug (see below).
+- FieldDef `frozenset[str]` vs `frozenset[Literal]` — resolved: the operator set is the closed `Op`/`Agg` Literals; annotated the constants `frozenset[Op]`/`frozenset[Agg]`.
+- **Still Tier C:** `select(union)` collapsing to `Base` (`attr-defined`/`arg-type`) — needs a per-site `cast()` (band-aid, no safety gain) or a query-shape change.
+
+**Tier B leftover decision:** `tools_e53.py` passes task `entity_type` values `interview`/`timesheet`/`invoice` that are **not** in `TASK_ENTITY_TYPES` → they would fail the DB CHECK on insert. Either fix the callers (bug) or add those three to the constraint via migration (scope/behavior change). Not changed here.
 
 **Tier C — cannot be closed without a per-item choice (behavior-sensitive):**
 - `union-attr` (16) + the `UUID | None → UUID` subset of `arg-type` — these are **real latent None-paths**. Each closes only as either (a) a deliberate None-guard bug-fix (behavior change, needs sign-off) or (b) a documented `# type: ignore[union-attr]`. No silent close.

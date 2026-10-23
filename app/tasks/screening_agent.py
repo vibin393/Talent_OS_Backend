@@ -36,9 +36,9 @@ def channel_inbound(tenant_id: str, message_id: str) -> str | None:
 
     async def job() -> str | None:
         from app.services.screening_agent import (  # ruff: ignore[unused-import]
-            conversations,
+            conversations,  # noqa: F401
             inbound,
-            reminders,
+            reminders,  # noqa: F401
         )
 
         async with tenant_session(tid) as db:
@@ -55,9 +55,9 @@ def email_reply(
 
     async def job() -> str | None:
         from app.services.screening_agent import (  # ruff: ignore[unused-import]
-            conversations,
+            conversations,  # noqa: F401
             inbound,
-            reminders,
+            reminders,  # noqa: F401
         )
 
         async with tenant_session(tid) as db:
@@ -79,8 +79,8 @@ def consent_withdrawn(tenant_id: str, candidate_id: str) -> int:
         from app.models.screening_agent import OPEN_STATUSES, ScreeningConversation
         from app.services.screening_agent import (  # ruff: ignore[unused-import]
             conversations,
-            inbound,
-            reminders,
+            inbound,  # noqa: F401
+            reminders,  # noqa: F401
         )
 
         async with tenant_session(tid) as db:
@@ -113,8 +113,8 @@ def workflow_run(tenant_id: str, run_id: str) -> str:
         from app.services import agent_runtime_service as runtime
         from app.services.screening_agent import (  # ruff: ignore[unused-import]
             conversations,
-            inbound,
-            reminders,
+            inbound,  # noqa: F401
+            reminders,  # noqa: F401
         )
 
         async with tenant_session(tid) as db:
@@ -163,8 +163,8 @@ def run_failed(tenant_id: str, run_id: str, reason_code: str) -> str | None:
         from app.models.screening_agent import ScreeningConversation
         from app.services.screening_agent import (  # ruff: ignore[unused-import]
             conversations,
-            inbound,
-            reminders,
+            inbound,  # noqa: F401
+            reminders,  # noqa: F401
         )
 
         async with tenant_session(tid) as db:
@@ -206,8 +206,8 @@ def run_needed(
     async def job() -> str | None:
         from app.services.screening_agent import (  # ruff: ignore[unused-import]
             conversations,
-            inbound,
-            reminders,
+            inbound,  # noqa: F401
+            reminders,  # noqa: F401
         )
         from app.services.screening_agent.common import conversation
 
@@ -238,8 +238,8 @@ def run_needed(
 def sweep() -> dict[str, Any]:
     async def job(tid: uuid.UUID) -> Any:
         from app.services.screening_agent import (  # ruff: ignore[unused-import]
-            conversations,
-            inbound,
+            conversations,  # noqa: F401
+            inbound,  # noqa: F401
             reminders,
         )
 

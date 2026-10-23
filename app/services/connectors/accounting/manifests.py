@@ -105,7 +105,7 @@ ZOHO_BOOKS = ConnectorManifest(
         SyncJobSpec("pull_payments", "accounting.pull_payments", "pull", "schedule", every_seconds=1800, entity_type="payment", per_legal_entity=True),
         SyncJobSpec("document_status", "accounting.push_documents", "pull", "schedule", every_seconds=86400, entity_type="invoice", per_legal_entity=True),
         SyncJobSpec("masters", "accounting.masters", "push", "manual", entity_type="client", per_legal_entity=True),
-    ),  # fmt: skip
+    ),
     adapters={"fake": FakeLedger, "live": ZohoBooks, "manual": ManualLedger},
     legal_entity_scoped=True,
     rate_per_minute=90,

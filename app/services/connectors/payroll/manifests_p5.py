@@ -8,7 +8,7 @@ adapt them to the manifest factory contract (``factory(AdapterContext)``) withou
 """
 
 from collections.abc import Mapping
-from typing import Any
+from typing import Any, ClassVar
 
 from app.core.integrations import ConnectorManifest, DataFlow, SecretField, SyncJobSpec
 from app.core.integrations.context import AdapterContext
@@ -28,7 +28,7 @@ class FakePayrollPush(FakePayrollProvider):
     """The P2 payroll Fake behind a manifest context (auth failure when ``api_key == "invalid"``)."""
 
     provider_key = "fake"
-    script: dict[str, Any] = {}  # ruff: ignore[mutable-class-default] - test hook: {"rate_limit_ops": [...]}
+    script: ClassVar[dict[str, Any]] = {}  # test hook: {"rate_limit_ops": [...]}
 
     def __init__(self, ctx: AdapterContext | None = None) -> None:
         super().__init__(None)

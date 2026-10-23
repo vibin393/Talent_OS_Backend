@@ -61,7 +61,7 @@ class ApiDeprecationNotice(UUIDPk, TenantMixin, Timestamps, Base):
         UniqueConstraint(
             "tenant_id", "installation_id", "api_key_id", "month", "route_template",
             name="uq_api_deprecation_notices_key", postgresql_nulls_not_distinct=True,
-        ),  # fmt: skip
+        ),
         CheckConstraint("installation_id IS NOT NULL OR api_key_id IS NOT NULL", name="owner"),
     )
 

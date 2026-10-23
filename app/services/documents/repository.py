@@ -16,12 +16,12 @@ from __future__ import annotations
 
 import hashlib
 import uuid
-from collections.abc import Iterable
-from datetime import date
+from collections.abc import Iterable  # noqa: TC003
+from datetime import date  # noqa: TC003
 from typing import Any
 
 from sqlalchemy import func, select
-from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.ext.asyncio import AsyncSession  # noqa: TC002
 
 from app.core import audit
 from app.core.context import RequestContext

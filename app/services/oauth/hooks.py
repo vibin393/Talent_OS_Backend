@@ -63,4 +63,4 @@ def _register_notifications() -> None:
 
 _register_notifications()
 
-from app.services.oauth import hooks_e67  # ruff: ignore[unused-import]  (Epic 67 registrations)
+from app.services.oauth import hooks_e67  # ruff: ignore[unused-import]  (Epic 67 registrations)  # noqa: F401

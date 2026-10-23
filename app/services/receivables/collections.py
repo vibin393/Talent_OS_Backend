@@ -130,7 +130,7 @@ async def queue(ctx: RequestContext, db: AsyncSession, *, legal_entity_id: uuid.
                 client_id=d.client_id, client_name=names.get(d.client_id), document_kind=d.kind, document_id=d.id, number=d.number, due_date=d.due_date,
                 days_overdue=(on - d.due_date).days if d.due_date else 0, currency=d.currency, open_amount=b.open, disputed_amount=b.disputed,
                 collectible=max(collectible, ZERO), do_not_remind=bool(s and s.do_not_remind), open_ptp_date=ptps.get(d.id),
-            )  # fmt: skip
+            )
         )
     return sorted(out, key=lambda r: (-r.days_overdue, -r.open_amount))
 
@@ -189,7 +189,7 @@ async def send_reminders(ctx: RequestContext, db: AsyncSession, data: ReminderIn
             CollectionActivity(
                 id=uuid.uuid4(), tenant_id=tenant_of(db), client_id=d.client_id, document_kind=d.kind, document_id=d.id, kind="email",
                 body=f"Reminder sent ({actor_kind}): {subject}"[:2000], owner_id=user_id(ctx), created_by=user_id(ctx),
-            )  # fmt: skip
+            )
         )
         sent.append(doc_id)
     await db.flush()

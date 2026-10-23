@@ -196,7 +196,7 @@ _register_retention()
 
 # ---------------------------------------------------------------- after-commit work
 def _enqueue(task_name: str, *args: object) -> None:
-    import app.tasks.documents  # ruff: ignore[unused-import] - registers the tasks
+    import app.tasks.documents  # ruff: ignore[unused-import] - registers the tasks  # noqa: F401
     from app.core.celery import celery_app
     from app.tasks.runtime import enqueue
 

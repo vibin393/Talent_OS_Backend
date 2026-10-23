@@ -2,7 +2,7 @@
 """Delete / purge Copilot conversations (Epic 54, FR-279): discard pending drafts (as the owner), purge the turns' run
 content through the runtime facade (C-2), then delete the rows (messages cascade; feedback survives)."""
 
-import uuid
+import uuid  # noqa: TC003
 from collections.abc import Sequence
 
 from sqlalchemy.ext.asyncio import AsyncSession

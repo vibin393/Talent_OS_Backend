@@ -148,7 +148,7 @@ async def queue(ctx: RequestContext, status: str | None = None) -> list[QueueIte
                 status=v.status,
                 checks_failed=sum(1 for c in v.check_results or [] if not c.get("passed")),
                 reviewer_id=v.claimed_by,
-            )  # fmt: skip
+            )
             for v, listing, org_name in rows
         ]
 
@@ -207,7 +207,7 @@ async def list_listings(ctx: RequestContext) -> list[PlatformListingOut]:
                 install_count=r.install_count,
                 last_reviewed_at=r.last_reviewed_at,
                 suspended_reason=r.suspended_reason,
-            )  # fmt: skip
+            )
             for r, org_name in rows
         ]
 

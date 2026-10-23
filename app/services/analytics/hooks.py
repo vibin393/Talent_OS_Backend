@@ -40,7 +40,7 @@ def _uuid(v: Any) -> uuid.UUID | None:
 _redis_client = None
 
 
-def _redis():  # type: ignore[no-untyped-def]  # ruff: ignore[missing-return-type-private-function]
+def _redis() -> Any:  # redis client typing is loose
     global _redis_client  # process-wide lazy client
     if _redis_client is None:
         import redis

@@ -15,7 +15,7 @@ from app.services.integrations.runner import SYNC_OP_PREFIX, on_job_outcome, run
 from app.services.integrations.triggers import connector_triggers_sink
 
 
-async def _sink(ctx, db, rows) -> None:  # type: ignore[no-untyped-def]  # ruff: ignore[missing-type-function-argument]
+async def _sink(ctx, db, rows) -> None:  # type: ignore[no-untyped-def]  # ruff: ignore[missing-type-function-argument]  # noqa: ANN001
     await connector_triggers_sink(ctx, db, rows)
 
 

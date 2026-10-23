@@ -208,5 +208,5 @@ def register_catalogue() -> None:
 # Epic 53 (spec 0.15): the Phase 4 action key lives in ``catalogue_p4``.
 from app.services.workflow import (
     catalogue_p3,
-    catalogue_p4,  # ruff: ignore[unused-import]
+    catalogue_p4,  # ruff: ignore[unused-import]  # noqa: F401
 )

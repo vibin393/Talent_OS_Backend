@@ -9,7 +9,7 @@ _registered = False
 
 
 def _enqueue(task_name: str, *args: object) -> None:
-    import app.tasks.offers  # ruff: ignore[unused-import] - registers the tasks
+    import app.tasks.offers  # ruff: ignore[unused-import] - registers the tasks  # noqa: F401
     from app.core.celery import celery_app
 
     try:

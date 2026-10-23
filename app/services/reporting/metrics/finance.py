@@ -177,7 +177,7 @@ async def promises_overdue(t: TileContext) -> TileData:
                 "amount": facts.money(r.ptp_amount, r.ptp_currency or "INR"),
             }
             for r in rows
-        ],  # fmt: skip
+        ],
         "link": le_link(t, "/receivables/collections", promise="overdue"),
     }
 

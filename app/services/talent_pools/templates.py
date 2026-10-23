@@ -10,7 +10,7 @@ waits for Epic 43's ``campus_batch`` field (``extend_semantic_source``).
 not placed within 548 days; Former Workers = ended Placements not offboarded for misconduct (P2 has no rehire flag).
 """
 
-import uuid
+import uuid  # noqa: TC003
 from dataclasses import dataclass, field
 from typing import Any
 

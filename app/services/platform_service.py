@@ -480,11 +480,11 @@ async def email_sub_processor_notice(tenant_id: uuid.UUID, sub_id: uuid.UUID) ->
 
 # ================================================================ Epic 33 (FR-174, AD-38): custom Career Portal domains
 from app.services.custom_domains import (  # ruff: ignore[module-import-not-at-top-of-file, unused-import] - re-exported
-    add_custom_domain,
-    check_domains,
-    get_custom_domain,
-    remove_custom_domain,
-    slug_for_host,
-    tenant_for_host,
-    verify_custom_domain,
+    add_custom_domain,  # noqa: F401
+    check_domains,  # noqa: F401
+    get_custom_domain,  # noqa: F401
+    remove_custom_domain,  # noqa: F401
+    slug_for_host,  # noqa: F401
+    tenant_for_host,  # noqa: F401
+    verify_custom_domain,  # noqa: F401
 )

@@ -12,7 +12,7 @@ from typing import Any
 
 from app.core.permissions import Principal
 from app.services.reporting import (
-    p3tables as _P3,  # ruff: ignore[unused-import] - registers the optional-table guards
+    p3tables as _P3,  # ruff: ignore[unused-import] - registers the optional-table guards  # noqa: F401
 )
 from app.services.reporting.dashboards import DashboardDef, TileDef, TileFn
 from app.services.reporting.metrics import campus as _CA

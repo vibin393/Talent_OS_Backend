@@ -104,7 +104,7 @@ async def preview(ctx: RequestContext, db: AsyncSession, legal_entity_id: uuid.U
                 date=d, amount=amt, reference=(ref or "")[:200] or None, narrative=(narrative or "")[:500] or None, match_kind=kind,
                 matched_document_ids=[m.id for m in matched], client_id=next(iter(clients)) if len(clients) == 1 else None,
                 soft_duplicate_of=dup, error="unreadable date or amount" if kind == "failed" else None,
-            )  # fmt: skip
+            )
         )
     await db.flush()
     row = (await db.execute(select(FileImportBatch).where(FileImportBatch.id == batch.id))).scalar_one()

@@ -165,7 +165,7 @@ class ToolSpec:
     scope: ScopeRule
     handler: ToolHandler
     risk_fn: Callable[[Any], RiskClass] | None = None
-    idempotency: IdempotencyRule = IdempotencyRule()
+    idempotency: IdempotencyRule = IdempotencyRule()  # noqa: RUF009 - frozen value object, safe as a shared default
     untrusted_output: frozenset[str] = frozenset()
     untrusted_input: frozenset[str] = frozenset()
     egress: bool = False

@@ -68,7 +68,7 @@ class AgentSpec:
     tools: tuple[str, ...] = ()
     permission_ceiling: Mapping[str, Scope] = dataclasses.field(default_factory=dict)
     default_mode: AutonomyMode = "suggest"
-    limits: RunLimits = RunLimits()  # ruff: ignore[function-call-in-dataclass-default-argument] - frozen value object
+    limits: RunLimits = RunLimits()  # noqa: RUF009 - frozen value object, safe as a shared default
     subject_type: str | None = None
     origin: RunOrigin = "agent"
     triggers: tuple[TriggerSpec, ...] = ()

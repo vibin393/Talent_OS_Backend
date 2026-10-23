@@ -8,8 +8,8 @@ Re-exports the facade of the ``app.services.pipeline`` package so other domains 
 
 from app.services.pipeline import *  # ruff: ignore[undefined-local-with-import-star]
 from app.services.pipeline import (  # ruff: ignore[unused-import]
-    HUMAN_ONLY,
-    TRANSITIONS,
-    PipelineGateway,
-    register,
+    HUMAN_ONLY,  # noqa: F401
+    TRANSITIONS,  # noqa: F401
+    PipelineGateway,  # noqa: F401
+    register,  # noqa: F401
 )

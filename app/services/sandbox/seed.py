@@ -620,7 +620,7 @@ async def read_content(db: AsyncSession) -> dict[str, Any]:
                 d.applications_count,
             )
             for d in demands.values()
-        ),  # fmt: skip
+        ),
         "candidates": sorted(
             (
                 c.human_id,
@@ -634,7 +634,7 @@ async def read_content(db: AsyncSession) -> dict[str, Any]:
                 phones.get(c.id),
             )
             for c in cands.values()
-        ),  # fmt: skip
+        ),
         "applications": sorted(
             (a.human_id, ckey[a.candidate_id], dkey[a.demand_id], stages[a.stage_id]) for a in apps
         ),
@@ -649,7 +649,7 @@ async def read_content(db: AsyncSession) -> dict[str, Any]:
                 p.status,
             )
             for p in placements.values()
-        ),  # fmt: skip
+        ),
         "timesheets": sorted(
             (
                 t.human_id,
@@ -660,7 +660,7 @@ async def read_content(db: AsyncSession) -> dict[str, Any]:
                 hours.get(t.id, []),
             )
             for t in sheets
-        ),  # fmt: skip
+        ),
         "invoices": sorted(
             (cname[i.client_id], str(i.document_total), i.status, i.currency) for i in invoices
         ),

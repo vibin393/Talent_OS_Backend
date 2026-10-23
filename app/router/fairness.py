@@ -12,7 +12,7 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends, Path, Response, status
 
-import app.models.fairness  # ruff: ignore[unused-import]  - fairness tables on Base.metadata at app start (AD-47)
+import app.models.fairness  # ruff: ignore[unused-import]  - fairness tables on Base.metadata at app start (AD-47)  # noqa: F401
 from app.core.context import get_context
 from app.core.permissions import Principal, require, require_any
 from app.dependencies.auth import TenantDBSessionDep

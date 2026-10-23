@@ -6,7 +6,7 @@ the tenant and the user holds ``permission``). Other epics register theirs the s
 ``draft_demand``) without importing Copilot code. A conversation **mode** is an agent registered with
 ``origin="copilot"`` other than ``copilot`` itself (e.g. Epic 64's ``analytics``)."""
 
-from collections.abc import Mapping
+from collections.abc import Mapping  # noqa: TC003
 
 from app.core.agentic import (
     AgentSpec,

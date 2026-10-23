@@ -30,7 +30,7 @@ from app.services.compliance.common import (
 # ---------------------------------------------------------------- events -> tasks
 def _subscribe() -> None:
     from app.events.compliance import (
-        PlacementComplianceChanged,  # ruff: ignore[unused-import]  (catalogue import check)
+        PlacementComplianceChanged,  # ruff: ignore[unused-import]  (catalogue import check)  # noqa: F401
     )
     from app.events.onboarding import PolicyAcknowledged
     from app.events.pipeline import ApplicationStageChanged

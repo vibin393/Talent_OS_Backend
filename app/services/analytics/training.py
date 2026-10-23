@@ -19,6 +19,7 @@
 import uuid
 from collections.abc import Sequence
 from datetime import UTC, datetime
+from typing import Any
 
 from loguru import logger
 from sqlalchemy import func, select
@@ -68,7 +69,7 @@ def minority(rows: Sequence[TrainingRow]) -> int:
     return min(pos, len(rows) - pos)
 
 
-def fit_rows(spec: FeatureSpec, rows: Sequence[TrainingRow], seed: int):  # type: ignore[no-untyped-def]  # ruff: ignore[missing-return-type-undocumented-public-function]
+def fit_rows(spec: FeatureSpec, rows: Sequence[TrainingRow], seed: int) -> tuple[Any, Sequence[TrainingRow]]:
     from app.services.analytics import models as ml
 
     train, holdout = split(rows)

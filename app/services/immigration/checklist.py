@@ -294,7 +294,7 @@ async def store_upload(
     from app.models.immigration import CaseEvent
     from app.services.documents import repository
     from app.services.immigration.events import (
-        ImmigrationCaseStep,  # ruff: ignore[unused-import]  (catalogue import check)
+        ImmigrationCaseStep,  # ruff: ignore[unused-import]  (catalogue import check)  # noqa: F401
     )
 
     if req.status in ("verified", "waived"):

@@ -15,7 +15,7 @@ import json
 import time
 from collections.abc import Mapping
 from datetime import datetime
-from typing import Any
+from typing import Any, ClassVar
 
 from pydantic import BaseModel, ConfigDict
 
@@ -55,7 +55,7 @@ class FakeOrgFreeBusy(FakeAdapterBase):
 
     category = "calendar"
     provider_key = "google_calendar_org"
-    busy: dict[str, list[tuple[datetime, datetime]]] = {}  # ruff: ignore[mutable-class-default] - shared test fixture state
+    busy: ClassVar[dict[str, list[tuple[datetime, datetime]]]] = {}  # shared test fixture state
 
     async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:
         if op != "free_busy":

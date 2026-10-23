@@ -66,7 +66,9 @@ async def evaluate(ctx: RequestContext, db: AsyncSession, agent_key: str) -> Che
         get_agent(agent_key)
     except KeyError as exc:
         raise NotFound("Agent not found") from exc
-    from app.services.ai_governance import checks  # ruff: ignore[unused-import] - registers the checks
+    from app.services.ai_governance import (
+        checks,  # ruff: ignore[unused-import] - registers the checks  # noqa: F401
+    )
 
     items: list[CheckItemOut] = []
     ready = True

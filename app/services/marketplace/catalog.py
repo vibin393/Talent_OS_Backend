@@ -151,7 +151,7 @@ def _legacy_cards(lk: _Ctx) -> list[ListingCardOut]:
             install_state="configured" if x.key in lk.legacy_configured else "not_installed",
             install_allowed=False,
             manage_path=x.manage_path,
-        )  # fmt: skip
+        )
         for x in LEGACY_LISTINGS
     ]
 

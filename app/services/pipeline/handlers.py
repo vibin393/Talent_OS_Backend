@@ -24,7 +24,7 @@ def _enqueue(task_name: str, *args: str) -> None:
 
 
 def _ensure_tasks_loaded() -> None:
-    import app.tasks.pipeline_ai  # ruff: ignore[unused-import]
+    import app.tasks.pipeline_ai  # ruff: ignore[unused-import]  # noqa: F401
 
 
 def _on_ai_sent(e: AIScreeningSent) -> None:

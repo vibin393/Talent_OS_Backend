@@ -12,7 +12,7 @@ import threading
 import time
 import uuid
 from datetime import UTC, datetime
-from typing import Literal
+from typing import Any, Literal
 
 from loguru import logger
 from sqlalchemy import func, select
@@ -35,7 +35,7 @@ _redis_client = None
 _redis_down_until = 0.0
 
 
-def _redis():  # type: ignore[no-untyped-def]  # ruff: ignore[missing-return-type-private-function] - redis client typing is loose
+def _redis() -> Any:  # redis client typing is loose
     """Return the lazy Redis client, or ``None`` while the breaker is open."""
     global _redis_client  # process-wide lazy client
     if time.monotonic() < _redis_down_until:

@@ -11,7 +11,7 @@ from typing import Any
 from sqlalchemy import delete, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-import app.models.fairness  # ruff: ignore[unused-import]  - tables on Base.metadata for the erasure-coverage guard
+import app.models.fairness  # ruff: ignore[unused-import]  - tables on Base.metadata for the erasure-coverage guard  # noqa: F401
 from app.models.fairness import AedtAlternativeRequest, SelfIdApplyUse
 from app.services.candidates_erasure import subject_ids
 from app.services.fairness import self_id

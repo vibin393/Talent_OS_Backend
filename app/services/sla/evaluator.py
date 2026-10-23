@@ -11,7 +11,7 @@ own beat (``demands.tasks.evaluate_slas``).
 
 import inspect
 import uuid
-from collections.abc import Iterable
+from collections.abc import Iterable  # noqa: TC003
 from datetime import UTC, datetime
 from typing import Any
 

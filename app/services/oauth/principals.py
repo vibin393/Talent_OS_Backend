@@ -14,7 +14,7 @@ uninstalled Installation fail the next call within the window. Wrong resource ->
 """
 
 import time
-import uuid  # ruff: ignore[typing-only-standard-library-import]
+import uuid  # ruff: ignore[typing-only-standard-library-import]  # noqa: TC003
 from collections.abc import Mapping
 from datetime import UTC, datetime, timedelta
 from typing import Literal

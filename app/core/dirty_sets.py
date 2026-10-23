@@ -9,6 +9,7 @@ Synchronous (used from after-commit event handlers, which are sync). Keys never 
 """
 
 from collections.abc import Iterable
+from typing import Any
 
 from loguru import logger
 
@@ -17,7 +18,7 @@ from app.core.settings import get_settings
 _client = None
 
 
-def _redis():  # type: ignore[no-untyped-def]  # ruff: ignore[missing-return-type-private-function] - redis client typing is loose
+def _redis() -> Any:  # redis client typing is loose
     global _client  # process-wide lazy client
     if _client is None:
         import redis

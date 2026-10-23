@@ -143,7 +143,7 @@ async def won_preview(ctx: RequestContext, db: AsyncSession, opp_id: uuid.UUID) 
     )
 
 
-async def _step(step: str, fn: Callable[[], Awaitable[T]], line_id: uuid.UUID | None = None) -> T:
+async def _step(step: str, fn: Callable[[], Awaitable[T]], line_id: uuid.UUID | None = None) -> T:  # noqa: UP047
     """Run one conversion step; failures carry ``details.step`` (+ ``line_id``)."""
     extra: dict[str, Any] = {"step": step}
     if line_id is not None:

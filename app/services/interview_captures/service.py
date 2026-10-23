@@ -65,7 +65,7 @@ async def capture_owner(
 def kickoff_for(capture: InterviewCapture, interview: Any) -> Kickoff:
     kit = common.kit_of(interview)
     from app.services.interview_captures.common import (
-        interviewers,  # ruff: ignore[unused-import] - documented below
+        interviewers,  # ruff: ignore[unused-import] - documented below  # noqa: F401
     )
 
     return Kickoff(

@@ -1,4 +1,4 @@
-"""Sensitive-input guard (Epic 35 A5, NFR-24, AD-35).
+r"""Sensitive-input guard (Epic 35 A5, NFR-24, AD-35).
 
 The gateway runs ``redact`` on every rendered prompt input (trusted and untrusted) before the model call:
 

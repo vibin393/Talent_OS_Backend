@@ -25,7 +25,10 @@ QUEUE = "ecosystem"
 
 
 async def _in_tenant(tid: uuid.UUID, work: Callable[[AsyncSession], Awaitable[Any]]) -> Any:
-    from app.services import connections_service, interviews_service  # ruff: ignore[unused-import] - wiring
+    from app.services import (  # ruff: ignore[unused-import] - wiring  # noqa: F401
+        connections_service,
+        interviews_service,
+    )
 
     async with tenant_session(tid) as db:
         audit.set_actor(db, "system", None)

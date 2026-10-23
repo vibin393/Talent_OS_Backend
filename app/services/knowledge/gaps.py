@@ -7,7 +7,7 @@ Epic 78 (FR-404): questions are clustered by the non-reversible ``topic_label`` 
 decrypted only for ``knowledge:manage`` holders; everyone else sees the label."""
 
 import re
-import uuid  # ruff: ignore[typing-only-standard-library-import]
+import uuid  # ruff: ignore[typing-only-standard-library-import]  # noqa: TC003
 from datetime import datetime
 from typing import Any
 

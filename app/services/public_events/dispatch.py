@@ -6,6 +6,7 @@ import threading
 import time
 import uuid
 from datetime import UTC, datetime, timedelta
+from typing import Any
 
 from loguru import logger
 from sqlalchemy import select, update
@@ -96,7 +97,7 @@ _local_until: dict[str, float] = {}
 _redis_client = None
 
 
-def _redis():  # type: ignore[no-untyped-def]  # ruff: ignore[missing-return-type-private-function] - redis client typing is loose
+def _redis() -> Any:  # redis client typing is loose
     global _redis_client  # process-wide lazy client
     if _redis_client is None:
         import redis

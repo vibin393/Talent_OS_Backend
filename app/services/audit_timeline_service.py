@@ -28,7 +28,7 @@ from app.core.encrypted import EncryptedStr
 from app.core.errors import NotFound, ValidationFailed
 from app.core.models import Base
 from app.services import (
-    audit_timeline_sources,  # ruff: ignore[unused-import] - registers the fallback sources / resolvers
+    audit_timeline_sources,  # ruff: ignore[unused-import] - registers the fallback sources / resolvers  # noqa: F401
 )
 
 MASK = "••••"

@@ -108,14 +108,14 @@ def _register_notifications() -> None:
         ns.register_notification_type(
             "api_deprecated_usage",
             ns.NotificationType("Your integration uses an API that is being retired", "Integrations", "both", False,
-                                deprecated_recipients, deprecated_render, internal_only=True),  # fmt: skip
+                                deprecated_recipients, deprecated_render, internal_only=True),
         )
         ns.register_event_source(PublicApiDeprecatedUsage, lambda p: "api_deprecated_usage")  # ruff: ignore[unused-lambda-argument]
     if "public_import_finished" not in ns.NOTIFICATION_TYPES:
         ns.register_notification_type(
             "public_import_finished",
             ns.NotificationType("Bulk import finished", "Integrations", "both", False, import_recipients, import_render,
-                                internal_only=True),  # fmt: skip
+                                internal_only=True),
         )
         ns.register_event_source(PublicImportCompleted, lambda p: "public_import_finished")  # ruff: ignore[unused-lambda-argument]
 

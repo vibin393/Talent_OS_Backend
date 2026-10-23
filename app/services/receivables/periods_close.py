@@ -104,7 +104,7 @@ async def close(ctx: RequestContext, db: AsyncSession, period_id: uuid.UUID, dat
             id=uuid.uuid4(), tenant_id=tenant_of(db), accounting_period_id=p.id, legal_entity_id=p.legal_entity_id, year=p.year, month=p.month,
             action="reclosed" if reclose else "close", actor_kind=actor.kind, actor_id=actor.id,
             checklist_snapshot=[r.model_dump() for r in results], acknowledged_warnings=list(data.acknowledged_warnings),
-        )  # fmt: skip
+        )
     )
     await db.flush()
     p = await _period(db, period_id)
@@ -155,7 +155,7 @@ async def on_final_decided(ctx: RequestContext, db: AsyncSession, decision: Any)
             id=uuid.uuid4(), tenant_id=event.tenant_id, accounting_period_id=event.accounting_period_id, legal_entity_id=event.legal_entity_id,
             year=event.year, month=event.month, action="reopened" if approved else "reopen_rejected", actor_kind=approver.kind, actor_id=approver.id,
             reason=event.reason, approval_request_id=event.approval_request_id,
-        )  # fmt: skip
+        )
     )
     await db.flush()
 

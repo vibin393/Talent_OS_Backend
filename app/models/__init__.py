@@ -7,7 +7,7 @@ users, roles, sessions) and every other domain.
 
 import app.core.audit  # ruff: ignore[unused-import]  (side-effect import: registers tables on Base.metadata)
 import app.core.secure_links  # ruff: ignore[unused-import]  (side-effect import: registers tables on Base.metadata)
-import app.core.sequences  # ruff: ignore[unused-import]
+import app.core.sequences  # ruff: ignore[unused-import]  # noqa: F401
 from app.models import activity, ai, candidates, clients, files, identity
 
 __all__ = ["activity", "ai", "candidates", "clients", "files", "identity"]

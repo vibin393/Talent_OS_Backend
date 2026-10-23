@@ -4,8 +4,8 @@ data recipients and go-live readiness. All read models are masked (no secrets, n
 
 from __future__ import annotations
 
-import datetime as dt
-import uuid
+import datetime as dt  # noqa: TC003
+import uuid  # noqa: TC003
 
 from pydantic import BaseModel, Field
 

@@ -4,7 +4,7 @@ from typing import Any
 
 from fastapi import APIRouter
 
-import app.models  # ruff: ignore[unused-import]  - registers every table before the first mapper configuration
+import app.models  # ruff: ignore[unused-import]  - registers every table before the first mapper configuration  # noqa: F401
 from app.core.errors import error_response
 from app.core.settings import get_settings
 from app.router import base, get_layered_routers

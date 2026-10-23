@@ -128,6 +128,35 @@ ignore = [
     # formatter cannot wrap; the formatter still wraps code at line-length. Matches the
     # "# ruff: file-ignore[line-too-long]" comments already used across the codebase.
     "E501",    # line-too-long
+    # Unused args are overwhelmingly interface-conformance: ctx/db/payload params and
+    # DI-injected "_" params that must match a required signature (already ignored for tests).
+    "ARG001",  # unused-function-argument
+    "ARG002",  # unused-method-argument
+    # Docstring mood/punctuation opinions, same class as the D1/D2/D404 ignores above.
+    "D401",    # non-imperative-mood
+    "D400",    # missing-trailing-period
+    "D415",    # missing-terminal-punctuation
+    # Deliberate deferred/local imports used to break import cycles.
+    "E402",    # module-import-not-at-top-of-file
+    # Intentional en-dashes in human-readable ranges (already file-ignored for invites.py).
+    "RUF001",  # ambiguous-unicode-character-string
+    "RUF002",  # ambiguous-unicode-character-docstring
+    # Naming conventions: the only "fix" is a rename, which touches call sites and is NOT
+    # behavior-preserving. These names (sa/orm aliases, DTO-style classes, local acronyms,
+    # non-"Error"-suffixed domain exceptions) are deliberate.
+    "N801",    # invalid-class-name
+    "N802",    # invalid-function-name
+    "N806",    # non-lowercase-variable-in-function
+    "N812",    # lowercase-imported-as-non-lowercase
+    "N818",    # error-suffix-on-exception-name
+    # Style-only; rewriting risks behavior change for no functional gain.
+    "E731",    # lambda-assignment
+    "E741",    # ambiguous-variable-name
+    "B903",    # class-as-data-structure
+    "ARG005",  # unused-lambda-argument (interface-conformance, like ARG001/ARG002)
+    "F403",    # undefined-local-with-import-star (intentional aggregating __init__ re-exports)
+    # Rewriting comprehensions here changed inferred types (introduced a mypy error); keep as-is.
+    "C416",    # unnecessary-comprehension
 ]
 
 [tool.coverage.report]

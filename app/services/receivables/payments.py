@@ -120,7 +120,7 @@ async def _write_tds_list(ctx: RequestContext, db: AsyncSession, items: list[Tds
                 variance_flag=tds_math.variance(expected, item.amount, settings.tds_variance_tolerance), on=on,
                 payment_id=payment_id, section_id=section.id if section else None, section_code=section.code if section else None,
                 prior_period=prior,
-            )  # fmt: skip
+            )
         )
     return out
 
@@ -394,7 +394,7 @@ async def open_documents(ctx: RequestContext, db: AsyncSession, client_id: uuid.
                 expected_tds=tds_math.expected_tds(b.doc.taxable_total, rate) if rate is not None else None,
                 tds_section_code=profile.tds_section_code if profile is not None else None, tds_rate_pct=rate,
                 gst_tds_applicable=bool(profile.gst_tds_applicable) if profile is not None else False,
-            )  # fmt: skip
+            )
         )
     return out
 

@@ -11,7 +11,7 @@ from typing import Any
 
 from fastapi import APIRouter, Response, status
 
-import app.models.fairness  # ruff: ignore[unused-import]  - fairness tables on Base.metadata at app start (AD-47)
+import app.models.fairness  # ruff: ignore[unused-import]  - fairness tables on Base.metadata at app start (AD-47)  # noqa: F401
 from app.core.context import get_context
 from app.dependencies.candidate import CandidateDBDep, CandidateDep
 from app.schemas.fairness import AlternativeRequestIn, AlternativeRequestOut, SelfIdIn, SelfIdOut

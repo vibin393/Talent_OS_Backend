@@ -26,7 +26,7 @@ depends_on: str | Sequence[str] | None = None
 
 
 def upgrade() -> None:
-    op.execute("CREATE EXTENSION IF NOT EXISTS btree_gist")
+    op.execute("CREATE EXTENSION IF NOT EXISTS btree_gist SCHEMA public")
     op.create_table(
         "billing_settings",
         sa.Column("tenant_id", sa.Uuid(), nullable=False),

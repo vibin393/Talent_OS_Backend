@@ -95,8 +95,15 @@ def check_not_foreign(db_name: str) -> None:
         raise ForeignDatabaseError(msg)
 
 
-def migrate(db_name: str) -> None:
-    command.upgrade(alembic_config(db_name), "heads")
+def migrate(db_name: str, schema: str | None = None) -> None:
+    """Upgrade ``db_name`` to head. When ``schema`` is given, the whole Talent OS chain runs INTO that
+    schema (schema-per-app / company-DB model): alembic creates the schema, pins the migration connection's
+    ``search_path`` to it, and keeps ``alembic_version`` there too (see ``alembic/env.py``). A None schema
+    keeps the legacy public-schema behaviour for existing tenants."""
+    cfg = alembic_config(db_name)
+    if schema is not None:
+        cfg.attributes["schema"] = schema
+    command.upgrade(cfg, "heads")
 
 
 def setup(db_name: str, *, reset: bool = False) -> None:

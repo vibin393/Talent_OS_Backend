@@ -51,7 +51,15 @@ def _db_url() -> str:
     return str(config.attributes.get("db_url") or get_settings().owner_db_url())
 
 
+def _target_schema() -> str | None:
+    """The schema migrations should run INTO (schema-per-app / company-DB model), or None for the legacy
+    public-schema layout. Set by ``scripts/setup_db.migrate(db_name, schema=...)`` via config attributes."""
+    schema = config.attributes.get("schema")
+    return str(schema) if schema else None
+
+
 def run_migrations_offline() -> None:
+    schema = _target_schema()
     context.configure(
         url=_db_url(),
         target_metadata=target_metadata,
@@ -59,24 +67,44 @@ def run_migrations_offline() -> None:
         dialect_opts={"paramstyle": "named"},
         compare_type=True,
         include_object=include_object,
+        version_table_schema=schema,
     )
     with context.begin_transaction():
         context.run_migrations()
 
 
 def do_run_migrations(connection: Connection) -> None:
+    # Schema-per-app model: ``version_table_schema`` keeps ``alembic_version`` in the target schema. The
+    # connection's ``search_path`` is already pinned to ``<schema>,public`` via the engine's connect args
+    # (see ``run_async_migrations``), so every bare-name DDL in the (unchanged) migration chain and
+    # ``current_schema()`` (grant helpers, reflection) resolve to the schema; ``public`` stays on the path
+    # for shared extensions. We do NOT execute on the connection here -- that would open a transaction that
+    # conflicts with migrations using ``op.get_context().autocommit_block()``.
+    schema = _target_schema()
     context.configure(
         connection=connection,
         target_metadata=target_metadata,
         compare_type=True,
         include_object=include_object,
+        version_table_schema=schema,
     )
     with context.begin_transaction():
         context.run_migrations()
 
 
 async def run_async_migrations() -> None:
-    connectable = create_async_engine(_db_url(), poolclass=pool.NullPool)
+    schema = _target_schema()
+    connect_args: dict[str, object] = {}
+    if schema is not None:
+        # Create the schema in its own connection/transaction up front (the migration connection must not
+        # pre-execute), then pin the migration engine's search_path at connect time so EVERY connection it
+        # opens (including the reconnect inside an autocommit_block) lands in the schema.
+        pre = create_async_engine(_db_url(), poolclass=pool.NullPool)
+        async with pre.begin() as conn:
+            await conn.exec_driver_sql(f'CREATE SCHEMA IF NOT EXISTS "{schema}"')
+        await pre.dispose()
+        connect_args = {"server_settings": {"search_path": f"{schema},public"}}
+    connectable = create_async_engine(_db_url(), poolclass=pool.NullPool, connect_args=connect_args)
     async with connectable.connect() as connection:
         await connection.run_sync(do_run_migrations)
     await connectable.dispose()

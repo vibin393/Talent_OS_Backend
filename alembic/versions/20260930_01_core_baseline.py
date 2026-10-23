@@ -28,8 +28,12 @@ EXTENSIONS = ("citext", "pg_trgm", "unaccent", "pgcrypto")
 
 
 def upgrade() -> None:
+    # Extensions live in ``public`` (shared, reachable via search_path). Pinning the schema matters in the
+    # schema-per-app model, where this migration runs with ``search_path = <app_schema>, public`` -- without
+    # ``SCHEMA public`` the extension (and e.g. ``gen_random_uuid``) would land in the app schema. For the
+    # legacy public-schema model the extension already resolves to public, so this is a no-op there.
     for ext in EXTENSIONS:
-        op.execute(f"CREATE EXTENSION IF NOT EXISTS {ext}")
+        op.execute(f"CREATE EXTENSION IF NOT EXISTS {ext} SCHEMA public")
 
     settings = get_settings()
     create_app_role(settings.db_app_user, settings.db_app_password)

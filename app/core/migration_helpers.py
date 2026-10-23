@@ -108,30 +108,105 @@ def create_app_role_sql(role: str, password: str) -> str:
 
 
 def grant_app_privileges_sql(role: str) -> list[str]:
-    """DML on existing + future tables in ``public`` (future = created by the migrating owner role)."""
+    """DML on existing + future tables in the migration's CURRENT schema (future = created by the migrating
+    owner role). ``current_schema()`` is ``public`` for the legacy dedicated-DB model and the app schema
+    (e.g. ``talentos``) for the schema-per-app / company-DB model -- because the migration connection's
+    ``search_path`` was pinned to it (``alembic/env.py``). So the same baseline migration grants on whichever
+    schema it is run into, with no per-schema branching."""
     r = _ident(role)
+    rl = _literal(r)
     return [
-        f"DO $$ BEGIN EXECUTE format('GRANT CONNECT ON DATABASE %I TO {r}', current_database()); END $$;",
-        f"GRANT USAGE ON SCHEMA public TO {r}",
-        f"GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO {r}",
-        f"GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO {r}",
-        f"ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO {r}",
-        f"ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT USAGE, SELECT ON SEQUENCES TO {r}",
-        # The runtime role has no business touching migration state.
+        f"DO $tos_grant$ DECLARE s text := current_schema(); BEGIN "
+        f"EXECUTE format('GRANT CONNECT ON DATABASE %I TO %I', current_database(), {rl}); "
+        f"EXECUTE format('GRANT USAGE ON SCHEMA %I TO %I', s, {rl}); "
+        f"EXECUTE format('GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA %I TO %I', s, {rl}); "
+        f"EXECUTE format('GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA %I TO %I', s, {rl}); "
+        f"EXECUTE format('ALTER DEFAULT PRIVILEGES IN SCHEMA %I "
+        f"GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO %I', s, {rl}); "
+        f"EXECUTE format('ALTER DEFAULT PRIVILEGES IN SCHEMA %I GRANT USAGE, SELECT ON SEQUENCES TO %I', "
+        f"s, {rl}); "
+        f"END $tos_grant$;",
+        # The runtime role has no business touching migration state (resolved via search_path to the schema's
+        # own alembic_version in the schema-per-app model).
         f"REVOKE ALL ON TABLE alembic_version FROM {r}",
     ]
 
 
 def revoke_app_privileges_sql(role: str) -> list[str]:
     r = _ident(role)
+    rl = _literal(r)
     return [
-        f"ALTER DEFAULT PRIVILEGES IN SCHEMA public REVOKE SELECT, INSERT, UPDATE, DELETE ON TABLES FROM {r}",
-        f"ALTER DEFAULT PRIVILEGES IN SCHEMA public REVOKE USAGE, SELECT ON SEQUENCES FROM {r}",
-        f"REVOKE ALL ON ALL TABLES IN SCHEMA public FROM {r}",
-        f"REVOKE ALL ON ALL SEQUENCES IN SCHEMA public FROM {r}",
-        f"REVOKE USAGE ON SCHEMA public FROM {r}",
-        f"DO $$ BEGIN EXECUTE format('REVOKE CONNECT ON DATABASE %I FROM {r}', current_database()); END $$;",
+        f"DO $tos_revoke$ DECLARE s text := current_schema(); BEGIN "
+        f"EXECUTE format('ALTER DEFAULT PRIVILEGES IN SCHEMA %I "
+        f"REVOKE SELECT, INSERT, UPDATE, DELETE ON TABLES FROM %I', s, {rl}); "
+        f"EXECUTE format('ALTER DEFAULT PRIVILEGES IN SCHEMA %I REVOKE USAGE, SELECT ON SEQUENCES FROM %I', "
+        f"s, {rl}); "
+        f"EXECUTE format('REVOKE ALL ON ALL TABLES IN SCHEMA %I FROM %I', s, {rl}); "
+        f"EXECUTE format('REVOKE ALL ON ALL SEQUENCES IN SCHEMA %I FROM %I', s, {rl}); "
+        f"EXECUTE format('REVOKE USAGE ON SCHEMA %I FROM %I', s, {rl}); "
+        f"EXECUTE format('REVOKE CONNECT ON DATABASE %I FROM %I', current_database(), {rl}); "
+        f"END $tos_revoke$;",
     ]
+
+
+# ---------------------------------------------------------------- per-app role isolation (company-DB model)
+# Target silo model: ONE database ``company_<slug>`` with ONE schema per app. Each app eventually connects
+# as ITS OWN restricted role so one app's connection cannot read/write a sibling app's schema in the same
+# database (defence in depth on top of the shared owner role that builds every schema). ``schema -> role``.
+COMPANY_APP_SCHEMA_ROLES: dict[str, str] = {
+    "talentos": "talentos_app",
+    "croar": "croar_app",
+    "feedbackiq": "feedbackiq_app",
+}
+
+
+def company_role_isolation_sql(
+    db_name: str,
+    schema_roles: dict[str, str],
+    password: str,
+    *,
+    dml_schemas: Sequence[str] = (),
+) -> list[str]:
+    """Idempotent DDL that confines each app to its own schema inside a company DB (run as the owner role).
+
+    For every ``schema -> role`` pair it: (re)creates ``role`` as a LOGIN NOSUPERUSER NOBYPASSRLS role (reusing
+    :func:`create_app_role_sql`), ensures the schema exists (``talentos`` is already built by the migration
+    chain; ``croar`` / ``feedbackiq`` are pre-created EMPTY so each spoke builds its tables inside on first
+    access), grants the role CONNECT on ``db_name``, USAGE on ``public`` (shared extensions) and USAGE+CREATE
+    on its OWN schema, then REVOKEs ALL on every SIBLING app schema -- so e.g. ``croar_app`` has no privilege
+    on the ``talentos`` schema in the same database.
+
+    A schema listed in ``dml_schemas`` additionally gets SELECT/INSERT/UPDATE/DELETE on all current + future
+    tables and USAGE/SELECT on sequences (plus matching default privileges). Used for ``talentos``, whose
+    tables are owned by the migrating owner role, so the restricted role needs explicit DML to serve the app;
+    ``croar`` / ``feedbackiq`` own the tables they create on first access, so they need no table grant. Safe
+    to re-run (every statement is CREATE ... IF NOT EXISTS / GRANT / REVOKE / ALTER ROLE)."""
+    db = _ident(db_name)
+    schemas = list(schema_roles)
+    stmts: list[str] = []
+    # Create EVERY app schema first so the sibling REVOKEs below never reference a not-yet-created schema
+    # (``talentos`` already exists from the migration chain; the others are pre-created EMPTY).
+    for schema in schemas:
+        stmts.append(f'CREATE SCHEMA IF NOT EXISTS "{_ident(schema)}"')
+    for schema, role in schema_roles.items():
+        s = _ident(schema)
+        r = _ident(role)
+        stmts.append(create_app_role_sql(role, password))
+        stmts.append(f'GRANT CONNECT ON DATABASE "{db}" TO "{r}"')
+        stmts.append(f'GRANT USAGE ON SCHEMA public TO "{r}"')
+        stmts.append(f'GRANT USAGE, CREATE ON SCHEMA "{s}" TO "{r}"')
+        for other in schemas:
+            if other != schema:
+                stmts.append(f'REVOKE ALL ON SCHEMA "{_ident(other)}" FROM "{r}"')
+        if schema in dml_schemas:
+            stmts += [
+                f'GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA "{s}" TO "{r}"',
+                f'GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA "{s}" TO "{r}"',
+                f'ALTER DEFAULT PRIVILEGES IN SCHEMA "{s}" '
+                f'GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO "{r}"',
+                f'ALTER DEFAULT PRIVILEGES IN SCHEMA "{s}" GRANT USAGE, SELECT ON SEQUENCES TO "{r}"',
+            ]
+    return stmts
 
 
 def _is_production() -> bool:

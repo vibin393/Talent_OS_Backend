@@ -44,6 +44,16 @@ class Settings(BaseSettings):
     platform_db_name: str = ""  # DB for platform/global (non-tenant) rows in silo; "" -> db_name
     tenant_db_prefix: str = "tenant_"  # local silo DB naming: <prefix><slug>
 
+    # --- Company DB + schema-per-app model (DE-RISKING SPIKE) ---
+    # Target silo model: ONE database ``company_<slug>`` per company, ONE schema per app inside it.
+    # Talent OS lives in ``talentos_schema`` of that DB. Resolution is registry-driven (tenant_db_map's
+    # ``schema_name``): a NULL schema keeps the legacy dedicated-DB behaviour (connect, public schema);
+    # a non-NULL schema sets the connection ``search_path`` to ``<schema>,public``. Both run side by side.
+    # ``provisioning_model`` chooses the path for a NEW company; existing tenants are unaffected.
+    company_db_prefix: str = "company_"  # company DB naming: <prefix><slug>
+    talentos_schema: str = "talentos"  # the schema Talent OS owns inside a company DB
+    provisioning_model: Literal["db_per_tenant", "schema_per_app"] = "db_per_tenant"
+
     # --- Redis / Celery ---
     redis_host: str = "localhost"
     redis_port: int = 6379
@@ -437,6 +447,10 @@ class Settings(BaseSettings):
     def tenant_db_name(self, slug: str) -> str:
         """Local silo DB name for a tenant slug, e.g. ``acme`` -> ``tenant_acme``."""
         return f"{self.tenant_db_prefix}{slug}"
+
+    def company_db_name(self, slug: str) -> str:
+        """Company DB name (schema-per-app model) for a slug, e.g. ``acme`` -> ``company_acme``."""
+        return f"{self.company_db_prefix}{slug}"
 
     def platform_db(self) -> str:
         """DB holding platform/global (non-tenant) rows in silo mode."""

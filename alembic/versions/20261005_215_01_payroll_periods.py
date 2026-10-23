@@ -38,7 +38,7 @@ def _ts() -> list[sa.Column]:
 
 
 def upgrade() -> None:
-    op.execute("CREATE EXTENSION IF NOT EXISTS btree_gist")
+    op.execute("CREATE EXTENSION IF NOT EXISTS btree_gist SCHEMA public")
     op.create_table(
         "payroll_settings",
         sa.Column("tenant_id", sa.Uuid(), nullable=False),

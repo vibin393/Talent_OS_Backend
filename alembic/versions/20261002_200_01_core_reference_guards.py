@@ -65,7 +65,7 @@ def _replace_check(table: str, name: str, condition: str) -> None:
 
 
 def upgrade() -> None:
-    op.execute("CREATE EXTENSION IF NOT EXISTS btree_gist")
+    op.execute("CREATE EXTENSION IF NOT EXISTS btree_gist SCHEMA public")
     op.execute("CREATE EXTENSION IF NOT EXISTS pgcrypto")
 
     # R12: consent purposes / sources (P1 privacy CHECKs).

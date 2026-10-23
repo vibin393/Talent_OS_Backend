@@ -18,10 +18,10 @@ from typing import Any
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.pool import NullPool
 
-from app.core import audit
+from app.core import audit, tenant_registry
 from app.core.celery import celery_app
 from app.core.context import RequestContext, reset_context, set_context
-from app.core.database import ORG_ID_KEY, ORG_KIND_KEY, TENANT_INFO_KEY
+from app.core.database import ORG_ID_KEY, ORG_KIND_KEY, TENANT_INFO_KEY, _schema_connect_args
 from app.core.settings import get_settings
 
 QUEUE = "interactive"  # Epic 13 (AD-37): the queue of every task in this module
@@ -59,7 +59,19 @@ async def in_tenant(
 ) -> Any:
     ctx = RequestContext(tenant_id=tenant_id)
     token = set_context(ctx)
-    engine = create_async_engine(get_settings().app_db_url(), poolclass=NullPool)
+    # Route to the tenant's OWN database + schema (silo / schema-per-app), mirroring the web request path
+    # (app.core.database._resolve_maker). Without this a task would hit the pooled app DB and never see a
+    # company-DB tenant's rows (offer-letter render etc. silently no-op). Fall back to the pooled DB when the
+    # tenant has no registry row (pooled mode) or resolution is unavailable.
+    try:
+        _db_name, _schema_name = await tenant_registry.resolve_db_target(tenant_id)
+        engine = create_async_engine(
+            get_settings().app_db_url(_db_name),
+            poolclass=NullPool,
+            connect_args=_schema_connect_args(_schema_name),
+        )
+    except Exception:
+        engine = create_async_engine(get_settings().app_db_url(), poolclass=NullPool)
     try:
         session = AsyncSession(
             engine,
@@ -83,7 +95,7 @@ async def in_tenant(
 
 @celery_app.task(name="pipeline.tasks.ensure_defaults", acks_late=True)  # type: ignore[misc,untyped-decorator,unused-ignore]
 def ensure_defaults(tenant_id: str) -> bool:
-    async def _work(ctx: RequestContext, db: AsyncSession) -> bool:  # noqa: ARG001
+    async def _work(ctx: RequestContext, db: AsyncSession) -> bool:  # ruff: ignore[unused-function-argument]
         from app.services.pipeline import screening, stages
 
         await stages.ensure_default_stages(db, uuid.UUID(tenant_id))

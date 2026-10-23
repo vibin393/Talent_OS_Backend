@@ -91,10 +91,12 @@ _app_engine_loop: asyncio.AbstractEventLoop | None = None
 _LoopMakers = weakref.WeakKeyDictionary[asyncio.AbstractEventLoop, async_sessionmaker[AsyncSession]]
 _foreign_loop_makers: _LoopMakers = weakref.WeakKeyDictionary()
 
-# Silo mode (D11 / AD-29): one engine per (event loop, tenant database). Keyed first by loop
-# (asyncpg connections belong to the loop that opened them, like the pool above), then by DB name.
+# Silo mode (D11 / AD-29): one engine per (event loop, tenant database, schema). Keyed first by loop
+# (asyncpg connections belong to the loop that opened them, like the pool above), then by (db_name,
+# schema_name) -- the schema is part of the key so a company DB's ``talentos`` schema and a legacy
+# public-schema DB never share a pool / search_path.
 _TenantLoopMakers = weakref.WeakKeyDictionary[
-    asyncio.AbstractEventLoop, dict[str, async_sessionmaker[AsyncSession]]
+    asyncio.AbstractEventLoop, dict[tuple[str, str | None], async_sessionmaker[AsyncSession]]
 ]
 _tenant_loop_makers: _TenantLoopMakers = weakref.WeakKeyDictionary()
 _tenant_engines: set[AsyncEngine] = set()  # every per-tenant engine, for dispose_engines()
@@ -162,19 +164,35 @@ def _sessionmaker() -> async_sessionmaker[AsyncSession]:
     return _app_sessionmaker
 
 
-def _db_sessionmaker(db_name: str) -> async_sessionmaker[AsyncSession]:
-    """Silo (D11/AD-29): a sessionmaker bound to one specific database, cached per (loop, db_name)."""
+def _schema_connect_args(schema_name: str | None) -> dict[str, Any]:
+    """Asyncpg connect args that bind the connection ``search_path`` to a company schema.
+
+    When ``schema_name`` is set (schema-per-app model), every connection asyncpg opens runs with
+    ``search_path = <schema>,public`` via asyncpg's ``server_settings`` (sent at connect time, so it holds
+    for pooled connections too). Extensions and shared objects stay reachable through ``public``. A None
+    schema leaves connect args empty -> the server default search_path (legacy dedicated-DB behaviour)."""
+    if not schema_name:
+        return {}
+    return {"server_settings": {"search_path": f"{schema_name},public"}}
+
+
+def _db_sessionmaker(db_name: str, schema_name: str | None = None) -> async_sessionmaker[AsyncSession]:
+    """Silo (D11/AD-29): a sessionmaker bound to one database (+ optional schema), cached per
+    (loop, db_name, schema_name). ``schema_name`` set => the engine's connections pin their
+    ``search_path`` to that schema (company-DB / schema-per-app model)."""
     s = get_settings()
+    connect_args = _schema_connect_args(schema_name)
+    key = (db_name, schema_name)
     loop = _running_loop()
     if loop is None:  # no running loop (rare): a throwaway NullPool engine
-        engine = create_async_engine(s.app_db_url(db_name), poolclass=NullPool)
+        engine = create_async_engine(s.app_db_url(db_name), poolclass=NullPool, connect_args=connect_args)
         _tenant_engines.add(engine)
         return async_sessionmaker(engine, class_=TosAsyncSession, expire_on_commit=False)
     per_loop = _tenant_loop_makers.get(loop)
     if per_loop is None:
         per_loop = {}
         _tenant_loop_makers[loop] = per_loop
-    maker = per_loop.get(db_name)
+    maker = per_loop.get(key)
     if maker is None:
         engine = create_async_engine(
             s.app_db_url(db_name),
@@ -183,10 +201,11 @@ def _db_sessionmaker(db_name: str) -> async_sessionmaker[AsyncSession]:
             max_overflow=s.db_max_overflow,
             pool_timeout=s.db_pool_timeout,
             pool_pre_ping=True,
+            connect_args=connect_args,
         )
         _tenant_engines.add(engine)
         maker = async_sessionmaker(engine, class_=TosAsyncSession, expire_on_commit=False)
-        per_loop[db_name] = maker
+        per_loop[key] = maker
     return maker
 
 
@@ -201,12 +220,12 @@ async def _resolve_maker(info: dict[str, Any]) -> async_sessionmaker[AsyncSessio
     from app.core import tenant_registry  # local import: avoid a module-load import cycle
 
     tenant_id = info.get(TENANT_INFO_KEY)
-    db_name = (
-        await tenant_registry.resolve_db_name(tenant_id)
-        if tenant_id is not None
-        else get_settings().platform_db()
-    )
-    return _db_sessionmaker(db_name)
+    if tenant_id is not None:
+        db_name, schema_name = await tenant_registry.resolve_db_target(tenant_id)
+    else:
+        # The platform DB keeps the legacy (public-schema) layout: no schema binding.
+        db_name, schema_name = get_settings().platform_db(), None
+    return _db_sessionmaker(db_name, schema_name)
 
 
 @contextlib.asynccontextmanager

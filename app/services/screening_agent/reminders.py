@@ -10,7 +10,7 @@
 """
 
 import dataclasses
-from datetime import timedelta
+from datetime import datetime, timedelta
 
 from loguru import logger
 from sqlalchemy import select
@@ -45,7 +45,7 @@ async def _mode(db: AsyncSession, conv: ScreeningConversation) -> str:
     return decision.mode
 
 
-def _waiting_since(conv: ScreeningConversation):  # ruff: ignore[missing-return-type-private-function]
+def _waiting_since(conv: ScreeningConversation) -> datetime | None:
     last_out = conv.last_outbound_at or conv.invited_at
     if last_out is None:
         return None

@@ -8,7 +8,7 @@ here; reporting imports **no** Phase 5 module.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 import sqlalchemy as sa
 
@@ -16,13 +16,14 @@ from app.services.reporting import p5tables
 
 if TYPE_CHECKING:
     import datetime as dt
+    import uuid
 
     from sqlalchemy.ext.asyncio import AsyncSession
 
 U, W, C = p5tables.usage_counters, p5tables.webhook_deliveries, p5tables.connector_sync_state
 
 
-async def api_requests_by_installation(db: AsyncSession, tenant_id, date_from: dt.date, date_to: dt.date) -> list[dict]:  # ruff: ignore[missing-type-function-argument]
+async def api_requests_by_installation(db: AsyncSession, tenant_id: uuid.UUID, date_from: dt.date, date_to: dt.date) -> list[dict[str, Any]]:
     stmt = (
         sa.select(
             U.c.installation_id,
@@ -35,7 +36,7 @@ async def api_requests_by_installation(db: AsyncSession, tenant_id, date_from: d
     return [dict(r) for r in (await db.execute(stmt)).mappings()]
 
 
-async def connector_health_by_category(db: AsyncSession, tenant_id) -> list[dict]:  # ruff: ignore[missing-type-function-argument]
+async def connector_health_by_category(db: AsyncSession, tenant_id: uuid.UUID) -> list[dict[str, Any]]:
     stmt = (
         sa.select(C.c.entity_type, sa.func.sum(C.c.consecutive_failures).label("failures"))
         .where(C.c.tenant_id == tenant_id)
@@ -44,7 +45,7 @@ async def connector_health_by_category(db: AsyncSession, tenant_id) -> list[dict
     return [dict(r) for r in (await db.execute(stmt)).mappings()]
 
 
-async def webhook_success_rate(db: AsyncSession, tenant_id, date_from: dt.date, date_to: dt.date) -> dict:  # ruff: ignore[missing-type-function-argument]
+async def webhook_success_rate(db: AsyncSession, tenant_id: uuid.UUID, date_from: dt.date, date_to: dt.date) -> dict[str, Any]:
     stmt = sa.select(
         sa.func.count().label("total"),
         sa.func.sum(sa.case((W.c.outcome == "delivered", 1), else_=0)).label("delivered"),

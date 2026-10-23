@@ -1,6 +1,7 @@
 """Tenant settings of the Screening Agent (Epic 57 A8): ``GET/PUT /settings/agents/screening``."""
 
 import uuid
+from typing import Any
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -10,7 +11,7 @@ from app.schemas.screening_agent import ScreeningAgentSettingsIn, ScreeningAgent
 from app.services.screening_agent.common import DEFAULT_STOP_WORDS, settings_row, user_id_of
 
 
-def _out(row) -> ScreeningAgentSettingsOut:  # ruff: ignore[missing-type-function-argument]
+def _out(row: Any) -> ScreeningAgentSettingsOut:
     return ScreeningAgentSettingsOut(
         expiry_days=row.expiry_days,
         reminder_after_hours=row.reminder_after_hours,

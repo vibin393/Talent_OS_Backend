@@ -4,7 +4,7 @@
 keys / automated actors). Never returns secrets, webhook payloads or Copilot / portal conversation text."""
 
 import uuid
-from typing import Annotated
+from typing import Annotated, Any
 
 from fastapi import APIRouter, Depends, Query, Response
 
@@ -58,7 +58,7 @@ async def authorizations(
     db: DB,
     installation_id: uuid.UUID | None = None,
     user_id: uuid.UUID | None = None,
-) -> list[dict]:
+) -> list[dict[str, Any]]:
     return await svc.console.authorizations(get_context(), db, installation_id=installation_id, user_id=user_id)
 
 
@@ -95,7 +95,7 @@ async def violations(
 
 
 @router.get("/test-results")
-async def test_results(_: View, db: DB) -> list[dict]:
+async def test_results(_: View, db: DB) -> list[dict[str, Any]]:
     return await svc.release_gate.latest_for_tenant(get_context(), db)
 
 
@@ -190,7 +190,7 @@ async def complete_review(review_id: uuid.UUID, p: Manage, db: DB) -> AccessRevi
 
 
 @router.get("/feature-readiness")
-async def feature_readiness(_: View, db: DB) -> list[dict]:
+async def feature_readiness(_: View, db: DB) -> list[dict[str, Any]]:
     rows = await svc.enablement.readiness(get_context(), db)
     return [r.model_dump() for r in rows]
 

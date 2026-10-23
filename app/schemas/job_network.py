@@ -9,6 +9,7 @@ response for those keys.
 import uuid
 from datetime import datetime
 from decimal import Decimal
+from typing import Any
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -154,7 +155,7 @@ class NetworkJob(_Base):
     posting_url: str
     published_at: datetime
     valid_through: datetime | None = None
-    jsonld: dict = Field(default_factory=dict)
+    jsonld: dict[str, Any] = Field(default_factory=dict)
 
 
 class NetworkAgency(_Base):

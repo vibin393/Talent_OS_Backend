@@ -3,7 +3,9 @@
 ``app.services.job_network.*`` submodules directly. Reporting (Epic 79) reads tenant stats through ``tenant_stats``
 so it never imports ``models.job_network`` (the ``p5-network-platform`` contract)."""
 
+import uuid
 from datetime import date
+from typing import Any
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -38,11 +40,11 @@ async def leave(ctx: RequestContext, db: AsyncSession, *, reason: str | None = N
     return await membership.leave(ctx, db, reason=reason)
 
 
-async def eligibility(ctx: RequestContext, db: AsyncSession, demand_id) -> ListingEligibilityOut:  # ruff: ignore[missing-type-function-argument]
+async def eligibility(ctx: RequestContext, db: AsyncSession, demand_id: uuid.UUID) -> ListingEligibilityOut:
     return await membership.eligibility(ctx, db, demand_id)
 
 
-async def set_choice(ctx: RequestContext, db: AsyncSession, demand_id, include: bool) -> ListingStatusOut:  # ruff: ignore[missing-type-function-argument]
+async def set_choice(ctx: RequestContext, db: AsyncSession, demand_id: uuid.UUID, include: bool) -> ListingStatusOut:
     return await membership.set_choice(ctx, db, demand_id, include)
 
 
@@ -52,12 +54,12 @@ async def my_listings(ctx: RequestContext, db: AsyncSession, q: MyListingsQuery)
 
 # ---------------------------------------------------------------- analytics
 async def analytics(
-    ctx: RequestContext, db: AsyncSession, *, date_from: date | None = None, date_to: date | None = None, demand_id=None  # ruff: ignore[missing-type-function-argument]
+    ctx: RequestContext, db: AsyncSession, *, date_from: date | None = None, date_to: date | None = None, demand_id: uuid.UUID | None = None
 ) -> NetworkAnalyticsOut:
     return await stats.analytics(ctx, db, date_from=date_from, date_to=date_to, demand_id=demand_id)
 
 
-async def tenant_stats(ctx: RequestContext, db: AsyncSession, q) -> NetworkAnalyticsOut:  # ruff: ignore[missing-type-function-argument] - Epic 79 reporting tiles
+async def tenant_stats(ctx: RequestContext, db: AsyncSession, q: Any) -> NetworkAnalyticsOut:  # q: duck-typed stats query (Epic 79 reporting tiles)
     date_from = getattr(q, "date_from", None) or getattr(q, "from_", None)
     date_to = getattr(q, "date_to", None) or getattr(q, "to", None)
     return await stats.analytics(ctx, db, date_from=date_from, date_to=date_to, demand_id=None)

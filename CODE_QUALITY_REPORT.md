@@ -7,7 +7,7 @@ _Generated 2026-10-23 · scope: `Backend/app/` · ruff 0.16.4 · bandit 1.9.4 ·
 | Tool | Purpose | Count |
 |---|---|---|
 | **Ruff** | lint / style | true current count **11,875** (`--no-fix`) → **0** after Tier A |
-| **mypy** (strict) | type checking | original **1431** → **685** errors in **300** files (Phase 1 + 2 + Tier A + B + C ongoing) |
+| **mypy** (strict) | type checking | original **1431** → **616** errors in **275** files (Phase 1 + 2 + Tier A + B + C ongoing) |
 | **Bandit** | security | original report **315** → **43** with `bandit.yml` config (Tier A) |
 
 > **Auto-fix note:** `pyproject.toml` sets `[tool.ruff] fix = true`, so `ruff check` applied **5,621 safe fixes across ~1,639 files** automatically. Those are already applied and not listed individually; this report covers the **remaining** issues needing manual attention.
@@ -19,7 +19,8 @@ _Generated 2026-10-23 · scope: `Backend/app/` · ruff 0.16.4 · bandit 1.9.4 ·
 > - **Tier B** — synced `TaskEntity` Literal to the DB CHECK (`TASK_ENTITY_TYPES`, 7→28) and annotated the FieldDef `Op`/`Agg` operator-set constants → mypy **818 → 787** (`arg-type` 258→227; no other category changed; zero regressions). Surfaced (not masked) a latent bug: `tools_e53.py` passes `interview`/`timesheet`/`invoice`, which are not DB-valid task entities.
 > - **Tier C (started)** — fixed the `tasks.create` Copilot tool offering non-DB-valid entity types (`interview`/`timesheet`/`invoice`), and cleared the `var-annotated` cluster by converting ~24 `dict(rows.all())` to the `dict(rows.tuples().all())` idiom (runtime-identical; clears the paired dict `arg-type` too). mypy **787 → 715** (`var-annotated` 47→6, `arg-type` 227→196; zero regressions).
 > - **Tier C (cont.)** — made re-exported names explicit with `name as name` aliases (strict `implicit_reexport`) → mypy **715 → 685** (`attr-defined` 139→110; zero regressions).
-> - Remaining **mypy 685** + **bandit 43** are the harder Tier C (behavior-sensitive None-paths/`union-attr`, `select(union)`→`Base`, the ~75 templated-router `valid-type` — needs a mypy per-module override decision, accepted-risk security); see the roadmap at the end. Ruff is clean.
+> - **Tier C (cont.)** — documented mypy per-module override for `app.router.public_v1.*` disabling `valid-type` (the templated `scope()` dependency-alias pattern) → mypy **685 → 616** (`valid-type` 84→15; nothing else moved).
+> - Remaining **mypy 616** + **bandit 43** are behavior-sensitive Tier C: `select(union)`→`Base` (~87, deciding NOT to add cast() band-aids), `no-any-return` (84), `assignment` (65), `misc` (50), None-paths/`union-attr`, plus accepted-risk security. See the roadmap at the end. Ruff is clean.
 
 ---
 

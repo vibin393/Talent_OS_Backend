@@ -39,6 +39,16 @@ files = ["app/", "tests/"]
 # Exclude the sub directories from allowed directories
 exclude = ["alembic", "migrations"]
 
+# The public_v1 API routers are a generated-shape template: every route's permission
+# gate is the shared DRY helper `Read = scope("x:read")` (returns Annotated[Principal,
+# Depends(...)]) used as a dependency type. mypy cannot treat a module variable bound to
+# a function result as a type, so it reports `valid-type` on every such alias. Expanding
+# them to inline Annotated[...] would defeat the helper, so valid-type is disabled for
+# this package only. All other strict checks remain active.
+[[tool.mypy.overrides]]
+module = "app.router.public_v1.*"
+disable_error_code = ["valid-type"]
+
 
 [tool.ruff]
 # Target Python version for compatibility

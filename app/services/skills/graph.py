@@ -275,7 +275,7 @@ WITH RECURSIVE e(src, dst) AS (
      WHERE walk.depth < {CYCLE_DEPTH} AND NOT e.dst = ANY(walk.path)
 )
 SELECT path FROM walk WHERE node = CAST(:target AS text) ORDER BY depth LIMIT 1
-"""
+"""  # nosec B608 - static recursive CTE; bound params only
 )
 
 

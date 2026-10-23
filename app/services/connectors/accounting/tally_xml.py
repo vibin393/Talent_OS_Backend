@@ -21,7 +21,7 @@ from collections.abc import Mapping, Sequence
 from datetime import date, datetime
 from decimal import ROUND_HALF_UP, Decimal
 from typing import Any
-from xml.sax.saxutils import escape, quoteattr
+from xml.sax.saxutils import escape, quoteattr  # nosec B406 - xml.sax.saxutils escape/quoteattr are output encoders, not parsers
 
 from pydantic import BaseModel, ConfigDict, Field
 

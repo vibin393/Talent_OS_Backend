@@ -19,7 +19,7 @@ def seed_for(invitation_id: uuid.UUID, salt: str = "") -> int:
 
 
 def rng_for(invitation_id: uuid.UUID, salt: str = "") -> random.Random:
-    return random.Random(seed_for(invitation_id, salt))
+    return random.Random(seed_for(invitation_id, salt))  # nosec B311 - non-cryptographic sampling/jitter
 
 
 def draw(

@@ -200,7 +200,7 @@ async def backfill(
             if not sets:
                 skipped += 1
                 continue
-            await db.execute(sql_text(f"UPDATE onboarding_qa_messages SET {', '.join(sets)} WHERE id = :id AND tenant_id = :tid"), params)
+            await db.execute(sql_text(f"UPDATE onboarding_qa_messages SET {', '.join(sets)} WHERE id = :id AND tenant_id = :tid"), params)  # nosec B608 - table/column identifiers are in-code constants (whitelisted); values are bound params
             sealed += 1
             last = mid
         except Exception:
@@ -234,7 +234,7 @@ async def verify(db: AsyncSession, tenant_id: uuid.UUID, *, recent: list[uuid.UU
     bad = 0
     for message_id, blob, note_blob in rows:
         mid = uuid.UUID(str(message_id))
-        if mid not in wanted and random.random() > VERIFY_SAMPLE:
+        if mid not in wanted and random.random() > VERIFY_SAMPLE:  # nosec B311 - non-cryptographic sampling/jitter
             continue
         try:
             await open_message(db, tenant_id, mid, blob)

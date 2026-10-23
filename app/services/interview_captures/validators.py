@@ -73,7 +73,7 @@ def check_any_quote(segs: dict[int, Segment], seqs: list[int], quote: str) -> Se
     for seq in seqs:
         try:
             return check_quote(segs, seq, quote)
-        except Exception:
+        except Exception:  # nosec B112 - best-effort loop; a failed item is intentionally skipped
             continue
     raise invalid("invalid_evidence", "The response quote must come from the referenced transcript segments")
 

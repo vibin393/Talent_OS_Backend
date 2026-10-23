@@ -23,7 +23,7 @@ async def _bump(pdb: AsyncSession, listing_id: uuid.UUID, field: str, n: int = 1
     today = datetime.now(UTC).date()
     await pdb.execute(
         text(
-            f"INSERT INTO network_listing_stats (listing_id, day, {field}) "
+            f"INSERT INTO network_listing_stats (listing_id, day, {field}) "  # nosec B608 - table/column identifiers are in-code constants (whitelisted); values are bound params
             "VALUES (:lid, :day, :n) "
             f"ON CONFLICT (listing_id, day) DO UPDATE SET {field} = network_listing_stats.{field} + :n"
         ),

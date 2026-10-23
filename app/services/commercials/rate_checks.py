@@ -301,7 +301,7 @@ async def on_final_decided(ctx: RequestContext, db: AsyncSession, decision: Any)
                     f"Rate exception {outcome}",
                     {"rate_check_id": str(row.id)},
                 )
-        except Exception:
+        except Exception:  # nosec B110 - best-effort; a failure here is non-fatal by design
             pass
 
 

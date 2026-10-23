@@ -392,7 +392,7 @@ async def _client_summaries(
                 ),
                 approval_request_id=r.approval_request_id,
                 awaiting_client=_awaiting(
-                    ctx.principal, requests.get(r.approval_request_id) if r.approval_request_id else None
+                    ctx.principal, requests.get(r.approval_request_id) if r.approval_request_id else None  # nosec B113 - 'requests' is a local dict .get(), not the requests HTTP library
                 ),
                 submitted_at=r.submitted_at,
             )

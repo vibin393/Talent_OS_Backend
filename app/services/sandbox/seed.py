@@ -136,7 +136,7 @@ def build_plan(size: Size, seed: int) -> SeedPlan:
         msg = f"unknown sandbox size {size!r}"
         raise ValueError(msg)
     n = SIZES[size]
-    rng = random.Random(seed)
+    rng = random.Random(seed)  # nosec B311 - non-cryptographic sampling/jitter
 
     stems = rng.sample(COMPANY_STEMS, k=min(n["clients"], len(COMPANY_STEMS)))
     clients: list[dict[str, Any]] = []

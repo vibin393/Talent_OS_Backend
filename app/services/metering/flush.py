@@ -52,7 +52,7 @@ async def _claim_redis() -> tuple[dict[rec.BufferKey, list[Any]], list[str]]:
             tmp = f"{key}:flushing:{uuid.uuid4().hex}"
             try:
                 await client.rename(key, tmp)
-            except Exception:  # vanished between SCAN and RENAME
+            except Exception:  # vanished between SCAN and RENAME  # nosec B112 - best-effort loop; a failed item is intentionally skipped
                 continue
         elif len(parts) == 5 and parts[3] == "flushing":  # left over by a crashed flush
             tmp = key

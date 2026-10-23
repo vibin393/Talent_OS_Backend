@@ -136,7 +136,7 @@ def _drain_redis() -> dict[str, dict[str, tuple[datetime, datetime]]]:
             proc = f"exposure:proc:{tenant}:{uuid.uuid4().hex}"
             try:
                 client.rename(f"exposure:buf:{tenant}", proc)
-            except Exception:
+            except Exception:  # nosec B112 - best-effort loop; a failed item is intentionally skipped
                 continue
             items = client.hgetall(proc)
             client.delete(proc)

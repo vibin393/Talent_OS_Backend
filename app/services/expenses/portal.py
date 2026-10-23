@@ -399,7 +399,7 @@ async def _client_summaries(
                     billable_total=total,
                     approval_request_id=r.approval_request_id,
                     awaiting_client=await approval.awaiting_client(
-                        ctx.principal, requests.get(r.approval_request_id) if r.approval_request_id else None
+                        ctx.principal, requests.get(r.approval_request_id) if r.approval_request_id else None  # nosec B113 - 'requests' is a local dict .get(), not the requests HTTP library
                     ),
                 ),
                 billable,

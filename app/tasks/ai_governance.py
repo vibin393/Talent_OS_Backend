@@ -13,7 +13,7 @@
 
 import os
 import re
-import subprocess
+import subprocess  # nosec B404 - subprocess used only with a fixed, trusted command
 import sys
 import uuid
 from pathlib import Path
@@ -76,7 +76,7 @@ def schedule_live() -> dict[str, Any]:
     if not s.ai_evals_live_enabled or not os.environ.get("ANTHROPIC_API_KEY_LIVE"):
         return {"status": "skipped"}
     backend = Path(__file__).resolve().parents[2]
-    proc = subprocess.run(
+    proc = subprocess.run(  # nosec B603 - fixed trusted argument list, shell=False, no untrusted input
         [sys.executable, "-m", "evals.run", "--mode", "live", "--record", "--trigger", "schedule"],
         cwd=backend, capture_output=True, text=True, check=False, timeout=6 * 3600,
     )  # fmt: skip

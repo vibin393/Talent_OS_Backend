@@ -28,7 +28,7 @@ class SlotUnavailable(Exception):  # ruff: ignore[error-suffix-on-exception-name
 
 def retry_countdown(attempt: int = 0) -> int:
     """Jittered backoff (seconds) for a task that could not take a slot."""
-    return int(min(300, 5 * 2 ** min(attempt, 6)) * random.uniform(0.5, 1.5))
+    return int(min(300, 5 * 2 ** min(attempt, 6)) * random.uniform(0.5, 1.5))  # nosec B311 - non-cryptographic sampling/jitter
 
 
 def _local_acquire(key: str, token: str, limit: int) -> bool:

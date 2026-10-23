@@ -119,7 +119,7 @@ class _BaseIndex:
             table = "candidate_embeddings" if owner_kind == "candidate" else "demand_embeddings"
             col = "candidate_id" if owner_kind == "candidate" else "demand_id"
             await db.execute(
-                text(f"UPDATE {table} SET vec = CAST(:v AS vector) WHERE {col} = :id"),
+                text(f"UPDATE {table} SET vec = CAST(:v AS vector) WHERE {col} = :id"),  # nosec B608 - table/column identifiers are in-code constants (whitelisted); values are bound params
                 {"v": "[" + ",".join(repr(float(x)) for x in vector) + "]", "id": owner_id},
             )
         _cache_invalidate(tenant_id)
@@ -271,7 +271,7 @@ class PgVectorIndex(_BaseIndex):
             params["ids"] = list(candidate_ids_filter)
         rows = await db.execute(
             text(
-                "SELECT candidate_id, 1 - (vec <=> CAST(:v AS vector)) AS cosine FROM candidate_embeddings "
+                "SELECT candidate_id, 1 - (vec <=> CAST(:v AS vector)) AS cosine FROM candidate_embeddings "  # nosec B608 - table/column identifiers are in-code constants (whitelisted); values are bound params
                 f"WHERE {where} ORDER BY vec <=> CAST(:v AS vector) LIMIT :k"
             ),
             params,

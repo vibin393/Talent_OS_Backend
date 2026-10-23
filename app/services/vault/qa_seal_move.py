@@ -95,7 +95,7 @@ def seal_tenant(conn: sa.Connection, tenant_id: uuid.UUID, kms: Kms) -> int:
                     raise QaSealError(msg)
                 sets += [f"{column}_sealed = :{column}_blob", f"{column} = NULL"]
                 params[f"{column}_blob"] = blob
-            conn.execute(sa.text(f"UPDATE onboarding_qa_messages SET {', '.join(sets)} WHERE id = :id AND tenant_id = :tid"), params)
+            conn.execute(sa.text(f"UPDATE onboarding_qa_messages SET {', '.join(sets)} WHERE id = :id AND tenant_id = :tid"), params)  # nosec B608 - table/column identifiers are in-code constants (whitelisted); values are bound params
             sealed += 1
 
 
@@ -105,7 +105,7 @@ def unseal_tenant(conn: sa.Connection, tenant_id: uuid.UUID, kms: Kms, *, only_m
     where = "text IS NULL" if only_missing else "TRUE"
     rows = conn.execute(
         sa.text(
-            f"SELECT id, text_sealed, feedback_note_sealed FROM onboarding_qa_messages WHERE tenant_id = :tid AND text_sealed IS NOT NULL AND {where}"
+            f"SELECT id, text_sealed, feedback_note_sealed FROM onboarding_qa_messages WHERE tenant_id = :tid AND text_sealed IS NOT NULL AND {where}"  # nosec B608 - table/column identifiers are in-code constants (whitelisted); values are bound params
         ),
         {"tid": tenant_id},
     ).all()

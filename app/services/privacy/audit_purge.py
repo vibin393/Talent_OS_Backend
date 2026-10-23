@@ -65,12 +65,12 @@ async def purge_audit(
         guarded = f"{old} AND entity_type = ANY(:protected)"
         eligible = f"{old} AND (entity_type IS NULL OR NOT (entity_type = ANY(:protected)))"
         refused = (
-            await conn.execute(text(f"SELECT count(*) FROM audit_logs WHERE {guarded}"), params)
+            await conn.execute(text(f"SELECT count(*) FROM audit_logs WHERE {guarded}"), params)  # nosec B608 - table/column identifiers are in-code constants (whitelisted); values are bound params
         ).scalar_one()
         if dry_run:
             deleted = (
-                await conn.execute(text(f"SELECT count(*) FROM audit_logs WHERE {eligible}"), params)
+                await conn.execute(text(f"SELECT count(*) FROM audit_logs WHERE {eligible}"), params)  # nosec B608 - table/column identifiers are in-code constants (whitelisted); values are bound params
             ).scalar_one()
         else:
-            deleted = (await conn.execute(text(f"DELETE FROM audit_logs WHERE {eligible}"), params)).rowcount
+            deleted = (await conn.execute(text(f"DELETE FROM audit_logs WHERE {eligible}"), params)).rowcount  # nosec B608 - table/column identifiers are in-code constants (whitelisted); values are bound params
     return {"years": int(years), "cutoff": cutoff, "deleted": int(deleted), "protected": int(refused)}

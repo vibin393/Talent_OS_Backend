@@ -295,7 +295,7 @@ async def _minus_interview(
     for uid, days in per_day.items():
         try:
             d = row.starts_at.astimezone(ZoneInfo(zones.get(uid) or "UTC")).date()
-        except Exception:
+        except Exception:  # nosec B112 - best-effort loop; a failed item is intentionally skipped
             continue
         if days.get(d):
             days[d] -= 1

@@ -267,7 +267,7 @@ def restore_tenant(conn: sa.Connection, tenant_id: uuid.UUID, kms: Kms) -> int:
             else tokens.encrypt(plain)
         )
         conn.execute(
-            sa.text(f"UPDATE {table} SET {column} = :v WHERE id = :id"), {"v": value, "id": row["owner_id"]}
+            sa.text(f"UPDATE {table} SET {column} = :v WHERE id = :id"), {"v": value, "id": row["owner_id"]}  # nosec B608 - table/column identifiers are in-code constants (whitelisted); values are bound params
         )
         restored += 1
     conn.execute(

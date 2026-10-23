@@ -358,7 +358,7 @@ async def _check_dependencies(
         except owners.DependencyPending as exc:
             missing.append(i)
             requires.add(exc.requires)
-        except Exception:
+        except Exception:  # nosec B112 - best-effort loop; a failed item is intentionally skipped
             continue
     if missing:
         raise ValidationFailed(

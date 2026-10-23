@@ -297,7 +297,7 @@ async def _create_draft_preview(tctx: Any, args: DraftDemandIn) -> ProposalPrevi
                 title = title or role.get("title")
                 for name, item in (role.get("fields") or {}).items():
                     fields.append((name, str(item.get("value"))[:200]))
-        except Exception:  # preview is best effort
+        except Exception:  # preview is best effort  # nosec B110 - best-effort; a failure here is non-fatal by design
             pass
     else:
         for name in (

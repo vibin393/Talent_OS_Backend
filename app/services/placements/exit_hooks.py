@@ -284,7 +284,7 @@ async def _file_access(ctx: Any, db: AsyncSession, entity_id: uuid.UUID, write: 
             try:
                 await extensions.get(ctx, db, entity_id)
                 return True
-            except Exception:
+            except Exception:  # nosec B110 - best-effort; a failure here is non-fatal by design
                 pass
         if case_ok:
             await offboarding.get_detail(ctx, db, entity_id)

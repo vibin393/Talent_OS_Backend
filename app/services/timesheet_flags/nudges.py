@@ -179,7 +179,7 @@ async def facts_for(
         if ts.status in SUBMIT_STATUSES:
             recipient = ("worker", ts.candidate_id)
         else:
-            req = requests.get(ts.approval_request_id) if ts.approval_request_id else None
+            req = requests.get(ts.approval_request_id) if ts.approval_request_id else None  # nosec B113 - 'requests' is a local dict .get(), not the requests HTTP library
             if req is not None:
                 if req.current_approver_user_id is not None:
                     recipient = ("user", req.current_approver_user_id)

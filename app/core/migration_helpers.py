@@ -104,7 +104,7 @@ def create_app_role_sql(role: str, password: str) -> str:
         END IF;
     END
     $tos_role$;
-    """
+    """  # nosec B608 - static SQL / in-code identifiers; values are bound params
 
 
 def grant_app_privileges_sql(role: str) -> list[str]:
@@ -136,7 +136,7 @@ def revoke_app_privileges_sql(role: str) -> list[str]:
     r = _ident(role)
     rl = _literal(r)
     return [
-        f"DO $tos_revoke$ DECLARE s text := current_schema(); BEGIN "
+        f"DO $tos_revoke$ DECLARE s text := current_schema(); BEGIN "  # nosec B608 - table/column identifiers are in-code constants (whitelisted); values are bound params
         f"EXECUTE format('ALTER DEFAULT PRIVILEGES IN SCHEMA %I "
         f"REVOKE SELECT, INSERT, UPDATE, DELETE ON TABLES FROM %I', s, {rl}); "
         f"EXECUTE format('ALTER DEFAULT PRIVILEGES IN SCHEMA %I REVOKE USAGE, SELECT ON SEQUENCES FROM %I', "
@@ -670,7 +670,7 @@ def org_predicate(
             branches.append(f"({_ORG_KIND} = '{kind}' AND {t}.{_ident(col)} = {_ORG_ID})")
     if grants is not None:
         branches.append(
-            "(EXISTS (SELECT 1 FROM org_grants g WHERE g.subject_kind = "
+            "(EXISTS (SELECT 1 FROM org_grants g WHERE g.subject_kind = "  # nosec B608 - table/column identifiers are in-code constants (whitelisted); values are bound params
             f"{_literal(grants.subject_kind)} AND g.subject_id = {t}.{_ident(grants.id_column)} "
             f"AND g.org_kind = {_ORG_KIND} AND g.org_id = {_ORG_ID} "
             "AND (g.expires_at IS NULL OR g.expires_at > now())))"

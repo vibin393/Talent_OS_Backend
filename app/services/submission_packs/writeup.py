@@ -16,7 +16,7 @@ _TERMS_FILE = Path(__file__).with_name("protected_terms.yaml")
 _TAG_RE = re.compile(r"<[^>]+>")
 _EMAIL_RE = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
 _PHONE_RE = re.compile(r"(?<![\w])(?:\+?\d[\d\s().-]{8,}\d)(?![\w])")
-_INVISIBLE_RE = re.compile(r"[​-‏⁠-⁤﻿󠀀-󠁿]")
+_INVISIBLE_RE = re.compile(r"[​-‏⁠-⁤﻿󠀀-󠁿]")  # nosec B613 - intentional bidirectional-unicode detection regex (sanitizer)
 MAX_CHARS = 3000
 
 

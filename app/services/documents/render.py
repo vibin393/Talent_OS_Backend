@@ -11,7 +11,7 @@ import html
 import io
 import re
 from typing import Any
-from xml.sax.saxutils import escape
+from xml.sax.saxutils import escape  # nosec B406 - xml.sax.saxutils escape/quoteattr are output encoders, not parsers
 
 from pypdf import PdfReader, PdfWriter
 from reportlab.lib import colors

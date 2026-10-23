@@ -88,7 +88,7 @@ async def internal_candidate_ids(ctx: RequestContext, db: AsyncSession, demand_i
     for cid in sorted(workers, key=str):
         try:
             emp = await employees.worker_employee(db, cid)
-        except Exception:
+        except Exception:  # nosec B112 - best-effort loop; a failed item is intentionally skipped
             continue
         if eligibility.evaluate(rules, settings.min_tenure_default_months, emp, on).eligible:
             out.add(cid)
@@ -97,7 +97,7 @@ async def internal_candidate_ids(ctx: RequestContext, db: AsyncSession, demand_i
             continue
         try:
             emp = await employees.user_employee(db, uid)
-        except Exception:
+        except Exception:  # nosec B112 - best-effort loop; a failed item is intentionally skipped
             continue
         if eligibility.evaluate(rules, settings.min_tenure_default_months, emp, on).eligible:
             out.add(cid)

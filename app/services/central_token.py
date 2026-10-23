@@ -83,7 +83,7 @@ def _key() -> RSAKey:
         try:
             key_path.parent.mkdir(parents=True, exist_ok=True)
             key_path.write_bytes(key.as_pem(private=True))
-        except Exception:
+        except Exception:  # nosec B110 - best-effort; a failure here is non-fatal by design
             pass  # best-effort persistence; a per-process key still works within this process
     kid = _compute_kid(key)
     # Re-import carrying the derived kid so JWKS and the token header advertise it.

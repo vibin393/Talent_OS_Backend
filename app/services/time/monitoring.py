@@ -247,7 +247,7 @@ async def monitor(
     out_rows: list[MonitorRow] = []
     totals: dict[str, Decimal | None] = {}
     for r in rows:
-        request = requests.get(r.approval_request_id) if r.approval_request_id else None
+        request = requests.get(r.approval_request_id) if r.approval_request_id else None  # nosec B113 - 'requests' is a local dict .get(), not the requests HTTP library
         step = approver = None
         if request is not None and request.current_position is not None:
             snap = next(

@@ -28,7 +28,7 @@ NO_STORE = {"Cache-Control": "no-store"}
 
 
 def _candidate_id(principal: Any) -> uuid.UUID:
-    return getattr(principal, "candidate_id", None) or principal.id
+    return getattr(principal, "candidate_id", None) or principal.id  # type: ignore[no-any-return]
 
 
 @router.get("/scheduling", response_model=list[SlotPickView])

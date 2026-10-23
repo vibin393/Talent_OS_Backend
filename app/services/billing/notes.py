@@ -326,7 +326,7 @@ async def _finalize(db: AsyncSession, kind: str, note: Any, invoice: Invoice) ->
         r_eff = dataclasses.replace(r, taxable=r.taxable - used[r.line.id])
         taxable = Decimal(row.taxable_value)
         if row.is_manual and kind == "credit_note" and not note.gst_adjusted:
-            comps, inr_taxable = [], compute.inr(taxable, fx)
+            comps, inr_taxable = [], compute.inr(taxable, fx)  # type: ignore[var-annotated]
         elif kind == "credit_note":
             comps, inr_taxable = credit_components(r_eff, taxable, note.currency, fx)
         else:

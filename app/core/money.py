@@ -55,7 +55,7 @@ def to_decimal(value: Decimal | int | str) -> Decimal:
             msg = f"not a decimal number: {value!r}"
             raise ValueError(msg) from exc
     else:
-        msg = f"unsupported money value type {type(value).__name__}"
+        msg = f"unsupported money value type {type(value).__name__}"  # type: ignore[unreachable]
         raise TypeError(msg)
     if not result.is_finite():
         msg = "NaN / Infinity are not valid amounts"
@@ -134,7 +134,7 @@ class Money:
             msg = "float operands are not allowed in money arithmetic"
             raise TypeError(msg)
         if not isinstance(other, Money):
-            return NotImplemented
+            return NotImplemented  # type: ignore[no-any-return]
         if other.currency != self.currency:
             msg = f"mixed currencies: {self.currency} vs {other.currency}"
             raise ValueError(msg)

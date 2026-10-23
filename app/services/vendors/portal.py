@@ -242,7 +242,7 @@ async def submit(
         file_id = stored.id
     at = now()
     async with tenant_session(
-        principal.tenant_id
+        principal.tenant_id  # type: ignore[arg-type]
     ) as idb:  # system read (AD-26: never returned to the vendor)
         facts = await review.load_facts(
             idb,

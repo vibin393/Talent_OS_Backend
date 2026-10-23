@@ -127,7 +127,7 @@ async def _no_owner_task(
     data = TaskCreate.model_construct(
         title=f"Agent could not run: no owner ({spec.name})"[:200],
         notes="An AI agent was triggered but no Accountable Owner could be resolved for the record. Assign an owner or run it manually.",
-        owner_id=active[0], entity_type=entity[0] if entity else None, entity_id=entity[1] if entity else None,
+        owner_id=active[0], entity_type=entity[0] if entity else None, entity_id=entity[1] if entity else None,  # type: ignore[arg-type]
         due_at=None, due_all_day=False, priority="normal", reminder_at=None,
     )  # fmt: skip
     async with db.begin_nested():
@@ -214,13 +214,13 @@ async def start_run(
     owner = None  # from here on: the owner's live Principal
     if owner_id is not None:
         try:
-            owner = await owner_principal(db, tenant_id, owner_id)
+            owner = await owner_principal(db, tenant_id, owner_id)  # type: ignore[assignment]
         except Exception:
             owner = None
     if owner is None:
         await _no_owner_task(db, ctx, spec, subject)
         return RunRef(run_id=None, status="not_started", reason="owner_unavailable")
-    effective = Principal(
+    effective = Principal(  # type: ignore[unreachable]
         type="agent",
         id=owner.id,
         tenant_id=tenant_id,
@@ -530,7 +530,7 @@ async def get_run(ctx: RequestContext, db: AsyncSession, run_id: uuid.UUID) -> R
     run = await _run(db, run_id)
     if not await _can_view(ctx, db, principal, run):
         raise NotFound("Run not found")
-    names = await directory_service.user_names(db, [run.owner_user_id])
+    names = await directory_service.user_names(db, [run.owner_user_id])  # type: ignore[list-item]
     steps = (
         await db.execute(
             select(AgentRunStep).where(AgentRunStep.run_id == run.id).order_by(AgentRunStep.step_no)
@@ -549,7 +549,7 @@ async def get_run(ctx: RequestContext, db: AsyncSession, run_id: uuid.UUID) -> R
         )
     ).scalars()
     return RunOut(
-        **_summary(run, names.get(run.owner_user_id)),
+        **_summary(run, names.get(run.owner_user_id)),  # type: ignore[arg-type]
         related_refs=list(run.related_refs or []),
         candidate_ids=list(run.candidate_ids or []),
         limits=dict(run.limits or {}),

@@ -114,11 +114,11 @@ async def _request_connector_erasure(
     try:
         from app.services import integrations_service
 
-        link = await integrations_service.find_link(db, tenant_id, inst.connector_key, subject_id)
+        link = await integrations_service.find_link(db, tenant_id, inst.connector_key, subject_id)  # type: ignore[arg-type, misc]
         external_ids = [link.external_id] if link is not None else []
         if not external_ids:
             return "manual_required"
-        adapter = integrations_service.adapter_for(inst.connector_key)
+        adapter = integrations_service.adapter_for(inst.connector_key)  # type: ignore[arg-type, call-arg]
         request = getattr(adapter, "request_erasure", None)
         if request is None:
             return "manual_required"

@@ -95,7 +95,7 @@ async def load_scoped(
     case = (await db.execute(stmt)).scalar_one_or_none()
     if case is None:
         raise not_found()
-    return case
+    return case  # type: ignore[no-any-return]
 
 
 def _event(
@@ -277,7 +277,7 @@ async def _owner_bu(db: AsyncSession, owner: uuid.UUID) -> uuid.UUID | None:
     ).first()
     if row is None:
         raise invalid("unknown_owner", "Unknown owner", field="owner_user_id")
-    return row.business_unit_id
+    return row.business_unit_id  # type: ignore[no-any-return]
 
 
 async def _check_links(db: AsyncSession, candidate_id: uuid.UUID, data: CaseCreate | CasePatch) -> None:

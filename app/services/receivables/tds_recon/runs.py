@@ -465,7 +465,7 @@ async def propose(db: AsyncSession, run: TdsReconRun) -> int:
     tans = await tan_map(db)
     taken = await confirmed_deduction_ids(db)
     taken |= set(
-        (
+        (  # type: ignore[arg-type]
             await db.execute(
                 select(TdsReconMatch.tds_deduction_id).where(
                     TdsReconMatch.active.is_(True), TdsReconMatch.status == "proposed"
@@ -621,7 +621,7 @@ async def lines_out(db: AsyncSession, lines: list[TdsStatementLine]) -> list[Tds
     names = await client_names(db, {d.client_id for d in deds.values()} | set(tans.values()))
     out: list[TdsLineOut] = []
     for ln in lines:
-        m = current.get(ln.id)
+        m = current.get(ln.id)  # type: ignore[assignment]
         client_id = tans.get(ln.deductor_tan)
         mo = None
         if m is not None:

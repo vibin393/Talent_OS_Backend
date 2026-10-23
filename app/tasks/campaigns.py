@@ -194,7 +194,7 @@ async def _reputation(tid: uuid.UUID) -> str | None:
 @celery_app.task(name="campaigns.reputation", queue=QUEUE, acks_late=True)  # type: ignore[misc,untyped-decorator,unused-ignore]
 def reputation_tenant(tenant_id: str) -> str | None:
     tid = uuid.UUID(str(tenant_id))
-    return run(lambda: _reputation(tid), tenant_id=tid)
+    return run(lambda: _reputation(tid), tenant_id=tid)  # type: ignore[no-any-return]
 
 
 @celery_app.task(name="campaigns.reputation_all", queue=QUEUE)  # type: ignore[misc,untyped-decorator,unused-ignore]

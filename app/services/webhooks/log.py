@@ -63,7 +63,7 @@ async def list_deliveries(ctx: RequestContext, db: AsyncSession, subscription_id
         stmt = stmt.where(WebhookDelivery.event_type == q.event_type)
     if q.cursor:
         (created,), last = decode_cursor(q.cursor)
-        stmt = stmt.where(tuple_(WebhookDelivery.created_at, WebhookDelivery.id) < tuple_(datetime.fromisoformat(str(created)), last))
+        stmt = stmt.where(tuple_(WebhookDelivery.created_at, WebhookDelivery.id) < tuple_(datetime.fromisoformat(str(created)), last))  # type: ignore[arg-type]
     rows = list((await db.execute(stmt.order_by(WebhookDelivery.created_at.desc(), WebhookDelivery.id.desc()).limit(q.limit + 1))).scalars())
     has_more = len(rows) > q.limit
     rows = rows[: q.limit]

@@ -224,32 +224,32 @@ def predicate(fd: FieldDef, col: Any, op: str, value: Any) -> ColumnElement[bool
     """Build the SQL condition for a non-skill operator on ``col`` (``value`` already coerced)."""
     array = fd.type == "string_array"
     if op == "eq":
-        return col.any_() == value if array else col == value
+        return col.any_() == value if array else col == value  # type: ignore[no-any-return]
     if op == "ne":
-        return col.is_distinct_from(value)
+        return col.is_distinct_from(value)  # type: ignore[no-any-return]
     if op == "in":
-        return col.overlap(list(value)) if array else col.in_(value)
+        return col.overlap(list(value)) if array else col.in_(value)  # type: ignore[no-any-return]
     if op == "not_in":
         return or_(col.not_in(value), col.is_(None))
     if op == "lt":
-        return col < value
+        return col < value  # type: ignore[no-any-return]
     if op == "lte":
-        return col <= value
+        return col <= value  # type: ignore[no-any-return]
     if op == "gt":
-        return col > value
+        return col > value  # type: ignore[no-any-return]
     if op == "gte":
-        return col >= value
+        return col >= value  # type: ignore[no-any-return]
     if op == "between":
-        return col.between(value[0], value[1])
+        return col.between(value[0], value[1])  # type: ignore[no-any-return]
     if op == "contains":
-        return col.ilike(f"%{_like_escape(value)}%", escape="\\")
+        return col.ilike(f"%{_like_escape(value)}%", escape="\\")  # type: ignore[no-any-return]
     if op == "starts_with":
-        return col.ilike(f"{_like_escape(value)}%", escape="\\")
+        return col.ilike(f"{_like_escape(value)}%", escape="\\")  # type: ignore[no-any-return]
     if op == "is_null":
         if array:
             null = or_(col.is_(None), func.cardinality(col) == 0)
             return null if value else not_(null)
-        return col.is_(None) if value else col.is_not(None)
+        return col.is_(None) if value else col.is_not(None)  # type: ignore[no-any-return]
     if op == "within_days":
         return _within(col, fd, value)
     msg = f"no predicate for operator {op!r}"

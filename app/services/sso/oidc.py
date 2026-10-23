@@ -44,11 +44,11 @@ def invalid(reason: str) -> Unauthorized:
 
 
 def new_token(length: int = 48) -> str:
-    return generate_token(length)
+    return generate_token(length)  # type: ignore[no-any-return]
 
 
 def code_challenge(verifier: str) -> str:
-    return create_s256_code_challenge(verifier)
+    return create_s256_code_challenge(verifier)  # type: ignore[no-any-return]
 
 
 async def _get_json(url: str) -> dict[str, Any]:

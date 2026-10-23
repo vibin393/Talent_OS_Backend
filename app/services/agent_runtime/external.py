@@ -245,8 +245,8 @@ def _cap(data: dict[str, Any], max_results: int) -> tuple[dict[str, Any], bool]:
 
 
 async def _label(db: AsyncSession, run: AgentRun) -> str:
-    names = await directory_service.user_names(db, [run.owner_user_id])
-    user = names.get(run.owner_user_id) or "a user"
+    names = await directory_service.user_names(db, [run.owner_user_id])  # type: ignore[list-item]
+    user = names.get(run.owner_user_id) or "a user"  # type: ignore[arg-type]
     return f"Requested by {run.external_client or 'an MCP client'} for {user} through MCP"
 
 

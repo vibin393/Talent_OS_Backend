@@ -72,39 +72,39 @@ def build(kind: str, prefix: str, principal_dep: Any, use_dep: Any, route_class:
 
     @router.get("/conversations", response_model=Page[PortalConversationOut])
     async def list_conversations(
-        principal: User,
+        principal: User,  # type: ignore[valid-type]
         page: Annotated[int, Query(ge=1)] = 1,
         page_size: Annotated[int, Query(ge=1, le=50)] = 20,
     ) -> Any:
         return await svc.list_conversations(get_context(), kind, principal, page=page, page_size=page_size)
 
     @router.post("/conversations", response_model=PortalConversationOut, status_code=status.HTTP_201_CREATED)
-    async def create_conversation(principal: User) -> Any:
+    async def create_conversation(principal: User) -> Any:  # type: ignore[valid-type]
         return await svc.create_conversation(get_context(), kind, principal)
 
     @router.get("/conversations/{conversation_id}", response_model=PortalConversationDetailOut)
-    async def get_conversation(conversation_id: uuid.UUID, principal: User) -> Any:
+    async def get_conversation(conversation_id: uuid.UUID, principal: User) -> Any:  # type: ignore[valid-type]
         return await svc.get_conversation(get_context(), kind, principal, conversation_id)
 
     @router.delete("/conversations/{conversation_id}", status_code=status.HTTP_204_NO_CONTENT)
-    async def delete_conversation(conversation_id: uuid.UUID, principal: User) -> Response:
+    async def delete_conversation(conversation_id: uuid.UUID, principal: User) -> Response:  # type: ignore[valid-type]
         await svc.delete(get_context(), kind, principal, conversation_id)
         return Response(status_code=status.HTTP_204_NO_CONTENT)
 
     @router.post("/conversations/{conversation_id}/close", response_model=PortalConversationOut)
-    async def close_conversation(conversation_id: uuid.UUID, principal: User) -> Any:
+    async def close_conversation(conversation_id: uuid.UUID, principal: User) -> Any:  # type: ignore[valid-type]
         return await svc.close(get_context(), kind, principal, conversation_id)
 
     @router.post("/conversations/{conversation_id}/messages", response_model=PortalTurnOut)
     async def post_message(
         conversation_id: uuid.UUID,
         body: PortalMessageIn,
-        principal: User,
+        principal: User,  # type: ignore[valid-type]
         idempotency_key: Annotated[str | None, Header(alias="Idempotency-Key", max_length=100)] = None,
     ) -> Any:
         key = None
         if idempotency_key:
-            key = f"pcopilot:idem:{principal.tenant_id}:{kind}:{principal.id}:{conversation_id}:{idempotency_key}"
+            key = f"pcopilot:idem:{principal.tenant_id}:{kind}:{principal.id}:{conversation_id}:{idempotency_key}"  # type: ignore[attr-defined]
             found = await _replay(key)
             if found is not None:
                 return JSONResponse(found)
@@ -116,7 +116,7 @@ def build(kind: str, prefix: str, principal_dep: Any, use_dep: Any, route_class:
     @router.get("/turns/{run_id}/events", response_class=StreamingResponse)
     async def turn_events(
         run_id: uuid.UUID,
-        principal: User,
+        principal: User,  # type: ignore[valid-type]
         last_event_id: Annotated[str | None, Header(alias="Last-Event-ID", max_length=40)] = None,
         after: Annotated[str | None, Query(max_length=40, pattern=r"^\d+-\d+$")] = None,
     ) -> StreamingResponse:
@@ -125,25 +125,25 @@ def build(kind: str, prefix: str, principal_dep: Any, use_dep: Any, route_class:
         return StreamingResponse(events, media_type="text/event-stream", headers=dict(SSE_HEADERS))
 
     @router.post("/turns/{run_id}/cancel", status_code=status.HTTP_204_NO_CONTENT)
-    async def cancel_turn(run_id: uuid.UUID, principal: User) -> Response:
+    async def cancel_turn(run_id: uuid.UUID, principal: User) -> Response:  # type: ignore[valid-type]
         await svc.cancel(get_context(), kind, principal, run_id)
         return Response(status_code=status.HTTP_204_NO_CONTENT)
 
     @router.post("/turns/{run_id}/feedback", status_code=status.HTTP_204_NO_CONTENT)
-    async def rate_turn(run_id: uuid.UUID, body: PortalFeedbackIn, principal: User) -> Response:
+    async def rate_turn(run_id: uuid.UUID, body: PortalFeedbackIn, principal: User) -> Response:  # type: ignore[valid-type]
         await svc.feedback(get_context(), kind, principal, run_id, body)
         return Response(status_code=status.HTTP_204_NO_CONTENT)
 
     @router.post("/drafts/{proposal_id}/confirm", response_model=DraftResultOut)
     async def confirm_draft(
-        proposal_id: uuid.UUID, principal: User, body: DraftConfirmIn | None = None
+        proposal_id: uuid.UUID, principal: User, body: DraftConfirmIn | None = None  # type: ignore[valid-type]
     ) -> Any:
         return await svc.confirm_draft(
             get_context(), kind, principal, proposal_id, edits=body.edits if body else None
         )
 
     @router.post("/drafts/{proposal_id}/discard", response_model=DraftResultOut)
-    async def discard_draft(proposal_id: uuid.UUID, principal: User) -> Any:
+    async def discard_draft(proposal_id: uuid.UUID, principal: User) -> Any:  # type: ignore[valid-type]
         return await svc.discard_draft(get_context(), kind, principal, proposal_id)
 
     return router

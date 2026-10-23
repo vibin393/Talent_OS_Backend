@@ -13,7 +13,7 @@ PublisherKind = Literal["platform", "partner", "tenant"]
 class AppPolicyIn(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
-    publisher_kinds: list[PublisherKind] = Field(default_factory=lambda: ["platform", "partner"])
+    publisher_kinds: list[PublisherKind] = Field(default_factory=lambda: ["platform", "partner"])  # type: ignore[arg-type]
     private_apps: bool = True
     user_self_authorize: bool = True
     sensitive_approval_chain_id: uuid.UUID | None = None

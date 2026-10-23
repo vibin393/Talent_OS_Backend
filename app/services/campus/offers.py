@@ -137,7 +137,7 @@ async def joining(c: RequestContext, db: AsyncSession, drive_id: uuid.UUID) -> l
             JoiningRow(
                 registration_id=r.id, candidate_id=r.candidate_id, candidate_name=facts.get(r.candidate_id, (None, None))[0],
                 institution_name=names.get(r.institution_id), status=r.status, offer_id=r.offer_id,
-                offer_status=offers.get(r.offer_id), planned_joining_date=r.planned_joining_date,
+                offer_status=offers.get(r.offer_id), planned_joining_date=r.planned_joining_date,  # type: ignore[arg-type]
                 placement_id=p.id if p else None, placement_status=p.status if p else None,
                 accepted_at=r.accepted_at, joined_at=r.joined_at, reneged_at=r.reneged_at,
             )

@@ -366,7 +366,7 @@ class SendOut(Out):
 
 
 async def _entry_version(probe: Any) -> str | None:
-    return await _svc().entry_version(probe.db, probe.args.entry_id)
+    return await _svc().entry_version(probe.db, probe.args.entry_id)  # type: ignore[no-any-return]
 
 
 async def _send_intent(tctx: Any, args: SendIn) -> SendIntent:
@@ -454,7 +454,7 @@ TOOLS: tuple[ToolSpec, ...] = (
         key="outreach.send", version=VERSION, owner_epic=OWNER_EPIC, title="Send outreach",
         description="Send an approved outreach email to a shortlisted candidate. Always reviewed and sent by a person; consent, opt-outs and the weekly frequency cap are checked again at sending.",
         input_model=SendIn, output_model=SendOut, permissions=("message:draft", "email:send"), risk="high",
-        scope=ScopeRule(resource="agent_shortlist_entry", target_arg="entry_id", candidate_arg="candidate_id", version=_entry_version),
+        scope=ScopeRule(resource="agent_shortlist_entry", target_arg="entry_id", candidate_arg="candidate_id", version=_entry_version),  # type: ignore[arg-type]
         handler=_send, preview=_send_preview, egress=True, send_intent=_send_intent,
         untrusted_input=frozenset({"body", "subject"}),
     ),

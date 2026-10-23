@@ -114,16 +114,16 @@ def memory_store() -> _MemoryStore:
 async def _call(op: str, *args: Any) -> int:
     global _redis  # lazily created, process-wide
     if get_settings().rate_limit_backend == "memory":
-        return await getattr(_memory, op)(*args)
+        return await getattr(_memory, op)(*args)  # type: ignore[no-any-return]
     if _redis is None:
         _redis = _RedisStore()
     try:
-        return await getattr(_redis, op)(*args)
+        return await getattr(_redis, op)(*args)  # type: ignore[no-any-return]
     except Exception as exc:  # Redis down: keep limiting in-process
         if time.time() - _warned["at"] > 60:
             _warned["at"] = time.time()
             logger.warning("MCP limits: Redis unavailable ({}); using in-memory counters", type(exc).__name__)
-        return await getattr(_memory, op)(*args)
+        return await getattr(_memory, op)(*args)  # type: ignore[no-any-return]
 
 
 def _now() -> datetime:

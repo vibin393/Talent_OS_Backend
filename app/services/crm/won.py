@@ -263,7 +263,7 @@ async def win_opportunity(ctx: RequestContext, db: AsyncSession, opp_id: uuid.UU
                 ctx, db, rc.template_id, client.id, contract_id, rc.effective_from
             ),
         )
-        _link(db, opp, "rate_card", rate_card_id)
+        _link(db, opp, "rate_card", rate_card_id)  # type: ignore[arg-type]
         records.append(CreatedRecord(kind="rate_card", id=rate_card_id))
 
     # 5. draft demands per selected line (owned by the Account Manager)

@@ -103,7 +103,7 @@ async def test_results(_: View, db: DB) -> list[dict[str, Any]]:
 @router.get("/access-reviews/settings", response_model=AccessReviewSettingsOut)
 async def access_review_settings(_: View, db: DB) -> AccessReviewSettingsOut:
     ctx = get_context()
-    row = await svc.access_reviews.get_settings(db, ctx.tenant_id)
+    row = await svc.access_reviews.get_settings(db, ctx.tenant_id)  # type: ignore[arg-type]
     return AccessReviewSettingsOut(
         cadence_months=row.cadence_months,
         stale_after_days=row.stale_after_days,
@@ -118,7 +118,7 @@ async def set_access_review_settings(body: AccessReviewSettingsIn, p: Manage, db
     ctx = get_context()
     row = await svc.access_reviews.update_settings(
         db,
-        ctx.tenant_id,
+        ctx.tenant_id,  # type: ignore[arg-type]
         cadence_months=body.cadence_months,
         stale_after_days=body.stale_after_days,
         auto_revoke_stale=body.auto_revoke_stale,
@@ -136,7 +136,7 @@ async def set_access_review_settings(body: AccessReviewSettingsIn, p: Manage, db
 @router.get("/access-reviews", response_model=list[AccessReviewOut])
 async def list_reviews(_: View, db: DB) -> list[AccessReviewOut]:
     ctx = get_context()
-    reviews = await svc.access_reviews.list_reviews(db, ctx.tenant_id)
+    reviews = await svc.access_reviews.list_reviews(db, ctx.tenant_id)  # type: ignore[arg-type]
     return [
         AccessReviewOut(
             id=r.id, period_start=r.period_start, period_end=r.period_end, status=r.status,
@@ -155,7 +155,7 @@ async def review_items(
     kind: Annotated[str | None, Query()] = None,
 ) -> list[AccessReviewItemOut]:
     ctx = get_context()
-    items = await svc.access_reviews.list_items(db, ctx.tenant_id, review_id, stale_only=stale_only, kind=kind)
+    items = await svc.access_reviews.list_items(db, ctx.tenant_id, review_id, stale_only=stale_only, kind=kind)  # type: ignore[arg-type]
     return [
         AccessReviewItemOut(
             id=i.id, kind=i.kind, subject_id=i.subject_id, snapshot=i.snapshot, stale=i.stale,
@@ -170,7 +170,7 @@ async def decide_item(item_id: uuid.UUID, body: AccessDecisionIn, p: Manage, db:
     _human()
     ctx = get_context()
     item = await svc.access_reviews.decide_item(
-        db, ctx.tenant_id, item_id, decision=body.decision, decided_by=getattr(p, "user_id", None), note=body.note
+        db, ctx.tenant_id, item_id, decision=body.decision, decided_by=getattr(p, "user_id", None), note=body.note  # type: ignore[arg-type]
     )
     return AccessReviewItemOut(
         id=item.id, kind=item.kind, subject_id=item.subject_id, snapshot=item.snapshot, stale=item.stale,
@@ -182,7 +182,7 @@ async def decide_item(item_id: uuid.UUID, body: AccessDecisionIn, p: Manage, db:
 async def complete_review(review_id: uuid.UUID, p: Manage, db: DB) -> AccessReviewOut:
     _human()
     ctx = get_context()
-    r = await svc.access_reviews.complete_review(db, ctx.tenant_id, review_id, completed_by=getattr(p, "user_id", None))
+    r = await svc.access_reviews.complete_review(db, ctx.tenant_id, review_id, completed_by=getattr(p, "user_id", None))  # type: ignore[arg-type]
     return AccessReviewOut(
         id=r.id, period_start=r.period_start, period_end=r.period_end, status=r.status,
         item_count=r.item_count, decided_count=r.decided_count, opened_at=r.opened_at, completed_at=r.completed_at,

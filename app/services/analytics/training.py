@@ -213,7 +213,7 @@ async def refit(db: AsyncSession, model: MlModel) -> dict:  # type: ignore[type-
         raise ValueError(msg)
     rows = await snapshots.read(ts)
     result, _ = fit_rows(SPECS[model.kind], rows, model.seed)
-    return result.params
+    return result.params  # type: ignore[no-any-return]
 
 
 async def train_all(db: AsyncSession, tenant_id: uuid.UUID, now: datetime | None = None) -> dict[str, str]:

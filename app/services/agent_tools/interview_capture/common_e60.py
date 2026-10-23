@@ -31,7 +31,7 @@ def scoped(tctx: Any) -> Any:
 
 
 def subject(tctx: Any) -> tuple[str, uuid.UUID] | None:
-    return tctx.subject
+    return tctx.subject  # type: ignore[no-any-return]
 
 
 def preview(title: str, describe: Any) -> Any:

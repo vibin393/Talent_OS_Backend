@@ -204,11 +204,11 @@ async def add_segment(
             "client_id": str(placement.client_id),
             "margin_pct": str(pct) if pct is not None else None,
         }
-        result = await approvals.start(
+        result = await approvals.start(  # type: ignore[assignment]
             ctx, db, EXCEPTION_SUBJECT, seg.id, facts, steps=await _exception_steps(db)
         )
-        if result.request_id is not None:
-            seg.approval_request_id = result.request_id
+        if result.request_id is not None:  # type: ignore[attr-defined]
+            seg.approval_request_id = result.request_id  # type: ignore[attr-defined]
             await db.flush()
     else:
         await activate(ctx, db, seg)

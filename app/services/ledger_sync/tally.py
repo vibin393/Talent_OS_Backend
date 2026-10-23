@@ -56,7 +56,7 @@ async def generate(ctx: RequestContext, db: AsyncSession, ei: EntityInstall, run
             )
         ).scalars()  # fmt: skip
         docs.extend(("payment", p) for p in pays)
-    rows: list[dict[str, Any]] = []
+    rows: list[dict[str, Any]] = []  # type: ignore[no-redef]
     masters: dict[str, dict[str, Any]] = {}
     counts = {"documents": len(docs), "synced": 0, "failed": 0, "skipped": 0, "blocked": 0}
     built_recs = []
@@ -76,7 +76,7 @@ async def generate(ctx: RequestContext, db: AsyncSession, ei: EntityInstall, run
             continue
         if built.master is not None:
             masters[built.master["name"]] = built.master
-        rows.append(voucher_row(built.dto))
+        rows.append(voucher_row(built.dto))  # type: ignore[attr-defined]
         built_recs.append((rec, built.dto))
     results = await adapter.push_documents([d for _, d in built_recs]) if built_recs else []
     by_doc = {r.document_id: r for r in results}

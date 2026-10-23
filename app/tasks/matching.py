@@ -171,7 +171,7 @@ def start_dirty_runs(tenant_id: str) -> int:
     ids = uuids(dirty_sets.drain(demand_dirty_key(tenant_id)))
     tid = uuid.UUID(str(tenant_id))
     for did in ids:
-        run_sync(lambda did=did: start_run_async(tid, did, "requirements_changed"))
+        run_sync(lambda did=did: start_run_async(tid, did, "requirements_changed"))  # type: ignore[misc]
     return len(ids)
 
 

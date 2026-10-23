@@ -64,7 +64,7 @@ async def pull_payments(ctx: RequestContext, db: AsyncSession, run: Any) -> inte
     raw_since = (run.cursor or {}).get("last_run_at")
     if raw_since and (now() - _dt(raw_since)) < timedelta(minutes=settings.pull_payments_every_minutes) and run.trigger == "schedule":
         return integrations_service.SyncResult(skipped=1)  # the tenant's interval is longer than the manifest's
-    since = _dt((run.cursor or {}).get("since")) if (run.cursor or {}).get("since") else None
+    since = _dt((run.cursor or {}).get("since")) if (run.cursor or {}).get("since") else None  # type: ignore[arg-type]
     started = now()
     cursor: str | None = None
     created = skipped = 0

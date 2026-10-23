@@ -59,7 +59,7 @@ P3_EXPORT_KINDS = (
 P4_EXPORT_KINDS = ("agent_runs", "agent_proposals")
 # Epic 66 (500_01): Phase 5 list kinds (registered by Epics 79 / 68 / 69).
 P5_EXPORT_KINDS = ("api_usage", "webhook_deliveries", "connector_sync")
-EXPORT_KINDS = EXPORT_KINDS + P2_EXPORT_KINDS + P3_EXPORT_KINDS + P4_EXPORT_KINDS + P5_EXPORT_KINDS
+EXPORT_KINDS = EXPORT_KINDS + P2_EXPORT_KINDS + P3_EXPORT_KINDS + P4_EXPORT_KINDS + P5_EXPORT_KINDS  # type: ignore[assignment]
 EXPORT_FORMATS = ("csv", "xlsx")
 EXPORT_STATUSES = ("queued", "running", "done", "failed", "expired")
 EXPORT_MODES = ("sync", "async")

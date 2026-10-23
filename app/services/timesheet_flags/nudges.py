@@ -228,7 +228,7 @@ async def account_managers_with_items(db: AsyncSession) -> list[uuid.UUID]:
             .distinct()
         )
     ).scalars()  # fmt: skip
-    return sorted(set(rows), key=str)
+    return sorted(set(rows), key=str)  # type: ignore[arg-type]
 
 
 __all__ = [

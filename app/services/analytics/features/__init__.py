@@ -16,7 +16,7 @@ async def training_rows(db: AsyncSession, kind: str, now: datetime, history_mont
     from app.services.analytics.features import attrition, offer_drop, time_to_fill
 
     module = {"time_to_fill": time_to_fill, "offer_drop": offer_drop, "attrition": attrition}[kind]
-    return await module.training_rows(db, now, history_months)
+    return await module.training_rows(db, now, history_months)  # type: ignore[no-any-return]
 
 
 async def scoring_rows(
@@ -31,7 +31,7 @@ async def scoring_rows(
     if kind == "offer_drop":
         return await offer_drop.scoring_rows(db, now, subject_ids, subject_kind)
     module = {"time_to_fill": time_to_fill, "attrition": attrition}[kind]
-    return await module.scoring_rows(db, now, subject_ids)
+    return await module.scoring_rows(db, now, subject_ids)  # type: ignore[no-any-return]
 
 
 __all__ = ["ScoringRow", "TrainingRow", "scoring_rows", "training_rows"]

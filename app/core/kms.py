@@ -131,5 +131,5 @@ def get_kms() -> Kms:
     provider = get_settings().vault_kms_provider
     if provider == "local":
         return LocalKms()
-    msg = f"unknown vault KMS provider {provider!r}"  # pragma: no cover - settings Literal refuses others
+    msg = f"unknown vault KMS provider {provider!r}"  # type: ignore[unreachable]  # pragma: no cover - settings Literal refuses others
     raise KmsError(msg)

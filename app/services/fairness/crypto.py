@@ -13,9 +13,9 @@ PURPOSE = "demographic"
 
 
 def seal_answers(tenant_id: uuid.UUID, answers: Mapping[str, str]) -> Sealed:
-    return seal_json(tenant_id, PURPOSE, {str(k): str(v) for k, v in sorted(answers.items())})
+    return seal_json(tenant_id, PURPOSE, {str(k): str(v) for k, v in sorted(answers.items())})  # type: ignore[arg-type]
 
 
 def open_answers(tenant_id: uuid.UUID, sealed: Sealed) -> dict[str, Any]:
-    value = open_json(tenant_id, PURPOSE, sealed)
+    value = open_json(tenant_id, PURPOSE, sealed)  # type: ignore[arg-type]
     return dict(value) if isinstance(value, dict) else {}

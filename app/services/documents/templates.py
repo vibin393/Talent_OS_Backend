@@ -222,7 +222,7 @@ async def resolve_template(
     rows = list((await db.execute(stmt.order_by(DocumentTemplate.created_at))).scalars())
     exact = [r for r in rows if legal_entity_id is not None and r.legal_entity_id == legal_entity_id]
     generic = [r for r in rows if r.legal_entity_id is None]
-    pick = (exact or generic or [None])[0]
+    pick = (exact or generic or [None])[0]  # type: ignore[list-item]
     if pick is None:
         raise not_found("Template")
     return pick.id

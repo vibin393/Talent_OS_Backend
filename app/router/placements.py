@@ -170,7 +170,7 @@ async def pre_joining(_: Read, db: DB, starts_within: Annotated[int, Query(ge=1,
 
 @router.post("/margin-preview", response_model=MarginOut)
 async def margin_preview(data: MarginPreviewIn, principal: Rates, db: DB) -> Any:
-    return await rate_segments.preview_margin(db, principal.tenant_id, data)
+    return await rate_segments.preview_margin(db, principal.tenant_id, data)  # type: ignore[arg-type]
 
 
 # ---------------------------------------------------------------- create / read / update

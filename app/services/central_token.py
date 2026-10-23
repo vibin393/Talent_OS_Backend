@@ -41,7 +41,7 @@ def _import(pem: bytes, kid: str | None = None) -> RSAKey:
     params = {"use": "sig", "alg": "RS256"}
     if kid is not None:
         params["kid"] = kid
-    return RSAKey.import_key(pem, params)
+    return RSAKey.import_key(pem, params)  # type: ignore[arg-type]
 
 
 def _key() -> RSAKey:

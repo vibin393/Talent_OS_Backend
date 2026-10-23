@@ -131,7 +131,7 @@ async def rule_for(db: AsyncSession, client_id: uuid.UUID, category: str, on: da
 
 # ================================================================ CRUD
 def _decimal(raw: str | None) -> Decimal | None:
-    return Decimal(raw) if raw not in (None, "") else None
+    return Decimal(raw) if raw not in (None, "") else None  # type: ignore[arg-type]
 
 
 def _validate_categories(categories: list[PolicyCategoryIn]) -> None:

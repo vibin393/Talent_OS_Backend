@@ -127,7 +127,7 @@ def _register_notifications() -> None:
         run_id = _uuid(payload.get("agent_run_id"))
         run = await db.get(AgentRun, run_id) if run_id else None
         if run is not None:
-            out.add(run.owner_user_id)
+            out.add(run.owner_user_id)  # type: ignore[arg-type]
         return out
 
     async def render(db: AsyncSession, payload: Any) -> Any:

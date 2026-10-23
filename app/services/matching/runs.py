@@ -279,7 +279,7 @@ async def upsert_scores(
     written = 0
     for start in range(0, len(rows), 200):
         chunk = rows[start : start + 200]
-        stmt = insert(_MATCHES).values([_row_values(tenant_id, demand_id, s, now) for s in chunk])
+        stmt = insert(_MATCHES).values([_row_values(tenant_id, demand_id, s, now) for s in chunk])  # type: ignore[arg-type]
         ex = stmt.excluded
         stmt = stmt.on_conflict_do_update(
             index_elements=["demand_id", "candidate_id"],

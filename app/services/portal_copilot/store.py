@@ -75,7 +75,7 @@ async def owned_conversation(
     conv = (await db.execute(stmt)).scalar_one_or_none()
     if conv is None:
         raise NotFound("Conversation not found")
-    return conv
+    return conv  # type: ignore[no-any-return]
 
 
 async def list_conversations(

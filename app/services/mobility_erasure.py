@@ -39,7 +39,7 @@ class MobilityHandler:
         )
         profile_cond = (MobilityProfile.subject_kind == "worker") & MobilityProfile.subject_id.in_(ids)
         if users:
-            profile_cond = or_(profile_cond, (MobilityProfile.subject_kind == "user") & MobilityProfile.subject_id.in_(users))
+            profile_cond = or_(profile_cond, (MobilityProfile.subject_kind == "user") & MobilityProfile.subject_id.in_(users))  # type: ignore[assignment]
         counts["mobility_profiles"] = _count(await db.execute(delete(MobilityProfile).where(profile_cond)))
         counts["mobility_employee_links"] = _count(
             await db.execute(delete(MobilityEmployeeLink).where(MobilityEmployeeLink.candidate_id.in_(ids)))

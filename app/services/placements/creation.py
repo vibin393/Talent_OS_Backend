@@ -91,7 +91,7 @@ def worker_type_for(settings_map: dict[str, Any], employment_type: str | None, v
         return settings_map[key]  # type: ignore[no-any-return]
     alias = EMPLOYMENT_TO_ENGAGEMENT.get(key)
     if alias and alias in settings_map:
-        return settings_map[alias]
+        return settings_map[alias]  # type: ignore[no-any-return]
     return DEFAULT_WORKER_TYPES.get(key, "employee")
 
 

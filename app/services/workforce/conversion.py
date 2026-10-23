@@ -57,9 +57,9 @@ def demand_payload(line: WorkforcePlanLine, client_id: uuid.UUID, overrides: dic
         data["work_mode"] = line.work_mode
     if skills:
         data["skills"] = skills
-    for key in ("priority", "target_closure_date"):
-        if overrides.get(key) is not None:
-            data[key] = overrides[key]
+    for key in ("priority", "target_closure_date"):  # type: ignore[assignment]
+        if overrides.get(key) is not None:  # type: ignore[call-overload]
+            data[key] = overrides[key]  # type: ignore[index]
     return DemandCreate(**data)
 
 

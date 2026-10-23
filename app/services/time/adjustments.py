@@ -76,7 +76,7 @@ async def create_adjustment(
             deltas[key] = (delta, line.note)
     if errors:
         raise invalid("entry_invalid", "Some adjustment lines are not valid", rows=errors)
-    for key, (delta, _) in deltas.items():
+    for key, (delta, _) in deltas.items():  # type: ignore[assignment]
         if base[key] + approved[key] + delta < 0:
             raise invalid(
                 "adjustment_below_zero",

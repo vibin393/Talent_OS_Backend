@@ -916,7 +916,7 @@ async def login_user(ctx: RequestContext, data: UserLogin) -> UserAuthResult | M
     ``invalid_credentials``; a locked account returns 401 ``account_locked`` without evaluating the
     password. Lockout counters are committed before the 401 is raised.
     """
-    tenant = await _active_tenant_by_slug(data.tenant_slug, allow=SIGN_IN_TENANT_STATUSES)
+    tenant = await _active_tenant_by_slug(data.tenant_slug, allow=SIGN_IN_TENANT_STATUSES)  # type: ignore[arg-type]
     if tenant is not None and tenant.status == "suspended":
         # Epic 12 (FR-70): checked before the password (no hashing for a suspended workspace).
         raise Forbidden("This workspace is suspended", code="tenant_suspended")

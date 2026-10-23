@@ -73,7 +73,7 @@ async def transfers_for(db: AsyncSession, mobility_application_ids: list[uuid.UU
     )
     new_ids = {t.to_placement_id for t in rows if t.to_placement_id}
     humans = dict((await db.execute(select(Placement.id, Placement.human_id).where(Placement.id.in_(new_ids)))).tuples().all()) if new_ids else {}
-    return {t.mobility_application_id: transfer_out(t, humans.get(t.to_placement_id)) for t in rows}
+    return {t.mobility_application_id: transfer_out(t, humans.get(t.to_placement_id)) for t in rows}  # type: ignore[arg-type]
 
 
 # ---------------------------------------------------------------- context (dialog)

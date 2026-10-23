@@ -173,10 +173,10 @@ async def _summaries(
         elif kind == "demand":
             from app.services.demands import portal as demands_portal
 
-            for sid, s in (await demands_portal.client_demand_summary(ctx, db, list(by_subject))).items():
+            for sid, s in (await demands_portal.client_demand_summary(ctx, db, list(by_subject))).items():  # type: ignore[assignment]
                 rid = by_subject.get(sid)
                 if rid:
-                    out[rid] = (s["title"], s["subtitle"], s["fields"])
+                    out[rid] = (s["title"], s["subtitle"], s["fields"])  # type: ignore[index]
     except Exception:
         logger.exception("Client approvals hub: {} summaries unavailable", kind)
     missing = [r for r in requests if r.id not in out]

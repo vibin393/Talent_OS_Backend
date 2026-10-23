@@ -413,7 +413,7 @@ async def open_dsr_candidates(db: AsyncSession) -> set[uuid.UUID]:
             DsrRequest.status.in_(OPEN_STATUSES), DsrRequest.candidate_id.is_not(None)
         )
     )
-    return set(rows.scalars())
+    return set(rows.scalars())  # type: ignore[arg-type]
 
 
 async def list_holds(ctx: RequestContext, db: AsyncSession, active_only: bool = True) -> list[LegalHoldOut]:  # ruff: ignore[unused-function-argument]

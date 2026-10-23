@@ -33,7 +33,7 @@ def _runtime() -> None:
     sync.register()
     connector_registry.register_job_listener(sync.on_job_outcome)
     if connector_registry.webhook_handler("job_board") is None:
-        connector_registry.register_webhook_handler("job_board", ingest.on_webhook)
+        connector_registry.register_webhook_handler("job_board", ingest.on_webhook)  # type: ignore[arg-type]
     attribution.register()
 
 

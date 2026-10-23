@@ -645,7 +645,7 @@ async def check_graph_actions(db: AsyncSession, graph: Mapping[str, Any]) -> Non
         if node.get("type") != "action":
             continue
         action = node.get("action") or {}
-        definition = ACTIONS.get(action.get("type")) if isinstance(action.get("type"), str) else None
+        definition = ACTIONS.get(action.get("type")) if isinstance(action.get("type"), str) else None  # type: ignore[arg-type]
         if definition is None or definition.check is None:
             continue
         params = definition.params_model.model_validate(action.get("params") or {})

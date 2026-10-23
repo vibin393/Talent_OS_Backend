@@ -85,10 +85,10 @@ class BgvHandler:
                 continue
             for c in checks:
                 c.provider_proposal = None
-                for ev in (
+                for ev in (  # type: ignore[assignment]
                     await db.execute(select(BgvEvidence).where(BgvEvidence.check_id == c.id))
                 ).scalars():
-                    counts["files"] += int(await files_service.purge_file(db, ev.file_id))
+                    counts["files"] += int(await files_service.purge_file(db, ev.file_id))  # type: ignore[attr-defined]
             for req in (
                 await db.execute(select(BgvDocumentRequest).where(BgvDocumentRequest.case_id == case.id))
             ).scalars():

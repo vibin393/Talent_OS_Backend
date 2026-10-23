@@ -112,7 +112,7 @@ async def acting(tctx: Any, kind: str) -> Acting:
     ):
         raise NotFound("Resource not found")
     owner = Principal(
-        type=expected,
+        type=expected,  # type: ignore[arg-type]
         id=found[1],
         tenant_id=req.tenant_id,
         org_id=found[3],

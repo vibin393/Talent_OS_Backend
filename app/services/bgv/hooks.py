@@ -379,7 +379,7 @@ def _register_webhook() -> None:
     from app.services.connectors.registry import register_webhook_handler, webhook_handler
 
     if webhook_handler("bgv") is None:
-        register_webhook_handler("bgv", _webhook)
+        register_webhook_handler("bgv", _webhook)  # type: ignore[arg-type]
 
 
 for _fn in (

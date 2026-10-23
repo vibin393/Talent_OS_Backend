@@ -28,7 +28,7 @@ class Out(BaseModel):
 def subject_application(tctx: Any) -> uuid.UUID | None:
     subject = getattr(tctx, "subject", None)
     if subject is not None and subject[0] == "application":
-        return subject[1]
+        return subject[1]  # type: ignore[no-any-return]
     return None
 
 

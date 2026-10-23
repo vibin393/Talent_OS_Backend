@@ -290,7 +290,7 @@ async def start(
     if ctx.principal is not None and getattr(ctx.principal, "type", None) == "user":
         app = await _readable_app(ctx, db, application_id)
     else:
-        app = await db.get(Application, application_id)
+        app = await db.get(Application, application_id)  # type: ignore[assignment]
         if app is None:
             raise NotFound("Application not found")
     reason = await _block_reason(db, app)

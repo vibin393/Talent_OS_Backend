@@ -61,7 +61,7 @@ async def _form(request: Request) -> dict[str, str]:
 
 async def _guard(call: Any) -> Response:
     try:
-        return await call()
+        return await call()  # type: ignore[no-any-return]
     except oauth_service.OAuthError as exc:
         return _error(exc)
     except DomainError as exc:

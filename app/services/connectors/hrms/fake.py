@@ -91,7 +91,7 @@ class FakeHrms(FakeAdapterBase):
         for ref, emp in sorted(type(self)._employees.items(), key=lambda kv: int(kv[0].split("-")[1])):
             exit_date = exits.get(ref, emp["exit_date"])
             status = "exited" if exit_date is not None else emp["status"]
-            items.append(HrmsStatusDTO(employee_ref=ref, employee_code=ref, status=status, exit_date=exit_date))
+            items.append(HrmsStatusDTO(employee_ref=ref, employee_code=ref, status=status, exit_date=exit_date))  # type: ignore[arg-type]
         start = int(cursor) if cursor and cursor.isdigit() else 0
         size = 50
         page = items[start : start + size]

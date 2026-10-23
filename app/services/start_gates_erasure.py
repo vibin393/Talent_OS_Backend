@@ -22,7 +22,7 @@ async def _where(db: AsyncSession, ctx: ErasureContext) -> Any:
     where = StartGate.placement_id.in_(placements)
     retained = ctx.retained.get("start_gates", set())
     if retained:
-        where = where & StartGate.id.not_in(retained)
+        where = where & StartGate.id.not_in(retained)  # type: ignore[assignment]
     return where
 
 

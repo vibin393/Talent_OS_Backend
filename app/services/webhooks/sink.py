@@ -24,7 +24,7 @@ INSTALLATION_CHANGED = "app.installation_changed"
 def candidate_of(row: Any) -> uuid.UUID | None:
     data = dict(row.data or {})
     if row.subject_type == "candidate":
-        return row.subject_id
+        return row.subject_id  # type: ignore[no-any-return]
     raw = data.get("candidate_id")
     if raw:
         try:

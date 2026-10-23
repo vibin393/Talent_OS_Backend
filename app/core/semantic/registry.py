@@ -97,7 +97,7 @@ def _check_field(source: str, key: str, fd: Any, joins: Mapping[str, JoinDef]) -
         raise _fail(f"{where} must be a FieldDef")
     if not isinstance(key, str) or not FIELD_KEY_RE.match(key):
         raise _fail(f"{where}: bad field key")
-    if getattr(fd, "pii_class", None) is None or fd.pii_class == "":
+    if getattr(fd, "pii_class", None) is None or fd.pii_class == "":  # type: ignore[comparison-overlap]
         raise _fail(f"{where}: pii_class is required")
     if fd.pii_class == "protected":
         raise _fail(f"{where}: pii_class 'protected' can never be registered (AD-47)")
@@ -119,13 +119,13 @@ def _check_field(source: str, key: str, fd: Any, joins: Mapping[str, JoinDef]) -
         join = joins.get(fd.join)
         if join is None:
             raise _fail(f"{where}: unknown join {fd.join!r}")
-    unknown_ops = set(fd.ops) - OPS
+    unknown_ops = set(fd.ops) - OPS  # type: ignore[operator]
     if unknown_ops:
         raise _fail(f"{where}: unknown operators {sorted(unknown_ops)}")
-    bad_ops = set(fd.ops) - OPS_BY_TYPE[fd.type]
+    bad_ops = set(fd.ops) - OPS_BY_TYPE[fd.type]  # type: ignore[operator]
     if bad_ops:
         raise _fail(f"{where}: operators {sorted(bad_ops)} do not fit type {fd.type!r}")
-    unknown_aggs = set(fd.aggs) - AGGS
+    unknown_aggs = set(fd.aggs) - AGGS  # type: ignore[operator]
     if unknown_aggs:
         raise _fail(f"{where}: unknown aggregates {sorted(unknown_aggs)}")
     if {"sum", "avg"} & set(fd.aggs) and fd.type not in _NUMERIC:

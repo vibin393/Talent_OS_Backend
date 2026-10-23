@@ -99,7 +99,7 @@ async def get_settings(ctx: RequestContext, db: AsyncSession) -> CrmSettingsOut:
 async def update_settings(ctx: RequestContext, db: AsyncSession, data: CrmSettingsUpdate) -> CrmSettingsOut:
     row = await _row(db)
     if data.stage_probabilities is not None:
-        row.stage_probabilities = {**(row.stage_probabilities or {}), **data.stage_probabilities}
+        row.stage_probabilities = {**(row.stage_probabilities or {}), **data.stage_probabilities}  # type: ignore[dict-item]
     if data.default_currency is not None:
         row.default_currency = data.default_currency
     await db.flush()

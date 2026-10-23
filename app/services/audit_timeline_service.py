@@ -193,7 +193,7 @@ async def timeline(
     )
     if cursor:
         at, row_id = _decode_cursor(cursor)
-        stmt = stmt.where(tuple_(AuditLog.occurred_at, AuditLog.id) < tuple_(at, row_id))
+        stmt = stmt.where(tuple_(AuditLog.occurred_at, AuditLog.id) < tuple_(at, row_id))  # type: ignore[arg-type]
     stmt = stmt.order_by(AuditLog.occurred_at.desc(), AuditLog.id.desc()).limit(limit + 1)
     rows = list((await db.execute(stmt)).scalars().all())
     more = len(rows) > limit

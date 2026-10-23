@@ -51,7 +51,7 @@ async def create_task(
         title=f"{spec.name} could not finish: {label}"[:200],
         notes=f"AI agent run {run.id} ({spec.name}) stopped: {label}. Continue manually: {link}",
         owner_id=owner_user_id or run.owner_user_id,
-        entity_type=entity_type,
+        entity_type=entity_type,  # type: ignore[arg-type]
         entity_id=entity_id,
         due_at=datetime.now(UTC) + timedelta(hours=24),
         due_all_day=False,

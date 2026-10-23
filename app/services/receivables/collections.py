@@ -64,7 +64,7 @@ async def get_client_settings(ctx: RequestContext, db: AsyncSession, client_id: 
 
 async def put_client_settings(ctx: RequestContext, db: AsyncSession, client_id: uuid.UUID, data: CollectionSettingsIn) -> CollectionSettingsOut:
     values = dict(data.model_dump(exclude_unset=True).items())
-    stmt = pg_insert(ClientCollectionSettings.__table__).values(tenant_id=tenant_of(db), client_id=client_id, **values)
+    stmt = pg_insert(ClientCollectionSettings.__table__).values(tenant_id=tenant_of(db), client_id=client_id, **values)  # type: ignore[arg-type]
     if values:
         stmt = stmt.on_conflict_do_update(index_elements=["tenant_id", "client_id"], set_=values)
     else:

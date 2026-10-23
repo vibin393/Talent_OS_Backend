@@ -284,13 +284,13 @@ async def finalize(
     if status == "failed":
         emit(db, AgentRunFailed(
             tenant_id=run.tenant_id, run_id=run.id, agent_key=run.agent_key, reason_code=reason or "failed",
-            subject_type=run.subject_type, subject_id=run.subject_id, owner_user_id=run.owner_user_id,
+            subject_type=run.subject_type, subject_id=run.subject_id, owner_user_id=run.owner_user_id,  # type: ignore[arg-type]
             fallback_task_id=run.fallback_task_id,
         ))  # fmt: skip
     else:
         emit(db, AgentRunFinished(
             tenant_id=run.tenant_id, run_id=run.id, agent_key=run.agent_key, status=status, reason_code=reason,
-            subject_type=run.subject_type, subject_id=run.subject_id, owner_user_id=run.owner_user_id,
+            subject_type=run.subject_type, subject_id=run.subject_id, owner_user_id=run.owner_user_id,  # type: ignore[arg-type]
         ))  # fmt: skip
     audit.record(
         "agent_run.finished", "agent_run", run.id, session=db, agent_key=run.agent_key, status=status,
@@ -628,7 +628,7 @@ async def _process_call(
     grounded_ok = False
     if tool.egress and tool.send_intent is not None:
         tctx = state.ToolCtx(
-            request=ctx, db=db, actor=ai_actor(run), run_id=run.id, agent_key=run.agent_key, owner_user_id=run.owner_user_id,
+            request=ctx, db=db, actor=ai_actor(run), run_id=run.id, agent_key=run.agent_key, owner_user_id=run.owner_user_id,  # type: ignore[arg-type]
             subject=(run.subject_type, run.subject_id) if run.subject_id else None,  # type: ignore[arg-type]
             idempotency_key=call.idempotency_key, execution="agent",
         )  # fmt: skip
@@ -688,7 +688,7 @@ async def _process_call(
         return None
     if mode.mode == "suggest" and call.risk != "read":
         tctx = state.ToolCtx(
-            request=ctx, db=db, actor=ai_actor(run), run_id=run.id, agent_key=run.agent_key, owner_user_id=run.owner_user_id,
+            request=ctx, db=db, actor=ai_actor(run), run_id=run.id, agent_key=run.agent_key, owner_user_id=run.owner_user_id,  # type: ignore[arg-type]
             subject=(run.subject_type, run.subject_id) if run.subject_id else None,  # type: ignore[arg-type]
             idempotency_key=call.idempotency_key, execution="agent",
         )  # fmt: skip
@@ -935,7 +935,7 @@ async def _apply(
                 blocks.append(tool_result_block(use.id, '{"status": "waiting"}'))
                 end = ("waiting", None, None, False)
                 continue
-            reason = await _process_call(
+            reason = await _process_call(  # type: ignore[assignment]
                 db, run, spec, call, step_no=step_no, gates=gates, allow=allow, config=config, policies=policies,
                 counts=counts, ctx=claim.ctx,
             )  # fmt: skip
@@ -959,7 +959,7 @@ async def _apply(
         run.next_step_no = step_no + 1
         run.lease_owner, run.lease_expires_at = None, None
         if end is not None:
-            status, reason, data, wants_fallback = end
+            status, reason, data, wants_fallback = end  # type: ignore[assignment]
             if status == "waiting":
                 await db.flush()
                 await locks.release(run.tenant_id, run.agent_key, _subject_key(run), run.id)

@@ -53,12 +53,12 @@ SET_STATUSES = ("active", "retired")
 SELF_ID_SOURCES = ("apply", "portal")
 SELECTION_POINTS = ("stage_transition", "ai_match_threshold", "ai_screening_pass", "assessment_pass")
 # Epic 65 (412_02, C-16): Phase 4 agent selection points (implemented in ``fairness.aedt_p4``).
-SELECTION_POINTS += ("agent_shortlist_added", "agent_screening_flag_advanced", "agent_draft_rating_accepted")
+SELECTION_POINTS += ("agent_shortlist_added", "agent_screening_flag_advanced", "agent_draft_rating_accepted")  # type: ignore[assignment]
 RUN_METHODS = ("selection_rate", "scoring_rate", "both")
 RUN_STATUSES = ("queued", "running", "completed", "failed")
 AEDT_FEATURES = ("ai_match", "ai_screening", "assessment_autoscore", "other")
 # Epic 53 (400_01, AD-71): Phase 4 agent features (inventory entries are seeded by Epic 65).
-AEDT_FEATURES += (
+AEDT_FEATURES += (  # type: ignore[assignment]
     "agent_sourcing", "agent_screening", "agent_voice_screening", "agent_interview_assist",
 )  # fmt: skip
 AEDT_STATUSES = ("active", "retired", "inactive")

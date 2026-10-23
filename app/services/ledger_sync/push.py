@@ -185,7 +185,7 @@ async def push_one(ctx: RequestContext, db: AsyncSession, ei: EntityInstall, ada
         return SyncResult(processed=1, failed=1)
     if result.external_ref:
         rec.external_ref = result.external_ref[:200]
-        await integrations_service.link(db, ei.installation_id, kind, doc.id, rec.external_ref, local_version=str(version))
+        await integrations_service.link(db, ei.installation_id, kind, doc.id, rec.external_ref, local_version=str(version))  # type: ignore[arg-type]
     rec.external_number = str(getattr(doc, "number", None) or getattr(doc, "human_id", ""))[:60] or None
     rec.synced_version, rec.synced_at = version, now()
     set_status(db, rec, "synced", message=result.message)
@@ -235,7 +235,7 @@ async def discover(db: AsyncSession, installation_id: uuid.UUID, legal_entity_id
             await ensure_record(db, installation_id, kind, doc)
             created += 1
     if payments:
-        stmt = select(Payment).where(Payment.legal_entity_id == legal_entity_id, Payment.reversed_at.is_(None))
+        stmt = select(Payment).where(Payment.legal_entity_id == legal_entity_id, Payment.reversed_at.is_(None))  # type: ignore[assignment]
         if from_date:
             stmt = stmt.where(Payment.payment_date >= from_date)
         if to_date:
@@ -254,9 +254,9 @@ async def push_records(ctx: RequestContext, db: AsyncSession, ei: EntityInstall,
     for kind, model in _MODELS.items():  # synced documents cancelled since -> out_of_sync (version bump)
         cancelled = (
             await db.execute(
-                select(model).join(LedgerSyncRecord, LedgerSyncRecord.document_id == model.id).where(
+                select(model).join(LedgerSyncRecord, LedgerSyncRecord.document_id == model.id).where(  # type: ignore[attr-defined]
                     LedgerSyncRecord.installation_id == ei.installation_id, LedgerSyncRecord.document_kind == kind,
-                    LedgerSyncRecord.status == "synced", LedgerSyncRecord.document_version < 2, model.status == "cancelled",
+                    LedgerSyncRecord.status == "synced", LedgerSyncRecord.document_version < 2, model.status == "cancelled",  # type: ignore[attr-defined]
                 )
             )
         ).scalars()  # fmt: skip

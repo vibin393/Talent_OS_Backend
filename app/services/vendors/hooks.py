@@ -336,7 +336,7 @@ def _subscribe() -> None:
     subscribe(ApplicationStageChanged, _on_stage)
     for cls in (InterviewScheduled, InterviewRescheduled, InterviewCancelled, InterviewCompleted):
         subscribe(cls, _on_interview)
-    for cls in (PlacementCreated, PlacementStatusChanged, PlacementDropped):
+    for cls in (PlacementCreated, PlacementStatusChanged, PlacementDropped):  # type: ignore[assignment]
         subscribe(cls, _on_placement)
 
 

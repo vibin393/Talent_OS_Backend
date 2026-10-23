@@ -422,7 +422,7 @@ class MicrosoftProvider:
         async with self._client() as client:
             for _ in range(50):
                 if url is None:
-                    break
+                    break  # type: ignore[unreachable]
                 resp = await client.get(url, params=params, headers=headers)
                 params = None
                 if resp.status_code == 410 or "syncStateNotFound" in resp.text[:2000]:

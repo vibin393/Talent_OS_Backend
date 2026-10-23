@@ -35,7 +35,7 @@ def months_between(start: Any, end: Any) -> int:
     months = (end.year - start.year) * 12 + (end.month - start.month)
     if end.day < start.day:
         months -= 1
-    return max(months, 0)
+    return max(months, 0)  # type: ignore[no-any-return]
 
 
 def compute(

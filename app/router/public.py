@@ -171,12 +171,12 @@ async def offer_letter(token: LinkToken) -> Response:
 @router.post("/links/{token}/viewed", response_model=CandidateOfferView)
 async def offer_viewed(token: LinkToken, request: Request, _: ActionGuard) -> CandidateOfferView:
     """Record the view; posted once by the page from JavaScript (mail-scanner GETs never record one)."""
-    return await public_links_service.offer_viewed(token, get_context().ip, request.headers.get("user-agent"))
+    return await public_links_service.offer_viewed(token, get_context().ip, request.headers.get("user-agent"))  # type: ignore[no-any-return]
 
 
 @router.post("/links/{token}/accept", response_model=OfferActionOut)
 async def offer_accept(token: LinkToken, body: AcceptIn, request: Request, _: ActionGuard) -> OfferActionOut:
-    return await public_links_service.offer_accept(
+    return await public_links_service.offer_accept(  # type: ignore[no-any-return]
         token,
         typed_name=body.typed_name,
         version_no=body.version_no,
@@ -191,7 +191,7 @@ async def offer_accept(token: LinkToken, body: AcceptIn, request: Request, _: Ac
 async def offer_decline(
     token: LinkToken, body: DeclineIn, request: Request, _: ActionGuard
 ) -> OfferActionOut:
-    return await public_links_service.offer_decline(
+    return await public_links_service.offer_decline(  # type: ignore[no-any-return]
         token,
         reason=body.reason,
         version_no=body.version_no,

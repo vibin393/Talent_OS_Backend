@@ -204,7 +204,7 @@ def _subscribe() -> None:
         (AgentRunFailed, run_failed),
     ):
         fn.__name__ = f"scheduling_agent_on_{cls.__name__}_{fn.__name__}"
-        subscribe(cls, fn)
+        subscribe(cls, fn)  # type: ignore[arg-type]
 
 
 # ---------------------------------------------------------------- settings / retention / audit

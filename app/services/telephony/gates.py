@@ -211,7 +211,7 @@ async def recording_decision(
 
     jurisdiction = (session.confirmed_country, session.confirmed_region) if session.confirmed_country else None
     decision = await gate.check(
-        reader_ctx(session.tenant_id, session.owner_user_id, ctx), db, purpose=PURPOSE_RECORDING,
+        reader_ctx(session.tenant_id, session.owner_user_id, ctx), db, purpose=PURPOSE_RECORDING,  # type: ignore[arg-type]
         candidate_id=session.candidate_id, confirmed_jurisdiction=jurisdiction,
     )  # fmt: skip
     if decision.rule in ("not_permitted", "unknown"):

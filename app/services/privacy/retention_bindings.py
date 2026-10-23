@@ -91,7 +91,7 @@ def until_for(anchor: date | None, cls: RetentionClass) -> date | None:
     if anchor is None:
         return None
     base = fy_end(anchor) if cls.anchor == "fy_end" else anchor
-    return base + relativedelta(months=cls.min_retention_months)
+    return base + relativedelta(months=cls.min_retention_months)  # type: ignore[no-any-return]
 
 
 async def anchor_of(db: AsyncSession, binding: RetentionBinding, row: BoundRow) -> date | None:

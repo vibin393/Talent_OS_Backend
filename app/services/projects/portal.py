@@ -55,7 +55,7 @@ async def _project(ctx: RequestContext, db: AsyncSession, project_id: uuid.UUID)
     ).scalar_one_or_none()
     if row is None:
         raise NotFound("Project not found")
-    return row
+    return row  # type: ignore[no-any-return]
 
 
 def _deliverable_out(d: Deliverable) -> DeliverablePortalOut:

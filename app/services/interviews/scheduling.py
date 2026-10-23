@@ -268,7 +268,7 @@ async def _resolve_participants(
                 raise ValidationFailed("Internal interviewers need a user_id", code="invalid_participant")
             if not p.email:
                 raise ValidationFailed("External participants need an email", code="invalid_participant")
-            email, name, default_tz = p.email.lower(), p.name or None, interview_tz
+            email, name, default_tz = p.email.lower(), p.name or None, interview_tz  # type: ignore[assignment]
         if email in seen or (candidate_email and email == candidate_email):
             raise ValidationFailed(
                 "A participant appears twice", code="duplicate_participant", details={"email": email}

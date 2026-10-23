@@ -176,7 +176,7 @@ def _subscribe() -> None:
         (ScreeningRunNeeded, run_needed),
     ):
         fn.__name__ = f"screening_agent_on_{event_cls.__name__}"
-        subscribe(event_cls, fn)
+        subscribe(event_cls, fn)  # type: ignore[arg-type]
 
 
 # ---------------------------------------------------------------- settings / ★ / retention / audit

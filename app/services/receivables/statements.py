@@ -72,7 +72,7 @@ async def build(
         rows = (await db.execute(select(f.c.doc_id, f.c.amt, f.c.d, f.c.kind).where(f.c.doc_id.in_(list(by_id)), f.c.d >= start, f.c.d <= end))).all()
         for doc_id, amt, d, kind in rows:
             doc = by_id[doc_id]
-            raw.append((d, 2, kind, doc.number, f"{LABELS.get(kind, kind)} - {doc.number}", -Decimal(amt)))
+            raw.append((d, 2, kind, doc.number, f"{LABELS.get(kind, kind)} - {doc.number}", -Decimal(amt)))  # type: ignore[arg-type]
     stmt = select(ClientCredit).where(ClientCredit.client_id == client_id, ClientCredit.currency == currency, ClientCredit.credit_date >= start, ClientCredit.credit_date <= end)
     if legal_entity_id is not None:
         stmt = stmt.where(ClientCredit.legal_entity_id == legal_entity_id)
@@ -81,7 +81,7 @@ async def build(
     raw.sort(key=lambda r: (r[0], r[1]))
     running = opening
     lines: list[StatementLine] = []
-    for d, _, kind, ref, desc, delta in raw:
+    for d, _, kind, ref, desc, delta in raw:  # type: ignore[assignment]
         if delta == 0:
             continue
         running = q2(running + delta)

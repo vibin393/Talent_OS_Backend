@@ -388,12 +388,12 @@ async def _candidate_reminder(
 
         try:
             async with db.begin_nested():
-                result = await sending.send(
+                result = await sending.send(  # type: ignore[assignment]
                     ctx, db, "whatsapp", settings.whatsapp_template_id,
                     [RecipientRef(entity_type="candidate", entity_id=interview.candidate_id)],
                     {"candidate_id": str(interview.candidate_id), "demand_id": str(interview.demand_id)}, origin="agent",
                 )  # fmt: skip
-            first = result.results[0] if result.results else None
+            first = result.results[0] if result.results else None  # type: ignore[attr-defined]
             if first is not None and first.message_id is not None:
                 sent = sent or "whatsapp"
                 message_id = message_id or first.message_id

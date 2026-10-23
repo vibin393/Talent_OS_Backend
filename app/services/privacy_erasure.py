@@ -149,7 +149,7 @@ async def consent_signal(db: AsyncSession, candidate_ids: list[uuid.UUID]) -> di
         .where(Consent.candidate_id.in_(candidate_ids), Consent.granted_at.is_not(None))
         .group_by(Consent.candidate_id)
     )
-    return dict(rows.tuples().all())
+    return dict(rows.tuples().all())  # type: ignore[arg-type]
 
 
 register_erasure_handler(ConsentsHandler())

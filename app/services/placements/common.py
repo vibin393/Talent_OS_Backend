@@ -107,7 +107,7 @@ def tenant_of(ctx: RequestContext, db: AsyncSession) -> uuid.UUID:
 async def names(
     db: AsyncSession,
     *,
-    candidate_ids: set[uuid.UUID] = frozenset(),
+    candidate_ids: set[uuid.UUID] = frozenset(),  # type: ignore[assignment]
     client_ids: set[uuid.UUID] = frozenset(),  # type: ignore[assignment]
 ) -> tuple[dict[uuid.UUID, str], dict[uuid.UUID, str]]:
     from app.models.candidates import Candidate

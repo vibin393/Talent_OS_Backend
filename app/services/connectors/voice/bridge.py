@@ -62,7 +62,7 @@ class BridgedCallRequest:
     def from_payload(cls, payload: Mapping[str, Any]) -> "BridgedCallRequest":
         data = {f.name: payload.get(f.name) for f in dataclasses.fields(cls) if f.name in payload}
         data["voice_call_id"] = uuid.UUID(str(payload["voice_call_id"]))
-        return cls(**data)
+        return cls(**data)  # type: ignore[arg-type]
 
     def __repr__(self) -> str:  # never print phone numbers
         return f"BridgedCallRequest(voice_call_id={self.voice_call_id}, record={self.record})"

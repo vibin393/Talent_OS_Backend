@@ -83,7 +83,7 @@ async def upsert_mail_settings(
     row.enabled = body.enabled
     # Write-only password: set only when provided; omit/null keeps the stored ciphertext.
     if "smtp_password" in body.model_fields_set and body.smtp_password is not None:
-        row.smtp_password_encrypted = encrypt_str(SECRET_PURPOSE, body.smtp_password)
+        row.smtp_password_encrypted = encrypt_str(SECRET_PURPOSE, body.smtp_password)  # type: ignore[arg-type]
     row.updated_by = getattr(ctx.principal, "id", None)
     await db.flush()
     out = _to_out(row)

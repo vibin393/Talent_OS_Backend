@@ -549,7 +549,7 @@ class AttachmentFacade:
         to_entity_id: uuid.UUID,
         *,
         only_ids: Iterable[uuid.UUID] | None = None,
-    ) -> list[uuid.UUID]:
+    ) -> list[uuid.UUID]:  # type: ignore[valid-type]
         stmt = select(Document).where(
             Document.owner_kind == entity_type, Document.category.in_(ATTACHMENT_CATEGORIES)
         )

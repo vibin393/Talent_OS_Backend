@@ -93,7 +93,7 @@ def build(event: IcsEvent) -> bytes:
     vevent.add("status", "CANCELLED" if event.cancelled else "CONFIRMED")
     vevent.add("transp", "OPAQUE")
     cal.add_component(vevent)
-    return cal.to_ical()
+    return cal.to_ical()  # type: ignore[no-any-return]
 
 
 def attachment(event: IcsEvent) -> EmailAttachment:

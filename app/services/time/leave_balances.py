@@ -97,8 +97,8 @@ async def post_entry(
 ) -> uuid.UUID | None:
     """Append one ledger row (idempotent by ``source_ref``) and update the locked cache row. Returns the new
     entry id, or ``None`` when nothing was inserted (zero days or already posted)."""
-    if isinstance(days, float):
-        msg = "float in the leave ledger"
+    if isinstance(days, float):  # type: ignore[unreachable]
+        msg = "float in the leave ledger"  # type: ignore[unreachable]
         raise TypeError(msg)
     days = q_days(days)
     if days == 0:
@@ -283,7 +283,7 @@ async def adjust(ctx: RequestContext, db: AsyncSession, data: AdjustBalanceIn) -
 def _overlap_days(p: Placement, first: date, last: date) -> set[date]:
     start = p.actual_start_date or p.planned_start_date
     if start is None:
-        return set()
+        return set()  # type: ignore[unreachable]
     end = p.end_date or p.planned_end_date or last
     lo, hi = max(start, first), min(end, last)
     if hi < lo:

@@ -83,7 +83,7 @@ async def _contact_refs(tctx: Any, client_id: uuid.UUID) -> list[tuple[str, uuid
 
 
 async def _version(probe: Any) -> str:
-    return await _svc().balance_version(probe.db, probe.args.client_id)
+    return await _svc().balance_version(probe.db, probe.args.client_id)  # type: ignore[no-any-return]
 
 
 async def _client_name(tctx: Any, client_id: uuid.UUID) -> str:
@@ -122,7 +122,7 @@ class ActivityRow(_Out):
     date: date
     document_id: uuid.UUID | None
     ptp_status: str | None
-    ptp_date: date | None
+    ptp_date: date | None  # type: ignore[valid-type]
 
 
 class ContextOut(_Out):
@@ -414,7 +414,7 @@ async def _note_preview(tctx: Any, args: NoteIn) -> ProposalPreview:  # ruff: ig
 
 
 CLIENT = ScopeRule(resource="client", target_arg="client_id")
-CLIENT_VERSIONED = ScopeRule(resource="client", target_arg="client_id", version=_version)
+CLIENT_VERSIONED = ScopeRule(resource="client", target_arg="client_id", version=_version)  # type: ignore[arg-type]
 
 TOOLS: tuple[ToolSpec, ...] = (
     ToolSpec(

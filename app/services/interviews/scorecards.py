@@ -427,7 +427,7 @@ class _system:  # ruff: ignore[invalid-class-name] - tiny context manager
         self._cm.__enter__()
 
     async def __aexit__(self, *exc: object) -> None:
-        self._cm.__exit__(*exc)
+        self._cm.__exit__(*exc)  # type: ignore[arg-type]
 
 
 def _secure_link_actor_ok() -> bool:

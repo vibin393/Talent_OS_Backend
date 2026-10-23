@@ -35,8 +35,8 @@ LEDGER_MODELS: dict[str, Any] = {"billing": BillingPosting, "payable": PayablePo
 
 def _rate(seg: Any, ledger: str, payee_kind: str) -> Decimal | None:
     if ledger == "billing":
-        return seg.bill_rate
-    return seg.vendor_rate if payee_kind == "vendor" else seg.pay_rate
+        return seg.bill_rate  # type: ignore[no-any-return]
+    return seg.vendor_rate if payee_kind == "vendor" else seg.pay_rate  # type: ignore[no-any-return]
 
 
 async def _items(

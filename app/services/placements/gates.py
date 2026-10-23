@@ -408,7 +408,7 @@ async def handle_upstream(
             await db.flush()
             await joining.evaluate_dropout(ctx, db, p)
             return 0
-        status: GateStatus = {
+        status: GateStatus = {  # type: ignore[no-redef]
             "OnboardingCaseCreated": "pending",
             "OnboardingCaseCompleted": "met",
             "OnboardingCaseCancelled": "not_required",
@@ -419,7 +419,7 @@ async def handle_upstream(
         touched += 1
     elif name == "CredentialStatusChanged":
         to_status = str(payload.get("to_status") or "")
-        status: GateStatus = "met" if to_status in _MET else "failed" if to_status in _FAILED else "pending"
+        status: GateStatus = "met" if to_status in _MET else "failed" if to_status in _FAILED else "pending"  # type: ignore[no-redef]
         for raw in payload.get("mandatory_for_placement_ids") or ():
             p = await _placement_or_none(db, raw)
             if p is None or p.status not in (*PRE_START, "active"):

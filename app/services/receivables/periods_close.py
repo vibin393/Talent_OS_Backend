@@ -174,7 +174,7 @@ async def report(ctx: RequestContext, db: AsyncSession, legal_entity_id: uuid.UU
         ("write_off", WriteOff, WriteOff.write_off_date, WriteOff.amount),
         ("client_credit", ClientCredit, ClientCredit.credit_date, ClientCredit.amount),
     ):
-        q = select(model.id, col, amount, getattr(model, "currency", None) if hasattr(model, "currency") else None).where(model.legal_entity_id == legal_entity_id, model.prior_period.is_(True))
+        q = select(model.id, col, amount, getattr(model, "currency", None) if hasattr(model, "currency") else None).where(model.legal_entity_id == legal_entity_id, model.prior_period.is_(True))  # type: ignore[arg-type]
         for rid, d, amt, ccy in (await db.execute(q)).all():
             items.append(PriorPeriodItem(kind=kind, id=rid, date=d, amount=amt, currency=ccy or "INR"))
     return PeriodReportOut(events=events, prior_period_items=items)

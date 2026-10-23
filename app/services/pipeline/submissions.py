@@ -161,7 +161,7 @@ async def margin_preview(ctx: RequestContext, db: AsyncSession, data: MarginPrev
     if data.demand_id is not None:
         demand = await demand_for(ctx, db, data.demand_id, SUBMIT)
         employment_type = demand.employment_type or employment_type
-        rate_unit = demand.rate_unit or rate_unit
+        rate_unit = demand.rate_unit or rate_unit  # type: ignore[assignment]
         currency = demand.currency
     m = await _margin_for(
         db,

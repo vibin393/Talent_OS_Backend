@@ -337,7 +337,7 @@ async def get_screening(
 def _link_of(row: Any) -> uuid.UUID:
     if row.status != "sent" or row.secure_link_id is None:
         raise ConflictError("This screening is no longer open", code="screening_not_open")
-    return row.secure_link_id
+    return row.secure_link_id  # type: ignore[no-any-return]
 
 
 async def screening_consent(

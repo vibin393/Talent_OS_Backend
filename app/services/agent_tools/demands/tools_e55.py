@@ -455,7 +455,7 @@ async def _flag_preview(tctx: Any, args: FlagDuplicateIn) -> ProposalPreview:
 
 # ================================================================ registration
 _DEMAND = ScopeRule(resource="demand", target_arg="demand_id")
-_DEMAND_V = ScopeRule(resource="demand", target_arg="demand_id", version=demand_version)
+_DEMAND_V = ScopeRule(resource="demand", target_arg="demand_id", version=demand_version)  # type: ignore[arg-type]
 _MESSAGE = ScopeRule(resource="demand_intake_message", target_arg="message_id")
 
 TOOLS: tuple[ToolSpec, ...] = (

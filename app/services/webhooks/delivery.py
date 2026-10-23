@@ -64,7 +64,7 @@ def retry_after_seconds(value: str | None) -> int | None:
     except (TypeError, ValueError):
         return None
     if when is None:
-        return None
+        return None  # type: ignore[unreachable]
     return max(0, int((when - now()).total_seconds()))
 
 
@@ -104,7 +104,7 @@ async def post(db: AsyncSession, tenant_id: uuid.UUID, url: str, body: bytes, he
         return Outcome(None, int((time.monotonic() - start) * 1000), error=err)
     ms = int((time.monotonic() - start) * 1000)
     code = resp.status_code
-    err = None if 200 <= code < 300 else ("redirect_not_followed" if 300 <= code < 400 else f"http_{code}")
+    err = None if 200 <= code < 300 else ("redirect_not_followed" if 300 <= code < 400 else f"http_{code}")  # type: ignore[assignment]
     return Outcome(
         code, ms, err, excerpt(resp.content), resp.content,
         retry_after=retry_after_seconds(resp.headers.get("retry-after")),

@@ -141,7 +141,7 @@ async def to_out(db: AsyncSession, row: Audience) -> AudienceOut:
                 kind=s.kind,
                 talent_pool_id=s.talent_pool_id,
                 segment_id=s.segment_id,
-                name=pools.get(s.talent_pool_id) if s.kind == "pool" else segs.get(s.segment_id),
+                name=pools.get(s.talent_pool_id) if s.kind == "pool" else segs.get(s.segment_id),  # type: ignore[arg-type]
             )
             for s in sources
         ],

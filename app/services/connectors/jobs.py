@@ -200,14 +200,14 @@ async def execute(ctx: RequestContext, db: AsyncSession, job_id: uuid.UUID) -> t
         await _notify(ctx, db, job, outcome, error)
         return DEFERRED, delay
     except (ConnectorAuthError, ConnectorPermanentError) as exc:
-        outcome, error = ("auth_failed" if isinstance(exc, ConnectorAuthError) else "permanent"), exc
+        outcome, error = ("auth_failed" if isinstance(exc, ConnectorAuthError) else "permanent"), exc  # type: ignore[assignment]
         logger.warning("Connector job {} failed permanently: {}", job.id, exc.code)
         job.last_error = f"{exc.code}: {exc}"[:MAX_ERROR]
         _dead(db, job)
     except Exception as exc:  # provider errors: bounded retry
         logger.warning("Connector job {} attempt {} failed: {}", job.id, job.attempts, type(exc).__name__)
         job.last_error = f"{type(exc).__name__}: {exc}"[:MAX_ERROR]
-        error = exc
+        error = exc  # type: ignore[assignment]
         if job.attempts >= job.max_attempts:
             outcome = "dead"
             _dead(db, job)

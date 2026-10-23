@@ -61,7 +61,7 @@ async def _counts(
         ]
     else:
         status_rows = list(
-            (
+            (  # type: ignore[arg-type]
                 await db.execute(
                     select(group, m.status, m.suppression_reason, func.count())
                     .where(*where)
@@ -70,7 +70,7 @@ async def _counts(
             ).all()
         )
         event_rows = list(
-            (
+            (  # type: ignore[arg-type]
                 await db.execute(
                     select(group, ev.kind, func.count(func.distinct(ev.campaign_message_id)))
                     .join(m, m.id == ev.campaign_message_id)

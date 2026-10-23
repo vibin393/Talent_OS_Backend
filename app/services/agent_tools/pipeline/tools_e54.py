@@ -76,7 +76,7 @@ async def _list(tctx: Any, args: PipelineListIn) -> ToolOutcome:
             )  # fmt: skip
     else:
         assert args.candidate_id is not None
-        for a in await pipeline_service.candidate_applications(ctx, tctx.db, args.candidate_id):
+        for a in await pipeline_service.candidate_applications(ctx, tctx.db, args.candidate_id):  # type: ignore[assignment]
             rows.append(
                 PipelineRow(
                     id=a.id, candidate_id=args.candidate_id, candidate_name=None, demand_id=a.demand_id,

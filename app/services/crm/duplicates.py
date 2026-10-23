@@ -61,7 +61,7 @@ async def find_duplicates(
     if name:
         conds.append(Client.name == name)
     if domain:
-        conds.append(_client_domain_expr() == domain)
+        conds.append(_client_domain_expr() == domain)  # type: ignore[arg-type]
     if gst:
         conds.append(Client.gstin == gst)
     if conds:

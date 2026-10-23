@@ -60,12 +60,12 @@ def apply(tables: dict[str, dict[str, Cell]], groups: Sequence[Iterable[CellRef]
             msg = "suppression did not converge"
             raise RuntimeError(msg)
         for refs in group_refs:
-            cells = [(r, tables[r[0]][r[1]]) for r in refs]
-            sup = [c for _, c in cells if c.suppressed]
+            cells = [(r, tables[r[0]][r[1]]) for r in refs]  # type: ignore[assignment]
+            sup = [c for _, c in cells if c.suppressed]  # type: ignore[has-type, misc]
             if not sup:
                 continue
             free = sorted(
-                ((r, c) for r, c in cells if not c.suppressed and not c.unknown),
+                ((r, c) for r, c in cells if not c.suppressed and not c.unknown),  # type: ignore[has-type, misc]
                 key=lambda rc: (rc[1].applicants, rc[0][1]),
             )
             pick: Cell | None = None
@@ -74,8 +74,8 @@ def apply(tables: dict[str, dict[str, Cell]], groups: Sequence[Iterable[CellRef]
             else:
                 n = len(sup[0].measures())
                 for i in range(n):
-                    if sum(c.measures()[i] for c in sup) == 0 and any(
-                        c.measures()[i] > 0 for _, c in cells if not c.suppressed
+                    if sum(c.measures()[i] for c in sup) == 0 and any(  # type: ignore[misc]
+                        c.measures()[i] > 0 for _, c in cells if not c.suppressed  # type: ignore[has-type]
                     ):
                         pick = next((c for _, c in free if c.measures()[i] > 0), None)
                         if pick is not None:

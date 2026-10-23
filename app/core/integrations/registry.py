@@ -100,7 +100,7 @@ def register_connector(manifest: ConnectorManifest) -> None:
     """Register a manifest (idempotent for the same object / equal content; a different manifest under an existing
     key is recorded as a catalogue error). Structural errors raise ``ManifestError`` at once."""
     if not isinstance(manifest, ConnectorManifest):
-        msg = f"not a ConnectorManifest: {manifest!r}"
+        msg = f"not a ConnectorManifest: {manifest!r}"  # type: ignore[unreachable]
         raise ManifestError(msg)
     if not _KEY_RE.match(manifest.key):
         msg = f"invalid connector key {manifest.key!r}"
@@ -186,7 +186,7 @@ def validate_manifest(m: ConnectorManifest) -> list[str]:
     if unknown:
         errs.append(f"{p} unknown capabilities {unknown}")
     if m.publisher != "platform":
-        errs.append(f"{p} in-process connectors are platform-authored only")
+        errs.append(f"{p} in-process connectors are platform-authored only")  # type: ignore[unreachable]
     bad_modes = sorted(k for k in m.adapters if k not in ADAPTER_MODES)
     if bad_modes:
         errs.append(f"{p} unknown adapter modes {bad_modes}")

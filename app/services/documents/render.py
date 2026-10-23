@@ -129,7 +129,7 @@ def markdown_flowables(markdown: str, styles: dict[str, ParagraphStyle] | None =
 
 
 def _numbered_canvas(header: str, footer_prefix: str) -> type[rl_canvas.Canvas]:
-    class NumberedCanvas(rl_canvas.Canvas):
+    class NumberedCanvas(rl_canvas.Canvas):  # type: ignore[misc]
         """Two-pass canvas so the footer can say ``page x of y``."""
 
         def __init__(self, *args: Any, **kwargs: Any) -> None:

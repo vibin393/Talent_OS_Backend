@@ -25,7 +25,7 @@ async def event_types(_: PublicPrincipalDep) -> Any:
     return [
         EventTypeOut(
             type=t, version=s.version, description=s.description, scopes=list(s.scopes),
-            schema=s.data_model.model_json_schema(), example=dict(s.example or {}),
+            schema=s.data_model.model_json_schema(), example=dict(s.example or {}),  # type: ignore[attr-defined]
         )
         for t, s in sorted(registry.catalogue().items())
     ]

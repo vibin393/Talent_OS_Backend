@@ -326,17 +326,17 @@ def run(draft: Mapping[str, Any], context: CheckContext) -> list[dict[str, str]]
             extra = [k for k in values if k not in tpl.variables]
             if missing or extra:
                 out.append(finding("template_variable_limit", BLOCK, "template_values", ", ".join([*missing, *extra])))
-            for key, value in values.items():
+            for key, value in values.items():  # type: ignore[assignment]
                 field = f"template_values.{key}"
                 if channel == "sms":
-                    if len(value) > DLT_VALUE_MAX:
-                        out.append(finding("template_variable_limit", BLOCK, field, f"{len(value)} characters"))
-                    elif _URL_RE.search(value) and key not in tpl.url_variables:
+                    if len(value) > DLT_VALUE_MAX:  # type: ignore[arg-type]
+                        out.append(finding("template_variable_limit", BLOCK, field, f"{len(value)} characters"))  # type: ignore[arg-type]
+                    elif _URL_RE.search(value) and key not in tpl.url_variables:  # type: ignore[call-overload]
                         out.append(finding("template_variable_limit", BLOCK, field, "URL in a text variable"))
                 else:
-                    if len(value) > WA_VALUE_MAX:
-                        out.append(finding("template_variable_limit", BLOCK, field, f"{len(value)} characters"))
-                    elif "\n" in value or "\t" in value or "    " in value:
+                    if len(value) > WA_VALUE_MAX:  # type: ignore[arg-type]
+                        out.append(finding("template_variable_limit", BLOCK, field, f"{len(value)} characters"))  # type: ignore[arg-type]
+                    elif "\n" in value or "\t" in value or "    " in value:  # type: ignore[operator]
                         out.append(finding("template_variable_limit", BLOCK, field, "newline, tab or 4+ spaces"))
 
     # spam heuristics (warn)

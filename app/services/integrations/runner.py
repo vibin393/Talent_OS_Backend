@@ -424,7 +424,7 @@ async def fire_due(ctx: RequestContext, db: AsyncSession, *, now: datetime | Non
             continue
         plans[inst.id] = (inst, manifest, configs)
         for spec in specs:
-            for cid in [c.id for c in configs] if spec.per_legal_entity else [None]:
+            for cid in [c.id for c in configs] if spec.per_legal_entity else [None]:  # type: ignore[list-item]
                 await db.execute(
                     pg_insert(ConnectorSyncState)
                     .values(
@@ -458,7 +458,7 @@ async def fire_due(ctx: RequestContext, db: AsyncSession, *, now: datetime | Non
     fired = 0
     for st in due:
         inst, manifest, configs = plans[st.installation_id]
-        spec = manifest.sync_job(st.job_key)
+        spec = manifest.sync_job(st.job_key)  # type: ignore[assignment]
         if spec is None or spec.trigger != "schedule" or sync_handler(manifest, spec.key) is None:
             continue
         config_id = st.config_id or configs[0].id

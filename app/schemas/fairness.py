@@ -161,7 +161,7 @@ class RunCreate(BaseModel):
     date_from: date
     date_to: date
     filters: RunFilters = Field(default_factory=RunFilters)
-    intersections: list[Intersection] = Field(default_factory=lambda: ["gender×age_band"], max_length=2)
+    intersections: list[Intersection] = Field(default_factory=lambda: ["gender×age_band"], max_length=2)  # type: ignore[arg-type]
 
     @model_validator(mode="after")
     def _check(self) -> "RunCreate":

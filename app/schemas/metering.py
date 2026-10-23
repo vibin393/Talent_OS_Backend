@@ -41,7 +41,7 @@ class UsageQuery(_Range):
 
     installation_id: uuid.UUID | None = None
     api_key_id: uuid.UUID | None = None
-    group_by: list[UsageGroup] = Field(default_factory=lambda: ["day", "unit"], min_length=1)
+    group_by: list[UsageGroup] = Field(default_factory=lambda: ["day", "unit"], min_length=1)  # type: ignore[arg-type]
 
 
 class UsageRow(BaseModel):

@@ -298,7 +298,7 @@ def tenant_session(
     back on error."""
     scope = org if org is not None else OrgScope.internal()
     if not isinstance(scope, OrgScope):
-        msg = "org must be an OrgScope"
+        msg = "org must be an OrgScope"  # type: ignore[unreachable]
         raise TypeError(msg)
     return _unit_of_work(
         {

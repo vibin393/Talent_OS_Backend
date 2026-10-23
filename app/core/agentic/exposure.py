@@ -112,7 +112,7 @@ def validate_exposures() -> list[str]:
                 problems.append(
                     f"exposure {key}: an egress tool needs mcp_scope 'mcp:propose' (never direct)"
                 )
-        if exp.surfaces & PORTAL_SURFACES and not key.startswith(PORTAL_TOOL_PREFIX):
+        if exp.surfaces & PORTAL_SURFACES and not key.startswith(PORTAL_TOOL_PREFIX):  # type: ignore[operator]
             problems.append(
                 f"exposure {key}: a portal surface needs a portal tool (key prefix '{PORTAL_TOOL_PREFIX}')"
             )

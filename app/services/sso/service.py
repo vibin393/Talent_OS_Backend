@@ -123,12 +123,12 @@ def _config_for(kind: str, oidc: Any, saml: Any) -> dict[str, Any]:
             raise ValidationFailed(
                 "OIDC settings are required", code="sso_config_required", details={"field": "oidc"}
             )
-        return oidc.model_dump(exclude_none=True)
+        return oidc.model_dump(exclude_none=True)  # type: ignore[no-any-return]
     if saml is None:
         raise ValidationFailed(
             "SAML settings are required", code="sso_config_required", details={"field": "saml"}
         )
-    return saml.model_dump(exclude_none=True)
+    return saml.model_dump(exclude_none=True)  # type: ignore[no-any-return]
 
 
 async def _check_roles(db: AsyncSession, role_ids: list[uuid.UUID], field: str) -> None:

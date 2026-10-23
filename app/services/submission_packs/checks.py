@@ -153,7 +153,7 @@ async def check_margin(db: AsyncSession, f: Facts, rates: Rates) -> PackCheckDet
             "Below minimum margin — approval is requested when you submit.",
             PackLink(kind="approval", path="/approvals"), **details,
         )  # fmt: skip
-    return _d("margin", "pass", "margin_ok", "The margin meets the minimum.", **details)
+    return _d("margin", "pass", "margin_ok", "The margin meets the minimum.", **details)  # type: ignore[arg-type]
 
 
 # ---------------------------------------------------------------- rate card

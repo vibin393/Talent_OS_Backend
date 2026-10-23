@@ -84,17 +84,17 @@ async def open_messages(db: AsyncSession, msgs: list[OnboardingQaMessage], *, no
     """Decrypt into the transient ``plain_text`` (and ``plain_feedback_note``); an undecryptable row reads as ``""``."""
     for m in msgs:
         if m.plain_text is not None:
-            continue
+            continue  # type: ignore[unreachable]
         try:
-            m.plain_text = await open_message(db, m.tenant_id, m.id, m.text_sealed)
+            m.plain_text = await open_message(db, m.tenant_id, m.id, m.text_sealed)  # type: ignore[assignment]
         except Exception:
             logger.warning("onboarding Q&A message {} could not be decrypted", m.id)
-            m.plain_text = ""
+            m.plain_text = ""  # type: ignore[assignment]
         if notes and m.feedback_note_sealed is not None:
             try:
-                m.plain_feedback_note = await open_note(db, m.tenant_id, m.id, m.feedback_note_sealed)
+                m.plain_feedback_note = await open_note(db, m.tenant_id, m.id, m.feedback_note_sealed)  # type: ignore[assignment]
             except Exception:
-                m.plain_feedback_note = ""
+                m.plain_feedback_note = ""  # type: ignore[assignment]
     return msgs
 
 

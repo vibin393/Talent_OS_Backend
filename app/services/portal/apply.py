@@ -68,7 +68,7 @@ async def _attribution(db: AsyncSession, tenant_id: uuid.UUID, token: str | None
     if not token or _attribution_resolver is None:
         return None
     try:
-        return await _attribution_resolver(db, tenant_id, token)
+        return await _attribution_resolver(db, tenant_id, token)  # type: ignore[no-any-return]
     except Exception:  # an attribution problem never blocks an application
         return None
 

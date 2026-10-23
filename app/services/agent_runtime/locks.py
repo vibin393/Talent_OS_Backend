@@ -83,7 +83,7 @@ async def _redis(fn_name: str, key: str, token: str, limit: int, ttl: float) -> 
         if existing is not None:
             return True
         rank = await client.zrank(key, token)
-        if rank is None or rank >= limit:
+        if rank is None or rank >= limit:  # type: ignore[operator]
             await client.zrem(key, token)
             return False
         return True

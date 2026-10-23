@@ -364,8 +364,8 @@ async def create_request(
         )
         config_id = template.esign_config_id
     else:
-        version = await db.get(DocumentVersion, document_version_id)
-        doc = await db.get(Document, version.document_id) if version else None
+        version = await db.get(DocumentVersion, document_version_id)  # type: ignore[assignment]
+        doc = await db.get(Document, version.document_id) if version else None  # type: ignore[assignment]
         if version is None or doc is None or (check_access and not await repository.can_access(ctx, db, doc)):
             raise not_found("Document version")
         f = await db.get(StoredFile, version.file_id)

@@ -296,7 +296,7 @@ _SPECS = (
         key="voice.propose_candidate_updates", version=VERSION, owner_epic=OWNER_EPIC, title="Propose candidate field updates",
         description="Proposes updating candidate fields mapped by the questionnaire from the reviewed voice screen answers. Always a Proposal for a person to approve.",
         input_model=_In, output_model=UpdatesOut, permissions=("candidate:update",), risk="high",
-        scope=ScopeRule(resource="voice_session", target_arg="voice_session_id", cross_subject=True, version=_updates_version),
+        scope=ScopeRule(resource="voice_session", target_arg="voice_session_id", cross_subject=True, version=_updates_version),  # type: ignore[arg-type]
         handler=_updates, preview=_updates_preview, max_calls_per_run=1,
     ),
 )  # fmt: skip

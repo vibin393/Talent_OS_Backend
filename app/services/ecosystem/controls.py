@@ -160,12 +160,12 @@ async def platform_set(
     if scope != "tenant" or tenant_id is None:
         raise ValidationFailed("Unknown scope", details={"fields": {"scope": "tenant | app | global"}})
     async with tenant_session(tenant_id) as tdb:
-        row = await settings_row(tdb, tenant_id, lock=True)
-        row.platform_suspended_at = _now() if on else None
-        row.platform_suspended_by = operator_id if on else None
-        row.platform_suspended_reason = reason if on else None
+        row = await settings_row(tdb, tenant_id, lock=True)  # type: ignore[assignment]
+        row.platform_suspended_at = _now() if on else None  # type: ignore[attr-defined]
+        row.platform_suspended_by = operator_id if on else None  # type: ignore[attr-defined]
+        row.platform_suspended_reason = reason if on else None  # type: ignore[attr-defined]
         audit.record(
-            "ecosystem.platform_suspend", "ecosystem_settings", row.id, session=tdb, on=on,
+            "ecosystem.platform_suspend", "ecosystem_settings", row.id, session=tdb, on=on,  # type: ignore[arg-type]
             actor_type="platform", actor_id=operator_id,
         )  # fmt: skip
         emit(

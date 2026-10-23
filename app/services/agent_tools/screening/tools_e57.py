@@ -494,7 +494,7 @@ _SPECS = (
             resource="screening_conversation",
             target_arg="conversation_id",
             cross_subject=True,
-            version=_updates_version,
+            version=_updates_version,  # type: ignore[arg-type]
         ),
         handler=_updates,
         preview=_updates_preview,

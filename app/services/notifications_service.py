@@ -648,7 +648,7 @@ def _split(recipients: Iterable[uuid.UUID | Recipient]) -> tuple[set[uuid.UUID],
     external: set[Recipient] = set()
     for r in recipients:
         if r is None:
-            continue
+            continue  # type: ignore[unreachable]
         if isinstance(r, Recipient):
             if r.kind == "user":
                 users.add(r.id)
@@ -686,7 +686,7 @@ async def _deliver_external(
             continue
         portal_href = _external_link(definition, recipient.kind, payload, content)
         org_values = {"client_id": None, "vendor_id": None, "candidate_id": None}
-        org_values[_ORG_COLUMN[recipient.kind]] = info.org[1]
+        org_values[_ORG_COLUMN[recipient.kind]] = info.org[1]  # type: ignore[assignment]
         inserted = (
             await db.execute(
                 pg_insert(Notification)

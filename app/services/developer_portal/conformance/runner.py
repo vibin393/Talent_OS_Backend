@@ -179,10 +179,10 @@ async def _webhook_probes(ctx: Any, tenant_id: uuid.UUID, sub: WebhookSubscripti
         except Exception:
             logger.exception("Conformance test event failed")
         real_secrets = await signing.signing_secrets(ctx, db, sub.id)
-    event_id, _, body = test_events.sample_envelope(event_type, tenant_id, "sandbox")
-    bad = signing.headers([secrets.token_urlsafe(24).encode()], body, event_id=event_id, event_type=event_type, delivery_id=uuid.uuid4(), attempt=1, test=True)
+    event_id, _, body = test_events.sample_envelope(event_type, tenant_id, "sandbox")  # type: ignore[arg-type]
+    bad = signing.headers([secrets.token_urlsafe(24).encode()], body, event_id=event_id, event_type=event_type, delivery_id=uuid.uuid4(), attempt=1, test=True)  # type: ignore[arg-type]
     invalid = await _post_raw(sub.url, body, bad)
-    return valid, invalid, real_secrets, event_type
+    return valid, invalid, real_secrets, event_type  # type: ignore[return-value]
 
 
 async def finish_run(owner: Owner, run_id: uuid.UUID) -> RunOut:
@@ -212,7 +212,7 @@ async def finish_run(owner: Owner, run_id: uuid.UUID) -> RunOut:
                "occurred_at": now().strftime("%Y-%m-%dT%H:%M:%SZ"), "livemode": False,
                "data": {"installation_id": str(row.installation_id), "change": "uninstalled"}}  # fmt: skip
         body = signing.canonical(doc)
-        hook["uninstall_status"] = await _post_raw(sub.url, body, signing.headers(real_secrets, body, event_id=doc["id"], event_type="app.installation_changed", delivery_id=uuid.uuid4(), attempt=1))
+        hook["uninstall_status"] = await _post_raw(sub.url, body, signing.headers(real_secrets, body, event_id=doc["id"], event_type="app.installation_changed", delivery_id=uuid.uuid4(), attempt=1))  # type: ignore[arg-type]
     await fault_injection.update_state(row.installation_id, webhook=hook)
     async with platform_session() as db:
         fresh = await db.get(ConformanceRun, run_id)

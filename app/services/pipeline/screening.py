@@ -621,7 +621,7 @@ async def apply_candidate_updates(
             details={"fields": dict.fromkeys(unknown, "No proposed value")},
         )
     applied = await candidates.update_candidate_fields(
-        ctx, db, row.candidate_id, {f: by_field[f] for f in fields}
+        ctx, db, row.candidate_id, {f: by_field[f] for f in fields}  # type: ignore[index]
     )
     audit.record("screening.candidate_updates_applied", "screening", row.id, session=db, fields=applied)
     return ApplyUpdatesOut(applied=applied)

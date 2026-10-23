@@ -239,7 +239,7 @@ def _apply(op: str, ftype: str, actual: Any, value: Any) -> bool:
         return bool(left == right)
     if op == "ne":
         return bool(left != right)
-    return {"gt": left > right, "gte": left >= right, "lt": left < right, "lte": left <= right}[op]
+    return {"gt": left > right, "gte": left >= right, "lt": left < right, "lte": left <= right}[op]  # type: ignore[no-any-return]
 
 
 def evaluate(

@@ -320,7 +320,7 @@ async def list_(ctx: RequestContext, db: AsyncSession, q: ProposalQuery) -> Page
         )
         for key in rows.scalars():
             if await _role_member(db, principal, key):
-                role_keys.append(key)
+                role_keys.append(key)  # type: ignore[arg-type]
     mine = or_(
         AgentProposal.assignee_user_id == principal.id,
         AgentProposal.owner_user_id == principal.id,
@@ -430,7 +430,7 @@ async def execute(
         actor=ActorRef("user", approver.id) if approver.type == "user" else ActorRef(approver.type, approver.id),  # type: ignore[arg-type]
         run_id=p.run_id,
         agent_key=p.agent_key,
-        owner_user_id=p.owner_user_id,
+        owner_user_id=p.owner_user_id,  # type: ignore[arg-type]
         subject=subject,
         idempotency_key=f"proposal:{p.id}",
         execution=execution,  # type: ignore[arg-type]

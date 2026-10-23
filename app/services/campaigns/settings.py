@@ -193,7 +193,7 @@ async def update_settings(
         if value is None:
             continue
         merged_nums: dict[str, Any] = dict(getattr(row, field) or {})
-        for ch in CHANNELS:
+        for ch in CHANNELS:  # type: ignore[assignment]
             n = getattr(value, ch)
             if n is None:
                 continue

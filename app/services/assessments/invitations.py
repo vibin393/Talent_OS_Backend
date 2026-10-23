@@ -692,7 +692,7 @@ async def send_reminders(db: AsyncSession) -> int:
         emit(
             db,
             AssessmentReminderDue(
-                tenant_id=inv.tenant_id, invitation_id=inv.id, candidate_id=inv.candidate_id
+                tenant_id=inv.tenant_id, invitation_id=inv.id, candidate_id=inv.candidate_id  # type: ignore[arg-type]
             ),
         )
         email = await candidate_email(db, inv.candidate_id)  # type: ignore[arg-type]

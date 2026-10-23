@@ -105,7 +105,7 @@ class OrgFreeBusyGoogle(FakeAdapterBase):
         head = _b64url(json.dumps({"alg": "RS256", "typ": "JWT"}).encode())
         body = _b64url(json.dumps(claims).encode())
         key = serialization.load_pem_private_key(info["private_key"].encode(), password=None)
-        sig = key.sign(f"{head}.{body}".encode(), padding.PKCS1v15(), hashes.SHA256())  # type: ignore[union-attr,call-arg]
+        sig = key.sign(f"{head}.{body}".encode(), padding.PKCS1v15(), hashes.SHA256())  # type: ignore[arg-type, call-arg, union-attr]
         resp = await self.ctx.http.post(
             "https://oauth2.googleapis.com/token",
             data={"grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer", "assertion": f"{head}.{body}.{_b64url(sig)}"},

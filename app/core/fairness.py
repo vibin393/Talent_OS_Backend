@@ -59,7 +59,7 @@ async def _redis_acquire(key: str, token: str, limit: int) -> bool:
         await client.zadd(key, {token: now + LEASE_SECONDS})
         rank = await client.zrank(key, token)
         await client.expire(key, LEASE_SECONDS)
-        if rank is None or rank >= limit:
+        if rank is None or rank >= limit:  # type: ignore[operator]
             await client.zrem(key, token)
             return False
         return True

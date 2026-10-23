@@ -79,7 +79,7 @@ TOOLS: tuple[ToolSpec, ...] = (
         key="pipeline.add_candidate", mcp_exposed=True, version=VERSION, owner_epic=OWNER_EPIC, title="Add to pipeline",
         description="Propose adding a shortlisted candidate to the Demand's pipeline (first stage) with a short reason. A person approves it; only use when the run settings allow pipeline-add proposals.",
         input_model=AddIn, output_model=AddOut, permissions=("application:create", "demand:read"), risk="high",
-        scope=ScopeRule(resource="demand", target_arg="demand_id", candidate_arg="candidate_id", version=_in_pipeline),
+        scope=ScopeRule(resource="demand", target_arg="demand_id", candidate_arg="candidate_id", version=_in_pipeline),  # type: ignore[arg-type]
         handler=_add, preview=_preview,
     ),
 )  # fmt: skip

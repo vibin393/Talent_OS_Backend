@@ -172,7 +172,7 @@ async def resolve_skills(
             }
         if entry["skill_key"] in seen:
             continue
-        seen.add(entry["skill_key"])
+        seen.add(entry["skill_key"])  # type: ignore[arg-type]
         out.append(entry)
     return out, errors
 

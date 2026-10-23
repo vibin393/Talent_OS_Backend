@@ -307,7 +307,7 @@ def _spec(type_: str, source: type, subject_type: str, subject_attr: str, model:
           scopes: tuple[str, ...], description: str) -> PublicEventSpec:  # fmt: skip
     return PublicEventSpec(
         type=type_, version=1, source=source, subject_type=subject_type,
-        subject_id=lambda e, _a=subject_attr: getattr(e, _a), data_model=model, build=build, scopes=scopes,
+        subject_id=lambda e, _a=subject_attr: getattr(e, _a), data_model=model, build=build, scopes=scopes,  # type: ignore[misc]
         description=description,
     )  # fmt: skip
 

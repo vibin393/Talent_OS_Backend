@@ -205,7 +205,7 @@ async def process_run(
                 async with sessions(tenant_id) as db:
                     audit.set_actor(db, "system", None)
                     await _call_expire(binding, db, chunk, action)
-                    audit.record(
+                    audit.record(  # type: ignore[misc]
                         "retention.expired", "retention_run", run_id, session=db, class_key=class_key,
                         table=table_name, count=len(chunk), action=action,
                     )  # fmt: skip

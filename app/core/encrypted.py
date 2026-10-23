@@ -151,7 +151,7 @@ def seal_json(tenant_id: uuid.UUID, purpose: TenantKeyPurpose, value: Any) -> Se
 def open_json(tenant_id: uuid.UUID, purpose: TenantKeyPurpose, sealed: Sealed) -> Any:
     """Decrypt a sealed JSON document (service paths only; aggregate-only readers for ``demographic``)."""
     if not isinstance(sealed, Sealed):
-        msg = "open_json needs a Sealed value"
+        msg = "open_json needs a Sealed value"  # type: ignore[unreachable]
         raise TypeError(msg)
     return json.loads(tenant_fernet(tenant_id, purpose).decrypt(sealed.token.encode("ascii")).decode("utf-8"))
 

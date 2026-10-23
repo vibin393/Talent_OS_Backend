@@ -265,7 +265,7 @@ async def process_run(tenant_id: uuid.UUID, run_id: uuid.UUID, *, sessions: Sess
                 async with sessions(tenant_id) as db:
                     er_row = await erasure.get_run(db, erasure_run_id)
                     if er_row is not None:
-                        item = (
+                        item = (  # type: ignore[assignment]
                             await db.execute(
                                 select(RetentionRunItem).where(
                                     RetentionRunItem.run_id == run_id, RetentionRunItem.candidate_id == er_row.candidate_id

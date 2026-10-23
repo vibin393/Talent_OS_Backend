@@ -143,7 +143,7 @@ async def load_timeline(
     mine = list(
         (
             await db.execute(
-                select(ProjectAssignment).where(ProjectAssignment.project_id == project.id, _overlaps(lo, hi))
+                select(ProjectAssignment).where(ProjectAssignment.project_id == project.id, _overlaps(lo, hi))  # type: ignore[arg-type]
             )
         ).scalars()
     )
@@ -191,7 +191,7 @@ async def _worker_rows(
             .join(Placement, Placement.id == ProjectAssignment.placement_id)
             .where(
                 or_(Placement.candidate_id.in_(candidates), ProjectAssignment.placement_id.in_(ids)),
-                _overlaps(lo, hi),
+                _overlaps(lo, hi),  # type: ignore[arg-type]
             )
         )
     ).all()

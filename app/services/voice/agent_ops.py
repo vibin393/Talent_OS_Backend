@@ -68,7 +68,7 @@ async def policy_view(db: AsyncSession, row: VoiceSession) -> dict[str, Any]:
     d = await gate.check(
         rctx,
         db,
-        purpose=common.PURPOSE_RECORDING,
+        purpose=common.PURPOSE_RECORDING,  # type: ignore[arg-type]
         candidate_id=row.candidate_id,
         confirmed_jurisdiction=confirmed,
     )

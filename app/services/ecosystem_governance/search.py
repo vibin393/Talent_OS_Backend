@@ -84,7 +84,7 @@ def register() -> None:
         fn = getattr(jd, "quick_search", None)
         if callable(fn):
             async def search_board_postings(ctx: RequestContext, db: AsyncSession, q: str, kind: str, limit: int) -> list[QuickHit]:
-                return await fn(ctx, db, q, kind, limit)
+                return await fn(ctx, db, q, kind, limit)  # type: ignore[no-any-return]
 
             gs.register_global_group(
                 "board_posting", "Board postings", "posting:publish_external", search_board_postings

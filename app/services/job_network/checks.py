@@ -61,10 +61,10 @@ def _external_contact(title: str, description_text: str, verified_domains: froze
         if domain not in verified_domains:
             return m.group(0)
     for rx in (_PHONE_RE, _E164_RE):
-        m = rx.search(blob)
+        m = rx.search(blob)  # type: ignore[assignment]
         if m:
             return m.group(0)
-    m = _HANDLE_RE.search(blob)
+    m = _HANDLE_RE.search(blob)  # type: ignore[assignment]
     return m.group(0) if m else None
 
 

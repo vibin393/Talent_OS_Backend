@@ -83,7 +83,7 @@ def _tenant(ctx: RequestContext) -> uuid.UUID:
 def _user_id(ctx: RequestContext) -> uuid.UUID:
     pid = getattr(ctx.principal, "id", None)
     assert pid is not None
-    return pid
+    return pid  # type: ignore[no-any-return]
 
 
 def _require_grant(ctx: RequestContext) -> None:
@@ -1008,7 +1008,7 @@ async def list_installations(
         stmt = stmt.where(AppInstallation.status != "uninstalled")
     if q.cursor:
         (created,), last_id = decode_cursor(q.cursor)
-        stmt = stmt.where(tuple_(AppInstallation.created_at, AppInstallation.id) > tuple_(created, last_id))
+        stmt = stmt.where(tuple_(AppInstallation.created_at, AppInstallation.id) > tuple_(created, last_id))  # type: ignore[arg-type]
     rows = list(
         (
             await db.execute(stmt.order_by(AppInstallation.created_at, AppInstallation.id).limit(q.limit + 1))

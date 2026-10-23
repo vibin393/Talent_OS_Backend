@@ -16,7 +16,7 @@ from decimal import Decimal
 from typing import Any
 
 from jinja2 import StrictUndefined, TemplateSyntaxError, UndefinedError, nodes
-from jinja2.sandbox import SandboxedEnvironment, SecurityError
+from jinja2.sandbox import SandboxedEnvironment, SecurityError  # type: ignore[attr-defined]
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -107,7 +107,7 @@ def referenced_fields(body: str) -> list[str]:
     found: list[str] = []
     inner: set[int] = set()
     for node in tree.find_all((nodes.Getattr, nodes.Getitem)):
-        inner.add(id(node.node))
+        inner.add(id(node.node))  # type: ignore[attr-defined]
     for node in tree.find_all((nodes.Getattr, nodes.Getitem, nodes.Name)):
         if id(node) in inner:
             continue

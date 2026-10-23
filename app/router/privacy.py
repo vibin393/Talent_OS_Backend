@@ -257,19 +257,19 @@ async def retention_classes(
 
 @router.post("/retention/classes", response_model=RetentionClassOut, status_code=status.HTTP_201_CREATED)
 async def create_retention_class(body: RetentionClassCreate, _: RetentionManage, db: TenantDBSessionDep) -> RetentionClassOut:
-    return await privacy.retention_classes.create_class(get_context(), db, body)
+    return await privacy.retention_classes.create_class(get_context(), db, body)  # type: ignore[no-any-return]
 
 
 @router.patch("/retention/classes/{class_id}", response_model=RetentionClassOut)
 async def update_retention_class(
     class_id: uuid.UUID, body: RetentionClassUpdate, _: RetentionManage, db: TenantDBSessionDep
 ) -> RetentionClassOut:
-    return await privacy.retention_classes.update_class(get_context(), db, class_id, body)
+    return await privacy.retention_classes.update_class(get_context(), db, class_id, body)  # type: ignore[no-any-return]
 
 
 @router.post("/retention/classes/{class_id}/archive", response_model=RetentionClassOut)
 async def archive_retention_class(class_id: uuid.UUID, _: RetentionManage, db: TenantDBSessionDep) -> RetentionClassOut:
-    return await privacy.retention_classes.archive_class(get_context(), db, class_id)
+    return await privacy.retention_classes.archive_class(get_context(), db, class_id)  # type: ignore[no-any-return]
 
 
 @router.get("/retention/bindings", response_model=list[RetentionBindingOut])

@@ -170,7 +170,7 @@ async def start(c: RequestContext, db: AsyncSession, event_id: uuid.UUID, entry_
                 stage_id=await interview_stage(c, db, app_demand, None), start_local=local(at, event.timezone), timezone=event.timezone,
                 duration_minutes=event.avg_interview_minutes, mode="video" if event.kind == "virtual" else "in_person",
                 meeting_url=event.video_link if event.kind == "virtual" else None,
-                location=(f"{event.venue or event.name} - {station.label}" if station else event.venue)[:500] if (station or event.venue) else None,
+                location=(f"{event.venue or event.name} - {station.label}" if station else event.venue)[:500] if (station or event.venue) else None,  # type: ignore[index]
                 participants=[ParticipantIn(kind="interviewer_internal", user_id=u) for u in interviewers],
                 send_invites=False, allow_past=True,
             ),

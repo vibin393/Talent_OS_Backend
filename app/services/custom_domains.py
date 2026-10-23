@@ -59,7 +59,7 @@ async def _dns_txt(name: str) -> list[str]:
         return []
     out: list[str] = []
     for record in answer:
-        out.append(b"".join(record.strings).decode("utf-8", errors="replace"))
+        out.append(b"".join(record.strings).decode("utf-8", errors="replace"))  # type: ignore[attr-defined]
     return out
 
 
@@ -193,7 +193,7 @@ def _tenant(ctx: RequestContext) -> uuid.UUID:
 
 
 async def _live(pdb: object, tenant_id: uuid.UUID) -> CustomDomain | None:
-    return (
+    return (  # type: ignore[no-any-return]
         await pdb.execute(  # type: ignore[attr-defined]
             select(CustomDomain).where(CustomDomain.tenant_id == tenant_id, CustomDomain.status != "removed")
         )

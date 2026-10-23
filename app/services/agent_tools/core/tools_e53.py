@@ -71,7 +71,7 @@ def _agent_label(tctx: Any) -> str:
     try:
         return get_agent(tctx.agent_key).name
     except KeyError:
-        return tctx.agent_key
+        return tctx.agent_key  # type: ignore[no-any-return]
 
 
 async def _owner_name(tctx: Any) -> str:

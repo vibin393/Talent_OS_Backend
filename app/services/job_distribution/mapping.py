@@ -151,7 +151,7 @@ async def field_schema(adapter: Any, installation_id: uuid.UUID) -> FieldSchemaD
     except Exception:  # a board schema problem never blocks the preview of other boards
         schema = FieldSchemaDTO(fields=())
     _schema_cache[installation_id] = (time.monotonic() + SCHEMA_TTL_SECONDS, schema)
-    return schema
+    return schema  # type: ignore[no-any-return]
 
 
 def clear_schema_cache() -> None:

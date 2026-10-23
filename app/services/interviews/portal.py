@@ -153,7 +153,7 @@ async def client_submit_scorecard(
     from app.services import interviews_service
 
     return str(
-        await interviews_service.public_scorecard_submit(await _open_link(ctx, db, participant_id), data)
+        await interviews_service.public_scorecard_submit(await _open_link(ctx, db, participant_id), data)  # type: ignore[arg-type]
     )
 
 

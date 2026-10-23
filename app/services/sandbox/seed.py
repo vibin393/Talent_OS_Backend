@@ -219,9 +219,9 @@ def build_plan(size: Size, seed: int) -> SeedPlan:
                 "application": j,
                 "candidate": app["candidate"],
                 "demand": app["demand"],
-                "client": dem["client"],
+                "client": dem["client"],  # type: ignore[index]
                 "start_offset_days": -rng.randint(28, 120),
-                "bill_rate": dem["bill_rate"],
+                "bill_rate": dem["bill_rate"],  # type: ignore[index]
             }
         )
 
@@ -238,7 +238,7 @@ def build_plan(size: Size, seed: int) -> SeedPlan:
     invoices: list[dict[str, Any]] = []
     for k in range(n["invoices"]):
         pl = k % n["placements"]
-        hours = sum(sum(t["hours"]) for t in timesheets if t["placement"] == pl) or 40
+        hours = sum(sum(t["hours"]) for t in timesheets if t["placement"] == pl) or 40  # type: ignore[assignment]
         rate = placements[pl]["bill_rate"]
         invoices.append({"placement": pl, "client": placements[pl]["client"], "hours": hours, "rate": rate})
 
@@ -643,8 +643,8 @@ async def read_content(db: AsyncSession) -> dict[str, Any]:
                 p.human_id,
                 ckey[p.candidate_id],
                 cname[p.client_id],
-                akey.get(p.application_id),
-                dkey.get(p.demand_id),
+                akey.get(p.application_id),  # type: ignore[arg-type]
+                dkey.get(p.demand_id),  # type: ignore[arg-type]
                 str(p.planned_start_date),
                 p.status,
             )

@@ -685,7 +685,7 @@ async def confirm_vendor_reset(ctx: RequestContext, data: PortalPasswordResetCon
 # ================================================================ second factor (both kinds)
 async def _load_account(db: AsyncSession, kind: Kind, principal_id: uuid.UUID) -> Account | None:
     model = ClientUser if kind == "client_user" else VendorUser
-    return (
+    return (  # type: ignore[return-value]
         await db.execute(select(model).where(model.id == principal_id).with_for_update())
     ).scalar_one_or_none()
 

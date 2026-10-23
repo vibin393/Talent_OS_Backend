@@ -716,7 +716,7 @@ async def detail_out(
         for uid, name in (await db.execute(select(User.id, User.name).where(User.id.in_(owner_ids)))).all():
             owners[uid] = name
     out.items = [
-        OffboardingItemOut.model_validate(i).model_copy(update={"owner_name": owners.get(i.owner_id)})
+        OffboardingItemOut.model_validate(i).model_copy(update={"owner_name": owners.get(i.owner_id)})  # type: ignore[arg-type]
         for i in items
     ]
     fb = (
@@ -741,7 +741,7 @@ async def detail_out(
     if conv is not None:
         c = ConversionOut.model_validate(conv)
         out.conversion = c if compensation else c.model_copy(update={"offered_compensation": None})
-    return out
+    return out  # type: ignore[no-any-return]
 
 
 async def get_detail(ctx: RequestContext, db: AsyncSession, case_id: uuid.UUID) -> OffboardingCase:

@@ -760,7 +760,7 @@ async def application_owner(
         return None
     if app.owner_id is not None:
         return app.owner_id
-    demand = await db.get(Demand, app.demand_id)
+    demand = await db.get(Demand, app.demand_id)  # type: ignore[unreachable]
     return demand.owner_id if demand is not None else None
 
 

@@ -200,7 +200,7 @@ async def get_or_mint_ats_key(tenant_id: uuid.UUID) -> dict[str, str | None]:
     stored_key: str | None = None
     if cred is not None:
         try:
-            stored_key = decrypt_str(CRED_PURPOSE, cred.api_key_encrypted)
+            stored_key = decrypt_str(CRED_PURPOSE, cred.api_key_encrypted)  # type: ignore[arg-type]
         except InvalidToken:
             stored_key = None
 
@@ -212,7 +212,7 @@ async def get_or_mint_ats_key(tenant_id: uuid.UUID) -> dict[str, str | None]:
         key = stored_key
     else:
         api_key_id, key = await _mint(tenant_id)
-        encrypted = encrypt_str(CRED_PURPOSE, key)
+        encrypted = encrypt_str(CRED_PURPOSE, key)  # type: ignore[arg-type]
         async with platform_session() as pdb:
             row = await pdb.get(TenantIntegrationCredential, (tenant_id, ATS_SERVICE))
             if row is None:

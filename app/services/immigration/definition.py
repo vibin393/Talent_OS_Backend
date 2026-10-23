@@ -41,7 +41,7 @@ def validate(raw: dict[str, Any] | VisaTypeDefinition) -> VisaTypeDefinition:
         try:
             d = VisaTypeDefinition.model_validate(raw)
         except ValidationError as exc:
-            first = exc.errors()[0] if exc.errors() else {}
+            first = exc.errors()[0] if exc.errors() else {}  # type: ignore[typeddict-item]
             loc = ".".join(str(p) for p in first.get("loc", ()))
             raise _fail(
                 "visa_definition_invalid",

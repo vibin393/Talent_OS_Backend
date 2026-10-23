@@ -102,7 +102,7 @@ async def _resolve_target(db: AsyncSession, to_stage: uuid.UUID | str) -> Pipeli
         try:
             to_stage = uuid.UUID(to_stage)
         except ValueError:
-            return await stages.stage_by_key(db, to_stage)
+            return await stages.stage_by_key(db, to_stage)  # type: ignore[arg-type]
     await stages.ensure_default_stages(db)
     row = await db.get(PipelineStage, to_stage)
     if row is None:
@@ -433,7 +433,7 @@ async def add_candidates(
                 source=data.source,
                 source_ref=data.source_ref,
                 actor=actor,
-                owner_id=owner,
+                owner_id=owner,  # type: ignore[arg-type]
             )
             items.append(ApplicationCreateItem(candidate_id=cid, status="created", application_id=app.id))
         except ConflictError as exc:
@@ -484,7 +484,7 @@ async def add_candidate(
     actor = actor_kind_of(ctx)
     owner = actor_id(ctx) if actor == "user" else demand.owner_id
     app = await create_application(
-        ctx, db, demand.id, candidate_id, source=source, source_ref=source_ref, actor=actor, owner_id=owner
+        ctx, db, demand.id, candidate_id, source=source, source_ref=source_ref, actor=actor, owner_id=owner  # type: ignore[arg-type]
     )
     await _sync_demand_counts(ctx, db, demand.id)
     return app.id
@@ -601,7 +601,7 @@ async def build_outs(db: AsyncSession, apps: Iterable[Application]) -> list[Appl
     for a in rows:
         stage = smap[a.stage_id]
         c = cands.get(a.candidate_id, {})
-        sub = latest.get(a.id)
+        sub = latest.get(a.id)  # type: ignore[assignment]
         out.append(
             ApplicationOut(
                 id=a.id,

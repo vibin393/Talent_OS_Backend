@@ -45,7 +45,7 @@ def median(values: list[float]) -> float | None:
 def days_between(a: Any, b: Any) -> float:
     """Days from ``a`` to ``b`` (datetimes: fractional; dates: whole days)."""
     if hasattr(a, "hour") and hasattr(b, "hour"):
-        return (b - a).total_seconds() / 86400.0
+        return (b - a).total_seconds() / 86400.0  # type: ignore[no-any-return]
     da = a.date() if hasattr(a, "hour") else a
     dbb = b.date() if hasattr(b, "hour") else b
     return float((dbb - da).days)

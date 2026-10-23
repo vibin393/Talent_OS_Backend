@@ -31,7 +31,7 @@ def _t(name: str, spec: str) -> TableClause:
     cols: list[ColumnClause[Any]] = []
     for part in spec.split():
         col, kind = part.split(":")
-        cols.append(column(col, _TYPES[kind]))
+        cols.append(column(col, _TYPES[kind]))  # type: ignore[arg-type]
     return table(name, *cols)
 
 

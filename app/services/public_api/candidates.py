@@ -79,7 +79,7 @@ async def list_candidates(
     created_since: datetime | None = None, source: str | None = None, owner_id: uuid.UUID | None = None, tag: uuid.UUID | None = None,
 ) -> dict[str, Any]:  # fmt: skip
     _, principal = ctx_principal()
-    filters = CandidateFilters.model_construct(q=None, owner_id=owner_id, tag_id=tag, list_id=None, source=source,
+    filters = CandidateFilters.model_construct(q=None, owner_id=owner_id, tag_id=tag, list_id=None, source=source,  # type: ignore[arg-type]
                                                ai_consent_state=None, include_archived=True, sort="updated_at")  # fmt: skip
     stmt = records.list_stmt(principal, filters).order_by(None).where(Candidate.erased_at.is_(None))
     if updated_since is not None:
@@ -93,7 +93,7 @@ async def list_candidates(
 async def _row(db: AsyncSession, candidate_id: uuid.UUID) -> Candidate:
     _, principal = ctx_principal()
     stmt = visible_stmt(principal).where(Candidate.id == candidate_id, Candidate.merged_into_id.is_(None), Candidate.erased_at.is_(None))
-    return await one(db, stmt)
+    return await one(db, stmt)  # type: ignore[no-any-return]
 
 
 async def get_candidate(db: AsyncSession, candidate_id: uuid.UUID) -> dict[str, Any]:

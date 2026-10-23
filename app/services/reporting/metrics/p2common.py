@@ -49,7 +49,7 @@ def client_scope(t: TileContext, client_col: Any) -> ColumnElement[bool] | None:
     cond = scope_condition(t.principal, "billing:read", Client.owner_id)
     if cond is None:
         return None
-    return client_col.in_(select(Client.id).where(cond))
+    return client_col.in_(select(Client.id).where(cond))  # type: ignore[no-any-return]
 
 
 def le_cond(t: TileContext, col: Any) -> list[Any]:

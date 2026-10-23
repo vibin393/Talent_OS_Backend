@@ -212,7 +212,7 @@ class _Build:
                 )
                 self.inputs[placement_id] = (
                     {k: Decimal(v) for k, v in bi.bill_multipliers.items()},
-                    Decimal(bi.hours_per_day),
+                    Decimal(bi.hours_per_day),  # type: ignore[arg-type]
                 )
             except Exception:
                 self.inputs[placement_id] = ({}, None)
@@ -504,7 +504,7 @@ async def build_run(ctx: RequestContext, db: AsyncSession, run_id: uuid.UUID) ->
     if correction_items:
         try:
             async with db.begin_nested():
-                for kind, pid, client_id, message in await corrections.build(
+                for kind, pid, client_id, message in await corrections.build(  # type: ignore[assignment]
                     ctx, db, correction_items, run_id=run.id
                 ):
                     b.exc(kind, pid, client_id, severity="warning", message=message)

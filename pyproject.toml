@@ -58,6 +58,14 @@ disable_error_code = ["valid-type"]
 module = "app.tasks.*"
 disallow_untyped_decorators = false
 
+# Third-party libs without type stubs (PyYAML, python-dateutil). Each is imported from
+# several modules, so a per-line # type: ignore[import-untyped] is reported "unused" on
+# all-but-one file (mypy reports the stub-missing error only once per module). A per-module
+# override is the stable fix; install types-PyYAML / types-python-dateutil to drop it.
+[[tool.mypy.overrides]]
+module = ["yaml", "yaml.*", "dateutil.*"]
+ignore_missing_imports = true
+
 
 [tool.ruff]
 # Target Python version for compatibility

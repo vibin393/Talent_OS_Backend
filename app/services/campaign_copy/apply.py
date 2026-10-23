@@ -99,7 +99,7 @@ async def _apply_campaign(ctx: RequestContext, db: AsyncSession, req: CampaignCo
     await campaigns.update_campaign(ctx, db, c.id, update)
     await db.refresh(c)
     _mark_used(d, c.id, campaign_hash(c))
-    return c.id
+    return c.id  # type: ignore[no-any-return]
 
 
 async def _apply_step(ctx: RequestContext, db: AsyncSession, req: CampaignCopyRequest, d: CampaignCopyDraft) -> None:

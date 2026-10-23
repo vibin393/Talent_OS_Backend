@@ -172,7 +172,7 @@ class ReplayRangeIn(BaseModel):
 
     date_from: datetime = Field(alias="from")
     date_to: datetime = Field(alias="to")
-    statuses: list[Literal["failed", "held"]] = Field(default_factory=lambda: ["failed", "held"], min_length=1)
+    statuses: list[Literal["failed", "held"]] = Field(default_factory=lambda: ["failed", "held"], min_length=1)  # type: ignore[arg-type]
     preview: bool = False
 
 

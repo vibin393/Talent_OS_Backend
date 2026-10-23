@@ -80,7 +80,7 @@ def _check(resp: SafeResponse, what: str) -> Mapping[str, Any]:
     if zcode not in (0, "0"):
         message = str(body.get("message") or f"Zoho Books refused the request ({what})")[:300]
         raise ConnectorPermanentError(f"zoho_{zcode}", message)
-    return body
+    return body  # type: ignore[no-any-return]
 
 
 def _dec(v: Any) -> Decimal | None:

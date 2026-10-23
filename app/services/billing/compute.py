@@ -103,7 +103,7 @@ def totals(
     inr_outside = sum((c.inr_taxable for c in lines if c.outside), ZERO)
     charged_flags = {t.component: t.charged for c in lines for t in c.components}
     inr_tax_total = sum(
-        (amt for c in lines for comp, amt in c.inr_components.items() if charged_flags.get(comp, True)), ZERO
+        (amt for c in lines for comp, amt in c.inr_components.items() if charged_flags.get(comp, True)), ZERO  # type: ignore[call-overload]
     )
     inr_round = ro if currency == "INR" else ZERO
     return DocCalc(

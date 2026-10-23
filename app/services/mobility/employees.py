@@ -224,7 +224,7 @@ async def _subject_names(
         for uid, name, email in (await db.execute(select(User.id, User.name, User.email).where(User.id.in_(users)))).tuples():
             out["user", uid] = (name, str(email))
     if cands:
-        for cid, name, email in (
+        for cid, name, email in (  # type: ignore[assignment]
             await db.execute(
                 select(Candidate.id, Candidate.full_name, CandidateSearchDoc.email)
                 .outerjoin(CandidateSearchDoc, CandidateSearchDoc.candidate_id == Candidate.id)

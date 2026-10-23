@@ -157,7 +157,7 @@ def _model(ledger: Ledger) -> type[BillingPosting] | type[PayablePosting]:
         return BillingPosting
     if ledger == "payable":
         return PayablePosting
-    msg = f"unknown ledger {ledger!r}"
+    msg = f"unknown ledger {ledger!r}"  # type: ignore[unreachable]
     raise ValueError(msg)
 
 
@@ -204,7 +204,7 @@ def _check_kind(kind: str, ledger: Ledger) -> None:
 def _check_line(ledger: Ledger, line: PostingLine) -> None:
     _check_kind(line.source_kind, ledger)
     if not isinstance(line.amount, Decimal) or not isinstance(line.quantity, Decimal):
-        msg = "posting amounts and quantities must be Decimal"
+        msg = "posting amounts and quantities must be Decimal"  # type: ignore[unreachable]
         raise TypeError(msg)
     targets = BILLING_TARGET_KINDS if ledger == "billing" else PAYABLE_TARGET_KINDS
     if line.target_kind not in targets:
@@ -335,7 +335,7 @@ async def targets_for(db: AsyncSession, ledger: Ledger, source_kind: str, source
         .where(model.source_kind == source_kind, model.source_id == source_id)
         .order_by(model.reserved_at, model.id)
     )
-    return [_out(r, ledger) for r in rows.scalars()]
+    return [_out(r, ledger) for r in rows.scalars()]  # type: ignore[arg-type]
 
 
 async def sources_for(db: AsyncSession, ledger: Ledger, target_kind: str, target_id: uuid.UUID) -> list[PostingOut]:
@@ -345,7 +345,7 @@ async def sources_for(db: AsyncSession, ledger: Ledger, target_kind: str, target
         .where(model.target_kind == target_kind, model.target_id == target_id)
         .order_by(model.reserved_at, model.id)
     )
-    return [_out(r, ledger) for r in rows.scalars()]
+    return [_out(r, ledger) for r in rows.scalars()]  # type: ignore[arg-type]
 
 
 async def has_active_posting(db: AsyncSession, source_kind: str, source_id: uuid.UUID) -> bool:
@@ -381,7 +381,7 @@ async def active_postings_for(
             )
         )
         for row in rows.scalars():
-            out.setdefault(row.source_id, []).append(_out(row, name))
+            out.setdefault(row.source_id, []).append(_out(row, name))  # type: ignore[arg-type]
     return out
 
 

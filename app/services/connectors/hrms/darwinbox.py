@@ -61,7 +61,7 @@ class DarwinboxHrms(LiveHrmsBase):
 
     @property
     def _cfg(self) -> DarwinboxConfig:
-        return self.ctx.config
+        return self.ctx.config  # type: ignore[return-value]
 
     def _url(self, path: str) -> str:
         if not self._cfg.subdomain:

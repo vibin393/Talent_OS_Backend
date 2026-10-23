@@ -34,7 +34,7 @@ def _operator_id(ctx: RequestContext) -> uuid.UUID:
         raise human_only_action()
     pid = getattr(principal, "id", None)
     assert pid is not None
-    return pid
+    return pid  # type: ignore[no-any-return]
 
 
 async def require_role(ctx: RequestContext) -> uuid.UUID:

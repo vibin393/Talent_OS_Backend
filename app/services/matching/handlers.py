@@ -249,6 +249,6 @@ def register() -> None:
     subscribe(MatchRunRequested, _run_requested)
     subscribe(MatchRunCompleted, _run_completed)
     subscribe(RediscoveryCompleted, _rediscovery)
-    for event_type in (MatchDismissed, MatchRestored, MatchAddedToPipeline):
+    for event_type in (MatchDismissed, MatchRestored, MatchAddedToPipeline):  # type: ignore[assignment]
         subscribe(event_type, _log)
     _registered = True

@@ -218,14 +218,14 @@ async def export_tenant(tenant_id: uuid.UUID, export_id: uuid.UUID) -> str:
                         try:
                             async with db.begin_nested():
                                 result = await db.execute(select(table))
-                                rows = list(result)
+                                rows = list(result)  # type: ignore[arg-type]
                         except Exception:
                             # A model whose migration has not run in this database: skip, never fail the export.
                             logger.warning("Tenant export: table {} unavailable, skipped", table.name)
                             continue
                         lines = [
                             json.dumps(
-                                {k: _jsonable(v) for k, v in row._mapping.items() if k != "text_tsv"},
+                                {k: _jsonable(v) for k, v in row._mapping.items() if k != "text_tsv"},  # type: ignore[attr-defined]
                                 ensure_ascii=False,
                             )
                             for row in rows
@@ -401,7 +401,7 @@ async def process_deletions() -> list[uuid.UUID]:
                     sha256=digest,
                 )
             )
-            tenant = await pdb.get(Tenant, tenant_id)
+            tenant = await pdb.get(Tenant, tenant_id)  # type: ignore[assignment]
             if tenant is not None:
                 tenant.status = "deleted"
                 tenant.deleted_at = at

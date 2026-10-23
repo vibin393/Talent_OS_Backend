@@ -84,7 +84,7 @@ async def _resolve_hiring_manager(
             await db.execute(
                 select(ClientUser).where(
                     ClientUser.contact_id == contact_id,
-                    ClientUser.client_id == demand.client_id,  # type: ignore[union-attr]
+                    ClientUser.client_id == demand.client_id,  # type: ignore[arg-type, union-attr]
                     ClientUser.status == "active",
                 )
             )

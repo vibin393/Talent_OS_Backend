@@ -207,7 +207,7 @@ async def module_proxy(
         try:
             async with httpx.AsyncClient(timeout=30.0) as client:
                 return await client.request(
-                    request.method, url, params=params, content=body,
+                    request.method, url, params=params, content=body,  # type: ignore[arg-type]
                     headers={**fwd_headers, "Authorization": f"Bearer {token}"},
                 )
         except (httpx.TimeoutException, httpx.TransportError) as exc:

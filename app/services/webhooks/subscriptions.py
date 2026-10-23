@@ -154,7 +154,7 @@ async def list_subscriptions(ctx: RequestContext, db: AsyncSession, q: Subscript
         (created,), last = decode_cursor(q.cursor)
         from datetime import datetime
 
-        stmt = stmt.where(tuple_(WebhookSubscription.created_at, WebhookSubscription.id) > tuple_(datetime.fromisoformat(str(created)), last))
+        stmt = stmt.where(tuple_(WebhookSubscription.created_at, WebhookSubscription.id) > tuple_(datetime.fromisoformat(str(created)), last))  # type: ignore[arg-type]
     rows = list((await db.execute(stmt.order_by(WebhookSubscription.created_at, WebhookSubscription.id).limit(q.limit + 1))).scalars())
     has_more = len(rows) > q.limit
     rows = rows[: q.limit]
@@ -191,7 +191,7 @@ async def allowed_event_types(ctx: RequestContext, db: AsyncSession, *, installa
             EventTypeOut(
                 type=t, version=spec.version, description=spec.description, scopes=list(spec.scopes), allowed=ok,
                 requires=["coming_soon"] if t in common.UNROUTABLE_TYPES else ([] if ok else list(spec.scopes)),
-                schema=spec.data_model.model_json_schema(), example=dict(spec.example or {}),
+                schema=spec.data_model.model_json_schema(), example=dict(spec.example or {}),  # type: ignore[attr-defined]
             )
         )  # fmt: skip
     return out

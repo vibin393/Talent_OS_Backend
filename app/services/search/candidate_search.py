@@ -253,7 +253,7 @@ def text_condition(t: Any, tq: TextQuery) -> ColumnElement[bool] | None:
         match = or_(
             match, and_(t.c.name_norm.op("%")(qn), func.similarity(t.c.name_norm, qn) >= NAME_SIMILARITY)
         )
-    return match
+    return match  # type: ignore[no-any-return]
 
 
 def rank_expr(t: Any, tq: TextQuery) -> Any:
@@ -262,7 +262,7 @@ def rank_expr(t: Any, tq: TextQuery) -> Any:
     rank = func.ts_rank_cd(t.c.doc, tq.tsquery, 32)
     if tq.name_q:
         qn = func.f_unaccent(func.lower(bindparam(None, tq.name_q, type_=SAText())))
-        rank = rank + 0.5 * func.similarity(t.c.name_norm, qn)
+        rank = rank + 0.5 * func.similarity(t.c.name_norm, qn)  # type: ignore[assignment]
     return rank
 
 

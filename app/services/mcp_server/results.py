@@ -180,7 +180,7 @@ def map_outcome(
         return text_result(text, is_error=False, structured=structured), deltas
     if outcome == "deduplicated":
         data, n = redact(out.result or {"status": "already_handled"}, scopes)
-        structured: dict[str, Any] = dict(data) if isinstance(data, dict) else {"status": "already_handled"}
+        structured: dict[str, Any] = dict(data) if isinstance(data, dict) else {"status": "already_handled"}  # type: ignore[no-redef]
         if out.proposal_id is not None:
             structured.update({"status": "proposed", "proposal_id": str(out.proposal_id), "proposal_url": out.proposal_url})
             text = f"This request was already handled: proposal {out.proposal_url}. Nothing has been done yet."

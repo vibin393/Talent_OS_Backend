@@ -78,12 +78,12 @@ async def _outs(db: AsyncSession, rows: list[LedgerSyncRecord]) -> list[LedgerRe
             client_ids.add(p.client_id)
     names = dict((await db.execute(select(Client.id, Client.name).where(Client.id.in_(client_ids)))).tuples().all()) if client_ids else {}
     for r in rows:
-        d = docs.get(r.document_id)
+        d = docs.get(r.document_id)  # type: ignore[assignment]
         number = getattr(d, "number", None) or getattr(d, "human_id", None)
         amount = getattr(d, "document_total", None) if r.document_kind != "payment" else getattr(d, "amount", None)
         out.append(
             LedgerRecordOut.model_validate(r).model_copy(
-                update={"document_number": number, "client_name": names.get(getattr(d, "client_id", None)), "amount": amount, "currency": getattr(d, "currency", None)}
+                update={"document_number": number, "client_name": names.get(getattr(d, "client_id", None)), "amount": amount, "currency": getattr(d, "currency", None)}  # type: ignore[arg-type]
             )
         )
     return out
@@ -173,7 +173,7 @@ async def skip(ctx: RequestContext, db: AsyncSession, record_id: uuid.UUID, reas
 
 async def _run_out(db: AsyncSession, runs: list[LedgerRun]) -> list[LedgerRunOut]:
     uids = {r.created_by for r in runs if r.created_by}
-    names = dict((await db.execute(select(User.id, User.name).where(User.id.in_(uids)))).all()) if uids else {}
+    names = dict((await db.execute(select(User.id, User.name).where(User.id.in_(uids)))).all()) if uids else {}  # type: ignore[arg-type, var-annotated]
     return [LedgerRunOut.model_validate(r).model_copy(update={"created_by_name": names.get(r.created_by) if r.created_by else None}) for r in runs]
 
 

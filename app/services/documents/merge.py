@@ -17,7 +17,7 @@ from decimal import Decimal, InvalidOperation
 from typing import Any
 
 from jinja2 import StrictUndefined, TemplateSyntaxError, UndefinedError, nodes
-from jinja2.sandbox import SandboxedEnvironment, SecurityError
+from jinja2.sandbox import SandboxedEnvironment, SecurityError  # type: ignore[attr-defined]
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.errors import ValidationFailed

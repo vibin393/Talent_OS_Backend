@@ -50,7 +50,7 @@ async def _kick(op: str, sandbox_id: uuid.UUID, **kw: Any) -> None:
     fn = _kicker["fn"]
     if fn is not None and fn(op, sandbox_id, kw):  # enqueued (False in eager mode: run inline)
         return
-    await {"create": run_create, "reset": run_reset, "delete": run_delete}[op](sandbox_id, **kw)
+    await {"create": run_create, "reset": run_reset, "delete": run_delete}[op](sandbox_id, **kw)  # type: ignore[operator]
 
 
 async def _out(row: DeveloperSandbox) -> SandboxOut:
@@ -81,7 +81,7 @@ async def get_owned(owner: Owner, sandbox_id: uuid.UUID, *, require_ready: bool 
             raise ConflictError("Only sandbox tenants can be used here", code="sandbox_only")
         if row.status != "ready":
             raise ConflictError("The sandbox is not ready yet", code="sandbox_not_ready")
-    return row
+    return row  # type: ignore[no-any-return]
 
 
 async def list_sandboxes(owner: Owner) -> list[SandboxOut]:
@@ -254,7 +254,7 @@ async def run_reset(sandbox_id: uuid.UUID, reinstall_apps: bool = False) -> None
                     member_info.append((m.account_id, m.owner_user_id, str(u.email), u.name, "viewer" if m.role == "viewer" else "developer"))
         await _drop_tenant(old)
     async with platform_session() as db:
-        await db.execute(DeveloperSandboxMember.__table__.delete().where(DeveloperSandboxMember.sandbox_id == sandbox_id))
+        await db.execute(DeveloperSandboxMember.__table__.delete().where(DeveloperSandboxMember.sandbox_id == sandbox_id))  # type: ignore[attr-defined]
     try:
         tenant_id = await _new_tenant(row)
         row = await _set(sandbox_id, tenant_id=tenant_id)

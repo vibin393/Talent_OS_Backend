@@ -42,7 +42,7 @@ async def owner_of_subject(
         return (row[0], row[1]) if row else (None, None)
     from app.models.placements import Placement
 
-    row = (
+    row = (  # type: ignore[assignment]
         await db.execute(
             select(Placement.account_manager_user_id, Placement.demand_id).where(Placement.id == subject_id)
         )

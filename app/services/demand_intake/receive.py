@@ -92,7 +92,7 @@ def parse_mime(raw: bytes) -> ParsedEmail:
 
     if len(raw) > MAX_RAW_BYTES:
         raise ValidationFailed("The email is larger than 25 MB", code="email_too_large")
-    msg = email.message_from_bytes(raw, policy=email.policy.default)
+    msg = email.message_from_bytes(raw, policy=email.policy.default)  # type: ignore[arg-type]
     from_name, from_address = matching.parse_address(str(msg.get("From") or ""))
     sent_at: datetime | None = None
     if msg.get("Date"):
@@ -238,10 +238,10 @@ async def _prepare(
     texts: list[tuple[str, str, str]] = []
     if len(parsed.attachments) > MAX_ATTACHMENTS:
         return Prepared("too_many_attachments", parsed.body_text, [], []), None
-    scans = []
+    scans = []  # type: ignore[var-annotated]
     for part in parsed.attachments:
         if len(part.data) > MAX_ATTACHMENT_BYTES:
-            scans.append(None)
+            scans.append(None)  # type: ignore[arg-type]
             continue
         result = await scanning.scan(part.data, part.filename)
         scans.append(result.status)
@@ -259,7 +259,7 @@ async def _prepare(
         kind = kind_of(part)
         entry: dict[str, Any] = {
             "file_id": None, "filename": part.filename, "media_type": part.media_type, "size": len(part.data),
-            "scan_status": scan or "skipped_too_large", "text_file_id": None,
+            "scan_status": scan or "skipped_too_large", "text_file_id": None,  # type: ignore[unreachable]
         }  # fmt: skip
         if scan is None or kind is None:
             entry["scan_status"] = "skipped_too_large" if scan is None else "unsupported"

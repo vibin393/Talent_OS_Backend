@@ -56,7 +56,7 @@ def tier(name: str | None, overrides: Mapping[str, Mapping[str, int]] | None = N
             key = DEFAULT_TIER
         base = dataclasses.replace(TIERS[DEFAULT_TIER], name=key)
     extra = {f: int(v) for f, v in (overrides.get(key) or {}).items() if f in _FIELDS and int(v) > 0}
-    return dataclasses.replace(base, **extra) if extra else base
+    return dataclasses.replace(base, **extra) if extra else base  # type: ignore[arg-type]
 
 
 def resolve_tier_name(

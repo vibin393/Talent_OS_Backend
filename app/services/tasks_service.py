@@ -85,7 +85,7 @@ async def _get(ctx: RequestContext, db: AsyncSession, task_id: uuid.UUID, permis
             and (await db.execute(select(Task.id).where(Task.id == task.id, cond))).first() is None
         ):
             raise forbidden(permission)
-    return task
+    return task  # type: ignore[no-any-return]
 
 
 # ================================================================ time
@@ -131,7 +131,7 @@ def _today(tz: ZoneInfo, now: datetime) -> date:
 async def _outs(db: AsyncSession, tasks: Sequence[Task]) -> list[TaskOut]:
     tz = await _tz(db)
     now = _now()
-    names = await entity_refs.users(db, {t.owner_id for t in tasks} | {t.created_by for t in tasks})
+    names = await entity_refs.users(db, {t.owner_id for t in tasks} | {t.created_by for t in tasks})  # type: ignore[misc]
     return [
         TaskOut(
             id=t.id,

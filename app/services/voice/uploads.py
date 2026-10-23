@@ -88,7 +88,7 @@ async def _gate(db: AsyncSession, row: VoiceSession, uploader: uuid.UUID | None 
     return await gate.check(
         rctx,
         db,
-        purpose=common.PURPOSE_RECORDING,
+        purpose=common.PURPOSE_RECORDING,  # type: ignore[arg-type]
         candidate_id=row.candidate_id,
         participant_user_ids=[uploader] if uploader else [],
         acks={uploader: common.now()} if uploader else {},

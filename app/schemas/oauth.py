@@ -56,9 +56,9 @@ class AppCreate(BaseModel):
 
     name: str = Field(min_length=1, max_length=120)
     client_type: Literal["confidential", "public"] = "confidential"
-    grant_types: list[GrantType] = Field(default_factory=lambda: ["client_credentials"])
+    grant_types: list[GrantType] = Field(default_factory=lambda: ["client_credentials"])  # type: ignore[arg-type]
     redirect_uris: list[str] = Field(default_factory=list)
-    resources: list[Resource] = Field(default_factory=lambda: ["api"])
+    resources: list[Resource] = Field(default_factory=lambda: ["api"])  # type: ignore[arg-type]
     requested_scopes: list[str] = Field(min_length=1)
     scope_reasons: dict[str, str] = Field(default_factory=dict)
     homepage_url: str | None = None

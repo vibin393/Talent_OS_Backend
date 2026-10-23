@@ -18,7 +18,7 @@ def _client_of(ctx: RequestContext, client_id: uuid.UUID | None = None) -> uuid.
     org = getattr(ctx.principal, "org_id", None)
     if org is None or (client_id is not None and client_id != org):
         raise NotFound("Statement not found")
-    return org
+    return org  # type: ignore[no-any-return]
 
 
 async def statement(ctx: RequestContext, db: AsyncSession, currency: str, start: date, end: date, client_id: uuid.UUID | None = None) -> PortalStatement:

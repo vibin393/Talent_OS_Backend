@@ -305,7 +305,7 @@ async def _has(
     if not principal.has(f"{resource}:{'write' if write else 'read'}"):
         return False
     model = {"contract": Contract, "po": PurchaseOrder, "rate_card": RateCard}[resource]
-    return (await db.execute(select(model.id).where(model.id == entity_id))).first() is not None
+    return (await db.execute(select(model.id).where(model.id == entity_id))).first() is not None  # type: ignore[attr-defined]
 
 
 activity_service.register_entity("contract", _contract_access, plural="contracts")

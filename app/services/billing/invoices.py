@@ -519,7 +519,7 @@ async def list_documents(
     if run_id and kind == "invoice":
         stmt = stmt.where(Invoice.invoice_run_id == run_id)
     if original_invoice_id and kind != "invoice":
-        stmt = stmt.where(model.original_invoice_id == original_invoice_id)
+        stmt = stmt.where(model.original_invoice_id == original_invoice_id)  # type: ignore[attr-defined]
     if date_from:
         stmt = stmt.where(func.coalesce(model.doc_date, model.preview_date) >= date_from)
     if date_to:

@@ -49,8 +49,8 @@ register_notification_type(
         group="Administration",
         default_channel="both",
         mandatory_in_app=False,
-        recipients_resolver=_sso_admins,
-        render=_render,
+        recipients_resolver=_sso_admins,  # type: ignore[arg-type]
+        render=_render,  # type: ignore[arg-type]
     ),
 )
 register_event_source(UserJitProvisioned, JIT_TYPE)
@@ -132,8 +132,8 @@ def _register_client_sso() -> None:
             group="Clients",
             default_channel="both",
             mandatory_in_app=False,
-            recipients_resolver=_client_sso_recipients,
-            render=_render_config,
+            recipients_resolver=_client_sso_recipients,  # type: ignore[arg-type]
+            render=_render_config,  # type: ignore[arg-type]
             internal_only=True,
         ),
     )
@@ -144,8 +144,8 @@ def _register_client_sso() -> None:
             group="Clients",
             default_channel="both",
             mandatory_in_app=False,
-            recipients_resolver=_client_sso_recipients,
-            render=_render_client_jit,
+            recipients_resolver=_client_sso_recipients,  # type: ignore[arg-type]
+            render=_render_client_jit,  # type: ignore[arg-type]
             internal_only=True,
         ),
     )

@@ -44,10 +44,10 @@ PII_FIELD_DENYLIST = {"name", "first_name", "last_name", "full_name", "email", "
 class PublicEventSpec:
     type: str  # ^[a-z_]+\.[a-z_]+$  e.g. "application.stage_changed"
     version: int  # data schema version (1)
-    source: type  # internal domain event class
+    source: type  # type: ignore[valid-type]  # internal domain event class
     subject_type: str  # "application"
     subject_id: Callable[[Any], uuid.UUID]  # from the domain event
-    data_model: type[
+    data_model: type[  # type: ignore[valid-type]
         BaseModel
     ]  # extra="forbid"; only ids, enums, status values, timestamps, changed field NAMES
     build: Callable[[Any], BaseModel | None]  # pure: domain event -> data (None = do not publish)
@@ -105,7 +105,7 @@ def _build(spec: PublicEventSpec, domain_event: Any) -> BaseModel | None:
     if data is None:
         return None
     if not isinstance(data, spec.data_model):
-        data = spec.data_model.model_validate(data.model_dump() if isinstance(data, BaseModel) else data)
+        data = spec.data_model.model_validate(data.model_dump() if isinstance(data, BaseModel) else data)  # type: ignore[attr-defined]
     return data
 
 
@@ -285,7 +285,7 @@ def validate_spec(spec: PublicEventSpec, known_scopes: set[str] | None = None) -
         errors.append(f"{label}: version must be >= 1")
     if spec.visibility not in ("public", "internal"):
         errors.append(f"{label}: visibility {spec.visibility!r}")
-    if spec.data_model.model_config.get("extra") != "forbid":
+    if spec.data_model.model_config.get("extra") != "forbid":  # type: ignore[attr-defined]
         errors.append(f"{label}: data_model must set extra='forbid'")
     errors.extend(f"{label}: data field {f!r} is in PII_FIELD_DENYLIST" for f in _pii_fields(spec.data_model))
     if known_scopes is not None:

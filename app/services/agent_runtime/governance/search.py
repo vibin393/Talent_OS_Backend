@@ -23,7 +23,7 @@ async def _queue_keys(db: AsyncSession, principal: Principal) -> list[str]:
             select(AgentProposal.route_role_key).where(AgentProposal.route_role_key.is_not(None)).distinct()
         )
     ).scalars()
-    return [k for k in keys if await proposals._role_member(db, principal, k)]
+    return [k for k in keys if await proposals._role_member(db, principal, k)]  # type: ignore[misc]
 
 
 def visible_condition(principal: Principal, queue_keys: list[str]) -> Any:

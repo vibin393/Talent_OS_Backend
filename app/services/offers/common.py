@@ -55,7 +55,7 @@ def actor_kind_of(ctx: RequestContext) -> ActorKind:
     """Actor of the caller: an explicit automated actor on the context wins (Epic 10 workflow)."""
     explicit = getattr(ctx, "actor_kind", None)
     if explicit in ("workflow", "ai", "agent", "system", "candidate"):
-        return explicit
+        return explicit  # type: ignore[no-any-return]
     kind = getattr(ctx.principal, "type", None)
     if kind == "user":
         return "user"
@@ -156,7 +156,7 @@ async def offer_for(
         scoped = visible_offers(principal, permission).where(Offer.id == offer_id)
         if (await db.execute(scoped.with_only_columns(Offer.id))).first() is None:
             raise forbidden(permission)
-    return offer
+    return offer  # type: ignore[no-any-return]
 
 
 async def demand_in_scope(

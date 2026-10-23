@@ -130,15 +130,15 @@ async def _set_scopes(db: AsyncSession, cu: ClientUser, scopes: list[ClientUserS
     for row in existing:
         await db.delete(row)
     await db.flush()
-    for s in {(s.subject_kind, s.subject_id) for s in scopes}:
+    for s in {(s.subject_kind, s.subject_id) for s in scopes}:  # type: ignore[assignment]
         db.add(
             ClientUserScope(
                 id=uuid.uuid4(),
                 tenant_id=cu.tenant_id,
                 client_user_id=cu.id,
                 client_id=cu.client_id,
-                subject_kind=s[0],
-                subject_id=s[1],
+                subject_kind=s[0],  # type: ignore[index]
+                subject_id=s[1],  # type: ignore[index]
             )
         )
     await db.flush()

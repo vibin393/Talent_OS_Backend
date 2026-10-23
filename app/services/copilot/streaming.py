@@ -86,7 +86,7 @@ async def entries(run_id: uuid.UUID | str) -> list[tuple[str, str, dict[str, Any
         return []
     finally:
         await client.aclose()
-    return [(eid, f.get("event", ""), _loads(f.get("data"))) for eid, f in raw]
+    return [(eid, f.get("event", ""), _loads(f.get("data"))) for eid, f in raw]  # type: ignore[misc, union-attr]
 
 
 async def delta_text(run_id: uuid.UUID | str) -> str:
@@ -144,8 +144,8 @@ async def sse(
                 logger.debug("Copilot stream read failed for run {}", run_id)
                 return
             done = False
-            for _, items in resp or []:
-                for eid, fields in items:
+            for _, items in resp or []:  # type: ignore[misc]
+                for eid, fields in items:  # type: ignore[union-attr]
                     last = eid
                     event = fields.get("event", "message")
                     yield frame(eid, event, fields.get("data") or "{}")

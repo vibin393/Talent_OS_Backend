@@ -308,7 +308,7 @@ TOOLS: tuple[ToolSpec, ...] = (
         key="billing.prepare_run_draft", version=VERSION, owner_epic=OWNER_EPIC, title="Start a draft invoice run",
         description="Propose starting the same draft invoice run a Finance User would start for the legal entity and period. A Finance User approves it; then the run creates draft invoices only -- no numbers are assigned and nothing is issued or sent. Exceptions stay listed; nothing is silently excluded. Call it once per run.",
         input_model=PrepareIn, output_model=RunOut, permissions=("billing:prepare", "billing:write"), risk="high",
-        scope=ScopeRule(resource="legal_entity", target_arg="legal_entity_id", version=_digest), handler=_prepare,
+        scope=ScopeRule(resource="legal_entity", target_arg="legal_entity_id", version=_digest), handler=_prepare,  # type: ignore[arg-type]
         preview=_prepare_preview, default_mode="suggest", max_calls_per_run=1, timeout_s=60,
     ),
     ToolSpec(

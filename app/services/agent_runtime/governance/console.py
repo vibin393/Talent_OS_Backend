@@ -336,7 +336,7 @@ async def costs(ctx: RequestContext, db: AsyncSession, q: CostQuery) -> CostsOut
         select(day_col, func.coalesce(a.agent_key, "unknown"), func.coalesce(func.sum(a.cost_micros), 0))
         .where(*where).group_by(day_col, a.agent_key).order_by(day_col)
     )  # fmt: skip
-    series = [CostSeriesPoint(day=d, agent_key=k, cost_usd=usd(int(c))) for d, k, c in series_rows.tuples()]
+    series = [CostSeriesPoint(day=d, agent_key=k, cost_usd=usd(int(c))) for d, k, c in series_rows.tuples()]  # type: ignore[arg-type]
     month_lo = state.month_start()
     m_runs, m_in, m_out, _cached, m_cost = (
         await db.execute(select(*_aggs()).where(a.kind == "agent_step", a.created_at >= month_lo))

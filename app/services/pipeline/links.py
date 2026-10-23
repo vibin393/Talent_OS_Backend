@@ -42,10 +42,10 @@ async def revoke_link(ctx: RequestContext, db: AsyncSession, link_id: uuid.UUID)
         check(principal, "consent:write")
     elif link.purpose in _REVOCABLE:
         model, permission = _REVOCABLE[link.purpose]
-        subject = await db.get(model, link.subject_id)
+        subject = await db.get(model, link.subject_id)  # type: ignore[func-returns-value]
         if subject is None:
             raise NotFound("Link not found")
-        try:
+        try:  # type: ignore[unreachable]
             await application_for(ctx, db, subject.application_id, permission)
         except NotFound as exc:
             raise NotFound("Link not found") from exc

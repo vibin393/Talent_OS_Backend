@@ -16,7 +16,7 @@ async def get_settings_row(db: AsyncSession) -> ReceivablesSettings:
     tid = tenant_of(db)
     row = (await db.execute(select(ReceivablesSettings).where(ReceivablesSettings.tenant_id == tid))).scalar_one_or_none()
     if row is None:
-        await db.execute(pg_insert(ReceivablesSettings.__table__).values(tenant_id=tid).on_conflict_do_nothing())
+        await db.execute(pg_insert(ReceivablesSettings.__table__).values(tenant_id=tid).on_conflict_do_nothing())  # type: ignore[arg-type]
         row = (await db.execute(select(ReceivablesSettings).where(ReceivablesSettings.tenant_id == tid))).scalar_one()
     return row
 

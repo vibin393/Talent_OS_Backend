@@ -255,7 +255,7 @@ async def _consent_preview(tctx: Any, args: ConsentIn) -> ProposalPreview:
     )
 
 
-APP_SCOPE = ScopeRule(resource="application", target_arg="application_id", version=_app_version)
+APP_SCOPE = ScopeRule(resource="application", target_arg="application_id", version=_app_version)  # type: ignore[arg-type]
 
 TOOLS: tuple[ToolSpec, ...] = (
     ToolSpec(

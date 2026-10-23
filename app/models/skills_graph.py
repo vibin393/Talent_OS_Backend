@@ -38,7 +38,7 @@ from app.core.models import AuditedMixin, Base, TenantMixin, Timestamps, UUIDPk
 
 EDGE_KINDS = ("parent_of", "related_to", "implies")
 EDGE_SOURCES = ("seed", "esco", "curated")
-EVIDENCE_KINDS = ("resume", "self", "recruiter", "assessment", "project", "graph")
+EVIDENCE_KINDS: tuple[str, ...] = ("resume", "self", "recruiter", "assessment", "project", "graph")
 EVIDENCE_KINDS += ("interview", "interview_declared")  # Epic 60 (C-10, 407_03)
 VERIFIED_KINDS = frozenset({"recruiter", "assessment", "interview"})  # Epic 60: + interview
 DECLARED_KINDS = frozenset({"self", "interview_declared"})  # Epic 60: + interview_declared

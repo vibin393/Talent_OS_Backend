@@ -63,7 +63,7 @@ def _now() -> datetime:
 def _operator(ctx: RequestContext) -> uuid.UUID:
     if getattr(ctx.principal, "type", None) != "platform":
         raise Unauthorized()
-    return ctx.principal.id
+    return ctx.principal.id  # type: ignore[no-any-return]
 
 
 # ================================================================ tenants
@@ -179,7 +179,7 @@ async def notices_for(ctx: RequestContext, db: AsyncSession) -> list[PlatformNot
                 .limit(200)
             )
         ).scalars()
-        rows = list(rows)
+        rows = list(rows)  # type: ignore[assignment]
         acked = set(
             (
                 await pdb.execute(
@@ -444,7 +444,7 @@ async def incident_notifications(
     out = []
     for r in rows:
         item = IncidentNotificationOut.model_validate(r)
-        item.acknowledged_count = int(counts.get(r.notice_id, 0))
+        item.acknowledged_count = int(counts.get(r.notice_id, 0))  # type: ignore[arg-type]
         out.append(item)
     return out
 

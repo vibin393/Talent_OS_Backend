@@ -238,7 +238,7 @@ def _code_order(points: Decimal, key: Mapping[str, Any], response: Mapping[str, 
 
 def _find_bug(points: Decimal, key: Mapping[str, Any], response: Mapping[str, Any]) -> ScoreResult:
     raw_bug = key.get("bug_lines") if isinstance(key.get("bug_lines"), list) else []
-    bug = {v for v in raw_bug if isinstance(v, int) and not isinstance(v, bool)}
+    bug = {v for v in raw_bug if isinstance(v, int) and not isinstance(v, bool)}  # type: ignore[union-attr]
     _lines = response.get("lines")
     raw_sel = _lines if isinstance(_lines, list) else []
     selected = {v for v in raw_sel[:1000] if isinstance(v, int) and not isinstance(v, bool)}
@@ -265,21 +265,21 @@ def score_answer(
         key = item.get("answer_key") if isinstance(item.get("answer_key"), Mapping) else {}
         resp = response if isinstance(response, Mapping) else {}
         if kind in ("single", "true_false"):
-            return _choice(points, key, resp)
+            return _choice(points, key, resp)  # type: ignore[arg-type]
         if kind == "multi":
-            return _multi(points, key, resp, partial_credit)
+            return _multi(points, key, resp, partial_credit)  # type: ignore[arg-type]
         if kind == "numeric":
-            return _numeric(points, key, resp)
+            return _numeric(points, key, resp)  # type: ignore[arg-type]
         if kind == "short_text":
-            return _short_text(points, key, resp, confidence_threshold)
+            return _short_text(points, key, resp, confidence_threshold)  # type: ignore[arg-type]
         if kind == "code_output":
-            return _code_output(points, key, resp)
+            return _code_output(points, key, resp)  # type: ignore[arg-type]
         if kind == "code_fill":
-            return _code_fill(points, key, resp)
+            return _code_fill(points, key, resp)  # type: ignore[arg-type]
         if kind == "code_order":
-            return _code_order(points, key, resp)
+            return _code_order(points, key, resp)  # type: ignore[arg-type]
         if kind == "code_find_bug":
-            return _find_bug(points, key, resp)
+            return _find_bug(points, key, resp)  # type: ignore[arg-type]
     except Exception:
         return ScoreResult(ZERO, ZERO, True)
     return ScoreResult(ZERO, ZERO, True)

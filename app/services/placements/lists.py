@@ -67,7 +67,7 @@ async def visible(ctx: RequestContext, db: AsyncSession, placement_id: uuid.UUID
     row = (await db.execute(stmt)).scalar_one_or_none()
     if row is None:
         raise not_found()
-    return row
+    return row  # type: ignore[no-any-return]
 
 
 async def detail(ctx: RequestContext, db: AsyncSession, placement_id: uuid.UUID) -> PlacementOut:

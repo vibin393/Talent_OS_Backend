@@ -57,7 +57,7 @@ async def _render_reply(db: AsyncSession, payload: dict[str, Any]) -> Content:
 
 register_notification_type(
     "comms.reply_received",
-    NotificationType("Reply to my email received", "Communication", "in_app", False, _sender, _render_reply),
+    NotificationType("Reply to my email received", "Communication", "in_app", False, _sender, _render_reply),  # type: ignore[arg-type]
 )
 register_event_source(EmailReplyReceived, "comms.reply_received")
 register_trigger(

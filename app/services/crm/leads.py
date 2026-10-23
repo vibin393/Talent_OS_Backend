@@ -86,7 +86,7 @@ async def _get(
     lead = (await db.execute(stmt)).scalar_one_or_none()
     if lead is None:
         raise NotFound("Lead not found")
-    return lead
+    return lead  # type: ignore[no-any-return]
 
 
 async def get_row(

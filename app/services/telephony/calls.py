@@ -205,7 +205,7 @@ async def call_options(
         from app.models.pipeline import Application
 
         app = await db.get(Application, application_id)
-        cand = app.candidate_id if app is not None else None
+        cand = app.candidate_id if app is not None else None  # type: ignore[assignment]
     phone_row = await user_phones.verified_row(db, user_id)
     consent = ConsentFlags(
         voice_screening=bool(cand) and await has_consent(db, cand, PURPOSE_CALL),

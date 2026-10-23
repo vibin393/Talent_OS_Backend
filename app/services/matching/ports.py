@@ -87,7 +87,7 @@ _score_suppressors: dict[str, ScoreSuppressor] = {}
 
 def register_score_suppressor(fn: ScoreSuppressor, *, key: str | None = None) -> None:
     """Register (or replace, by ``key`` / function name) a score suppressor."""
-    _score_suppressors[key or getattr(fn, "__qualname__", repr(fn))] = fn
+    _score_suppressors[key or getattr(fn, "__qualname__", repr(fn))] = fn  # type: ignore[index]
 
 
 def unregister_score_suppressor(key: str) -> None:

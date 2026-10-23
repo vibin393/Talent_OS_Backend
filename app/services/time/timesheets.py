@@ -318,13 +318,13 @@ async def upsert_entries(
         deletes.discard(key)
     # per-day totals after the change
     totals: dict[date, Decimal] = defaultdict(lambda: ZERO)
-    for key, e in current.items():
+    for key, e in current.items():  # type: ignore[assignment]
         if key in deletes or key in writes:
             continue
         totals[key[0]] += (
             e.entered_hours if (e.category == "regular" and e.entered_hours is not None) else e.hours
         )
-    for key, cell in writes.items():
+    for key, cell in writes.items():  # type: ignore[assignment]
         totals[key[0]] += cell.hours
     cap = min(Decimal(cfg.daily_cap), DAY_MAX)
     for d, total in sorted(totals.items()):

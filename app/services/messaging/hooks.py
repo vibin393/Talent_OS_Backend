@@ -151,7 +151,7 @@ async def _render_failing(db: AsyncSession, payload: dict[str, Any]) -> Content:
 register_notification_type(
     "comms.connector_failing",
     NotificationType(
-        "Messaging provider failing", "Communication", "both", False, _messaging_admins, _render_failing
+        "Messaging provider failing", "Communication", "both", False, _messaging_admins, _render_failing  # type: ignore[arg-type]
     ),
 )
 register_event_source(

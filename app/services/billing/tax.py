@@ -122,7 +122,7 @@ def determine_supply(
             return SupplyDecision(pos, "sezwop", False, False, True, lut_ref, False)
         return SupplyDecision(pos, "sezwp", False, False, False, None, False)
     registered = treatment == "registered" and bool(recipient.gstin)
-    pos = recipient.state_code
+    pos = recipient.state_code  # type: ignore[assignment]
     if not pos:
         if registered:
             raise TaxDecisionError(

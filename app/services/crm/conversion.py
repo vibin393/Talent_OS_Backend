@@ -142,7 +142,7 @@ async def related_activity_refs(
             Opportunity.id == entity_id, Opportunity.lead_id.is_not(None)
         )
     elif entity_type == "client":
-        stmt = select(Lead.id).where(Lead.converted_client_id == entity_id).limit(20)
+        stmt = select(Lead.id).where(Lead.converted_client_id == entity_id).limit(20)  # type: ignore[assignment]
     else:
         return []
     return [("lead", i) for i in (await db.execute(stmt)).scalars() if i is not None]

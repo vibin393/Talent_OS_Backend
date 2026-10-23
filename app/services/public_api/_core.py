@@ -133,7 +133,7 @@ async def page(
         values, last_id = decode_cursor(cursor)
         if len(values) != 1:
             raise invalid_cursor()
-        cmp = tuple_(sort_col, id_col) > tuple_(values[0], last_id) if order == "asc" else tuple_(sort_col, id_col) < tuple_(values[0], last_id)
+        cmp = tuple_(sort_col, id_col) > tuple_(values[0], last_id) if order == "asc" else tuple_(sort_col, id_col) < tuple_(values[0], last_id)  # type: ignore[arg-type]
         stmt = stmt.where(cmp)
     ordering = (sort_col.asc(), id_col.asc()) if order == "asc" else (sort_col.desc(), id_col.desc())
     rows = list((await db.execute(stmt.order_by(*ordering).limit(limit + 1))).scalars().all())

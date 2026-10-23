@@ -196,7 +196,7 @@ async def _resolve_pick(tctx: Any, req: Any, args: BookIn) -> uuid.UUID | None:
     offer = await tctx.db.get(SchedulingSlotOffer, args.offer_id)
     if offer is None or offer.request_id != req.id:
         raise NotFound("Offer not found")
-    return offer.pick_id
+    return offer.pick_id  # type: ignore[no-any-return]
 
 
 async def _do_book(tctx: Any, args: BookIn, *, reschedule: bool) -> ToolOutcome:

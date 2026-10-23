@@ -177,7 +177,7 @@ async def refresh_cache(db: AsyncSession, ids: Iterable[uuid.UUID]) -> None:
             "due_date": b.doc.due_date,
             "rebuilt_at": now(),
         }
-        stmt = pg_insert(InvoiceBalance.__table__).values(**values)
+        stmt = pg_insert(InvoiceBalance.__table__).values(**values)  # type: ignore[arg-type]
         stmt = stmt.on_conflict_do_update(index_elements=["receivable_id"], set_={k: stmt.excluded[k] for k in values if k not in ("tenant_id", "receivable_id")})
         await db.execute(stmt)
 

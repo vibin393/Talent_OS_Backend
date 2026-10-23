@@ -54,7 +54,7 @@ async def today(db: AsyncSession) -> int:
             select(func.coalesce(func.sum(SttJob.cost_estimate_minor), 0)).where(SttJob.created_at >= start, SttJob.created_at < end)
         )
     ).scalar_one()
-    return int(calls) + int(reserved) + int(stt)
+    return int(calls) + int(reserved) + int(stt)  # type: ignore[arg-type]
 
 
 def pct(spent: int, cap: int) -> int:
@@ -95,9 +95,9 @@ async def usage(db: AsyncSession, start: date, end: date, group_by: str) -> list
     if group_by == "user":
         key = VoiceCall.placed_by
     elif group_by == "legal_entity":
-        key = VoiceCall.legal_entity_id
+        key = VoiceCall.legal_entity_id  # type: ignore[assignment]
     else:
-        key = func.date(func.timezone(str(tz), VoiceCall.requested_at))
+        key = func.date(func.timezone(str(tz), VoiceCall.requested_at))  # type: ignore[assignment]
     rows = (
         await db.execute(
             select(

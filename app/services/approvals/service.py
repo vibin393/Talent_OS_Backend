@@ -472,10 +472,10 @@ async def _snapshot_chain(
 ) -> list[dict[str, Any]]:
     out: list[dict[str, Any]] = []
     for s in steps:
-        if s.approver_kind == "user" or (s.approver_kind is None and s.approver_user_id):
+        if s.approver_kind == "user" or (s.approver_kind is None and s.approver_user_id):  # type: ignore[unreachable]
             resolved = ResolvedApprover("user", s.approver_user_id, None, None, None, "user")
             kind = "user"
-        elif s.approver_kind == "role" or (s.approver_kind is None and s.approver_role_id):
+        elif s.approver_kind == "role" or (s.approver_kind is None and s.approver_role_id):  # type: ignore[unreachable]
             resolved = ResolvedApprover("role", None, s.approver_role_id, None, None, "role")
             kind = "role"
         else:

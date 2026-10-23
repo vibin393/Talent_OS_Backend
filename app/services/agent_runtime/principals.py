@@ -151,7 +151,7 @@ async def effective_principal(
             org_id=run.owner_org_id,
             portal_permissions=portal.portal_permissions,
         )
-    owner = await owner_principal(db, run.tenant_id, run.owner_user_id)
+    owner = await owner_principal(db, run.tenant_id, run.owner_user_id)  # type: ignore[arg-type]
     owner_permissions: Mapping[str, Scope] = owner.permissions
     if run.origin == "external":  # MCP: never more than the delegated token (fail closed without scopes)
         owner_permissions = delegated_rights(owner.permissions, oauth_scopes or frozenset())

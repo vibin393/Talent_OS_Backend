@@ -43,7 +43,7 @@ class PredictionEntry(BaseModel):
     kind: ModelKind
     kind_label: str
     status: EntryStatus
-    label: Literal["Supporting signal"] = SUPPORTING_SIGNAL
+    label: Literal["Supporting signal"] = SUPPORTING_SIGNAL  # type: ignore[assignment]
     prediction_id: uuid.UUID | None = None
     model_id: uuid.UUID | None = None
     model_version: int | None = None

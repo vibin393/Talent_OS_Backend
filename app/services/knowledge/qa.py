@@ -308,7 +308,7 @@ async def add_message(
         seq=int(seq) + 1, role=role, text_sealed=await sealing.seal_message(db, thread.tenant_id, message_id, body),
         citations=citations or [], outcome=outcome, topic=topic, agent_run_id=run_id, author_user_id=author_user_id,
     )  # fmt: skip
-    msg.plain_text = body
+    msg.plain_text = body  # type: ignore[assignment]
     if role == "asker":
         msg.question_fingerprint = sealing.fingerprint(thread.tenant_id, body)
         msg.topic_label = sealing.topic_label(topic, body)

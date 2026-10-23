@@ -105,7 +105,7 @@ async def early_terminations(t: TileContext) -> TileData:
     )  # fmt: skip
     from app.services.reporting.common import users
 
-    rows = (
+    rows = (  # type: ignore[var-annotated]
         await t.db.execute(
             select(
                 func.coalesce(

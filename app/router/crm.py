@@ -167,7 +167,7 @@ async def list_leads(
     page_size: Annotated[int, Query(ge=1, le=200)] = 25,
 ) -> LeadPage:
     return await crm_service.leads.list_leads(
-        get_context(), db, status=status_, owner_id=owner_id, source=source, q=q, created_from=created_from,
+        get_context(), db, status=status_, owner_id=owner_id, source=source, q=q, created_from=created_from,  # type: ignore[arg-type]
         created_to=created_to, include_archived=include_archived, page=page, page_size=page_size,
     )  # fmt: skip
 

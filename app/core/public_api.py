@@ -81,7 +81,7 @@ def public_openapi(app: FastAPI) -> dict[str, Any]:
     for route in app.routes:
         if is_public_route(route):
             clone = copy.copy(route)
-            clone.include_in_schema = True
+            clone.include_in_schema = True  # type: ignore[attr-defined]
             routes.append(clone)
     return get_openapi(
         title="Talent OS Public API",
@@ -227,7 +227,7 @@ def keyset(stmt: Select[Any], sort_cols: tuple[Any, ...], id_col: Any, cursor: s
         if len(values) != len(sort_cols):
             raise invalid_cursor()
         if sort_cols:
-            stmt = stmt.where(tuple_(*sort_cols, id_col) > tuple_(*values, last_id))
+            stmt = stmt.where(tuple_(*sort_cols, id_col) > tuple_(*values, last_id))  # type: ignore[arg-type]
         else:
             stmt = stmt.where(id_col > last_id)
     return stmt.order_by(*sort_cols, id_col)

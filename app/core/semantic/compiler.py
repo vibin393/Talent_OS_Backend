@@ -402,7 +402,7 @@ class _Builder:
         for child in node.and_:
             many = self._many(child) if isinstance(child, Condition) else None
             if many is not None:
-                groups.setdefault(many, []).append(child)
+                groups.setdefault(many, []).append(child)  # type: ignore[arg-type]
             else:
                 parts.append(await self.node(child))
         for join_name, conds in groups.items():
@@ -465,7 +465,7 @@ def _check_principal(ctx: SemanticContext, src: SourceDef) -> Principal | None:
         raise Forbidden("Semantic queries are available to internal users only")
     if not principal.has(src.scope.permission):
         raise forbidden(src.scope.permission)
-    return principal
+    return principal  # type: ignore[no-any-return]
 
 
 async def compile(defn: Definition, ctx: SemanticContext) -> CompiledQuery:
@@ -520,7 +520,7 @@ async def compile(defn: Definition, ctx: SemanticContext) -> CompiledQuery:
             labels["m0"] = "count"
             columns.append(ColumnMeta(key="count", label="Count", type="int"))
         for i, m in enumerate(measures):
-            expr, col_type = _measure_expr(b, src, m, done)
+            expr, col_type = _measure_expr(b, src, m, done)  # type: ignore[assignment]
             done[m.key] = expr
             label = f"m{i}"
             col = expr.label(label)

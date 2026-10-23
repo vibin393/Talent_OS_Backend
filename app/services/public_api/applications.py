@@ -77,7 +77,7 @@ async def list_applications(
 
 async def _row(db: AsyncSession, application_id: uuid.UUID) -> Application:
     _, principal = ctx_principal()
-    return await one(db, visible_applications(principal).where(Application.id == application_id))
+    return await one(db, visible_applications(principal).where(Application.id == application_id))  # type: ignore[no-any-return]
 
 
 async def get_application(db: AsyncSession, application_id: uuid.UUID) -> dict[str, Any]:

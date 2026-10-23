@@ -61,7 +61,7 @@ async def _task(
 ) -> uuid.UUID:
     data = TaskCreate.model_construct(
         title=title[:200], notes=text.strip()[:NOTE_MAX], owner_id=owner_id,
-        entity_type=entity[0] if entity else None, entity_id=entity[1] if entity else None,
+        entity_type=entity[0] if entity else None, entity_id=entity[1] if entity else None,  # type: ignore[arg-type]
         due_at=None, due_all_day=False, priority="normal", reminder_at=None,
     )  # fmt: skip
     out = await tasks_service.create_system_task(RequestContext(tenant_id=tenant_id), db, data, source=source)

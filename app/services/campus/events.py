@@ -195,7 +195,7 @@ async def secure_links_for_checkins(db: AsyncSession, event_id: uuid.UUID) -> in
     ids = list((await db.execute(select(EventCheckin.checkin_link_id).where(EventCheckin.event_id == event_id, EventCheckin.checkin_link_id.is_not(None)))).scalars())
     count = 0
     for link_id in ids:
-        if await secure_links.revoke(db, link_id):
+        if await secure_links.revoke(db, link_id):  # type: ignore[arg-type]
             count += 1
     return count
 

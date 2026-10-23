@@ -256,7 +256,7 @@ async def current_published(db: AsyncSession, row: RateCard, *, lock: bool = Fal
     stmt = stmt.order_by(RateCard.effective_from.desc()).limit(1)
     if lock:
         stmt = stmt.with_for_update()
-    return (await db.execute(stmt)).scalar_one_or_none()
+    return (await db.execute(stmt)).scalar_one_or_none()  # type: ignore[no-any-return]
 
 
 async def publish(ctx: RequestContext, db: AsyncSession, card_id: uuid.UUID) -> RateCardOut:

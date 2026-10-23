@@ -37,7 +37,7 @@ async def _scope(db: AsyncSession, ids: list[uuid.UUID]) -> list[VendorSubmissio
     )
     cond = VendorSubmission.candidate_id.in_(ids)
     if emails:
-        cond = or_(cond, VendorSubmission.email.in_(emails))
+        cond = or_(cond, VendorSubmission.email.in_(emails))  # type: ignore[assignment]
     return list((await db.execute(select(VendorSubmission).where(cond))).scalars())
 
 

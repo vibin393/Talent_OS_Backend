@@ -132,7 +132,7 @@ async def overdue_checks(db: AsyncSession, case_id: uuid.UUID, today: date) -> l
                 check_id=c.id, type=c.type, subject_label=c.subject_label, provider_name=provider.name if provider else None,
                 provider_kind=provider.kind if provider else None,
                 has_connector=bool(provider is not None and provider.connector_config_id),
-                due_on=c.due_on, days_overdue=(today - c.due_on).days, follow_ups_sent=len(rows),
+                due_on=c.due_on, days_overdue=(today - c.due_on).days, follow_ups_sent=len(rows),  # type: ignore[operator]
                 last_follow_up_on=last.date() if last else None, next_due_on=nd, limit_reached=len(rows) >= MAX_FOLLOW_UPS,
             )
         )  # fmt: skip
@@ -447,7 +447,7 @@ async def case_follow_ups(db: AsyncSession, case_id: uuid.UUID, today: date) -> 
                 check_label=checks[r.check_id].subject_label if r.check_id in checks else "",
                 provider_name=providers.get(r.provider_id) if r.provider_id else None, channel=r.channel,
                 seq=r.seq, status=r.status, provider_status=r.provider_status,
-                days_overdue=(r.sent_at.date() - checks[r.check_id].due_on).days if r.check_id in checks and checks[r.check_id].due_on else None,
+                days_overdue=(r.sent_at.date() - checks[r.check_id].due_on).days if r.check_id in checks and checks[r.check_id].due_on else None,  # type: ignore[operator]
                 sent_at=r.sent_at,
             )
             for r in rows

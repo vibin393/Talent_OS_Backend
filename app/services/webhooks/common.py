@@ -113,7 +113,7 @@ def type_matches(sub: WebhookSubscription, event_type: str) -> bool:
 # ------------------------------------------------------------------ §0.2 filters
 def _fields_of(event_type: str) -> set[str]:
     spec = public_types().get(event_type)
-    return set(spec.data_model.model_fields) if spec is not None else set()
+    return set(spec.data_model.model_fields) if spec is not None else set()  # type: ignore[attr-defined]
 
 
 def allowed_filter_fields(event_types: list[str], all_events: bool) -> set[str]:

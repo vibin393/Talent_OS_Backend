@@ -79,7 +79,7 @@ async def select_template(db: AsyncSession, facts: matching.PlacementFacts) -> O
             )
         )
     ).scalars()
-    return matching.select(list(rows), facts)
+    return matching.select(list(rows), facts)  # type: ignore[type-var]
 
 
 async def _placement_row(db: AsyncSession, placement_id: uuid.UUID) -> Any:

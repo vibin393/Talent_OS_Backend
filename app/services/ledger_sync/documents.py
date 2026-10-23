@@ -232,8 +232,8 @@ async def _build_payment(db: AsyncSession, installation_id: uuid.UUID, pay: Paym
             continue  # the invoice is not in the ledger: the payment is applied on account
         allocations.append({
             "invoice_id": str(a.invoice_id), "invoice_number": inv.number if inv else None, "invoice_ref": link.external_id if link else None,
-            "amount": _num(a.amount), "inr_amount": _num(a.inr_at_payment or a.amount), "tds": _num(tds_by_inv.get(a.invoice_id, 0)),
-            "inr_tds": _num(tds_by_inv.get(a.invoice_id, 0)),
+            "amount": _num(a.amount), "inr_amount": _num(a.inr_at_payment or a.amount), "tds": _num(tds_by_inv.get(a.invoice_id, 0)),  # type: ignore[arg-type]
+            "inr_tds": _num(tds_by_inv.get(a.invoice_id, 0)),  # type: ignore[arg-type]
         })  # fmt: skip
     if missing:
         return Built(None, sorted(set(missing)))

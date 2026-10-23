@@ -181,7 +181,7 @@ async def assessment_pass(
     seen: dict[tuple[Any, Any], Point] = {}
     for cid, did, result, score in (await db.execute(stmt)).tuples():
         seen.setdefault(
-            (cid, did), Point(cid, did, result == "pass", Decimal(score) if score is not None else None)
+            (cid, did), Point(cid, did, result == "pass", Decimal(score) if score is not None else None)  # type: ignore[arg-type]
         )
     return list(seen.values())
 
@@ -199,7 +199,7 @@ from app.services.fairness.aedt_p4 import (  # ruff: ignore[module-import-not-at
     SELECTORS_P4,
 )
 
-SELECTORS.update(SELECTORS_P4)
+SELECTORS.update(SELECTORS_P4)  # type: ignore[arg-type]
 DEFINITIONS.update(DEFINITIONS_P4)
 
 

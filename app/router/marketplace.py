@@ -214,7 +214,7 @@ async def data_flows(
 
 @router.get("/policy", response_model=PolicyOut)
 async def policy(_: View, db: DB) -> PolicyOut:
-    return await marketplace_service.policy_view(get_context(), db)
+    return await marketplace_service.policy_view(get_context(), db)  # type: ignore[no-any-return]
 
 
 @router.get("/sdk/manifest-schema")

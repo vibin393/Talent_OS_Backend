@@ -113,7 +113,7 @@ async def get_row(
     opp = (await db.execute(stmt)).scalar_one_or_none()
     if opp is None:
         raise NotFound("Opportunity not found")
-    return opp
+    return opp  # type: ignore[no-any-return]
 
 
 async def opportunity_access(ctx: RequestContext, db: AsyncSession, opp_id: uuid.UUID, write: bool) -> bool:

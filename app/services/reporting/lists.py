@@ -412,7 +412,7 @@ def demand_condition(
     if cond is None and not extra:
         return None
     where = [c for c in (cond, *extra) if c is not None]
-    return demand_col.in_(select(Demand.id).where(*where))
+    return demand_col.in_(select(Demand.id).where(*where))  # type: ignore[no-any-return]
 
 
 def stage_ids(*keys: str) -> Select[Any]:
@@ -805,7 +805,7 @@ async def list_rows(
     for row in result.mappings():
         item: dict[str, Any] = {"id": str(row["id"])}
         for col in query.columns:
-            item[col.key] = None if col.key in query.masked_columns else _json_value(col, row)
+            item[col.key] = None if col.key in query.masked_columns else _json_value(col, row)  # type: ignore[arg-type]
         items.append(item)
     return {
         "items": items,

@@ -164,7 +164,7 @@ def knockout_hit(question: dict[str, Any], value: Any) -> bool:
         if kind in ("number", "rating"):
             left, right = float(value), float(target)
         elif kind == "money":
-            left = float(value.get("amount") if isinstance(value, dict) else value)
+            left = float(value.get("amount") if isinstance(value, dict) else value)  # type: ignore[arg-type]
             right = float(target)
         elif kind == "date":
             left, right = date.fromisoformat(str(value)), date.fromisoformat(str(target))
@@ -181,7 +181,7 @@ def knockout_hit(question: dict[str, Any], value: Any) -> bool:
             return False
     except (TypeError, ValueError, AttributeError):
         return False
-    return {
+    return {  # type: ignore[no-any-return]
         "lt": left < right, "lte": left <= right, "gt": left > right, "gte": left >= right,
         "eq": left == right, "neq": left != right,
     }.get(str(op), False)  # fmt: skip

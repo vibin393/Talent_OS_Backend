@@ -119,7 +119,7 @@ async def list_tasks(db: AsyncSession, *, limit: int, cursor: str | None, order:
 
 
 async def _task(db: AsyncSession, task_id: uuid.UUID) -> Task:
-    return await one(db, _visible_tasks().where(Task.id == task_id))
+    return await one(db, _visible_tasks().where(Task.id == task_id))  # type: ignore[no-any-return]
 
 
 async def get_task(db: AsyncSession, task_id: uuid.UUID) -> dict[str, Any]:

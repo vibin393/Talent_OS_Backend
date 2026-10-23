@@ -240,7 +240,7 @@ async def _consume_state(state: str | None, principal: Principal, provider: str)
         return False
     data = json.loads(raw)
     session_id = str(principal.session_id) if principal.session_id else None
-    return (
+    return (  # type: ignore[no-any-return]
         data.get("user_id") == str(principal.id)
         and data.get("tenant_id") == str(principal.tenant_id)
         and data.get("session_id") == session_id

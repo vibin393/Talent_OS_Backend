@@ -33,12 +33,12 @@ def get_provider(name: str) -> CalendarProvider | None:
         if name == "google":
             from app.services.connections.google import GoogleProvider
 
-            return GoogleProvider()
+            return GoogleProvider()  # type: ignore[return-value]
         from app.services.connections.microsoft import MicrosoftProvider
 
-        return MicrosoftProvider()
+        return MicrosoftProvider()  # type: ignore[return-value]
     if get_settings().calendar_provider_fake:
-        return fake.instance()
+        return fake.instance()  # type: ignore[return-value]
     return None
 
 

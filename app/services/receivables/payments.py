@@ -150,7 +150,7 @@ async def record(ctx: RequestContext, db: AsyncSession, data: PaymentIn, *, impo
     manual: list[AllocationIn] = data.allocations if isinstance(data.allocations, list) else []
     keys = {(a.document_kind, a.document_id) for a in manual} | {(t.document_kind, t.document_id) for t in data.tds}
     if data.allocations == "auto":
-        keys |= set(await _auto_targets(db, data.legal_entity_id, data.client_id, data.currency))
+        keys |= set(await _auto_targets(db, data.legal_entity_id, data.client_id, data.currency))  # type: ignore[arg-type]
     bals = await settlement.lock(ctx, db, keys)
     for key in keys:
         _check_doc(bals[key[1]], data.legal_entity_id, data.client_id, data.currency)

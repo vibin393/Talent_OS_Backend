@@ -224,7 +224,7 @@ async def send_reminder(
     due = {(i.item_kind, i.item_ref): i for i in r.plan.items}
     items: list[DueItem] = []
     for kind, ref, offset in requested:
-        item = due.get((kind, ref))
+        item = due.get((kind, ref))  # type: ignore[arg-type]
         if item is None or item.offset_days != offset:
             raise ConflictError(
                 "This item is not due for a reminder today",
@@ -376,7 +376,7 @@ async def escalate(
         return existing
     data = TaskCreate.model_construct(
         title=title, notes=f"Escalated by the Compliance Agent ({REASON_LABELS.get(reason, reason)}). Pre-start risk: /compliance/pre-start-risk?candidate={candidate_id}",
-        owner_id=owner, entity_type=entity_type, entity_id=entity_id, due_at=now() + timedelta(hours=8), due_all_day=False,
+        owner_id=owner, entity_type=entity_type, entity_id=entity_id, due_at=now() + timedelta(hours=8), due_all_day=False,  # type: ignore[arg-type]
         priority="high" if "deadline_close" in r.plan.reasons else "normal", reminder_at=None,
     )  # fmt: skip
     task = await tasks_service.create_system_task(ctx, db, data, source="agent")

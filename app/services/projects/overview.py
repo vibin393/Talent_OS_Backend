@@ -230,7 +230,7 @@ async def project_360(ctx: RequestContext, db: AsyncSession, project_id: uuid.UU
 
 async def get_timeline(
     ctx: RequestContext, db: AsyncSession, project_id: uuid.UUID, start: date | None, end: date | None
-) -> timeline.TimelineOut:
+) -> timeline.TimelineOut:  # type: ignore[name-defined]
     project = await get_project(ctx, db, project_id)
     lo, hi = timeline.window(start, end, project.start_date or today())
     rows = (

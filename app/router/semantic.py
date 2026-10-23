@@ -33,7 +33,7 @@ async def get_source_catalogue(
 async def validate_definition(
     principal: SemanticReader, body: Annotated[dict[str, Any], Body()]
 ) -> ValidateOut:
-    src = sources().get(body.get("source")) if isinstance(body.get("source"), str) else None
+    src = sources().get(body.get("source")) if isinstance(body.get("source"), str) else None  # type: ignore[arg-type]
     if src is not None and not principal.has(src.scope.permission):
         error = SemanticErrorOut(code="semantic_unknown_source", message="Unknown source", path="source")
         return ValidateOut(valid=False, errors=[error])

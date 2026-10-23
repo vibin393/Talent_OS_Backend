@@ -73,7 +73,7 @@ async def explain_one(ctx: RequestContext, db: AsyncSession, match: Any, demand_
     else:
         values.update(explanation=None, explanation_status="failed")
     # Only the explanation columns are written (scores are never touched here).
-    await db.execute(update(Match.__table__).where(Match.__table__.c.id == match.id).values(**values))
+    await db.execute(update(Match.__table__).where(Match.__table__.c.id == match.id).values(**values))  # type: ignore[arg-type]
     return str(values["explanation_status"])
 
 

@@ -102,10 +102,10 @@ async def _list(tctx: Any, args: DemandListIn) -> ToolOutcome:
         items = items[: args.limit]
     else:
         total, items = await list_rows(tctx, args, sla_status=args.sla_status[0] if args.sla_status else None)
-    rows = [_row(d) for d in items]
+    rows = [_row(d) for d in items]  # type: ignore[misc]
     return ToolOutcome(
         DemandListOut(total=total, rows=rows),
-        refs=tuple(("demand", r.id) for r in rows),
+        refs=tuple(("demand", r.id) for r in rows),  # type: ignore[attr-defined]
         summary=plural(total, "demand"),
     )
 

@@ -197,7 +197,7 @@ def _register_notifications() -> None:
         p = await db.get(AgentProposal, pid) if pid else None
         if p is None or p.owner_user_id == _uuid(payload.get("decided_by")):
             return set()
-        return {p.owner_user_id}
+        return {p.owner_user_id}  # type: ignore[arg-type]
 
     async def render_decided(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
         pid = _uuid(payload.get("proposal_id"))

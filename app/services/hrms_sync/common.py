@@ -177,7 +177,7 @@ async def fix_it_task(
     if owner_id is None:
         return None
     data = TaskCreate.model_construct(
-        title=title[:200], notes=notes, owner_id=owner_id, entity_type=entity_type, entity_id=entity_id, due_at=None,
+        title=title[:200], notes=notes, owner_id=owner_id, entity_type=entity_type, entity_id=entity_id, due_at=None,  # type: ignore[arg-type]
         due_all_day=False, priority="normal", reminder_at=None,
     )  # P5 Task entity types (500_01) are outside the P1 request Literal
     async with db.begin_nested():

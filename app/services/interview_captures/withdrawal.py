@@ -107,7 +107,7 @@ async def _cancel_run(db: AsyncSession, capture: InterviewCapture) -> None:
         await agent_runtime_service.cancel_run(
             RequestContext(tenant_id=capture.tenant_id, actor_kind="system"),
             db,
-            capture.agent_run_id,
+            capture.agent_run_id,  # type: ignore[arg-type]
             reason="interview recording consent withdrawn",
             reason_code="subject_closed",
         )

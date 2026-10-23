@@ -39,9 +39,10 @@ from app.core.settings import get_settings
 from app.services import agent_runtime_service as runtime
 from app.services import entity_refs
 
-EntityType = Literal[
-    "candidate", "application", "demand", "client", "placement", "interview", "timesheet", "invoice"
-]
+# Must stay a subset of TASK_ENTITY_TYPES (the tasks DB CHECK) — a task cannot be stored otherwise.
+# interview/timesheet/invoice were never DB-valid task subjects (and are not registered entities, so
+# _readable() 404s before any insert); dropped so the tool only offers subjects a task can target.
+EntityType = Literal["candidate", "application", "demand", "client", "placement"]
 NOTE_ENTITY_TYPES = ("candidate", "application", "demand", "client", "placement", "interview")
 RecipientKind = Literal["candidate", "worker", "contact", "client_user"]
 Channel = Literal["email", "sms", "whatsapp"]

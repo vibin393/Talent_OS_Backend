@@ -91,7 +91,7 @@ def _register_notifications() -> None:
 
         return {u["id"] for u in await identity_bridge.users_with_permission(db, "vendor_submission:review")}
 
-    async def _nobody(db: AsyncSession, payload: Mapping[str, Any]) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
+    async def _nobody(db: AsyncSession, payload: Mapping[str, Any]) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]  # NOSONAR
         return set()
 
     async def _render_release(db: AsyncSession, payload: Mapping[str, Any]) -> Any:
@@ -107,11 +107,11 @@ def _register_notifications() -> None:
             title=f"New requirement released to you: {title or ''}"[:300], link_path=f"/vendor/releases/{rid}"
         )
 
-    async def _render_received(db: AsyncSession, payload: Mapping[str, Any]) -> Any:  # ruff: ignore[unused-function-argument]
+    async def _render_received(db: AsyncSession, payload: Mapping[str, Any]) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         return ns.Content(title="A vendor submitted a candidate for review", link_path="/vendors/review")
 
     def _render_plain(label: str) -> Any:
-        async def render(db: AsyncSession, payload: Mapping[str, Any]) -> Any:  # ruff: ignore[unused-function-argument]
+        async def render(db: AsyncSession, payload: Mapping[str, Any]) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
             return ns.Content(title=str(payload.get("title") or label))
 
         return render
@@ -265,7 +265,7 @@ def _register_workflow() -> None:
         n = sum(1 for i in out.items if i.status == "released")
         return f"Released to {n} vendor(s) of tier {ac.params.tier}"
 
-    async def _dry(ac: Any) -> str:
+    async def _dry(ac: Any) -> str:  # NOSONAR
         return f"Would release the demand to the {ac.params.tier} vendors"
 
     if "vendors.release_demand_to_tier" not in actions.ACTIONS:

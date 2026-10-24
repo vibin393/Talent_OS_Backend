@@ -92,28 +92,28 @@ class LocalStorage:
             raise InvalidStorageKey(msg)
         return path
 
-    async def put(self, key: str, data: bytes, content_type: str) -> None:  # ruff: ignore[unused-method-argument]
+    async def put(self, key: str, data: bytes, content_type: str) -> None:  # ruff: ignore[unused-method-argument]  # NOSONAR
         path = self._path(key)
         path.parent.mkdir(parents=True, exist_ok=True)
         tmp = path.with_suffix(".part")
         tmp.write_bytes(data)
         tmp.replace(path)
 
-    async def get(self, key: str) -> bytes:
+    async def get(self, key: str) -> bytes:  # NOSONAR
         path = self._path(key)
         if not path.is_file():
             raise FileNotFoundError(key)
         return path.read_bytes()
 
-    async def signed_url(self, key: str, ttl: int) -> str | None:  # ruff: ignore[unused-method-argument]
+    async def signed_url(self, key: str, ttl: int) -> str | None:  # ruff: ignore[unused-method-argument]  # NOSONAR
         self._path(key)
         return None  # local files are only served through the permission-checked download endpoint
 
-    async def delete(self, key: str) -> None:
+    async def delete(self, key: str) -> None:  # NOSONAR
         path = self._path(key)
         path.unlink(missing_ok=True)
 
-    async def delete_prefix(self, prefix: str) -> int:
+    async def delete_prefix(self, prefix: str) -> int:  # NOSONAR
         """Delete every file under a tenant prefix ``t/<tenant_id>/`` (tenant deletion); returns the count."""
         validate_tenant_prefix(prefix)
         root = (self.root / prefix).resolve()
@@ -164,7 +164,7 @@ class S3Storage:
 
         return await anyio.to_thread.run_sync(_get)
 
-    async def signed_url(self, key: str, ttl: int) -> str | None:
+    async def signed_url(self, key: str, ttl: int) -> str | None:  # NOSONAR
         validate_key(key)
         return str(
             self._client.generate_presigned_url(

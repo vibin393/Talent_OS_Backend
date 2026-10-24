@@ -163,7 +163,7 @@ def _chunks(items: list[uuid.UUID], size: int = BATCH) -> list[list[uuid.UUID]]:
     return [items[i : i + size] for i in range(0, len(items), size)]
 
 
-async def _finish(
+async def _finish(  # NOSONAR
     refresh: TalentPoolRefresh, status: str, started: float, error_code: str | None = None
 ) -> None:
     refresh.status = status

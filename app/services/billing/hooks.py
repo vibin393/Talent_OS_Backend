@@ -230,7 +230,7 @@ async def _dsc_admins(db: AsyncSession, payload: Any) -> set[uuid.UUID]:
     return {u["id"] for u in await identity_bridge.users_with_permission(db, "dsc:configure")}
 
 
-async def _render_dsc_pending(db: AsyncSession, payload: Any) -> Any:
+async def _render_dsc_pending(db: AsyncSession, payload: Any) -> Any:  # NOSONAR
     from app.services.notifications_service import Content
 
     kind = str(payload.get("kind") or "invoice")

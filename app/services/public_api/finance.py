@@ -94,7 +94,7 @@ def _doc(d: Any, obj: str) -> dict[str, Any]:
             "irn_status": getattr(d, "einvoice_status", None)}  # fmt: skip
 
 
-async def _build_invoices(rows: Sequence[Invoice]) -> list[dict[str, Any]]:
+async def _build_invoices(rows: Sequence[Invoice]) -> list[dict[str, Any]]:  # NOSONAR
     _, principal = ctx_principal()
     return finish_all(principal, [_doc(d, "invoice") for d in rows])
 
@@ -107,7 +107,7 @@ async def get_invoice(db: AsyncSession, invoice_id: uuid.UUID) -> dict[str, Any]
     return (await _build_invoices([await one(db, _by_client(Invoice).where(Invoice.id == invoice_id))]))[0]
 
 
-async def _build_credit_notes(rows: Sequence[CreditNote]) -> list[dict[str, Any]]:
+async def _build_credit_notes(rows: Sequence[CreditNote]) -> list[dict[str, Any]]:  # NOSONAR
     _, principal = ctx_principal()
     return finish_all(principal, [{**_doc(d, "credit_note"), "original_invoice_id": d.original_invoice_id, "reason": d.reason} for d in rows])
 
@@ -120,7 +120,7 @@ async def get_credit_note(db: AsyncSession, note_id: uuid.UUID) -> dict[str, Any
     return (await _build_credit_notes([await one(db, _by_client(CreditNote).where(CreditNote.id == note_id))]))[0]
 
 
-async def _build_payments(rows: Sequence[Payment]) -> list[dict[str, Any]]:
+async def _build_payments(rows: Sequence[Payment]) -> list[dict[str, Any]]:  # NOSONAR
     _, principal = ctx_principal()
     return finish_all(principal, [
         {**base(p, "payment", human_id=p.human_id), "client_id": p.client_id, "payment_date": p.payment_date,

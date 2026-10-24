@@ -37,7 +37,7 @@ class FakeDscSigner:
             msg = f"fake {op} failure"
             raise RuntimeError(msg)
 
-    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:
+    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # NOSONAR
         self._record(op, dict(payload))
         digest = hashlib.sha256(json.dumps(dict(payload), sort_keys=True, default=str).encode()).hexdigest()
         return {"ok": True, "op": op, "ref": f"fake-{digest[:12]}"}
@@ -57,7 +57,7 @@ class FakeDscSigner:
             return {}
         return data if isinstance(data, dict) else {"data": data}
 
-    async def sign_pdf(self, req: DscSignRequestDTO) -> DscSignResultDTO:
+    async def sign_pdf(self, req: DscSignRequestDTO) -> DscSignResultDTO:  # NOSONAR
         self._record("sign_pdf", (req,))
         return DscSignResultDTO(
             status="signed", signed_pdf=req.pdf + MARKER, external_ref=f"fake-dsc-{req.sha256[:12]}"

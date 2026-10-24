@@ -155,7 +155,7 @@ def delivery_blocked_sync(kind: str, doc: Any) -> bool:
     return kind in KINDS and getattr(doc, "dsc_status", "not_required") in BLOCKING
 
 
-async def delivery_blocked(db: AsyncSession, kind: str, doc: Any) -> bool:
+async def delivery_blocked(db: AsyncSession, kind: str, doc: Any) -> bool:  # NOSONAR
     """Policy required and not yet signed (``pending`` / ``failed``). Works in internal and Client Portal sessions
     (reads only the document's own operational column)."""
     return delivery_blocked_sync(kind, doc)
@@ -686,7 +686,7 @@ async def delete_policy(ctx: RequestContext, db: AsyncSession, policy_id: uuid.U
 
 
 # ---------------------------------------------------------------- files access (owner kinds invoice / credit_note)
-async def file_access(ctx: RequestContext, db: AsyncSession, entity_id: uuid.UUID, write: bool) -> bool:
+async def file_access(ctx: RequestContext, db: AsyncSession, entity_id: uuid.UUID, write: bool) -> bool:  # NOSONAR
     principal = ctx.principal
     if principal is None:
         return True

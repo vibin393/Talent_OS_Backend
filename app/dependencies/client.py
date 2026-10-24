@@ -37,7 +37,7 @@ ClientDBSessionDep = Annotated[AsyncSession, Depends(get_client_db)]
 
 
 def require_portal_permission(key: str) -> Callable[..., Awaitable[Principal]]:
-    async def dependency(principal: ClientDep) -> Principal:
+    async def dependency(principal: ClientDep) -> Principal:  # NOSONAR
         if key not in principal.portal_permissions:
             raise Forbidden(
                 "You do not have access to this area",

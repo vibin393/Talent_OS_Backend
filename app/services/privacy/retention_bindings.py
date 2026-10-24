@@ -209,7 +209,7 @@ async def retention_for_erasure(
 
 
 # ================================================================ fallback bindings (no owner registration)
-async def _report_only_expire(*_: Any, **__: Any) -> dict[str, int]:
+async def _report_only_expire(*_: Any, **__: Any) -> dict[str, int]:  # NOSONAR
     """Financial rows are DB-immutable (AD-21): expiry is report-only until the spine amendment."""
     return {}
 

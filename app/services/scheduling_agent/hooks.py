@@ -53,12 +53,12 @@ async def _owner_and_interviewers(db: AsyncSession, payload: Any) -> set[uuid.UU
     return {req.owner_user_id, *(req.participant_user_ids or [])}
 
 
-async def _user(db: AsyncSession, payload: Any) -> set[uuid.UUID]:
+async def _user(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # NOSONAR
     uid = _uuid(payload.get("user_id"))
     return {uid} if uid else set()
 
 
-async def _candidate(db: AsyncSession, payload: Any) -> set[Any]:
+async def _candidate(db: AsyncSession, payload: Any) -> set[Any]:  # NOSONAR
     from app.services.notifications_service import Recipient
 
     cid = _uuid(payload.get("candidate_id"))

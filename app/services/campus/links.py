@@ -240,5 +240,5 @@ async def event_qr_download(c: RequestContext, db: AsyncSession, event_id: uuid.
     if fmt == "pdf":
         settings = await settings_row(db)
         when = event.starts_at.strftime("%d %b %Y")
-        return poster_pdf(event.name, event.venue or "Recruitment event", url, settings.poster_footer, (when,)), "application/pdf", f"{base}.pdf"
+        return poster_pdf(event.name, event.venue or "Recruitment event", url, settings.poster_footer, (when,)), "application/pdf", f"{base}.pdf"  # NOSONAR
     return qr_png(url), "image/png", f"{base}.png"

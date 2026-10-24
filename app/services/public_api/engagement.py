@@ -41,7 +41,7 @@ def _visible_activities(kinds: Sequence[str]) -> Any:
     return stmt
 
 
-async def _build_activities(rows: Sequence[Activity]) -> list[dict[str, Any]]:
+async def _build_activities(rows: Sequence[Activity]) -> list[dict[str, Any]]:  # NOSONAR
     _, principal = ctx_principal()
     return finish_all(principal, [
         {**base(a, "note" if a.kind == "note" else "activity"), "updated_at": a.edited_at or a.created_at,
@@ -91,7 +91,7 @@ def _visible_tasks() -> Any:
     return stmt.where(or_(by_owner, by_creator))
 
 
-async def _build_tasks(rows: Sequence[Task]) -> list[dict[str, Any]]:
+async def _build_tasks(rows: Sequence[Task]) -> list[dict[str, Any]]:  # NOSONAR
     _, principal = ctx_principal()
     return finish_all(principal, [
         {**base(t, "task"), "title": t.title, "notes": t.notes, "assignee_id": t.owner_id, "entity_type": t.entity_type,

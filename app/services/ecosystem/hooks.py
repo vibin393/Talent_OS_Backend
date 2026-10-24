@@ -59,35 +59,35 @@ def _register() -> None:
             link_path="/settings/integrations",
         )  # fmt: skip
 
-    async def render_kill(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def render_kill(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         state = "suspended" if payload.get("on") else "restored"
         return ns.Content(
             title=f"External access was {state} ({payload.get('scope')} switch)",
             link_path="/settings/integrations",
         )
 
-    async def render_changed(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def render_changed(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         return _content(
             f"An integration was {str(payload.get('change', 'changed')).replace('_', ' ')}", payload
         )
 
-    async def render_reconsent(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def render_reconsent(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         return _content(
             "An integration needs your consent again", payload, "Its new version asks for more access."
         )
 
-    async def render_failing(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def render_failing(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         return _content(
             f"An integration sync keeps failing ({payload.get('error_code')})", payload,
             f"{payload.get('consecutive_failures')} consecutive failures of {payload.get('job_key')}.",
         )  # fmt: skip
 
-    async def render_reconnect(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def render_reconnect(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         return _content(
             "An integration must be reconnected", payload, "The provider refused its credentials."
         )
 
-    async def render_app_suspended(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def render_app_suspended(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         return _content("An app was suspended by the platform", payload)
 
     defs = {

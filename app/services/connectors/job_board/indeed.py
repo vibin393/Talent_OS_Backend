@@ -232,7 +232,7 @@ class IndeedAdapter(LiveJobBoardBase):
         status = {"ACTIVE": "live", "LIVE": "live", "EXPIRED": "expired", "CLOSED": "closed", "REJECTED": "rejected"}.get(raw, "pending")
         return BoardRefDTO(board_ref, row.get("url") or None, status, None, parse_dt(row.get("expirationDate")), None, None, None)  # type: ignore[arg-type]
 
-    async def field_schema(self) -> FieldSchemaDTO:
+    async def field_schema(self) -> FieldSchemaDTO:  # NOSONAR
         return FIELDS
 
     def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:

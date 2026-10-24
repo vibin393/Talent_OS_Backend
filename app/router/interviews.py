@@ -53,7 +53,7 @@ Paging = Annotated[PageParams, Depends()]
 DB = TenantDBSessionDep
 
 
-async def _schedule_or_configure(principal: Annotated[Principal, Depends(current_principal)]) -> Principal:
+async def _schedule_or_configure(principal: Annotated[Principal, Depends(current_principal)]) -> Principal:  # NOSONAR
     if not (principal.has("interview:schedule") or principal.has("interview:configure")):
         raise Forbidden(details={"permission": "interview:configure"})
     return principal

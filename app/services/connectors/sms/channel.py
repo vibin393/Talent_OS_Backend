@@ -80,7 +80,7 @@ class ChannelAdapter:
     async def _deliver(self, spec: SendSpec) -> SendResult:
         raise NotImplementedError
 
-    async def _other(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
+    async def _other(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]  # NOSONAR
         msg = f"{self.category}: unsupported operation {op!r}"
         raise ValueError(msg)
 

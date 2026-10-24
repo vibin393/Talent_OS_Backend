@@ -98,7 +98,7 @@ def _uuid(v: Any) -> uuid.UUID | None:
 def _register_notifications() -> None:
     from app.services import notifications_service as ns
 
-    async def to_user(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
+    async def to_user(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]  # NOSONAR
         uid = _uuid(payload.get("user_id"))
         return {uid} if uid else set()
 
@@ -114,7 +114,7 @@ def _register_notifications() -> None:
             entity_type="interview", entity_id=iid, link_path=f"/interviews/{iid}/scorecard" if iid else None,
         )  # fmt: skip
 
-    async def blocked(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def blocked(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         iid = _uuid(payload.get("interview_id"))
         return ns.Content(
             title="Recording isn't available for this interview",
@@ -122,7 +122,7 @@ def _register_notifications() -> None:
             entity_type="interview", entity_id=iid, link_path=f"/interviews/{iid}" if iid else None,
         )  # fmt: skip
 
-    async def ack_requested(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def ack_requested(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         iid = _uuid(payload.get("interview_id"))
         return ns.Content(
             title="Agree to interview recording",

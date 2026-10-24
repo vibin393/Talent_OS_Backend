@@ -19,7 +19,7 @@ __all__ = ["register"]
 
 
 def _payload_user(*keys: str) -> Any:
-    async def resolve(db: AsyncSession, payload: Mapping[str, Any]) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
+    async def resolve(db: AsyncSession, payload: Mapping[str, Any]) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]  # NOSONAR
         out: set[uuid.UUID] = set()
         for key in keys:
             value = payload.get(key)
@@ -34,7 +34,7 @@ def _payload_user(*keys: str) -> Any:
 
 
 def _renderer(title: str) -> Any:
-    async def render(db: AsyncSession, payload: Mapping[str, Any]) -> Any:  # ruff: ignore[unused-function-argument]
+    async def render(db: AsyncSession, payload: Mapping[str, Any]) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         from app.services import notifications_service as notifications
 
         return notifications.Content(title=str(payload.get("title") or title), body=payload.get("body"))

@@ -140,7 +140,7 @@ async def _messaging_admins(db: AsyncSession, payload: dict[str, Any]) -> set[uu
     return {row["id"] for row in await identity_bridge.users_with_permission(db, "messaging:configure")}
 
 
-async def _render_failing(db: AsyncSession, payload: dict[str, Any]) -> Content:  # ruff: ignore[unused-function-argument]
+async def _render_failing(db: AsyncSession, payload: dict[str, Any]) -> Content:  # ruff: ignore[unused-function-argument]  # NOSONAR
     channel = sending.LABEL.get(str(payload.get("channel")), "Messaging")
     return Content(
         title=f"{channel} messages are failing: the provider could not be reached after every retry",

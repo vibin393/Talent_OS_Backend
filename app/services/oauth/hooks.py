@@ -40,7 +40,7 @@ def _register_notifications() -> None:
         )
         return {r[0] for r in rows}
 
-    async def render(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def render(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         return ns.Content(
             title="A connected app's refresh token was reused; its access was revoked",
             body="Someone may have copied the app's credentials. Review the installation before reconnecting.",

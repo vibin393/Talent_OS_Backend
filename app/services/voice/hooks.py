@@ -103,7 +103,7 @@ def _uuid(v: Any) -> uuid.UUID | None:
 def _register_notifications() -> None:
     from app.services import notifications_service as ns
 
-    async def to_user(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
+    async def to_user(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]  # NOSONAR
         uid = _uuid(payload.get("user_id"))
         return {uid} if uid else set()
 
@@ -123,14 +123,14 @@ def _register_notifications() -> None:
             entity_type="application", entity_id=aid, link_path=link,
         )  # fmt: skip
 
-    async def refused(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def refused(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         aid, link = _link(payload)
         return ns.Content(
             title="The candidate declined the screening call", body="Screen them another way.",
             entity_type="application", entity_id=aid, link_path=link,
         )  # fmt: skip
 
-    async def upload_needed(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def upload_needed(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         aid, link = _link(payload)
         return ns.Content(
             title="Upload the call transcript",

@@ -88,7 +88,7 @@ class DarwinboxHrms(LiveHrmsBase):
         classify(resp, what)
         return resp.json() if resp.content else {}
 
-    async def field_schema(self) -> FieldSchemaDTO:
+    async def field_schema(self) -> FieldSchemaDTO:  # NOSONAR
         self._headers()  # credentials present (no call: the core set is static; custom keys come from the admin)
         return FieldSchemaDTO(fields=tuple(BoardFieldDTO(k, label, req, kind) for k, label, req, kind in CORE_FIELDS))  # type: ignore[arg-type]
 

@@ -11,10 +11,10 @@ from sqlalchemy.ext.asyncio import AsyncSession
 def _notifications() -> None:
     from app.services import notifications_service as ns
 
-    async def nobody(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument] - explicit recipients
+    async def nobody(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument] - explicit recipients  # NOSONAR
         return set()
 
-    async def render(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def render(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         return ns.Content(
             title=str(payload.get("title") or "Demand Agent"), link_path=payload.get("link_path")
         )

@@ -74,7 +74,7 @@ async def _name(db: AsyncSession, inv: Any) -> str:
     return a.name if a is not None else "Assessment"
 
 
-async def _candidate_recipients(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument]
+async def _candidate_recipients(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument]  # NOSONAR
     from app.services.notifications_service import Recipient
 
     cid = _uuid(payload.get("candidate_id"))

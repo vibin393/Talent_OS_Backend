@@ -176,7 +176,7 @@ def _register_notifications() -> None:
         role_id = await directory_service.role_id_by_key(db, str(role_key)) if role_key else None
         return set(await directory_service.user_ids_with_role(db, role_id)) if role_id else set()
 
-    async def render_proposal(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def render_proposal(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         pid = _uuid(payload.get("proposal_id"))
         title = (  # Epic 65 (FR-327): Collections Agent proposals are dunning drafts
             "Dunning draft waiting for your decision"
@@ -199,7 +199,7 @@ def _register_notifications() -> None:
             return set()
         return {p.owner_user_id}  # type: ignore[arg-type]
 
-    async def render_decided(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def render_decided(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         pid = _uuid(payload.get("proposal_id"))
         outcome = "approved" if payload.get("outcome") != "rejected" else "rejected"
         return ns.Content(
@@ -209,11 +209,11 @@ def _register_notifications() -> None:
             link_path=f"/proposals?id={pid}",
         )
 
-    async def owner(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
+    async def owner(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]  # NOSONAR
         uid = _uuid(payload.get("owner_user_id"))
         return {uid} if uid else set()
 
-    async def render_failed(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def render_failed(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         task_id = _uuid(payload.get("fallback_task_id"))
         return ns.Content(
             title=f"An AI agent could not finish ({payload.get('reason_code')})",
@@ -226,7 +226,7 @@ def _register_notifications() -> None:
     async def configurers(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
         return await _holders(db, "ai:agent_configure")
 
-    async def render_budget(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def render_budget(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         return ns.Content(
             title=f"AI agent {payload.get('agent_key')} used {payload.get('threshold')}% of its monthly budget"
         )
@@ -234,15 +234,15 @@ def _register_notifications() -> None:
     async def kill_recipients(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
         return await _holders(db, "ai:agent_configure", "ai:kill_switch")
 
-    async def render_kill(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def render_kill(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         state = "stopped" if payload.get("on") else "resumed"
         return ns.Content(title=f"AI agents were {state} ({payload.get('scope')} switch)")
 
-    async def pick_user(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
+    async def pick_user(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]  # NOSONAR
         uid = _uuid(payload.get("user_id"))
         return {uid} if uid else set()
 
-    async def render_message(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def render_message(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         etype = payload.get("entity_type")
         eid = _uuid(payload.get("entity_id"))
         from app.services import entity_refs
@@ -278,7 +278,7 @@ def _register_retention() -> None:
     from app.models.agent_runtime import AgentPayload, AgentProposal, AgentToolCall
     from app.services.privacy.retention_classes import register_retention_binding, retention_bindings
 
-    async def _no_subject(db: AsyncSession, row_id: uuid.UUID, *_: Any, **__: Any) -> None:  # ruff: ignore[unused-function-argument]
+    async def _no_subject(db: AsyncSession, row_id: uuid.UUID, *_: Any, **__: Any) -> None:  # ruff: ignore[unused-function-argument]  # NOSONAR
         return None
 
     def _anchor(model: Any) -> Any:

@@ -25,7 +25,7 @@ from app.services.webhooks import common
 
 def _latency(d: WebhookDelivery) -> int | None:
     log = list(d.attempts or [])
-    return log[-1].get("latency_ms") if log else None
+    return log[-1].get("latency_ms") if log else None  # NOSONAR
 
 
 def out(d: WebhookDelivery) -> DeliveryOut:

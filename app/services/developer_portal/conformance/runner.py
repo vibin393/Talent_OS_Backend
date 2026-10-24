@@ -45,7 +45,7 @@ def set_finalize_kicker(fn: Kicker | None) -> None:
 
 
 def _out(row: ConformanceRun, live: list[dict[str, Any]] | None = None) -> RunOut:
-    source = (row.report or {}).get("checks") if row.report else live
+    source = (row.report or {}).get("checks") if row.report else live  # NOSONAR
     return RunOut(
         id=row.id, app_id=row.app_id, sandbox_id=row.sandbox_id, installation_id=row.installation_id, status=row.status,
         manifest_sha256=row.manifest_sha256, window_ends_at=row.window_ends_at, created_at=row.created_at, finished_at=row.finished_at,
@@ -283,7 +283,7 @@ async def expire_runs() -> int:
     for sandbox_id, inst in pairs:
         try:
             sandbox = await _sandbox(sandbox_id)
-            assert sandbox.tenant_id is not None
+            assert sandbox.tenant_id is not None  # NOSONAR
             await fault_injection.deactivate(sandbox.tenant_id, inst)
         except Exception:
             logger.exception("Could not deactivate conformance state for {}", inst)

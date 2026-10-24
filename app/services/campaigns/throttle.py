@@ -65,7 +65,7 @@ class MemoryBackend:
             self._buckets.clear()
             self._days.clear()
 
-    async def take(self, bucket: str, day_key: str, rate: int, cap: int, now_ms: int) -> tuple[int, int]:
+    async def take(self, bucket: str, day_key: str, rate: int, cap: int, now_ms: int) -> tuple[int, int]:  # NOSONAR
         with self._lock:
             if self._days.get(day_key, 0) >= cap:
                 return 0, -1

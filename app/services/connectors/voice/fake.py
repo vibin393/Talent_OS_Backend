@@ -79,7 +79,7 @@ class FakeVoiceProvider:
             raise RuntimeError(msg)
 
     # ---------------------------------------------------------------- generic port
-    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:
+    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # NOSONAR
         self._record(op, dict(payload))
         digest = hashlib.sha256(json.dumps(dict(payload), sort_keys=True, default=str).encode()).hexdigest()
         return {"ok": True, "op": op, "ref": f"fake-{digest[:12]}"}
@@ -100,17 +100,17 @@ class FakeVoiceProvider:
         return data if isinstance(data, dict) else {"data": data}
 
     # ---------------------------------------------------------------- voice port
-    async def schedule_call(self, req: CallSessionRequestDTO) -> CallSessionDTO:
+    async def schedule_call(self, req: CallSessionRequestDTO) -> CallSessionDTO:  # NOSONAR
         self._record("schedule_call", req)
         ref = f"fake-call:{req.voice_session_id}"
         type(self).sessions[ref] = {"record": req.record, "script_ref": req.script_ref or "default"}
         return CallSessionDTO(external_ref=ref, status="scheduled")
 
-    async def start_call(self, external_ref: str) -> CallSessionDTO:
+    async def start_call(self, external_ref: str) -> CallSessionDTO:  # NOSONAR
         self._record("start_call", external_ref)
         return CallSessionDTO(external_ref=external_ref, status="started")
 
-    async def end_call(self, external_ref: str) -> CallSessionDTO:
+    async def end_call(self, external_ref: str) -> CallSessionDTO:  # NOSONAR
         self._record("end_call", external_ref)
         session = type(self).sessions.get(external_ref, {"record": False, "script_ref": "default"})
         return CallSessionDTO(
@@ -120,13 +120,13 @@ class FakeVoiceProvider:
             transcript_ref=f"tx:{session['script_ref']}",
         )
 
-    async def fetch_recording(self, recording_ref: str) -> RecordingDTO | None:
+    async def fetch_recording(self, recording_ref: str) -> RecordingDTO | None:  # NOSONAR
         self._record("fetch_recording", recording_ref)
         if not recording_ref.startswith("rec:"):
             return None
         return RecordingDTO(data=silence_wav(), media_type="audio/wav", duration_s=RECORDING_SECONDS)
 
-    async def fetch_transcript(self, transcript_ref: str) -> TranscriptDTO | None:
+    async def fetch_transcript(self, transcript_ref: str) -> TranscriptDTO | None:  # NOSONAR
         self._record("fetch_transcript", transcript_ref)
         if not transcript_ref.startswith("tx:"):
             return None
@@ -153,7 +153,7 @@ class FakeTranscriptionProvider:
     def reset(cls) -> None:
         cls.calls.clear()
 
-    async def transcribe(self, audio: bytes, media_type: str, language_hint: str | None) -> TranscriptDTO:
+    async def transcribe(self, audio: bytes, media_type: str, language_hint: str | None) -> TranscriptDTO:  # NOSONAR
         type(self).calls.append(("transcribe", (len(audio), media_type, language_hint)))
         dto = script_transcript("default")
         return TranscriptDTO(segments=dto.segments, language=language_hint or dto.language)

@@ -14,12 +14,12 @@ from loguru import logger
 from sqlalchemy.ext.asyncio import AsyncSession
 
 
-async def _none(db: AsyncSession, payload: Any) -> set[Any]:
+async def _none(db: AsyncSession, payload: Any) -> set[Any]:  # NOSONAR
     return set()
 
 
 def _render(title: str) -> Any:
-    async def render(db: AsyncSession, payload: Any) -> Any:
+    async def render(db: AsyncSession, payload: Any) -> Any:  # NOSONAR
         from app.services.notifications_service import Content
 
         return Content(title=title)

@@ -82,7 +82,7 @@ async def _intent(
 
 
 def _preview(title: str, summary_fn: Any = None) -> Any:
-    async def preview(tctx: Any, args: Any) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
+    async def preview(tctx: Any, args: Any) -> ProposalPreview:  # ruff: ignore[unused-function-argument]  # NOSONAR
         fields: list[tuple[str, str]] = [("Conversation", str(args.conversation_id))]
         summary = summary_fn(args) if summary_fn is not None else title
         return ProposalPreview(title=title, summary=summary[:4000], fields=tuple(fields))

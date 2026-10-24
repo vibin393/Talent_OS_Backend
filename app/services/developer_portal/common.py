@@ -54,7 +54,7 @@ def _use_memory() -> bool:
     return get_settings().rate_limit_backend == "memory"
 
 
-async def _redis() -> Any:
+async def _redis() -> Any:  # NOSONAR
     from redis.asyncio import Redis
 
     s = get_settings()

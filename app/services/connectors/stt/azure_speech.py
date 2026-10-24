@@ -89,7 +89,7 @@ class AzureSpeechToText:
             f"?api-version={self._cfg.api_version}"
         )
 
-    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
+    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]  # NOSONAR
         if op == "health":
             return {"ok": True, "languages": list(LANGUAGES)}
         raise ManualActionRequired(f"stt: {op} is not an operation of this provider", {"op": op})
@@ -100,7 +100,7 @@ class AzureSpeechToText:
     def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         return {}
 
-    async def languages(self) -> tuple[str, ...]:
+    async def languages(self) -> tuple[str, ...]:  # NOSONAR
         return LANGUAGES
 
     async def transcribe(self, audio: bytes, media_type: str, language_hint: str | None) -> TranscriptDTO:

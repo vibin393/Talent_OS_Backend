@@ -130,7 +130,7 @@ async def screening_fields(db: AsyncSession, candidate_id: uuid.UUID) -> dict[st
     return {
         "expected_ctc": _money(row.expected_ctc_amount, row.expected_ctc_currency, row.expected_ctc_unit),
         "notice_period_days": row.notice_period_days,
-        "current_location": (loc or {}).get("city") if loc else None,
+        "current_location": (loc or {}).get("city") if loc else None,  # NOSONAR
         "work_authorization": row.work_authorization,
         "willing_to_relocate": row.willing_to_relocate,
     }

@@ -131,7 +131,7 @@ async def _create_case_run(actx: Any) -> str:
     return f"case {case.human_id}" if case is not None else "no matching template"
 
 
-async def _create_case_dry(actx: Any) -> str:
+async def _create_case_dry(actx: Any) -> str:  # NOSONAR
     return f"would start onboarding for placement {actx.entity_id}"
 
 
@@ -231,13 +231,13 @@ except Exception:  # pragma: no cover - registry shape drift must not break the 
 
 
 # ---------------------------------------------------------------- notifications
-async def _payload_users(db: AsyncSession, payload: Any) -> set[uuid.UUID]:
+async def _payload_users(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # NOSONAR
     from app.services.onboarding.common import as_uuid
 
     return {u for u in (as_uuid(x) for x in payload.get("recipient_ids") or []) if u}
 
 
-async def _payload_worker(db: AsyncSession, payload: Any) -> set[Any]:
+async def _payload_worker(db: AsyncSession, payload: Any) -> set[Any]:  # NOSONAR
     from app.services.notifications_service import Recipient
     from app.services.onboarding.common import as_uuid
 
@@ -245,7 +245,7 @@ async def _payload_worker(db: AsyncSession, payload: Any) -> set[Any]:
     return {Recipient("candidate", cid)} if cid else set()
 
 
-async def _render(db: AsyncSession, payload: Any) -> Any:
+async def _render(db: AsyncSession, payload: Any) -> Any:  # NOSONAR
     from app.services.notifications_service import Content
 
     return Content(

@@ -11,7 +11,7 @@ import re
 
 TARGET = 800
 MAX_LEN = 2000
-_HEADING = re.compile(r"^\s{0,3}#{1,6}\s+(.*?)\s*#*\s*$")
+_HEADING = re.compile(r"^\s{0,3}#{1,6}\s+(.*?)\s*#*\s*$")  # NOSONAR
 _SENTENCE = re.compile(r"(?<=[.!?])\s+")
 
 

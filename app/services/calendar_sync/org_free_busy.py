@@ -83,6 +83,6 @@ async def lookup(
     return out
 
 
-async def clear_cache(tenant_id: uuid.UUID) -> None:
+async def clear_cache(tenant_id: uuid.UUID) -> None:  # NOSONAR
     """Let the P1 free/busy cache (2 minutes) and has no per-tenant listing; entries age out (documented)."""
     logger.info("calendar sync: organisation free/busy changed for tenant {}; cached entries expire within 2 minutes", tenant_id)

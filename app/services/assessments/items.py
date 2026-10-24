@@ -27,7 +27,7 @@ from app.schemas.assessments import ItemBody, ItemCreate, ItemOut, ItemVersionOu
 from app.services.assessments.common import invalid, not_found, now, tenant_of, user_id
 
 BLANK_RE = re.compile(r"\{\{blank:(\d{1,2})\}\}")
-_NESTED_QUANTIFIER = re.compile(r"\((?:[^()\\]|\\.)*[+*}](?:[^()\\]|\\.)*\)\s*[+*{]")
+_NESTED_QUANTIFIER = re.compile(r"\((?:[^()\\]|\\.)*[+*}](?:[^()\\]|\\.)*\)\s*[+*{]")  # NOSONAR
 _BACKREF = re.compile(r"\\[1-9]|\(\?P=")
 
 

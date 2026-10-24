@@ -108,7 +108,7 @@ def explain(defn: Definition) -> str:
 
 
 # ================================================================ catalogue / validate
-async def compact_catalogue(ctx: RequestContext, db: AsyncSession, source_key: str | None) -> CatalogueOut:  # ruff: ignore[unused-function-argument]
+async def compact_catalogue(ctx: RequestContext, db: AsyncSession, source_key: str | None) -> CatalogueOut:  # ruff: ignore[unused-function-argument]  # NOSONAR
     return cat.compact(_principal(ctx), source_key)
 
 

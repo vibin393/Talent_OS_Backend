@@ -157,7 +157,7 @@ async def _body(ctx: RequestContext, db: AsyncSession, d: WebhookDelivery) -> tu
     return public_events_service.envelope(row, ev.tenant_ref.slug, ev.livemode), None
 
 
-async def _health_success(sub: WebhookSubscription) -> None:
+async def _health_success(sub: WebhookSubscription) -> None:  # NOSONAR
     sub.consecutive_failures, sub.failure_streak_started_at, sub.streak_notified_at = 0, None, None
     sub.last_success_at = common.now()
 

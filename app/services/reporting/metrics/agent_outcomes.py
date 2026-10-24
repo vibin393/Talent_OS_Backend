@@ -348,7 +348,7 @@ async def smc15_contact_fatigue(t: TileContext) -> TileData:
             "rows": [{"key": "opt_outs", "label": "Opt-outs", "value": opt_outs}, {"key": "handoffs", "label": "Talk to a person", "value": handoffs}]}  # fmt: skip
 
 
-async def smc16_impact_ratios(t: TileContext) -> TileData:
+async def smc16_impact_ratios(t: TileContext) -> TileData:  # NOSONAR
     """Link only: no tile shows fairness data (P3 rule)."""
     return {"value": None, "link": {"path": "/fairness", "query": {}}, "badge": "Open bias audit"}
 

@@ -285,7 +285,7 @@ async def _explanations(tctx: Any, args: ExplanationsIn) -> ToolOutcome:
     return ToolOutcome(ExplanationsOut(updated=n), target=("timesheet", ts.id), summary=f"{n} explanations saved")
 
 
-async def _explanations_preview(tctx: Any, args: ExplanationsIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
+async def _explanations_preview(tctx: Any, args: ExplanationsIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]  # NOSONAR
     return ProposalPreview(
         title="Save plain-English explanations of the timesheet flags",
         summary="\n".join(f"- {i.explanation}" for i in args.items)[:4000],

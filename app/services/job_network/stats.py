@@ -59,7 +59,7 @@ async def listing_totals(pdb: AsyncSession, listing_id: uuid.UUID) -> dict[str, 
     }
 
 
-async def flush_stats() -> int:
+async def flush_stats() -> int:  # NOSONAR
     """Beat safety-net (counters are written straight to the DB; nothing to flush when no Redis buffer is used)."""
     return 0
 

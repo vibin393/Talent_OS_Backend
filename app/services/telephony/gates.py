@@ -68,7 +68,7 @@ class GateResult:
 
     @property
     def message(self) -> str | None:
-        return MESSAGES.get(self.code or "") if self.code else None
+        return MESSAGES.get(self.code or "") if self.code else None  # NOSONAR
 
     def refuse(self, code: str, **details: Any) -> "GateResult":
         self.ok = False

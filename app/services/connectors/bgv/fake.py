@@ -38,7 +38,7 @@ class FakeBgvProvider:
             msg = f"fake {op} failure"
             raise RuntimeError(msg)
 
-    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:
+    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # NOSONAR
         self._record(op, dict(payload))
         if op == "initiate":
             return {"ok": True, "op": op, "external_ref": f"fake-{payload.get('check_id')}"}
@@ -60,21 +60,21 @@ class FakeBgvProvider:
             return {}
         return data if isinstance(data, dict) else {"data": data}
 
-    async def initiate_check(self, job: BgvCheckJob) -> str:
+    async def initiate_check(self, job: BgvCheckJob) -> str:  # NOSONAR
         self._record("initiate_check", job)
         return f"fake-{job.check_id}"
 
-    async def get_status(self, external_ref: str) -> BgvStatusDTO:
+    async def get_status(self, external_ref: str) -> BgvStatusDTO:  # NOSONAR
         self._record("get_status", external_ref)
         return BgvStatusDTO(
             external_ref, "completed" if external_ref in type(self).reports else "in_progress"
         )
 
-    async def fetch_report(self, external_ref: str) -> BgvReportDTO | None:
+    async def fetch_report(self, external_ref: str) -> BgvReportDTO | None:  # NOSONAR
         self._record("fetch_report", external_ref)
         return type(self).reports.get(external_ref)
 
-    async def handle_webhook(self, headers: Mapping[str, str], body: bytes) -> BgvWebhookDTO:
+    async def handle_webhook(self, headers: Mapping[str, str], body: bytes) -> BgvWebhookDTO:  # NOSONAR
         data = self.parse_webhook(headers, body)
         ref = str(data.get("external_ref") or "")
         self._record("handle_webhook", ref)

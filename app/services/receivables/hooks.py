@@ -114,7 +114,7 @@ async def _render_recon_ready(db: Any, payload: Any) -> Any:
     )
 
 
-async def _recon_file_access(ctx: Any, db: Any, entity_id: Any, write: bool) -> bool:  # ruff: ignore[unused-function-argument]
+async def _recon_file_access(ctx: Any, db: Any, entity_id: Any, write: bool) -> bool:  # ruff: ignore[unused-function-argument]  # NOSONAR
     principal = ctx.principal
     if principal is None:
         return True

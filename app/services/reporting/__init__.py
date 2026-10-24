@@ -211,7 +211,7 @@ async def touch_active_day(principal: Principal) -> None:
                 today = common.now().astimezone(tz).date()
                 if _seen.get((tenant_id, user_id)) == today:
                     return
-            assert today is not None
+            assert today is not None  # NOSONAR
             claimed = await _claim_redis(f"uad:{tenant_id}:{user_id}:{today.isoformat()}")
             if claimed is not False:
                 await db.execute(

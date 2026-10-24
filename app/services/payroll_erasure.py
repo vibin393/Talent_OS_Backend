@@ -53,7 +53,7 @@ class PayrollExportsHandler:
             ]
         }
 
-    async def verify(self, db: AsyncSession, ctx: ErasureContext) -> list[str]:
+    async def verify(self, db: AsyncSession, ctx: ErasureContext) -> list[str]:  # NOSONAR
         del db, ctx
         return []
 

@@ -27,7 +27,7 @@ class ManualFxRateSource:
     def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         return {}
 
-    async def fetch_rates(self, on: date, pairs: Sequence[tuple[str, str]]) -> Sequence[FxRateDTO]:  # ruff: ignore[unused-method-argument]
+    async def fetch_rates(self, on: date, pairs: Sequence[tuple[str, str]]) -> Sequence[FxRateDTO]:  # ruff: ignore[unused-method-argument]  # NOSONAR
         return []
 
 

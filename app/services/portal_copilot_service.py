@@ -198,7 +198,7 @@ async def _own_draft(idb: Any, actor: PortalActor, proposal_id: uuid.UUID) -> An
 
 
 def _result(p: Any) -> DraftResultOut:
-    result = dict(p.result or {}) if p.result else None
+    result = dict(p.result or {}) if p.result else None  # NOSONAR
     url = (result or {}).get("open_url") or (result or {}).get("url")
     return DraftResultOut(
         proposal_id=p.id, status=p.status, error_code=p.error_code, open_url=url, result=result

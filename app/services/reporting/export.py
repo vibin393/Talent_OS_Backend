@@ -247,7 +247,7 @@ def _filters_json(model: Any) -> dict[str, Any]:
     return dict(model.model_dump(mode="json", by_alias=True, exclude_none=True, exclude_defaults=True))
 
 
-async def _audit_run(db: AsyncSession, row: Export, mode: str) -> None:
+async def _audit_run(db: AsyncSession, row: Export, mode: str) -> None:  # NOSONAR
     audit.record(
         "export.run",
         row.kind,

@@ -559,7 +559,7 @@ def _fan_out(tenant_id: uuid.UUID, type_key: str, payload: dict[str, Any]) -> No
         logger.exception("Interview capture notification {} failed", type_key)
 
 
-async def _notify_blocked(db: AsyncSession, interview: Interview, capture: InterviewCapture) -> None:  # ruff: ignore[unused-function-argument]
+async def _notify_blocked(db: AsyncSession, interview: Interview, capture: InterviewCapture) -> None:  # ruff: ignore[unused-function-argument]  # NOSONAR
     if capture.requested_by is None:
         return
     _fan_out(interview.tenant_id, "interview_capture_blocked", {

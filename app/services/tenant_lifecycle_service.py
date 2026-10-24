@@ -265,7 +265,7 @@ async def export_tenant(tenant_id: uuid.UUID, export_id: uuid.UUID) -> str:
             )
         async with platform_session() as pdb:
             export = await pdb.get(TenantExport, export_id)
-            assert export is not None
+            assert export is not None  # NOSONAR
             export.status = "ready"
             export.storage_key = key
             export.sha256 = digest

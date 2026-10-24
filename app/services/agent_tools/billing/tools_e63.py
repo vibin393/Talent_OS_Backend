@@ -277,7 +277,7 @@ async def _flag(tctx: Any, args: FlagIn) -> ToolOutcome:
     return ToolOutcome(FlagOut(activity_id=out.id), target=("client", args.client_id), summary=f"exception noted: {args.kind}")
 
 
-async def _flag_preview(tctx: Any, args: FlagIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
+async def _flag_preview(tctx: Any, args: FlagIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]  # NOSONAR
     return ProposalPreview(
         title=f"Note on the client: {EXCEPTION_LABELS[args.kind]}", summary=args.details[:4000],
         fields=(("Exception", EXCEPTION_LABELS[args.kind]),), renderer="billing.flag_exception",

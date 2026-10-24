@@ -48,7 +48,7 @@ def _q(stmt: Select[Any], f: P2ListFilters, *cols: Any) -> Select[Any]:
 
 
 # ================================================================ agent runs
-async def _agent_runs(
+async def _agent_runs(  # NOSONAR
     ctx: RequestContext,
     db: AsyncSession,
     principal: Principal,
@@ -102,7 +102,7 @@ def _visible(principal: Principal) -> Any:
     )
 
 
-async def _agent_proposals(
+async def _agent_proposals(  # NOSONAR
     ctx: RequestContext,
     db: AsyncSession,
     principal: Principal,

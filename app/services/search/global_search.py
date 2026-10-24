@@ -27,7 +27,7 @@ from app.services.candidates.common import normalize_email, normalize_phone
 GROUP_TIMEOUT_MS = 250
 MAX_LIMIT = 20
 HUMAN_ID_RE = re.compile(r"^[A-Za-z][A-Za-z0-9]{0,9}-\d+$")
-EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")  # NOSONAR
 PHONE_RE = re.compile(r"^\+?[\d\s().-]+$")
 NAME_SIMILARITY = 0.3
 

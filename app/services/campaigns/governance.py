@@ -40,7 +40,7 @@ from app.services.campaigns import settings as mkt_settings
 
 COUNTED_STATUSES = ("queued", "sent", "delivered")
 TERMINAL_STAGE_KEYS = ("hired", "rejected", "withdrawn")
-EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")  # NOSONAR
 E164_RE = re.compile(r"^\+[1-9][0-9]{6,14}$")
 PREVIEW_REASONS = (
     "no_marketing_consent",

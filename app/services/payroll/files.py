@@ -182,7 +182,7 @@ async def build_file(
     return files_service.Download(data=data, filename=filename, content_type=CONTENT_TYPES[fmt])
 
 
-async def file_access(ctx: RequestContext, db: AsyncSession, version_id: uuid.UUID, write: bool) -> bool:  # ruff: ignore[unused-function-argument]
+async def file_access(ctx: RequestContext, db: AsyncSession, version_id: uuid.UUID, write: bool) -> bool:  # ruff: ignore[unused-function-argument]  # NOSONAR
     """``files_service`` checker ``payroll_export_version``: internal users with ``payroll:read``."""
     from app.core.permissions import Principal
 

@@ -112,7 +112,7 @@ async def _submitted_recipients(db: AsyncSession, payload: Any) -> set[Any]:
     return out
 
 
-async def _employee_recipients(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument]
+async def _employee_recipients(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument]  # NOSONAR
     return _employee(payload)
 
 

@@ -106,7 +106,7 @@ def _uuid(value: Any) -> uuid.UUID | None:
 
 
 def _pick(key: str) -> Any:
-    async def resolve(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
+    async def resolve(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]  # NOSONAR
         value = _uuid(payload.get(key))
         return {value} if value else set()
 

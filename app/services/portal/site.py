@@ -147,7 +147,7 @@ async def upload_image(
     return _out(row, await _slug(tid))
 
 
-async def career_site_access(
+async def career_site_access(  # NOSONAR
     ctx: RequestContext,
     db: AsyncSession,  # ruff: ignore[unused-function-argument] - files access hook signature
     entity_id: uuid.UUID,

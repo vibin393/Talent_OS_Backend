@@ -85,7 +85,7 @@ async def _labels(tctx: Any, application_id: uuid.UUID) -> tuple[str, str]:
     return cand or "the candidate", client or "the client"
 
 
-def _ref_tuple(refs: tuple[uuid.UUID, uuid.UUID, uuid.UUID] | None) -> tuple[tuple[str, uuid.UUID], ...]:
+def _ref_tuple(refs: tuple[uuid.UUID, uuid.UUID, uuid.UUID] | None) -> tuple[tuple[str, uuid.UUID], ...]:  # NOSONAR
     if refs is None:
         return ()
     return (("candidate", refs[0]), ("demand", refs[1]), ("client", refs[2]))

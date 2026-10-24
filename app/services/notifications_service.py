@@ -153,7 +153,7 @@ def _ids(payload: Payload, *keys: str) -> set[uuid.UUID]:
 
 
 def _pick(*keys: str) -> Resolver:
-    async def resolve(db: AsyncSession, payload: Payload) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
+    async def resolve(db: AsyncSession, payload: Payload) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]  # NOSONAR
         return _ids(payload, *keys)
 
     return resolve
@@ -334,7 +334,7 @@ async def _render_task_reminder(db: AsyncSession, payload: Payload) -> Content:
     return await _render_task(db, payload, "Reminder")
 
 
-async def _render_custom(db: AsyncSession, payload: Payload) -> Content:  # ruff: ignore[unused-function-argument]
+async def _render_custom(db: AsyncSession, payload: Payload) -> Content:  # ruff: ignore[unused-function-argument]  # NOSONAR
     etype = str(payload.get("entity_type") or "") or None
     eid = _uuid(payload.get("entity_id"))
     return Content(

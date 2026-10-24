@@ -133,10 +133,10 @@ class AuditShredHandler:
             await audit.shred("dsr_request", dsr_id, session=db)
         return {"subjects_shredded": len(ids) + len(dsr_ids)}
 
-    async def export(self, db: AsyncSession, ctx: ErasureContext) -> dict[str, Any] | None:  # ruff: ignore[unused-method-argument]
+    async def export(self, db: AsyncSession, ctx: ErasureContext) -> dict[str, Any] | None:  # ruff: ignore[unused-method-argument]  # NOSONAR
         return None
 
-    async def verify(self, db: AsyncSession, ctx: ErasureContext) -> list[str]:  # ruff: ignore[unused-method-argument]
+    async def verify(self, db: AsyncSession, ctx: ErasureContext) -> list[str]:  # ruff: ignore[unused-method-argument]  # NOSONAR
         return []  # runs after verification; shredding is idempotent and checked by tests
 
 

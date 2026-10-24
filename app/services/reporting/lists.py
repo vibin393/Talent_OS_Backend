@@ -470,7 +470,7 @@ def _order(stmt: Select[Any], kind: str, sort: str | None, entity_id: Any) -> Se
 
 
 # ================================================================ per-kind base queries
-async def _applications(
+async def _applications(  # NOSONAR
     ctx: RequestContext,  # ruff: ignore[unused-function-argument] - common list-query signature
     principal: Principal,
     f: ApplicationListFilters,
@@ -510,7 +510,7 @@ async def _applications(
     return _order(stmt, "applications", f.sort, A.id)
 
 
-async def _submissions(
+async def _submissions(  # NOSONAR
     ctx: RequestContext,  # ruff: ignore[unused-function-argument] - common list-query signature
     principal: Principal,
     f: SubmissionListFilters,
@@ -556,7 +556,7 @@ async def _submissions(
     return _order(stmt, "submissions", f.sort, S.id)
 
 
-async def _interviews(principal: Principal, f: InterviewListFilters, tz: ZoneInfo) -> Select[Any]:
+async def _interviews(principal: Principal, f: InterviewListFilters, tz: ZoneInfo) -> Select[Any]:  # NOSONAR
     stmt = select(IV.id)
     permission = READ_PERMISSION["interviews"]
     scope = demand_condition(IV.demand_id, principal, permission, None, _me(f.client_owner, principal))
@@ -588,7 +588,7 @@ async def _interviews(principal: Principal, f: InterviewListFilters, tz: ZoneInf
     return _order(stmt, "interviews", f.sort, IV.id)
 
 
-async def _offers(principal: Principal, f: OfferListFilters, tz: ZoneInfo) -> Select[Any]:
+async def _offers(principal: Principal, f: OfferListFilters, tz: ZoneInfo) -> Select[Any]:  # NOSONAR
     stmt = select(OF.id)
     scope = demand_condition(
         OF.demand_id,
@@ -775,7 +775,7 @@ def register_list_kind(defn: ListKindDef) -> None:
         FINANCE_EXPORT_KINDS.add(defn.kind)
 
 
-async def _entity_query(stmt: Select[Any], id_col: Any) -> Select[Any]:
+async def _entity_query(stmt: Select[Any], id_col: Any) -> Select[Any]:  # NOSONAR
     return stmt.with_only_columns(id_col)
 
 

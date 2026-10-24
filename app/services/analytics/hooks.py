@@ -165,7 +165,7 @@ async def _recipients(db: AsyncSession, payload: Any) -> set[Any]:
 LINKS = {"demand": "/demands/{id}", "offer": "/offers?offer={id}", "placement": "/placements/{id}"}
 
 
-async def _render(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+async def _render(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
     from app.services.analytics.features.specs import KIND_LABELS
     from app.services.notifications_service import Content
 

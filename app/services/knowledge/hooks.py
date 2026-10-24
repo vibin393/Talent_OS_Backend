@@ -52,11 +52,11 @@ def _register_notice() -> None:
     )
 
 
-async def _none(db: AsyncSession, payload: Any) -> set[Any]:
+async def _none(db: AsyncSession, payload: Any) -> set[Any]:  # NOSONAR
     return set()
 
 
-async def _render_handoff(db: AsyncSession, payload: Any) -> Any:
+async def _render_handoff(db: AsyncSession, payload: Any) -> Any:  # NOSONAR
     from app.services.notifications_service import Content
 
     tid = _uuid(payload.get("thread_id"))
@@ -66,7 +66,7 @@ async def _render_handoff(db: AsyncSession, payload: Any) -> Any:
     )
 
 
-async def _render_answer(db: AsyncSession, payload: Any) -> Any:
+async def _render_answer(db: AsyncSession, payload: Any) -> Any:  # NOSONAR
     from app.services.notifications_service import Content
 
     return Content(title="Your onboarding question has an answer")

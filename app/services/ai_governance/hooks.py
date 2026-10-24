@@ -61,7 +61,7 @@ def _register_notifications() -> None:
 
         return await _holders(db, "ai:agent_configure", "ai:govern")
 
-    async def render(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def render(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         return ns.Content(
             title=f"AI agent {payload.get('agent_key')} fell below its evaluation threshold",
             body="Review the latest evaluation results before relying on this agent.",
@@ -96,7 +96,7 @@ def _register_retention() -> None:
     from app.models.proposal_signals import ProposalReviewSignal
     from app.services.privacy.retention_classes import register_retention_binding, retention_bindings
 
-    async def _subject(db: AsyncSession, row_id: uuid.UUID, *_: Any, **__: Any) -> uuid.UUID | None:  # ruff: ignore[unused-function-argument]
+    async def _subject(db: AsyncSession, row_id: uuid.UUID, *_: Any, **__: Any) -> uuid.UUID | None:  # ruff: ignore[unused-function-argument]  # NOSONAR
         return None  # staff telemetry, no data subject
 
     async def _anchor(db: AsyncSession, row_id: uuid.UUID, *_: Any, **__: Any) -> Any:

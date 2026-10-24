@@ -56,7 +56,7 @@ class PortalCopilotHandler:
         await db.flush()
         return counts
 
-    async def export(self, db: AsyncSession, ctx: ErasureContext) -> dict[str, Any] | None:  # ruff: ignore[unused-method-argument]
+    async def export(self, db: AsyncSession, ctx: ErasureContext) -> dict[str, Any] | None:  # ruff: ignore[unused-method-argument]  # NOSONAR
         # Sealed private assistant conversations; the Candidate reads them in the portal panel.
         return None
 

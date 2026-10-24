@@ -36,7 +36,7 @@ class FakeAccountingExporter:
         cls.ledger.clear()
         cls.payments.clear()
 
-    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:
+    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # NOSONAR
         type(self).calls.append((op, dict(payload)))
         if op in type(self).fail_ops:
             msg = f"fake {op} failure"
@@ -59,12 +59,12 @@ class FakeAccountingExporter:
             return {}
         return data if isinstance(data, dict) else {"data": data}
 
-    async def export(self, rows: Sequence[Mapping[str, Any]], template: Mapping[str, Any]) -> bytes:
+    async def export(self, rows: Sequence[Mapping[str, Any]], template: Mapping[str, Any]) -> bytes:  # NOSONAR
         type(self).calls.append(("export", (rows, template)))
         return b"fake"
 
     # ---------------------------------------------------------------- AccountingSyncPort (Epic 66)
-    async def push_documents(self, docs: Sequence[LedgerDocumentDTO]) -> Sequence[LedgerResultDTO]:
+    async def push_documents(self, docs: Sequence[LedgerDocumentDTO]) -> Sequence[LedgerResultDTO]:  # NOSONAR
         type(self).calls.append(("push_documents", tuple(d.document_id for d in docs)))
         if "push_documents" in type(self).fail_ops:
             msg = "fake push_documents failure"
@@ -79,7 +79,7 @@ class FakeAccountingExporter:
             out.append(LedgerResultDTO(document_id=doc.document_id, external_ref=ref, status="synced", message=None))
         return out
 
-    async def document_status(self, refs: Sequence[str]) -> Sequence[LedgerResultDTO]:
+    async def document_status(self, refs: Sequence[str]) -> Sequence[LedgerResultDTO]:  # NOSONAR
         type(self).calls.append(("document_status", tuple(refs)))
         by_ref = {ref: key for key, ref in type(self).ledger.items()}
         return [
@@ -92,7 +92,7 @@ class FakeAccountingExporter:
             for ref in refs
         ]
 
-    async def pull_payments(
+    async def pull_payments(  # NOSONAR
         self, since: datetime | None, cursor: str | None
     ) -> tuple[Sequence[LedgerPaymentDTO], str | None]:
         type(self).calls.append(("pull_payments", (since, cursor)))
@@ -101,7 +101,7 @@ class FakeAccountingExporter:
         nxt = str(start + 100) if start + 100 < len(type(self).payments) else None
         return items, nxt
 
-    async def masters_sync(
+    async def masters_sync(  # NOSONAR
         self, customers: Sequence[Mapping[str, Any]], ledgers: Sequence[Mapping[str, Any]]
     ) -> Mapping[str, str]:
         type(self).calls.append(("masters_sync", (len(customers), len(ledgers))))

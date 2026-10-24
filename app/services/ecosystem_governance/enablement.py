@@ -52,7 +52,7 @@ _DEFAULTS: dict[str, tuple[tuple[str, str], ...]] = {
 }
 
 
-async def _default_checks(feature: str, ctx: RequestContext, db: AsyncSession) -> list[EnablementCheckOut]:  # ruff: ignore[unused-function-argument]
+async def _default_checks(feature: str, ctx: RequestContext, db: AsyncSession) -> list[EnablementCheckOut]:  # ruff: ignore[unused-function-argument]  # NOSONAR
     return [
         EnablementCheckOut(key=key, label=label, status="warning", detail="Not verified in this environment yet.")
         for key, label in _DEFAULTS.get(feature, ())

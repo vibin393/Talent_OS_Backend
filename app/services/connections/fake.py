@@ -104,7 +104,7 @@ class FakeProvider:
             params["scope"] = " ".join((*FAKE_SCOPES, *extra_scopes))
         return "https://auth.fake/authorize?" + urlencode(params)
 
-    async def exchange_code(self, code: str, redirect_uri: str) -> TokenSet:  # ruff: ignore[unused-method-argument]
+    async def exchange_code(self, code: str, redirect_uri: str) -> TokenSet:  # ruff: ignore[unused-method-argument]  # NOSONAR
         self.calls.append("exchange_code")
         if code == "bad":
             raise ProviderAuthError("invalid_grant")
@@ -121,7 +121,7 @@ class FakeProvider:
         extra, self.pending_extra_scopes = self.pending_extra_scopes, ()
         return extra
 
-    async def refresh(self, token_set: TokenSet) -> TokenSet:
+    async def refresh(self, token_set: TokenSet) -> TokenSet:  # NOSONAR
         self.calls.append("refresh")
         if self.fail_refresh:
             raise ProviderAuthError("invalid_grant")
@@ -130,13 +130,13 @@ class FakeProvider:
             token_set, access_token=f"fake-access-{n}", expires_at=datetime.now(UTC) + self.token_ttl
         )
 
-    async def revoke(self, token_set: TokenSet) -> None:
+    async def revoke(self, token_set: TokenSet) -> None:  # NOSONAR
         self.calls.append("revoke")
         if self.fail_revoke:
             raise ProviderError("revoke failed")
         self.revoked.append(token_set.refresh_token or token_set.access_token)
 
-    async def upsert_event(self, token_set: TokenSet, event: EventSpec) -> EventResult:
+    async def upsert_event(self, token_set: TokenSet, event: EventSpec) -> EventResult:  # NOSONAR
         self.calls.append("upsert_event")
         if self.fail_upsert:
             raise ProviderAuthError("unauthorized")
@@ -161,7 +161,7 @@ class FakeProvider:
         self._touch(row)
         return EventResult(event_id, url or event.meeting_url, row.etag)
 
-    async def cancel_event(self, token_set: TokenSet, provider_event_id: str) -> None:  # ruff: ignore[unused-method-argument]
+    async def cancel_event(self, token_set: TokenSet, provider_event_id: str) -> None:  # ruff: ignore[unused-method-argument]  # NOSONAR
         self.calls.append("cancel_event")
         if self.fail_upsert:
             raise ProviderAuthError("unauthorized")
@@ -170,7 +170,7 @@ class FakeProvider:
             self.events[provider_event_id].cancelled = True
             self._touch(self.events[provider_event_id])
 
-    async def free_busy(
+    async def free_busy(  # NOSONAR
         self,
         token_set: TokenSet,  # ruff: ignore[unused-method-argument] - provider interface
         emails: list[str],
@@ -184,7 +184,7 @@ class FakeProvider:
             out[email.lower()] = blocks
         return out
 
-    async def send_mail(self, token_set: TokenSet, message: EmailMessage) -> SentRef:  # ruff: ignore[unused-method-argument]
+    async def send_mail(self, token_set: TokenSet, message: EmailMessage) -> SentRef:  # ruff: ignore[unused-method-argument]  # NOSONAR
         self.calls.append("send_mail")
         if self.fail_send:
             raise ProviderAuthError("unauthorized")
@@ -223,7 +223,7 @@ class FakeProvider:
         self.threads.setdefault(thread_ref, []).append(message)
         return message
 
-    async def list_thread_messages(
+    async def list_thread_messages(  # NOSONAR
         self, token_set: TokenSet, thread_ref: str, since_ref: str | None  # ruff: ignore[unused-method-argument]
     ) -> list[InboundMessage]:
         self.calls.append(f"list_thread_messages:{thread_ref}")
@@ -248,7 +248,7 @@ class FakeProvider:
         self.folders.setdefault(folder, []).append(message)
         return message
 
-    async def list_folder_messages(
+    async def list_folder_messages(  # NOSONAR
         self,
         token_set: TokenSet,  # ruff: ignore[unused-method-argument]
         folder: str,
@@ -329,7 +329,7 @@ class FakeProvider:
             ]
         }
 
-    async def watch(
+    async def watch(  # NOSONAR
         self, token_set: TokenSet, channel_url: str, channel_id: str, token: str, ttl_seconds: int
     ) -> ChannelRef:
         self.calls.append("watch")
@@ -343,7 +343,7 @@ class FakeProvider:
         }  # fmt: skip
         return ChannelRef(channel_id, resource_id, expires)
 
-    async def renew_watch(self, token_set: TokenSet, ref: ChannelRef, ttl_seconds: int) -> ChannelRef:  # ruff: ignore[unused-method-argument]
+    async def renew_watch(self, token_set: TokenSet, ref: ChannelRef, ttl_seconds: int) -> ChannelRef:  # ruff: ignore[unused-method-argument]  # NOSONAR
         self.calls.append("renew_watch")
         if self.fail_watch or ref.channel_id not in self.channels:
             raise ProviderError("fake renew failed")
@@ -351,7 +351,7 @@ class FakeProvider:
         self.channels[ref.channel_id]["expires_at"] = expires
         return ChannelRef(ref.channel_id, ref.resource_id, expires)
 
-    async def stop_watch(self, token_set: TokenSet, ref: ChannelRef) -> None:  # ruff: ignore[unused-method-argument]
+    async def stop_watch(self, token_set: TokenSet, ref: ChannelRef) -> None:  # ruff: ignore[unused-method-argument]  # NOSONAR
         self.calls.append("stop_watch")
         self.channels.pop(ref.channel_id, None)
         self.stopped_channels.append(ref.channel_id)
@@ -377,7 +377,7 @@ class FakeProvider:
             copy_id, e.spec.ical_uid, status, e.start, e.end, e.etag, None, (own,), False  # type: ignore[arg-type]
         )
 
-    async def list_changes(
+    async def list_changes(  # NOSONAR
         self,
         token_set: TokenSet,
         sync_token: str | None,

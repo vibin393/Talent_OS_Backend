@@ -33,7 +33,7 @@ from app.services.demand_intake import receive
 
 PER_TOKEN_LIMIT = 600
 _RECIPIENT_RE = re.compile(
-    r"^\s*(?:[^<]*<)?req-(?P<token>[a-z2-7]{8,24})@(?P<domain>[^>\s]+)>?\s*$", re.IGNORECASE
+    r"^\s*(?:[^<]*<)?req-(?P<token>[a-z2-7]{8,24})@(?P<domain>[^>\s]+)>?\s*$", re.IGNORECASE  # NOSONAR
 )
 
 

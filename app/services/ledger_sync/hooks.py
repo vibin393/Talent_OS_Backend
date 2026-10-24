@@ -80,14 +80,14 @@ def _notifications() -> None:
 
         return {u["id"] for u in await users_with_permission(db, "ledger:sync")}
 
-    async def failed(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def failed(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         return ns.Content(
             title="A document couldn't be pushed to the accounting system",
             body="Open Ledger sync to see the message, fix the mapping and retry.",
             entity_type=None, entity_id=None, link_path="/finance/ledger-sync",
         )  # fmt: skip
 
-    async def waiting(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def waiting(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         n = int(payload.get("count") or 0)
         return ns.Content(
             title=f"{n} payment{'s' if n != 1 else ''} from Zoho Books to review",
@@ -95,7 +95,7 @@ def _notifications() -> None:
             entity_type=None, entity_id=None, link_path="/finance/ledger-sync?tab=suggestions",
         )  # fmt: skip
 
-    async def missing(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def missing(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         return ns.Content(
             title="A ledger mapping is missing", body="Map the ledger before the next sync.",
             entity_type=None, entity_id=None, link_path="/settings/ledger",

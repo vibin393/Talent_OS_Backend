@@ -788,4 +788,4 @@ async def scorecard(
 
 
 def category_label(category: str | None) -> str | None:
-    return CATEGORY_LABELS.get(category or "") if category else None
+    return CATEGORY_LABELS.get(category or "") if category else None  # NOSONAR

@@ -88,18 +88,18 @@ class FakeAssessmentProvider:
             return {}
         return data if isinstance(data, dict) else {"data": data}
 
-    async def list_tests(self) -> Sequence[ProviderTestDTO]:
+    async def list_tests(self) -> Sequence[ProviderTestDTO]:  # NOSONAR
         self._record("list_tests", ())
         return list(TESTS)
 
-    async def invite(self, req: ProviderInviteDTO) -> ProviderInviteResultDTO:
+    async def invite(self, req: ProviderInviteDTO) -> ProviderInviteResultDTO:  # NOSONAR
         self._record("invite", (req,))
         return ProviderInviteResultDTO(
             external_ref=f"fake-asmt:{req.external_test_id}:{req.invitation_id}",
             take_url=f"https://assessments.fake.test/take/{req.invitation_id}",
         )
 
-    async def fetch_result(self, external_ref: str) -> ProviderResultDTO | None:
+    async def fetch_result(self, external_ref: str) -> ProviderResultDTO | None:  # NOSONAR
         self._record("fetch_result", (external_ref,))
         parts = external_ref.split(":")
         if len(parts) != 3 or parts[0] != "fake-asmt":

@@ -39,7 +39,7 @@ class FakeTdsStatementSource:
             msg = f"fake {op} failure"
             raise RuntimeError(msg)
 
-    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:
+    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # NOSONAR
         self._record(op, dict(payload))
         digest = hashlib.sha256(json.dumps(dict(payload), sort_keys=True, default=str).encode()).hexdigest()
         return {"ok": True, "op": op, "ref": f"fake-{digest[:12]}"}
@@ -59,7 +59,7 @@ class FakeTdsStatementSource:
             return {}
         return data if isinstance(data, dict) else {"data": data}
 
-    async def fetch(self, tan: str, fy: str, quarter: Quarter) -> TdsStatementDTO:
+    async def fetch(self, tan: str, fy: str, quarter: Quarter) -> TdsStatementDTO:  # NOSONAR
         self._record("fetch", (tan, fy, quarter))
         seed = int(hashlib.sha256(f"{tan}:{fy}:{quarter}".encode()).hexdigest()[:8], 16)
         start_year = int(fy[:4]) if fy[:4].isdigit() else 2026

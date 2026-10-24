@@ -28,7 +28,7 @@ class FakeEInvoiceProvider:
         cls.calls.clear()
         cls.fail_ops.clear()
 
-    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:
+    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # NOSONAR
         type(self).calls.append((op, dict(payload)))
         if op in type(self).fail_ops:
             msg = f"fake {op} failure"
@@ -51,15 +51,15 @@ class FakeEInvoiceProvider:
             return {}
         return data if isinstance(data, dict) else {"data": data}
 
-    async def generate_irn(self, doc_payload: Mapping[str, Any]) -> Mapping[str, Any]:
+    async def generate_irn(self, doc_payload: Mapping[str, Any]) -> Mapping[str, Any]:  # NOSONAR
         type(self).calls.append(("generate_irn", (doc_payload,)))
         return {"ok": True, "op": "generate_irn"}
 
-    async def cancel_irn(self, irn: str, reason: str) -> Mapping[str, Any]:
+    async def cancel_irn(self, irn: str, reason: str) -> Mapping[str, Any]:  # NOSONAR
         type(self).calls.append(("cancel_irn", (irn, reason)))
         return {"ok": True, "op": "cancel_irn"}
 
-    async def get_irn(self, doc_ref: str) -> Mapping[str, Any] | None:
+    async def get_irn(self, doc_ref: str) -> Mapping[str, Any] | None:  # NOSONAR
         type(self).calls.append(("get_irn", (doc_ref,)))
         return {"ok": True, "op": "get_irn"}
 

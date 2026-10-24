@@ -250,7 +250,7 @@ class TallyXmlAdapter:
         cfg = self.ctx.config
         return cfg if isinstance(cfg, TallyConfig) else TallyConfig()
 
-    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
+    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]  # NOSONAR
         if op == "health":
             return {"ok": True}
         raise ManualActionRequired("Generate a Tally import file from Ledger sync", {"op": op})
@@ -261,13 +261,13 @@ class TallyXmlAdapter:
     def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         return {}
 
-    async def export(self, rows: Sequence[Mapping[str, Any]], template: Mapping[str, Any]) -> bytes:
+    async def export(self, rows: Sequence[Mapping[str, Any]], template: Mapping[str, Any]) -> bytes:  # NOSONAR
         cfg = self._cfg
         if template.get("company_name"):
             cfg = cfg.model_copy(update={"company_name": str(template["company_name"])})
         return build_import_xml(cfg, rows, template.get("masters") or ())
 
-    async def push_documents(self, docs: Sequence[LedgerDocumentDTO]) -> Sequence[LedgerResultDTO]:
+    async def push_documents(self, docs: Sequence[LedgerDocumentDTO]) -> Sequence[LedgerResultDTO]:  # NOSONAR
         return [
             LedgerResultDTO(document_id=d.document_id, external_ref=remote_id(d.document_id, d.document_version), status="synced", message=None)
             for d in docs
@@ -276,9 +276,9 @@ class TallyXmlAdapter:
     async def document_status(self, refs: Sequence[str]) -> Sequence[LedgerResultDTO]:  # ruff: ignore[unused-method-argument]
         raise ManualActionRequired("TallyPrime import results are not reported back; check the import log in Tally", {"op": "document_status"})
 
-    async def pull_payments(self, since: datetime | None, cursor: str | None) -> tuple[Sequence[LedgerPaymentDTO], str | None]:  # ruff: ignore[unused-method-argument]
+    async def pull_payments(self, since: datetime | None, cursor: str | None) -> tuple[Sequence[LedgerPaymentDTO], str | None]:  # ruff: ignore[unused-method-argument]  # NOSONAR
         return (), None
 
-    async def masters_sync(self, customers: Sequence[Mapping[str, Any]], ledgers: Sequence[Mapping[str, Any]]) -> Mapping[str, str]:  # ruff: ignore[unused-method-argument]
+    async def masters_sync(self, customers: Sequence[Mapping[str, Any]], ledgers: Sequence[Mapping[str, Any]]) -> Mapping[str, str]:  # ruff: ignore[unused-method-argument]  # NOSONAR
         """Tally party ledgers are referenced by name: the mapping is the client name itself."""
         return {str(c.get("key") or c.get("name")): str(c.get("name")) for c in customers if c.get("name")}

@@ -157,7 +157,7 @@ def _referrer_recipient(kind: str | None, rid: Any) -> set[Any]:
     return {ident} if kind == "user" else {Recipient("candidate", ident)}
 
 
-async def _referrer_recipients(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument]
+async def _referrer_recipients(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument]  # NOSONAR
     return _referrer_recipient(payload.get("referrer_kind"), payload.get("referrer_id"))
 
 

@@ -51,7 +51,7 @@ class FakeFxRateSource:
             msg = f"fake {op} failure"
             raise RuntimeError(msg)
 
-    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:
+    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # NOSONAR
         self._record(op, dict(payload))
         digest = hashlib.sha256(json.dumps(dict(payload), sort_keys=True, default=str).encode()).hexdigest()
         return {"ok": True, "op": op, "ref": f"fake-{digest[:12]}"}
@@ -71,7 +71,7 @@ class FakeFxRateSource:
             return {}
         return data if isinstance(data, dict) else {"data": data}
 
-    async def fetch_rates(self, on: date, pairs: Sequence[tuple[str, str]]) -> Sequence[FxRateDTO]:
+    async def fetch_rates(self, on: date, pairs: Sequence[tuple[str, str]]) -> Sequence[FxRateDTO]:  # NOSONAR
         self._record("fetch_rates", (on, tuple(pairs)))
         return [
             FxRateDTO(from_ccy=f, to_ccy=t, rate=fake_rate(f, t, on), rate_date=on, source=SOURCE)

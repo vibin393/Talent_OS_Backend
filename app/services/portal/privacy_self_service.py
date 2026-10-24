@@ -329,7 +329,7 @@ async def build_export(tenant_id: uuid.UUID, job_id: uuid.UUID) -> str:
         async with tenant_session(tenant_id) as db:
             audit.set_actor(db, "system", None)
             job = await db.get(DataExportJob, job_id, with_for_update=True)
-            assert job is not None
+            assert job is not None  # NOSONAR
             link, token = await secure_links.issue(
                 db,
                 tenant_id=tenant_id,

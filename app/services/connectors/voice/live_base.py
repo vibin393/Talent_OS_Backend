@@ -151,7 +151,7 @@ class LiveTelephonyBase:
     async def fetch_recording(self, recording_ref: str) -> RecordingDTO | None:
         raise NotImplementedError
 
-    async def fetch_transcript(self, transcript_ref: str) -> TranscriptDTO | None:  # ruff: ignore[unused-method-argument]
+    async def fetch_transcript(self, transcript_ref: str) -> TranscriptDTO | None:  # ruff: ignore[unused-method-argument]  # NOSONAR
         return None  # transcription is the ``stt`` category's (Epic 76 A5)
 
     async def _download(self, url: str) -> RecordingDTO:

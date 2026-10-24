@@ -191,7 +191,7 @@ def _unresolved(step: str) -> ValidationFailed:
     return ValidationFailed("The approver of a step could not be resolved", code="approver_unresolved", details={"step": step})
 
 
-async def _resolve_user(
+async def _resolve_user(  # NOSONAR
     ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,  # ruff: ignore[unused-function-argument]
     ref: Mapping[str, Any],

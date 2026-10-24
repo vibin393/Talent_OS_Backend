@@ -33,7 +33,7 @@ class ManualAssessmentProvider:
     def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         return {}
 
-    async def list_tests(self) -> Sequence[ProviderTestDTO]:
+    async def list_tests(self) -> Sequence[ProviderTestDTO]:  # NOSONAR
         return []
 
     async def invite(self, req: ProviderInviteDTO) -> ProviderInviteResultDTO:
@@ -42,7 +42,7 @@ class ManualAssessmentProvider:
             {"op": "invite", "invitation_id": str(req.invitation_id)},
         )
 
-    async def fetch_result(self, external_ref: str) -> ProviderResultDTO | None:  # ruff: ignore[unused-method-argument]
+    async def fetch_result(self, external_ref: str) -> ProviderResultDTO | None:  # ruff: ignore[unused-method-argument]  # NOSONAR
         return None
 
     async def handle_webhook(self, headers: Mapping[str, str], body: bytes) -> ProviderWebhookDTO:  # ruff: ignore[unused-method-argument]

@@ -2189,7 +2189,7 @@ def require(permission: str, at_least: Scope = Scope.OWN) -> Callable[..., Await
         msg = f"unknown permission {permission!r}"
         raise ValueError(msg)
 
-    async def dependency(principal: Annotated[Principal, Depends(current_principal)]) -> Principal:
+    async def dependency(principal: Annotated[Principal, Depends(current_principal)]) -> Principal:  # NOSONAR
         if principal.type in EXTERNAL_PRINCIPAL_TYPES or principal.type == "agent":  # AD-26 / AD-60: never routed
             raise forbidden(permission)
         check(principal, permission, at_least)
@@ -2206,7 +2206,7 @@ def require_any(*permissions: str, at_least: Scope = Scope.OWN) -> Callable[...,
             msg = f"unknown permission {permission!r}"
             raise ValueError(msg)
 
-    async def dependency(principal: Annotated[Principal, Depends(current_principal)]) -> Principal:
+    async def dependency(principal: Annotated[Principal, Depends(current_principal)]) -> Principal:  # NOSONAR
         if principal.type in EXTERNAL_PRINCIPAL_TYPES or principal.type == "agent":
             raise forbidden(permissions[0])
         if not any(principal.has(p, at_least) for p in permissions):

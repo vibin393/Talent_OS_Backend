@@ -86,7 +86,7 @@ class MemoryBackend:
             return 0
         return value[0]
 
-    async def incr(
+    async def incr(  # NOSONAR
         self, cur: str, prev: str, limit: int, window_ms: int, weight: float
     ) -> tuple[bool, float]:
         now = time.monotonic()

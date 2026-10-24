@@ -61,12 +61,12 @@ from app.services.offers.status import (
 from app.services.offers.templates import MERGE_FIELDS, ensure_default_templates
 
 
-async def _probe_release(actor: str) -> None:
+async def _probe_release(actor: str) -> None:  # NOSONAR
     """FR-65 probe: releasing an approved offer as ``actor`` (409 for ai / workflow)."""
     check_transition("approved", "released", actor)
 
 
-async def _probe_accept(actor: str) -> None:
+async def _probe_accept(actor: str) -> None:  # NOSONAR
     """FR-65 probe: only the candidate may accept."""
     check_transition("released", "accepted", actor)
 

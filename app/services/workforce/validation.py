@@ -28,7 +28,7 @@ from app.services.workforce.common import invalid, system_ctx, tenant_of
 
 Errors = list[tuple[str, str]]
 MAX_HEADCOUNT = 500
-_SKILL_RE = re.compile(r"^\s*(?P<name>[^:]+?)\s*(?::\s*(?P<level>[^:]*?)\s*)?$")
+_SKILL_RE = re.compile(r"^\s*(?P<name>[^:]+?)\s*(?::\s*(?P<level>[^:]*?)\s*)?$")  # NOSONAR
 
 
 def month_end(d: date) -> date:

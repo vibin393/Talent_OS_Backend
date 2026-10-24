@@ -79,7 +79,7 @@ def _uuid(v: Any) -> uuid.UUID | None:
 def _notifications() -> None:
     from app.services import notifications_service as ns
 
-    async def to_user(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
+    async def to_user(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]  # NOSONAR
         uid = _uuid(payload.get("user_id"))
         return {uid} if uid else set()
 
@@ -90,7 +90,7 @@ def _notifications() -> None:
 
         return set((await db.execute(select(User.id).where(User.is_active.is_(True)))).scalars())
 
-    async def change(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def change(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         iid = _uuid(payload.get("interview_id"))
         return ns.Content(
             title=str(payload.get("title") or "A calendar change needs you"),
@@ -98,7 +98,7 @@ def _notifications() -> None:
             entity_type=None, entity_id=None, link_path=f"/interviews/{iid}" if iid else None,
         )  # fmt: skip
 
-    async def not_syncing(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def not_syncing(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         return ns.Content(
             title="Reconnect your calendar so interview changes reach Talent OS",
             body="Your calendar connection stopped working. Changes you make in your calendar won't reach Talent OS.",

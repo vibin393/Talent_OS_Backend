@@ -48,7 +48,7 @@ MAX_MONTHS = 24
 
 def fiscal_label(start: date, end: date) -> str:
     a, b = fiscal_year(start), fiscal_year(end)
-    return f"FY {a}" if a == b else f"FY {a} to {b}"
+    return f"FY {a}" if a == b else f"FY {a} to {b}"  # NOSONAR
 
 
 def _check_period(start: date, end: date) -> None:

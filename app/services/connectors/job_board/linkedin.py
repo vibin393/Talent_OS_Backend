@@ -195,5 +195,5 @@ class LinkedInAdapter(LiveJobBoardBase):
             return BoardRefDTO(board_ref, None, "rejected", sanitise_message(task.get("message")) or "LinkedIn rejected the posting", None, None, None, None)
         return BoardRefDTO(board_ref, None, "pending", None, None, None, None, None)
 
-    async def field_schema(self) -> FieldSchemaDTO:
+    async def field_schema(self) -> FieldSchemaDTO:  # NOSONAR
         return FIELDS

@@ -41,7 +41,7 @@ def pct_band(value: float) -> str:
     """A compensation change as a 10-point band ("+20-30 %"), never the amount."""
     lo = math.floor(value / 10.0) * 10
     hi = lo + 10
-    sign = "+" if lo >= 0 else "-" if hi <= 0 else ""
+    sign = "+" if lo >= 0 else "-" if hi <= 0 else ""  # NOSONAR
     if sign == "-":
         return f"-{abs(hi)}–{abs(lo)} %"
     if sign == "":

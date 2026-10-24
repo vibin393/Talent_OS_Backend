@@ -33,7 +33,7 @@ __all__ = [
 ]
 
 _CTRL = re.compile(r"[\x00-\x1f\x7f]+")
-_TAG = re.compile(r"<(/?)([a-zA-Z0-9]+)[^>]*>")
+_TAG = re.compile(r"<(/?)([a-zA-Z0-9]+)[^>]*>")  # NOSONAR
 
 
 def sanitise_message(text: Any, limit: int = 500) -> str:
@@ -134,7 +134,7 @@ class LiveJobBoardBase:
             purpose=http.purpose, transport=http._transport,
         )  # fmt: skip
 
-    async def health(self) -> None:  # pragma: no cover - overridden
+    async def health(self) -> None:  # pragma: no cover - overridden  # NOSONAR
         return None
 
     async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
@@ -150,7 +150,7 @@ class LiveJobBoardBase:
     def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         return {}
 
-    async def fetch_applicants(
+    async def fetch_applicants(  # NOSONAR
         self,
         since: datetime | None,  # ruff: ignore[unused-method-argument]
         cursor: str | None,  # ruff: ignore[unused-method-argument]

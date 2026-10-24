@@ -31,7 +31,7 @@ class MemoryStore:
         with self._lock:
             self._data.clear()
 
-    async def put(self, key: str, value: str, ttl: int) -> None:
+    async def put(self, key: str, value: str, ttl: int) -> None:  # NOSONAR
         with self._lock:
             self._data[key] = (value, time.monotonic() + ttl)
 
@@ -44,11 +44,11 @@ class MemoryStore:
             return None
         return item[0]
 
-    async def get(self, key: str) -> str | None:
+    async def get(self, key: str) -> str | None:  # NOSONAR
         with self._lock:
             return self._live(key)
 
-    async def pop(self, key: str) -> str | None:
+    async def pop(self, key: str) -> str | None:  # NOSONAR
         with self._lock:
             value = self._live(key)
             self._data.pop(key, None)

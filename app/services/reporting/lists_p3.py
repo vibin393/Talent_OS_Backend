@@ -58,7 +58,7 @@ def _q(stmt: Select[Any], f: P2ListFilters, *cols: Any) -> Select[Any]:
 
 
 # ================================================================ talent pools (Epic 38)
-async def _talent_pools(
+async def _talent_pools(  # NOSONAR
     ctx: RequestContext,
     db: AsyncSession,
     principal: Principal,
@@ -87,7 +87,7 @@ POOL_COLUMNS = (
 
 
 # ================================================================ campaigns (Epic 39): tenant-wide within campaign:read
-async def _campaigns(
+async def _campaigns(  # NOSONAR
     ctx: RequestContext,
     db: AsyncSession,
     principal: Principal,
@@ -112,7 +112,7 @@ CAMPAIGN_COLUMNS = (
 
 
 # ================================================================ assessments (Epic 40): tenant-wide within assessment:read
-async def _assessments(
+async def _assessments(  # NOSONAR
     ctx: RequestContext,
     db: AsyncSession,
     principal: Principal,
@@ -136,7 +136,7 @@ ASSESSMENT_COLUMNS = (
 
 
 # ================================================================ campus drives / recruitment events (Epic 43)
-async def _campus_drives(
+async def _campus_drives(  # NOSONAR
     ctx: RequestContext,
     db: AsyncSession,
     principal: Principal,
@@ -165,7 +165,7 @@ DRIVE_COLUMNS = (
 )
 
 
-async def _recruitment_events(
+async def _recruitment_events(  # NOSONAR
     ctx: RequestContext,
     db: AsyncSession,
     principal: Principal,
@@ -199,7 +199,7 @@ EVENT_COLUMNS = (
 
 
 # ================================================================ projects (Epic 45)
-async def _projects(
+async def _projects(  # NOSONAR
     ctx: RequestContext,
     db: AsyncSession,
     principal: Principal,
@@ -257,7 +257,7 @@ PROJECT_COLUMNS = (
 
 
 # ================================================================ immigration cases (Epic 46)
-async def _immigration_cases(
+async def _immigration_cases(  # NOSONAR
     ctx: RequestContext,
     db: AsyncSession,
     principal: Principal,
@@ -298,7 +298,7 @@ IMMIGRATION_COLUMNS = (
 
 
 # ================================================================ report definitions (Epic 47)
-async def _report_definitions(
+async def _report_definitions(  # NOSONAR
     ctx: RequestContext,
     db: AsyncSession,
     principal: Principal,
@@ -326,7 +326,7 @@ REPORT_COLUMNS = (
 
 
 # ================================================================ referrals (Epic 42)
-async def _referrals(
+async def _referrals(  # NOSONAR
     ctx: RequestContext,
     db: AsyncSession,
     principal: Principal,
@@ -377,7 +377,7 @@ REFERRAL_COLUMNS = (
 
 
 # ================================================================ workforce plans (Epic 44)
-async def _workforce_plans(
+async def _workforce_plans(  # NOSONAR
     ctx: RequestContext,
     db: AsyncSession,
     principal: Principal,

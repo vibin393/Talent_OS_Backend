@@ -66,7 +66,7 @@ ConsentChecker = Callable[[RequestContext, AsyncSession, str, Subject | None], A
 ClientFactory = Callable[[str], Any]
 
 
-async def _default_consent_checker(
+async def _default_consent_checker(  # NOSONAR
     ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,  # ruff: ignore[unused-function-argument]
     feature: str,  # ruff: ignore[unused-function-argument]

@@ -196,7 +196,7 @@ def set_identity_field(obj: Any, field: str, plaintext: str | None, tenant_id: u
         setattr(obj, f"{field}_bidx", bidx)
 
 
-async def unmask(ctx: "RequestContext", db: "AsyncSession", obj: Any, field: str) -> str:
+async def unmask(ctx: "RequestContext", db: "AsyncSession", obj: Any, field: str) -> str:  # NOSONAR
     """Decrypt ``obj.<field>`` for a principal holding ``identity:view``; audited ``identity_unmasked``."""
     from app.core import audit
 

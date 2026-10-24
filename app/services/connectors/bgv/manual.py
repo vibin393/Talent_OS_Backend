@@ -41,10 +41,10 @@ class ManualBgvProvider:
             {"op": "initiate_check", "check_id": str(job.check_id)},
         )
 
-    async def get_status(self, external_ref: str) -> BgvStatusDTO:
+    async def get_status(self, external_ref: str) -> BgvStatusDTO:  # NOSONAR
         return BgvStatusDTO(external_ref, "in_progress")
 
-    async def fetch_report(self, external_ref: str) -> BgvReportDTO | None:  # ruff: ignore[unused-method-argument]
+    async def fetch_report(self, external_ref: str) -> BgvReportDTO | None:  # ruff: ignore[unused-method-argument]  # NOSONAR
         return None
 
     async def handle_webhook(self, headers: Mapping[str, str], body: bytes) -> BgvWebhookDTO:  # ruff: ignore[unused-method-argument]

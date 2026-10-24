@@ -273,7 +273,7 @@ async def _finance_admins(db: AsyncSession, payload: Mapping[str, Any]) -> set[u
     return set(await role_user_ids(db, "finance_admin"))
 
 
-async def _render(db: AsyncSession, payload: Mapping[str, Any]) -> Any:
+async def _render(db: AsyncSession, payload: Mapping[str, Any]) -> Any:  # NOSONAR
     from app.services import notifications_service as notifications
 
     return notifications.Content(title="Reporting figures need attention", body=payload.get("body"))

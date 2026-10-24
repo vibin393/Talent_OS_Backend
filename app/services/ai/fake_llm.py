@@ -173,7 +173,7 @@ class _Stream:
                 for i, word in enumerate(words):
                     yield word if i == len(words) - 1 else f"{word} "
 
-    async def get_final_message(self) -> SimpleNamespace:
+    async def get_final_message(self) -> SimpleNamespace:  # NOSONAR
         return self._message
 
 
@@ -211,7 +211,7 @@ class FakeLLM:
         fake = self
 
         class _Messages:
-            async def create(self, **kwargs: Any) -> Any:
+            async def create(self, **kwargs: Any) -> Any:  # NOSONAR
                 return fake._respond(kwargs)
 
             def stream(self, **kwargs: Any) -> _Stream:
@@ -268,7 +268,7 @@ def keyless_factory() -> ClientFactory:
         return build_message(turn, ids)
 
     class _Messages:
-        async def create(self, **kwargs: Any) -> Any:
+        async def create(self, **kwargs: Any) -> Any:  # NOSONAR
             return respond(kwargs)
 
         def stream(self, **kwargs: Any) -> _Stream:

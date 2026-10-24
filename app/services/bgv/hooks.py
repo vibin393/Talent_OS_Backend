@@ -67,7 +67,7 @@ def _subscribe() -> None:
 
 
 # ---------------------------------------------------------------- notifications
-async def _candidate(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument]
+async def _candidate(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument]  # NOSONAR
     from app.services.notifications_service import Recipient
 
     cid = _uuid(payload.get("candidate_id"))
@@ -89,7 +89,7 @@ async def _discrepancy_candidate(db: AsyncSession, payload: Any) -> set[Any]:
     return {Recipient("candidate", cid)} if cid else set()
 
 
-async def _listed(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
+async def _listed(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]  # NOSONAR
     return {u for u in (_uuid(x) for x in payload.get("recipient_ids") or []) if u}
 
 
@@ -113,13 +113,13 @@ def _content(title: str, *, case_id: uuid.UUID | None = None, link: str | None =
     )
 
 
-async def _render_docs(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+async def _render_docs(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
     return _content(
         "Background verification: please give consent and upload your documents", link="/portal/work/bgv"
     )
 
 
-async def _render_discrepancy(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+async def _render_discrepancy(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
     return _content("Background verification: a finding needs your response", link="/portal/work/bgv")
 
 
@@ -135,7 +135,7 @@ async def _render_withdrawn(db: AsyncSession, payload: Any) -> Any:
     )
 
 
-async def _render_reference(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+async def _render_reference(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
     return _content("Please name your referees for a reference check", link="/portal/work/bgv")
 
 
@@ -268,7 +268,7 @@ def _register_workflow() -> None:
         )
         return f"Opened BGV case {case.human_id}"
 
-    async def _dry(ac: Any) -> str:  # ruff: ignore[unused-function-argument]
+    async def _dry(ac: Any) -> str:  # ruff: ignore[unused-function-argument]  # NOSONAR
         return "Would open a BGV case"
 
     if "bgv.create_case" not in actions.ACTIONS:

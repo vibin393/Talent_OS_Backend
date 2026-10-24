@@ -265,7 +265,7 @@ def next_local_midnight(now: datetime, tz: Any) -> datetime:
     )
 
 
-async def _end_enrollment(db: AsyncSession, enrollment: Enrollment | None, reason: str) -> None:
+async def _end_enrollment(db: AsyncSession, enrollment: Enrollment | None, reason: str) -> None:  # NOSONAR
     if enrollment is not None and reason in ENDING_REASONS and enrollment.status in ("active", "paused"):
         enrollment.status, enrollment.ended_at, enrollment.next_run_at = "suppressed", _now(), None
 

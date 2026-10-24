@@ -56,32 +56,32 @@ def _notifications() -> None:
 
         return {u["id"] for u in await users_with_permission(db, "integration:manage")}
 
-    async def to_user(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
+    async def to_user(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]  # NOSONAR
         uid = _uuid(payload.get("user_id"))
         return {uid} if uid else set()
 
-    async def threshold(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def threshold(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         return ns.Content(
             title=f"Calling budget {payload.get('pct', 0)}% used today",
             body="Today's telephony and transcription spend is close to the daily cap.",
             entity_type=None, entity_id=None, link_path="/settings/telephony",
         )  # fmt: skip
 
-    async def cap(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def cap(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         return ns.Content(
             title="Today's calling budget is used up",
             body="New calls are refused until tomorrow. Calls in progress continue. Recruiters can call outside Talent OS and upload the recording.",
             entity_type=None, entity_id=None, link_path="/settings/telephony",
         )  # fmt: skip
 
-    async def delete_failed(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def delete_failed(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         return ns.Content(
             title=f"Couldn't delete the provider's copy of {payload.get('human_id') or 'a call'} recording",
             body="Delete the recording in the calling provider's console.",
             entity_type=None, entity_id=None, link_path="/settings/telephony",
         )  # fmt: skip
 
-    async def call_failed(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def call_failed(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         aid = _uuid(payload.get("application_id"))
         return ns.Content(
             title="Your call couldn't be placed",

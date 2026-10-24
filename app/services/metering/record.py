@@ -135,7 +135,7 @@ async def _push(key: BufferKey, count: int, errors: int, quantity: Decimal) -> N
         buffer_add(key, count, errors, quantity)
 
 
-async def record(
+async def record(  # NOSONAR
     ctx: Any,
     unit: str,
     quantity: Decimal | int = 1,

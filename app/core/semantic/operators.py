@@ -58,7 +58,7 @@ class SkillMatch:
 
 
 # ---------------------------------------------------------------- skill expander
-async def _identity_expander(
+async def _identity_expander(  # NOSONAR
     ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,  # ruff: ignore[unused-function-argument]
     refs: Sequence[SkillKey],

@@ -42,7 +42,7 @@ async def validate_plan(ctx: RequestContext, db: AsyncSession, stages: list[Any]
             )
 
 
-async def schedule_guard(db: AsyncSession, stage: Any) -> None:  # ruff: ignore[unused-function-argument]
+async def schedule_guard(db: AsyncSession, stage: Any) -> None:  # ruff: ignore[unused-function-argument]  # NOSONAR
     if getattr(stage, "kind", None) == "assessment":
         raise conflict(
             "stage_is_assessment", "This stage is an assessment: invite the candidate instead of scheduling"

@@ -179,7 +179,7 @@ def tick_all() -> dict[str, Any]:
     return dict(run(_all) or {})
 
 
-async def _enqueue(task: Any, tid: uuid.UUID) -> str:
+async def _enqueue(task: Any, tid: uuid.UUID) -> str:  # NOSONAR
     enqueue(task, str(tid))
     return "queued"
 

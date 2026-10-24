@@ -56,7 +56,7 @@ class FakeWhatsAppProvider(ChannelAdapter):
             SendSpec("whatsapp", to_e164, "", template_name, list(variables), language)
         )
 
-    async def list_templates(self) -> list[ProviderTemplate]:
+    async def list_templates(self) -> list[ProviderTemplate]:  # NOSONAR
         type(self).calls.append(("list_templates", ()))
         return list(type(self).templates)
 

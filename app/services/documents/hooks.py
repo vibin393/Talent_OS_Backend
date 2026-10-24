@@ -30,11 +30,11 @@ files_service.register_attachment_store(repository.AttachmentFacade())
 def _register_notifications() -> None:
     from app.services import notifications_service as ns
 
-    async def _nobody(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
+    async def _nobody(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]  # NOSONAR
         return set()
 
     def _render(prefix: str) -> Any:
-        async def render(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+        async def render(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
             return ns.Content(title=f"{prefix}: {payload.get('title', '')}"[:300])
 
         return render
@@ -129,7 +129,7 @@ def _register_workflow() -> None:
         )
         return f"Sent signature request {req.human_id}"
 
-    async def _dry(ac: Any) -> str:  # ruff: ignore[unused-function-argument]
+    async def _dry(ac: Any) -> str:  # ruff: ignore[unused-function-argument]  # NOSONAR
         return "Would send a signature request to the candidate"
 
     if "documents.send_signature_request" not in actions.ACTIONS:

@@ -35,10 +35,10 @@ class JobBoardSuppressHandler:
         await db.flush()
         return {"suppressed": total}
 
-    async def export(self, db: AsyncSession, ctx: ErasureContext) -> dict[str, Any] | None:  # ruff: ignore[unused-method-argument]
+    async def export(self, db: AsyncSession, ctx: ErasureContext) -> dict[str, Any] | None:  # ruff: ignore[unused-method-argument]  # NOSONAR
         return None
 
-    async def verify(self, db: AsyncSession, ctx: ErasureContext) -> list[str]:  # ruff: ignore[unused-method-argument]
+    async def verify(self, db: AsyncSession, ctx: ErasureContext) -> list[str]:  # ruff: ignore[unused-method-argument]  # NOSONAR
         return []
 
 

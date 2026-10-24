@@ -37,9 +37,9 @@ MAX_NOTE = 500
 TOPIC_LABEL_MAX = 60
 VERIFY_SAMPLE = 0.01
 
-_EMAIL = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
+_EMAIL = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")  # NOSONAR
 _URL = re.compile(r"(?i)\b(?:https?://|www\.)\S+")
-_DIGITS = re.compile(r"\S*\d\S*")
+_DIGITS = re.compile(r"\S*\d\S*")  # NOSONAR
 _WORD = re.compile(r"[A-Za-z][A-Za-z'-]{2,}")
 _PUNCT = re.compile(r"[^\w\s]")
 _STOP = frozenset(

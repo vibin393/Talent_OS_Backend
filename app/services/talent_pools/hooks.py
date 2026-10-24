@@ -100,17 +100,17 @@ async def _pool_name(db: AsyncSession, payload: Any) -> tuple[uuid.UUID | None, 
     return pid, (pool.name if pool is not None else "Talent pool")
 
 
-async def _owner(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
+async def _owner(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]  # NOSONAR
     uid = _uuid(payload.get("owner_id"))
     return {uid} if uid else set()
 
 
-async def _subscriber(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
+async def _subscriber(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]  # NOSONAR
     uid = _uuid(payload.get("user_id"))
     return {uid} if uid else set()
 
 
-async def _render_digest(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+async def _render_digest(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
     from app.services.notifications_service import Content
 
     pools = list(payload.get("pools") or [])

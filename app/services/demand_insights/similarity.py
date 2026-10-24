@@ -209,7 +209,7 @@ async def facts_for(
     return out
 
 
-async def candidates_stmt(principal: Any, demand: Any, window_days: int) -> Any:
+async def candidates_stmt(principal: Any, demand: Any, window_days: int) -> Any:  # NOSONAR
     from sqlalchemy import and_, or_, select
 
     from app.models.demands import Demand

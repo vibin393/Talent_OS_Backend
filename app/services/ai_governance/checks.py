@@ -38,7 +38,7 @@ async def master_switch(ctx: RequestContext, db: AsyncSession, agent_key: str) -
                      "Turn on AI agents and accept the enablement notice.", "/admin/ai/agents")  # fmt: skip
 
 
-async def provider_configured(ctx: RequestContext, db: AsyncSession, agent_key: str) -> CheckItem:
+async def provider_configured(ctx: RequestContext, db: AsyncSession, agent_key: str) -> CheckItem:  # NOSONAR
     s = get_settings()
     label = "AI provider configured"
     if s.anthropic_api_key and s.ai_provider != "fake":

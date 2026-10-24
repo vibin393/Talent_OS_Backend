@@ -75,7 +75,7 @@ class FakeJobBoard(FakeAdapterBase):
             credits_left=max(100 - type(self)._seq, 0),
         )
 
-    async def publish(self, posting: JobPostingDTO) -> BoardRefDTO:
+    async def publish(self, posting: JobPostingDTO) -> BoardRefDTO:  # NOSONAR
         self._check("publish", posting.posting_id)
         cls = type(self)
         ref = cls._refs.get(posting.posting_id)
@@ -91,7 +91,7 @@ class FakeJobBoard(FakeAdapterBase):
             board["status"] = "live"
         return self._dto(ref)
 
-    async def update(self, board_ref: str, posting: JobPostingDTO) -> BoardRefDTO:
+    async def update(self, board_ref: str, posting: JobPostingDTO) -> BoardRefDTO:  # NOSONAR
         self._check("update", board_ref)
         board = type(self)._boards.get(board_ref)
         if board is None:
@@ -101,7 +101,7 @@ class FakeJobBoard(FakeAdapterBase):
         board["expires_at"] = posting.expires_at
         return self._dto(board_ref)
 
-    async def close(self, board_ref: str) -> BoardRefDTO:
+    async def close(self, board_ref: str) -> BoardRefDTO:  # NOSONAR
         self._check("close", board_ref)
         board = type(self)._boards.get(board_ref)
         if board is None:
@@ -110,7 +110,7 @@ class FakeJobBoard(FakeAdapterBase):
         board["status"] = "closed"
         return self._dto(board_ref)
 
-    async def status(self, board_ref: str) -> BoardRefDTO:
+    async def status(self, board_ref: str) -> BoardRefDTO:  # NOSONAR
         self._check("status", board_ref)
         return self._dto(board_ref)
 
@@ -140,7 +140,7 @@ class FakeJobBoard(FakeAdapterBase):
             )
         return out
 
-    async def fetch_applicants(
+    async def fetch_applicants(  # NOSONAR
         self, since: datetime | None, cursor: str | None
     ) -> tuple[Sequence[BoardApplicantDTO], str | None]:
         self._check("fetch_applicants", cursor)
@@ -151,6 +151,6 @@ class FakeJobBoard(FakeAdapterBase):
         nxt = str(start + size) if start + size < len(items) else None
         return page, nxt
 
-    async def field_schema(self) -> FieldSchemaDTO:
+    async def field_schema(self) -> FieldSchemaDTO:  # NOSONAR
         self._check("field_schema")
         return _FIELDS

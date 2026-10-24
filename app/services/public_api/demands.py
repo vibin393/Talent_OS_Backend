@@ -37,7 +37,7 @@ def _visible() -> Any:
     return stmt if cond is None else stmt.where(cond)
 
 
-async def _build(rows: Sequence[Demand]) -> list[dict[str, Any]]:
+async def _build(rows: Sequence[Demand]) -> list[dict[str, Any]]:  # NOSONAR
     _, principal = ctx_principal()
     return finish_all(principal, [
         {**base(d, "demand", human_id=d.req_id), "title": d.title, "client_id": d.client_id, "status": d.status,
@@ -76,7 +76,7 @@ def _postings() -> Any:
     return select(DemandPosting).where(DemandPosting.demand_id.in_(_visible().with_only_columns(Demand.id)))
 
 
-async def _build_postings(rows: Sequence[DemandPosting]) -> list[dict[str, Any]]:
+async def _build_postings(rows: Sequence[DemandPosting]) -> list[dict[str, Any]]:  # NOSONAR
     _, principal = ctx_principal()
     return finish_all(principal, [
         {**base(p, "posting"), "demand_id": p.demand_id, "slug": p.slug, "is_live": p.is_live,

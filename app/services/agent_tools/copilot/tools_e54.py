@@ -71,7 +71,7 @@ async def _propose_slots(tctx: Any, args: ProposeSlotsIn) -> ToolOutcome:
     )
 
 
-async def _slots_preview(tctx: Any, args: ProposeSlotsIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
+async def _slots_preview(tctx: Any, args: ProposeSlotsIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]  # NOSONAR
     return ProposalPreview(
         title="Propose interview slots",
         summary=(
@@ -127,7 +127,7 @@ async def _prepare_pack(tctx: Any, args: PreparePackIn) -> ToolOutcome:
     )
 
 
-async def _pack_preview(tctx: Any, args: PreparePackIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
+async def _pack_preview(tctx: Any, args: PreparePackIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]  # NOSONAR
     return ProposalPreview(
         title="Prepare a submission pack",
         summary="Assemble a draft submission pack and run the pre-send checks. Sending it to the client stays with you.",

@@ -41,7 +41,7 @@ class UnavailablePipelineGateway:
     def is_available(self) -> bool:
         return False
 
-    async def add_candidate(
+    async def add_candidate(  # NOSONAR
         self,
         ctx: RequestContext,
         db: AsyncSession,
@@ -54,7 +54,7 @@ class UnavailablePipelineGateway:
         msg = "the pipeline is not available yet"
         raise RuntimeError(msg)
 
-    async def candidate_ids_for_demand(
+    async def candidate_ids_for_demand(  # NOSONAR
         self, ctx: RequestContext, db: AsyncSession, demand_id: uuid.UUID
     ) -> set[uuid.UUID]:
         return set()

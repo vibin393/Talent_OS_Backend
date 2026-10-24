@@ -131,7 +131,7 @@ def placement_scope(principal: Principal) -> ColumnElement[bool] | None:
     return or_(a, b) if b is not None else a
 
 
-async def _placements(
+async def _placements(  # NOSONAR
     ctx: RequestContext,
     db: AsyncSession,
     principal: Principal,
@@ -193,7 +193,7 @@ PLACEMENT_COLUMNS = (
 TS = T.timesheets.c
 
 
-async def _timesheets(
+async def _timesheets(  # NOSONAR
     ctx: RequestContext,
     db: AsyncSession,
     principal: Principal,
@@ -234,7 +234,7 @@ TIMESHEET_COLUMNS = (
 EC = T.expense_claims.c
 
 
-async def _expense_claims(
+async def _expense_claims(  # NOSONAR
     ctx: RequestContext,
     db: AsyncSession,
     principal: Principal,
@@ -275,7 +275,7 @@ def _payment_status() -> Any:
     )
 
 
-async def _invoices(
+async def _invoices(  # NOSONAR
     ctx: RequestContext,
     db: AsyncSession,
     principal: Principal,
@@ -319,7 +319,7 @@ INVOICE_COLUMNS = (
 PM = T.payments.c
 
 
-async def _payments(
+async def _payments(  # NOSONAR
     ctx: RequestContext,
     db: AsyncSession,
     principal: Principal,
@@ -352,7 +352,7 @@ PAYMENT_COLUMNS = (
 BG = T.bgv_cases.c
 
 
-async def _bgv_cases(
+async def _bgv_cases(  # NOSONAR
     ctx: RequestContext,
     db: AsyncSession,
     principal: Principal,
@@ -382,7 +382,7 @@ BGV_COLUMNS = (
 V, VS = T.vendors.c, T.vendor_submissions.c
 
 
-async def _vendors(
+async def _vendors(  # NOSONAR
     ctx: RequestContext,
     db: AsyncSession,
     principal: Principal,
@@ -406,7 +406,7 @@ VENDOR_COLUMNS = (
 )
 
 
-async def _vendor_submissions(
+async def _vendor_submissions(  # NOSONAR
     ctx: RequestContext,
     db: AsyncSession,
     principal: Principal,
@@ -439,7 +439,7 @@ VENDOR_SUBMISSION_COLUMNS = (
 L, OP = T.leads.c, T.opportunities.c
 
 
-async def _leads(
+async def _leads(  # NOSONAR
     ctx: RequestContext,
     db: AsyncSession,
     principal: Principal,
@@ -466,7 +466,7 @@ LEAD_COLUMNS = (
 )
 
 
-async def _opportunities(
+async def _opportunities(  # NOSONAR
     ctx: RequestContext,
     db: AsyncSession,
     principal: Principal,

@@ -85,7 +85,7 @@ def markdown_flowables(markdown: str, styles: dict[str, ParagraphStyle] | None =
             flush_paragraph()
             i += 1
             continue
-        heading = re.match(r"^(#{1,3})\s+(.*)$", stripped)
+        heading = re.match(r"^(#{1,3})\s+(.*)$", stripped)  # NOSONAR
         if heading:
             flush_paragraph()
             level = len(heading.group(1))

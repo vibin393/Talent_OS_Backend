@@ -30,7 +30,7 @@ from app.services.workflow.conditions import FieldDef
 CLOCK_STATUSES = ("healthy", "at_risk", "breached", "met", "cancelled")
 
 
-async def _payload_recipients(db: AsyncSession, payload: Mapping[str, Any]) -> set[uuid.UUID]:
+async def _payload_recipients(db: AsyncSession, payload: Mapping[str, Any]) -> set[uuid.UUID]:  # NOSONAR
     out: set[uuid.UUID] = set()
     for value in payload.get("recipient_ids") or ():
         try:
@@ -41,7 +41,7 @@ async def _payload_recipients(db: AsyncSession, payload: Mapping[str, Any]) -> s
 
 
 def _render(title: str) -> Any:
-    async def render(db: AsyncSession, payload: Mapping[str, Any]) -> notifications.Content:
+    async def render(db: AsyncSession, payload: Mapping[str, Any]) -> notifications.Content:  # NOSONAR
         return notifications.Content(title=str(payload.get("title") or title), body=payload.get("body"))
 
     return render

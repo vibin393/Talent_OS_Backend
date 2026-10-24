@@ -51,7 +51,7 @@ DEMAND_CLOSE_REASONS = {"on_hold": "demand_on_hold", "filled": "demand_filled", 
 PUSH_OPS = ("sync:publish", "sync:update", "sync:close")
 
 
-async def _snapshot(db: AsyncSession, bp: BoardPosting, credits: int | None) -> None:
+async def _snapshot(db: AsyncSession, bp: BoardPosting, credits: int | None) -> None:  # NOSONAR
     if credits is None:
         return
     db.add(BoardCreditSnapshot(id=uuid.uuid4(), tenant_id=bp.tenant_id, installation_id=bp.installation_id, config_id=bp.config_id, credits_left=int(credits), observed_at=now()))

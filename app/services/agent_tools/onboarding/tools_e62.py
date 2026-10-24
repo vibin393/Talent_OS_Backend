@@ -146,7 +146,7 @@ async def _reply_intent(tctx: Any, args: ReplyIn) -> SendIntent:
     )  # fmt: skip
 
 
-async def _reply_preview(tctx: Any, args: ReplyIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
+async def _reply_preview(tctx: Any, args: ReplyIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]  # NOSONAR
     return ProposalPreview(
         title="Answer an onboarding question", summary=args.answer[:4000],
         fields=(("Citations", ", ".join(args.citations)), ("Topic", args.topic)), renderer="onboarding.reply_grounded",
@@ -171,7 +171,7 @@ async def _hand_off(tctx: Any, args: HandOffIn) -> ToolOutcome:
     return _outcome(HandOffOut(task_id=task_id), thread, f"handed off ({args.reason})")
 
 
-async def _hand_off_preview(tctx: Any, args: HandOffIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
+async def _hand_off_preview(tctx: Any, args: HandOffIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]  # NOSONAR
     return ProposalPreview(
         title="Hand the question to the coordinator",
         summary=f"Reason: {args.reason}; topic: {args.topic}.",

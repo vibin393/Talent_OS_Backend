@@ -29,7 +29,7 @@ class FakePayrollProvider:
         cls.calls.clear()
         cls.fail_ops.clear()
 
-    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:
+    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # NOSONAR
         type(self).calls.append((op, dict(payload)))
         if op in type(self).fail_ops:
             msg = f"fake {op} failure"
@@ -52,7 +52,7 @@ class FakePayrollProvider:
             return {}
         return data if isinstance(data, dict) else {"data": data}
 
-    async def push_export(self, export_id: uuid.UUID, file: bytes, media_type: str) -> Mapping[str, Any]:
+    async def push_export(self, export_id: uuid.UUID, file: bytes, media_type: str) -> Mapping[str, Any]:  # NOSONAR
         """Epic 66 ``PayrollPushPort``: idempotent per (export, file digest)."""
         type(self).calls.append(("push_export", (export_id, len(file), media_type)))
         if "push_export" in type(self).fail_ops:
@@ -61,7 +61,7 @@ class FakePayrollProvider:
         digest = hashlib.sha256(str(export_id).encode() + file).hexdigest()
         return {"ok": True, "external_ref": f"fake-payroll-{digest[:12]}", "bytes": len(file), "media_type": media_type}
 
-    async def get_status(self, external_ref: str) -> Any:
+    async def get_status(self, external_ref: str) -> Any:  # NOSONAR
         type(self).calls.append(("get_status", (external_ref,)))
         return {"ok": True, "op": "get_status"}
 

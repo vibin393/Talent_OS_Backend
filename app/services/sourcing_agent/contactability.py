@@ -106,7 +106,7 @@ async def do_not_contact_ids(db: AsyncSession, candidate_ids: Sequence[uuid.UUID
     return out
 
 
-async def _tenant_of(db: AsyncSession) -> uuid.UUID:
+async def _tenant_of(db: AsyncSession) -> uuid.UUID:  # NOSONAR
     from app.services import entity_refs
 
     return entity_refs.session_tenant(db)

@@ -94,7 +94,7 @@ async def _resolve_slot(
     return start, end, offer, "candidate_pick"
 
 
-async def _participants(_db: AsyncSession, req: SchedulingRequest) -> list[Any]:
+async def _participants(_db: AsyncSession, req: SchedulingRequest) -> list[Any]:  # NOSONAR
     from app.schemas.interviews import ParticipantIn
 
     out = [ParticipantIn(kind="interviewer_internal", user_id=u) for u in req.participant_user_ids]

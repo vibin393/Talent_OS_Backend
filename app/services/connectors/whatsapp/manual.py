@@ -27,7 +27,7 @@ class ManualWhatsAppProvider(ChannelAdapter):
             SendSpec("whatsapp", to_e164, "", template_name, list(variables), language)
         )
 
-    async def list_templates(self) -> list[ProviderTemplate]:
+    async def list_templates(self) -> list[ProviderTemplate]:  # NOSONAR
         return []  # Manual connector: templates are entered by hand
 
     async def _other(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]

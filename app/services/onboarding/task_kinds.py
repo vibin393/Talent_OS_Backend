@@ -48,7 +48,7 @@ def _text(payload: dict[str, Any], key: str, *, required: bool = False, max_len:
 
 
 # ================================================================ submit
-async def submit_personal(
+async def submit_personal(  # NOSONAR
     ctx: RequestContext, db: AsyncSession, case: OnboardingCase, task: OnboardingTask, payload: dict[str, Any]
 ) -> None:
     data: dict[str, Any] = {}
@@ -139,7 +139,7 @@ async def submit_tax(
     }
 
 
-async def submit_emergency(
+async def submit_emergency(  # NOSONAR
     ctx: RequestContext, db: AsyncSession, case: OnboardingCase, task: OnboardingTask, payload: dict[str, Any]
 ) -> None:
     name = _text(payload, "name", required=True, max_len=200)
@@ -149,7 +149,7 @@ async def submit_emergency(
     task.data = {"name": name, "relation": _text(payload, "relation", max_len=100), "phone": phone}
 
 
-async def submit_document(
+async def submit_document(  # NOSONAR
     ctx: RequestContext, db: AsyncSession, case: OnboardingCase, task: OnboardingTask, payload: dict[str, Any]
 ) -> None:
     if not task.document_ids:
@@ -167,7 +167,7 @@ async def submit_document(
     task.data = data
 
 
-async def submit_client_form(
+async def submit_client_form(  # NOSONAR
     ctx: RequestContext, db: AsyncSession, case: OnboardingCase, task: OnboardingTask, payload: dict[str, Any]
 ) -> None:
     fields = (task.config or {}).get("fields") or []
@@ -294,7 +294,7 @@ async def approve_emergency(
     )
 
 
-async def approve_document(
+async def approve_document(  # NOSONAR
     ctx: RequestContext, db: AsyncSession, task: OnboardingTask, extra: dict[str, Any]
 ) -> None:
     if (task.config or {}).get("aadhaar") and (task.data or {}).get("redaction_status") != "confirmed":

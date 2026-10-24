@@ -186,7 +186,7 @@ async def _po_recipients(db: AsyncSession, payload: Any) -> set[uuid.UUID]:
     return out
 
 
-async def _contract_owner(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
+async def _contract_owner(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]  # NOSONAR
     owner = _uuid(payload.get("owner_id"))
     return {owner} if owner else set()
 

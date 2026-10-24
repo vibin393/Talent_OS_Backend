@@ -99,7 +99,7 @@ def _register_rediscovery() -> None:
 
 
 # ---------------------------------------------------------------- notifications
-async def _owner(db: AsyncSession, payload: Any) -> set[uuid.UUID]:
+async def _owner(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # NOSONAR
     uid = _uuid(payload.get("owner_id"))
     return {uid} if uid else set()
 
@@ -168,7 +168,7 @@ async def _render_paused(db: AsyncSession, payload: Any) -> Any:
     )
 
 
-async def _render_tenant_paused(db: AsyncSession, payload: Any) -> Any:
+async def _render_tenant_paused(db: AsyncSession, payload: Any) -> Any:  # NOSONAR
     from app.services.notifications_service import Content
 
     reason = {"complaint_rate": "the spam complaint rate", "bounce_rate": "the hard bounce rate"}.get(

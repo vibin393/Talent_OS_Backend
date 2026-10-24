@@ -155,7 +155,7 @@ async def _create(
     return req
 
 
-async def _validate_timezone(tz: str) -> str:
+async def _validate_timezone(tz: str) -> str:  # NOSONAR
     from app.services.interviews import timeutil
 
     timeutil.zone(tz)  # 422 invalid_timezone

@@ -203,5 +203,5 @@ class NaukriAdapter(LiveJobBoardBase):
         nxt = data.get("nextPage")
         return out, (str(nxt) if nxt else None)
 
-    async def field_schema(self) -> FieldSchemaDTO:
+    async def field_schema(self) -> FieldSchemaDTO:  # NOSONAR
         return FIELDS

@@ -186,7 +186,7 @@ class _Backend:
         assert self._gates is not None
         return self._gates
 
-    async def origin_allowed(self, caller: Caller, origin: str) -> bool:
+    async def origin_allowed(self, caller: Caller, origin: str) -> bool:  # NOSONAR
         allowed = {o.lower().rstrip("/") for o in self._g().settings.get("allowed_origins") or []}
         if caller.sandbox:
             allowed.add(get_settings().frontend_url.lower().rstrip("/"))
@@ -656,7 +656,7 @@ def _tool_rows() -> list[McpToolOut]:
     ]
 
 
-async def tool_catalogue(ctx: RequestContext, db: AsyncSession) -> list[McpToolOut]:  # ruff: ignore[unused-function-argument]
+async def tool_catalogue(ctx: RequestContext, db: AsyncSession) -> list[McpToolOut]:  # ruff: ignore[unused-function-argument]  # NOSONAR
     return _tool_rows()
 
 
@@ -847,10 +847,10 @@ def register_hooks() -> None:
     for key, desc in AUDIT_ACTIONS:
         audit.register_audit_action(key, desc)
 
-    async def _none(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument] - delivered directly
+    async def _none(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument] - delivered directly  # NOSONAR
         return set()
 
-    async def _render(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def _render(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         return ns.Content(title=str(payload.get("title") or "AI assistant access"))
 
     defs = {

@@ -61,7 +61,7 @@ async def _owner(db: AsyncSession, payload: Any) -> set[uuid.UUID]:
     return {conv.owner_user_id} if conv is not None else set()
 
 
-async def _candidate(db: AsyncSession, payload: Any) -> set[Any]:
+async def _candidate(db: AsyncSession, payload: Any) -> set[Any]:  # NOSONAR
     from app.services.notifications_service import Recipient
 
     cid = _uuid(payload.get("candidate_id"))

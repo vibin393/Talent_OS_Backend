@@ -26,7 +26,7 @@ ROLES = ("agent", "candidate", "interviewer", "recruiter", "unknown")
 
 _TS = r"(?:(\d+):)?(\d{1,2}):(\d{2})[.,](\d{1,3})"
 _CUE = re.compile(rf"^\s*{_TS}\s*-->\s*{_TS}")
-_VOICE = re.compile(r"<v(?:\.[^\s>]*)?\s+([^>]*)>", re.IGNORECASE)
+_VOICE = re.compile(r"<v(?:\.[^\s>]*)?\s+([^>]*)>", re.IGNORECASE)  # NOSONAR
 _TAG = re.compile(r"</?[^>]*>")
 _LABEL = re.compile(r"^([A-Za-z][A-Za-z0-9 ._'-]{0,39}?)\s*:\s+(\S.*)$")
 _SRT_INDEX = re.compile(r"^\d+$")

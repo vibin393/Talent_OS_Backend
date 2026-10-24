@@ -134,7 +134,7 @@ class RecordingFilesHandler:
             "interview_captures": await retention.purge_capture_recordings(db, captures),
         }
 
-    async def export(self, db: AsyncSession, ctx: ErasureContext) -> dict[str, Any] | None:  # ruff: ignore[unused-method-argument]
+    async def export(self, db: AsyncSession, ctx: ErasureContext) -> dict[str, Any] | None:  # ruff: ignore[unused-method-argument]  # NOSONAR
         return None  # recordings are binary media: listed by ``files.candidate`` exports, not inlined
 
     async def verify(self, db: AsyncSession, ctx: ErasureContext) -> list[str]:

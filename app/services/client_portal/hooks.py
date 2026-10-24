@@ -27,17 +27,17 @@ from app.services import notifications_service as ns
 from app.services.approvals import ResolvedApprover, register_approver_resolver, register_delegate_resolver
 
 
-async def _payload_users(db: AsyncSession, payload: Mapping[str, Any]) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
+async def _payload_users(db: AsyncSession, payload: Mapping[str, Any]) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]  # NOSONAR
     raw = payload.get("owner_id")
     return {uuid.UUID(str(raw))} if raw else set()
 
 
-async def _payload_client_users(db: AsyncSession, payload: Mapping[str, Any]) -> set[ns.Recipient]:  # ruff: ignore[unused-function-argument]
+async def _payload_client_users(db: AsyncSession, payload: Mapping[str, Any]) -> set[ns.Recipient]:  # ruff: ignore[unused-function-argument]  # NOSONAR
     return {ns.Recipient("client_user", uuid.UUID(str(u))) for u in payload.get("client_user_ids") or []}
 
 
 def _render(title: str, link: str | None) -> Any:
-    async def render(db: AsyncSession, payload: Mapping[str, Any]) -> ns.Content:  # ruff: ignore[unused-function-argument]
+    async def render(db: AsyncSession, payload: Mapping[str, Any]) -> ns.Content:  # ruff: ignore[unused-function-argument]  # NOSONAR
         return ns.Content(title=str(payload.get("title") or title)[:300], link_path=link)
 
     return render

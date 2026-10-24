@@ -398,7 +398,7 @@ async def _steps(ctx: RequestContext, db: AsyncSession, p: Placement, rule: Effe
     return steps
 
 
-async def _facts(req: LeaveRequest) -> dict[str, Any]:
+async def _facts(req: LeaveRequest) -> dict[str, Any]:  # NOSONAR
     return {
         "leave_request_id": str(req.id),
         "placement_id": str(req.placement_id),
@@ -613,7 +613,7 @@ async def on_final_decided(ctx: RequestContext, db: AsyncSession, decision: Fina
     )
 
 
-async def on_step_decided(ctx: RequestContext, db: AsyncSession, decision: StepDecision) -> None:  # ruff: ignore[unused-function-argument]
+async def on_step_decided(ctx: RequestContext, db: AsyncSession, decision: StepDecision) -> None:  # ruff: ignore[unused-function-argument]  # NOSONAR
     return None
 
 

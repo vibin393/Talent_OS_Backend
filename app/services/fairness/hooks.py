@@ -93,7 +93,7 @@ def _subscribe() -> None:
 
 
 # ---------------------------------------------------------------- notifications
-async def _requester(db: Any, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument]
+async def _requester(db: Any, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument]  # NOSONAR
     uid = _uuid(payload.get("user_id"))
     return {uid} if uid else set()
 
@@ -118,7 +118,7 @@ async def _compliance(db: Any, payload: Any) -> set[Any]:  # ruff: ignore[unused
     )
 
 
-async def _render_run(db: Any, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+async def _render_run(db: Any, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
     from app.services.notifications_service import Content
 
     rid = _uuid(payload.get("run_id"))
@@ -129,7 +129,7 @@ async def _render_run(db: Any, payload: Any) -> Any:  # ruff: ignore[unused-func
     )
 
 
-async def _render_alt(db: Any, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+async def _render_alt(db: Any, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
     from app.services.notifications_service import Content
 
     return Content(
@@ -139,7 +139,7 @@ async def _render_alt(db: Any, payload: Any) -> Any:  # ruff: ignore[unused-func
     )
 
 
-async def _render_due(db: Any, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+async def _render_due(db: Any, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
     from app.services.notifications_service import Content
 
     return Content(

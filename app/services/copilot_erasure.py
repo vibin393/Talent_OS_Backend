@@ -61,7 +61,7 @@ class CopilotMessagesHandler:
         await db.flush()
         return {"copilot_messages": count, "copilot_conversations": len(conv_ids)}
 
-    async def export(self, db: AsyncSession, ctx: ErasureContext) -> dict[str, Any] | None:  # ruff: ignore[unused-method-argument]
+    async def export(self, db: AsyncSession, ctx: ErasureContext) -> dict[str, Any] | None:  # ruff: ignore[unused-method-argument]  # NOSONAR
         # Copilot conversations are the user's private working notes, not records about the candidate.
         return None
 

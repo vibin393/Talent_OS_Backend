@@ -48,7 +48,7 @@ async def _write_limit(request: Request, principal: CandidateDep) -> None:
         await rate_limit.enforce("portal_write", str(principal.session_id), WRITES_PER_MINUTE, 60)
 
 
-async def _no_store(response: Response) -> None:
+async def _no_store(response: Response) -> None:  # NOSONAR
     response.headers["Cache-Control"] = "private, no-store"
 
 

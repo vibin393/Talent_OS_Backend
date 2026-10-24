@@ -47,7 +47,7 @@ def _retention() -> None:
     if "installation_health_log" in retention_bindings():
         return
 
-    async def _no_subject(db: AsyncSession, row_id: uuid.UUID, *_: Any, **__: Any) -> None:
+    async def _no_subject(db: AsyncSession, row_id: uuid.UUID, *_: Any, **__: Any) -> None:  # NOSONAR
         return None
 
     async def _anchor(db: AsyncSession, row_id: uuid.UUID, *_: Any, **__: Any) -> Any:

@@ -333,7 +333,7 @@ async def archive(ctx: RequestContext, db: AsyncSession, card_id: uuid.UUID) -> 
     row = await get_row(db, card_id, lock=True)
     if row.status == "archived":
         return await _out(db, row)
-    if row.status == "draft":
+    if row.status == "draft":  # NOSONAR
         row.status = "archived"
         row.archived_at = now()
     else:

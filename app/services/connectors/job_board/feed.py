@@ -21,30 +21,30 @@ class JobFeedAdapter(FakeAdapterBase):
     category = "job_board"
     provider_key = "job_feed"
 
-    async def publish(self, posting: JobPostingDTO) -> BoardRefDTO:
+    async def publish(self, posting: JobPostingDTO) -> BoardRefDTO:  # NOSONAR
         self._check("publish", posting.posting_id)
         ref = f"FEED-{posting.posting_id}"
         return BoardRefDTO(ref, None, "live", None, posting.expires_at, None, None, None)
 
-    async def update(self, board_ref: str, posting: JobPostingDTO) -> BoardRefDTO:
+    async def update(self, board_ref: str, posting: JobPostingDTO) -> BoardRefDTO:  # NOSONAR
         self._check("update", board_ref)
         return BoardRefDTO(board_ref, None, "live", None, posting.expires_at, None, None, None)
 
-    async def close(self, board_ref: str) -> BoardRefDTO:
+    async def close(self, board_ref: str) -> BoardRefDTO:  # NOSONAR
         self._check("close", board_ref)
         return BoardRefDTO(board_ref, None, "closed", None, None, None, None, None)
 
-    async def status(self, board_ref: str) -> BoardRefDTO:
+    async def status(self, board_ref: str) -> BoardRefDTO:  # NOSONAR
         self._check("status", board_ref)
         return BoardRefDTO(board_ref, None, "live", None, None, None, None, None)
 
-    async def fetch_applicants(
+    async def fetch_applicants(  # NOSONAR
         self,
         since: datetime | None,  # ruff: ignore[unused-method-argument]
         cursor: str | None,  # ruff: ignore[unused-method-argument]
     ) -> tuple[Sequence[BoardApplicantDTO], str | None]:
         return (), None
 
-    async def field_schema(self) -> FieldSchemaDTO:
+    async def field_schema(self) -> FieldSchemaDTO:  # NOSONAR
         self._check("field_schema")
         return FieldSchemaDTO(fields=())

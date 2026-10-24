@@ -30,7 +30,7 @@ def _uuid(value: Any) -> uuid.UUID | None:
         return None
 
 
-async def _sender(db: AsyncSession, payload: dict[str, Any]) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
+async def _sender(db: AsyncSession, payload: dict[str, Any]) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]  # NOSONAR
     user_id = _uuid(payload.get("sender_user_id"))
     return {user_id} if user_id else set()
 

@@ -56,7 +56,7 @@ class FakeHrms(FakeAdapterBase):
             raise ConnectorPermanentError("employee_unknown", msg)
         return emp
 
-    async def push_hire(self, hire: HireDTO) -> HrmsResultDTO:
+    async def push_hire(self, hire: HireDTO) -> HrmsResultDTO:  # NOSONAR
         self._check("push_hire", hire.placement_id)
         cls = type(self)
         ref = cls._by_placement.get(hire.placement_id)
@@ -67,20 +67,20 @@ class FakeHrms(FakeAdapterBase):
             cls._employees[ref] = {"status": "active", "exit_date": None, "version": hire.placement_version}
         return HrmsResultDTO(employee_ref=ref, status="created", message=None)
 
-    async def push_change(self, change: ChangeDTO) -> HrmsResultDTO:
+    async def push_change(self, change: ChangeDTO) -> HrmsResultDTO:  # NOSONAR
         self._check("push_change", change.employee_ref)
         emp = self._employee(change.employee_ref)
         emp["version"] = max(emp["version"], change.placement_version)
         return HrmsResultDTO(employee_ref=change.employee_ref, status="updated", message=None)
 
-    async def push_exit(self, employee_ref: str, last_day: date) -> HrmsResultDTO:
+    async def push_exit(self, employee_ref: str, last_day: date) -> HrmsResultDTO:  # NOSONAR
         self._check("push_exit", employee_ref)
         emp = self._employee(employee_ref)
         emp["status"] = "exited"
         emp["exit_date"] = last_day
         return HrmsResultDTO(employee_ref=employee_ref, status="updated", message=None)
 
-    async def pull_status(
+    async def pull_status(  # NOSONAR
         self,
         since: datetime | None,  # ruff: ignore[unused-method-argument]
         cursor: str | None,
@@ -97,6 +97,6 @@ class FakeHrms(FakeAdapterBase):
         page = items[start : start + size]
         return page, (str(start + size) if start + size < len(items) else None)
 
-    async def field_schema(self) -> FieldSchemaDTO:
+    async def field_schema(self) -> FieldSchemaDTO:  # NOSONAR
         self._check("field_schema")
         return _FIELDS

@@ -42,13 +42,13 @@ class ManualVoiceProvider:
     async def start_call(self, external_ref: str) -> CallSessionDTO:
         raise ManualActionRequired(INSTRUCTIONS, {"op": "start_call", "external_ref": external_ref})
 
-    async def end_call(self, external_ref: str) -> CallSessionDTO:
+    async def end_call(self, external_ref: str) -> CallSessionDTO:  # NOSONAR
         return CallSessionDTO(external_ref=external_ref, status="manual")
 
-    async def fetch_recording(self, recording_ref: str) -> RecordingDTO | None:  # ruff: ignore[unused-method-argument]
+    async def fetch_recording(self, recording_ref: str) -> RecordingDTO | None:  # ruff: ignore[unused-method-argument]  # NOSONAR
         return None
 
-    async def fetch_transcript(self, transcript_ref: str) -> TranscriptDTO | None:  # ruff: ignore[unused-method-argument]
+    async def fetch_transcript(self, transcript_ref: str) -> TranscriptDTO | None:  # ruff: ignore[unused-method-argument]  # NOSONAR
         return None
 
 

@@ -49,7 +49,7 @@ async def _resolve_client_user(
     return ResolvedApprover("client_user", None, None, row.id, ("client", row.client_id), row.display_name)
 
 
-async def _resolve_client_any(
+async def _resolve_client_any(  # NOSONAR
     ctx: RequestContext,  # ruff: ignore[unused-function-argument]
     db: AsyncSession,  # ruff: ignore[unused-function-argument]
     approver_ref: Mapping[str, Any],

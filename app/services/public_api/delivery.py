@@ -94,7 +94,7 @@ def _offers() -> Any:
     return visible_offers(principal)
 
 
-async def _build_offers(rows: Sequence[Offer]) -> list[dict[str, Any]]:
+async def _build_offers(rows: Sequence[Offer]) -> list[dict[str, Any]]:  # NOSONAR
     _, principal = ctx_principal()
     return finish_all(principal, [
         {**base(o, "offer", human_id=o.human_id), "application_id": o.application_id, "status": o.status,

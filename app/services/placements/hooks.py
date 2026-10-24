@@ -166,21 +166,21 @@ _subscribe()
 
 
 # ---------------------------------------------------------------- notifications
-async def _recruiter(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
+async def _recruiter(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]  # NOSONAR
     rid = _uuid(payload.get("recruiter_user_id"))
     return {rid} if rid else set()
 
 
-async def _listed(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
+async def _listed(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]  # NOSONAR
     return {u for u in (_uuid(x) for x in payload.get("recipient_ids") or []) if u}
 
 
-async def _owner(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
+async def _owner(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]  # NOSONAR
     oid = _uuid(payload.get("owner_id"))
     return {oid} if oid else set()
 
 
-async def _worker(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument]
+async def _worker(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument]  # NOSONAR
     from app.services.notifications_service import Recipient
 
     cid = _uuid(payload.get("candidate_id"))
@@ -244,7 +244,7 @@ async def _render_question(db: AsyncSession, payload: Any) -> Any:
     return _content(f"{await _human(db, pid)}: the worker has a question about joining", pid)
 
 
-async def _render_bank_requested(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+async def _render_bank_requested(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
     from app.services.notifications_service import Content
 
     return Content(

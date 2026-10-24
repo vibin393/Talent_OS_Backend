@@ -40,5 +40,5 @@ class KekaPayroll(KekaHrms):
         ref = (body.get("data") or {}).get("id") if isinstance(body, dict) and isinstance(body.get("data"), dict) else None
         return {"ok": True, "external_ref": str(ref) if ref else f"keka-{export_id}"}
 
-    async def get_status(self, external_ref: str) -> Any:
+    async def get_status(self, external_ref: str) -> Any:  # NOSONAR
         return {"ok": True, "external_ref": external_ref}

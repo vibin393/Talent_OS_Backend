@@ -84,7 +84,7 @@ def _register_notifications() -> None:
         out.update(r[0] for r in rows)
         return out
 
-    async def deprecated_render(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def deprecated_render(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         return ns.Content(
             title="Your integration uses an API that is being retired",
             body=f"{payload.get('route_template')} was called {payload.get('call_count')} times last month. It stops working on {payload.get('sunset')}.",
@@ -98,7 +98,7 @@ def _register_notifications() -> None:
         user = (await db.execute(select(PublicImportJob.acting_user_id).where(PublicImportJob.id == uuid.UUID(str(payload["import_id"]))))).scalar_one_or_none()
         return {user} if user else set()
 
-    async def import_render(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def import_render(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         return ns.Content(
             title="Your bulk import finished",
             body=f"{payload.get('created', 0)} created, {payload.get('duplicates', 0)} possible duplicates, {payload.get('failed', 0)} failed.",

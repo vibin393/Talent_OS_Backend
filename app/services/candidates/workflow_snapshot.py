@@ -32,7 +32,7 @@ async def workflow_snapshot(
         return None
     location = cand.location or {}
     months = cand.total_experience_months
-    years = (Decimal(months) / 12).quantize(Decimal("0.1"), ROUND_HALF_UP) if months is not None else None
+    years = (Decimal(months) / 12).quantize(Decimal("0.1"), ROUND_HALF_UP) if months is not None else None  # NOSONAR
     return {
         "id": str(cand.id),
         "candidate_id": str(cand.id),

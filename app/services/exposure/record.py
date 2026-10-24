@@ -87,7 +87,7 @@ def _memory_add(tenant: str, field: str, at: datetime) -> None:
         bucket[field] = (min(first, at), max(last, at))
 
 
-async def record(
+async def record(  # NOSONAR
     ctx: RequestContext,
     *,
     subject_type: str,

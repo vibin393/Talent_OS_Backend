@@ -89,7 +89,7 @@ class EnrolOut(Out):
     refused: list[Refusal]
 
 
-async def _enrol_intent(tctx: Any, args: EnrolIn) -> SendIntent:  # ruff: ignore[unused-function-argument]
+async def _enrol_intent(tctx: Any, args: EnrolIn) -> SendIntent:  # ruff: ignore[unused-function-argument]  # NOSONAR
     return SendIntent(
         recipients=tuple(Recipient(kind="candidate", id=cid, channel="email") for cid in dict.fromkeys(args.candidate_ids)),
         templated=True, template_ref=f"sequence:{args.sequence_id}",

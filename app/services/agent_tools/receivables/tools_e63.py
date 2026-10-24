@@ -409,7 +409,7 @@ async def _note(tctx: Any, args: NoteIn) -> ToolOutcome:
     return ToolOutcome(NoteOut(collection_activity_id=act.id), target=("client", args.client_id), summary="collection note logged")
 
 
-async def _note_preview(tctx: Any, args: NoteIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
+async def _note_preview(tctx: Any, args: NoteIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]  # NOSONAR
     return ProposalPreview(title="Log a collections note", summary=args.body[:4000], renderer="receivables.log_collection_note")
 
 

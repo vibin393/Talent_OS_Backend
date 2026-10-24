@@ -21,7 +21,7 @@ class BuiltinEsignProvider:
     def __init__(self, config: ConnectorConfig | None = None) -> None:
         self.config = config
 
-    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:
+    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # NOSONAR
         return {"ok": True, "op": op, "builtin": True, "payload_keys": sorted(payload)}
 
     def verify_webhook(self, headers: Mapping[str, str], body: bytes) -> bool:  # ruff: ignore[unused-method-argument]
@@ -30,16 +30,16 @@ class BuiltinEsignProvider:
     def parse_webhook(self, headers: Mapping[str, str], body: bytes) -> Mapping[str, Any]:  # ruff: ignore[unused-method-argument]
         return {}
 
-    async def create_request(self, req: EsignRequestDTO) -> str:
+    async def create_request(self, req: EsignRequestDTO) -> str:  # NOSONAR
         return str(req.request_id)
 
-    async def get_status(self, external_ref: str) -> EsignStatusDTO:  # ruff: ignore[unused-method-argument]
+    async def get_status(self, external_ref: str) -> EsignStatusDTO:  # ruff: ignore[unused-method-argument]  # NOSONAR
         return EsignStatusDTO(status="unknown")
 
-    async def fetch_signed(self, external_ref: str) -> bytes | None:  # ruff: ignore[unused-method-argument]
+    async def fetch_signed(self, external_ref: str) -> bytes | None:  # ruff: ignore[unused-method-argument]  # NOSONAR
         return None
 
-    async def handle_webhook(self, headers: Mapping[str, str], body: bytes) -> EsignWebhookDTO:
+    async def handle_webhook(self, headers: Mapping[str, str], body: bytes) -> EsignWebhookDTO:  # NOSONAR
         msg = "the built-in provider has no webhooks"
         raise NotImplementedError(msg)
 

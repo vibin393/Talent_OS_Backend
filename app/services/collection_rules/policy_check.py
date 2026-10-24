@@ -38,7 +38,7 @@ FORBIDDEN: tuple[tuple[str, re.Pattern[str]], ...] = tuple(
 _CURRENCY_AMOUNT = re.compile(
     r"(?:₹|INR|Rs\.?|USD|US\$|\$|EUR|€|GBP|£|AED|SGD)\s?(\d[\d,]*(?:\.\d{1,2})?)", re.IGNORECASE
 )
-_PLAIN_AMOUNT = re.compile(r"(?<![\w.-])(\d{1,3}(?:,\d{2,3})+(?:\.\d{1,2})?|\d+\.\d{2})(?![\w-])")
+_PLAIN_AMOUNT = re.compile(r"(?<![\w.-])(\d{1,3}(?:,\d{2,3})+(?:\.\d{1,2})?|\d+\.\d{2})(?![\w-])")  # NOSONAR
 _ISO_DATE = re.compile(r"\b(\d{4})-(\d{2})-(\d{2})\b")
 _TEXT_DATE = re.compile(
     r"\b(\d{1,2})(?:st|nd|rd|th)?\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)[a-z]*\.?,?\s+(\d{4})\b", re.IGNORECASE

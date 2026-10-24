@@ -35,7 +35,7 @@ def subject(tctx: Any) -> tuple[str, uuid.UUID] | None:
 
 
 def preview(title: str, describe: Any) -> Any:
-    async def _preview(tctx: Any, args: Any) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
+    async def _preview(tctx: Any, args: Any) -> ProposalPreview:  # ruff: ignore[unused-function-argument]  # NOSONAR
         return ProposalPreview(title=title[:200], summary=str(describe(args))[:4000], renderer=None)
 
     return _preview

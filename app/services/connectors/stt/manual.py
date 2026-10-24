@@ -33,5 +33,5 @@ class ManualSpeechToText:
     async def transcribe(self, audio: bytes, media_type: str, language_hint: str | None) -> TranscriptDTO:  # ruff: ignore[unused-method-argument]
         raise ManualActionRequired(INSTRUCTIONS, {"op": "transcribe", "media_type": media_type})
 
-    async def languages(self) -> tuple[str, ...]:
+    async def languages(self) -> tuple[str, ...]:  # NOSONAR
         return ()

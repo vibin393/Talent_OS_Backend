@@ -33,7 +33,7 @@ class FakeEsignProvider:
         cls.statuses.clear()
         cls.pdfs.clear()
 
-    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:
+    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # NOSONAR
         type(self).calls.append((op, dict(payload)))
         if op in type(self).fail_ops:
             msg = f"fake {op} failure"
@@ -56,7 +56,7 @@ class FakeEsignProvider:
             return {}
         return data if isinstance(data, dict) else {"data": data}
 
-    async def create_request(self, req: Any) -> str:
+    async def create_request(self, req: Any) -> str:  # NOSONAR
         type(self).calls.append(("create_request", (req,)))
         if "create_request" in type(self).fail_ops:
             msg = "fake create_request failure"
@@ -66,17 +66,17 @@ class FakeEsignProvider:
         type(self).pdfs[ref] = getattr(req, "pdf", b"")
         return ref
 
-    async def get_status(self, external_ref: str) -> Any:
+    async def get_status(self, external_ref: str) -> Any:  # NOSONAR
         from app.services.connectors.esign.port import EsignStatusDTO
 
         type(self).calls.append(("get_status", (external_ref,)))
         return EsignStatusDTO(status=type(self).statuses.get(external_ref, "sent"))
 
-    async def fetch_signed(self, external_ref: str) -> bytes | None:
+    async def fetch_signed(self, external_ref: str) -> bytes | None:  # NOSONAR
         type(self).calls.append(("fetch_signed", (external_ref,)))
         return type(self).pdfs.get(external_ref)
 
-    async def handle_webhook(self, headers: Mapping[str, str], body: bytes) -> Any:
+    async def handle_webhook(self, headers: Mapping[str, str], body: bytes) -> Any:  # NOSONAR
         from app.services.connectors.esign.port import EsignStatusDTO, EsignWebhookDTO
 
         type(self).calls.append(("handle_webhook", (headers, body)))

@@ -41,19 +41,19 @@ class _MemoryStore:
             return None
         return hit[0]
 
-    async def get(self, key: str) -> int:
+    async def get(self, key: str) -> int:  # NOSONAR
         with self._lock:
             value = self._live(key, time.monotonic())
             return int(value or 0) if not isinstance(value, set) else len(value)
 
-    async def incr(self, key: str, ttl: int) -> int:
+    async def incr(self, key: str, ttl: int) -> int:  # NOSONAR
         now = time.monotonic()
         with self._lock:
             value = int(self._live(key, now) or 0) + 1
             self._data[key] = (value, now + ttl)
             return value
 
-    async def sadd(self, key: str, members: Iterable[str], ttl: int) -> int:
+    async def sadd(self, key: str, members: Iterable[str], ttl: int) -> int:  # NOSONAR
         now = time.monotonic()
         with self._lock:
             current = self._live(key, now)

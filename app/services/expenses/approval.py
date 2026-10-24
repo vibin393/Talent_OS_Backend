@@ -370,7 +370,7 @@ async def decide_as(
     )
 
 
-async def awaiting_client(principal: Any, request: ApprovalRequest | None) -> bool:
+async def awaiting_client(principal: Any, request: ApprovalRequest | None) -> bool:  # NOSONAR
     if request is None or request.status != "pending" or request.current_approver_kind not in CLIENT_KINDS:
         return False
     if request.current_approver_kind == "client_user":

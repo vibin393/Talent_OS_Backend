@@ -14,7 +14,7 @@ class FakeSpeechToText(FakeAdapterBase):
     category = "stt"
     provider_key = "fake_stt"
 
-    async def transcribe(self, audio: bytes, media_type: str, language_hint: str | None) -> TranscriptDTO:
+    async def transcribe(self, audio: bytes, media_type: str, language_hint: str | None) -> TranscriptDTO:  # NOSONAR
         self._check("transcribe", (len(audio), media_type, language_hint))
         language = language_hint if language_hint in LANGUAGES else "en"
         scripted = self.scripted().get("transcript")
@@ -35,6 +35,6 @@ class FakeSpeechToText(FakeAdapterBase):
             language=language,
         )
 
-    async def languages(self) -> tuple[str, ...]:
+    async def languages(self) -> tuple[str, ...]:  # NOSONAR
         self._check("languages")
         return LANGUAGES

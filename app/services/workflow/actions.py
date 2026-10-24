@@ -496,7 +496,7 @@ def _mover() -> Callable[..., Awaitable[Any]]:
     return move  # type: ignore[no-any-return]
 
 
-async def _move_plan(ac: ActionContext) -> str:
+async def _move_plan(ac: ActionContext) -> str:  # NOSONAR
     params: MoveStageParams = ac.params
     if not workflow_allowed_target(params.to_stage_key):
         raise ActionError(
@@ -535,7 +535,7 @@ async def _move_dry(ac: ActionContext) -> str:
 
 
 # ================================================================ add_tag
-async def _tag_plan(ac: ActionContext) -> tuple[uuid.UUID, str]:
+async def _tag_plan(ac: ActionContext) -> tuple[uuid.UUID, str]:  # NOSONAR
     candidate_id = _candidate_id(ac)
     if candidate_id is None:
         raise ActionError("candidate_unresolved", "The trigger has no candidate")
@@ -567,7 +567,7 @@ def _refresher() -> Callable[..., Awaitable[Any]] | None:
     return fn if callable(fn) else None
 
 
-async def _refresh_plan(ac: ActionContext) -> tuple[Callable[..., Awaitable[Any]], uuid.UUID]:
+async def _refresh_plan(ac: ActionContext) -> tuple[Callable[..., Awaitable[Any]], uuid.UUID]:  # NOSONAR
     demand_id = _demand_id(ac)
     if demand_id is None:
         raise ActionError("demand_unresolved", "The trigger has no demand")

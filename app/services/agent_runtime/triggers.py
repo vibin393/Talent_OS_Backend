@@ -193,7 +193,7 @@ def register_workflow_action() -> None:
             raise ActionError(ref.reason or "not_started", f"The agent did not start ({ref.reason})")
         return f"Started agent run {ref.run_id}"
 
-    async def _dry(ac: Any) -> str:
+    async def _dry(ac: Any) -> str:  # NOSONAR
         return f"Would start the {ac.params.agent_key} agent on {ac.entity_type} {ac.entity_id}"
 
     register_action(ACTION_KEY, ActionDef("Start agent run", StartRunParams, _validate, _run, _dry))

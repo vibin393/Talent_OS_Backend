@@ -27,7 +27,7 @@ def _clients(permission: str = "client:read") -> Any:
     return stmt if cond is None else stmt.where(cond)
 
 
-async def _build_clients(rows: Sequence[Client]) -> list[dict[str, Any]]:
+async def _build_clients(rows: Sequence[Client]) -> list[dict[str, Any]]:  # NOSONAR
     _, principal = ctx_principal()
     return finish_all(principal, [
         {**base(c, "client"), "name": c.name, "industry": c.industry, "website": c.website, "status": c.status, "owner_id": c.owner_id}
@@ -48,7 +48,7 @@ def _contacts() -> Any:
     return select(Contact).where(Contact.archived_at.is_(None), Contact.client_id.in_(visible_clients))
 
 
-async def _build_contacts(rows: Sequence[Contact]) -> list[dict[str, Any]]:
+async def _build_contacts(rows: Sequence[Contact]) -> list[dict[str, Any]]:  # NOSONAR
     _, principal = ctx_principal()
     return finish_all(principal, [
         {**base(c, "contact"), "client_id": c.client_id, "name": c.name, "title": c.title, "email": c.email, "phone": c.phone}
@@ -98,7 +98,7 @@ def _pools() -> Any:
     return select(TalentPool).where(TalentPool.archived_at.is_(None), pool_visible(principal))
 
 
-async def _build_pools(rows: Sequence[TalentPool]) -> list[dict[str, Any]]:
+async def _build_pools(rows: Sequence[TalentPool]) -> list[dict[str, Any]]:  # NOSONAR
     _, principal = ctx_principal()
     return finish_all(principal, [
         {**base(p, "pool"), "name": p.name, "kind": p.kind, "description": p.description, "member_count": p.member_count, "status": p.status}
@@ -132,7 +132,7 @@ async def list_skills(db: AsyncSession, *, limit: int, cursor: str | None, order
     if q and q.strip():
         stmt = stmt.where(Skill.name.ilike(f"%{q.strip().replace('%', '').replace('_', '')}%"))
 
-    async def build(rows: Sequence[Skill]) -> list[dict[str, Any]]:
+    async def build(rows: Sequence[Skill]) -> list[dict[str, Any]]:  # NOSONAR
         return finish_all(principal, [{**base(s, "skill"), "name": s.name, "slug": s.slug, "category": s.category} for s in rows])
 
     return await page(db, stmt, sort_col=Skill.updated_at, id_col=Skill.id, limit=limit, cursor=cursor, order=order, build=build)

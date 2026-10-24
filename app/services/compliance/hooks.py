@@ -133,7 +133,7 @@ async def _expired_recipients(db: AsyncSession, payload: Any) -> set[Any]:
     return out | await _account_managers(db, _uuid(payload.get("candidate_id")))
 
 
-async def _worker_only(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument]
+async def _worker_only(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument]  # NOSONAR
     from app.services.notifications_service import Recipient
 
     cid = _uuid(payload.get("candidate_id"))

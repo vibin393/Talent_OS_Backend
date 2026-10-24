@@ -121,7 +121,7 @@ async def _snapshot(ctx: RequestContext, db: AsyncSession, claim_id: uuid.UUID) 
     }
 
 
-async def _receipt_access(ctx: RequestContext, db: AsyncSession, entity_id: uuid.UUID, write: bool) -> bool:  # ruff: ignore[unused-function-argument]
+async def _receipt_access(ctx: RequestContext, db: AsyncSession, entity_id: uuid.UUID, write: bool) -> bool:  # ruff: ignore[unused-function-argument]  # NOSONAR
     principal = ctx.principal
     return bool(
         not write and principal is not None and hasattr(principal, "has") and principal.has("expense:read")

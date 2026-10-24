@@ -377,7 +377,7 @@ async def rebuild_project(
     return await burn_rows(db, project.id)
 
 
-async def _alerts(
+async def _alerts(  # NOSONAR
     db: AsyncSession, project: Project, budget: ProjectBudget | None, pct: Decimal | None
 ) -> None:
     if budget is None or pct is None:

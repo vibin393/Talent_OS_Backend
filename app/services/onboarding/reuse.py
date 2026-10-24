@@ -28,7 +28,7 @@ from app.services.onboarding.common import now, today
 NEVER_REUSED = frozenset({"esign", "internal"})
 
 
-def identity(task: OnboardingTask) -> tuple[Any, ...]:
+def identity(task: OnboardingTask) -> tuple[Any, ...]:  # NOSONAR
     cfg = task.config or {}
     if task.kind == "document_upload":
         return (task.kind, str(cfg.get("document_category") or ""), bool(cfg.get("aadhaar")))

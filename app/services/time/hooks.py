@@ -128,7 +128,7 @@ async def _worker_and_am(db: AsyncSession, payload: Any) -> set[Any]:
     return out
 
 
-async def _reminder_target(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument]
+async def _reminder_target(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument]  # NOSONAR
     from app.services.notifications_service import Recipient
 
     rid = _uuid(payload.get("recipient_id"))
@@ -138,7 +138,7 @@ async def _reminder_target(db: AsyncSession, payload: Any) -> set[Any]:  # ruff:
     )
 
 
-async def _digest_user(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
+async def _digest_user(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]  # NOSONAR
     uid = _uuid(payload.get("user_id"))
     return {uid} if uid else set()
 
@@ -173,7 +173,7 @@ async def _render_reminder(db: AsyncSession, payload: Any) -> Any:
     return _content(text, ts, worker=worker)
 
 
-async def _render_digest(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+async def _render_digest(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
     from app.services.notifications_service import Content
 
     return Content(

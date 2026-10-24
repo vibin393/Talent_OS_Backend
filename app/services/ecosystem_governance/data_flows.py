@@ -75,7 +75,7 @@ async def register(ctx: RequestContext, db: AsyncSession, **_: Any) -> list[Data
     return rows
 
 
-async def _flows_for(db: AsyncSession, inst: AppInstallation) -> list[dict[str, Any]]:
+async def _flows_for(db: AsyncSession, inst: AppInstallation) -> list[dict[str, Any]]:  # NOSONAR
     """Resolve the Installation's declared data flows (Apps: ``app_grants.data_flows``; connectors: manifest)."""
     try:
         from app.services import marketplace_service

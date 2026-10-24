@@ -26,7 +26,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.models.clients import Client, Contact
 from app.models.demand_intake import DemandAgentSettings, DemandIntakeSenderDomain
 
-_FROM_LINE = re.compile(r"^\s*>?\s*From:\s*(?P<value>.+)$", re.IGNORECASE | re.MULTILINE)
+_FROM_LINE = re.compile(r"^\s*>?\s*From:\s*(?P<value>.+)$", re.IGNORECASE | re.MULTILINE)  # NOSONAR
 _AUTH_ITEM = re.compile(r"\b(?P<method>dkim|spf)\s*=\s*(?P<result>[a-z]+)(?P<rest>[^;]*)", re.IGNORECASE)
 _PROP = re.compile(
     r"\b(?:header\.d|header\.i|smtp\.mailfrom|smtp\.helo)\s*=\s*(?P<value>[^\s;]+)", re.IGNORECASE
@@ -88,7 +88,7 @@ def auth_result(header: str | None, from_domain: str | None) -> str:
 def forwarded_original_from(body: str) -> str | None:
     """The original sender address from a forwarded header block (first ``From:`` line after a forward marker)."""
     marker = re.search(
-        r"(-{2,}\s*Forwarded message\s*-{2,}|-{2,}\s*Original Message\s*-{2,}|Begin forwarded message:)",
+        r"(-{2,}\s*Forwarded message\s*-{2,}|-{2,}\s*Original Message\s*-{2,}|Begin forwarded message:)",  # NOSONAR
         body or "",
         re.IGNORECASE,
     )

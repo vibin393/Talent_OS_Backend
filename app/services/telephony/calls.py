@@ -247,7 +247,7 @@ async def _adapter(ctx: RequestContext, db: AsyncSession, res: gates.GateResult)
     return await build_for(ctx, db, common.CATEGORY, res.config)
 
 
-async def _can_notice(ctx: RequestContext, db: AsyncSession, res: gates.GateResult) -> bool:  # ruff: ignore[unused-function-argument]
+async def _can_notice(ctx: RequestContext, db: AsyncSession, res: gates.GateResult) -> bool:  # ruff: ignore[unused-function-argument]  # NOSONAR
     if res.config is None:
         return False
     if res.config.provider_key != "exotel":

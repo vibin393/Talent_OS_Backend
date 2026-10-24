@@ -18,7 +18,7 @@ def _register_retention() -> None:
     from app.models.vault import VaultAccessLog
     from app.services.privacy.retention_classes import register_retention_binding, retention_bindings
 
-    async def _no_subject(db: AsyncSession, row_id: uuid.UUID, *_: Any, **__: Any) -> None:  # ruff: ignore[unused-function-argument]
+    async def _no_subject(db: AsyncSession, row_id: uuid.UUID, *_: Any, **__: Any) -> None:  # ruff: ignore[unused-function-argument]  # NOSONAR
         return None
 
     async def _anchor(db: AsyncSession, row_id: uuid.UUID, *_: Any, **__: Any) -> Any:

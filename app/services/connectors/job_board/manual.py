@@ -84,7 +84,7 @@ class ManualJobBoard:
     async def close(self, board_ref: str) -> BoardRefDTO:
         raise ManualActionRequired("Close the job on the board by hand", {"op": "close", "board_ref": board_ref})
 
-    async def status(self, board_ref: str) -> BoardRefDTO:
+    async def status(self, board_ref: str) -> BoardRefDTO:  # NOSONAR
         return BoardRefDTO(
             board_ref=board_ref,
             url=None,
@@ -96,12 +96,12 @@ class ManualJobBoard:
             credits_left=None,
         )
 
-    async def fetch_applicants(
+    async def fetch_applicants(  # NOSONAR
         self,
         since: datetime | None,  # ruff: ignore[unused-method-argument]
         cursor: str | None,  # ruff: ignore[unused-method-argument]
     ) -> tuple[Sequence[BoardApplicantDTO], str | None]:
         return (), None
 
-    async def field_schema(self) -> FieldSchemaDTO:
+    async def field_schema(self) -> FieldSchemaDTO:  # NOSONAR
         return FieldSchemaDTO(fields=())

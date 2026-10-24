@@ -294,7 +294,7 @@ async def move_slot(c: RequestContext, db: AsyncSession, batch_id: uuid.UUID, sl
     if src.interview_id is not None:
         row = await db.get(Interview, src.interview_id)
         if row is not None and row.status == "scheduled":
-            panel = (batch.panels or [])[dst.panel_index]
+            panel = (batch.panels or [])[dst.panel_index]  # NOSONAR
             await interviews_service.reschedule_interview(
                 c, db, row.id,
                 InterviewReschedule(

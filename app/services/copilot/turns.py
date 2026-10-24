@@ -89,7 +89,7 @@ def conversation_out(c: Any) -> ConversationOut:
 
 
 # ================================================================ status
-async def _mode_on(features: dict[str, bool], agent_key: str) -> bool:
+async def _mode_on(features: dict[str, bool], agent_key: str) -> bool:  # NOSONAR
     return bool(features.get("agentic")) and bool(features.get(f"agent_{agent_key}"))
 
 

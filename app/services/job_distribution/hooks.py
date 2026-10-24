@@ -134,11 +134,11 @@ def _uuid(v: Any) -> uuid.UUID | None:
 def _notifications() -> None:
     from app.services import notifications_service as ns
 
-    async def to_user(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]
+    async def to_user(db: AsyncSession, payload: Any) -> set[uuid.UUID]:  # ruff: ignore[unused-function-argument]  # NOSONAR
         uid = _uuid(payload.get("user_id"))
         return {uid} if uid else set()
 
-    async def failed(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def failed(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         did = _uuid(payload.get("demand_id"))
         return ns.Content(
             title=f"Couldn't post the job on {payload.get('board') or 'a job board'}",
@@ -146,16 +146,16 @@ def _notifications() -> None:
             entity_type="demand" if did else None, entity_id=did, link_path=f"/demands/{did}?panel=job_boards" if did else None,
         )  # fmt: skip
 
-    async def expiring(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def expiring(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         did = _uuid(payload.get("demand_id"))
         return ns.Content(title=f"Board posting expiring on {payload.get('board') or 'a job board'}", body="Refresh it or close it.",
                           entity_type="demand" if did else None, entity_id=did, link_path=f"/demands/{did}?panel=job_boards" if did else None)  # fmt: skip
 
-    async def digest(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def digest(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         lines = list(payload.get("lines") or [])
         return ns.Content(title="New applicants from job boards", body="\n".join(lines)[:2000] or None, link_path="/reports/job-boards")
 
-    async def ingest_failed(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def ingest_failed(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         return ns.Content(title="A job board application couldn't be matched to a posting", body="Check the board's postings in Talent OS.", link_path="/settings/integrations")
 
     for key, label, channel, recipients, render in (

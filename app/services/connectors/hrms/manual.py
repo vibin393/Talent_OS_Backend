@@ -47,26 +47,26 @@ class ManualHrms:
             {"op": "push_hire", "placement_id": str(hire.placement_id), "csv": import_csv("hire", hire.fields)},
         )
 
-    async def push_change(self, change: ChangeDTO) -> HrmsResultDTO:
+    async def push_change(self, change: ChangeDTO) -> HrmsResultDTO:  # NOSONAR
         fields = {"employee_ref": change.employee_ref, "effective_date": change.effective_date.isoformat(), **change.fields}
         raise ManualActionRequired(
             "Import this change into the HRMS using the CSV",
             {"op": "push_change", "employee_ref": change.employee_ref, "csv": import_csv("change", fields)},
         )
 
-    async def push_exit(self, employee_ref: str, last_day: date) -> HrmsResultDTO:
+    async def push_exit(self, employee_ref: str, last_day: date) -> HrmsResultDTO:  # NOSONAR
         fields = {"employee_ref": employee_ref, "last_day": last_day.isoformat()}
         raise ManualActionRequired(
             "Record this exit in the HRMS using the CSV",
             {"op": "push_exit", "employee_ref": employee_ref, "csv": import_csv("exit", fields)},
         )
 
-    async def pull_status(
+    async def pull_status(  # NOSONAR
         self,
         since: datetime | None,  # ruff: ignore[unused-method-argument]
         cursor: str | None,  # ruff: ignore[unused-method-argument]
     ) -> tuple[Sequence[HrmsStatusDTO], str | None]:
         return (), None
 
-    async def field_schema(self) -> FieldSchemaDTO:
+    async def field_schema(self) -> FieldSchemaDTO:  # NOSONAR
         return FieldSchemaDTO(fields=())

@@ -23,10 +23,10 @@ from app.services.campaign_copy.common import AGENT_KEY
 def _notifications() -> None:
     from app.services import notifications_service as ns
 
-    async def nobody(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument] - delivered with explicit recipients
+    async def nobody(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignore[unused-function-argument] - delivered with explicit recipients  # NOSONAR
         return set()
 
-    async def render(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+    async def render(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
         return ns.Content(title=str(payload.get("title") or "AI campaign copy"), link_path=payload.get("link_path"))
 
     defs = {

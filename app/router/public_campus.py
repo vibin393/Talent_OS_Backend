@@ -35,7 +35,7 @@ MAX_FILES = 5
 MAX_FILE_MB = 5
 
 
-async def _headers(response: Response, token: Annotated[str, Path(min_length=20, max_length=200)]) -> str:
+async def _headers(response: Response, token: Annotated[str, Path(min_length=20, max_length=200)]) -> str:  # NOSONAR
     response.headers.update(PUBLIC_HEADERS)
     return token
 

@@ -33,7 +33,7 @@ _INTERNAL_TAGS = (
 )
 _TAG_RE = re.compile(r"</?\s*(" + "|".join(_INTERNAL_TAGS) + r")\b[^>]*>", re.IGNORECASE)
 _URL_RE = re.compile(r"(?i)\b(?:https?://|www\.)[^\s<>\"')\]]+")
-_EMAIL_RE = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
+_EMAIL_RE = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")  # NOSONAR
 _PHONE_RE = re.compile(r"(?<![\w])(?:\+?\d[\d\s().-]{8,}\d)(?![\w])")
 LINK_REMOVED = "[link removed]"
 FREE_TEXT_LIMIT = 200

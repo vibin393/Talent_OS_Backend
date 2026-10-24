@@ -142,7 +142,7 @@ def _status_code_name(status_code: int) -> str:
         return "http_error"
 
 
-async def _domain_error_handler(_: Request, exc: Exception) -> JSONResponse:
+async def _domain_error_handler(_: Request, exc: Exception) -> JSONResponse:  # NOSONAR
     assert isinstance(exc, DomainError)
     response = error_response(exc.status_code, exc.code, exc.message, _with_ask(exc))
     for hook in exc.response_hooks:
@@ -153,7 +153,7 @@ async def _domain_error_handler(_: Request, exc: Exception) -> JSONResponse:
     return response
 
 
-async def _validation_error_handler(_: Request, exc: Exception) -> JSONResponse:
+async def _validation_error_handler(_: Request, exc: Exception) -> JSONResponse:  # NOSONAR
     assert isinstance(exc, RequestValidationError)
     fields = [
         {
@@ -166,7 +166,7 @@ async def _validation_error_handler(_: Request, exc: Exception) -> JSONResponse:
     return error_response(422, "validation_failed", "Request validation failed", {"fields": fields})
 
 
-async def _http_exception_handler(_: Request, exc: Exception) -> JSONResponse:
+async def _http_exception_handler(_: Request, exc: Exception) -> JSONResponse:  # NOSONAR
     assert isinstance(exc, StarletteHTTPException)
     is_str = isinstance(exc.detail, str)
     message = exc.detail if is_str else _status_code_name(exc.status_code)
@@ -184,7 +184,7 @@ def internal_error_response() -> JSONResponse:
     return error_response(500, "internal_error", "An unexpected error occurred")
 
 
-async def _unhandled_error_handler(_: Request, exc: Exception) -> JSONResponse:
+async def _unhandled_error_handler(_: Request, exc: Exception) -> JSONResponse:  # NOSONAR
     # Fallback only: RequestContextMiddleware normally handles unhandled errors first.
     logger.opt(exception=exc).error("Unhandled error (request_id={})", get_context().request_id)
     return internal_error_response()

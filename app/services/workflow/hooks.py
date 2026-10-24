@@ -35,7 +35,7 @@ async def _rule_owner(db: AsyncSession, payload: Mapping[str, Any]) -> set[uuid.
     return {owner} if owner else set()
 
 
-async def _render_failed(db: AsyncSession, payload: Mapping[str, Any]) -> notifications.Content:  # ruff: ignore[unused-function-argument]
+async def _render_failed(db: AsyncSession, payload: Mapping[str, Any]) -> notifications.Content:  # ruff: ignore[unused-function-argument]  # NOSONAR
     return notifications.Content(
         title=f"A workflow run ended {str(payload.get('status', 'failed')).replace('_', ' ')}",
         entity_type="workflow_execution",

@@ -109,7 +109,7 @@ async def _digest(tctx: Any, args: DigestIn) -> ToolOutcome:
     return ToolOutcome(DigestOut(digests_sent=sent, flags_raised=raised), summary=f"{sent} digest(s) sent")
 
 
-async def _digest_preview(tctx: Any, args: DigestIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
+async def _digest_preview(tctx: Any, args: DigestIn) -> ProposalPreview:  # ruff: ignore[unused-function-argument]  # NOSONAR
     return ProposalPreview(
         title=f"Send the daily SLA risk digest ({len(args.items)} demands)",
         summary="One in-app / email digest per recipient (primary recruiter and the business-unit managers), listing only demands each recipient can see.",

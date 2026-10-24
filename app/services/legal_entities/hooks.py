@@ -29,7 +29,7 @@ async def _fx_admins(db: AsyncSession, payload: Any) -> set[Any]:  # ruff: ignor
     return {u["id"] for u in await identity_bridge.users_with_permission(db, "fx_feed:configure")}
 
 
-async def _render_fx_failed(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]
+async def _render_fx_failed(db: AsyncSession, payload: Any) -> Any:  # ruff: ignore[unused-function-argument]  # NOSONAR
     from app.services.notifications_service import Content
 
     days = int(payload.get("consecutive_days") or 1)

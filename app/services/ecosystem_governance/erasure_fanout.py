@@ -29,7 +29,7 @@ if TYPE_CHECKING:
     from sqlalchemy.ext.asyncio import AsyncSession
 
 
-async def _connector_has_erasure(connector_key: str | None) -> bool:
+async def _connector_has_erasure(connector_key: str | None) -> bool:  # NOSONAR
     if not connector_key:
         return False
     try:

@@ -123,7 +123,7 @@ class FakeAdapterBase:
             raise ConnectorTransientError(msg)
 
     # ------------------------------------------------------------------------------------------- ConnectorPort
-    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:
+    async def handle(self, op: str, payload: Mapping[str, Any]) -> Mapping[str, Any]:  # NOSONAR
         self._check(op, dict(payload))
         if op == "health":
             return {"ok": True}

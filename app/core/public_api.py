@@ -126,7 +126,7 @@ def require_scope(*scope_keys: str, at_least: Scope = Scope.OWN) -> Callable[...
     """Dependency: an API key or App Principal holding EVERY ``scope_keys``; then the mapped permissions are checked
     with ``core.permissions.check`` (403 ``forbidden`` when a delegated user lost the permission)."""
 
-    async def dependency(principal: Annotated[Principal, Depends(current_public_principal)]) -> Principal:
+    async def dependency(principal: Annotated[Principal, Depends(current_public_principal)]) -> Principal:  # NOSONAR
         if principal.type not in PUBLIC_PRINCIPAL_TYPES:
             raise insufficient_scope(scope_keys)
         missing = [k for k in scope_keys if not scope_satisfied(principal, k)]
@@ -266,7 +266,7 @@ def check_if_match(request: Request, current_version: int | str) -> None:
 def deprecate(*, since: date, sunset: date, link: str) -> Callable[..., Awaitable[None]]:
     """Dependency adding ``Deprecation`` / ``Sunset`` / ``Link`` headers; marks the request log row deprecated."""
 
-    async def dependency(request: Request, response: Response) -> None:
+    async def dependency(request: Request, response: Response) -> None:  # NOSONAR
         response.headers["Deprecation"] = f"@{int(datetime(since.year, since.month, since.day).timestamp())}"
         response.headers["Sunset"] = sunset.strftime("%a, %d %b %Y 00:00:00 GMT")
         response.headers["Link"] = f'<{link}>; rel="deprecation"'

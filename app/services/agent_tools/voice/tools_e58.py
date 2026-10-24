@@ -63,7 +63,7 @@ def _outcome(data: BaseModel, row: Any, summary: str) -> ToolOutcome:
 
 
 def _preview(title: str, summary_fn: Any = None) -> Any:
-    async def preview(tctx: Any, args: Any) -> ProposalPreview:  # ruff: ignore[unused-function-argument]
+    async def preview(tctx: Any, args: Any) -> ProposalPreview:  # ruff: ignore[unused-function-argument]  # NOSONAR
         summary = summary_fn(args) if summary_fn is not None else title
         return ProposalPreview(
             title=title, summary=summary[:4000], fields=(("Voice session", str(args.voice_session_id)),)

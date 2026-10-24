@@ -137,7 +137,7 @@ class MicrosoftProvider:
             account_email=token_set.account_email,
         )
 
-    async def revoke(self, token_set: TokenSet) -> None:  # ruff: ignore[unused-method-argument] - see module docstring
+    async def revoke(self, token_set: TokenSet) -> None:  # ruff: ignore[unused-method-argument] - see module docstring  # NOSONAR
         return None
 
     @staticmethod

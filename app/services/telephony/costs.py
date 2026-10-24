@@ -113,14 +113,18 @@ async def usage(db: AsyncSession, start: date, end: date, group_by: str) -> list
     ).all()
     stt_minutes: dict[str, int] = {}
     if group_by == "day":
+        # Reuse one expression object in SELECT and GROUP BY so SQLAlchemy emits a single
+        # bind param for the tz; inlining it twice produced two params, which Postgres saw
+        # as different expressions -> "stt_jobs.created_at must appear in the GROUP BY".
+        stt_day = func.date(func.timezone(str(tz), SttJob.created_at))
         stt_rows = (
             await db.execute(
                 select(
-                    func.date(func.timezone(str(tz), SttJob.created_at)),
+                    stt_day,
                     func.coalesce(func.sum(SttJob.billable_minutes), 0),
                 )
                 .where(SttJob.created_at >= lo, SttJob.created_at < hi)
-                .group_by(func.date(func.timezone(str(tz), SttJob.created_at)))
+                .group_by(stt_day)
             )
         ).all()
         stt_minutes = {str(k): int(v) for k, v in stt_rows}

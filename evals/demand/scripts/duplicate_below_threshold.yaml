@@ -1,6 +1,0 @@
-# Epic 55 (A10): the model flags a demand that is not similar enough -> invalid below_threshold, no flag.
-agent_demand:
-  - kind: tool_calls
-    calls: [[demands.flag_duplicate, {demand_id: "{{demand_id}}", related_demand_id: "{{related_id}}", summary: "Looks the same to me."}]]
-  - kind: emit_result
-    result: {outcome: done, summary: "Tried."}

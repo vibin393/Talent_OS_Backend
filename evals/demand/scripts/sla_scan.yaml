@@ -1,8 +1,0 @@
-# Epic 55 (A10, FR-284): the daily scan -> one digest per recipient (each sees only demands they can read).
-agent_demand:
-  - kind: tool_calls
-    calls: [[sla.risk_scan, {}]]
-  - kind: tool_calls
-    calls: [[sla.send_digest, {items: [{demand_id: "{{demand_id}}", note: "Nothing submitted yet."}, {demand_id: "{{other_demand_id}}"}]}]]
-  - kind: emit_result
-    result: {outcome: done, summary: "Digest sent."}

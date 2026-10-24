@@ -1,5 +1,0 @@
-# Epic 63: keyless-mode Fake LLM script of the timesheet agent (dev / tests without an AI key). A static script cannot know
-# the record ids, so the fake run finishes at once; the deterministic P2 paths (reminders, flags, runs, collections)
-# keep working without AI.
-- kind: emit_result
-  result: {outcome: nothing_to_do, summary: "Fake LLM (no AI key configured): nothing done by the timesheet agent."}

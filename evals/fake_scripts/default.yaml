@@ -1,2 +1,0 @@
-- kind: emit_result
-  result: {outcome: nothing_to_do, summary: "Fake LLM default script (no AI key configured)."}

@@ -193,6 +193,9 @@ async def call_options(
     from app.services.telephony import costs
     from app.services.voice.common import PURPOSE_CALL, PURPOSE_RECORDING, has_consent
 
+    if application_id is None and candidate_id is None and voice_session_id is None:
+        raise common.invalid("identifier_required", "Provide application_id, candidate_id, or voice_session_id")
+
     user_id = gates.require_caller(ctx)
     session = await resolve_session(
         ctx, db, voice_session_id=voice_session_id, application_id=application_id, candidate_id=candidate_id

@@ -433,3 +433,11 @@ async def test_settings_validation(torg: TOrg) -> None:
         TelephonySettingsIn(cost_alert_pct=40)
     async with tenant_session(torg.tenant_id) as db:
         assert (await db.execute(select(TelephonySettings))).scalar_one().call_window_start == time(9, 0)
+
+
+async def test_call_options_requires_an_identifier(torg: TOrg) -> None:
+    """BUG-03: /telephony/call-options with no application_id/candidate_id/voice_session_id must be a
+    422 validation error, not a 500 AssertionError."""
+    async with tenant_session(torg.tenant_id) as db:
+        with pytest.raises(ValidationFailed):
+            await svc.call_options(human(torg.org), db)

@@ -51,6 +51,18 @@ async def test_other_errors_are_not_translated() -> None:
     assert translate(RuntimeError("x")) is None
 
 
+async def test_translate_connection_saturation_becomes_503() -> None:
+    """Perf finding: DB/pool saturation should degrade gracefully to a retryable 503, not a 500."""
+    from app.core.errors import ServiceUnavailable
+
+    for code in ("53300", "57P03", "08006"):  # too_many_connections, cannot_connect_now, connection failure
+        with pytest.raises(DBAPIError) as exc:
+            await _raise(code, "saturated")
+        domain = translate(exc.value)
+        assert isinstance(domain, ServiceUnavailable), code
+        assert (domain.status_code, domain.code) == (503, "service_unavailable")
+
+
 @pytest.fixture
 async def guard_client() -> AsyncIterator[httpx.AsyncClient]:
     app = FastAPI()
@@ -63,6 +75,10 @@ async def guard_client() -> AsyncIterator[httpx.AsyncClient]:
     @app.get("/other")
     async def other() -> None:
         await _raise("P0001", "boom")
+
+    @app.get("/overload")
+    async def overload() -> None:
+        await _raise("53300", "too many clients already")
 
     transport = httpx.ASGITransport(app=app, raise_app_exceptions=False)
     async with httpx.AsyncClient(transport=transport, base_url="http://testserver") as client:
@@ -77,3 +93,10 @@ async def test_handler_renders_409_envelope(guard_client: httpx.AsyncClient) -> 
     other = await guard_client.get("/other")
     assert other.status_code == 500
     assert other.json()["error"]["code"] == "internal_error"
+
+
+async def test_handler_renders_503_on_saturation(guard_client: httpx.AsyncClient) -> None:
+    resp = await guard_client.get("/overload")
+    assert resp.status_code == 503
+    assert resp.json()["error"]["code"] == "service_unavailable"
+    assert resp.headers.get("retry-after") == "1"

@@ -14,11 +14,15 @@ from typing import Any
 
 from sqlalchemy.exc import DBAPIError
 
-from app.core.errors import ConflictError, DomainError
+from app.core.errors import ConflictError, DomainError, ServiceUnavailable
 
 PERIOD_CLOSED = "TOS01"
 DOCUMENT_IMMUTABLE = "TOS02"
 EXCLUSION_VIOLATION = "23P01"
+# Transient DB/connection saturation -> 503 (retryable), not a 500. 53300 = too_many_connections,
+# 57P03 = cannot_connect_now (starting up/shutting down), class 08 = connection exception.
+TOO_MANY_CONNECTIONS = "53300"
+CANNOT_CONNECT_NOW = "57P03"
 
 
 def _chain(exc: BaseException) -> list[BaseException]:
@@ -71,4 +75,8 @@ def translate(exc: DBAPIError | BaseException) -> DomainError | None:
             code="overlap",
             details={"constraint": constraint} if constraint else {},
         )
+    if code in (TOO_MANY_CONNECTIONS, CANNOT_CONNECT_NOW) or (code or "").startswith("08"):
+        err = ServiceUnavailable()
+        err.response_hooks.append(lambda resp: resp.headers.__setitem__("Retry-After", "1"))
+        return err
     return None

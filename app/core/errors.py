@@ -119,6 +119,15 @@ class RateLimited(DomainError):  # ruff: ignore[error-suffix-on-exception-name] 
     default_message = "Too many requests"
 
 
+class ServiceUnavailable(DomainError):  # ruff: ignore[error-suffix-on-exception-name] - mirrors HTTP 503
+    """503. Transient backend/DB saturation (e.g. the connection pool / Postgres is at capacity). Retryable,
+    so it carries a short ``Retry-After`` rather than surfacing as a 500 with a stack trace."""
+
+    status_code = 503
+    code = "service_unavailable"
+    default_message = "The service is temporarily overloaded; please retry shortly"
+
+
 def error_body(code: str, message: str, details: dict[str, Any] | None = None) -> dict[str, Any]:
     return {"error": {"code": code, "message": message, "details": details or {}}}
 

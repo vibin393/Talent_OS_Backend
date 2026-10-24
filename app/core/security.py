@@ -160,7 +160,7 @@ def set_session_cookie(response: Response, cookie_name: str, token: str, max_age
 
 def set_csrf_cookie(response: Response, token: str, max_age: int) -> None:
     # Readable by the frontend (not httpOnly) so it can echo it in the X-CSRF-Token header.
-    response.set_cookie(
+    response.set_cookie(  # NOSONAR
         CSRF_COOKIE, token, max_age=max_age, path="/", httponly=False, samesite="lax", secure=_secure()
     )
 

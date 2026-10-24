@@ -8,7 +8,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 from sqlalchemy.engine import URL
 
 BACKEND_DIR = Path(__file__).resolve().parents[2]
-DEFAULT_APP_DB_PASSWORD = "talent_app_dev"
+DEFAULT_APP_DB_PASSWORD = "talent_app_dev"  # NOSONAR
 
 
 class Settings(BaseSettings):

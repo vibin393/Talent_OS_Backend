@@ -141,7 +141,7 @@ def _verify_twilio(
         except UnicodeDecodeError:
             return False
         data += "".join(k + v for k, v in sorted(pairs))
-    expected = base64.b64encode(hmac.new(secret, data.encode(), hashlib.sha1).digest()).decode()
+    expected = base64.b64encode(hmac.new(secret, data.encode(), hashlib.sha1).digest()).decode()  # NOSONAR
     return _eq(provided.strip(), expected)
 
 

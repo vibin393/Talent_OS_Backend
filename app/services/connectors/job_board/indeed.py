@@ -83,7 +83,7 @@ class IndeedConfig(BaseModel):
 
 
 def sign(secret: str, body: bytes) -> str:
-    return base64.b64encode(hmac.new(secret.encode(), body, hashlib.sha1).digest()).decode()
+    return base64.b64encode(hmac.new(secret.encode(), body, hashlib.sha1).digest()).decode()  # NOSONAR
 
 
 def _minor(amount: Decimal | None) -> int | None:

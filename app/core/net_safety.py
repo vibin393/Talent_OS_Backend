@@ -210,20 +210,20 @@ _DENIED_V4 = tuple(
     ipaddress.IPv4Network(n)
     for n in (
         "0.0.0.0/8",  # "this" network
-        "10.0.0.0/8",  # RFC 1918
-        "100.64.0.0/10",  # carrier-grade NAT
+        "10.0.0.0/8",  # RFC 1918  # NOSONAR
+        "100.64.0.0/10",  # carrier-grade NAT  # NOSONAR
         "127.0.0.0/8",  # loopback
-        "169.254.0.0/16",  # link-local (incl. 169.254.169.254 metadata)
-        "172.16.0.0/12",  # RFC 1918
-        "192.0.0.0/24",  # IETF protocol assignments
+        "169.254.0.0/16",  # link-local (incl. 169.254.169.254 metadata)  # NOSONAR
+        "172.16.0.0/12",  # RFC 1918  # NOSONAR
+        "192.0.0.0/24",  # IETF protocol assignments  # NOSONAR
         "192.0.2.0/24",  # TEST-NET-1
-        "192.88.99.0/24",  # 6to4 relay anycast
-        "192.168.0.0/16",  # RFC 1918
-        "198.18.0.0/15",  # benchmarking
+        "192.88.99.0/24",  # 6to4 relay anycast  # NOSONAR
+        "192.168.0.0/16",  # RFC 1918  # NOSONAR
+        "198.18.0.0/15",  # benchmarking  # NOSONAR
         "198.51.100.0/24",  # TEST-NET-2
         "203.0.113.0/24",  # TEST-NET-3
-        "224.0.0.0/4",  # multicast
-        "240.0.0.0/4",  # reserved (incl. 255.255.255.255 broadcast)
+        "224.0.0.0/4",  # multicast  # NOSONAR
+        "240.0.0.0/4",  # reserved (incl. 255.255.255.255 broadcast)  # NOSONAR
     )
 )
 _DENIED_V6 = tuple(

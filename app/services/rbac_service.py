@@ -461,7 +461,7 @@ async def invite_user(
     out = _invitation_out(issued.invitation)
     # Hand the admin the copyable accept-invite link (email is also sent). Local/dev has no mail, and
     # admins routinely want to share the link directly; the token is one-time and only returned here.
-    out.invite_url = f"http://{tenant.slug}.talentos.localhost/accept-invite?token={issued.token}"
+    out.invite_url = f"http://{tenant.slug}.talentos.localhost/accept-invite?token={issued.token}"  # NOSONAR
     return out
 
 

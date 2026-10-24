@@ -234,7 +234,7 @@ async def verify(db: AsyncSession, tenant_id: uuid.UUID, *, recent: list[uuid.UU
     bad = 0
     for message_id, blob, note_blob in rows:
         mid = uuid.UUID(str(message_id))
-        if mid not in wanted and random.random() > VERIFY_SAMPLE:  # nosec B311 - non-cryptographic sampling/jitter
+        if mid not in wanted and random.random() > VERIFY_SAMPLE:  # nosec B311 - non-cryptographic sampling/jitter  # NOSONAR
             continue
         try:
             await open_message(db, tenant_id, mid, blob)

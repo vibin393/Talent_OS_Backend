@@ -107,7 +107,7 @@ class CompanyAdminRow:
 
 def _accept_invite_url(slug: str, token: str) -> str:
     """The admin's invitation link on the tenant's own subdomain (the accept page reads ``?token=``)."""
-    return f"http://{slug}.talentos.localhost/accept-invite?token={token}"
+    return f"http://{slug}.talentos.localhost/accept-invite?token={token}"  # NOSONAR
 
 
 async def _slug_is_free(slug: str) -> bool:

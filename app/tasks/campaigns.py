@@ -67,7 +67,7 @@ def send_batch(tenant_id: str, message_ids: list[str]) -> dict[str, Any]:
     out = dict(run(lambda: _send(tid, ids), tenant_id=tid) or {})
     throttled = out.get("throttled") or []
     if throttled:
-        countdown = max(1, int(out.get("retry_after_ms", 1000)) // 1000 + 1) + random.randint(0, 3)  # nosec B311 - non-cryptographic sampling/jitter
+        countdown = max(1, int(out.get("retry_after_ms", 1000)) // 1000 + 1) + random.randint(0, 3)  # nosec B311 - non-cryptographic sampling/jitter  # NOSONAR
         if celery_app.conf.task_always_eager:  # tests / eager: the beat releases them instead of recursing
             return out
         try:
